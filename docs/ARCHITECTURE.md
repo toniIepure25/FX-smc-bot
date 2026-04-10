@@ -2,67 +2,157 @@
 
 ## Mission
 
-Build a research-grade, multi-pair FX trading framework that formalizes SMC/ICT concepts into systematic signals, supports portfolio-aware risk allocation, and remains extensible toward AI-assisted filtering and live deployment.
+Professional quantitative FX strategy lab that formalizes SMC/ICT concepts into systematic signals, supports institutional-grade risk controls, enables rigorous strategy decomposition, and provides deployment-ready paper trading with full audit trails.
 
-## Primary system blocks
+## System Architecture
 
-1. **Data Core**
-   - Multi-pair FX ingestion
-   - Multi-timeframe synchronization
-   - Session labeling and quality checks
+```
+                    ┌─────────────┐
+                    │  YAML Config │
+                    └──────┬──────┘
+                           │
+                    ┌──────▼──────┐
+                    │  AppConfig   │  (Pydantic v2)
+                    │  + AlphaConfig│
+                    │  + RiskConfig │
+                    │  + MlConfig   │
+                    └──────┬──────┘
+                           │
+           ┌───────────────┼───────────────┐
+           │               │               │
+    ┌──────▼──────┐ ┌──────▼──────┐ ┌──────▼──────┐
+    │  Data Layer  │ │  Structure   │ │    Utils     │
+    │  (providers, │ │  Engine      │ │  (ATR, pips, │
+    │   normalize, │ │  (swings,    │ │   sessions)  │
+    │   Parquet)   │ │   BOS/CHoCH) │ └─────────────┘
+    └──────┬──────┘ └──────┬──────┘
+           │               │
+           │        ┌──────▼──────┐
+           │        │  Alpha Layer │  ◄── config-driven
+           │        │  (candidates,│      detector selection
+           │        │   scoring,   │      (ablation-ready)
+           │        │   families,  │
+           │        │   baselines) │
+           │        └──────┬──────┘
+           │               │
+    ┌──────┼───────────────┤
+    │      │        ┌──────▼──────┐
+    │      │        │  Portfolio   │◄── Risk Layer
+    │      │        │  (selector,  │    (constraints, exposure,
+    │      │        │   allocator) │     lockout, diagnostics)
+    │      │        └──────┬──────┘
+    │      │               │
+    │      │        ┌──────▼──────┐
+    │      └───────►│  Execution   │
+    │               │  (fills,     │
+    │               │   slippage)  │
+    │               └──────┬──────┘
+    │                      │
+    │          ┌───────────┼───────────┐
+    │          │                       │
+    │   ┌──────▼──────┐        ┌──────▼──────┐
+    └──►│  Backtest    │        │  Live Layer  │
+        │  Engine      │        │  (PaperBroker│
+        │  + regime    │        │   Journal,   │
+        │    tagging   │        │   State,     │
+        └──────┬──────┘        │   Runner)    │
+               │               └──────┬──────┘
+        ┌──────▼──────┐               │
+        │  Research    │◄──────────────┘
+        │  (ablation,  │
+        │   campaigns, │
+        │   scores,    │
+        │   reporting) │
+        └──────┬──────┘
+               │
+        ┌──────▼──────┐
+        │  ML Layer    │  (optional)
+        │  (regime,    │
+        │   microstruct│
+        │   features)  │
+        └─────────────┘
+```
 
-2. **Structure Engine**
-   - Swing detection
-   - BOS / CHoCH
-   - Liquidity pools
-   - Displacement
-   - Fair value gaps
-   - Order blocks
+## Package Structure
 
-3. **Alpha Layer**
-   - Structured trade candidates
-   - Signal scoring
-   - Setup family classification
+- **config.py** — `AppConfig` with `AlphaConfig`, `RiskConfig`, `ExecutionConfig`, `MlConfig`, `OperationalState` enum
+- **domain.py** — ~35 domain types including `ClosedTrade` with `regime` field for regime-tagged analytics
+- **data/** — BarSeries model, CSV/Parquet providers, Dukascopy, normalizer, manifest, diagnostics
+- **structure/** — SMC primitives: swings, BOS/CHoCH, liquidity pools, displacement, FVG, order blocks, sessions
+- **alpha/** — Config-driven candidate generation with detector registry, scoring with configurable weights, baselines
+- **risk/** — Sizing, constraints (currency exposure, directional concentration, daily stop lockout, daily trade limit), drawdown with operational state machine, portfolio diagnostics
+- **portfolio/** — Selection, multi-strategy allocation (equal risk, score-weighted, capped conviction)
+- **execution/** — Fill simulation (conservative/optimistic/random), slippage models (fixed, volatility, data-driven)
+- **backtesting/** — Event-driven engine with regime tagging, trade ledger, metrics, attribution with interaction dimensions
+- **ml/** — Regime classifiers (volatility, trend/range, spread, composite), microstructure proxies (bar efficiency, wick asymmetry, spread stress, volatility compression, directional persistence)
+- **research/** — Ablation runner (family/scoring/filter), campaign orchestration (config sweep, baseline-vs-SMC, walk-forward), research quality scores, experiment registry, evaluation with regime/interaction dimensions
+- **live/** — BrokerAdapter protocol, PaperBroker, EventJournal (JSONL audit log), LiveState persistence, PaperTradingRunner, AlertSink protocol
+- **utils/** — ATR, pip math, session time helpers, logging
 
-4. **Risk & Sizing**
-   - Trade-level controls
-   - Pair-level controls
-   - Portfolio-level constraints
-   - Volatility-aware and score-aware sizing
+## Data Pipeline
 
-5. **Portfolio Engine**
-   - Candidate ranking
-   - Currency exposure limits
-   - Correlation-aware allocation
+```
+data/raw/          ← Downloaded CSVs (Dukascopy, MT4, generic)
+data/interim/      ← Normalized CSVs
+data/processed/    ← Final Parquet files (canonical schema)
+  EURUSD/
+    1m.parquet     ← Base resolution
+    15m.parquet    ← Resampled
+    1h.parquet
+    4h.parquet
+  manifest.json    ← Dataset metadata
+```
 
-6. **Execution & Simulation**
-   - Spread/slippage modeling
-   - Limit and stop logic
-   - Event-driven backtesting
+## Operational Risk State Machine
 
-7. **ML Layer**
-   - Regime filter
-   - Trade quality model
-   - Meta-labeling
+```
+ACTIVE → THROTTLED → LOCKED → STOPPED
+  ↑         ↑
+  └─────────┘  (new day resets LOCKED → ACTIVE)
+```
 
-8. **Research Analytics**
-   - Attribution by pair, setup family, session, and regime
-   - Walk-forward validation
-   - Robustness and stress testing
+- **ACTIVE**: Full trading, throttle factor = 1.0
+- **THROTTLED**: Approaching DD limits, sizing reduced
+- **LOCKED**: Daily loss limit hit, no new trades
+- **STOPPED**: Manual/emergency stop
 
-## Initial implementation priority
+## Strategy Decomposition
 
-- Typed configuration
-- Core domain models
-- Data contracts and loaders
-- Structure engine primitives
-- Trade candidate generation
-- Risk and position sizing interfaces
-- Portfolio selection interfaces
+The `AlphaConfig.enabled_families` field controls which detector classes are active:
 
-## Non-goals for the initial scaffold
+```yaml
+alpha:
+  enabled_families: [sweep_reversal, bos_continuation, fvg_retrace]
+  scoring_weights: [0.5, 0.3, 0.2]
+  min_signal_score: 0.15
+```
 
-- Live broker integration
+The ablation runner systematically tests each family in isolation, leave-one-out, and full stack.
+
+## Paper Trading Architecture
+
+```
+Data (Parquet) → PaperTradingRunner → PaperBroker → EventJournal
+                       ↓                    ↓
+                 Signal Engine          FillEngine
+                 Risk/Portfolio         State Persistence
+```
+
+The `BrokerAdapter` protocol enables swapping `PaperBroker` for a real broker implementation.
+
+## Key Design Decisions
+
+1. **NumPy for hot paths, DataFrames for I/O**
+2. **Protocols for all interfaces**: `BrokerAdapter`, `SlippageModel`, `SizingStrategy`, `ConstraintChecker`, `SetupDetector`, `RegimeClassifier`, `AlertSink`
+3. **Config-driven ablation**: Detector selection, scoring weights, and filter thresholds all configurable for systematic decomposition
+4. **Event-driven simulation**: Same signal/risk/portfolio loop for both backtest and paper trading
+5. **Operational risk state machine**: Drawdown tracker manages ACTIVE/THROTTLED/LOCKED/STOPPED states
+6. **Regime tagging on every trade**: `ClosedTrade.regime` field enables regime-dimensional evaluation
+7. **Append-only audit journal**: JSONL event log for full signal-to-fill traceability
+8. **Research quality scores**: Quantitative go/no-go diagnostics (stability, robustness, simplicity, OOS consistency, diversification)
+
+## Non-goals (current phase)
+
 - Full UI/dashboard
 - Deep learning from raw candles
 - Reinforcement learning
