@@ -1,0 +1,13 @@
+structure:
+  swing_lookback: 5
+  min_swing_atr_multiple: 0.4
+  displacement_atr_multiple: 1.8
+  displacement_body_efficiency: 0.65
+  fvg_min_atr_multiple: 0.6
+  equal_level_tolerance_pips: 2.5
+  equal_level_min_touches: 2
+
+risk:
+  base_risk_per_trade: 0.005
+  min_reward_risk_ratio: 2.0
+  score_risk_modulation: 0.6

@@ -1,0 +1,63 @@
+environment: research
+
+data:
+  primary_pairs: ["EURUSD", "GBPUSD", "USDJPY"]
+  context_timeframes: ["4h", "1h"]
+  execution_timeframes: ["15m", "5m"]
+  timezone: UTC
+
+structure:
+  swing_lookback: 5
+  min_swing_atr_multiple: 0.3
+  atr_period: 14
+  fvg_min_atr_multiple: 0.5
+  fvg_max_fill_pct: 0.5
+  displacement_atr_multiple: 1.5
+  displacement_body_efficiency: 0.6
+  ob_require_displacement: true
+  equal_level_tolerance_pips: 3.0
+  equal_level_min_touches: 2
+
+sessions:
+  asian:
+    start: "00:00"
+    end: "08:00"
+  london:
+    start: "07:00"
+    end: "16:00"
+  new_york:
+    start: "12:00"
+    end: "21:00"
+  london_ny_overlap:
+    start: "12:00"
+    end: "16:00"
+
+risk:
+  base_risk_per_trade: 0.005
+  max_portfolio_risk: 0.015
+  max_daily_drawdown: 0.03
+  max_weekly_drawdown: 0.06
+  max_concurrent_positions: 3
+  max_per_pair_positions: 1
+  max_usd_directional_exposure: 1.0
+  min_reward_risk_ratio: 1.5
+  score_risk_modulation: 0.5
+  volatility_risk_scaling: true
+
+execution:
+  model_spread: true
+  model_slippage: true
+  default_spread_pips: 1.5
+  slippage_pips: 0.3
+  allow_limit_orders: true
+  fill_on_touch: false
+
+backtest:
+  initial_capital: 100000.0
+  commission_per_lot: 3.5
+  lot_size: 100000.0
+
+ml:
+  enable_regime_filter: false
+  enable_trade_quality_model: false
+  enable_meta_labeling: false

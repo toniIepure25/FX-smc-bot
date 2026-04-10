@@ -1,0 +1,10 @@
+risk:
+  base_risk_per_trade: 0.003
+  max_portfolio_risk: 0.01
+  max_daily_drawdown: 0.02
+  max_weekly_drawdown: 0.04
+  max_concurrent_positions: 2
+  max_per_pair_positions: 1
+  min_reward_risk_ratio: 2.0
+  score_risk_modulation: 0.7
+  volatility_risk_scaling: true
