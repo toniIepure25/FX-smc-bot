@@ -1,4 +1,4 @@
-"""FX SMC Bot package."""
+"""FX SMC Bot -- research-grade multi-pair FX framework."""
 
 __all__ = ["__version__"]
 
