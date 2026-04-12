@@ -1,0 +1,76 @@
+{
+  "program_name": "BOS-Only USDJPY Paper Validation",
+  "candidate": "bos_only_usdjpy",
+  "family": "bos_continuation",
+  "pairs": ["USDJPY"],
+  "timeframe": "H1",
+  "htf_timeframe": "H4",
+  "risk_profile": {
+    "label": "size_030_cb125",
+    "base_risk_per_trade": 0.003,
+    "max_portfolio_risk": 0.009,
+    "circuit_breaker_threshold": 0.125
+  },
+  "program_duration": {
+    "minimum_weeks": 4,
+    "target_weeks": 6,
+    "maximum_weeks": 10
+  },
+  "review_schedule": {
+    "day_1": "sanity_check",
+    "week_1": "signal_integrity_review",
+    "week_2": "discrepancy_review",
+    "week_4": "performance_review",
+    "week_6": "final_paper_review"
+  },
+  "backtest_baselines": {
+    "holdout_sharpe": 0.8505,
+    "holdout_pf": 1.9637,
+    "holdout_trades": 220,
+    "holdout_win_rate": 0.2909,
+    "holdout_max_dd": 0.126,
+    "oos_mean_sharpe": 1.5986,
+    "oos_pct_positive": 0.63,
+    "oos_folds": 27
+  },
+  "promotion_criteria": {
+    "paper_sharpe_minimum": 0.0,
+    "paper_sharpe_target": 0.3,
+    "paper_pf_minimum": 1.0,
+    "max_drawdown": 0.15,
+    "min_trades_for_decision": 25,
+    "max_discrepancy_pct": 40
+  },
+  "hard_stops": [
+    "paper_sharpe_below_zero_after_4_weeks",
+    "drawdown_exceeds_15_pct",
+    "win_rate_below_15_pct_any_2_week_window",
+    "zero_signals_for_5_consecutive_days",
+    "circuit_breaker_fires",
+    "config_fingerprint_mismatch"
+  ],
+  "artifacts": {
+    "governance": [
+      "paper_stage_checkpoints.md",
+      "checkpoint_decision_matrix.md",
+      "paper_stage_escalation_rules.md"
+    ],
+    "specs": [
+      "paper_stage_invalidation_rules.md",
+      "paper_stage_metrics_spec.md",
+      "discrepancy_monitoring_spec.md",
+      "risk_event_monitoring_spec.md"
+    ],
+    "templates": [
+      "weekly_review_template.md",
+      "week_1_signal_integrity_review.md",
+      "week_2_discrepancy_review.md",
+      "week_4_performance_review.md",
+      "week_6_final_paper_review.md",
+      "final_paper_stage_decision_template.md"
+    ],
+    "runner": "scripts/run_paper_validation.py",
+    "frozen_config": "results/final_promotion_gate/bos_only_usdjpy_champion_bundle/champion_config.json"
+  },
+  "created_at": "2026-04-12"
+}

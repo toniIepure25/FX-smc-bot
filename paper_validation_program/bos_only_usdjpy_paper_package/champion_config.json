@@ -1,0 +1,30 @@
+{
+  "champion": "bos_only_usdjpy",
+  "family": "bos_continuation",
+  "pairs": [
+    "USDJPY"
+  ],
+  "timeframe": "H1",
+  "htf_timeframe": "H4",
+  "risk_config": {
+    "base_risk_per_trade": 0.003,
+    "max_portfolio_risk": 0.009,
+    "circuit_breaker_threshold": 0.125
+  },
+  "risk_profile_label": "size_030_cb125",
+  "execution": {
+    "default_spread_pips": 1.0,
+    "slippage_pips": 0.5,
+    "fill_policy": "conservative"
+  },
+  "data_source": "yahoo_finance (primary), dukascopy_synthetic (confirmation)",
+  "holdout_sharpe": 0.8505,
+  "holdout_pf": 1.9637,
+  "holdout_trades": 220,
+  "holdout_win_rate": 0.2909,
+  "holdout_max_dd": 0.126,
+  "oos_mean_sharpe": 1.5986,
+  "oos_pct_positive": 0.63,
+  "oos_folds_total": 27,
+  "frozen_at": "2026-04-12T18:47:22.264492"
+}
