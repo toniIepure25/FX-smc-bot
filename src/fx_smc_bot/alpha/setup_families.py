@@ -56,6 +56,9 @@ class SetupDetector(Protocol):
 class SweepReversalDetector:
     """Liquidity sweep + displacement + entry at FVG or OB."""
 
+    def __init__(self, scoring_weights: tuple[float, float, float] = (0.5, 0.3, 0.2)) -> None:
+        self._weights = scoring_weights
+
     def scan(
         self,
         ctx: MultiTimeframeContext,
@@ -95,7 +98,7 @@ class SweepReversalDetector:
                 family=SignalFamily.SWEEP_REVERSAL,
                 timestamp=current_time,
                 entry=entry, stop_loss=sl, take_profit=tp,
-                signal_score=composite_score(struct_score, liq_score, sess_score),
+                signal_score=composite_score(struct_score, liq_score, sess_score, self._weights),
                 structure_score=struct_score,
                 liquidity_score=liq_score,
                 execution_timeframe=ltf.timeframe,
@@ -108,6 +111,9 @@ class SweepReversalDetector:
 
 class BOSContinuationDetector:
     """BOS in HTF direction + pullback to FVG/OB."""
+
+    def __init__(self, scoring_weights: tuple[float, float, float] = (0.5, 0.3, 0.2)) -> None:
+        self._weights = scoring_weights
 
     def scan(
         self,
@@ -142,7 +148,7 @@ class BOSContinuationDetector:
             family=SignalFamily.BOS_CONTINUATION,
             timestamp=current_time,
             entry=entry, stop_loss=sl, take_profit=tp,
-            signal_score=composite_score(struct_score, liq_score, sess_score),
+            signal_score=composite_score(struct_score, liq_score, sess_score, self._weights),
             structure_score=struct_score,
             liquidity_score=liq_score,
             execution_timeframe=ltf.timeframe,
@@ -153,6 +159,9 @@ class BOSContinuationDetector:
 
 class FVGRetraceDetector:
     """Price returns to unfilled FVG in the current trend direction."""
+
+    def __init__(self, scoring_weights: tuple[float, float, float] = (0.5, 0.3, 0.2)) -> None:
+        self._weights = scoring_weights
 
     def scan(
         self,
@@ -194,7 +203,7 @@ class FVGRetraceDetector:
                 family=SignalFamily.FVG_RETRACE,
                 timestamp=current_time,
                 entry=entry, stop_loss=sl, take_profit=tp,
-                signal_score=composite_score(struct_score, fvg_score, sess_score),
+                signal_score=composite_score(struct_score, fvg_score, sess_score, self._weights),
                 structure_score=struct_score,
                 liquidity_score=fvg_score,
                 execution_timeframe=ltf.timeframe,

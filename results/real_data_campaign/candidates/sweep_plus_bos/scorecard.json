@@ -1,0 +1,20 @@
+{
+  "label": "sweep_plus_bos",
+  "rank": 1,
+  "composite": 0.6323,
+  "raw_sharpe": 1.5,
+  "stressed_sharpe": 1.5,
+  "simplicity": 1.0,
+  "oos": 1.0,
+  "diversification": 0.323,
+  "stability": 0.788,
+  "robustness": 0.0,
+  "fragility": 0.0,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 1149,
+  "total_pnl": 14878412.82,
+  "profit_factor": 2.056,
+  "max_drawdown_pct": 0.3648,
+  "n_families": 2
+}

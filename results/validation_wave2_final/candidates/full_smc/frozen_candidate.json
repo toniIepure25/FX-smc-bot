@@ -1,0 +1,13 @@
+{
+  "label": "full_smc",
+  "config_hash": "87f3de347ff496c1",
+  "status": "locked",
+  "locked_at": "2026-04-11T17:35:04.721136",
+  "assumptions": {},
+  "lineage_notes": [],
+  "data_split": {
+    "train_end_pct": 0.6,
+    "validation_end_pct": 0.8,
+    "embargo_bars": 10
+  }
+}

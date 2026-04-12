@@ -1,0 +1,15 @@
+{
+  "label": "sweep_reversal_only",
+  "config_hash": "5fc9d94cce5cbe61",
+  "status": "locked",
+  "locked_at": "2026-04-11T19:07:05.269924",
+  "assumptions": {
+    "rationale": "Single-family ablation: sweep reversal in isolation"
+  },
+  "lineage_notes": [],
+  "data_split": {
+    "train_end_pct": 0.6,
+    "validation_end_pct": 0.8,
+    "embargo_bars": 10
+  }
+}

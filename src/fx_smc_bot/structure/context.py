@@ -22,7 +22,7 @@ from fx_smc_bot.structure.market_structure import detect_structure_breaks, curre
 from fx_smc_bot.structure.displacement import detect_displacement
 from fx_smc_bot.structure.fvg import detect_fvg, update_fvg_fill
 from fx_smc_bot.structure.order_blocks import detect_order_blocks
-from fx_smc_bot.structure.liquidity import detect_equal_levels
+from fx_smc_bot.structure.liquidity import detect_equal_levels, detect_sweeps
 from fx_smc_bot.structure.sessions import track_session_windows
 
 
@@ -65,6 +65,9 @@ def build_structure_snapshot(
     active_obs = [ob for ob in obs if not ob.invalidated]
 
     liquidity = detect_equal_levels(swings, series.pair, config=s_cfg)
+    liquidity = detect_sweeps(
+        liquidity, series.high, series.low, series.close, series.timestamps,
+    )
     session_windows = track_session_windows(
         series.high, series.low, series.timestamps, config=sess_cfg,
     )

@@ -104,6 +104,10 @@ def evaluate_deployment_gate(
     _add("trade_count", metrics.get("total_trades", 0), cfg.min_trade_count)
     _add("win_rate", metrics.get("win_rate", 0.0), cfg.min_win_rate)
 
+    if "cost_degradation_pct" in scores:
+        _add("cost_degradation", scores["cost_degradation_pct"],
+             cfg.max_cost_degradation_pct, higher_better=False)
+
     if "stability" in scores:
         _add("stability", scores["stability"], cfg.min_stability, severity=GateSeverity.WARNING)
     if "robustness" in scores:

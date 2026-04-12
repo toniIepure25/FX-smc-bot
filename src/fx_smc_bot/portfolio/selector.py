@@ -10,7 +10,7 @@ from __future__ import annotations
 from fx_smc_bot.alpha.review import CandidateReview, ReviewCheck, ReviewVerdict, ConfidenceBand
 from fx_smc_bot.config import RiskConfig
 from fx_smc_bot.domain import Position, PositionIntent, TradeCandidate
-from fx_smc_bot.risk.constraints import check_all_constraints
+from fx_smc_bot.risk.constraints import build_full_constraints, check_all_constraints
 from fx_smc_bot.risk.sizing import SizingStrategy, StopBasedSizer
 
 
@@ -62,6 +62,7 @@ def select_candidates(
 
         passed, reasons = check_all_constraints(
             intent, simulated_positions, risk_cfg, equity,
+            constraints=build_full_constraints(),
         )
         if not passed:
             if reviews is not None:

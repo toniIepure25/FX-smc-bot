@@ -95,6 +95,7 @@ class BacktestEngine:
         self,
         data: dict[TradingPair, BarSeries],
         htf_data: dict[TradingPair, BarSeries] | None = None,
+        diagnostics: "DetectorDiagnostics | None" = None,
     ) -> BacktestResult:
         """Run the backtest over the provided data.
 
@@ -102,6 +103,7 @@ class BacktestEngine:
         ----------
         data : execution-timeframe BarSeries per pair.
         htf_data : optional higher-timeframe BarSeries per pair for HTF context.
+        diagnostics : optional detector diagnostics tracker.
         """
         config_hash = hashlib.md5(
             str(self._cfg.model_dump()).encode()
@@ -135,6 +137,20 @@ class BacktestEngine:
             atr_vals = compute_atr(series.high, series.low, series.close,
                                    self._cfg.structure.atr_period)
             atr_cache[pair] = atr_vals.tolist()
+
+        # Pre-compute HTF snapshots once per pair (avoids rebuilding every bar)
+        _htf_snap_cache: dict[TradingPair, tuple] = {}  # pair -> (snapshot, bias)
+        if htf_data:
+            for pair, htf_series in htf_data.items():
+                snap = build_structure_snapshot(
+                    htf_series, self._cfg.structure, self._cfg.sessions,
+                )
+                bias = None
+                if snap.regime == StructureRegime.BULLISH:
+                    bias = Direction.LONG
+                elif snap.regime == StructureRegime.BEARISH:
+                    bias = Direction.SHORT
+                _htf_snap_cache[pair] = (snap, bias)
 
         start_dt = sorted_ts[0].astype("datetime64[us]").astype(datetime)
         end_dt = sorted_ts[-1].astype("datetime64[us]").astype(datetime)
@@ -173,6 +189,7 @@ class BacktestEngine:
                         pos.closed_at = bar_time
                         pnl = self._compute_pnl(pos, exit_fill.fill_price)
                         self._portfolio.close_position(pos.id, pnl)
+                        self._dd_tracker.record_trade_result(pnl)
                         self._ledger.record_trade(
                             pos, exit_fill.fill_price, bar_time,
                             exit_bar=bar_idx,
@@ -216,16 +233,8 @@ class BacktestEngine:
 
                 htf_snapshot = ltf_snapshot  # default: use same TF
                 htf_bias = None
-                if htf_data and pair in htf_data:
-                    htf_series = htf_data[pair]
-                    htf_snap = build_structure_snapshot(
-                        htf_series, self._cfg.structure, self._cfg.sessions,
-                    )
-                    htf_snapshot = htf_snap
-                    if htf_snap.regime == StructureRegime.BULLISH:
-                        htf_bias = Direction.LONG
-                    elif htf_snap.regime == StructureRegime.BEARISH:
-                        htf_bias = Direction.SHORT
+                if pair in _htf_snap_cache:
+                    htf_snapshot, htf_bias = _htf_snap_cache[pair]
 
                 mtf_ctx = MultiTimeframeContext(
                     pair=pair,
@@ -243,6 +252,7 @@ class BacktestEngine:
                     mtf_ctx, float(series.close[bar_idx]), bar_time,
                     risk_cfg=self._cfg.risk, session_cfg=self._cfg.sessions,
                     alpha_cfg=self._cfg.alpha,
+                    diagnostics=diagnostics,
                 )
 
                 if candidates:
@@ -293,6 +303,7 @@ class BacktestEngine:
         metadata = {
             "pairs": [p.value for p in pairs],
             **self._review_collector.to_metadata(),
+            "risk_events": self._dd_tracker.risk_event_counts,
         }
 
         return BacktestResult(

@@ -1,0 +1,89 @@
+{
+  "full_strategy_sharpe": 1.529,
+  "full_strategy_trades": 1095,
+  "components": [
+    {
+      "name": "sweep_reversal_only",
+      "solo_sharpe": 1.528,
+      "solo_trades": 707,
+      "solo_pnl": 7366608.83,
+      "marginal_contribution": 0.999,
+      "full_sharpe_without": 1.529,
+      "fragility_solo": 0.0,
+      "verdict": "keep",
+      "reasons": [
+        "Strong standalone (1.528 vs full 1.529)"
+      ]
+    },
+    {
+      "name": "bos_continuation_only",
+      "solo_sharpe": 1.481,
+      "solo_trades": 1131,
+      "solo_pnl": 14871014.77,
+      "marginal_contribution": 0.968,
+      "full_sharpe_without": 1.529,
+      "fragility_solo": 0.004,
+      "verdict": "keep",
+      "reasons": [
+        "Strong standalone (1.481 vs full 1.529)"
+      ]
+    },
+    {
+      "name": "session_breakout_baseline",
+      "solo_sharpe": 0.057,
+      "solo_trades": 226,
+      "solo_pnl": 2468.02,
+      "marginal_contribution": 0.037,
+      "full_sharpe_without": 1.529,
+      "fragility_solo": 0.974,
+      "verdict": "investigate",
+      "reasons": [
+        "High solo fragility (0.97)"
+      ]
+    },
+    {
+      "name": "momentum_baseline",
+      "solo_sharpe": 0.022,
+      "solo_trades": 71,
+      "solo_pnl": 16.06,
+      "marginal_contribution": 0.015,
+      "full_sharpe_without": 1.529,
+      "fragility_solo": 1.0,
+      "verdict": "investigate",
+      "reasons": [
+        "High solo fragility (1.00)"
+      ]
+    },
+    {
+      "name": "fvg_retrace_only",
+      "solo_sharpe": -0.184,
+      "solo_trades": 123,
+      "solo_pnl": -8787.52,
+      "marginal_contribution": -0.12,
+      "full_sharpe_without": 1.529,
+      "fragility_solo": 1.0,
+      "verdict": "remove",
+      "reasons": [
+        "Negative solo Sharpe (-0.184)"
+      ]
+    },
+    {
+      "name": "mean_reversion_baseline",
+      "solo_sharpe": -0.111,
+      "solo_trades": 187,
+      "solo_pnl": -11643.52,
+      "marginal_contribution": -0.072,
+      "full_sharpe_without": 1.529,
+      "fragility_solo": 1.0,
+      "verdict": "remove",
+      "reasons": [
+        "Negative solo Sharpe (-0.111)"
+      ]
+    }
+  ],
+  "reduced_candidate_label": "",
+  "reduced_candidate_sharpe": 0.0,
+  "complexity_penalty": 0.0,
+  "simplification_score": 0.5,
+  "recommendation": "RECOMMENDED: Some families underperform. Investigate 2 families and consider removing 2."
+}

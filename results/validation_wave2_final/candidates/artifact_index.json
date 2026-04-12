@@ -1,0 +1,16 @@
+{
+  "campaign_id": "campaign_20260411_175253",
+  "timestamp": "2026-04-11T17:52:53.293112",
+  "output_dir": "results/validation_wave2_final/candidates",
+  "files": {
+    "bos_continuation_only/run.json": "results/validation_wave2_final/candidates/bos_continuation_only/run.json",
+    "bos_continuation_only/scorecard.json": "results/validation_wave2_final/candidates/bos_continuation_only/scorecard.json",
+    "bos_continuation_only/frozen_candidate.json": "results/validation_wave2_final/candidates/bos_continuation_only/frozen_candidate.json",
+    "full_smc/run.json": "results/validation_wave2_final/candidates/full_smc/run.json",
+    "full_smc/scorecard.json": "results/validation_wave2_final/candidates/full_smc/scorecard.json",
+    "full_smc/frozen_candidate.json": "results/validation_wave2_final/candidates/full_smc/frozen_candidate.json",
+    "session_breakout_baseline/run.json": "results/validation_wave2_final/candidates/session_breakout_baseline/run.json",
+    "session_breakout_baseline/scorecard.json": "results/validation_wave2_final/candidates/session_breakout_baseline/scorecard.json",
+    "session_breakout_baseline/frozen_candidate.json": "results/validation_wave2_final/candidates/session_breakout_baseline/frozen_candidate.json"
+  }
+}

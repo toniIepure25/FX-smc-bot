@@ -1,0 +1,89 @@
+{
+  "full_strategy_sharpe": 1.804,
+  "full_strategy_trades": 839,
+  "components": [
+    {
+      "name": "bos_continuation_only",
+      "solo_sharpe": 1.781,
+      "solo_trades": 849,
+      "solo_pnl": 1924700.27,
+      "marginal_contribution": 0.987,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 0.038,
+      "verdict": "keep",
+      "reasons": [
+        "Strong standalone (1.781 vs full 1.804)"
+      ]
+    },
+    {
+      "name": "session_breakout_baseline",
+      "solo_sharpe": 0.22,
+      "solo_trades": 49,
+      "solo_pnl": 3567.65,
+      "marginal_contribution": 0.122,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 0.595,
+      "verdict": "investigate",
+      "reasons": [
+        "High solo fragility (0.59)"
+      ]
+    },
+    {
+      "name": "momentum_baseline",
+      "solo_sharpe": -0.106,
+      "solo_trades": 54,
+      "solo_pnl": -2741.32,
+      "marginal_contribution": -0.059,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 1.0,
+      "verdict": "remove",
+      "reasons": [
+        "Negative solo Sharpe (-0.106)"
+      ]
+    },
+    {
+      "name": "mean_reversion_baseline",
+      "solo_sharpe": -0.548,
+      "solo_trades": 120,
+      "solo_pnl": -17626.92,
+      "marginal_contribution": -0.304,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 1.0,
+      "verdict": "remove",
+      "reasons": [
+        "Negative solo Sharpe (-0.548)"
+      ]
+    },
+    {
+      "name": "fvg_retrace_only",
+      "solo_sharpe": -0.059,
+      "solo_trades": 79,
+      "solo_pnl": -1772.4,
+      "marginal_contribution": -0.033,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 1.0,
+      "verdict": "remove",
+      "reasons": [
+        "Negative solo Sharpe (-0.059)"
+      ]
+    },
+    {
+      "name": "sweep_reversal_only",
+      "solo_sharpe": 0.0,
+      "solo_trades": 0,
+      "solo_pnl": 0.0,
+      "marginal_contribution": 0.0,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 1.0,
+      "verdict": "remove",
+      "reasons": [
+        "Too few solo trades (0)"
+      ]
+    }
+  ],
+  "reduced_candidate_label": "",
+  "reduced_candidate_sharpe": 0.0,
+  "complexity_penalty": 0.0,
+  "simplification_score": 0.75,
+  "recommendation": "STRONGLY RECOMMENDED: 4 of 6 families should be removed. Consider a simpler variant as champion."
+}

@@ -1,0 +1,15 @@
+{
+  "label": "full_smc",
+  "config_hash": "d1cf6d07cb616499",
+  "status": "locked",
+  "locked_at": "2026-04-10T23:17:31.787017",
+  "assumptions": {
+    "rationale": "All three SMC families active with default parameters"
+  },
+  "lineage_notes": [],
+  "data_split": {
+    "train_end_pct": 0.6,
+    "validation_end_pct": 0.8,
+    "embargo_bars": 10
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-04-12T13:34:19.677017",
+  "champion": "bos_continuation_only",
+  "champion_reason": "similar_performance_prefer_simplicity",
+  "risk_profile": "size_030_cb125",
+  "decision": "HOLD_FOR_MORE_VALIDATION",
+  "confidence": "low-medium",
+  "evidence": {
+    "train_sharpe": 2.0757,
+    "holdout_sharpe": 0.1536,
+    "wf_mean_oos_sharpe": 0.1953,
+    "wf_pct_positive_folds": 0.4,
+    "wf_pct_above_threshold": 0.4,
+    "holdout_weakness": "structural",
+    "stress_test_passed": true,
+    "useful_mitigations": 0
+  },
+  "next_steps": [
+    "Acquire higher-quality FX data (Dukascopy CSV or broker data)",
+    "Re-run holdout on better data to isolate data-quality effects",
+    "Test on additional OOS periods as more data becomes available",
+    "Consider extending training window to capture more regimes"
+  ]
+}

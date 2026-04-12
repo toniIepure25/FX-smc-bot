@@ -1,0 +1,20 @@
+{
+  "label": "sweep_reversal_only",
+  "rank": 9,
+  "composite": 0.0,
+  "raw_sharpe": 0.0,
+  "stressed_sharpe": 0.0,
+  "simplicity": 0.0,
+  "oos": 0.0,
+  "diversification": 0.0,
+  "stability": 0.0,
+  "robustness": 0.0,
+  "fragility": 1.0,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 0,
+  "total_pnl": 0.0,
+  "profit_factor": 0.0,
+  "max_drawdown_pct": 0.0,
+  "n_families": 1
+}

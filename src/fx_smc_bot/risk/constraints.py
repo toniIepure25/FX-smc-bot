@@ -213,6 +213,8 @@ def build_full_constraints() -> list[ConstraintChecker]:
         MaxPortfolioRiskConstraint(),
         CurrencyExposureConstraint(),
         DirectionalConcentrationConstraint(),
+        DailyStopConstraint(),
+        MaxDailyTradesConstraint(),
     ]
 
 

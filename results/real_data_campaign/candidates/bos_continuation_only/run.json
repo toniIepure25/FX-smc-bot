@@ -1,0 +1,161 @@
+{
+  "label": "bos_continuation_only",
+  "config_hash": "e0838980b923dd14",
+  "stage": "frozen_eval",
+  "metrics": {
+    "sharpe_ratio": 1.4806914509528382,
+    "profit_factor": 2.0790694723551058,
+    "win_rate": 0.3536693191865606,
+    "total_pnl": 14871014.768420048,
+    "total_trades": 1131,
+    "max_drawdown_pct": 0.36479590077176055
+  },
+  "gate": {
+    "verdict": "fail",
+    "blocking_failures": [
+      "max_drawdown_pct"
+    ],
+    "warnings": [
+      "robustness",
+      "diversification"
+    ],
+    "recommendation": "BLOCKED: fails max_drawdown_pct. Not ready for promotion.",
+    "criteria": [
+      {
+        "name": "sharpe_ratio",
+        "threshold": 0.3,
+        "actual": 1.4807,
+        "passed": "True",
+        "severity": "blocking"
+      },
+      {
+        "name": "profit_factor",
+        "threshold": 1.1,
+        "actual": 2.0791,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "max_drawdown_pct",
+        "threshold": 0.21,
+        "actual": 0.3648,
+        "passed": false,
+        "severity": "blocking"
+      },
+      {
+        "name": "trade_count",
+        "threshold": 30,
+        "actual": 1131,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "win_rate",
+        "threshold": 0.35,
+        "actual": 0.3537,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "cost_degradation",
+        "threshold": 0.5,
+        "actual": 0.0057,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "stability",
+        "threshold": 0.3,
+        "actual": 0.788,
+        "passed": true,
+        "severity": "warning"
+      },
+      {
+        "name": "robustness",
+        "threshold": 0.3,
+        "actual": 0.0,
+        "passed": false,
+        "severity": "warning"
+      },
+      {
+        "name": "oos_consistency",
+        "threshold": 0.5,
+        "actual": 1.0,
+        "passed": true,
+        "severity": "warning"
+      },
+      {
+        "name": "diversification",
+        "threshold": 0.2,
+        "actual": 0.0,
+        "passed": false,
+        "severity": "warning"
+      }
+    ]
+  },
+  "scores": {
+    "stability": 0.788,
+    "robustness": 0.0,
+    "simplicity": 1.0,
+    "oos_consistency": 1.0,
+    "diversification": 0.0,
+    "deployment_readiness": 0.558
+  },
+  "stress": {
+    "scenarios": [
+      {
+        "name": "optimistic",
+        "trades": 1041,
+        "pnl": 15580817.75,
+        "sharpe": 1.533,
+        "max_dd_pct": 0.3411,
+        "win_rate": 0.378,
+        "profit_factor": 2.381
+      },
+      {
+        "name": "neutral",
+        "trades": 1131,
+        "pnl": 14871014.77,
+        "sharpe": 1.481,
+        "max_dd_pct": 0.3648,
+        "win_rate": 0.354,
+        "profit_factor": 2.079
+      },
+      {
+        "name": "conservative",
+        "trades": 1130,
+        "pnl": 14786894.96,
+        "sharpe": 1.474,
+        "max_dd_pct": 0.3625,
+        "win_rate": 0.344,
+        "profit_factor": 2.08
+      },
+      {
+        "name": "stressed",
+        "trades": 1150,
+        "pnl": 14970822.55,
+        "sharpe": 1.477,
+        "max_dd_pct": 0.3661,
+        "win_rate": 0.336,
+        "profit_factor": 2.1
+      }
+    ],
+    "degradation": {
+      "optimistic": {
+        "pnl_change_pct": 4.77,
+        "sharpe_change": 0.052,
+        "wr_change_pct": 2.39
+      },
+      "conservative": {
+        "pnl_change_pct": -0.57,
+        "sharpe_change": -0.007,
+        "wr_change_pct": -0.94
+      },
+      "stressed": {
+        "pnl_change_pct": 0.67,
+        "sharpe_change": -0.003,
+        "wr_change_pct": -1.8
+      }
+    }
+  }
+}

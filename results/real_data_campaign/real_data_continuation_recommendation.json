@@ -1,0 +1,45 @@
+{
+  "outcome": "continue_with_simplification",
+  "confidence": "medium",
+  "champion_label": "sweep_plus_bos",
+  "challenger_label": "bos_continuation_only",
+  "data_source": "yahoo_finance_real_h1",
+  "data_period": "2024-04-10 to 2026-04-10",
+  "reasons": [
+    "sweep_reversal and bos_continuation both show genuine alpha on 2 years of real FX data (Sharpe >1.4)",
+    "sweep_reversal was dead on synthetic data due to a wiring bug (detect_sweeps never called), now fixed and producing Sharpe 1.528",
+    "fvg_retrace confirmed harmful on real data (Sharpe -0.184), should be permanently removed",
+    "execution fragility is 0% for all top candidates — alpha survives realistic costs",
+    "all baselines dramatically underperform, confirming SMC edge is real",
+    "drawdown of 36% blocks deployment gate — this is a risk management issue, not a strategy issue",
+    "reducing position size from 0.5% to 0.25% per trade should mechanically reduce drawdown to ~18%"
+  ],
+  "simplification_needed": true,
+  "components_to_remove": ["fvg_retrace", "mean_reversion", "momentum", "session_breakout"],
+  "components_to_keep": ["sweep_reversal", "bos_continuation"],
+  "blocking_issues": [
+    "max_drawdown 36-37% exceeds 21% gate threshold — requires risk management tightening",
+    "no holdout evaluation possible at current drawdown level",
+    "no spread data in yfinance — using fixed 1.5 pip assumption"
+  ],
+  "open_questions": [
+    "will tighter position sizing (0.25%) reduce drawdown below gate threshold while preserving Sharpe?",
+    "does M15 execution (60-day real data) produce a different drawdown profile?",
+    "should sweep_reversal or bos_continuation be the primary family if forced to choose one?"
+  ],
+  "next_actions": [
+    "tighten risk: base_risk_per_trade 0.5% -> 0.25%, add 15% max drawdown circuit breaker",
+    "re-run campaign with tightened risk parameters",
+    "if drawdown passes gate, run holdout evaluation on shortlisted candidates",
+    "freeze sweep_plus_bos as promoted champion candidate",
+    "investigate M15 real data (60 days) as supplementary validation"
+  ],
+  "synthetic_vs_real_comparison": {
+    "bos_confirmed": true,
+    "sweep_reversal_overturned": true,
+    "fvg_harmful_confirmed": true,
+    "baselines_underperform_confirmed": true,
+    "drawdown_divergent": true
+  },
+  "timestamp": "2026-04-11T20:54:36Z"
+}

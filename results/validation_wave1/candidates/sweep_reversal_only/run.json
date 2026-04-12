@@ -1,0 +1,102 @@
+{
+  "label": "sweep_reversal_only",
+  "config_hash": "0a7d64c2c88d1110",
+  "stage": "frozen_eval",
+  "metrics": {
+    "sharpe_ratio": 0.0,
+    "profit_factor": 0.0,
+    "win_rate": 0.0,
+    "total_pnl": 0.0,
+    "total_trades": 0,
+    "max_drawdown_pct": 0.0
+  },
+  "gate": {
+    "verdict": "fail",
+    "blocking_failures": [
+      "sharpe_ratio",
+      "profit_factor",
+      "trade_count",
+      "win_rate"
+    ],
+    "warnings": [],
+    "recommendation": "BLOCKED: fails sharpe_ratio, profit_factor, trade_count, win_rate. Not ready for promotion.",
+    "criteria": [
+      {
+        "name": "sharpe_ratio",
+        "threshold": 0.3,
+        "actual": 0.0,
+        "passed": false,
+        "severity": "blocking"
+      },
+      {
+        "name": "profit_factor",
+        "threshold": 1.1,
+        "actual": 0.0,
+        "passed": false,
+        "severity": "blocking"
+      },
+      {
+        "name": "max_drawdown_pct",
+        "threshold": 0.2,
+        "actual": 0.0,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "trade_count",
+        "threshold": 30,
+        "actual": 0,
+        "passed": false,
+        "severity": "blocking"
+      },
+      {
+        "name": "win_rate",
+        "threshold": 0.35,
+        "actual": 0.0,
+        "passed": false,
+        "severity": "blocking"
+      }
+    ]
+  },
+  "stress": {
+    "scenarios": [
+      {
+        "name": "optimistic",
+        "trades": 0,
+        "pnl": 0.0,
+        "sharpe": 0.0,
+        "max_dd_pct": 0.0,
+        "win_rate": 0.0,
+        "profit_factor": 0.0
+      },
+      {
+        "name": "neutral",
+        "trades": 0,
+        "pnl": 0.0,
+        "sharpe": 0.0,
+        "max_dd_pct": 0.0,
+        "win_rate": 0.0,
+        "profit_factor": 0.0
+      },
+      {
+        "name": "conservative",
+        "trades": 0,
+        "pnl": 0.0,
+        "sharpe": 0.0,
+        "max_dd_pct": 0.0,
+        "win_rate": 0.0,
+        "profit_factor": 0.0
+      },
+      {
+        "name": "stressed",
+        "trades": 0,
+        "pnl": 0.0,
+        "sharpe": 0.0,
+        "max_dd_pct": 0.0,
+        "win_rate": 0.0,
+        "profit_factor": 0.0
+      }
+    ],
+    "degradation": {}
+  }
+}

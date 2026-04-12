@@ -1,0 +1,16 @@
+{
+  "decision": "reject",
+  "champion_label": "(none)",
+  "confidence": "high",
+  "reasons": [
+    "No candidate passed the deployment gate."
+  ],
+  "unresolved_risks": [],
+  "next_steps": [
+    "Review gate thresholds or improve strategy components."
+  ],
+  "blocking_issues": [
+    "No viable champion identified."
+  ],
+  "timestamp": "2026-04-11T20:54:36.284334"
+}

@@ -1,0 +1,20 @@
+{
+  "label": "fvg_retrace_only",
+  "rank": 9,
+  "composite": 0.2163,
+  "raw_sharpe": -0.184,
+  "stressed_sharpe": -0.224,
+  "simplicity": 1.0,
+  "oos": 0.0,
+  "diversification": 0.663,
+  "stability": 0.441,
+  "robustness": 0.0,
+  "fragility": 1.0,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 123,
+  "total_pnl": -8787.52,
+  "profit_factor": 0.804,
+  "max_drawdown_pct": 0.119,
+  "n_families": 1
+}

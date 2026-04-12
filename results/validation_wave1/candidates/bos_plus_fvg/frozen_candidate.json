@@ -1,0 +1,15 @@
+{
+  "label": "bos_plus_fvg",
+  "config_hash": "3840d7819fb43cd5",
+  "status": "locked",
+  "locked_at": "2026-04-10T23:17:31.788154",
+  "assumptions": {
+    "rationale": "Two-family reduced SMC: BOS continuation + FVG retrace"
+  },
+  "lineage_notes": [],
+  "data_split": {
+    "train_end_pct": 0.6,
+    "validation_end_pct": 0.8,
+    "embargo_bars": 10
+  }
+}

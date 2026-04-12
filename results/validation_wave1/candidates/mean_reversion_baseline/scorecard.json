@@ -1,0 +1,20 @@
+{
+  "label": "mean_reversion_baseline",
+  "rank": 3,
+  "composite": 0.2155,
+  "raw_sharpe": -0.548,
+  "stressed_sharpe": -0.555,
+  "simplicity": 1.0,
+  "oos": 0.0,
+  "diversification": 0.655,
+  "stability": 0.0,
+  "robustness": 0.0,
+  "fragility": 1.0,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 120,
+  "total_pnl": -17626.92,
+  "profit_factor": 0.516,
+  "max_drawdown_pct": 0.1831,
+  "n_families": 1
+}

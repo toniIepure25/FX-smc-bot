@@ -1,0 +1,15 @@
+{
+  "label": "mean_reversion_baseline",
+  "config_hash": "e7244cb9db2674b3",
+  "status": "baseline",
+  "locked_at": "2026-04-11T19:07:05.271687",
+  "assumptions": {
+    "rationale": "Non-SMC baseline: mean reversion detector"
+  },
+  "lineage_notes": [],
+  "data_split": {
+    "train_end_pct": 0.6,
+    "validation_end_pct": 0.8,
+    "embargo_bars": 10
+  }
+}

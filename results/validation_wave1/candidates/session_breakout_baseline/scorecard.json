@@ -1,0 +1,20 @@
+{
+  "label": "session_breakout_baseline",
+  "rank": 1,
+  "composite": 0.5019,
+  "raw_sharpe": 0.22,
+  "stressed_sharpe": 0.089,
+  "simplicity": 1.0,
+  "oos": 1.0,
+  "diversification": 0.635,
+  "stability": 1.0,
+  "robustness": 0.0,
+  "fragility": 0.595,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 49,
+  "total_pnl": 3567.65,
+  "profit_factor": 1.253,
+  "max_drawdown_pct": 0.0519,
+  "n_families": 1
+}

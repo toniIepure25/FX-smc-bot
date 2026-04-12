@@ -1,0 +1,166 @@
+[
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_cb125",
+    "risk_description": "0.30% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 0.1536,
+    "profit_factor": 1.1095,
+    "max_drawdown_pct": 0.1268,
+    "total_trades": 253,
+    "total_pnl": 4215.01,
+    "win_rate": 0.3123,
+    "calmar": 0.5688,
+    "annualized_return": 0.0721,
+    "drawdown_efficiency": 1.2113,
+    "deployment_score": 0.1705,
+    "gate_verdict": "fail",
+    "gate_blocking": [
+      "sharpe_ratio",
+      "win_rate"
+    ],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 3,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 22
+    },
+    "elapsed_s": 26.3
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "hardened_C",
+    "risk_description": "0.25% risk + CB 12.5% + 2 concurrent + tight daily",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.125,
+      "max_concurrent_positions": 2,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 0.1469,
+    "profit_factor": 1.109,
+    "max_drawdown_pct": 0.1469,
+    "total_trades": 195,
+    "total_pnl": 3685.52,
+    "win_rate": 0.441,
+    "calmar": 0.4294,
+    "annualized_return": 0.0631,
+    "drawdown_efficiency": 1.0001,
+    "deployment_score": 0.1629,
+    "gate_verdict": "fail",
+    "gate_blocking": [
+      "sharpe_ratio"
+    ],
+    "risk_events": {
+      "throttle_activations": 9,
+      "lockout_activations": 12,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 33
+    },
+    "elapsed_s": 26.7
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030_cb125",
+    "risk_description": "0.30% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 0.1536,
+    "profit_factor": 1.1095,
+    "max_drawdown_pct": 0.1268,
+    "total_trades": 253,
+    "total_pnl": 4215.01,
+    "win_rate": 0.3123,
+    "calmar": 0.5688,
+    "annualized_return": 0.0721,
+    "drawdown_efficiency": 1.2113,
+    "deployment_score": 0.1705,
+    "gate_verdict": "fail",
+    "gate_blocking": [
+      "sharpe_ratio",
+      "win_rate"
+    ],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 3,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 22
+    },
+    "elapsed_s": 27.2
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_tight_daily",
+    "risk_description": "0.30% risk + tighter daily lockout (1.5%)",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 0.0538,
+    "profit_factor": 1.03,
+    "max_drawdown_pct": 0.1517,
+    "total_trades": 261,
+    "total_pnl": 1159.91,
+    "win_rate": 0.3027,
+    "calmar": 0.1309,
+    "annualized_return": 0.0199,
+    "drawdown_efficiency": 0.3545,
+    "deployment_score": 0.0554,
+    "gate_verdict": "fail",
+    "gate_blocking": [
+      "sharpe_ratio",
+      "profit_factor",
+      "win_rate"
+    ],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 13,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 44
+    },
+    "elapsed_s": 27.9
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030",
+    "risk_description": "0.30% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009
+    },
+    "sharpe": 0.034,
+    "profit_factor": 1.008,
+    "max_drawdown_pct": 0.1583,
+    "total_trades": 470,
+    "total_pnl": 558.24,
+    "win_rate": 0.2894,
+    "calmar": 0.0603,
+    "annualized_return": 0.0096,
+    "drawdown_efficiency": 0.2146,
+    "deployment_score": 0.0343,
+    "gate_verdict": "fail",
+    "gate_blocking": [
+      "sharpe_ratio",
+      "profit_factor",
+      "win_rate"
+    ],
+    "risk_events": {
+      "throttle_activations": 14,
+      "lockout_activations": 7,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 39
+    },
+    "elapsed_s": 26.9
+  }
+]

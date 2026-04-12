@@ -1,0 +1,37 @@
+{
+  "full_strategy_sharpe": 1.804,
+  "full_strategy_trades": 839,
+  "components": [
+    {
+      "name": "bos_continuation_only",
+      "solo_sharpe": 1.781,
+      "solo_trades": 849,
+      "solo_pnl": 1924700.27,
+      "marginal_contribution": 0.987,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 0.038,
+      "verdict": "keep",
+      "reasons": [
+        "Strong standalone (1.781 vs full 1.804)"
+      ]
+    },
+    {
+      "name": "session_breakout_baseline",
+      "solo_sharpe": 0.22,
+      "solo_trades": 49,
+      "solo_pnl": 3567.65,
+      "marginal_contribution": 0.122,
+      "full_sharpe_without": 1.804,
+      "fragility_solo": 0.595,
+      "verdict": "investigate",
+      "reasons": [
+        "High solo fragility (0.59)"
+      ]
+    }
+  ],
+  "reduced_candidate_label": "bos_continuation_only",
+  "reduced_candidate_sharpe": 1.781,
+  "complexity_penalty": 0.012,
+  "simplification_score": 0.25,
+  "recommendation": "MARGINAL: Added complexity provides little Sharpe improvement per family. The reduced variant may be a safer deployment candidate."
+}

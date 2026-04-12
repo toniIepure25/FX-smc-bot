@@ -1,0 +1,61 @@
+{
+  "outcome": "HOLD_FOR_MORE_VALIDATION",
+  "confidence": "medium",
+  "champion_label": "sweep_plus_bos",
+  "champion_risk_profile": "size_030_cb125",
+  "risk_overrides": {
+    "base_risk_per_trade": 0.003,
+    "max_portfolio_risk": 0.009,
+    "circuit_breaker_threshold": 0.125
+  },
+  "metrics": {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_cb125",
+    "risk_description": "0.30% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 2.0757,
+    "profit_factor": 5.5754,
+    "max_drawdown_pct": 0.1343,
+    "total_trades": 513,
+    "total_pnl": 8553133.38,
+    "win_rate": 0.5634,
+    "calmar": 365.6689,
+    "annualized_return": 49.1117,
+    "drawdown_efficiency": 15.455,
+    "deployment_score": 11.5728,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 31
+    },
+    "elapsed_s": 123.0
+  },
+  "reasons": [
+    "58 risk profiles pass training gate (DD < 20%)",
+    "No profiles pass holdout \u2014 risk compression does not generalize",
+    "Best profile: sweep_plus_bos/size_030_cb125 (Sharpe=2.076, DD=13.4%)",
+    "Circuit breaker fired during backtest \u2014 indicates tail-risk protection active",
+    "Sweep adds 0.128 Sharpe \u2014 justifies 2-family complexity"
+  ],
+  "unresolved_risks": [
+    "No real spread data \u2014 using fixed 1.5 pip assumption",
+    "2 years of data is limited for tail-risk estimation"
+  ],
+  "gate_config": {
+    "max_drawdown_pct": 0.2,
+    "min_sharpe": 0.3,
+    "min_profit_factor": 1.1,
+    "min_trade_count": 30
+  },
+  "profiles_tested": 60,
+  "profiles_passing_train": 58,
+  "profiles_passing_holdout": 0,
+  "timestamp": "2026-04-12T12:40:13.565859"
+}

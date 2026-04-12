@@ -25,7 +25,16 @@ artifacts/
 data/raw/
 data/interim/
 data/processed/
+data/real/
+data/synthetic/
+data/EURUSD/
+data/GBPUSD/
+data/USDJPY/
+data/GBPJPY/
+*.csv
+*.parquet
 logs/
 
 # OS
 .DS_Store
+Thumbs.db

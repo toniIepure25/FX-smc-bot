@@ -1,0 +1,9 @@
+# Holdout and data split policy for validation campaigns.
+#
+# train_end_pct: fraction of data used for training (exploratory evaluation)
+# validation_end_pct: fraction of data used through validation (train + val)
+# embargo_bars: gap between train/val and val/holdout to prevent leakage
+
+train_end_pct: 0.60
+validation_end_pct: 0.80
+embargo_bars: 10

@@ -1,0 +1,37 @@
+{
+  "champion": "sweep_plus_bos",
+  "risk_profile": "size_030_cb125",
+  "risk_description": "0.30% risk per trade + 12.5% peak drawdown circuit breaker",
+  "alpha_families": ["sweep_reversal", "bos_continuation"],
+  "risk_overrides": {
+    "base_risk_per_trade": 0.003,
+    "max_portfolio_risk": 0.009,
+    "circuit_breaker_threshold": 0.125
+  },
+  "training_metrics": {
+    "sharpe": 2.076,
+    "profit_factor": 5.58,
+    "max_drawdown_pct": 0.134,
+    "total_trades": 513,
+    "win_rate": 0.563,
+    "calmar": 365.67,
+    "gate_verdict": "pass"
+  },
+  "holdout_metrics": {
+    "sharpe": 0.154,
+    "max_drawdown_pct": 0.127,
+    "total_trades": 253,
+    "gate_verdict": "fail",
+    "gate_blocking": ["sharpe_ratio"]
+  },
+  "risk_events": {
+    "throttle_activations": 11,
+    "lockout_activations": 6,
+    "circuit_breaker_fired": 1,
+    "state_transitions": 31
+  },
+  "promotion_status": "HOLD_FOR_MORE_VALIDATION",
+  "data_source": "yahoo_finance_real_h1",
+  "data_period": "2024-04 to 2026-04",
+  "frozen_at": "2026-04-12T12:40:13Z"
+}

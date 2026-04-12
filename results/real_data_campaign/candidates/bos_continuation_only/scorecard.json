@@ -1,0 +1,20 @@
+{
+  "label": "bos_continuation_only",
+  "rank": 6,
+  "composite": 0.5985,
+  "raw_sharpe": 1.481,
+  "stressed_sharpe": 1.474,
+  "simplicity": 1.0,
+  "oos": 1.0,
+  "diversification": 0.0,
+  "stability": 0.788,
+  "robustness": 0.0,
+  "fragility": 0.004,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 1131,
+  "total_pnl": 14871014.77,
+  "profit_factor": 2.079,
+  "max_drawdown_pct": 0.3648,
+  "n_families": 1
+}

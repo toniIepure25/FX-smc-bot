@@ -1,0 +1,20 @@
+{
+  "label": "full_smc",
+  "rank": 2,
+  "composite": 0.6248,
+  "raw_sharpe": 1.529,
+  "stressed_sharpe": 1.517,
+  "simplicity": 1.0,
+  "oos": 1.0,
+  "diversification": 0.255,
+  "stability": 0.781,
+  "robustness": 0.0,
+  "fragility": 0.008,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 1095,
+  "total_pnl": 15405759.81,
+  "profit_factor": 2.21,
+  "max_drawdown_pct": 0.3675,
+  "n_families": 3
+}

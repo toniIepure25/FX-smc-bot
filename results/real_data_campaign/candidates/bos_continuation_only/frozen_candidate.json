@@ -1,0 +1,15 @@
+{
+  "label": "bos_continuation_only",
+  "config_hash": "e0838980b923dd14",
+  "status": "locked",
+  "locked_at": "2026-04-11T19:07:05.270297",
+  "assumptions": {
+    "rationale": "Single-family ablation: BOS continuation in isolation"
+  },
+  "lineage_notes": [],
+  "data_split": {
+    "train_end_pct": 0.6,
+    "validation_end_pct": 0.8,
+    "embargo_bars": 10
+  }
+}

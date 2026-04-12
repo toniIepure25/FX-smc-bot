@@ -1,0 +1,20 @@
+{
+  "label": "sweep_plus_fvg",
+  "rank": 5,
+  "composite": 0.2044,
+  "raw_sharpe": -0.087,
+  "stressed_sharpe": -0.252,
+  "simplicity": 1.0,
+  "oos": 0.0,
+  "diversification": 0.544,
+  "stability": 0.0,
+  "robustness": 0.0,
+  "fragility": 1.0,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 87,
+  "total_pnl": -2726.01,
+  "profit_factor": 0.905,
+  "max_drawdown_pct": 0.0564,
+  "n_families": 2
+}

@@ -1,0 +1,254 @@
+# Risk compression parameter grid for deployment-readiness campaign.
+#
+# Each entry is a named risk profile that overrides RiskConfig fields.
+# The campaign script applies each profile to both sweep_plus_bos and
+# bos_continuation_only, then ranks by deployment readiness.
+#
+# Design: smart grid (not full cartesian) — profiles move from
+# aggressive to conservative in coordinated steps.
+
+alpha_candidates:
+  - sweep_plus_bos
+  - bos_continuation_only
+
+deployment_gate:
+  max_drawdown_pct: 0.20
+  min_sharpe: 0.3
+  min_profit_factor: 1.1
+  min_trade_count: 30
+
+profiles:
+
+  # === Tier 1: Sizing-only compression (no circuit breaker) ===
+  - label: baseline_050
+    description: "Current defaults — 0.50% risk per trade"
+    overrides:
+      base_risk_per_trade: 0.005
+      max_portfolio_risk: 0.015
+      circuit_breaker_threshold: 0.0
+
+  - label: size_040
+    description: "Moderate reduction — 0.40% risk per trade"
+    overrides:
+      base_risk_per_trade: 0.004
+      max_portfolio_risk: 0.012
+
+  - label: size_035
+    description: "0.35% risk per trade"
+    overrides:
+      base_risk_per_trade: 0.0035
+      max_portfolio_risk: 0.0105
+
+  - label: size_030
+    description: "0.30% risk per trade"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+
+  - label: size_025
+    description: "0.25% risk per trade — recommended starting point"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+
+  - label: size_020
+    description: "0.20% risk per trade — conservative"
+    overrides:
+      base_risk_per_trade: 0.002
+      max_portfolio_risk: 0.006
+
+  # === Tier 2: Sizing + circuit breaker at 15% ===
+  - label: size_040_cb15
+    description: "0.40% risk + 15% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.004
+      max_portfolio_risk: 0.012
+      circuit_breaker_threshold: 0.15
+
+  - label: size_035_cb15
+    description: "0.35% risk + 15% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.0035
+      max_portfolio_risk: 0.0105
+      circuit_breaker_threshold: 0.15
+
+  - label: size_030_cb15
+    description: "0.30% risk + 15% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+      circuit_breaker_threshold: 0.15
+
+  - label: size_025_cb15
+    description: "0.25% risk + 15% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      circuit_breaker_threshold: 0.15
+
+  - label: size_020_cb15
+    description: "0.20% risk + 15% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.002
+      max_portfolio_risk: 0.006
+      circuit_breaker_threshold: 0.15
+
+  # === Tier 3: Sizing + tighter circuit breaker at 12.5% ===
+  - label: size_035_cb125
+    description: "0.35% risk + 12.5% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.0035
+      max_portfolio_risk: 0.0105
+      circuit_breaker_threshold: 0.125
+
+  - label: size_030_cb125
+    description: "0.30% risk + 12.5% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+      circuit_breaker_threshold: 0.125
+
+  - label: size_025_cb125
+    description: "0.25% risk + 12.5% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      circuit_breaker_threshold: 0.125
+
+  - label: size_020_cb125
+    description: "0.20% risk + 12.5% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.002
+      max_portfolio_risk: 0.006
+      circuit_breaker_threshold: 0.125
+
+  # === Tier 4: Sizing + strict circuit breaker at 10% ===
+  - label: size_030_cb10
+    description: "0.30% risk + 10% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+      circuit_breaker_threshold: 0.10
+
+  - label: size_025_cb10
+    description: "0.25% risk + 10% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      circuit_breaker_threshold: 0.10
+
+  - label: size_020_cb10
+    description: "0.20% risk + 10% circuit breaker"
+    overrides:
+      base_risk_per_trade: 0.002
+      max_portfolio_risk: 0.006
+      circuit_breaker_threshold: 0.10
+
+  # === Tier 5: Sizing + reduced concurrency ===
+  - label: size_030_conc2
+    description: "0.30% risk + max 2 concurrent positions"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+      max_concurrent_positions: 2
+
+  - label: size_025_conc2
+    description: "0.25% risk + max 2 concurrent positions"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      max_concurrent_positions: 2
+
+  - label: size_025_conc1
+    description: "0.25% risk + max 1 concurrent position"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0025
+      max_concurrent_positions: 1
+
+  # === Tier 6: Sizing + tighter daily/weekly controls ===
+  - label: size_030_tight_daily
+    description: "0.30% risk + tighter daily lockout (1.5%)"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+      daily_loss_lockout: 0.015
+      max_daily_drawdown: 0.02
+
+  - label: size_025_tight_daily
+    description: "0.25% risk + tighter daily lockout (1.5%)"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      daily_loss_lockout: 0.015
+      max_daily_drawdown: 0.02
+
+  # === Tier 7: Sizing + faster consecutive-loss dampening ===
+  - label: size_030_dampen2
+    description: "0.30% risk + dampen after 2 consecutive losses"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+      consecutive_loss_dampen_after: 2
+      consecutive_loss_dampen_factor: 0.4
+
+  - label: size_025_dampen2
+    description: "0.25% risk + dampen after 2 consecutive losses"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      consecutive_loss_dampen_after: 2
+      consecutive_loss_dampen_factor: 0.4
+
+  # === Tier 8: Combined hardened profiles (best-guess deployment candidates) ===
+  - label: hardened_A
+    description: "0.30% risk + CB 15% + 2 concurrent + dampen@2"
+    overrides:
+      base_risk_per_trade: 0.003
+      max_portfolio_risk: 0.009
+      circuit_breaker_threshold: 0.15
+      max_concurrent_positions: 2
+      consecutive_loss_dampen_after: 2
+      consecutive_loss_dampen_factor: 0.4
+
+  - label: hardened_B
+    description: "0.25% risk + CB 15% + tighter daily + dampen@2"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      circuit_breaker_threshold: 0.15
+      daily_loss_lockout: 0.015
+      max_daily_drawdown: 0.02
+      consecutive_loss_dampen_after: 2
+      consecutive_loss_dampen_factor: 0.4
+
+  - label: hardened_C
+    description: "0.25% risk + CB 12.5% + 2 concurrent + tight daily"
+    overrides:
+      base_risk_per_trade: 0.0025
+      max_portfolio_risk: 0.0075
+      circuit_breaker_threshold: 0.125
+      max_concurrent_positions: 2
+      daily_loss_lockout: 0.015
+      max_daily_drawdown: 0.02
+
+  - label: hardened_D
+    description: "0.20% risk + CB 15% + 2 concurrent + dampen@2"
+    overrides:
+      base_risk_per_trade: 0.002
+      max_portfolio_risk: 0.006
+      circuit_breaker_threshold: 0.15
+      max_concurrent_positions: 2
+      consecutive_loss_dampen_after: 2
+      consecutive_loss_dampen_factor: 0.4
+
+  - label: hardened_E
+    description: "0.20% risk + CB 12.5% + tight daily + dampen@2"
+    overrides:
+      base_risk_per_trade: 0.002
+      max_portfolio_risk: 0.006
+      circuit_breaker_threshold: 0.125
+      daily_loss_lockout: 0.015
+      max_daily_drawdown: 0.02
+      consecutive_loss_dampen_after: 2
+      consecutive_loss_dampen_factor: 0.4

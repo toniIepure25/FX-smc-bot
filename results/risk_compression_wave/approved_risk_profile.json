@@ -1,0 +1,17 @@
+{
+  "champion": "sweep_plus_bos",
+  "risk_profile_label": "size_030_cb125",
+  "risk_overrides": {
+    "base_risk_per_trade": 0.003,
+    "max_portfolio_risk": 0.009,
+    "circuit_breaker_threshold": 0.125
+  },
+  "gate_config": {
+    "max_drawdown_pct": 0.2,
+    "min_sharpe": 0.3,
+    "min_profit_factor": 1.1,
+    "min_trade_count": 30
+  },
+  "frozen_at": "2026-04-12T12:40:13.566060",
+  "outcome": "HOLD_FOR_MORE_VALIDATION"
+}

@@ -1,0 +1,15 @@
+{
+  "label": "session_breakout_baseline",
+  "config_hash": "d7951db2ffeb8226",
+  "status": "baseline",
+  "locked_at": "2026-04-11T19:07:05.271336",
+  "assumptions": {
+    "rationale": "Non-SMC baseline: session breakout detector"
+  },
+  "lineage_notes": [],
+  "data_split": {
+    "train_end_pct": 0.6,
+    "validation_end_pct": 0.8,
+    "embargo_bars": 10
+  }
+}

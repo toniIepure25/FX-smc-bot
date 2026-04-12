@@ -148,6 +148,10 @@ class RiskConfig(BaseModel):
     consecutive_loss_dampen_after: int = Field(default=3, ge=1, le=20,
                                                 description="Consecutive losses before dampening")
     consecutive_loss_dampen_factor: float = Field(default=0.5, ge=0.0, le=1.0)
+    circuit_breaker_threshold: float = Field(
+        default=0.15, ge=0.0, le=1.0,
+        description="Peak-to-trough drawdown that triggers STOPPED state (0=disabled)",
+    )
     allocation_strategy: str = Field(
         default="equal_risk",
         description="Budget allocation: equal_risk, score_weighted, volatility_adjusted, capped_conviction",

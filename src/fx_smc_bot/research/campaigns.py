@@ -162,8 +162,11 @@ def run_walk_forward_campaign(
     data: dict[TradingPair, BarSeries],
     n_splits: int = 5,
     htf_data: dict[TradingPair, BarSeries] | None = None,
+    embargo_bars: int = 10,
 ) -> CampaignReport:
-    """Run walk-forward splits with per-fold metrics."""
+    """Run purged walk-forward splits with per-fold metrics."""
+    from fx_smc_bot.research.walk_forward import purged_walk_forward
+
     report = CampaignReport(
         campaign_type="walk_forward",
         timestamp=datetime.utcnow().isoformat(),
@@ -171,23 +174,24 @@ def run_walk_forward_campaign(
 
     ref_pair = next(iter(data))
     total_bars = len(data[ref_pair].timestamps)
-    fold_size = total_bars // (n_splits + 1)
 
-    for fold in range(n_splits):
-        train_end = fold_size * (fold + 2)
-        test_start = train_end
-        test_end = min(test_start + fold_size, total_bars)
+    try:
+        splits = purged_walk_forward(total_bars, n_splits, embargo_bars)
+    except ValueError as e:
+        logger.warning("Cannot create walk-forward splits: %s", e)
+        return report
 
-        if test_start >= total_bars or test_end <= test_start:
-            continue
-
+    for split in splits:
         fold_data = {}
         for pair, series in data.items():
-            fold_data[pair] = series.slice(test_start, test_end)
+            fold_data[pair] = series.slice(split.test_start, split.test_end)
 
-        result = _run_single(config, fold_data, htf_data, f"fold_{fold}", {})
+        result = _run_single(
+            config, fold_data, htf_data,
+            f"fold_{split.fold_id}_bars_{split.test_start}_{split.test_end}", {},
+        )
         report.runs.append(result)
-        logger.info("Walk-forward fold %d/%d complete", fold + 1, n_splits)
+        logger.info("Walk-forward fold %d/%d complete", split.fold_id + 1, len(splits))
 
     _compute_aggregate(report)
     return report

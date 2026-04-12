@@ -1,0 +1,20 @@
+{
+  "label": "momentum_baseline",
+  "rank": 8,
+  "composite": 0.4172,
+  "raw_sharpe": 0.022,
+  "stressed_sharpe": -0.012,
+  "simplicity": 1.0,
+  "oos": 1.0,
+  "diversification": 0.665,
+  "stability": 0.334,
+  "robustness": 0.0,
+  "fragility": 1.0,
+  "gate": "fail",
+  "recommendation": "REJECT: fails deployment gate",
+  "total_trades": 71,
+  "total_pnl": 16.06,
+  "profit_factor": 1.001,
+  "max_drawdown_pct": 0.0639,
+  "n_families": 1
+}

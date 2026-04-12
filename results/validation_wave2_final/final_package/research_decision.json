@@ -1,0 +1,14 @@
+{
+  "decision": "conditional_promote",
+  "champion_label": "full_smc",
+  "confidence": "medium",
+  "reasons": [
+    "Champion passes blocking gates but has warnings."
+  ],
+  "unresolved_risks": [],
+  "next_steps": [
+    "Review warnings and run paper trading with caution."
+  ],
+  "blocking_issues": [],
+  "timestamp": "2026-04-11T17:52:53.295310"
+}

@@ -1,0 +1,100 @@
+# Full validation campaign candidate definitions.
+# Each entry becomes a FrozenCandidate with the specified overrides
+# applied to the base config.
+#
+# Candidate set covers:
+#   - Full SMC (3 families)
+#   - Reduced 2-family variants (3 combinations)
+#   - Single-family variants (3)
+#   - Family-removed variants (3, complement of single-family)
+#   - Baselines (3)
+# Total: 12 candidates
+
+# === Full SMC ===
+- label: full_smc
+  status: locked
+  assumptions:
+    rationale: "All three SMC families active with default parameters"
+  overrides:
+    alpha.enabled_families:
+      - sweep_reversal
+      - bos_continuation
+      - fvg_retrace
+
+# === Reduced 2-family variants ===
+- label: sweep_plus_bos
+  status: locked
+  assumptions:
+    rationale: "Two-family reduced SMC: sweep reversal + BOS continuation"
+  overrides:
+    alpha.enabled_families:
+      - sweep_reversal
+      - bos_continuation
+
+- label: sweep_plus_fvg
+  status: locked
+  assumptions:
+    rationale: "Two-family reduced SMC: sweep reversal + FVG retrace"
+  overrides:
+    alpha.enabled_families:
+      - sweep_reversal
+      - fvg_retrace
+
+- label: bos_plus_fvg
+  status: locked
+  assumptions:
+    rationale: "Two-family reduced SMC: BOS continuation + FVG retrace"
+  overrides:
+    alpha.enabled_families:
+      - bos_continuation
+      - fvg_retrace
+
+# === Single-family variants ===
+- label: sweep_reversal_only
+  status: locked
+  assumptions:
+    rationale: "Single-family ablation: sweep reversal in isolation"
+  overrides:
+    alpha.enabled_families:
+      - sweep_reversal
+
+- label: bos_continuation_only
+  status: locked
+  assumptions:
+    rationale: "Single-family ablation: BOS continuation in isolation"
+  overrides:
+    alpha.enabled_families:
+      - bos_continuation
+
+- label: fvg_retrace_only
+  status: locked
+  assumptions:
+    rationale: "Single-family ablation: FVG retrace in isolation"
+  overrides:
+    alpha.enabled_families:
+      - fvg_retrace
+
+# === Baselines ===
+- label: momentum_baseline
+  status: baseline
+  assumptions:
+    rationale: "Non-SMC baseline: pure momentum detector"
+  overrides:
+    alpha.enabled_families:
+      - momentum
+
+- label: session_breakout_baseline
+  status: baseline
+  assumptions:
+    rationale: "Non-SMC baseline: session breakout detector"
+  overrides:
+    alpha.enabled_families:
+      - session_breakout
+
+- label: mean_reversion_baseline
+  status: baseline
+  assumptions:
+    rationale: "Non-SMC baseline: mean reversion detector"
+  overrides:
+    alpha.enabled_families:
+      - mean_reversion

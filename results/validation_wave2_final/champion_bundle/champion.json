@@ -1,0 +1,312 @@
+{
+  "champion_label": "full_smc",
+  "config_hash": "87f3de347ff496c1",
+  "frozen_at": "2026-04-11T17:52:53.296007",
+  "bundle_hash": "4220e60fb2229d33",
+  "scorecard": {
+    "label": "full_smc",
+    "rank": 1,
+    "composite": 0.604,
+    "raw_sharpe": 1.804,
+    "stressed_sharpe": 1.726,
+    "simplicity": 1.0,
+    "oos": 1.0,
+    "diversification": 0.025,
+    "stability": 1.0,
+    "robustness": 0.0,
+    "fragility": 0.043,
+    "gate": "conditional",
+    "recommendation": "CONDITIONAL: marginal candidate, review before promoting",
+    "total_trades": 839,
+    "total_pnl": 2029656.75,
+    "profit_factor": 2.734,
+    "max_drawdown_pct": 0.2006,
+    "n_families": 3
+  },
+  "gate_result": {
+    "verdict": "conditional",
+    "blocking_failures": [],
+    "warnings": [
+      "robustness",
+      "diversification"
+    ],
+    "recommendation": "CONDITIONAL: passes blocking gates but warnings on robustness, diversification. Review before promoting.",
+    "criteria": [
+      {
+        "name": "sharpe_ratio",
+        "threshold": 0.3,
+        "actual": 1.8042,
+        "passed": "True",
+        "severity": "blocking"
+      },
+      {
+        "name": "profit_factor",
+        "threshold": 1.1,
+        "actual": 2.7336,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "max_drawdown_pct",
+        "threshold": 0.21,
+        "actual": 0.2006,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "trade_count",
+        "threshold": 30,
+        "actual": 839,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "win_rate",
+        "threshold": 0.35,
+        "actual": 0.4434,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "cost_degradation",
+        "threshold": 0.5,
+        "actual": 0.1778,
+        "passed": true,
+        "severity": "blocking"
+      },
+      {
+        "name": "stability",
+        "threshold": 0.3,
+        "actual": 1.0,
+        "passed": true,
+        "severity": "warning"
+      },
+      {
+        "name": "robustness",
+        "threshold": 0.3,
+        "actual": 0.0,
+        "passed": false,
+        "severity": "warning"
+      },
+      {
+        "name": "oos_consistency",
+        "threshold": 0.5,
+        "actual": 1.0,
+        "passed": true,
+        "severity": "warning"
+      },
+      {
+        "name": "diversification",
+        "threshold": 0.2,
+        "actual": 0.025,
+        "passed": false,
+        "severity": "warning"
+      }
+    ]
+  },
+  "stress_summary": {
+    "scenarios": [
+      {
+        "name": "optimistic",
+        "trades": 787,
+        "pnl": 2207333.12,
+        "sharpe": 1.849,
+        "max_dd_pct": 0.1931,
+        "win_rate": 0.478,
+        "profit_factor": 2.762
+      },
+      {
+        "name": "neutral",
+        "trades": 839,
+        "pnl": 2029656.75,
+        "sharpe": 1.804,
+        "max_dd_pct": 0.2006,
+        "win_rate": 0.443,
+        "profit_factor": 2.734
+      },
+      {
+        "name": "conservative",
+        "trades": 837,
+        "pnl": 1668795.66,
+        "sharpe": 1.726,
+        "max_dd_pct": 0.1986,
+        "win_rate": 0.391,
+        "profit_factor": 2.671
+      },
+      {
+        "name": "stressed",
+        "trades": 850,
+        "pnl": 1276981.42,
+        "sharpe": 1.61,
+        "max_dd_pct": 0.1978,
+        "win_rate": 0.422,
+        "profit_factor": 2.576
+      }
+    ],
+    "degradation": {
+      "optimistic": {
+        "pnl_change_pct": 8.75,
+        "sharpe_change": 0.045,
+        "wr_change_pct": 3.44
+      },
+      "conservative": {
+        "pnl_change_pct": -17.78,
+        "sharpe_change": -0.078,
+        "wr_change_pct": -5.27
+      },
+      "stressed": {
+        "pnl_change_pct": -37.08,
+        "sharpe_change": -0.195,
+        "wr_change_pct": -2.1
+      }
+    }
+  },
+  "metrics": {
+    "sharpe_ratio": 1.804224527991424,
+    "profit_factor": 2.7335634868076317,
+    "win_rate": 0.4433849821215733,
+    "total_pnl": 2029656.7467529257,
+    "total_trades": 839,
+    "max_drawdown_pct": 0.20061978160518332
+  },
+  "execution_profile": {
+    "fill_policy": "pessimistic",
+    "slippage_model": "volatility",
+    "spread_model": "from_data",
+    "latency_assumption": "next_bar"
+  },
+  "invalidation_criteria": {
+    "max_holdout_drawdown_pct": 0.25,
+    "min_holdout_sharpe": 0.2,
+    "max_paper_discrepancy_pct": 10.0,
+    "max_consecutive_losing_weeks": 4,
+    "staleness_days": 90
+  },
+  "data_fingerprint": "",
+  "config_snapshot": {
+    "environment": "dev",
+    "data": {
+      "root_dir": "data",
+      "raw_dir": "data/raw",
+      "interim_dir": "data/interim",
+      "processed_dir": "data/processed",
+      "primary_pairs": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "context_timeframes": [
+        "4h",
+        "1h"
+      ],
+      "execution_timeframes": [
+        "15m",
+        "5m"
+      ],
+      "timezone": "UTC"
+    },
+    "structure": {
+      "swing_lookback": 5,
+      "min_swing_atr_multiple": 0.3,
+      "atr_period": 14,
+      "fvg_min_atr_multiple": 0.5,
+      "fvg_max_fill_pct": 0.5,
+      "displacement_atr_multiple": 1.5,
+      "displacement_body_efficiency": 0.6,
+      "ob_require_displacement": true,
+      "equal_level_tolerance_pips": 3.0,
+      "equal_level_min_touches": 2
+    },
+    "sessions": {
+      "asian": {
+        "start": "00:00:00",
+        "end": "08:00:00"
+      },
+      "london": {
+        "start": "07:00:00",
+        "end": "16:00:00"
+      },
+      "new_york": {
+        "start": "12:00:00",
+        "end": "21:00:00"
+      },
+      "london_ny_overlap": {
+        "start": "12:00:00",
+        "end": "16:00:00"
+      }
+    },
+    "risk": {
+      "base_risk_per_trade": 0.005,
+      "max_portfolio_risk": 0.015,
+      "max_daily_drawdown": 0.03,
+      "max_weekly_drawdown": 0.06,
+      "max_concurrent_positions": 3,
+      "max_per_pair_positions": 1,
+      "max_usd_directional_exposure": 1.0,
+      "min_reward_risk_ratio": 1.5,
+      "score_risk_modulation": 0.5,
+      "volatility_risk_scaling": true,
+      "max_currency_exposure": 2.0,
+      "max_directional_concentration": 0.8,
+      "max_trades_per_day": 10,
+      "max_trades_per_session": 5,
+      "daily_loss_lockout": 0.025,
+      "consecutive_loss_dampen_after": 3,
+      "consecutive_loss_dampen_factor": 0.5,
+      "allocation_strategy": "equal_risk"
+    },
+    "execution": {
+      "model_spread": true,
+      "model_slippage": true,
+      "default_spread_pips": 1.5,
+      "slippage_pips": 0.3,
+      "latency_ms": 150,
+      "allow_limit_orders": true,
+      "fill_on_touch": false,
+      "fill_policy": "conservative",
+      "volatility_slippage_factor": 0.1,
+      "volatility_spread_factor": 0.3
+    },
+    "backtest": {
+      "start_date": null,
+      "end_date": null,
+      "initial_capital": 100000.0,
+      "commission_per_lot": 3.5,
+      "lot_size": 100000.0
+    },
+    "alpha": {
+      "enabled_families": [
+        "sweep_reversal",
+        "bos_continuation",
+        "fvg_retrace"
+      ],
+      "scoring_weights": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "min_signal_score": 0.15,
+      "slippage_model": "fixed",
+      "sizer_model": "stop_based"
+    },
+    "ml": {
+      "enable_regime_filter": false,
+      "enable_regime_tagging": true,
+      "enable_trade_quality_model": false,
+      "enable_meta_labeling": false
+    },
+    "deployment_gate": {
+      "min_sharpe": 0.3,
+      "min_profit_factor": 1.1,
+      "max_drawdown_pct": 0.2,
+      "min_trade_count": 30,
+      "min_win_rate": 0.35,
+      "max_cost_degradation_pct": 0.5,
+      "min_stability": 0.3,
+      "min_robustness": 0.3,
+      "min_oos_consistency": 0.5,
+      "min_diversification": 0.2
+    }
+  },
+  "notes": []
+}

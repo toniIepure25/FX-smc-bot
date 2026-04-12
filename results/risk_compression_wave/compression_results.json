@@ -1,0 +1,1779 @@
+[
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "baseline_050",
+    "risk_description": "Current defaults \u2014 0.50% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.005,
+      "max_portfolio_risk": 0.015,
+      "circuit_breaker_threshold": 0.0
+    },
+    "sharpe": 1.5251,
+    "profit_factor": 2.176,
+    "max_drawdown_pct": 0.3521,
+    "total_trades": 1171,
+    "total_pnl": 15766885.32,
+    "win_rate": 0.345,
+    "calmar": 257.0901,
+    "annualized_return": 90.5327,
+    "drawdown_efficiency": 4.3309,
+    "deployment_score": 2.5579,
+    "gate_verdict": "fail",
+    "gate_blocking": [
+      "max_drawdown_pct",
+      "win_rate"
+    ],
+    "risk_events": {
+      "throttle_activations": 67,
+      "lockout_activations": 41,
+      "circuit_breaker_fired": 0,
+      "state_transitions": 202
+    },
+    "elapsed_s": 130.3
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "baseline_050",
+    "risk_description": "Current defaults \u2014 0.50% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.005,
+      "max_portfolio_risk": 0.015,
+      "circuit_breaker_threshold": 0.0
+    },
+    "sharpe": 1.5176,
+    "profit_factor": 2.2063,
+    "max_drawdown_pct": 0.3521,
+    "total_trades": 1147,
+    "total_pnl": 15800752.69,
+    "win_rate": 0.3514,
+    "calmar": 257.6423,
+    "annualized_return": 90.7272,
+    "drawdown_efficiency": 4.3095,
+    "deployment_score": 2.5875,
+    "gate_verdict": "fail",
+    "gate_blocking": [
+      "max_drawdown_pct"
+    ],
+    "risk_events": {
+      "throttle_activations": 63,
+      "lockout_activations": 41,
+      "circuit_breaker_fired": 0,
+      "state_transitions": 196
+    },
+    "elapsed_s": 127.3
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_040",
+    "risk_description": "Moderate reduction \u2014 0.40% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.004,
+      "max_portfolio_risk": 0.012
+    },
+    "sharpe": 1.6738,
+    "profit_factor": 3.9336,
+    "max_drawdown_pct": 0.1684,
+    "total_trades": 443,
+    "total_pnl": 6042253.08,
+    "win_rate": 0.5124,
+    "calmar": 205.9839,
+    "annualized_return": 34.6943,
+    "drawdown_efficiency": 9.9377,
+    "deployment_score": 6.5842,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 9,
+      "lockout_activations": 8,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 30
+    },
+    "elapsed_s": 124.5
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_040",
+    "risk_description": "Moderate reduction \u2014 0.40% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.004,
+      "max_portfolio_risk": 0.012
+    },
+    "sharpe": 1.6604,
+    "profit_factor": 4.1018,
+    "max_drawdown_pct": 0.1684,
+    "total_trades": 413,
+    "total_pnl": 6034846.9,
+    "win_rate": 0.5351,
+    "calmar": 205.7314,
+    "annualized_return": 34.6518,
+    "drawdown_efficiency": 9.8582,
+    "deployment_score": 6.8108,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 6,
+      "lockout_activations": 7,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 24
+    },
+    "elapsed_s": 123.2
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_035",
+    "risk_description": "0.35% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0035,
+      "max_portfolio_risk": 0.0105
+    },
+    "sharpe": 1.8787,
+    "profit_factor": 4.3757,
+    "max_drawdown_pct": 0.1623,
+    "total_trades": 490,
+    "total_pnl": 6945907.91,
+    "win_rate": 0.5265,
+    "calmar": 245.8053,
+    "annualized_return": 39.8831,
+    "drawdown_efficiency": 11.579,
+    "deployment_score": 8.2208,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 7,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 25
+    },
+    "elapsed_s": 125.8
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_035",
+    "risk_description": "0.35% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0035,
+      "max_portfolio_risk": 0.0105
+    },
+    "sharpe": 1.8163,
+    "profit_factor": 4.6705,
+    "max_drawdown_pct": 0.1623,
+    "total_trades": 434,
+    "total_pnl": 7178888.67,
+    "win_rate": 0.5576,
+    "calmar": 254.0501,
+    "annualized_return": 41.2208,
+    "drawdown_efficiency": 11.1938,
+    "deployment_score": 8.4828,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 6,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 24
+    },
+    "elapsed_s": 123.3
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030",
+    "risk_description": "0.30% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009
+    },
+    "sharpe": 2.0657,
+    "profit_factor": 5.1435,
+    "max_drawdown_pct": 0.15,
+    "total_trades": 514,
+    "total_pnl": 8396176.88,
+    "win_rate": 0.5623,
+    "calmar": 321.3837,
+    "annualized_return": 48.2105,
+    "drawdown_efficiency": 13.7704,
+    "deployment_score": 10.6249,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 12,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 32
+    },
+    "elapsed_s": 126.8
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030",
+    "risk_description": "0.30% risk per trade",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009
+    },
+    "sharpe": 1.9232,
+    "profit_factor": 5.0066,
+    "max_drawdown_pct": 0.1591,
+    "total_trades": 453,
+    "total_pnl": 5949843.55,
+    "win_rate": 0.5695,
+    "calmar": 214.6721,
+    "annualized_return": 34.1637,
+    "drawdown_efficiency": 12.0844,
+    "deployment_score": 9.6285,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 9,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 28
+    },
+    "elapsed_s": 124.2
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025",
+    "risk_description": "0.25% risk per trade \u2014 recommended starting point",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075
+    },
+    "sharpe": 1.9824,
+    "profit_factor": 4.9618,
+    "max_drawdown_pct": 0.1542,
+    "total_trades": 540,
+    "total_pnl": 3579633.46,
+    "win_rate": 0.5333,
+    "calmar": 133.3368,
+    "annualized_return": 20.5541,
+    "drawdown_efficiency": 12.8599,
+    "deployment_score": 9.8361,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 26
+    },
+    "elapsed_s": 128.8
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025",
+    "risk_description": "0.25% risk per trade \u2014 recommended starting point",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075
+    },
+    "sharpe": 1.7777,
+    "profit_factor": 4.6861,
+    "max_drawdown_pct": 0.1542,
+    "total_trades": 476,
+    "total_pnl": 2222106.62,
+    "win_rate": 0.5294,
+    "calmar": 82.7707,
+    "annualized_return": 12.7592,
+    "drawdown_efficiency": 11.5324,
+    "deployment_score": 8.3306,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 7,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 25
+    },
+    "elapsed_s": 125.8
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_020",
+    "risk_description": "0.20% risk per trade \u2014 conservative",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006
+    },
+    "sharpe": 0.4734,
+    "profit_factor": 1.7612,
+    "max_drawdown_pct": 0.1587,
+    "total_trades": 180,
+    "total_pnl": 34938.47,
+    "win_rate": 0.3722,
+    "calmar": 1.2644,
+    "annualized_return": 0.2006,
+    "drawdown_efficiency": 2.984,
+    "deployment_score": 0.8338,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 5,
+      "lockout_activations": 2,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 12
+    },
+    "elapsed_s": 123.6
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_020",
+    "risk_description": "0.20% risk per trade \u2014 conservative",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006
+    },
+    "sharpe": 0.4345,
+    "profit_factor": 1.6724,
+    "max_drawdown_pct": 0.162,
+    "total_trades": 173,
+    "total_pnl": 34402.6,
+    "win_rate": 0.3873,
+    "calmar": 1.2194,
+    "annualized_return": 0.1975,
+    "drawdown_efficiency": 2.682,
+    "deployment_score": 0.7266,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 1,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 18
+    },
+    "elapsed_s": 121.2
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_040_cb15",
+    "risk_description": "0.40% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.004,
+      "max_portfolio_risk": 0.012,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 1.6738,
+    "profit_factor": 3.9336,
+    "max_drawdown_pct": 0.1684,
+    "total_trades": 443,
+    "total_pnl": 6042253.08,
+    "win_rate": 0.5124,
+    "calmar": 205.9839,
+    "annualized_return": 34.6943,
+    "drawdown_efficiency": 9.9377,
+    "deployment_score": 6.5842,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 9,
+      "lockout_activations": 8,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 30
+    },
+    "elapsed_s": 127.1
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_040_cb15",
+    "risk_description": "0.40% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.004,
+      "max_portfolio_risk": 0.012,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 1.6604,
+    "profit_factor": 4.1018,
+    "max_drawdown_pct": 0.1684,
+    "total_trades": 413,
+    "total_pnl": 6034846.9,
+    "win_rate": 0.5351,
+    "calmar": 205.7314,
+    "annualized_return": 34.6518,
+    "drawdown_efficiency": 9.8582,
+    "deployment_score": 6.8108,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 6,
+      "lockout_activations": 7,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 24
+    },
+    "elapsed_s": 124.8
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_035_cb15",
+    "risk_description": "0.35% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0035,
+      "max_portfolio_risk": 0.0105,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 1.8787,
+    "profit_factor": 4.3757,
+    "max_drawdown_pct": 0.1623,
+    "total_trades": 490,
+    "total_pnl": 6945907.91,
+    "win_rate": 0.5265,
+    "calmar": 245.8053,
+    "annualized_return": 39.8831,
+    "drawdown_efficiency": 11.579,
+    "deployment_score": 8.2208,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 7,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 25
+    },
+    "elapsed_s": 128.3
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_035_cb15",
+    "risk_description": "0.35% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0035,
+      "max_portfolio_risk": 0.0105,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 1.8163,
+    "profit_factor": 4.6705,
+    "max_drawdown_pct": 0.1623,
+    "total_trades": 434,
+    "total_pnl": 7178888.67,
+    "win_rate": 0.5576,
+    "calmar": 254.0501,
+    "annualized_return": 41.2208,
+    "drawdown_efficiency": 11.1938,
+    "deployment_score": 8.4828,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 6,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 24
+    },
+    "elapsed_s": 124.4
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_cb15",
+    "risk_description": "0.30% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 2.0657,
+    "profit_factor": 5.1435,
+    "max_drawdown_pct": 0.15,
+    "total_trades": 514,
+    "total_pnl": 8396176.88,
+    "win_rate": 0.5623,
+    "calmar": 321.3837,
+    "annualized_return": 48.2105,
+    "drawdown_efficiency": 13.7704,
+    "deployment_score": 10.6249,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 12,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 32
+    },
+    "elapsed_s": 127.9
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030_cb15",
+    "risk_description": "0.30% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 1.9232,
+    "profit_factor": 5.0066,
+    "max_drawdown_pct": 0.1591,
+    "total_trades": 453,
+    "total_pnl": 5949843.55,
+    "win_rate": 0.5695,
+    "calmar": 214.6721,
+    "annualized_return": 34.1637,
+    "drawdown_efficiency": 12.0844,
+    "deployment_score": 9.6285,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 9,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 28
+    },
+    "elapsed_s": 125.8
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025_cb15",
+    "risk_description": "0.25% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 1.9824,
+    "profit_factor": 4.9618,
+    "max_drawdown_pct": 0.1542,
+    "total_trades": 540,
+    "total_pnl": 3579633.46,
+    "win_rate": 0.5333,
+    "calmar": 133.3368,
+    "annualized_return": 20.5541,
+    "drawdown_efficiency": 12.8599,
+    "deployment_score": 9.8361,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 26
+    },
+    "elapsed_s": 128.3
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025_cb15",
+    "risk_description": "0.25% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 1.7777,
+    "profit_factor": 4.6861,
+    "max_drawdown_pct": 0.1542,
+    "total_trades": 476,
+    "total_pnl": 2222106.62,
+    "win_rate": 0.5294,
+    "calmar": 82.7707,
+    "annualized_return": 12.7592,
+    "drawdown_efficiency": 11.5324,
+    "deployment_score": 8.3306,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 7,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 25
+    },
+    "elapsed_s": 125.9
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_020_cb15",
+    "risk_description": "0.20% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 0.4734,
+    "profit_factor": 1.7612,
+    "max_drawdown_pct": 0.1587,
+    "total_trades": 180,
+    "total_pnl": 34938.47,
+    "win_rate": 0.3722,
+    "calmar": 1.2644,
+    "annualized_return": 0.2006,
+    "drawdown_efficiency": 2.984,
+    "deployment_score": 0.8338,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 5,
+      "lockout_activations": 2,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 12
+    },
+    "elapsed_s": 121.5
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_020_cb15",
+    "risk_description": "0.20% risk + 15% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.15
+    },
+    "sharpe": 0.4345,
+    "profit_factor": 1.6724,
+    "max_drawdown_pct": 0.162,
+    "total_trades": 173,
+    "total_pnl": 34402.6,
+    "win_rate": 0.3873,
+    "calmar": 1.2194,
+    "annualized_return": 0.1975,
+    "drawdown_efficiency": 2.682,
+    "deployment_score": 0.7266,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 1,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 18
+    },
+    "elapsed_s": 117.8
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_035_cb125",
+    "risk_description": "0.35% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0035,
+      "max_portfolio_risk": 0.0105,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 0.9877,
+    "profit_factor": 5.877,
+    "max_drawdown_pct": 0.1279,
+    "total_trades": 158,
+    "total_pnl": 363270.17,
+    "win_rate": 0.462,
+    "calmar": 16.3121,
+    "annualized_return": 2.0859,
+    "drawdown_efficiency": 7.7238,
+    "deployment_score": 5.8045,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 2,
+      "lockout_activations": 2,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 8
+    },
+    "elapsed_s": 118.6
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_035_cb125",
+    "risk_description": "0.35% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0035,
+      "max_portfolio_risk": 0.0105,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 1.4046,
+    "profit_factor": 5.5496,
+    "max_drawdown_pct": 0.1271,
+    "total_trades": 249,
+    "total_pnl": 1166984.83,
+    "win_rate": 0.5863,
+    "calmar": 52.7355,
+    "annualized_return": 6.7008,
+    "drawdown_efficiency": 11.054,
+    "deployment_score": 7.7948,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 3,
+      "lockout_activations": 4,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 14
+    },
+    "elapsed_s": 118.4
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_cb125",
+    "risk_description": "0.30% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 2.0757,
+    "profit_factor": 5.5754,
+    "max_drawdown_pct": 0.1343,
+    "total_trades": 513,
+    "total_pnl": 8553133.38,
+    "win_rate": 0.5634,
+    "calmar": 365.6689,
+    "annualized_return": 49.1117,
+    "drawdown_efficiency": 15.455,
+    "deployment_score": 11.5728,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 31
+    },
+    "elapsed_s": 123.0
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030_cb125",
+    "risk_description": "0.30% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 1.9478,
+    "profit_factor": 5.902,
+    "max_drawdown_pct": 0.1278,
+    "total_trades": 432,
+    "total_pnl": 6175139.77,
+    "win_rate": 0.5972,
+    "calmar": 277.3784,
+    "annualized_return": 35.4574,
+    "drawdown_efficiency": 15.2374,
+    "deployment_score": 11.496,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 26
+    },
+    "elapsed_s": 120.9
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025_cb125",
+    "risk_description": "0.25% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 1.9905,
+    "profit_factor": 5.2283,
+    "max_drawdown_pct": 0.1436,
+    "total_trades": 539,
+    "total_pnl": 3625699.64,
+    "win_rate": 0.5343,
+    "calmar": 145.0144,
+    "annualized_return": 20.8186,
+    "drawdown_efficiency": 13.8647,
+    "deployment_score": 10.4067,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 24
+    },
+    "elapsed_s": 122.9
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025_cb125",
+    "risk_description": "0.25% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 1.7859,
+    "profit_factor": 4.9235,
+    "max_drawdown_pct": 0.1436,
+    "total_trades": 475,
+    "total_pnl": 2251177.63,
+    "win_rate": 0.5305,
+    "calmar": 90.0387,
+    "annualized_return": 12.9262,
+    "drawdown_efficiency": 12.4399,
+    "deployment_score": 8.7929,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 7,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 23
+    },
+    "elapsed_s": 120.3
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_020_cb125",
+    "risk_description": "0.20% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 0.5432,
+    "profit_factor": 2.0012,
+    "max_drawdown_pct": 0.1257,
+    "total_trades": 169,
+    "total_pnl": 40341.88,
+    "win_rate": 0.3905,
+    "calmar": 1.843,
+    "annualized_return": 0.2316,
+    "drawdown_efficiency": 4.3217,
+    "deployment_score": 1.087,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 3,
+      "lockout_activations": 1,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 8
+    },
+    "elapsed_s": 118.4
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_020_cb125",
+    "risk_description": "0.20% risk + 12.5% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.125
+    },
+    "sharpe": 0.5195,
+    "profit_factor": 1.8793,
+    "max_drawdown_pct": 0.1269,
+    "total_trades": 170,
+    "total_pnl": 40033.73,
+    "win_rate": 0.3941,
+    "calmar": 1.8115,
+    "annualized_return": 0.2299,
+    "drawdown_efficiency": 4.094,
+    "deployment_score": 0.9763,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 1,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 18
+    },
+    "elapsed_s": 116.3
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_cb10",
+    "risk_description": "0.30% risk + 10% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.1
+    },
+    "sharpe": 1.0284,
+    "profit_factor": 6.8721,
+    "max_drawdown_pct": 0.1037,
+    "total_trades": 140,
+    "total_pnl": 304370.62,
+    "win_rate": 0.5571,
+    "calmar": 16.8458,
+    "annualized_return": 1.7477,
+    "drawdown_efficiency": 9.9129,
+    "deployment_score": 7.0675,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 3,
+      "lockout_activations": 2,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 8
+    },
+    "elapsed_s": 117.5
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030_cb10",
+    "risk_description": "0.30% risk + 10% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.1
+    },
+    "sharpe": 1.4337,
+    "profit_factor": 6.2145,
+    "max_drawdown_pct": 0.1009,
+    "total_trades": 227,
+    "total_pnl": 856555.05,
+    "win_rate": 0.6696,
+    "calmar": 48.7562,
+    "annualized_return": 4.9183,
+    "drawdown_efficiency": 14.2128,
+    "deployment_score": 8.9099,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 7,
+      "lockout_activations": 3,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 19
+    },
+    "elapsed_s": 117.5
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025_cb10",
+    "risk_description": "0.25% risk + 10% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.1
+    },
+    "sharpe": 0.8293,
+    "profit_factor": 3.7467,
+    "max_drawdown_pct": 0.1008,
+    "total_trades": 171,
+    "total_pnl": 149357.93,
+    "win_rate": 0.4444,
+    "calmar": 8.504,
+    "annualized_return": 0.8576,
+    "drawdown_efficiency": 8.2234,
+    "deployment_score": 3.1071,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 3,
+      "lockout_activations": 2,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 9
+    },
+    "elapsed_s": 118.4
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025_cb10",
+    "risk_description": "0.25% risk + 10% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.1
+    },
+    "sharpe": 1.2563,
+    "profit_factor": 4.6298,
+    "max_drawdown_pct": 0.1007,
+    "total_trades": 276,
+    "total_pnl": 406039.84,
+    "win_rate": 0.529,
+    "calmar": 23.1592,
+    "annualized_return": 2.3315,
+    "drawdown_efficiency": 12.4788,
+    "deployment_score": 5.8162,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 5,
+      "lockout_activations": 3,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 15
+    },
+    "elapsed_s": 118.0
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_020_cb10",
+    "risk_description": "0.20% risk + 10% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.1
+    },
+    "sharpe": 0.5911,
+    "profit_factor": 2.2397,
+    "max_drawdown_pct": 0.1008,
+    "total_trades": 146,
+    "total_pnl": 44429.62,
+    "win_rate": 0.4247,
+    "calmar": 2.531,
+    "annualized_return": 0.2551,
+    "drawdown_efficiency": 5.8643,
+    "deployment_score": 1.3239,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 3,
+      "lockout_activations": 1,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 8
+    },
+    "elapsed_s": 117.8
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_020_cb10",
+    "risk_description": "0.20% risk + 10% circuit breaker",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.1
+    },
+    "sharpe": 0.5907,
+    "profit_factor": 2.2309,
+    "max_drawdown_pct": 0.1004,
+    "total_trades": 135,
+    "total_pnl": 44275.68,
+    "win_rate": 0.4519,
+    "calmar": 2.5311,
+    "annualized_return": 0.2542,
+    "drawdown_efficiency": 5.8813,
+    "deployment_score": 1.3179,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 1,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 18
+    },
+    "elapsed_s": 116.2
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_conc2",
+    "risk_description": "0.30% risk + max 2 concurrent positions",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "max_concurrent_positions": 2
+    },
+    "sharpe": 2.0657,
+    "profit_factor": 5.1435,
+    "max_drawdown_pct": 0.15,
+    "total_trades": 514,
+    "total_pnl": 8396176.88,
+    "win_rate": 0.5623,
+    "calmar": 321.3837,
+    "annualized_return": 48.2105,
+    "drawdown_efficiency": 13.7704,
+    "deployment_score": 10.6249,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 12,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 32
+    },
+    "elapsed_s": 122.6
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030_conc2",
+    "risk_description": "0.30% risk + max 2 concurrent positions",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "max_concurrent_positions": 2
+    },
+    "sharpe": 1.9232,
+    "profit_factor": 5.0066,
+    "max_drawdown_pct": 0.1591,
+    "total_trades": 453,
+    "total_pnl": 5949843.55,
+    "win_rate": 0.5695,
+    "calmar": 214.6721,
+    "annualized_return": 34.1637,
+    "drawdown_efficiency": 12.0844,
+    "deployment_score": 9.6285,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 9,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 28
+    },
+    "elapsed_s": 119.9
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025_conc2",
+    "risk_description": "0.25% risk + max 2 concurrent positions",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "max_concurrent_positions": 2
+    },
+    "sharpe": 1.9824,
+    "profit_factor": 4.9618,
+    "max_drawdown_pct": 0.1542,
+    "total_trades": 540,
+    "total_pnl": 3579633.46,
+    "win_rate": 0.5333,
+    "calmar": 133.3368,
+    "annualized_return": 20.5541,
+    "drawdown_efficiency": 12.8599,
+    "deployment_score": 9.8361,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 26
+    },
+    "elapsed_s": 122.9
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025_conc2",
+    "risk_description": "0.25% risk + max 2 concurrent positions",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "max_concurrent_positions": 2
+    },
+    "sharpe": 1.7777,
+    "profit_factor": 4.6861,
+    "max_drawdown_pct": 0.1542,
+    "total_trades": 476,
+    "total_pnl": 2222106.62,
+    "win_rate": 0.5294,
+    "calmar": 82.7707,
+    "annualized_return": 12.7592,
+    "drawdown_efficiency": 11.5324,
+    "deployment_score": 8.3306,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 7,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 25
+    },
+    "elapsed_s": 120.6
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025_conc1",
+    "risk_description": "0.25% risk + max 1 concurrent position",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0025,
+      "max_concurrent_positions": 1
+    },
+    "sharpe": 2.0289,
+    "profit_factor": 5.1414,
+    "max_drawdown_pct": 0.1519,
+    "total_trades": 544,
+    "total_pnl": 3704920.43,
+    "win_rate": 0.5276,
+    "calmar": 140.0456,
+    "annualized_return": 21.2735,
+    "drawdown_efficiency": 13.3566,
+    "deployment_score": 10.4315,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 10,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 29
+    },
+    "elapsed_s": 124.1
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025_conc1",
+    "risk_description": "0.25% risk + max 1 concurrent position",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0025,
+      "max_concurrent_positions": 1
+    },
+    "sharpe": 1.8246,
+    "profit_factor": 4.8781,
+    "max_drawdown_pct": 0.1519,
+    "total_trades": 477,
+    "total_pnl": 2299496.28,
+    "win_rate": 0.5262,
+    "calmar": 86.9207,
+    "annualized_return": 13.2036,
+    "drawdown_efficiency": 12.0118,
+    "deployment_score": 8.9008,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 8,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 24
+    },
+    "elapsed_s": 120.4
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_tight_daily",
+    "risk_description": "0.30% risk + tighter daily lockout (1.5%)",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 2.0686,
+    "profit_factor": 5.1683,
+    "max_drawdown_pct": 0.151,
+    "total_trades": 481,
+    "total_pnl": 8260757.08,
+    "win_rate": 0.5967,
+    "calmar": 314.0378,
+    "annualized_return": 47.4329,
+    "drawdown_efficiency": 13.6954,
+    "deployment_score": 10.6911,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 6,
+      "lockout_activations": 13,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 37
+    },
+    "elapsed_s": 122.3
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030_tight_daily",
+    "risk_description": "0.30% risk + tighter daily lockout (1.5%)",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 1.9261,
+    "profit_factor": 5.0385,
+    "max_drawdown_pct": 0.1586,
+    "total_trades": 425,
+    "total_pnl": 6015794.11,
+    "win_rate": 0.6047,
+    "calmar": 217.7845,
+    "annualized_return": 34.5424,
+    "drawdown_efficiency": 12.1439,
+    "deployment_score": 9.7048,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 5,
+      "lockout_activations": 12,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 34
+    },
+    "elapsed_s": 119.4
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025_tight_daily",
+    "risk_description": "0.25% risk + tighter daily lockout (1.5%)",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 2.0033,
+    "profit_factor": 4.9235,
+    "max_drawdown_pct": 0.1571,
+    "total_trades": 511,
+    "total_pnl": 3646014.15,
+    "win_rate": 0.5616,
+    "calmar": 133.2379,
+    "annualized_return": 20.9352,
+    "drawdown_efficiency": 12.7498,
+    "deployment_score": 9.8634,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 11,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 45
+    },
+    "elapsed_s": 122.5
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025_tight_daily",
+    "risk_description": "0.25% risk + tighter daily lockout (1.5%)",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 1.7951,
+    "profit_factor": 4.6605,
+    "max_drawdown_pct": 0.1571,
+    "total_trades": 451,
+    "total_pnl": 2246473.19,
+    "win_rate": 0.5565,
+    "calmar": 82.0938,
+    "annualized_return": 12.8991,
+    "drawdown_efficiency": 11.4248,
+    "deployment_score": 8.3662,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 10,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 43
+    },
+    "elapsed_s": 120.2
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_030_dampen2",
+    "risk_description": "0.30% risk + dampen after 2 consecutive losses",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 2.0566,
+    "profit_factor": 4.8621,
+    "max_drawdown_pct": 0.1613,
+    "total_trades": 552,
+    "total_pnl": 8434506.63,
+    "win_rate": 0.5254,
+    "calmar": 300.2061,
+    "annualized_return": 48.4305,
+    "drawdown_efficiency": 12.7481,
+    "deployment_score": 9.9992,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 31
+    },
+    "elapsed_s": 123.4
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_030_dampen2",
+    "risk_description": "0.30% risk + dampen after 2 consecutive losses",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 1.918,
+    "profit_factor": 5.0053,
+    "max_drawdown_pct": 0.1577,
+    "total_trades": 454,
+    "total_pnl": 5843036.16,
+    "win_rate": 0.5683,
+    "calmar": 212.7845,
+    "annualized_return": 33.5504,
+    "drawdown_efficiency": 12.1643,
+    "deployment_score": 9.6,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 10,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 29
+    },
+    "elapsed_s": 120.1
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "size_025_dampen2",
+    "risk_description": "0.25% risk + dampen after 2 consecutive losses",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 1.9966,
+    "profit_factor": 4.8982,
+    "max_drawdown_pct": 0.1569,
+    "total_trades": 536,
+    "total_pnl": 3589946.92,
+    "win_rate": 0.5392,
+    "calmar": 131.3481,
+    "annualized_return": 20.6133,
+    "drawdown_efficiency": 12.7225,
+    "deployment_score": 9.7799,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 14,
+      "lockout_activations": 6,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 38
+    },
+    "elapsed_s": 123.2
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "size_025_dampen2",
+    "risk_description": "0.25% risk + dampen after 2 consecutive losses",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 1.7958,
+    "profit_factor": 4.6542,
+    "max_drawdown_pct": 0.1569,
+    "total_trades": 472,
+    "total_pnl": 2242544.14,
+    "win_rate": 0.536,
+    "calmar": 82.0497,
+    "annualized_return": 12.8766,
+    "drawdown_efficiency": 11.4431,
+    "deployment_score": 8.3582,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 12,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 34
+    },
+    "elapsed_s": 120.5
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "hardened_A",
+    "risk_description": "0.30% risk + CB 15% + 2 concurrent + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.15,
+      "max_concurrent_positions": 2,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 2.0566,
+    "profit_factor": 4.8621,
+    "max_drawdown_pct": 0.1613,
+    "total_trades": 552,
+    "total_pnl": 8434506.63,
+    "win_rate": 0.5254,
+    "calmar": 300.2061,
+    "annualized_return": 48.4305,
+    "drawdown_efficiency": 12.7481,
+    "deployment_score": 9.9992,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 31
+    },
+    "elapsed_s": 123.1
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "hardened_A",
+    "risk_description": "0.30% risk + CB 15% + 2 concurrent + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.003,
+      "max_portfolio_risk": 0.009,
+      "circuit_breaker_threshold": 0.15,
+      "max_concurrent_positions": 2,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 1.918,
+    "profit_factor": 5.0053,
+    "max_drawdown_pct": 0.1577,
+    "total_trades": 454,
+    "total_pnl": 5843036.16,
+    "win_rate": 0.5683,
+    "calmar": 212.7845,
+    "annualized_return": 33.5504,
+    "drawdown_efficiency": 12.1643,
+    "deployment_score": 9.6,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 10,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 29
+    },
+    "elapsed_s": 120.5
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "hardened_B",
+    "risk_description": "0.25% risk + CB 15% + tighter daily + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.15,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 2.0108,
+    "profit_factor": 5.0238,
+    "max_drawdown_pct": 0.1526,
+    "total_trades": 513,
+    "total_pnl": 3681685.06,
+    "win_rate": 0.5614,
+    "calmar": 138.5617,
+    "annualized_return": 21.1401,
+    "drawdown_efficiency": 13.18,
+    "deployment_score": 10.1021,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 12,
+      "lockout_activations": 11,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 47
+    },
+    "elapsed_s": 123.0
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "hardened_B",
+    "risk_description": "0.25% risk + CB 15% + tighter daily + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.15,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 1.8063,
+    "profit_factor": 4.7643,
+    "max_drawdown_pct": 0.1526,
+    "total_trades": 453,
+    "total_pnl": 2278755.24,
+    "win_rate": 0.5563,
+    "calmar": 85.7619,
+    "annualized_return": 13.0845,
+    "drawdown_efficiency": 11.8391,
+    "deployment_score": 8.6055,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 12,
+      "lockout_activations": 10,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 45
+    },
+    "elapsed_s": 120.2
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "hardened_C",
+    "risk_description": "0.25% risk + CB 12.5% + 2 concurrent + tight daily",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.125,
+      "max_concurrent_positions": 2,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 2.0261,
+    "profit_factor": 5.677,
+    "max_drawdown_pct": 0.1294,
+    "total_trades": 509,
+    "total_pnl": 3769368.42,
+    "win_rate": 0.5639,
+    "calmar": 167.2976,
+    "annualized_return": 21.6435,
+    "drawdown_efficiency": 15.6608,
+    "deployment_score": 11.502,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 10,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 43
+    },
+    "elapsed_s": 122.7
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "hardened_C",
+    "risk_description": "0.25% risk + CB 12.5% + 2 concurrent + tight daily",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.0025,
+      "max_portfolio_risk": 0.0075,
+      "circuit_breaker_threshold": 0.125,
+      "max_concurrent_positions": 2,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02
+    },
+    "sharpe": 1.818,
+    "profit_factor": 5.3317,
+    "max_drawdown_pct": 0.1294,
+    "total_trades": 449,
+    "total_pnl": 2323741.34,
+    "win_rate": 0.559,
+    "calmar": 103.1357,
+    "annualized_return": 13.3428,
+    "drawdown_efficiency": 14.0528,
+    "deployment_score": 9.6933,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 11,
+      "lockout_activations": 9,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 41
+    },
+    "elapsed_s": 120.5
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "hardened_D",
+    "risk_description": "0.20% risk + CB 15% + 2 concurrent + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.15,
+      "max_concurrent_positions": 2,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 0.5967,
+    "profit_factor": 2.3326,
+    "max_drawdown_pct": 0.1524,
+    "total_trades": 149,
+    "total_pnl": 61256.2,
+    "win_rate": 0.4295,
+    "calmar": 2.3081,
+    "annualized_return": 0.3517,
+    "drawdown_efficiency": 3.9153,
+    "deployment_score": 1.3918,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 5,
+      "lockout_activations": 3,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 14
+    },
+    "elapsed_s": 117.5
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "hardened_D",
+    "risk_description": "0.20% risk + CB 15% + 2 concurrent + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.15,
+      "max_concurrent_positions": 2,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 0.5988,
+    "profit_factor": 2.3454,
+    "max_drawdown_pct": 0.1511,
+    "total_trades": 144,
+    "total_pnl": 61507.51,
+    "win_rate": 0.4444,
+    "calmar": 2.3378,
+    "annualized_return": 0.3532,
+    "drawdown_efficiency": 3.9636,
+    "deployment_score": 1.4044,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 5,
+      "lockout_activations": 3,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 15
+    },
+    "elapsed_s": 116.1
+  },
+  {
+    "alpha_candidate": "sweep_plus_bos",
+    "risk_profile": "hardened_E",
+    "risk_description": "0.20% risk + CB 12.5% + tight daily + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.125,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 0.6386,
+    "profit_factor": 2.6338,
+    "max_drawdown_pct": 0.1245,
+    "total_trades": 140,
+    "total_pnl": 66567.9,
+    "win_rate": 0.45,
+    "calmar": 3.0696,
+    "annualized_return": 0.3822,
+    "drawdown_efficiency": 5.1285,
+    "deployment_score": 1.6819,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 0,
+      "lockout_activations": 5,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 11
+    },
+    "elapsed_s": 117.6
+  },
+  {
+    "alpha_candidate": "bos_continuation_only",
+    "risk_profile": "hardened_E",
+    "risk_description": "0.20% risk + CB 12.5% + tight daily + dampen@2",
+    "risk_overrides": {
+      "base_risk_per_trade": 0.002,
+      "max_portfolio_risk": 0.006,
+      "circuit_breaker_threshold": 0.125,
+      "daily_loss_lockout": 0.015,
+      "max_daily_drawdown": 0.02,
+      "consecutive_loss_dampen_after": 2,
+      "consecutive_loss_dampen_factor": 0.4
+    },
+    "sharpe": 0.6375,
+    "profit_factor": 2.6138,
+    "max_drawdown_pct": 0.125,
+    "total_trades": 146,
+    "total_pnl": 66471.84,
+    "win_rate": 0.4521,
+    "calmar": 3.0528,
+    "annualized_return": 0.3817,
+    "drawdown_efficiency": 5.0986,
+    "deployment_score": 1.6662,
+    "gate_verdict": "pass",
+    "gate_blocking": [],
+    "risk_events": {
+      "throttle_activations": 0,
+      "lockout_activations": 4,
+      "circuit_breaker_fired": 1,
+      "state_transitions": 9
+    },
+    "elapsed_s": 116.1
+  }
+]
