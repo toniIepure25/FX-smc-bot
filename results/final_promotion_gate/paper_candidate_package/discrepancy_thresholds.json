@@ -1,0 +1,15 @@
+{
+  "sharpe_discrepancy_warning": 0.3,
+  "sharpe_discrepancy_block": 0.5,
+  "trade_frequency_warning_pct": 30,
+  "trade_frequency_block_pct": 50,
+  "win_rate_discrepancy_warning_pct": 8,
+  "pnl_discrepancy_warning_pct": 40,
+  "backtest_baselines": {
+    "holdout_sharpe": 0.8505,
+    "holdout_pf": 1.9637,
+    "holdout_trades": 220,
+    "holdout_win_rate": 0.2909,
+    "oos_mean_sharpe": 1.5986
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-04-12T18:47:22.265827",
+  "champion": "bos_only_usdjpy",
+  "champion_family": "bos_continuation",
+  "champion_pairs": [
+    "USDJPY"
+  ],
+  "risk_profile": "size_030_cb125",
+  "decision": "CONTINUE_PAPER_TRADING",
+  "confidence": "low-medium",
+  "evidence": {
+    "holdout_sharpe": 0.8505,
+    "holdout_pf": 1.9637,
+    "holdout_trades": 220,
+    "holdout_win_rate": 0.2909,
+    "holdout_max_dd": 0.126,
+    "oos_mean_sharpe": 1.5986,
+    "oos_std": 2.0597,
+    "oos_pct_positive": 0.63,
+    "oos_pct_above_0_3": 0.63,
+    "oos_folds_total": 27,
+    "oos_worst_fold": -0.9749,
+    "oos_best_fold": 4.0431,
+    "stress_all_positive": true,
+    "synth_holdout_positive": false,
+    "synth_holdout_sharpe": 0.0,
+    "promotion_scorecard": "8/8",
+    "default_gate_verdict": "fail",
+    "revised_gate_verdict": "pass",
+    "win_rate_blocking": false
+  },
+  "answers": {
+    "bos_only_usdjpy_is_true_edge": true,
+    "data_evidence_strong_enough": false,
+    "win_rate_acceptable": true,
+    "single_pair_acceptable_at_paper": true,
+    "sweep_reversal_permanently_demoted": true,
+    "eurusd_gbpusd_excluded": true
+  },
+  "unresolved_risks": [
+    "Single-pair USDJPY concentration",
+    "Yahoo data quality (~30% missing bars)",
+    "High OOS variance (std=2.060)",
+    "No institutional-grade data confirmation",
+    "Regime sensitivity in some temporal windows"
+  ],
+  "next_steps": [
+    "Deploy frozen bos_only_usdjpy config to paper trading environment",
+    "Execute paper_stage_checklist.md pre-deployment steps",
+    "Monitor for minimum 4 weeks with weekly reviews",
+    "Compare paper results against backtest baselines using discrepancy_thresholds.json",
+    "Week 2: initial signal funnel audit",
+    "Week 4: first Sharpe assessment \u2014 hard stop if < 0",
+    "Week 6: full promotion review \u2014 decide live / extend / reject"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "candidate": "bos_only_usdjpy",
+  "stage": "paper_trading",
+  "start_date": "2026-04-12",
+  "minimum_duration_weeks": 4,
+  "target_duration_weeks": 6,
+  "review_checkpoints": [
+    "week_2",
+    "week_4",
+    "week_6"
+  ],
+  "monitoring": {
+    "dashboard_required": true,
+    "alert_channels": [
+      "console",
+      "log"
+    ],
+    "hard_stop_alerts": true
+  },
+  "files": [
+    "bos_only_usdjpy_champion_bundle/champion_config.json",
+    "paper_candidate_package/invalidation_criteria.json",
+    "paper_candidate_package/weekly_review_template.md",
+    "paper_candidate_package/paper_stage_checklist.md",
+    "paper_candidate_package/discrepancy_thresholds.json",
+    "paper_candidate_package/promotion_memo.md"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "hard_stop": {
+    "paper_sharpe_below_zero_after_4_weeks": true,
+    "drawdown_exceeds_15_pct": true,
+    "win_rate_below_15_pct_any_2_week_window": true,
+    "zero_signals_for_5_consecutive_days": true,
+    "circuit_breaker_fires": true
+  },
+  "review_triggers": {
+    "paper_sharpe_below_0_3_after_6_weeks": true,
+    "signal_frequency_deviates_50_pct_from_backtest": true,
+    "win_rate_below_20_pct_over_3_weeks": true,
+    "drawdown_exceeds_10_pct": true
+  },
+  "expected_baselines": {
+    "weekly_trade_frequency": "5-12 trades/week",
+    "expected_win_rate_range": "22-38%",
+    "expected_sharpe_range": "0.3-1.5 (annualized)",
+    "max_acceptable_drawdown": "15%"
+  }
+}
