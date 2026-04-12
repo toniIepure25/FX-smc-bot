@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-04-12T15:14:32.189345",
+  "champion": "bos_continuation_only",
+  "champion_reason": "higher composite score (0.422 vs 0.372)",
+  "risk_profile": "size_030_cb125",
+  "decision": "CONTINUE_WITH_SIMPLIFICATION",
+  "confidence": "low-medium",
+  "root_causes": [
+    "win-rate collapse (primary)",
+    "winner size collapse",
+    "extreme USDJPY concentration (100% of train PnL)",
+    "sweep_reversal family reversal (profitable in train, loss-making in holdout)"
+  ],
+  "evidence": {
+    "train_sharpe": 2.0757,
+    "holdout_sharpe": 0.1536,
+    "wf_mean_oos_sharpe": 0.2791,
+    "wf_pct_positive_folds": 0.4,
+    "wf_pct_above_threshold": 0.4,
+    "synth_holdout_sharpe": -0.7433,
+    "data_quality_factor": false,
+    "useful_mitigations": true,
+    "pair_concentration_issue": true,
+    "family_reversal_issue": true
+  },
+  "next_steps": [
+    "Switch to bos_continuation_only if not already",
+    "Apply pair filtering if USDJPY concentration is confirmed as beneficial",
+    "Re-validate simplified config under walk-forward",
+    "Proceed to paper trading if simplified config passes OOS gates"
+  ]
+}

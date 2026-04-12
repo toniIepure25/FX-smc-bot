@@ -1,0 +1,22 @@
+{
+  "champion": "bos_only_usdjpy",
+  "family": "bos_continuation",
+  "pairs": [
+    "USDJPY"
+  ],
+  "risk_profile": "size_030_cb125",
+  "risk_config": {
+    "base_risk_per_trade": 0.003,
+    "max_portfolio_risk": 0.009,
+    "circuit_breaker_threshold": 0.125
+  },
+  "holdout_sharpe": 0.8505,
+  "holdout_pf": 1.9637,
+  "holdout_trades": 220,
+  "wf_mean_oos_sharpe": 1.4423,
+  "wf_pct_positive": 0.6,
+  "stress_passed": true,
+  "promotion_decision": "CONDITIONAL_PROMOTE",
+  "promotion_confidence": "low-medium",
+  "frozen_at": "2026-04-12T18:10:45.943657"
+}

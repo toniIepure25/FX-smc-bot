@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-04-12T18:10:45.945065",
+  "champion": "bos_only_usdjpy",
+  "champion_family": "bos_continuation",
+  "champion_pairs": [
+    "USDJPY"
+  ],
+  "risk_profile": "size_030_cb125",
+  "decision": "CONTINUE_PAPER_TRADING",
+  "confidence": "low-medium",
+  "evidence": {
+    "holdout_sharpe": 0.8505,
+    "holdout_pf": 1.9637,
+    "holdout_trades": 220,
+    "holdout_win_rate": 0.2909,
+    "holdout_max_dd": 0.126,
+    "wf_mean_oos_sharpe": 1.4423,
+    "wf_pct_positive_folds": 0.6,
+    "stress_passed": true,
+    "bos_only_usdjpy_holdout_sharpe": 0.8505,
+    "bos_only_all_pairs_holdout_sharpe": 0.1536,
+    "usdjpy_is_primary_edge": true,
+    "multi_pair_hurts": true,
+    "sweep_reversal_demoted": true
+  },
+  "next_steps": [
+    "Deploy bos_only_usdjpy to paper trading with frozen config",
+    "Monitor for 4-6 weeks with weekly Sharpe checkpoints",
+    "Compare live signal funnel to backtest expectations",
+    "Escalate if paper Sharpe < 0.0 after 4 weeks"
+  ]
+}
