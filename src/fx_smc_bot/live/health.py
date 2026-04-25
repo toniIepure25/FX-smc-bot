@@ -83,7 +83,8 @@ class HealthMonitor:
 
         if self._last_bar_time is not None:
             gap = bar_time - self._last_bar_time
-            if gap > self._max_bar_gap and bar_time.weekday() < 5:
+            is_weekend_gap = self._is_fx_weekend_gap(self._last_bar_time, bar_time)
+            if gap > self._max_bar_gap and not is_weekend_gap:
                 self._missing_bars += 1
                 msg = f"Bar gap detected: {gap} between {self._last_bar_time} and {bar_time}"
                 warnings.append(msg)
@@ -91,6 +92,17 @@ class HealthMonitor:
 
         self._last_bar_time = bar_time
         return warnings
+
+    @staticmethod
+    def _is_fx_weekend_gap(prev_time: datetime, cur_time: datetime) -> bool:
+        """True if the gap spans the normal FX weekend (Fri close -> Sun/Mon open)."""
+        if prev_time.weekday() == 4 and cur_time.weekday() in (6, 0):
+            return True
+        if prev_time.weekday() == 4 and cur_time.weekday() == 0:
+            return True
+        if prev_time.weekday() >= 5 or cur_time.weekday() == 0 and prev_time.weekday() >= 4:
+            return True
+        return False
 
     def on_fill(self) -> None:
         self._last_fill_bar = self._bars_processed
@@ -107,7 +119,10 @@ class HealthMonitor:
 
     def snapshot(self, bar_time: datetime | None = None) -> HealthSnapshot:
         bars_since_fill = self._bars_processed - self._last_fill_bar
-        stale = bars_since_fill > self._stale_bars_threshold
+        # Only flag stale data when the system is ACTIVE —
+        # in LOCKED/STOPPED state, absence of fills is expected risk behavior
+        actively_trading = self._operational_state == OperationalState.ACTIVE
+        stale = bars_since_fill > self._stale_bars_threshold and actively_trading
 
         risk_status = ComponentStatus.OK
         if self._operational_state == OperationalState.LOCKED:

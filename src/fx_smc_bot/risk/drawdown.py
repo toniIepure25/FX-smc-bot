@@ -42,6 +42,16 @@ class DrawdownTracker:
         self._throttle_activation_count: int = 0
         self._lockout_activation_count: int = 0
         self._circuit_breaker_fired: bool = False
+        self._cb_cooldown_until: datetime | None = None
+        self._cb_fire_count: int = 0
+
+    @property
+    def initial_equity(self) -> float:
+        return self._initial_equity
+
+    @property
+    def peak_equity(self) -> float:
+        return self._peak_equity
 
     @property
     def operational_state(self) -> OperationalState:
@@ -65,6 +75,7 @@ class DrawdownTracker:
             "throttle_activations": self._throttle_activation_count,
             "lockout_activations": self._lockout_activation_count,
             "circuit_breaker_fired": int(self._circuit_breaker_fired),
+            "circuit_breaker_fire_count": self._cb_fire_count,
             "state_transitions": len(self._state_transitions),
         }
 
@@ -147,12 +158,31 @@ class DrawdownTracker:
         timestamp: datetime, equity: float,
     ) -> None:
         cfg = self._risk_cfg
+
+        # Cooldown-based CB recovery: reset HWM to current equity to avoid
+        # immediate re-trigger from the same drawdown.
+        if (self._state == OperationalState.STOPPED
+                and cfg.circuit_breaker_cooldown_days > 0
+                and self._cb_cooldown_until is not None
+                and timestamp >= self._cb_cooldown_until):
+            self._peak_equity = equity
+            self._transition(
+                OperationalState.ACTIVE,
+                f"cb_cooldown_expired: resumed after {cfg.circuit_breaker_cooldown_days}d, hwm_reset={equity:.0f}",
+                timestamp, equity,
+            )
+            self._cb_cooldown_until = None
+
         if self._state == OperationalState.STOPPED:
             return
 
         # Circuit breaker: peak-to-trough drawdown threshold
         if cfg.circuit_breaker_threshold > 0 and peak_dd >= cfg.circuit_breaker_threshold:
             self._circuit_breaker_fired = True
+            self._cb_fire_count += 1
+            if cfg.circuit_breaker_cooldown_days > 0:
+                from datetime import timedelta
+                self._cb_cooldown_until = timestamp + timedelta(days=cfg.circuit_breaker_cooldown_days)
             self._transition(
                 OperationalState.STOPPED,
                 f"circuit_breaker: peak_dd {peak_dd:.2%} >= {cfg.circuit_breaker_threshold:.2%}",

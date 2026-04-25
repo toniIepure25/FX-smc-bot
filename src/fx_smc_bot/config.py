@@ -152,6 +152,10 @@ class RiskConfig(BaseModel):
         default=0.15, ge=0.0, le=1.0,
         description="Peak-to-trough drawdown that triggers STOPPED state (0=disabled)",
     )
+    circuit_breaker_cooldown_days: int = Field(
+        default=0, ge=0, le=30,
+        description="Days to lock after CB fires before resuming (0=permanent stop)",
+    )
     allocation_strategy: str = Field(
         default="equal_risk",
         description="Budget allocation: equal_risk, score_weighted, volatility_adjusted, capped_conviction",

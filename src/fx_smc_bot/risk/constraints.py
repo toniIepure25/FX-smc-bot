@@ -145,12 +145,19 @@ class MaxDailyTradesConstraint:
         self._current_day: int = -1
         self._day_count: int = 0
 
-    def record_trade(self, timestamp: datetime) -> None:
+    def _maybe_reset(self, timestamp: datetime) -> None:
         day = timestamp.toordinal()
         if day != self._current_day:
             self._current_day = day
             self._day_count = 0
+
+    def record_trade(self, timestamp: datetime) -> None:
+        self._maybe_reset(timestamp)
         self._day_count += 1
+
+    def update_day(self, timestamp: datetime) -> None:
+        """Reset counter if a new day has started (call each bar)."""
+        self._maybe_reset(timestamp)
 
     def check(
         self,

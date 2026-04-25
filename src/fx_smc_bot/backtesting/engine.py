@@ -43,11 +43,18 @@ from fx_smc_bot.execution.slippage import (
     SpreadFromDataSlippage,
     VolatilitySlippage,
 )
+from fx_smc_bot.risk.constraints import (
+    MaxDailyTradesConstraint,
+    DailyStopConstraint,
+    build_full_constraints,
+    ConstraintChecker,
+)
 from fx_smc_bot.risk.drawdown import DrawdownTracker
-from fx_smc_bot.risk.sizing import StopBasedSizer
+from fx_smc_bot.risk.sizing import SizingPolicy, StopBasedSizer
 from fx_smc_bot.backtesting.ledger import TradeLedger
 from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics
 from fx_smc_bot.utils.math import atr as compute_atr
+from fx_smc_bot.utils.time import classify_session
 
 logger = logging.getLogger(__name__)
 
@@ -58,14 +65,18 @@ _MIN_WARMUP_BARS = 30
 class BacktestEngine:
     """Multi-pair event-driven backtest engine."""
 
-    def __init__(self, config: AppConfig | None = None) -> None:
+    def __init__(
+        self,
+        config: AppConfig | None = None,
+        sizing_policy: SizingPolicy | None = None,
+    ) -> None:
         self._cfg = config or AppConfig()
         slippage = self._build_slippage_model()
         self._fill_engine = FillEngine(
             slippage,
             fill_policy=self._cfg.execution.fill_policy,
         )
-        self._sizer = StopBasedSizer(self._cfg.backtest.lot_size)
+        self._sizer = StopBasedSizer(self._cfg.backtest.lot_size, policy=sizing_policy)
         self._ledger = TradeLedger()
         self._portfolio = PortfolioState(self._cfg.backtest.initial_capital)
         self._dd_tracker = DrawdownTracker(
@@ -73,6 +84,17 @@ class BacktestEngine:
         )
         self._approval = CandidateApprovalPipeline(self._cfg.risk, self._cfg.alpha)
         self._review_collector = ReviewCollector()
+        self._position_entry_bars: dict[str, int] = {}
+
+        self._daily_trades_constraint = MaxDailyTradesConstraint()
+        self._daily_stop_constraint = DailyStopConstraint()
+        base_constraints = build_full_constraints()
+        self._persistent_constraints: list[ConstraintChecker] = [
+            c for c in base_constraints
+            if not isinstance(c, (MaxDailyTradesConstraint, DailyStopConstraint))
+        ]
+        self._persistent_constraints.append(self._daily_stop_constraint)
+        self._persistent_constraints.append(self._daily_trades_constraint)
         self._regime_classifier = None
         if self._cfg.ml.enable_regime_tagging:
             try:
@@ -190,10 +212,16 @@ class BacktestEngine:
                         pnl = self._compute_pnl(pos, exit_fill.fill_price)
                         self._portfolio.close_position(pos.id, pnl)
                         self._dd_tracker.record_trade_result(pnl)
+                        entry_bar_idx = self._position_entry_bars.pop(pos.id, 0)
+                        entry_session = classify_session(
+                            pos.opened_at, self._cfg.sessions,
+                        ) if pos.opened_at else None
                         self._ledger.record_trade(
                             pos, exit_fill.fill_price, bar_time,
+                            entry_bar=entry_bar_idx,
                             exit_bar=bar_idx,
                             regime=bar_regime,
+                            session=entry_session,
                         )
 
                 # --- Process pending order fills ---
@@ -219,7 +247,9 @@ class BacktestEngine:
                         candidate=order.candidate,
                     )
                     self._portfolio.open_position(pos)
+                    self._position_entry_bars[pos.id] = bar_idx
                     self._portfolio.remove_order(order.id)
+                    self._daily_trades_constraint.record_trade(bar_time)
 
                 # --- Skip alpha generation during warmup ---
                 if bar_idx < _MIN_WARMUP_BARS:
@@ -270,7 +300,12 @@ class BacktestEngine:
                     self._review_collector.add(pre_reviews)
                     approved = [r.candidate for r in pre_reviews if r.verdict.value == "accepted"]
 
-                    # Selection with structured constraint capture
+                    self._daily_stop_constraint.update(
+                        risk_snap.daily_drawdown, bar_time,
+                        self._cfg.risk.daily_loss_lockout,
+                    )
+                    self._daily_trades_constraint.update_day(bar_time)
+
                     selection_reviews: list[CandidateReview] = []
                     intents = select_candidates(
                         approved, self._portfolio.open_positions,
@@ -278,6 +313,9 @@ class BacktestEngine:
                         self._cfg.risk, self._sizer,
                         current_atr=current_atr, median_atr=median_atr,
                         reviews=selection_reviews,
+                        constraints=self._persistent_constraints,
+                        initial_equity=self._dd_tracker.initial_equity,
+                        peak_equity=self._dd_tracker.peak_equity,
                     )
                     self._review_collector.add(selection_reviews)
 

@@ -1,0 +1,14 @@
+.git
+.pytest_cache
+__pycache__
+*.pyc
+*.egg-info
+results/
+forward_runs/
+paper_runs/
+paper_validation_program/
+tests/
+docs/
+.env
+*.md
+!README.md

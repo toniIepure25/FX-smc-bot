@@ -1,0 +1,11 @@
+# Forward paper trading scheduled reports
+# Install: crontab deploy/crontab
+
+# Daily report at 22:00 UTC (after NY close)
+0 22 * * 1-5 cd /opt/fx-smc-bot && docker compose run --rm daily-report 2>> /var/log/fx-reports.log
+
+# Weekly report on Saturday at 10:00 UTC
+0 10 * * 6 cd /opt/fx-smc-bot && docker compose run --rm weekly-report 2>> /var/log/fx-reports.log
+
+# Health check every 5 minutes (writes to syslog on failure)
+*/5 * * * * curl -sf http://localhost:8080/health > /dev/null || logger -t fx-health "Health check failed"

@@ -23,12 +23,17 @@ def select_candidates(
     current_atr: float | None = None,
     median_atr: float | None = None,
     reviews: list[CandidateReview] | None = None,
+    constraints: list | None = None,
+    initial_equity: float | None = None,
+    peak_equity: float | None = None,
 ) -> list[PositionIntent]:
     """Select and size the best candidates that pass all constraints.
 
     Candidates are assumed to be pre-sorted by signal_score descending.
     If `reviews` list is provided, appends a CandidateReview for each
     candidate processed (both accepted and rejected).
+    If `constraints` is provided, those persistent instances are used
+    instead of building fresh stateless ones each call.
     """
     sizer = sizer or StopBasedSizer()
     selected: list[PositionIntent] = []
@@ -37,6 +42,7 @@ def select_candidates(
     for candidate in candidates:
         units, risk_frac = sizer.compute(
             candidate, equity, risk_cfg, current_atr, median_atr,
+            initial_equity=initial_equity, peak_equity=peak_equity,
         )
         if units <= 0:
             if reviews is not None:
@@ -60,9 +66,10 @@ def select_candidates(
             portfolio_weight=weight,
         )
 
+        active_constraints = constraints if constraints is not None else build_full_constraints()
         passed, reasons = check_all_constraints(
             intent, simulated_positions, risk_cfg, equity,
-            constraints=build_full_constraints(),
+            constraints=active_constraints,
         )
         if not passed:
             if reviews is not None:

@@ -33,8 +33,14 @@ from fx_smc_bot.alpha.review import (
 from fx_smc_bot.portfolio.selector import select_candidates
 from fx_smc_bot.portfolio.allocator import allocate_risk_budget
 from fx_smc_bot.execution.orders import intent_to_order
+from fx_smc_bot.risk.constraints import (
+    MaxDailyTradesConstraint,
+    DailyStopConstraint,
+    build_full_constraints,
+    ConstraintChecker,
+)
 from fx_smc_bot.risk.drawdown import DrawdownTracker
-from fx_smc_bot.risk.sizing import StopBasedSizer
+from fx_smc_bot.risk.sizing import SizingPolicy, StopBasedSizer
 from fx_smc_bot.utils.math import atr as compute_atr
 from fx_smc_bot.live.broker import PaperBroker
 from fx_smc_bot.live.health import HealthMonitor
@@ -55,6 +61,7 @@ class PaperTradingRunner:
         config: AppConfig,
         output_dir: Path | str = Path("paper_runs"),
         alert_sink: AlertSink | None = None,
+        sizing_policy: SizingPolicy | None = None,
     ) -> None:
         self._cfg = config
         self._run_id = f"paper_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
@@ -68,7 +75,7 @@ class PaperTradingRunner:
         )
         self._journal = EventJournal(self._output_dir / "journal.jsonl", self._run_id)
         self._dd_tracker = DrawdownTracker(config.backtest.initial_capital, config.risk)
-        self._sizer = StopBasedSizer(config.backtest.lot_size)
+        self._sizer = StopBasedSizer(config.backtest.lot_size, policy=sizing_policy)
         self._alert_sink = alert_sink or LogAlertSink()
         self._health = HealthMonitor(alert_sink=self._alert_sink)
         self._approval = CandidateApprovalPipeline(config.risk, config.alpha)
@@ -77,6 +84,16 @@ class PaperTradingRunner:
         self._prev_op_state = OperationalState.ACTIVE
         self._daily_trade_count = 0
         self._last_day: int | None = None
+
+        self._daily_trades_constraint = MaxDailyTradesConstraint()
+        self._daily_stop_constraint = DailyStopConstraint()
+        base_constraints = build_full_constraints()
+        self._persistent_constraints: list[ConstraintChecker] = [
+            c for c in base_constraints
+            if not isinstance(c, (MaxDailyTradesConstraint, DailyStopConstraint))
+        ]
+        self._persistent_constraints.append(self._daily_stop_constraint)
+        self._persistent_constraints.append(self._daily_trades_constraint)
 
     @property
     def run_id(self) -> str:
@@ -119,6 +136,26 @@ class PaperTradingRunner:
 
             self._health.on_bar(bar_time)
 
+            # Unconditional risk-state update so day-boundary resets fire
+            # even when LOCKED (which otherwise skips candidate generation)
+            account_snap = self._broker.get_account()
+            self._dd_tracker.update(account_snap.equity, bar_time)
+            new_op = self._dd_tracker.operational_state
+            if new_op != self._prev_op_state:
+                history = self._dd_tracker.state_history
+                trigger = history[-1].reason if history else f"equity={account_snap.equity:.2f}"
+                self._journal.log_state_transition(
+                    self._prev_op_state.value, new_op.value,
+                    reason=trigger, bar_time=bar_time,
+                )
+                self._alert_sink.emit(AlertEvent(
+                    level="warning" if new_op != OperationalState.ACTIVE else "info",
+                    message=f"Operational state: {self._prev_op_state.value} -> {new_op.value} ({trigger})",
+                    timestamp=bar_time, category="risk_state",
+                ))
+                self._health.on_state_change(new_op, bar_time)
+                self._prev_op_state = new_op
+
             # Daily boundary detection for summary events
             bar_day = bar_time.timetuple().tm_yday
             if self._last_day is not None and bar_day != self._last_day:
@@ -127,7 +164,7 @@ class PaperTradingRunner:
                     "equity": self._broker.get_account().equity,
                     "trades_today": self._daily_trade_count,
                     "operational_state": self._dd_tracker.operational_state.value,
-                })
+                }, bar_time=bar_time)
                 self._daily_trade_count = 0
             self._last_day = bar_day
 
@@ -154,6 +191,8 @@ class PaperTradingRunner:
                         fill.order_id, fill.fill_price, fill.units, fill.reason.value,
                         bar_time=bar_time,
                     )
+                    if fill.reason.value == "market_open":
+                        self._daily_trades_constraint.record_trade(bar_time)
                     if fill.reason.value in ("stop_loss_hit", "take_profit_hit"):
                         pnl = 0.0
                         for p in self._broker.all_closed_positions:
@@ -215,23 +254,6 @@ class PaperTradingRunner:
                     account = self._broker.get_account()
                     risk_snap = self._dd_tracker.update(account.equity, bar_time)
 
-                    # Track operational state transitions
-                    new_op_state = self._dd_tracker.operational_state
-                    if new_op_state != self._prev_op_state:
-                        self._journal.log_state_transition(
-                            self._prev_op_state.value, new_op_state.value,
-                            reason=f"equity={account.equity:.2f}",
-                            bar_time=bar_time,
-                        )
-                        self._alert_sink.emit(AlertEvent(
-                            level="warning" if new_op_state != OperationalState.ACTIVE else "info",
-                            message=f"Operational state: {self._prev_op_state.value} -> {new_op_state.value}",
-                            timestamp=bar_time,
-                            category="risk_state",
-                        ))
-                        self._health.on_state_change(new_op_state, bar_time)
-                        self._prev_op_state = new_op_state
-
                     # Pre-selection review
                     pre_reviews = self._approval.review_candidates(
                         candidates,
@@ -246,12 +268,21 @@ class PaperTradingRunner:
                         if rev.verdict == ReviewVerdict.REJECTED:
                             self._journal.log("candidate_rejected", rev.to_dict(), bar_time=bar_time)
 
+                    self._daily_stop_constraint.update(
+                        risk_snap.daily_drawdown, bar_time,
+                        self._cfg.risk.daily_loss_lockout,
+                    )
+                    self._daily_trades_constraint.update_day(bar_time)
+
                     selection_reviews: list[CandidateReview] = []
                     intents = select_candidates(
                         approved, self._broker.get_positions(),
                         account.equity, self._cfg.risk, self._sizer,
                         current_atr=current_atr, median_atr=median_atr,
                         reviews=selection_reviews,
+                        constraints=self._persistent_constraints,
+                        initial_equity=self._dd_tracker.initial_equity,
+                        peak_equity=self._dd_tracker.peak_equity,
                     )
                     self._review_collector.add(selection_reviews)
 
@@ -274,10 +305,10 @@ class PaperTradingRunner:
             if self._bars_processed % 500 == 0:
                 self._save_checkpoint(bar_time)
 
+        first_time = sorted_ts[0].astype("datetime64[us]").astype(datetime) if sorted_ts else datetime.utcnow()
         final_time = sorted_ts[-1].astype("datetime64[us]").astype(datetime) if sorted_ts else datetime.utcnow()
         final_state = self._save_checkpoint(final_time)
 
-        # End-of-run summary with trade blotter stats
         closed = self._broker.all_closed_positions
         total_pnl = sum(p.pnl for p in closed)
         wins = sum(1 for p in closed if p.pnl > 0)
@@ -288,9 +319,16 @@ class PaperTradingRunner:
             "total_trades": len(closed),
             "total_pnl": round(total_pnl, 2),
             "win_rate": round(wins / len(closed), 3) if closed else 0.0,
+            "replay_complete": True,
+            "replay_mode": "historical",
+            "replay_window": {
+                "start": str(first_time),
+                "end": str(final_time),
+                "bars": self._bars_processed,
+            },
             "health": self._health.snapshot(final_time).to_dict(),
             **self._review_collector.to_metadata(),
-        })
+        }, bar_time=final_time)
         return final_state
 
     def _save_checkpoint(self, timestamp: datetime) -> LiveState:

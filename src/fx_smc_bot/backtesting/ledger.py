@@ -10,6 +10,7 @@ from fx_smc_bot.domain import (
     Direction,
     EquityPoint,
     Position,
+    SessionName,
     SignalFamily,
 )
 from fx_smc_bot.utils.math import price_to_pips
@@ -38,6 +39,7 @@ class TradeLedger:
         entry_bar: int = 0,
         exit_bar: int = 0,
         regime: str | None = None,
+        session: SessionName | None = None,
     ) -> ClosedTrade:
         """Record a completed trade from a closed position."""
         if position.direction == Direction.LONG:
@@ -78,6 +80,7 @@ class TradeLedger:
             closed_at=close_time,
             duration_bars=max(exit_bar - entry_bar, 1),
             reward_risk_ratio=rr,
+            session=session,
             regime=regime,
             tags=tags,
         )

@@ -1,0 +1,33 @@
+{
+  "trial_type": "4_week_live_forward_paper",
+  "strategy": "bos_only_usdjpy",
+  "config_profile": "prop_v2_hardened",
+  "config_fingerprint": "",
+  "start_date": "",
+  "end_date": "",
+  "vps_provider": "",
+  "feed_mode": "file_watch",
+  "initial_equity": 100000,
+  "sizing_policy": "DrawdownAwareSizing",
+  "duration_days": 28,
+  "run_id": "",
+  "weekly_checkpoints": [
+    {"week": 1, "date": "", "status": "", "trades": 0, "pnl": 0, "decision": ""},
+    {"week": 2, "date": "", "status": "", "trades": 0, "pnl": 0, "decision": ""},
+    {"week": 3, "date": "", "status": "", "trades": 0, "pnl": 0, "decision": ""},
+    {"week": 4, "date": "", "status": "", "trades": 0, "pnl": 0, "decision": ""}
+  ],
+  "final_metrics": {
+    "total_trades": 0,
+    "win_rate": 0,
+    "profit_factor": 0,
+    "total_pnl": 0,
+    "max_drawdown": 0,
+    "cb_fires": 0,
+    "feed_completeness": 0,
+    "uptime_pct": 0,
+    "signal_drought_max_hours": 0
+  },
+  "final_verdict": "",
+  "advance_to": ""
+}

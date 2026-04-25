@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  forward-paper:
+    build: .
+    container_name: fx-forward-paper
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - forward-runs:/app/forward_runs
+    environment:
+      - FEED_MODE=${FEED_MODE:-live}
+      - AUTO_RESUME=true
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "5"
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+          cpus: "1.0"
+
+  daily-report:
+    build: .
+    container_name: fx-daily-report
+    restart: "no"
+    env_file: .env
+    volumes:
+      - forward-runs:/app/forward_runs:ro
+    entrypoint: ["python", "scripts/generate_report.py", "--type", "daily"]
+    profiles:
+      - reporting
+
+  weekly-report:
+    build: .
+    container_name: fx-weekly-report
+    restart: "no"
+    env_file: .env
+    volumes:
+      - forward-runs:/app/forward_runs:ro
+    entrypoint: ["python", "scripts/generate_report.py", "--type", "weekly"]
+    profiles:
+      - reporting
+
+volumes:
+  forward-runs:
+    driver: local
