@@ -10,10 +10,11 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import asdict, dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from enum import IntEnum
 from pathlib import Path
 from typing import Any, Protocol, runtime_checkable
+from zoneinfo import ZoneInfo
 
 logger = logging.getLogger(__name__)
 
@@ -125,11 +126,26 @@ class WebhookAlertSink:
             logger.exception("Failed to send webhook alert")
 
 
+_RO_TZ = ZoneInfo("Europe/Bucharest")
+
+
+def _now_ro() -> datetime:
+    return datetime.now(_RO_TZ)
+
+
+def _to_ro(dt: datetime) -> str:
+    """Format a datetime as Romania local time string."""
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(_RO_TZ).strftime("%d.%m.%Y %H:%M (Bucharest)")
+
+
 class TelegramAlertSink:
     """Professional Telegram alert sink for the FX SMC trading bot.
 
-    Sends well-formatted trade notifications, risk alerts, and
-    operational updates. Uses HTML parse mode for reliable formatting.
+    All user-facing timestamps are shown in Romania time (Europe/Bucharest).
+    Market data timestamps remain in their original UTC form.
+    Uses HTML parse mode for reliable formatting.
     """
 
     _EMOJI = {
@@ -169,28 +185,29 @@ class TelegramAlertSink:
             return
         emoji = self._EMOJI.get(alert.severity, "")
         data = alert.data or {}
+        ro_time = _to_ro(alert.timestamp)
 
         if alert.category == "trade_entry":
-            text = self._format_trade_entry(data)
+            text = self._format_trade_entry(data, ro_time)
         elif alert.category == "trade_exit":
-            text = self._format_trade_exit(data)
+            text = self._format_trade_exit(data, ro_time)
         elif alert.category == "daily_summary":
-            text = self._format_daily_summary(data)
+            text = self._format_daily_summary(data, ro_time)
         elif alert.category == "risk_state":
-            text = self._format_risk_alert(emoji, alert)
+            text = self._format_risk_alert(emoji, alert, ro_time)
         elif alert.category == "lifecycle":
-            text = self._format_lifecycle(emoji, alert)
+            text = self._format_lifecycle(emoji, alert, ro_time)
         else:
             text = (
                 f"{emoji} <b>{alert.level}</b> | <code>{alert.category}</code>\n"
                 f"{_html_escape(alert.message)}\n"
-                f"<i>{alert.timestamp:%Y-%m-%d %H:%M UTC}</i>"
+                f"<i>{ro_time}</i>"
             )
 
         silent = alert.severity < AlertSeverity.CRITICAL
         self._send(text, silent=silent)
 
-    def _format_trade_entry(self, d: dict) -> str:
+    def _format_trade_entry(self, d: dict, ro_time: str) -> str:
         direction = d.get("direction", "?").upper()
         arrow = "\U0001f7e2" if direction == "LONG" else "\U0001f534"
         return (
@@ -203,10 +220,10 @@ class TelegramAlertSink:
             f"Risk/Reward: <b>{d.get('rr', 0):.1f}R</b>\n"
             f"Units: <code>{d.get('units', 0):,.0f}</code>\n"
             f"\n"
-            f"<i>{d.get('timestamp', '')}</i>"
+            f"<i>{ro_time}</i>"
         )
 
-    def _format_trade_exit(self, d: dict) -> str:
+    def _format_trade_exit(self, d: dict, ro_time: str) -> str:
         pnl = d.get("pnl", 0)
         won = pnl > 0
         icon = "\u2705" if won else "\u274c"
@@ -221,44 +238,48 @@ class TelegramAlertSink:
             f"Duration: {d.get('duration', '?')}\n"
             f"Reason: {d.get('reason', '?')}\n"
             f"\n"
-            f"<i>{d.get('timestamp', '')}</i>"
+            f"<i>{ro_time}</i>"
         )
 
-    def _format_daily_summary(self, d: dict) -> str:
+    def _format_daily_summary(self, d: dict, ro_time: str) -> str:
         pnl = d.get("pnl", 0)
         icon = "\U0001f4c8" if pnl >= 0 else "\U0001f4c9"
         return (
-            f"{icon} <b>DAILY SUMMARY — {d.get('date', 'Today')}</b>\n"
+            f"{icon} <b>DAILY REPORT — {d.get('date', 'Today')}</b>\n"
+            f"{'=' * 28}\n"
             f"\n"
             f"Equity: <b>${d.get('equity', 0):,.2f}</b>\n"
             f"Day PnL: <b>{'+'if pnl>=0 else ''}${pnl:,.2f}</b>\n"
             f"Trades today: {d.get('trades', 0)}\n"
             f"Open positions: {d.get('open_positions', 0)}\n"
-            f"Win rate (total): {d.get('win_rate', 0):.0%}\n"
-            f"Drawdown: {d.get('drawdown', 0):.1%}\n"
+            f"\n"
+            f"Win rate: {d.get('win_rate', 0):.0%}\n"
+            f"Max drawdown: {d.get('drawdown', 0):.2%}\n"
             f"Total trades: {d.get('total_trades', 0)}\n"
             f"Total PnL: <b>{'+'if d.get('total_pnl',0)>=0 else ''}${d.get('total_pnl', 0):,.2f}</b>\n"
             f"\n"
             f"Status: <code>{d.get('status', 'active')}</code>\n"
-            f"Feed: <code>{d.get('feed_status', 'connected')}</code>"
+            f"Feed: <code>{d.get('feed_status', 'connected')}</code>\n"
+            f"\n"
+            f"<i>{ro_time}</i>"
         )
 
-    def _format_risk_alert(self, emoji: str, alert: AlertEvent) -> str:
+    def _format_risk_alert(self, emoji: str, alert: AlertEvent, ro_time: str) -> str:
         return (
             f"{emoji} <b>RISK ALERT</b>\n"
             f"\n"
             f"{_html_escape(alert.message)}\n"
             f"\n"
-            f"<i>{alert.timestamp:%Y-%m-%d %H:%M UTC}</i>"
+            f"<i>{ro_time}</i>"
         )
 
-    def _format_lifecycle(self, emoji: str, alert: AlertEvent) -> str:
+    def _format_lifecycle(self, emoji: str, alert: AlertEvent, ro_time: str) -> str:
         return (
             f"{emoji} <b>SYSTEM</b>\n"
             f"\n"
             f"{_html_escape(alert.message)}\n"
             f"\n"
-            f"<i>{alert.timestamp:%Y-%m-%d %H:%M UTC}</i>"
+            f"<i>{ro_time}</i>"
         )
 
     def send_report(self, text: str) -> None:
@@ -288,12 +309,17 @@ class AlertRouter:
     def add_sink(self, sink: AlertSink) -> None:
         self._sinks.append(sink)
 
+    _NO_DEDUP = frozenset({
+        "trade_entry", "trade_exit", "daily_summary", "crash",
+    })
+
     def emit(self, alert: AlertEvent) -> None:
-        key = f"{alert.category}:{alert.level}"
-        last = self._last_emitted.get(key)
-        if last is not None and (alert.timestamp - last) < self._cooldown:
-            return  # suppress duplicate
-        self._last_emitted[key] = alert.timestamp
+        if alert.category not in self._NO_DEDUP:
+            key = f"{alert.category}:{alert.level}"
+            last = self._last_emitted.get(key)
+            if last is not None and (alert.timestamp - last) < self._cooldown:
+                return
+            self._last_emitted[key] = alert.timestamp
         for sink in self._sinks:
             try:
                 sink.emit(alert)

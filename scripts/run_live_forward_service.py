@@ -17,8 +17,9 @@ import logging
 import os
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
@@ -102,11 +103,19 @@ def _build_alert_router(output_dir: Path) -> AlertRouter:
         logger.info("Telegram alerts enabled (chat_id=%s)", tg_chat)
     else:
         logger.info("Telegram disabled — set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID")
-    return AlertRouter(sinks=sinks, dedup_cooldown_seconds=60.0)
+    return AlertRouter(sinks=sinks, dedup_cooldown_seconds=300.0)
+
+
+_UTC = timezone.utc
+_RO_TZ = ZoneInfo("Europe/Bucharest")
+
+
+def _now_utc() -> datetime:
+    return datetime.now(_UTC)
 
 
 def _write_health(health_path: Path, status: str, details: dict) -> None:
-    health = {"status": status, "timestamp": datetime.utcnow().isoformat(), **details}
+    health = {"status": status, "timestamp": _now_utc().isoformat(), **details}
     health_path.parent.mkdir(parents=True, exist_ok=True)
     tmp = health_path.with_suffix(".tmp")
     with open(tmp, "w") as f:
@@ -169,7 +178,7 @@ def main() -> None:
                     alert_router.emit(AlertEvent(
                         level="CRITICAL",
                         message="Config fingerprint mismatch on resume — starting fresh session",
-                        timestamp=datetime.utcnow(),
+                        timestamp=_now_utc(),
                         category="state_integrity",
                     ))
                     resume_path = None
@@ -229,7 +238,7 @@ def main() -> None:
             f"Feed: Yahoo Finance (real-time)\n"
             f"Run: {runner.run_id}"
         ),
-        timestamp=datetime.utcnow(),
+        timestamp=_now_utc(),
         category="lifecycle",
     ))
 
@@ -244,7 +253,7 @@ def main() -> None:
         alert_router.emit(AlertEvent(
             level="EMERGENCY",
             message="Bot crashed — auto-restarting. Check logs if this repeats.",
-            timestamp=datetime.utcnow(),
+            timestamp=_now_utc(),
             category="crash",
         ))
         _write_health(health_path, "crashed", {"run_id": runner.run_id})
@@ -254,7 +263,7 @@ def main() -> None:
         alert_router.emit(AlertEvent(
             level="INFO",
             message=f"FX SMC Bot stopped — run {runner.run_id}",
-            timestamp=datetime.utcnow(),
+            timestamp=_now_utc(),
             category="lifecycle",
         ))
 

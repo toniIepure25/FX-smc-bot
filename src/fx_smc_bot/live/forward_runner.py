@@ -16,9 +16,10 @@ import logging
 import signal
 import time
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from fx_smc_bot.alpha.candidates import generate_candidates
 from fx_smc_bot.alpha.review import (
@@ -129,6 +130,8 @@ class ForwardPaperRunner:
         self._last_day: int | None = None
         self._running = False
         self._paused = False
+        self._last_daily_report_date: str | None = None
+        self._ro_tz = ZoneInfo("Europe/Bucharest")
 
     @property
     def run_id(self) -> str:
@@ -261,6 +264,8 @@ class ForwardPaperRunner:
                     )
                     last_heartbeat = now
 
+                self._check_scheduled_daily_report()
+
                 time.sleep(_POLL_SLEEP)
                 continue
 
@@ -323,20 +328,20 @@ class ForwardPaperRunner:
             if fill.reason.value in ("stop_loss_hit", "take_profit_hit"):
                 pnl = 0.0
                 rr = 0.0
-                exit_pair = ""
+                exit_pair = pair.value
                 exit_dir = ""
                 entry_price = 0.0
                 duration_str = "?"
                 for p in self._broker.all_closed_positions:
                     if p.exit_fill and p.exit_fill.order_id == fill.order_id:
                         pnl = p.pnl
-                        exit_pair = p.pair.value if hasattr(p, "pair") else ""
-                        exit_dir = p.direction.value if hasattr(p, "direction") else ""
-                        entry_price = p.entry_price if hasattr(p, "entry_price") else 0.0
+                        exit_pair = p.pair.value
+                        exit_dir = p.direction.value
+                        entry_price = p.entry_price
                         if p.candidate and p.candidate.risk_distance > 0:
                             rr = abs(pnl / p.units) / p.candidate.risk_distance
-                        if hasattr(p, "entry_fill") and p.entry_fill:
-                            delta = bar_time - p.entry_fill.fill_time
+                        if p.entry_fill:
+                            delta = bar_time - p.entry_fill.timestamp
                             hours = int(delta.total_seconds() // 3600)
                             duration_str = f"{hours}h"
                         break
@@ -483,11 +488,8 @@ class ForwardPaperRunner:
                     order.order_type.value, order.units,
                     bar_time=bar_time,
                 )
-                rr = 0.0
-                if intent.stop_loss and intent.take_profit:
-                    risk_d = abs(float(series.close[-1]) - intent.stop_loss)
-                    rew_d = abs(intent.take_profit - float(series.close[-1]))
-                    rr = rew_d / risk_d if risk_d > 0 else 0.0
+                cand = intent.candidate
+                rr = cand.reward_risk_ratio
                 self._alert_router.emit(AlertEvent(
                     level="INFO",
                     message="New trade opened",
@@ -496,9 +498,9 @@ class ForwardPaperRunner:
                     data={
                         "pair": order.pair.value,
                         "direction": order.direction.value,
-                        "entry": float(series.close[-1]),
-                        "sl": intent.stop_loss or 0,
-                        "tp": intent.take_profit or 0,
+                        "entry": cand.entry,
+                        "sl": cand.stop_loss,
+                        "tp": cand.take_profit,
                         "rr": rr,
                         "units": order.units,
                         "timestamp": bar_time.strftime("%Y-%m-%d %H:%M UTC"),
@@ -556,6 +558,9 @@ class ForwardPaperRunner:
         wins = sum(1 for p in closed if p.pnl > 0)
         day_pnl = daily.get("pnl", 0)
 
+        peak = self._dd_tracker.peak_equity
+        dd_pct = (peak - account.equity) / peak if peak > 0 else 0.0
+
         self._alert_router.emit(AlertEvent(
             level="INFO",
             message="Daily summary",
@@ -568,7 +573,7 @@ class ForwardPaperRunner:
                 "trades": self._daily_trade_count,
                 "open_positions": len(self._broker.get_positions()),
                 "win_rate": wins / len(closed) if closed else 0.0,
-                "drawdown": self._dd_tracker.current_drawdown,
+                "drawdown": dd_pct,
                 "total_trades": len(closed),
                 "total_pnl": total_pnl,
                 "status": self._dd_tracker.operational_state.value,
@@ -577,6 +582,52 @@ class ForwardPaperRunner:
         ))
 
         self._daily_trade_count = 0
+
+    def _check_scheduled_daily_report(self) -> None:
+        """Send end-of-day report at 23:00 Bucharest time if not already sent today."""
+        now_ro = datetime.now(self._ro_tz)
+        today_str = now_ro.strftime("%Y-%m-%d")
+
+        if now_ro.hour < 23:
+            return
+        if self._last_daily_report_date == today_str:
+            return
+
+        self._last_daily_report_date = today_str
+        self._send_daily_report(now_ro)
+
+    def _send_daily_report(self, now_ro: datetime) -> None:
+        """Build and emit the end-of-day report."""
+        account = self._broker.get_account()
+        closed = self._broker.all_closed_positions
+        total_pnl = sum(p.pnl for p in closed)
+        wins = sum(1 for p in closed if p.pnl > 0)
+        peak = self._dd_tracker.peak_equity
+        dd_pct = (peak - account.equity) / peak if peak > 0 else 0.0
+        daily = self._monitor.daily_summary()
+
+        report_time = now_ro.astimezone(timezone.utc)
+
+        self._alert_router.emit(AlertEvent(
+            level="INFO",
+            message="End of day report",
+            timestamp=report_time,
+            category="daily_summary",
+            data={
+                "date": now_ro.strftime("%d.%m.%Y"),
+                "equity": account.equity,
+                "pnl": daily.get("pnl", 0),
+                "trades": self._daily_trade_count,
+                "open_positions": len(self._broker.get_positions()),
+                "win_rate": wins / len(closed) if closed else 0.0,
+                "drawdown": dd_pct,
+                "total_trades": len(closed),
+                "total_pnl": total_pnl,
+                "status": self._dd_tracker.operational_state.value,
+                "feed_status": "connected" if self._feed.is_connected() else "disconnected",
+            },
+        ))
+        logger.info("Sent scheduled daily report for %s", now_ro.strftime("%Y-%m-%d"))
 
     # ------------------------------------------------------------------
     # Persistence
