@@ -56,7 +56,7 @@ from fx_smc_bot.utils.math import atr as compute_atr
 logger = logging.getLogger(__name__)
 
 _MIN_WARMUP_BARS = 30
-_CHECKPOINT_INTERVAL = 50  # bars between checkpoints
+_CHECKPOINT_INTERVAL = 10  # bars between checkpoints (every ~10h on H1)
 
 
 class ForwardPaperRunner:
@@ -316,8 +316,9 @@ class ForwardPaperRunner:
             pair, bar.open, bar.high, bar.low, bar.close, bar_time,
         )
         for fill in fills:
-            self._daily_trade_count += 1
             is_entry = fill.reason.value == "market_open"
+            if is_entry:
+                self._daily_trade_count += 1
             self._monitor.on_fill(bar_time, is_entry=is_entry)
             self._journal.log_fill(
                 fill.order_id, fill.fill_price, fill.units,
@@ -364,6 +365,7 @@ class ForwardPaperRunner:
                         "timestamp": bar_time.strftime("%Y-%m-%d %H:%M UTC"),
                     },
                 ))
+                self._save_checkpoint()
 
         # Skip signal generation if locked/stopped
         if self._dd_tracker.operational_state in (
@@ -506,6 +508,7 @@ class ForwardPaperRunner:
                         "timestamp": bar_time.strftime("%Y-%m-%d %H:%M UTC"),
                     },
                 ))
+                self._save_checkpoint()
 
         self._monitor.on_candidates(len(candidates), accepted_count, bar_time)
 
@@ -582,6 +585,7 @@ class ForwardPaperRunner:
         ))
 
         self._daily_trade_count = 0
+        self._save_checkpoint()
 
     def _check_scheduled_daily_report(self) -> None:
         """Send end-of-day report at 23:00 Bucharest time if not already sent today."""
