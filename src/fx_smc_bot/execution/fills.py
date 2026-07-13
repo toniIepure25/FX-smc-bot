@@ -96,6 +96,34 @@ class FillEngine:
 
         return None
 
+    def check_same_bar_exit(
+        self,
+        position: Position,
+        fill_price: float,
+        bar_high: float,
+        bar_low: float,
+        bar_time: datetime,
+    ) -> Fill | None:
+        """Check SL/TP on the fill bar for a newly filled position.
+
+        After a limit order fill on bar N, we check whether the remaining
+        bar range could have hit SL or TP.  For CONSERVATIVE policy,
+        this only triggers SL.
+        """
+        if not position.is_open:
+            return None
+
+        if self._fill_policy == FillPolicy.OPTIMISTIC:
+            tp_hit = self._tp_triggered(position, bar_high, bar_low)
+            if tp_hit:
+                return self._make_tp_fill(position, bar_time)
+
+        sl_hit = self._sl_triggered(position, bar_high, bar_low)
+        if sl_hit:
+            return self._make_sl_fill(position, bar_time)
+
+        return None
+
     def _sl_triggered(self, pos: Position, bar_high: float, bar_low: float) -> bool:
         if pos.direction == Direction.LONG:
             return bar_low <= pos.stop_loss
