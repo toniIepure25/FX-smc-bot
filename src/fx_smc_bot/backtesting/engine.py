@@ -17,7 +17,16 @@ import logging
 from datetime import datetime
 from typing import Sequence
 
-from fx_smc_bot.config import AppConfig, OperationalState, PAIR_PIP_INFO, Timeframe, TradingPair
+import numpy as np
+
+from fx_smc_bot.config import (
+    AppConfig,
+    OperationalState,
+    PAIR_PIP_INFO,
+    TIMEFRAME_MINUTES,
+    Timeframe,
+    TradingPair,
+)
 from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.domain import (
     BacktestResult,
@@ -77,7 +86,10 @@ class BacktestEngine:
             fill_policy=self._cfg.execution.fill_policy,
         )
         self._sizer = StopBasedSizer(self._cfg.backtest.lot_size, policy=sizing_policy)
-        self._ledger = TradeLedger()
+        self._ledger = TradeLedger(
+            commission_per_lot=self._cfg.backtest.commission_per_lot,
+            lot_size=self._cfg.backtest.lot_size,
+        )
         self._portfolio = PortfolioState(self._cfg.backtest.initial_capital)
         self._dd_tracker = DrawdownTracker(
             self._cfg.backtest.initial_capital, self._cfg.risk,
@@ -160,19 +172,24 @@ class BacktestEngine:
                                    self._cfg.structure.atr_period)
             atr_cache[pair] = atr_vals.tolist()
 
-        # Pre-compute HTF snapshots once per pair (avoids rebuilding every bar)
-        _htf_snap_cache: dict[TradingPair, tuple] = {}  # pair -> (snapshot, bias)
+        # Build causal HTF index: map each LTF timestamp to the last fully
+        # closed HTF bar index.  We only rebuild the HTF snapshot when a new
+        # HTF bar boundary is crossed, caching between boundaries.
+        _htf_causal_idx: dict[TradingPair, dict] = {}
+        _htf_snap_cache: dict[TradingPair, tuple] = {}
+        _htf_last_idx: dict[TradingPair, int] = {}
         if htf_data:
             for pair, htf_series in htf_data.items():
-                snap = build_structure_snapshot(
-                    htf_series, self._cfg.structure, self._cfg.sessions,
+                htf_tf_minutes = TIMEFRAME_MINUTES.get(htf_series.timeframe, 60)
+                htf_close_times = (
+                    htf_series.timestamps
+                    + np.timedelta64(htf_tf_minutes, "m")
                 )
-                bias = None
-                if snap.regime == StructureRegime.BULLISH:
-                    bias = Direction.LONG
-                elif snap.regime == StructureRegime.BEARISH:
-                    bias = Direction.SHORT
-                _htf_snap_cache[pair] = (snap, bias)
+                _htf_causal_idx[pair] = {
+                    "close_times": htf_close_times,
+                    "series": htf_series,
+                }
+                _htf_last_idx[pair] = -1
 
         start_dt = sorted_ts[0].astype("datetime64[us]").astype(datetime)
         end_dt = sorted_ts[-1].astype("datetime64[us]").astype(datetime)
@@ -263,8 +280,28 @@ class BacktestEngine:
 
                 htf_snapshot = ltf_snapshot  # default: use same TF
                 htf_bias = None
-                if pair in _htf_snap_cache:
-                    htf_snapshot, htf_bias = _htf_snap_cache[pair]
+                if pair in _htf_causal_idx:
+                    htf_info = _htf_causal_idx[pair]
+                    htf_close_times = htf_info["close_times"]
+                    htf_series = htf_info["series"]
+                    valid = np.where(htf_close_times <= ts)[0]
+                    if len(valid) > 0:
+                        causal_idx = int(valid[-1])
+                        if causal_idx != _htf_last_idx[pair]:
+                            _htf_last_idx[pair] = causal_idx
+                            htf_slice = htf_series.slice(0, causal_idx + 1)
+                            snap = build_structure_snapshot(
+                                htf_slice,
+                                self._cfg.structure,
+                                self._cfg.sessions,
+                            )
+                            bias = None
+                            if snap.regime == StructureRegime.BULLISH:
+                                bias = Direction.LONG
+                            elif snap.regime == StructureRegime.BEARISH:
+                                bias = Direction.SHORT
+                            _htf_snap_cache[pair] = (snap, bias)
+                        htf_snapshot, htf_bias = _htf_snap_cache[pair]
 
                 mtf_ctx = MultiTimeframeContext(
                     pair=pair,
