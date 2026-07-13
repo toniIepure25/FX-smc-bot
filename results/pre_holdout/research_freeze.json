@@ -1,0 +1,26 @@
+{
+  "git_sha": "12f45b0",
+  "preregistration_sha256": "5f41964f0c5954ef961309de65923e4e5fb7e272805cc05da0199ff8e1316218",
+  "config_hashes": {
+    "acceptance_continuation.yaml": "c1d27cd74644609fad5d33e566f852124d3f93c4fc5bdb8c9089406833797d24",
+    "opening_range.yaml": "91c1e63cc87cea3aee0bdbba7418d44f2dade062eb19b8b30b28c5075c632b68",
+    "prop_profiles.yaml": "9bb9b7f837467206b61b8564df5fdc28b6244ff69437b3580f085b9b7ccdfc19",
+    "sweep_reversal.yaml": "405b5a9acd022aa835938401c56593156863afe580e90e6d4ec599bdd29d585d"
+  },
+  "data_manifest_hash": "5678fb9c2cccd7c3d01b5bfd825b55955efb6fa2cbb5aebfb81ed3dcb3e52fbe",
+  "split_boundaries": {
+    "note": "Cannot be defined without certified real data",
+    "development": null,
+    "validation": null,
+    "holdout": null,
+    "purge_days": 5,
+    "embargo_days": null
+  },
+  "timestamp": "2026-07-13T15:45:00Z",
+  "status": "BLOCKED_BY_DATA",
+  "blocking_reasons": [
+    "No M5/M1 bid/ask data available",
+    "Intraday V2 detectors not wired into campaign engine",
+    "Cannot define date splits without certified data"
+  ]
+}
