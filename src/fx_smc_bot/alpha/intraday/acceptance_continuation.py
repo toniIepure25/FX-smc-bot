@@ -17,15 +17,8 @@ from datetime import datetime
 
 import numpy as np
 from numpy.typing import NDArray
+from pydantic import BaseModel, Field
 
-from fx_smc_bot.config import TradingPair
-from fx_smc_bot.domain import (
-    Direction,
-    FVGZone,
-    LiquidityLevel,
-    LiquidityLevelType,
-    StructureSnapshot,
-)
 from fx_smc_bot.alpha.intraday.common import (
     HIGH_SIDE_TYPES,
     LOW_SIDE_TYPES,
@@ -38,8 +31,14 @@ from fx_smc_bot.alpha.intraday.state_machine import (
     StrategyState,
     StrategyTracker,
 )
-
-from pydantic import BaseModel, Field
+from fx_smc_bot.config import PAIR_PIP_INFO, TradingPair
+from fx_smc_bot.domain import (
+    Direction,
+    FVGZone,
+    LiquidityLevel,
+    LiquidityLevelType,
+    StructureSnapshot,
+)
 
 
 class AcceptanceContinuationConfig(BaseModel):
@@ -98,8 +97,14 @@ class AcceptanceContinuationSignal:
 class AcceptanceContinuationDetector:
     """Causal acceptance continuation detector."""
 
-    def __init__(self, config: AcceptanceContinuationConfig | None = None) -> None:
+    def __init__(
+        self,
+        config: AcceptanceContinuationConfig | None = None,
+        pair: TradingPair = TradingPair.EURUSD,
+    ) -> None:
         self.cfg = config or AcceptanceContinuationConfig()
+        self.pair = pair
+        self._pip_size = PAIR_PIP_INFO.get(pair, (0.0001, 4))[0]
         self.tracker = StrategyTracker()
         self._eligible_types = frozenset(
             LiquidityLevelType(t) for t in self.cfg.eligible_level_types
@@ -171,11 +176,11 @@ class AcceptanceContinuationDetector:
     ) -> None:
         min_break = compute_min_excursion(
             atr, spread, self.cfg.k_atr_break,
-            self.cfg.k_spread_break, self.cfg.min_pips_break * 0.0001,
+            self.cfg.k_spread_break, self.cfg.min_pips_break * self._pip_size,
         )
         sl_buffer = compute_min_excursion(
             atr, spread, self.cfg.k_atr_sl_buffer,
-            self.cfg.k_spread_sl_buffer, self.cfg.min_sl_buffer_pips * 0.0001,
+            self.cfg.k_spread_sl_buffer, self.cfg.min_sl_buffer_pips * self._pip_size,
         )
         median_body = self._compute_median_body(
             open_, close, bar_idx, self.cfg.median_body_lookback,
@@ -208,7 +213,8 @@ class AcceptanceContinuationDetector:
                         )
 
             elif inst.state == StrategyState.LEVEL_BREACHED:
-                if inst.sweep_bar is not None and bar_idx - inst.sweep_bar > self.cfg.max_acceptance_bars:
+                max_bars = self.cfg.max_acceptance_bars
+                if inst.sweep_bar is not None and bar_idx - inst.sweep_bar > max_bars:
                     inst.invalidation_reason = "no acceptance within max bars"
                     inst.transition(
                         StrategyState.INVALIDATED, bar_idx, bar_time,
@@ -228,7 +234,8 @@ class AcceptanceContinuationDetector:
                     )
 
             elif inst.state == StrategyState.ACCEPTANCE_CONFIRMED:
-                if inst.reclaim_bar is not None and bar_idx - inst.reclaim_bar > self.cfg.max_retest_bars:
+                max_rt = self.cfg.max_retest_bars
+                if inst.reclaim_bar is not None and bar_idx - inst.reclaim_bar > max_rt:
                     inst.invalidation_reason = "no retest within max bars"
                     inst.transition(
                         StrategyState.INVALIDATED, bar_idx, bar_time,

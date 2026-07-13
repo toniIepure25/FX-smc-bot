@@ -13,18 +13,12 @@ All windows use IANA time zones and remain correct through DST changes.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, time, timedelta
+from datetime import datetime, time
 
 import numpy as np
 from numpy.typing import NDArray
+from pydantic import BaseModel, Field
 
-from fx_smc_bot.config import TradingPair
-from fx_smc_bot.data.timezone import opening_range_utc
-from fx_smc_bot.domain import (
-    Direction,
-    FVGZone,
-    StructureSnapshot,
-)
 from fx_smc_bot.alpha.intraday.common import (
     check_displacement,
     compute_min_excursion,
@@ -35,8 +29,13 @@ from fx_smc_bot.alpha.intraday.state_machine import (
     StrategyState,
     StrategyTracker,
 )
-
-from pydantic import BaseModel, Field
+from fx_smc_bot.config import TradingPair
+from fx_smc_bot.data.timezone import opening_range_utc
+from fx_smc_bot.domain import (
+    Direction,
+    FVGZone,
+    StructureSnapshot,
+)
 
 
 class OpeningRangeConfig(BaseModel):
@@ -93,8 +92,13 @@ class _OpeningRange:
 class OpeningRangeDetector:
     """Causal opening range displacement + FVG retest detector."""
 
-    def __init__(self, config: OpeningRangeConfig | None = None) -> None:
+    def __init__(
+        self,
+        config: OpeningRangeConfig | None = None,
+        pair: TradingPair = TradingPair.EURUSD,
+    ) -> None:
         self.cfg = config or OpeningRangeConfig()
+        self.pair = pair
         self.tracker = StrategyTracker()
         self._ranges: dict[str, _OpeningRange] = {}
 
@@ -148,12 +152,12 @@ class OpeningRangeDetector:
                     date=bar_time, utc_start=utc_start, utc_end=utc_end,
                 )
             rng = self._ranges[date_key]
-            h = float(high[bar_idx])
-            l = float(low[bar_idx])
-            if h > rng.high:
-                rng.high = h
-            if l < rng.low:
-                rng.low = l
+            bar_h = float(high[bar_idx])
+            bar_l = float(low[bar_idx])
+            if bar_h > rng.high:
+                rng.high = bar_h
+            if bar_l < rng.low:
+                rng.low = bar_l
         elif bar_time >= utc_end:
             if date_key in self._ranges and not self._ranges[date_key].complete:
                 self._ranges[date_key].complete = True
@@ -176,7 +180,7 @@ class OpeningRangeDetector:
 
             inst_bull = StrategyInstance(
                 family="opening_range_displacement_fvg_retest",
-                pair=TradingPair.EURUSD,
+                pair=self.pair,
                 direction=Direction.LONG,
                 created_at=bar_time,
                 liquidity_level_id=f"{level_id}_long",
@@ -185,13 +189,16 @@ class OpeningRangeDetector:
             inst_bull.transition(
                 StrategyState.RANGE_COMPLETE, bar_idx, bar_time,
                 reason="opening range complete",
-                metadata={"high": rng.high, "low": rng.low, "range_atr": range_size / atr if atr > 0 else 0},
+                metadata={
+                    "high": rng.high, "low": rng.low,
+                    "range_atr": range_size / atr if atr > 0 else 0,
+                },
             )
             self.tracker.register(inst_bull)
 
             inst_bear = StrategyInstance(
                 family="opening_range_displacement_fvg_retest",
-                pair=TradingPair.EURUSD,
+                pair=self.pair,
                 direction=Direction.SHORT,
                 created_at=bar_time,
                 liquidity_level_id=f"{level_id}_short",
@@ -291,7 +298,8 @@ class OpeningRangeDetector:
                     )
 
             elif inst.state == StrategyState.BREAKOUT_CONFIRMED:
-                if inst.sweep_bar is not None and bar_idx - inst.sweep_bar > self.cfg.max_retest_bars:
+                max_rt = self.cfg.max_retest_bars
+                if inst.sweep_bar is not None and bar_idx - inst.sweep_bar > max_rt:
                     inst.invalidation_reason = "no retest FVG within max bars"
                     inst.transition(
                         StrategyState.INVALIDATED, bar_idx, bar_time,

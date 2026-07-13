@@ -6,8 +6,6 @@ current bar index. Symmetry between long and short is enforced.
 
 from __future__ import annotations
 
-from datetime import datetime
-
 import numpy as np
 from numpy.typing import NDArray
 
@@ -19,7 +17,6 @@ from fx_smc_bot.domain import (
     SwingPoint,
     SwingType,
 )
-
 
 HIGH_SIDE_TYPES = frozenset({
     LiquidityLevelType.EQUAL_HIGHS,

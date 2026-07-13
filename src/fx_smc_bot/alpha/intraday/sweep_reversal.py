@@ -18,19 +18,9 @@ from datetime import datetime
 
 import numpy as np
 from numpy.typing import NDArray
+from pydantic import BaseModel, Field
 
-from fx_smc_bot.config import StructureConfig, TradingPair
-from fx_smc_bot.domain import (
-    Direction,
-    FVGZone,
-    LiquidityLevel,
-    LiquidityLevelType,
-    StructureSnapshot,
-    SwingPoint,
-)
 from fx_smc_bot.alpha.intraday.common import (
-    HIGH_SIDE_TYPES,
-    LOW_SIDE_TYPES,
     check_displacement,
     check_mss,
     check_reclaim,
@@ -46,8 +36,14 @@ from fx_smc_bot.alpha.intraday.state_machine import (
     StrategyState,
     StrategyTracker,
 )
-
-from pydantic import BaseModel, Field
+from fx_smc_bot.config import PAIR_PIP_INFO, TradingPair
+from fx_smc_bot.domain import (
+    Direction,
+    FVGZone,
+    LiquidityLevel,
+    LiquidityLevelType,
+    StructureSnapshot,
+)
 
 
 class SweepReversalConfig(BaseModel):
@@ -101,8 +97,11 @@ class SweepReversalDetectorV2:
     def __init__(
         self,
         config: SweepReversalConfig | None = None,
+        pair: TradingPair = TradingPair.EURUSD,
     ) -> None:
         self.cfg = config or SweepReversalConfig()
+        self.pair = pair
+        self._pip_size = PAIR_PIP_INFO.get(pair, (0.0001, 4))[0]
         self.tracker = StrategyTracker()
         self._eligible_types = frozenset(
             LiquidityLevelType(t) for t in self.cfg.eligible_level_types
@@ -188,13 +187,13 @@ class SweepReversalDetectorV2:
             atr, spread,
             self.cfg.k_atr_excursion,
             self.cfg.k_spread_excursion,
-            self.cfg.min_pips_excursion * 0.0001,
+            self.cfg.min_pips_excursion * self._pip_size,
         )
         sl_buffer = compute_min_excursion(
             atr, spread,
             self.cfg.k_atr_sl_buffer,
             self.cfg.k_spread_sl_buffer,
-            self.cfg.min_sl_buffer_pips * 0.0001,
+            self.cfg.min_sl_buffer_pips * self._pip_size,
         )
 
         median_body = self._compute_median_body(
@@ -223,7 +222,8 @@ class SweepReversalDetectorV2:
                     )
 
             elif inst.state == StrategyState.LEVEL_BREACHED:
-                if inst.sweep_bar is not None and bar_idx - inst.sweep_bar > self.cfg.max_reclaim_bars:
+                max_rc = self.cfg.max_reclaim_bars
+                if inst.sweep_bar is not None and bar_idx - inst.sweep_bar > max_rc:
                     inst.invalidation_reason = "no reclaim within max bars"
                     inst.transition(
                         StrategyState.INVALIDATED,
@@ -242,7 +242,8 @@ class SweepReversalDetectorV2:
                     )
 
             elif inst.state == StrategyState.RECLAIM_CONFIRMED:
-                if inst.reclaim_bar is not None and bar_idx - inst.reclaim_bar > self.cfg.max_mss_bars:
+                max_mss = self.cfg.max_mss_bars
+                if inst.reclaim_bar is not None and bar_idx - inst.reclaim_bar > max_mss:
                     inst.invalidation_reason = "no MSS within max bars"
                     inst.transition(
                         StrategyState.INVALIDATED,
@@ -264,7 +265,8 @@ class SweepReversalDetectorV2:
                     )
 
             elif inst.state == StrategyState.MSS_CONFIRMED:
-                if inst.mss_bar is not None and bar_idx - inst.mss_bar > self.cfg.max_displacement_bars:
+                max_disp = self.cfg.max_displacement_bars
+                if inst.mss_bar is not None and bar_idx - inst.mss_bar > max_disp:
                     inst.invalidation_reason = "no displacement within max bars"
                     inst.transition(
                         StrategyState.INVALIDATED,
@@ -289,50 +291,41 @@ class SweepReversalDetectorV2:
                 )
                 if is_disp:
                     inst.displacement_bar = bar_idx
-
+                    inst.transition(
+                        StrategyState.DISPLACEMENT_CONFIRMED,
+                        bar_idx, bar_time, reason="displacement confirmed",
+                    )
                     fvg = find_qualifying_fvg(
                         snapshot.active_fvgs, inst.direction,
                         after_bar=inst.mss_bar or 0,
                         min_atr_size=self.cfg.fvg_min_atr,
                     )
                     if fvg is not None:
-                        inst.fvg = fvg
-                        inst.fvg_bar = fvg.bar_index
-                        entry, sl, tp = compute_entry_sl_tp(
-                            fvg, inst.direction,
-                            inst.sweep_extreme or level.price,
-                            self.cfg.entry_fvg_pct,
-                            self.cfg.target_r,
-                            sl_buffer,
-                        )
-                        inst.entry_price = entry
-                        inst.stop_loss = sl
-                        inst.take_profit = tp
-
-                        inst.transition(
-                            StrategyState.FVG_CREATED,
-                            bar_idx, bar_time, reason="FVG + displacement confirmed",
-                        )
-                        inst.transition(
-                            StrategyState.ORDER_PENDING,
-                            bar_idx, bar_time,
-                            info_available_at=bar_time,
-                            reason="limit order placed",
-                            metadata={"entry": entry, "sl": sl, "tp": tp},
+                        self._emit_fvg_signal(
+                            inst, fvg, level, sl_buffer,
+                            bar_idx, bar_time, signals,
                         )
 
-                        signals.append(SweepReversalSignal(
-                            instance=inst,
-                            pair=snapshot.pair,
-                            direction=inst.direction,
-                            entry=entry,
-                            stop_loss=sl,
-                            take_profit=tp,
-                            fvg=fvg,
-                            sweep_extreme=inst.sweep_extreme or level.price,
-                            bar_index=bar_idx,
-                            timestamp=bar_time,
-                        ))
+            elif inst.state == StrategyState.DISPLACEMENT_CONFIRMED:
+                max_fvg = self.cfg.max_fvg_bars
+                if inst.displacement_bar is not None and bar_idx - inst.displacement_bar > max_fvg:
+                    inst.invalidation_reason = "no qualifying FVG within max_fvg_bars"
+                    inst.transition(
+                        StrategyState.INVALIDATED,
+                        bar_idx, bar_time, reason=inst.invalidation_reason,
+                    )
+                    continue
+
+                fvg = find_qualifying_fvg(
+                    snapshot.active_fvgs, inst.direction,
+                    after_bar=inst.mss_bar or 0,
+                    min_atr_size=self.cfg.fvg_min_atr,
+                )
+                if fvg is not None:
+                    self._emit_fvg_signal(
+                        inst, fvg, level, sl_buffer,
+                        bar_idx, bar_time, signals,
+                    )
 
             elif inst.state == StrategyState.ORDER_PENDING:
                 if inst.fvg_bar is not None and bar_idx - inst.fvg_bar > self.cfg.max_order_bars:
@@ -341,6 +334,55 @@ class SweepReversalDetectorV2:
                         StrategyState.EXPIRED,
                         bar_idx, bar_time, reason="order lifetime exceeded",
                     )
+
+    def _emit_fvg_signal(
+        self,
+        inst: StrategyInstance,
+        fvg: FVGZone,
+        level: LiquidityLevel,
+        sl_buffer: float,
+        bar_idx: int,
+        bar_time: datetime,
+        signals: list[SweepReversalSignal],
+    ) -> None:
+        """Transition to FVG_CREATED → ORDER_PENDING and emit signal."""
+        inst.fvg = fvg
+        inst.fvg_bar = fvg.bar_index
+        entry, sl, tp = compute_entry_sl_tp(
+            fvg, inst.direction,
+            inst.sweep_extreme or level.price,
+            self.cfg.entry_fvg_pct,
+            self.cfg.target_r,
+            sl_buffer,
+        )
+        inst.entry_price = entry
+        inst.stop_loss = sl
+        inst.take_profit = tp
+
+        inst.transition(
+            StrategyState.FVG_CREATED,
+            bar_idx, bar_time, reason="qualifying FVG found",
+        )
+        inst.transition(
+            StrategyState.ORDER_PENDING,
+            bar_idx, bar_time,
+            info_available_at=bar_time,
+            reason="limit order placed",
+            metadata={"entry": entry, "sl": sl, "tp": tp},
+        )
+
+        signals.append(SweepReversalSignal(
+            instance=inst,
+            pair=self.pair,
+            direction=inst.direction,
+            entry=entry,
+            stop_loss=sl,
+            take_profit=tp,
+            fvg=fvg,
+            sweep_extreme=inst.sweep_extreme or level.price,
+            bar_index=bar_idx,
+            timestamp=bar_time,
+        ))
 
     @staticmethod
     def _compute_median_body(
