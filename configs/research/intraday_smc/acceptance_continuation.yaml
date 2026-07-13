@@ -1,0 +1,55 @@
+# Canonical configuration for Strategy B: Liquidity Acceptance FVG Continuation
+# Pre-registered before holdout evaluation
+
+strategy:
+  family: liquidity_acceptance_fvg_continuation
+  version: "1.0"
+
+acceptance_continuation:
+  k_atr_break: 0.3
+  k_spread_break: 1.5
+  min_pips_break: 2.0
+  acceptance_consecutive_closes: 2
+  max_acceptance_bars: 6
+  max_retest_bars: 15
+  max_order_bars: 20
+  entry_fvg_pct: 0.5
+  target_r: 2.0
+  k_atr_sl_buffer: 0.3
+  k_spread_sl_buffer: 1.5
+  min_sl_buffer_pips: 2.0
+  displacement_body_ratio: 1.5
+  displacement_tr_ratio: 1.2
+  displacement_clv: 0.5
+  fvg_min_atr: 0.3
+  eligible_level_types:
+    - equal_highs
+    - equal_lows
+    - session_high
+    - session_low
+    - prior_day_high
+    - prior_day_low
+  median_body_lookback: 20
+
+instruments:
+  primary:
+    - EURUSD
+    - GBPUSD
+  control:
+    - USDJPY
+
+sessions:
+  - london
+  - new_york
+
+execution:
+  fill_policy: conservative
+  model_spread: true
+  model_slippage: true
+  default_spread_pips: 1.5
+  slippage_pips: 0.3
+  commission_per_lot: 3.5
+
+risk:
+  base_risk_per_trade: 0.005
+  max_concurrent_positions: 3
