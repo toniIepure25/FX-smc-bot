@@ -25,6 +25,7 @@ class StrategyState(str, Enum):
     RECLAIM_CONFIRMED = "reclaim_confirmed"
     ACCEPTANCE_CONFIRMED = "acceptance_confirmed"
     MSS_CONFIRMED = "mss_confirmed"
+    DISPLACEMENT_CONFIRMED = "displacement_confirmed"
     RANGE_COMPLETE = "range_complete"
     BREAKOUT_CONFIRMED = "breakout_confirmed"
     FVG_CREATED = "fvg_created"
