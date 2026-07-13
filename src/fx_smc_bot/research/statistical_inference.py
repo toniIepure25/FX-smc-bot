@@ -305,9 +305,11 @@ def build_inference_report(
         n_bootstrap=sr_ci.n_bootstrap, method=sr_ci.method,
     )
 
-    psr = probabilistic_sharpe_ratio(sr, benchmark_sr, n, skew, kurt)
-    dsr = deflated_sharpe_ratio(sr, n, n_trials, skew, kurt)
-    mtrl = minimum_track_record_length(sr, benchmark_sr, skew, kurt, confidence)
+    daily_sr = float(np.mean(daily_returns) / np.std(daily_returns, ddof=1)) if np.std(daily_returns, ddof=1) > 0 else 0.0
+    daily_benchmark = benchmark_sr / np.sqrt(252.0) if benchmark_sr != 0 else 0.0
+    psr = probabilistic_sharpe_ratio(daily_sr, daily_benchmark, n, skew, kurt)
+    dsr = deflated_sharpe_ratio(daily_sr, n, max(n_trials, 2), skew, kurt)
+    mtrl = minimum_track_record_length(daily_sr, daily_benchmark, skew, kurt, confidence)
     v, cv = var_cvar(daily_returns)
 
     def _profit_factor(arr):

@@ -227,6 +227,9 @@ class BacktestEngine:
                         pos.exit_fill = exit_fill
                         pos.closed_at = bar_time
                         pnl = self._compute_pnl(pos, exit_fill.fill_price)
+                        if self._cfg.backtest.commission_per_lot > 0 and self._cfg.backtest.lot_size > 0:
+                            lots = pos.units / self._cfg.backtest.lot_size
+                            pnl -= lots * self._cfg.backtest.commission_per_lot
                         self._portfolio.close_position(pos.id, pnl)
                         self._dd_tracker.record_trade_result(pnl)
                         entry_bar_idx = self._position_entry_bars.pop(pos.id, 0)
@@ -267,6 +270,30 @@ class BacktestEngine:
                     self._position_entry_bars[pos.id] = bar_idx
                     self._portfolio.remove_order(order.id)
                     self._daily_trades_constraint.record_trade(bar_time)
+
+                    same_bar_exit = self._fill_engine.check_same_bar_exit(
+                        pos, fill.fill_price,
+                        float(series.high[bar_idx]),
+                        float(series.low[bar_idx]),
+                        bar_time,
+                    )
+                    if same_bar_exit is not None:
+                        pos.exit_fill = same_bar_exit
+                        pos.closed_at = bar_time
+                        exit_pnl = self._compute_pnl(pos, same_bar_exit.fill_price)
+                        if self._cfg.backtest.commission_per_lot > 0 and self._cfg.backtest.lot_size > 0:
+                            exit_lots = pos.units / self._cfg.backtest.lot_size
+                            exit_pnl -= exit_lots * self._cfg.backtest.commission_per_lot
+                        self._portfolio.close_position(pos.id, exit_pnl)
+                        self._dd_tracker.record_trade_result(exit_pnl)
+                        entry_session = classify_session(
+                            pos.opened_at, self._cfg.sessions,
+                        ) if pos.opened_at else None
+                        self._ledger.record_trade(
+                            pos, same_bar_exit.fill_price, bar_time,
+                            entry_bar=bar_idx, exit_bar=bar_idx,
+                            regime=bar_regime, session=entry_session,
+                        )
 
                 # --- Skip alpha generation during warmup ---
                 if bar_idx < _MIN_WARMUP_BARS:

@@ -140,35 +140,37 @@ def _simulate_one_path(
     """Simulate one prop challenge path through Phase 1 and Phase 2."""
     balance = profile.starting_balance
     peak = balance
+    day_start_balance = balance
     daily_breach = False
     total_breach = False
     failure_mode = ""
 
     phase1_target = profile.starting_balance * (1 + profile.phase1_profit_target)
-    phase2_target = profile.starting_balance * (1 + profile.phase2_profit_target)
-    daily_limit = profile.daily_max_loss * profile.starting_balance
     total_limit = profile.total_max_loss * profile.starting_balance
 
     passed_p1 = False
     passed_p2 = False
+    p1_balance = 0.0
     trading_days = 0
     max_dd_pct = 0.0
     best_day_pnl = 0.0
 
     for i, pnl_pct in enumerate(daily_pnls):
-        pnl = balance * pnl_pct
+        pnl = day_start_balance * pnl_pct
         trading_days += 1
 
         if abs(pnl) > 0:
             if pnl > best_day_pnl:
                 best_day_pnl = pnl
 
+        daily_limit = profile.daily_max_loss * day_start_balance
         if pnl < -daily_limit:
             daily_breach = True
             failure_mode = "daily_loss_breach"
             break
 
         balance += pnl
+        day_start_balance = balance
         if balance > peak:
             peak = balance
 
@@ -189,13 +191,13 @@ def _simulate_one_path(
 
         if not passed_p1 and balance >= phase1_target:
             passed_p1 = True
+            p1_balance = balance
             if trading_days < profile.min_trading_days:
                 continue
 
-        if passed_p1 and not passed_p2 and balance >= phase1_target:
-            if balance >= profile.starting_balance + (
-                profile.starting_balance * profile.phase2_profit_target
-            ):
+        if passed_p1 and not passed_p2:
+            phase2_target = p1_balance * (1 + profile.phase2_profit_target)
+            if balance >= phase2_target:
                 if trading_days >= profile.min_trading_days:
                     passed_p2 = True
 
@@ -248,7 +250,7 @@ def _aggregate_outcomes(
     for o in outcomes:
         if o.failure_mode:
             failure_modes[o.failure_mode] = failure_modes.get(o.failure_mode, 0) + 1
-    most_common = max(failure_modes, key=failure_modes.get) if failure_modes else ""
+    most_common = max(failure_modes, key=lambda k: failure_modes[k]) if failure_modes else ""
 
     return PropSimulationResult(
         profile_name=profile.name,
