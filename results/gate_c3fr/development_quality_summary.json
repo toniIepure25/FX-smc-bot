@@ -1,0 +1,8 @@
+{
+  "gate": "C.3F-R",
+  "status": "DEFERRED_PENDING_2019_THEN_2015_2018",
+  "reason": "Full development dataset requires 2019 certification first, then 2015-2018 acquisition",
+  "development_period": "2015-01-01 through 2019-12-31",
+  "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+  "timestamp": "2026-07-14T15:10:00Z"
+}

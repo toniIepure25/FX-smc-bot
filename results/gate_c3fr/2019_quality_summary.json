@@ -1,0 +1,15 @@
+{
+  "gate": "C.3F-R",
+  "status": "ACQUISITION_IN_PROGRESS",
+  "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+  "period": "2019-01-01 through 2019-12-31",
+  "total_partitions": 72,
+  "runner": {
+    "pid": 30336,
+    "workers": 2,
+    "max_concurrent": 2,
+    "state_dir": "data/acquisition_state"
+  },
+  "note": "Quality summary will be populated after acquisition completes and pair-year certification runs",
+  "timestamp": "2026-07-14T15:10:00Z"
+}

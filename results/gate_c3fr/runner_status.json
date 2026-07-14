@@ -1,0 +1,49 @@
+{
+  "gate": "C.3F-R",
+  "audit_timestamp": "2026-07-14T14:30:00Z",
+  "processes_found": [
+    {
+      "pid": 27012,
+      "command": "python -c [inline C.3R-era acquisition: download_partition for 3 pairs, 3 years]",
+      "type": "old_c3r_sequential",
+      "persistent": false,
+      "attached_to_cursor": true,
+      "survives_terminal_closure": false,
+      "heartbeat": "none",
+      "status": "killed_to_migrate"
+    },
+    {
+      "pid": 10776,
+      "command": "python -c [inline C.3F daily_checkpoint acquisition: EURUSD ask/bid 2019-01 through 03]",
+      "type": "c3f_daily_checkpoint_sequential",
+      "persistent": false,
+      "attached_to_cursor": true,
+      "survives_terminal_closure": false,
+      "heartbeat": "none",
+      "last_progress": "EURUSD/ask/2019-01-11: 1320 rows",
+      "status": "killed_to_migrate"
+    }
+  ],
+  "defects_found": {
+    "false_concurrency": "run_persistent_acquisition.py stored self.workers but processed partitions in sequential for loop",
+    "false_retry": "--retry-failed parsed by argparse but never executed",
+    "heartbeat_not_periodic": "heartbeat only written between partition transitions, not periodically",
+    "status_not_classified": "status returned dict with 'running' boolean, no health classification",
+    "os_kill_windows_bug": "os.kill(pid, 0) on Windows sends CTRL_C_EVENT to entire process group, causing KeyboardInterrupt in pytest and process crashes",
+    "no_detached_launch": "all processes attached to Cursor terminal, die on terminal close"
+  },
+  "fixes_applied": {
+    "real_concurrency": "ThreadPoolExecutor in _process_partition with max_observed_concurrent_tasks tracking",
+    "real_retry": "run_retry_failed() and run_repair_missing() methods with distinct scheduling",
+    "periodic_heartbeat": "daemon thread with 30s interval, atomic writes",
+    "status_classifier": "RUNNING_HEALTHY, RUNNING_STALE_HEARTBEAT, PID_MISSING, STALE_PID_FILE, FINISHED, FAILED",
+    "pid_exists_crossplatform": "Windows: ctypes.windll.kernel32.OpenProcess; Unix: os.kill(pid, 0)",
+    "signal_restore": "original SIGINT/SIGTERM handlers restored on runner exit",
+    "detached_launcher": "start_acquisition.ps1 using Start-Process -WindowStyle Hidden"
+  },
+  "concurrency_proof": {
+    "test": "TestRealConcurrency::test_workers_2_runs_concurrent",
+    "assertion": "max_observed_concurrent_tasks >= 2",
+    "result": "PASSED"
+  }
+}

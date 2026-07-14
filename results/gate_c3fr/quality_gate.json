@@ -1,0 +1,21 @@
+{
+  "gate": "C.3F-R",
+  "git_sha": "4df9c35",
+  "pytest_command": "python -m pytest tests/ -q --tb=line --timeout=30",
+  "pytest_version": "8.4.1",
+  "python_version": "3.13.5",
+  "collected": 636,
+  "passed": 636,
+  "failed": 0,
+  "skipped": 0,
+  "xfailed": 0,
+  "warnings": 91,
+  "discrepancy_resolution": "Previous C.3F memo stated 615; previous user report stated 624. Current count is 636: 12 new tests from test_runner_corrected.py (concurrency proof, retry, heartbeat, status classifiers, holdout rejection), minus 1 test removed from test_daily_checkpoint.py (duplicate holdout check), plus updated all gate_c3f tests for corrected status API. The prior 258-test-only-passing issue was caused by os.kill(pid, 0) on Windows sending CTRL_C_EVENT to the process group.",
+  "ruff_errors": 0,
+  "mypy_errors": 0,
+  "npm_test_pass": true,
+  "npm_audit_vulnerabilities": 0,
+  "node_version": "v22.16.0",
+  "npm_version": "10.9.2",
+  "timestamp": "2026-07-14T14:45:00Z"
+}
