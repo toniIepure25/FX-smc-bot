@@ -1,0 +1,15 @@
+{
+  "pairs": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "start": "2023-06-01",
+  "end": "2023-06-30",
+  "total_partitions": 6,
+  "existing_verified": 0,
+  "missing_partitions": 6,
+  "estimated_raw_mb_per_partition": "1-5",
+  "estimated_total_raw_mb": "12-30",
+  "plan_hash": "ef4de55b93f7"
+}
