@@ -71,6 +71,8 @@ data/real/EURUSD/
 data/real/GBPUSD/
 data/real/USDJPY/
 data/canonical/
+data/raw/
+data/acquisition_state/
 
 # --- Logs & misc ---
 *.log
