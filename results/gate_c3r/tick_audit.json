@@ -1,0 +1,11 @@
+{
+  "gate": "C.3R",
+  "description": "Tick audit deferred — requires extended acquisition to generate stratified audit windows",
+  "status": "DEFERRED_PENDING_FULL_ACQUISITION",
+  "note": "Tick audit windows must be preregistered across 2015-2025 with stratification by year, quarter, and session. Current acquisition covers only 2023-06. Full tick audit will be performed during extended acquisition phase.",
+  "tolerance_preregistered": {
+    "ohlc_difference_max_pips": 0.1,
+    "spread_difference_max_pips": 0.5,
+    "volume_difference_max_pct": 5.0
+  }
+}

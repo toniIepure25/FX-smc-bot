@@ -1,0 +1,20 @@
+{
+  "gate": "C.3R",
+  "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+  "requested_start": "2015-01-01",
+  "requested_end": "2025-12-31",
+  "acquired_start": "2023-06-01",
+  "acquired_end": "2023-06-30",
+  "timeframe": "M1",
+  "sides": ["bid", "ask"],
+  "provider": "dukascopy-node",
+  "provider_version": "1.46.4",
+  "node_version": "v20.9.0",
+  "architecture": "daily-download-aggregate-to-monthly",
+  "batch_size": 5,
+  "retries_per_day": 5,
+  "day_level_retries": 2,
+  "total_partitions_planned": 792,
+  "total_partitions_acquired": 6,
+  "note": "Full 10-year acquisition requires extended runtime; pipeline validated with representative month"
+}

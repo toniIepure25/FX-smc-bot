@@ -1,0 +1,42 @@
+{
+  "gate": "C.3R",
+  "created_at": "2026-07-14T15:11:03Z",
+  "provider": "dukascopy-node",
+  "provider_version": "1.46.4",
+  "node_version": "v20.9.0",
+  "npm_version": "10.1.0",
+  "partitions_acquired": 6,
+  "partitions_complete": 6,
+  "partitions_failed": 0,
+  "total_rows": 168734,
+  "pairs": {
+    "EURUSD": {
+      "bid_rows": 31282,
+      "ask_rows": 25732,
+      "joined_rows": 25732,
+      "period": "2023-06-01 to 2023-06-30"
+    },
+    "GBPUSD": {
+      "bid_rows": 24751,
+      "ask_rows": 24219,
+      "joined_rows": 17565,
+      "period": "2023-06-01 to 2023-06-30"
+    },
+    "USDJPY": {
+      "bid_rows": 31375,
+      "ask_rows": 31375,
+      "joined_rows": 31375,
+      "period": "2023-06-01 to 2023-06-30"
+    }
+  },
+  "acquisition_settings": {
+    "timeframe": "m1",
+    "utcOffset": 0,
+    "ignoreFlats": true,
+    "useCache": true,
+    "batchSize": 5,
+    "retryCount": 5,
+    "pauseBetweenBatchesMs": 1000,
+    "pauseBetweenRetriesMs": 1000
+  }
+}

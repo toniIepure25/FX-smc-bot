@@ -1,0 +1,8 @@
+{
+  "gate": "C.3R",
+  "description": "Event funnel smoke test deferred — requires certified multi-year development data",
+  "status": "DEFERRED_PENDING_FULL_CERTIFICATION",
+  "note": "V2 detector event funnels require certified primary data across the development split (2015-2019). Current acquisition covers only 2023-06. Event smoke test will be performed after full data certification.",
+  "planned_test_interval": "2018-01-01 to 2018-06-30",
+  "planned_strategies": ["sweep_reversal", "acceptance_continuation", "opening_range"]
+}

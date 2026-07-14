@@ -1,0 +1,57 @@
+{
+  "gate": "C.3R",
+  "created_at": "2026-07-14T15:12:34Z",
+  "node_version": "v20.9.0",
+  "pinned_package_version": "1.46.4",
+  "package_lock_hash": "committed",
+  "provider": "dukascopy-node (Dukascopy public data)",
+  "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+  "price_sides": ["bid", "ask"],
+  "source_timeframe": "M1",
+  "canonical_timeframes": ["M1", "M5", "M15", "H1", "H4"],
+  "utc_declaration": "All timestamps are UTC, utcOffset=0",
+  "acquired_coverage": {
+    "period": "2023-06-01 to 2023-06-30",
+    "note": "Representative month; full 2015-2025 acquisition pending"
+  },
+  "intended_coverage": {
+    "period": "2015-01-01 to 2025-12-31"
+  },
+  "quality_metrics": {
+    "EURUSD": {
+      "certification": "CERTIFIED_PRIMARY_DEVELOPMENT_DATA",
+      "joined_rows": 25732,
+      "negative_spread_count": 0,
+      "median_spread_pips": 0.3,
+      "invariants_pass": true
+    },
+    "GBPUSD": {
+      "certification": "CERTIFIED_EXPLORATORY_ONLY",
+      "joined_rows": 17565,
+      "negative_spread_count": 0,
+      "median_spread_pips": 1.0,
+      "invariants_pass": true,
+      "note": "Incomplete due to network failures during acquisition"
+    },
+    "USDJPY": {
+      "certification": "CERTIFIED_PRIMARY_DEVELOPMENT_DATA",
+      "joined_rows": 31375,
+      "negative_spread_count": 0,
+      "median_spread_pips": 0.6,
+      "invariants_pass": true
+    }
+  },
+  "split_boundaries": {
+    "development": "2015-01-01 to 2019-12-31",
+    "validation": "2020-01-01 to 2022-12-31",
+    "holdout": "2023-01-01 to 2025-12-31"
+  },
+  "holdout_policy": {
+    "status": "LOCKED",
+    "access_control": "Technical enforcement via split_boundaries check",
+    "data_quality_inspection": "PERMITTED",
+    "alpha_related_inspection": "PROHIBITED"
+  },
+  "transformation_git_sha": "to_be_set_at_commit",
+  "resampling_version": "bidask_resampling.resample_bidask v1"
+}
