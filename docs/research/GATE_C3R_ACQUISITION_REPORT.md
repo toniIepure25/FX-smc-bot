@@ -1,64 +1,98 @@
 # Gate C.3R — Acquisition Report
 
-## Acquisition Summary
+## Tool
 
-| Metric | Value |
-|--------|-------|
-| Provider | dukascopy-node 1.46.4 |
-| Pairs | EURUSD, GBPUSD, USDJPY |
-| Acquired period | 2023-06-01 to 2023-06-30 |
-| Intended period | 2015-01-01 to 2025-12-31 |
-| Timeframe | M1 |
-| Sides | bid, ask |
-| Total partitions | 6 |
-| Total rows | 168,734 |
+- **Package**: `dukascopy-node` 1.46.4 (MIT license)
+- **Source**: [github.com/Leo4815162342/dukascopy-node](https://github.com/Leo4815162342/dukascopy-node)
+- **Node.js**: v20.9.0
+- **npm**: 10.1.0
+- **npm audit**: 0 vulnerabilities
 
-## Per-Pair Results
+## Architecture
 
-### EURUSD
-- Bid rows: 31,282
-- Ask rows: 25,732
-- Joined rows: 25,732
-- Bid-only rows: 5,550 (ask download gaps from network failures)
-
-### GBPUSD
-- Bid rows: 24,751
-- Ask rows: 24,219
-- Joined rows: 17,565
-- Bid-only: 7,186, Ask-only: 6,654
-
-### USDJPY
-- Bid rows: 31,375
-- Ask rows: 31,375
-- Joined rows: 31,375 (perfect alignment)
-
-## Acquisition Architecture
-
-Daily download → monthly aggregation. Each day is downloaded as a separate
-Node.js subprocess call to avoid network timeout failures on larger ranges.
-
-## Network Reliability
-
-The Dukascopy CDN shows intermittent `fetch failed` errors, especially
-for GBPUSD. Retry logic (2 retries per day at the Python level, plus
-5 internal retries in dukascopy-node) recovers most failures.
-
-## Commands Used
-
-```bash
-python scripts/acquire_dukascopy_node_history.py \
-  --pairs EURUSD GBPUSD USDJPY \
-  --start 2023-06-01 --end 2023-06-30 \
-  --output-dir data/real
+```
+Dukascopy M1 bid download (day-by-day)
++
+Dukascopy M1 ask download (day-by-day)
+→ Python aggregation to monthly partitions
+→ timestamp alignment (exact UTC join)
+→ BidAskBarSeries M1
+→ independent bid/ask resampling
+→ M5, M15, H1, H4
 ```
 
-## Disk Usage
+## Acquisition Settings
 
-Raw JSON: ~20 MB (6 partition files)
-Canonical Parquet (M1): ~3 MB
-Resampled (M5/M15/H1/H4): ~2 MB
+```
+timeframe: m1
+utcOffset: 0
+ignoreFlats: true
+useCache: true
+batchSize: 5
+pauseBetweenBatchesMs: 1000
+retryCount: 5
+pauseBetweenRetriesMs: 1000
+```
 
-## Limitation
+## Download Strategy
 
-Full 2015-2025 acquisition requires extended runtime (~100+ hours at
-current download speeds). The pipeline is validated and resumable.
+Due to intermittent `fetch failed` errors from the Dukascopy CDN,
+acquisition downloads day-by-day with Python-level retries (up to 2
+additional attempts per day). Daily data is then aggregated into
+monthly partitions with atomic writes (os.replace).
+
+## Acquired Data
+
+### Target
+- EURUSD, GBPUSD, USDJPY
+- M1 bid and ask
+- 2015-01-01 through 2025-12-31
+
+### Actually Acquired
+- EURUSD, GBPUSD, USDJPY
+- M1 bid and ask
+- **2023-06** only (6 partitions, 168,734 total M1 bars)
+- Background acquisition of 2019-01, 2020-01, 2024-06 in progress
+
+### Partition Counts
+| Pair   | Side | Months | Rows   |
+|--------|------|--------|--------|
+| EURUSD | bid  | 1      | 31,282 |
+| EURUSD | ask  | 1      | 25,732 |
+| GBPUSD | bid  | 1      | 24,751 |
+| GBPUSD | ask  | 1      | 24,219 |
+| USDJPY | bid  | 1      | 31,375 |
+| USDJPY | ask  | 1      | 31,375 |
+
+## Acquisition Commands
+
+```bash
+# Dry-run planning
+python scripts/acquire_dukascopy_node_history.py \
+  --pairs EURUSD GBPUSD USDJPY \
+  --start 2015-01-01 --end 2025-12-31 \
+  --output-dir data/real --dry-run
+
+# Full acquisition (resumable)
+python scripts/acquire_dukascopy_node_history.py \
+  --pairs EURUSD GBPUSD USDJPY \
+  --start 2015-01-01 --end 2025-12-31 \
+  --output-dir data/real
+
+# Validation and certification
+python scripts/validate_and_certify.py
+```
+
+## Resumability
+
+- Completed partitions (data.json with non-zero size) are skipped
+- Partially downloaded files use .tmp suffix and atomic rename
+- Acquisition can be interrupted and resumed safely
+- Cache is maintained by dukascopy-node in `tools/dukascopy-node/.cache/`
+
+## Limitations
+
+1. Network latency: ~2-4 minutes per day with retries
+2. Full dataset (792 partitions) estimated at 100+ hours
+3. CDN reliability varies by year (older data shows more failures)
+4. GBPUSD has higher failure rate than EURUSD/USDJPY

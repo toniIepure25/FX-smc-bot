@@ -1,15 +1,12 @@
 {
-  "created_at": "2026-07-14T12:12:31.517763+00:00",
+  "created_at": "2026-07-14T12:50:57.815824+00:00",
   "pairs": {
     "EURUSD": {
       "status": "CERTIFIED_PRIMARY_DEVELOPMENT_DATA",
-      "pair": "EURUSD",
-      "year": 2023,
-      "month": 6,
+      "months_acquired": 1,
       "bid_rows": 31282,
       "ask_rows": 25732,
       "joined_rows": 25732,
-      "both_present": 25732,
       "bid_only": 5550,
       "ask_only": 0,
       "negative_spread_count": 0,
@@ -17,17 +14,22 @@
       "spread_p90": 4.0000000000040004e-05,
       "spread_p95": 5.999999999994898e-05,
       "spread_p99": 0.00029999999999996696,
-      "max_spread": 0.0007099999999999884
+      "max_spread": 0.0007099999999999884,
+      "coverage": {
+        "total_calendar_minutes": 43200,
+        "expected_fx_session_minutes": 31560,
+        "observed_minutes": 25732,
+        "raw_calendar_missing_pct": 40.4352,
+        "expected_fx_session_missing_pct": 18.4664
+      },
+      "violations": []
     },
     "GBPUSD": {
       "status": "CERTIFIED_EXPLORATORY_ONLY",
-      "pair": "GBPUSD",
-      "year": 2023,
-      "month": 6,
+      "months_acquired": 1,
       "bid_rows": 24751,
       "ask_rows": 24219,
       "joined_rows": 17565,
-      "both_present": 17565,
       "bid_only": 7186,
       "ask_only": 6654,
       "negative_spread_count": 0,
@@ -35,17 +37,22 @@
       "spread_p90": 0.00013000000000018552,
       "spread_p95": 0.00022999999999995246,
       "spread_p99": 0.0007299999999998974,
-      "max_spread": 0.003689999999999971
+      "max_spread": 0.003689999999999971,
+      "coverage": {
+        "total_calendar_minutes": 37440,
+        "expected_fx_session_minutes": 27480,
+        "observed_minutes": 17565,
+        "raw_calendar_missing_pct": 53.0849,
+        "expected_fx_session_missing_pct": 36.0808
+      },
+      "violations": []
     },
     "USDJPY": {
       "status": "CERTIFIED_PRIMARY_DEVELOPMENT_DATA",
-      "pair": "USDJPY",
-      "year": 2023,
-      "month": 6,
+      "months_acquired": 1,
       "bid_rows": 31375,
       "ask_rows": 31375,
       "joined_rows": 31375,
-      "both_present": 31375,
       "bid_only": 0,
       "ask_only": 0,
       "negative_spread_count": 0,
@@ -53,7 +60,15 @@
       "spread_p90": 0.00899999999998613,
       "spread_p95": 0.012999999999976808,
       "spread_p99": 0.054000000000002046,
-      "max_spread": 0.2769999999999868
+      "max_spread": 0.2769999999999868,
+      "coverage": {
+        "total_calendar_minutes": 43200,
+        "expected_fx_session_minutes": 31560,
+        "observed_minutes": 31375,
+        "raw_calendar_missing_pct": 27.3727,
+        "expected_fx_session_missing_pct": 0.5862
+      },
+      "violations": []
     }
   }
 }

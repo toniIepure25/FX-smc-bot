@@ -1,43 +1,71 @@
 {
   "gate": "C.3R",
-  "created_at": "2026-07-14T15:12:34Z",
+  "created_at": "2026-07-14T12:51:00Z",
   "node_version": "v20.9.0",
+  "npm_version": "10.1.0",
   "pinned_package_version": "1.46.4",
-  "package_lock_hash": "committed",
-  "provider": "dukascopy-node (Dukascopy public data)",
+  "package_lock_hash": "committed_in_repo",
+  "npm_audit_vulnerabilities": 0,
+  "provider": "dukascopy-node (Dukascopy public data, no credentials)",
   "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
   "price_sides": ["bid", "ask"],
   "source_timeframe": "M1",
   "canonical_timeframes": ["M1", "M5", "M15", "H1", "H4"],
-  "utc_declaration": "All timestamps are UTC, utcOffset=0",
+  "utc_declaration": "All timestamps are UTC, utcOffset=0, ignoreFlats=true",
   "acquired_coverage": {
     "period": "2023-06-01 to 2023-06-30",
-    "note": "Representative month; full 2015-2025 acquisition pending"
+    "note": "Representative month validated end-to-end. Full 2015-2025 acquisition in progress.",
+    "background_acquisition": "2019-01, 2020-01, 2024-06 for EURUSD and USDJPY"
   },
   "intended_coverage": {
-    "period": "2015-01-01 to 2025-12-31"
+    "period": "2015-01-01 to 2025-12-31",
+    "limitation": "Full acquisition requires ~100+ hours of network download time"
   },
   "quality_metrics": {
     "EURUSD": {
       "certification": "CERTIFIED_PRIMARY_DEVELOPMENT_DATA",
+      "months_acquired": 1,
       "joined_rows": 25732,
+      "bid_rows": 31282,
+      "ask_rows": 25732,
+      "unpaired_bid": 5550,
+      "unpaired_ask": 0,
       "negative_spread_count": 0,
-      "median_spread_pips": 0.3,
+      "median_spread": 3e-05,
+      "spread_p99": 0.0003,
+      "max_spread": 0.00071,
+      "session_coverage_pct": 81.5,
       "invariants_pass": true
     },
     "GBPUSD": {
       "certification": "CERTIFIED_EXPLORATORY_ONLY",
+      "months_acquired": 1,
       "joined_rows": 17565,
+      "bid_rows": 24751,
+      "ask_rows": 24219,
+      "unpaired_bid": 7186,
+      "unpaired_ask": 6654,
       "negative_spread_count": 0,
-      "median_spread_pips": 1.0,
+      "median_spread": 0.0001,
+      "spread_p99": 0.00073,
+      "max_spread": 0.00369,
+      "session_coverage_pct": 63.9,
       "invariants_pass": true,
-      "note": "Incomplete due to network failures during acquisition"
+      "note": "High unpaired-row rate due to network failures during acquisition"
     },
     "USDJPY": {
       "certification": "CERTIFIED_PRIMARY_DEVELOPMENT_DATA",
+      "months_acquired": 1,
       "joined_rows": 31375,
+      "bid_rows": 31375,
+      "ask_rows": 31375,
+      "unpaired_bid": 0,
+      "unpaired_ask": 0,
       "negative_spread_count": 0,
-      "median_spread_pips": 0.6,
+      "median_spread": 0.006,
+      "spread_p99": 0.054,
+      "max_spread": 0.277,
+      "session_coverage_pct": 99.4,
       "invariants_pass": true
     }
   },
@@ -48,10 +76,18 @@
   },
   "holdout_policy": {
     "status": "LOCKED",
-    "access_control": "Technical enforcement via split_boundaries check",
+    "access_control": "Implemented in src/fx_smc_bot/data/holdout_access.py",
+    "enforcement": "guard_holdout() raises ValueError for alpha purposes on holdout dates",
     "data_quality_inspection": "PERMITTED",
-    "alpha_related_inspection": "PROHIBITED"
+    "alpha_related_inspection": "PROHIBITED",
+    "unlock_mechanism": "unlock_holdout() function, requires explicit invocation"
   },
-  "transformation_git_sha": "to_be_set_at_commit",
-  "resampling_version": "bidask_resampling.resample_bidask v1"
+  "transformation_git_sha": "a32f5a6",
+  "resampling_version": "bidask_resampling.resample_bidask v1",
+  "tick_audit": {
+    "status": "PLAN_GENERATED_PENDING_FULL_ACQUISITION",
+    "plan_hash": "bbcebd0b6cc0",
+    "windows": 44,
+    "seed": 42
+  }
 }

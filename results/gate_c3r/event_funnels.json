@@ -1,8 +1,15 @@
 {
-  "gate": "C.3R",
-  "description": "Event funnel smoke test deferred — requires certified multi-year development data",
-  "status": "DEFERRED_PENDING_FULL_CERTIFICATION",
-  "note": "V2 detector event funnels require certified primary data across the development split (2015-2019). Current acquisition covers only 2023-06. Event smoke test will be performed after full data certification.",
-  "planned_test_interval": "2018-01-01 to 2018-06-30",
-  "planned_strategies": ["sweep_reversal", "acceptance_continuation", "opening_range"]
+  "status": "DEFERRED_PENDING_DEVELOPMENT_PERIOD_DATA",
+  "reason": "Event smoke test requires certified development-period (2015-2019) data. Currently only holdout-period data (2023-06) is fully acquired. Background acquisition of 2019-01 is in progress but not yet complete.",
+  "holdout_protection": "Event detection is PROHIBITED on holdout data per gate requirements",
+  "plan": {
+    "interval": "One complete month from development period (e.g. 2019-01)",
+    "strategies": [
+      "sweep_reversal",
+      "acceptance_continuation",
+      "opening_range"
+    ],
+    "metrics": "Event funnels only, no financial performance"
+  },
+  "note": "The full detection pipeline is operational and tested. Once development-period M1 bid/ask data is certified, event funnels will be generated as a subsequent commit."
 }
