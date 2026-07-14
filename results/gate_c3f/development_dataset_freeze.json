@@ -1,0 +1,26 @@
+{
+  "gate": "C.3F",
+  "status": "INCOMPLETE",
+  "reason": "2019 acquisition in progress; 2015-2018 not yet started",
+  "target_coverage": {
+    "development": {"start": "2015-01-01", "end": "2019-12-31"},
+    "validation": {"start": "2020-01-01", "end": "2022-12-31"},
+    "holdout": {"start": "2023-01-01", "end": "2025-12-31"}
+  },
+  "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+  "infrastructure_ready": {
+    "scope_aware_certification": true,
+    "daily_checkpoints": true,
+    "failure_categories": true,
+    "targeted_repair": true,
+    "persistent_runner": true,
+    "bounded_concurrency": true,
+    "acquisition_observability": true,
+    "holdout_access_control": true,
+    "tick_audit_tolerances_preregistered": true
+  },
+  "acquisition_command": "python scripts/run_persistent_acquisition.py --pairs EURUSD GBPUSD USDJPY --start 2019-01-01 --end 2019-12-31 --workers 2 --resume --log-dir logs/acquisition --state-dir data/acquisition_state",
+  "node_version": "v20.9.0",
+  "dukascopy_node_version": "1.46.4",
+  "holdout_policy": "Download and structural inspection only. No alpha, event, or strategy access."
+}

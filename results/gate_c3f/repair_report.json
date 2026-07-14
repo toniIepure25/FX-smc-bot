@@ -1,0 +1,39 @@
+{
+  "gate": "C.3F",
+  "subject": "GBPUSD June 2023 unpaired row diagnosis",
+  "root_cause": "independent_bid_ask_download_failures",
+  "diagnosis": {
+    "pair": "GBPUSD",
+    "year": 2023,
+    "month": 6,
+    "bid_rows": 24751,
+    "ask_rows": 24219,
+    "joined_rows": 17565,
+    "bid_only": 7186,
+    "ask_only": 6654,
+    "affected_days": 10,
+    "total_days_with_data": 26
+  },
+  "affected_days": [
+    {"date": "2023-06-01", "bid": 1436, "ask": 0, "issue": "ask_download_failed"},
+    {"date": "2023-06-02", "bid": 0, "ask": 1260, "issue": "bid_download_failed"},
+    {"date": "2023-06-06", "bid": 0, "ask": 1434, "issue": "bid_download_failed"},
+    {"date": "2023-06-07", "bid": 1438, "ask": 0, "issue": "ask_download_failed"},
+    {"date": "2023-06-08", "bid": 1434, "ask": 0, "issue": "ask_download_failed"},
+    {"date": "2023-06-09", "bid": 0, "ask": 1260, "issue": "bid_download_failed"},
+    {"date": "2023-06-13", "bid": 1438, "ask": 0, "issue": "ask_download_failed"},
+    {"date": "2023-06-14", "bid": 1440, "ask": 0, "issue": "ask_download_failed"},
+    {"date": "2023-06-27", "bid": 0, "ask": 1440, "issue": "bid_download_failed"},
+    {"date": "2023-06-30", "bid": 0, "ask": 1260, "issue": "bid_download_failed"}
+  ],
+  "root_cause_detail": "Transient 'fetch failed' errors from Dukascopy CDN caused individual day+side combinations to fail. Bid and ask are downloaded independently, so one side could succeed while the other failed. The Gate C.3R system lacked day-level repair.",
+  "excluded_causes": [
+    "timestamp_mismatch",
+    "flat_bar_filtering",
+    "provider_content_differences",
+    "parsing_errors"
+  ],
+  "repair_method": "targeted_repair_mode_day_level",
+  "certification_after_repair": "HOLDOUT_QUALITY_INSPECTED_ONLY",
+  "note": "June 2023 is holdout period; structural quality inspection only"
+}

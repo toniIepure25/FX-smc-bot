@@ -1,0 +1,8 @@
+{
+  "gate": "C.3F",
+  "status": "DEFERRED_PENDING_2019_CERTIFICATION",
+  "reason": "Event funnels are only permitted after 2019 development data is certified. 2019 acquisition is in progress.",
+  "strategies": ["sweep_reversal", "acceptance_continuation", "opening_range"],
+  "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+  "holdout_protection": "Event funnels will NOT be run on holdout data (2023-2025)"
+}

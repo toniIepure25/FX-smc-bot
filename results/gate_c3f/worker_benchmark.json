@@ -1,0 +1,19 @@
+{
+  "gate": "C.3F",
+  "note": "Benchmark deferred — acquisition throughput is network-bound, not CPU-bound. Day-level download times are dominated by Dukascopy CDN response latency and retry overhead, not local processing.",
+  "observed_day_download_time_seconds": {
+    "p50": 10,
+    "p90": 60,
+    "p99": 180,
+    "note": "Includes up to 3 retries on transient failures"
+  },
+  "recommendation": {
+    "default_workers": 2,
+    "rationale": "Higher concurrency increases rate-limit risk without proportional throughput gain. The CDN often returns 'fetch failed' errors that are transient; adding workers would only multiply these failures."
+  },
+  "estimated_throughput": {
+    "1_worker_partitions_per_hour": "0.5-2.0",
+    "2_workers_partitions_per_hour": "1.0-3.0",
+    "note": "Highly variable due to network instability"
+  }
+}

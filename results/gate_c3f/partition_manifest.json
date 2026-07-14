@@ -1,0 +1,24 @@
+{
+  "gate": "C.3F",
+  "manifest_format_version": "2.0",
+  "changes_from_c3r": [
+    "Every partition record now included in manifest (not just counts)",
+    "Day-level granularity with per-day status tracking",
+    "Explicit failure categories per day",
+    "Atomic manifest writes via temp file + os.replace",
+    "Append-only operational log support"
+  ],
+  "partition_record_fields": [
+    "pair", "side", "year", "month", "day",
+    "status", "rows", "checksum", "file_size",
+    "failure_category", "error", "attempts",
+    "completed_at"
+  ],
+  "statuses": {
+    "complete": "Day data downloaded, validated, checksum computed",
+    "market_closed": "Weekend or holiday, no data expected",
+    "failed": "Download failed after retries, classified by failure category",
+    "pending": "Not yet attempted"
+  },
+  "monthly_compaction": "Occurs only when all days reach terminal status"
+}
