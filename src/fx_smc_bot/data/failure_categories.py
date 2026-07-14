@@ -30,13 +30,13 @@ RETRYABLE_CATEGORIES = {
     FailureCategory.RATE_LIMITED,
     FailureCategory.TIMEOUT,
     FailureCategory.PARTIAL_OUTPUT,
+    FailureCategory.NODE_PROCESS_ERROR,
 }
 
 NON_RETRYABLE_CATEGORIES = {
     FailureCategory.MARKET_CLOSED_WEEKEND,
     FailureCategory.MARKET_CLOSED_HOLIDAY,
     FailureCategory.NO_PROVIDER_DATA,
-    FailureCategory.NODE_PROCESS_ERROR,
     FailureCategory.PARSER_ERROR,
     FailureCategory.CHECKSUM_FAILURE,
     FailureCategory.UNKNOWN_ERROR,
