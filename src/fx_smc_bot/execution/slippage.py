@@ -6,10 +6,9 @@ Includes fixed, volatility-aware, and data-driven models.
 
 from __future__ import annotations
 
-import random
 from typing import Protocol, runtime_checkable
 
-from fx_smc_bot.config import PAIR_PIP_INFO, ExecutionConfig, TradingPair
+from fx_smc_bot.config import ExecutionConfig, TradingPair
 from fx_smc_bot.domain import Direction
 from fx_smc_bot.utils.math import pips_to_price
 
@@ -104,6 +103,33 @@ class VolatilitySlippage:
             fill_price = price - half_spread - slip_price
 
         return fill_price, spread_price, slip_price
+
+
+class NativeBidAskSlippage:
+    """For native bid/ask data: spread is implicit in prices, no synthetic spread.
+
+    Only applies configurable explicit slippage. Returns spread_cost=0
+    because the historical spread is already embedded in the bid/ask prices.
+    """
+
+    def __init__(
+        self,
+        config: ExecutionConfig | None = None,
+    ) -> None:
+        self._cfg = config or ExecutionConfig()
+
+    def apply(
+        self,
+        price: float,
+        direction: Direction,
+        pair: TradingPair,
+    ) -> tuple[float, float, float]:
+        slip_price = pips_to_price(self._cfg.slippage_pips, pair)
+        if direction == Direction.LONG:
+            fill_price = price + slip_price
+        else:
+            fill_price = price - slip_price
+        return fill_price, 0.0, slip_price
 
 
 class SpreadFromDataSlippage:
