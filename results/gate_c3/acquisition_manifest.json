@@ -1,0 +1,12 @@
+{
+  "gate": "C.3",
+  "status": "PENDING_DOWNLOAD",
+  "pairs": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "target_period": "2015-01-01 to 2025-12-31",
+  "primary_provider": "dukascopy",
+  "secondary_provider": "oanda"
+}
