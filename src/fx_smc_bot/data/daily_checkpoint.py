@@ -356,7 +356,9 @@ def find_missing_days(
 
 def repair_month(
     pair: str, side: str, year: int, month: int, raw_dir: Path,
-    **kwargs: int,
+    timeframe: str = "m1",
+    batch_size: int = 5,
+    retries: int = 5,
 ) -> dict:
     """Repair missing/failed days in a month partition."""
     before = load_month_manifest(raw_dir, pair, side, year, month)
@@ -366,7 +368,10 @@ def repair_month(
     )
 
     missing = find_missing_days(raw_dir, pair, side, year, month)
-    result = acquire_month_daily(pair, side, year, month, raw_dir, **kwargs)
+    result = acquire_month_daily(
+        pair, side, year, month, raw_dir,
+        timeframe=timeframe, batch_size=batch_size, retries=retries,
+    )
 
     after_complete = sum(
         1 for d in result.days

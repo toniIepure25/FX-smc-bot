@@ -5,8 +5,6 @@ import json
 from pathlib import Path
 from unittest.mock import patch
 
-import pytest
-
 from fx_smc_bot.data.daily_checkpoint import (
     DayStatus,
     MonthManifest,
@@ -230,7 +228,7 @@ class TestPersistentRunnerHeartbeat:
     def test_status_no_state(self, tmp_path: Path) -> None:
         from scripts.run_persistent_acquisition import PersistentRunner
         status = PersistentRunner.get_status(tmp_path)
-        assert status["running"] is False
+        assert status["classifier"] == "PID_MISSING"
 
 
 class TestHoldoutEventRejection:

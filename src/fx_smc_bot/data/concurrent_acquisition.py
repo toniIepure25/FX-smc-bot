@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -24,6 +25,26 @@ from fx_smc_bot.data.daily_checkpoint import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+def pid_exists(pid: int) -> bool:
+    """Check if a process with the given PID is running (cross-platform)."""
+    if pid <= 0:
+        return False
+    if sys.platform == "win32":
+        import ctypes
+        kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+        process_query = 0x1000  # PROCESS_QUERY_LIMITED_INFORMATION
+        handle = kernel32.OpenProcess(process_query, False, pid)
+        if handle:
+            kernel32.CloseHandle(handle)
+            return True
+        return False
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
 
 DEFAULT_WORKERS = 2
 MAX_WORKERS = 4
@@ -83,11 +104,12 @@ class PartitionLock:
         if path.exists():
             try:
                 lock_data = json.loads(path.read_text())
-                pid = lock_data.get("pid", 0)
-                os.kill(pid, 0)
-                return False
-            except (OSError, ValueError, json.JSONDecodeError):
-                path.unlink(missing_ok=True)
+                lock_pid = lock_data.get("pid", 0)
+                if pid_exists(lock_pid):
+                    return False
+            except (ValueError, json.JSONDecodeError):
+                pass
+            path.unlink(missing_ok=True)
         path.write_text(json.dumps({
             "pid": os.getpid(),
             "thread": threading.current_thread().name,
