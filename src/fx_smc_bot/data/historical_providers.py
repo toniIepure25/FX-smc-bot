@@ -70,6 +70,33 @@ DUKASCOPY_PAIR_MAP = {
 }
 
 
+@dataclass(slots=True, frozen=True)
+class InstrumentMeta:
+    """Instrument-specific metadata for raw price scaling."""
+    symbol: str
+    raw_price_scale: int
+    decimal_precision: int
+    pip_size: float
+    plausible_min: float
+    plausible_max: float
+
+
+INSTRUMENT_META: dict[TradingPair, InstrumentMeta] = {
+    TradingPair.EURUSD: InstrumentMeta(
+        "EURUSD", 100_000, 5, 0.0001, 0.8, 1.6,
+    ),
+    TradingPair.GBPUSD: InstrumentMeta(
+        "GBPUSD", 100_000, 5, 0.0001, 1.0, 2.2,
+    ),
+    TradingPair.USDJPY: InstrumentMeta(
+        "USDJPY", 1_000, 3, 0.01, 70.0, 200.0,
+    ),
+    TradingPair.GBPJPY: InstrumentMeta(
+        "GBPJPY", 1_000, 3, 0.01, 100.0, 260.0,
+    ),
+}
+
+
 class DukascopyProvider:
     """Dukascopy historical tick data provider.
 
@@ -115,7 +142,7 @@ class DukascopyProvider:
         current = start.replace(minute=0, second=0, microsecond=0)
         while current < end:
             try:
-                ticks, file_path = self._download_hour(symbol, current)
+                ticks, file_path = self._download_hour(symbol, current, pair)
                 if ticks:
                     all_ticks.extend(ticks)
                 if file_path:
@@ -149,6 +176,7 @@ class DukascopyProvider:
         self,
         symbol: str,
         hour: datetime,
+        pair: TradingPair | None = None,
     ) -> tuple[list[tuple[datetime, float, float, float, float]], Path | None]:
         """Download one hour of bi5 tick data."""
         month_0 = hour.month - 1
@@ -165,7 +193,7 @@ class DukascopyProvider:
         )
 
         if cache_file.exists() and cache_file.stat().st_size > 0:
-            return self._parse_bi5(cache_file, hour), cache_file
+            return self._parse_bi5(cache_file, hour, pair), cache_file
 
         cache_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -176,7 +204,7 @@ class DukascopyProvider:
                     raw = resp.read()
                 if raw:
                     cache_file.write_bytes(raw)
-                    return self._parse_bi5(cache_file, hour), cache_file
+                    return self._parse_bi5(cache_file, hour, pair), cache_file
                 return [], None
             except (URLError, OSError) as exc:
                 if attempt < self._max_retries - 1:
@@ -191,6 +219,7 @@ class DukascopyProvider:
     def _parse_bi5(
         path: Path,
         base_hour: datetime,
+        pair: TradingPair | None = None,
     ) -> list[tuple[datetime, float, float, float, float]]:
         """Parse bi5 (LZMA-compressed) tick file.
 
@@ -209,6 +238,9 @@ class DukascopyProvider:
         if len(raw) == 0:
             return []
 
+        meta = INSTRUMENT_META.get(pair) if pair else None
+        scale = float(meta.raw_price_scale) if meta else 100_000.0
+
         record_size = 20
         n_records = len(raw) // record_size
         ticks = []
@@ -219,8 +251,17 @@ class DukascopyProvider:
                 ">IIIff", raw, offset
             )
             ts = base_hour + timedelta(milliseconds=ms)
-            ask_price = ask_raw / 100000.0
-            bid_price = bid_raw / 100000.0
+            ask_price = ask_raw / scale
+            bid_price = bid_raw / scale
+            if meta:
+                if not (meta.plausible_min <= bid_price <= meta.plausible_max):
+                    continue
+                if ask_price < bid_price:
+                    continue
+                spread = ask_price - bid_price
+                max_spread = meta.pip_size * 100
+                if spread > max_spread:
+                    continue
             ticks.append((ts, bid_price, ask_price, bid_vol, ask_vol))
 
         return ticks
@@ -376,11 +417,22 @@ class OandaProvider:
         errors: list[str] = []
         current_start = start
 
+        gran_minutes = {
+            "M1": 1, "M5": 5, "M15": 15, "H1": 60, "H4": 240, "D": 1440,
+        }
+        batch_minutes = gran_minutes.get(granularity, 1) * 4500
+        batch_delta = timedelta(minutes=batch_minutes)
+
         while current_start < end:
             try:
-                batch = self._fetch_candles(instrument, granularity, current_start, end)
+                batch_end = min(current_start + batch_delta, end)
+                batch = self._fetch_candles(
+                    instrument, granularity,
+                    current_start, batch_end,
+                )
                 if not batch:
-                    break
+                    current_start = batch_end
+                    continue
                 all_candles.extend(batch)
                 last_time = datetime.fromisoformat(
                     batch[-1]["time"].replace("Z", "+00:00")
@@ -420,12 +472,13 @@ class OandaProvider:
         self, instrument: str, granularity: str,
         start: datetime, end: datetime,
     ) -> list[dict]:
+        """Fetch candles using from+to (no count) per OANDA API rules."""
         url = (
             f"{self._base_url}/v3/instruments/{instrument}/candles"
             f"?granularity={granularity}"
             f"&from={start.strftime('%Y-%m-%dT%H:%M:%SZ')}"
             f"&to={end.strftime('%Y-%m-%dT%H:%M:%SZ')}"
-            f"&price=BA&count={self._MAX_CANDLES}"
+            f"&price=BA&smooth=false&includeFirst=true"
         )
         req = Request(url)
         req.add_header("Authorization", f"Bearer {self._token}")
@@ -475,64 +528,145 @@ class OandaProvider:
         )
 
 
+@dataclass(slots=True)
+class MT5ImportResult:
+    """Result metadata from MT5 CSV import."""
+    pair: TradingPair
+    price_type: str  # "BID_ONLY_OR_MID" | "BID_ASK"
+    historical_spread_available: bool
+    source_timezone: str
+    rows: int
+    duplicate_timestamps: int
+    non_monotonic: int
+
+
 class MT5CsvImporter:
-    """Import MT5 broker CSV exports."""
+    """Import MT5 broker CSV exports with proper timezone handling."""
 
     provider_name = "mt5"
 
-    def __init__(self, broker_timezone: str = "UTC") -> None:
-        self._broker_tz = broker_timezone
+    def __init__(
+        self,
+        broker_timezone: str = "UTC",
+        ambiguous_policy: str = "NaT",
+        nonexistent_policy: str = "NaT",
+    ) -> None:
+        try:
+            import zoneinfo
+            self._tz = zoneinfo.ZoneInfo(broker_timezone)
+        except (ImportError, KeyError):
+            self._tz = None
+        self._broker_tz_name = broker_timezone
+        self._ambiguous_policy = ambiguous_policy
+        self._nonexistent_policy = nonexistent_policy
 
     def import_csv(
         self, path: Path, pair: TradingPair,
         timeframe: Timeframe = Timeframe.M1,
-    ) -> BidAskBarSeries | None:
-        """Import CSV with mid-price OHLC. Sets ask=bid (zero spread)."""
-        rows: list[dict[str, float]] = []
-        timestamps: list[np.datetime64] = []
+    ) -> tuple[BidAskBarSeries | None, MT5ImportResult]:
+        """Import CSV. Returns (series, metadata)."""
+        raw_rows: list[dict[str, float]] = []
+        raw_datetimes: list[datetime] = []
+        has_spread_col = False
+        has_bid_ask_cols = False
 
         with open(path, newline="", encoding="utf-8-sig") as f:
             sample = f.read(1024)
             f.seek(0)
             delimiter = "\t" if "\t" in sample else ","
             reader = csv.DictReader(f, delimiter=delimiter)
+            headers = reader.fieldnames or []
+            has_spread_col = "Spread" in headers or "<SPREAD>" in headers
+            has_bid_ask_cols = (
+                "BidOpen" in headers or "Bid_Open" in headers
+            )
+
             for row in reader:
                 date_str = row.get("Date", row.get("<DATE>", ""))
                 time_str = row.get("Time", row.get("<TIME>", ""))
                 ts_str = f"{date_str} {time_str}".strip()
-                for fmt in ("%Y.%m.%d %H:%M", "%Y.%m.%d %H:%M:%S", "%Y-%m-%d %H:%M:%S"):
+                dt = None
+                for fmt in (
+                    "%Y.%m.%d %H:%M",
+                    "%Y.%m.%d %H:%M:%S",
+                    "%Y-%m-%d %H:%M:%S",
+                ):
                     try:
                         dt = datetime.strptime(ts_str, fmt)
                         break
                     except ValueError:
                         continue
-                else:
+                if dt is None:
                     continue
-                timestamps.append(np.datetime64(dt))
+
+                if self._tz is not None:
+                    import zoneinfo
+                    try:
+                        local = dt.replace(
+                            tzinfo=self._tz,
+                        )
+                        utc = local.astimezone(
+                            zoneinfo.ZoneInfo("UTC"),
+                        )
+                        dt = utc.replace(tzinfo=None)
+                    except Exception:
+                        continue
+
+                raw_datetimes.append(dt)
                 o = float(row.get("Open", row.get("<OPEN>", 0)))
                 h = float(row.get("High", row.get("<HIGH>", 0)))
                 lo = float(row.get("Low", row.get("<LOW>", 0)))
                 c = float(row.get("Close", row.get("<CLOSE>", 0)))
                 v = float(row.get("Volume", row.get("<TICKVOL>", 0)))
-                rows.append({"o": o, "h": h, "l": lo, "c": c, "v": v})
+                raw_rows.append({"o": o, "h": h, "l": lo, "c": c, "v": v})
 
-        if not rows:
-            return None
+        if not raw_rows:
+            result = MT5ImportResult(
+                pair=pair,
+                price_type="BID_ONLY_OR_MID",
+                historical_spread_available=has_spread_col,
+                source_timezone=self._broker_tz_name,
+                rows=0, duplicate_timestamps=0, non_monotonic=0,
+            )
+            return None, result
 
-        ts_arr = np.array(timestamps, dtype="datetime64[ns]")
-        o_arr = np.array([r["o"] for r in rows], dtype=np.float64)
-        h_arr = np.array([r["h"] for r in rows], dtype=np.float64)
-        l_arr = np.array([r["l"] for r in rows], dtype=np.float64)
-        c_arr = np.array([r["c"] for r in rows], dtype=np.float64)
-        v_arr = np.array([r["v"] for r in rows], dtype=np.float64)
+        dup_count = len(raw_datetimes) - len(set(raw_datetimes))
+        non_mono = sum(
+            1 for i in range(1, len(raw_datetimes))
+            if raw_datetimes[i] <= raw_datetimes[i - 1]
+        )
 
-        return BidAskBarSeries(
+        ts_arr = np.array(
+            [np.datetime64(dt) for dt in raw_datetimes],
+            dtype="datetime64[ns]",
+        )
+        o_arr = np.array([r["o"] for r in raw_rows], dtype=np.float64)
+        h_arr = np.array([r["h"] for r in raw_rows], dtype=np.float64)
+        l_arr = np.array([r["l"] for r in raw_rows], dtype=np.float64)
+        c_arr = np.array([r["c"] for r in raw_rows], dtype=np.float64)
+        v_arr = np.array([r["v"] for r in raw_rows], dtype=np.float64)
+
+        price_type = "BID_ASK" if has_bid_ask_cols else "BID_ONLY_OR_MID"
+
+        series = BidAskBarSeries(
             pair=pair, timeframe=timeframe, timestamps=ts_arr,
-            bid_open=o_arr, bid_high=h_arr, bid_low=l_arr, bid_close=c_arr,
+            bid_open=o_arr, bid_high=h_arr, bid_low=l_arr,
+            bid_close=c_arr,
             ask_open=o_arr.copy(), ask_high=h_arr.copy(),
             ask_low=l_arr.copy(), ask_close=c_arr.copy(),
             volume=v_arr,
         )
+
+        result = MT5ImportResult(
+            pair=pair,
+            price_type=price_type,
+            historical_spread_available=has_spread_col,
+            source_timezone=self._broker_tz_name,
+            rows=len(raw_rows),
+            duplicate_timestamps=dup_count,
+            non_monotonic=non_mono,
+        )
+        return series, result
 
     def download(
         self, pair: TradingPair, start: datetime, end: datetime,
