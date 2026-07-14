@@ -9,11 +9,10 @@ no-trade-window enforcement.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, time, timedelta, timezone
 from enum import Enum
-from typing import Sequence
-
 
 # All internal logic is UTC.  ET offsets are baked in as constants.
 _ET_OFFSET_HOURS = -5  # EST; DST not modeled — conservative
@@ -154,7 +153,10 @@ def is_high_impact_window(
             week = (timestamp.day - 1) // 7 + 1
             if week != ev.week_of_month:
                 continue
-        event_time = timestamp.replace(hour=ev.hour_utc, minute=ev.minute_utc, second=0, microsecond=0)
+        event_time = timestamp.replace(
+            hour=ev.hour_utc, minute=ev.minute_utc,
+            second=0, microsecond=0,
+        )
         window_start = event_time - timedelta(minutes=ev.buffer_minutes_before)
         window_end = event_time + timedelta(minutes=ev.buffer_minutes_after)
         if window_start <= timestamp <= window_end:
