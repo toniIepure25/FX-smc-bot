@@ -82,6 +82,26 @@ class AcquisitionManifest:
                 1 for p in self.partitions if p.status == "failed"
             ),
             "total_rows": sum(p.rows for p in self.partitions),
+            "partitions": [
+                {
+                    "pair": p.pair,
+                    "year": p.year,
+                    "month": p.month,
+                    "side": p.side,
+                    "status": p.status,
+                    "rows": p.rows,
+                    "checksum": p.checksum,
+                    "file_path": p.file_path,
+                    "file_size": p.file_size,
+                    "attempts": p.attempts,
+                    "error": p.error,
+                    "first_ts": p.first_ts,
+                    "last_ts": p.last_ts,
+                    "node_version": p.node_version,
+                    "package_version": p.package_version,
+                }
+                for p in self.partitions
+            ],
         }
 
 

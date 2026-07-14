@@ -1,10 +1,14 @@
 """Dukascopy-node M1 bid/ask acquisition CLI.
 
 Usage:
-    python scripts/acquire_dukascopy_node_history.py \
-        --pairs EURUSD GBPUSD USDJPY \
-        --start 2015-01-01 --end 2025-12-31 \
+    python scripts/acquire_dukascopy_node_history.py \\
+        --pairs EURUSD GBPUSD USDJPY \\
+        --start 2015-01-01 --end 2025-12-31 \\
         --output-dir data/real --dry-run
+
+    python scripts/acquire_dukascopy_node_history.py \\
+        --repair-missing --pair GBPUSD --year 2023 --month 06 \\
+        --output-dir data/real
 """
 from __future__ import annotations
 
@@ -24,24 +28,62 @@ logger = logging.getLogger("acquire_dukascopy_node")
 PAIR_MAP = {"EURUSD": "EURUSD", "GBPUSD": "GBPUSD", "USDJPY": "USDJPY"}
 
 
+def _run_repair(args: argparse.Namespace) -> None:
+    from fx_smc_bot.data.daily_checkpoint import repair_month
+
+    raw_dir = Path(args.output_dir) / "raw" / "dukascopy-node"
+    results = []
+    for side in ("bid", "ask"):
+        logger.info(f"Repairing {args.pair}/{side}/{args.year}-{args.month:02d}")
+        r = repair_month(
+            args.pair, side, args.year, args.month, raw_dir,
+        )
+        results.append(r)
+        logger.info(f"  Repaired: {r['repaired']} days, remaining failed: {r['remaining_failed']}")
+
+    report_dir = Path("results/gate_c3f")
+    report_dir.mkdir(parents=True, exist_ok=True)
+    report_file = report_dir / "repair_report.json"
+    report_file.write_text(json.dumps(results, indent=2))
+    logger.info(f"Repair report: {report_file}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Acquire M1 bid/ask FX data via dukascopy-node",
     )
-    parser.add_argument("--pairs", nargs="+", required=True)
-    parser.add_argument("--start", required=True, help="YYYY-MM-DD")
-    parser.add_argument("--end", required=True, help="YYYY-MM-DD")
+    parser.add_argument("--pairs", nargs="+")
+    parser.add_argument("--start", help="YYYY-MM-DD")
+    parser.add_argument("--end", help="YYYY-MM-DD")
     parser.add_argument("--output-dir", default="data/real")
     parser.add_argument("--batch-size", type=int, default=5)
     parser.add_argument("--retries", type=int, default=5)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--validate-only", action="store_true")
+
+    parser.add_argument("--repair-missing", action="store_true")
+    parser.add_argument("--pair", help="Single pair for repair mode")
+    parser.add_argument("--year", type=int, help="Year for repair mode")
+    parser.add_argument("--month", type=int, help="Month for repair mode")
     args = parser.parse_args()
 
+    if args.repair_missing:
+        if not all([args.pair, args.year, args.month]):
+            logger.error("--repair-missing requires --pair, --year, --month")
+            sys.exit(1)
+        sys.path.insert(0, str(Path(__file__).resolve().parents[0] / ".." / "src"))
+        _run_repair(args)
+        return
+
+    if not args.pairs or not args.start or not args.end:
+        logger.error("--pairs, --start, and --end required for acquisition")
+        sys.exit(1)
+
     from fx_smc_bot.config import TradingPair
+    from fx_smc_bot.data.daily_checkpoint import acquire_month_daily
     from fx_smc_bot.data.dukascopy_node_provider import (
         AcquisitionManifest,
-        acquire_pair,
+        _month_range,
         plan_acquisition,
     )
 
@@ -79,17 +121,26 @@ def main() -> None:
     )
 
     for pair in pairs:
-        logger.info(f"=== Acquiring {pair.value} ===")
-        results = acquire_pair(
-            pair,
+        logger.info(f"=== Acquiring {pair.value} (daily checkpoints) ===")
+        for year, month in _month_range(
             start_dt.year, start_dt.month,
             end_dt.year, end_dt.month,
-            raw_dir,
-            timeframe="m1",
-            batch_size=args.batch_size,
-            retries=args.retries,
-        )
-        manifest.partitions.extend(results)
+        ):
+            for side in ("bid", "ask"):
+                logger.info(f"  {pair.value}/{side}/{year}-{month:02d}")
+                month_manifest = acquire_month_daily(
+                    pair.value, side, year, month, raw_dir,
+                    batch_size=args.batch_size,
+                    retries=args.retries,
+                )
+                from fx_smc_bot.data.dukascopy_node_provider import PartitionStatus
+                ps = PartitionStatus(
+                    pair=pair.value, year=year, month=month, side=side,
+                    status="complete" if month_manifest.compacted else "failed",
+                    rows=month_manifest.compacted_rows,
+                    checksum=month_manifest.compacted_checksum,
+                )
+                manifest.partitions.append(ps)
 
     manifest_dir = Path(args.output_dir) / "manifests" / "dukascopy-node"
     manifest_dir.mkdir(parents=True, exist_ok=True)
