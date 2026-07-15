@@ -4,14 +4,18 @@
  * Emits machine-readable JSON status records to stdout.
  * Designed to be called from the Python orchestration layer.
  *
- * Usage:
+ * Usage (single day):
  *   node acquire.mjs --instrument eurusd --from 2023-01-02 --to 2023-01-03 \
- *     --timeframe m1 --priceType bid --format csv --outDir ./output \
- *     --batchSize 5 --retries 5
+ *     --timeframe m1 --priceType bid --format json --outDir ./output
+ *
+ * Usage (bulk month — much faster, one process for whole month):
+ *   node acquire.mjs --instrument eurusd --from 2019-04-01 --to 2019-05-01 \
+ *     --timeframe m1 --priceType bid --format json --outDir ./output \
+ *     --batchSize 30 --retries 5 --pauseBetweenBatchesMs 200
  */
 import { getHistoricalRates } from 'dukascopy-node';
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
+import { writeFileSync, mkdirSync } from 'fs';
+import { join } from 'path';
 
 function parseArgs(argv) {
   const args = {};
@@ -38,8 +42,9 @@ async function main() {
   const priceType = args.priceType || 'bid';
   const format = args.format || 'json';
   const outDir = args.outDir || './output';
-  const batchSize = parseInt(args.batchSize || '5', 10);
+  const batchSize = parseInt(args.batchSize || '30', 10);
   const retries = parseInt(args.retries || '5', 10);
+  const pauseBetweenBatchesMs = parseInt(args.pauseBetweenBatchesMs || '200', 10);
   const useCache = args.cache !== 'false';
 
   const statusRecord = {
@@ -52,6 +57,7 @@ async function main() {
     format,
     batchSize,
     retries,
+    pauseBetweenBatchesMs,
     useCache,
     nodeVersion: process.version,
     packageVersion: '1.46.4',
@@ -73,7 +79,7 @@ async function main() {
       volumes: true,
       flats: false,
       batchSize,
-      pauseBetweenBatchesMs: 1000,
+      pauseBetweenBatchesMs,
       retryCount: retries,
       pauseBetweenRetriesMs: 1000,
       useCache,

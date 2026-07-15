@@ -9,6 +9,7 @@ import hashlib
 import json
 import logging
 import subprocess
+import threading
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -131,11 +132,14 @@ def _download_single_day(
     next_date_str: str,
     side: str,
     timeframe: str = "m1",
-    batch_size: int = 5,
+    batch_size: int = 10,
     retries: int = 5,
+    pause_between_batches_ms: int = 200,
+    worker_id: int | None = None,
 ) -> tuple[list[dict], str]:
     """Download one day of data. Returns (rows_list, error_string)."""
-    tmp_out = TOOL_DIR / "_tmp_download"
+    suffix = f"_{worker_id}" if worker_id is not None else f"_{threading.current_thread().ident}"
+    tmp_out = TOOL_DIR / f"_tmp_download{suffix}"
     cmd = [
         "node", str(TOOL_DIR / "acquire.mjs"),
         "--instrument", instrument,
@@ -147,11 +151,94 @@ def _download_single_day(
         "--outDir", str(tmp_out),
         "--batchSize", str(batch_size),
         "--retries", str(retries),
+        "--pauseBetweenBatchesMs", str(pause_between_batches_ms),
     ]
 
     try:
         result = subprocess.run(
             cmd, capture_output=True, text=True, timeout=300,
+            cwd=str(TOOL_DIR),
+        )
+
+        for line in result.stdout.strip().split("\n"):
+            if not line.strip():
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+
+            if record.get("type") == "acquisition_complete":
+                out_path_str = record.get("outFile", "")
+                src_file = Path(out_path_str)
+                if not src_file.is_absolute():
+                    src_file = TOOL_DIR / src_file
+                if src_file.exists():
+                    data = json.loads(src_file.read_text())
+                    src_file.unlink(missing_ok=True)
+                    return data, ""
+                return [], ""
+
+            if record.get("type") == "acquisition_error":
+                return [], record.get("error", "unknown")
+
+        if result.returncode != 0:
+            err = result.stderr[:300] if result.stderr else ""
+            return [], err or f"exit code {result.returncode}"
+
+        return [], ""
+
+    except subprocess.TimeoutExpired:
+        return [], "timeout"
+    except Exception as exc:
+        return [], str(exc)[:300]
+
+
+def _download_month_bulk(
+    instrument: str,
+    year: int,
+    month: int,
+    side: str,
+    timeframe: str = "m1",
+    batch_size: int = 30,
+    retries: int = 5,
+    pause_between_batches_ms: int = 200,
+) -> tuple[list[dict], str]:
+    """Download an entire month in ONE Node.js call. Much faster than per-day.
+
+    Returns (rows_list, error_string). The rows contain timestamps that span
+    the full month; the caller splits them into daily checkpoints.
+    """
+    import calendar
+
+    days_in_month = calendar.monthrange(year, month)[1]
+    date_from = f"{year}-{month:02d}-01"
+    if month == 12:
+        date_to = f"{year + 1}-01-01"
+    else:
+        date_to = f"{year}-{month + 1:02d}-01"
+
+    suffix = f"_{threading.current_thread().ident}"
+    tmp_out = TOOL_DIR / f"_tmp_download{suffix}"
+    cmd = [
+        "node", str(TOOL_DIR / "acquire.mjs"),
+        "--instrument", instrument,
+        "--from", date_from,
+        "--to", date_to,
+        "--timeframe", timeframe,
+        "--priceType", side,
+        "--format", "json",
+        "--outDir", str(tmp_out),
+        "--batchSize", str(batch_size),
+        "--retries", str(retries),
+        "--pauseBetweenBatchesMs", str(pause_between_batches_ms),
+    ]
+
+    timeout = max(600, days_in_month * 30)
+
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=timeout,
             cwd=str(TOOL_DIR),
         )
 
