@@ -18,10 +18,12 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import logging
 import os
 import signal
+import subprocess
 import sys
 import threading
 import time
@@ -91,6 +93,8 @@ class PersistentRunner:
         self._heartbeat_thread: threading.Thread | None = None
         self._rate_limiter = RateLimiter()
         self._partition_lock = PartitionLock(state_dir)
+        self._config_hash = self._compute_config_hash()
+        self._git_sha = self._read_git_sha()
 
     def _pid_path(self) -> Path:
         return self.state_dir / "runner.pid"
@@ -100,6 +104,41 @@ class PersistentRunner:
 
     def _progress_path(self) -> Path:
         return self.state_dir / "progress.json"
+
+    def _compute_config_hash(self) -> str:
+        payload = {
+            "pairs": sorted(self.pairs),
+            "start": self.start,
+            "end": self.end,
+            "workers": self.workers,
+            "raw_dir": str(self.raw_dir),
+            "state_dir": str(self.state_dir),
+        }
+        encoded = json.dumps(payload, sort_keys=True).encode("utf-8")
+        return hashlib.sha256(encoded).hexdigest()
+
+    @staticmethod
+    def _read_git_sha() -> str:
+        repo_root = Path(__file__).resolve().parents[1]
+        try:
+            safe_directory = f"safe.directory={repo_root.as_posix()}"
+            return subprocess.check_output(
+                ["git", "-c", safe_directory, "rev-parse", "HEAD"],
+                cwd=repo_root,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+        except (OSError, subprocess.CalledProcessError):
+            git_dir = repo_root / ".git"
+            head_path = git_dir / "HEAD"
+            try:
+                head = head_path.read_text().strip()
+                if head.startswith("ref: "):
+                    ref = head.removeprefix("ref: ").strip()
+                    return (git_dir / ref).read_text().strip()
+                return head
+            except OSError:
+                return ""
 
     def _check_existing(self) -> bool:
         pid_path = self._pid_path()
@@ -139,6 +178,9 @@ class PersistentRunner:
             "last_error": self._last_error,
             "shutdown_requested": self._shutdown,
             "workers_configured": self.workers,
+            "configured_workers": self.workers,
+            "acquisition_configuration_hash": self._config_hash,
+            "git_sha": self._git_sha,
         }
         tmp = self._heartbeat_path().with_suffix(".tmp")
         try:
@@ -230,6 +272,7 @@ class PersistentRunner:
                 self._max_concurrent = concurrent
 
         try:
+            self._rate_limiter.wait()
             manifest = acquire_month_daily(
                 pair, side, year, month, self.raw_dir,
             )
@@ -446,8 +489,11 @@ def main() -> None:
     modes = sum([
         args.status, args.resume, args.retry_failed, args.repair_missing,
     ])
-    if modes > 1 and not args.status:
-        print("ERROR: --resume, --retry-failed, --repair-missing are mutually exclusive")
+    if modes > 1:
+        print(
+            "ERROR: --status, --resume, --retry-failed, and --repair-missing "
+            "are mutually exclusive"
+        )
         sys.exit(1)
 
     logging.basicConfig(

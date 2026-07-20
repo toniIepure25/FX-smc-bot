@@ -30,21 +30,23 @@ if (Test-Path $PidFile) {
 $PythonExe = (Get-Command python -ErrorAction Stop).Source
 $ScriptPath = Join-Path $RepoRoot "scripts\run_persistent_acquisition.py"
 
-$pairsArg = ($Pairs -join " ")
 $arguments = @(
     $ScriptPath,
-    "--pairs", $pairsArg,
+    "--pairs"
+)
+$arguments += $Pairs
+$arguments += @(
     "--start", $Start,
     "--end", $End,
     "--workers", $Workers,
-    "--resume",
     "--state-dir", (Join-Path $RepoRoot $StateDir),
     "--raw-dir", (Join-Path $RepoRoot $RawDir),
     "--log-dir", (Join-Path $RepoRoot $LogDir)
 )
 
 if ($RetryFailed) { $arguments += "--retry-failed" }
-if ($RepairMissing) { $arguments += "--repair-missing" }
+elseif ($RepairMissing) { $arguments += "--repair-missing" }
+else { $arguments += "--resume" }
 
 $logDir = Join-Path $RepoRoot $LogDir
 if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }

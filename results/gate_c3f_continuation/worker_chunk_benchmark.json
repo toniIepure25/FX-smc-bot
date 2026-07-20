@@ -1,0 +1,19 @@
+{
+  "gate": "C.3F-R",
+  "planned_configurations": [
+    1,
+    2,
+    3
+  ],
+  "preliminary": {
+    "concurrent_proof": "Heartbeat shows 2 active_tasks simultaneously",
+    "default_recommendation": 2,
+    "max_observed_concurrent_tasks": 2,
+    "rationale": "CDN rate-limits above 2-3 concurrent requests",
+    "workers_configured": 2
+  },
+  "reason": "Formal benchmark requires same uncached units across configurations. 2019 acquisition in progress.",
+  "status": "DEFERRED_PENDING_ACQUISITION_COMPLETION",
+  "timestamp": "2026-07-14T15:10:00Z",
+  "units_per_config": 4
+}

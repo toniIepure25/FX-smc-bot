@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 import threading
 import time
@@ -158,6 +159,9 @@ class TestPeriodicHeartbeat:
         assert "ppid" in hb
         assert "active_worker_count" in hb
         assert "max_observed_concurrent_tasks" in hb
+        assert hb["configured_workers"] == 1
+        assert len(hb["acquisition_configuration_hash"]) == 64
+        assert "git_sha" in hb
 
 
 class TestStatusClassifier:
@@ -241,3 +245,48 @@ class TestHoldoutEventRejection:
             assert word not in source.lower(), (
                 f"Runner source references '{word}'"
             )
+
+
+class TestCliModeValidation:
+    def test_status_and_resume_cannot_be_combined(self, tmp_path: Path) -> None:
+        script = (
+            Path(__file__).resolve().parents[2]
+            / "scripts" / "run_persistent_acquisition.py"
+        )
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "--status",
+                "--resume",
+                "--state-dir",
+                str(tmp_path / "state"),
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+        assert result.returncode == 1
+        assert "mutually exclusive" in result.stdout
+
+
+class TestWindowsLauncherScripts:
+    def test_start_script_does_not_collapse_pairs(self) -> None:
+        script = (
+            Path(__file__).resolve().parents[2]
+            / "scripts" / "start_acquisition.ps1"
+        ).read_text()
+
+        assert "$pairsArg" not in script
+        assert "$arguments += $Pairs" in script
+        assert 'else { $arguments += "--resume" }' in script
+
+    def test_stop_script_does_not_assign_reserved_pid(self) -> None:
+        script = (
+            Path(__file__).resolve().parents[2]
+            / "scripts" / "stop_acquisition.ps1"
+        ).read_text()
+
+        assert "$RunnerPid" in script
+        assert "$pid =" not in script.lower()

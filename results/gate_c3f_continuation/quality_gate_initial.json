@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-07-20T10:41:40.287574+00:00",
+  "mypy": {
+    "command": "python -m mypy src",
+    "result": "failed: 20 pre-existing errors in 18 files"
+  },
+  "node_test": {
+    "command": "node --test tools/dukascopy-node/test_acquire.mjs",
+    "result": "2 passed"
+  },
+  "npm_audit": {
+    "command": "npm --prefix tools/dukascopy-node audit --omit=dev",
+    "pnpm_audit_attempt": "failed: no pnpm-lock.yaml for npm-lockfile project",
+    "result": "not run: npm unavailable in this execution environment"
+  },
+  "pytest": {
+    "initial_default_temp_result": "550 passed, 86 setup errors, 52 warnings",
+    "pytest_version": "pytest 8.4.1",
+    "root_cause": "default pytest temp directory unreadable by current Windows user",
+    "workspace_temp_result": "636 passed, 92 warnings"
+  },
+  "ruff": {
+    "command": "python -m ruff check src/fx_smc_bot/data scripts",
+    "result": "failed: 894 pre-existing errors across broad scripts/data surface"
+  }
+}
