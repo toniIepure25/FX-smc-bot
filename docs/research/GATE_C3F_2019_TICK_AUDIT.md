@@ -1,5 +1,5 @@
 # Gate C.3F 2019 Tick Audit
 
-Status: `NOT_RUN`.
+Status: `NOT_RUN_FIRST_PASS_ACTIVE`.
 
-The 2019 pair-year datasets are certified, but the frozen tick audit was not launched during this continuation because the development historical acquisition is actively using the provider. No windows, tolerances, or seeds were modified.
+The frozen 2019 windows and tolerances remain preserved from `results/gate_c3f/2019_tick_audit.json`. The audit was not run because the first-pass development acquisition is actively using the provider.

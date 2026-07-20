@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-07-20T11:29:32.814182+00:00",
+  "current_retryable_failed_monthly_side_units": 34,
+  "current_retryable_failure_days": 90,
+  "current_terminal_failure_days": 67,
+  "reason": "First acquisition pass is still RUNNING_HEALTHY. Retry/repair must wait for terminal first-pass state to avoid duplicate scheduling.",
+  "status": "NOT_RUN_FIRST_PASS_ACTIVE"
+}

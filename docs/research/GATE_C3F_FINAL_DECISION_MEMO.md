@@ -2,4 +2,4 @@
 
 Decision: `2019_CERTIFIED_FULL_DEVELOPMENT_PENDING`.
 
-The runner is alive and acquiring the missing development-period data with bounded workers. 2019 remains certified for all three pairs. Full development certification, full tick audit, event smoke test, and dataset freeze are not complete and must not be represented as complete.
+The 2015-2018 first acquisition pass is still running in a healthy detached process. 2019 remains certified for all three pairs, but retry/repair, tick audits, event-only smoke test, full development certification, research-universe selection, and READY freeze are incomplete.

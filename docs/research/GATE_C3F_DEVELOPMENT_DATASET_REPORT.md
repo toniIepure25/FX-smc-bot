@@ -1,9 +1,9 @@
 # Gate C.3F Development Dataset Report
 
-Generated: 2026-07-20T11:12:53.173695+00:00
+Generated: 2026-07-20T11:29:32.814182+00:00
 
-Acquisition runner status: `RUNNING_HEALTHY` with PID `20532`. Heartbeat shows `active_worker_count=2`, `max_observed_concurrent_tasks=2`, and Git SHA `c23a6b2323869761f172e685ac291d76e20ff25e`.
+Runner state: `RUNNING_HEALTHY`. PID `20532` is preserved, heartbeat age is `2.6` seconds, active tasks are `['EURUSD/ask/2016-03', 'EURUSD/bid/2016-04']`, and `max_observed_concurrent_tasks=2`.
 
-Coverage snapshot: 2015 EURUSD is complete for all bid/ask months; 2019 is complete and certified for EURUSD, GBPUSD, and USDJPY. EURUSD 2016-2018 plus GBPUSD/USDJPY 2015-2018 remain pending. No holdout event or strategy access occurred.
+Manifest progress: `101/360` monthly-side units complete and `50/180` pair-months complete. Retry/repair has not run because the first pass is still active. Holdout alpha remains untouched.
 
-Development dataset certification remains pending. Pair-level certifications are all `PENDING`; no research universe has been selected.
+Full development certification remains pending. Pair-level decisions are `PENDING`, and no research universe has been selected.
