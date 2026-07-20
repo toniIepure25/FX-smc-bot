@@ -1,7 +1,9 @@
 # Gate C.3F Development Dataset Report
 
-Status: `FULL_DEVELOPMENT_DATASET_NOT_CERTIFIED`.
+Generated: 2026-07-20T11:12:53.173695+00:00
 
-2019 is certified for EURUSD, GBPUSD, and USDJPY. The 2015-2018 development interval is incomplete: only EURUSD January-August 2015 has complete bid/ask monthly manifests. GBPUSD and USDJPY have no compacted 2015-2018 months in the local persisted manifests.
+Acquisition runner status: `RUNNING_HEALTHY` with PID `20532`. Heartbeat shows `active_worker_count=2`, `max_observed_concurrent_tasks=2`, and Git SHA `c23a6b2323869761f172e685ac291d76e20ff25e`.
 
-No pair is selected for the final research universe because the full 2015-2019 development dataset is not complete and cannot be frozen.
+Coverage snapshot: 2015 EURUSD is complete for all bid/ask months; 2019 is complete and certified for EURUSD, GBPUSD, and USDJPY. EURUSD 2016-2018 plus GBPUSD/USDJPY 2015-2018 remain pending. No holdout event or strategy access occurred.
+
+Development dataset certification remains pending. Pair-level certifications are all `PENDING`; no research universe has been selected.

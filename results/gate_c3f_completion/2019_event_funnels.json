@@ -1,0 +1,6 @@
+{
+  "created_at": "2026-07-20T11:12:53.173695+00:00",
+  "performance_fields_present": false,
+  "reason": "Requires accepted 2019 tick-audit gate; no performance fields produced.",
+  "status": "NOT_RUN"
+}

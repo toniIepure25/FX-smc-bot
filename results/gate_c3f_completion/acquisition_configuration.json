@@ -1,0 +1,15 @@
+{
+  "chunk_size": "daily",
+  "configuration_hash": "78685b952c2b0940b28ae386053d9ee4eb33d7f96625250ce4c80405bc6aa506",
+  "created_at": "2026-07-20T11:00:45.783868+00:00",
+  "daily_max_retries": 3,
+  "flat_bar_policy": "existing daily checkpoint/market-calendar classification",
+  "output_precision": "dukascopy-node raw JSON plus existing canonical conversion rules",
+  "pause_between_batches_ms": 200,
+  "rate_limit_min_interval_seconds": 1.0,
+  "reason": "Use proven stable checkpoint path; no measured evidence yet that current throughput is materially poor.",
+  "retry_count_provider": 5,
+  "selected_mode": "daily_checkpoint_resume",
+  "timeout": "provider default from existing wrapper",
+  "workers": 2
+}
