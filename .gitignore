@@ -88,3 +88,4 @@ logs/
 /tools/dukascopy-node/smoke_test/
 /tools/dukascopy-node/test_out/
 /tools/dukascopy-node/output/
+/tools/dukascopy-node/_tmp_*

@@ -135,6 +135,66 @@ class TestRetryFailedMode:
         assert runner._has_retryable_failures("EURUSD", "bid", 2019, 1)
 
 
+class TestRepairMissingMode:
+    def test_repair_missing_processes_compacted_incomplete_partition(
+        self, tmp_path: Path,
+    ) -> None:
+        from fx_smc_bot.data.daily_checkpoint import (
+            DayStatus,
+            save_month_manifest,
+        )
+
+        raw_dir = tmp_path / "raw"
+        bid_manifest = MonthManifest(
+            pair="EURUSD", side="bid", year=2019, month=1,
+            compacted=True, compacted_rows=100,
+        )
+        ask_manifest = MonthManifest(
+            pair="EURUSD", side="ask", year=2019, month=1,
+            compacted=True, compacted_rows=100,
+        )
+        for day_num in range(1, 32):
+            status = "complete"
+            failure_category = ""
+            error = ""
+            if day_num == 7:
+                status = "failed"
+                failure_category = "TRANSIENT_NETWORK_ERROR"
+                error = "fetch failed"
+            bid_manifest.days.append(DayStatus(
+                pair="EURUSD", side="bid", year=2019, month=1,
+                day=day_num, status=status, rows=1,
+                failure_category=failure_category, error=error,
+            ))
+            ask_manifest.days.append(DayStatus(
+                pair="EURUSD", side="ask", year=2019, month=1,
+                day=day_num, status="complete", rows=1,
+            ))
+        save_month_manifest(raw_dir, bid_manifest)
+        save_month_manifest(raw_dir, ask_manifest)
+
+        processed = []
+
+        def mock_acquire(pair, side, year, month, raw_dir, **kw):
+            processed.append((pair, side, year, month))
+            m = MonthManifest(pair=pair, side=side, year=year, month=month)
+            m.compacted = True
+            m.compacted_rows = 100
+            return m
+
+        with patch.object(runner_mod, "acquire_month_daily", mock_acquire):
+            runner = PersistentRunner(
+                pairs=["EURUSD"], start="2019-01-01",
+                end="2019-01-31", workers=1, raw_dir=raw_dir,
+                state_dir=tmp_path / "state", log_dir=tmp_path / "logs",
+            )
+            runner._rate_limiter = RateLimiter(min_interval=0.0)
+            result = runner.run_repair_missing()
+
+        assert processed == [("EURUSD", "bid", 2019, 1)]
+        assert result["completed"] == 1
+
+
 class TestPeriodicHeartbeat:
     def test_heartbeat_written_periodically(
         self, tmp_path: Path,
@@ -184,6 +244,11 @@ class TestStatusClassifier:
         (tmp_path / "heartbeat.json").write_text(json.dumps(hb))
         st = PersistentRunner.get_status(tmp_path)
         assert st["classifier"] == "FINISHED"
+
+    def test_malformed_heartbeat_does_not_crash(self, tmp_path: Path) -> None:
+        (tmp_path / "heartbeat.json").write_text('{"pid": 1}}')
+        st = PersistentRunner.get_status(tmp_path)
+        assert "heartbeat_error" in st
 
 
 class TestNoDuplicatePartitionScheduling:

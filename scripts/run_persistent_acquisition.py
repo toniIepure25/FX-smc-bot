@@ -43,6 +43,7 @@ from fx_smc_bot.data.daily_checkpoint import (  # noqa: E402
     acquire_month_daily,
     find_missing_days,
     load_month_manifest,
+    save_month_manifest,
 )
 from fx_smc_bot.data.dukascopy_node_provider import (  # noqa: E402
     _month_range,
@@ -406,6 +407,12 @@ class PersistentRunner:
                 self.raw_dir, pair, side, year, month,
             )
             if missing:
+                manifest = load_month_manifest(
+                    self.raw_dir, pair, side, year, month,
+                )
+                if manifest and manifest.compacted:
+                    manifest.compacted = False
+                    save_month_manifest(self.raw_dir, manifest)
                 to_repair.append((pair, side, year, month))
 
         logger.info(f"Repair-missing: {len(to_repair)} partitions need repair")
@@ -434,25 +441,30 @@ class PersistentRunner:
                 status["classifier"] = "STALE_PID_FILE"
 
         if hb_path.exists():
-            hb = json.loads(hb_path.read_text())
-            status["heartbeat"] = hb
-            hb_ts = hb.get("timestamp", "")
-            if hb_ts:
-                try:
-                    hb_dt = datetime.fromisoformat(hb_ts)
-                    age_s = (
-                        datetime.now(timezone.utc) - hb_dt
-                    ).total_seconds()
-                    status["heartbeat_age_seconds"] = round(age_s, 1)
-                    if pid_alive:
-                        if age_s < HEARTBEAT_INTERVAL_S * 3:
-                            status["classifier"] = "RUNNING_HEALTHY"
-                        else:
-                            status["classifier"] = "RUNNING_STALE_HEARTBEAT"
-                    elif hb.get("shutdown_requested"):
-                        status["classifier"] = "FINISHED"
-                except (ValueError, TypeError):
-                    pass
+            try:
+                hb = json.loads(hb_path.read_text())
+            except json.JSONDecodeError as exc:
+                status["heartbeat_error"] = f"malformed heartbeat: {exc}"
+                hb = None
+            if hb is not None:
+                status["heartbeat"] = hb
+                hb_ts = hb.get("timestamp", "")
+                if hb_ts:
+                    try:
+                        hb_dt = datetime.fromisoformat(hb_ts)
+                        age_s = (
+                            datetime.now(timezone.utc) - hb_dt
+                        ).total_seconds()
+                        status["heartbeat_age_seconds"] = round(age_s, 1)
+                        if pid_alive:
+                            if age_s < HEARTBEAT_INTERVAL_S * 3:
+                                status["classifier"] = "RUNNING_HEALTHY"
+                            else:
+                                status["classifier"] = "RUNNING_STALE_HEARTBEAT"
+                        elif hb.get("shutdown_requested"):
+                            status["classifier"] = "FINISHED"
+                    except (ValueError, TypeError):
+                        pass
 
         if prog_path.exists():
             status["progress"] = json.loads(prog_path.read_text())
