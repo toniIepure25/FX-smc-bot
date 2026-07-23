@@ -1,0 +1,125 @@
+{
+  "no_subgroup_selected": true,
+  "stability_dimensions": {
+    "direction": {
+      "LONG": {
+        "absolute_event_markout": -1.0594679186229485,
+        "event_control_difference": 14.938967136150277,
+        "n": 1278,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "SHORT": {
+        "absolute_event_markout": -6.538726333907276,
+        "event_control_difference": 12.451807228915328,
+        "n": 1162,
+        "qualitative_mechanism": "relative_resilience"
+      }
+    },
+    "overlap_status": {
+      "non_overlap": {
+        "absolute_event_markout": -3.66885245901655,
+        "event_control_difference": 13.754508196721174,
+        "n": 2440,
+        "qualitative_mechanism": "relative_resilience"
+      }
+    },
+    "session": {
+      "asia": {
+        "absolute_event_markout": -4.667958656330767,
+        "event_control_difference": 17.997416020672027,
+        "n": 774,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "london": {
+        "absolute_event_markout": 2.131687242798008,
+        "event_control_difference": 18.166666666666128,
+        "n": 486,
+        "qualitative_mechanism": "absolute_and_relative_positive"
+      },
+      "new_york": {
+        "absolute_event_markout": 0.18739635157526488,
+        "event_control_difference": 5.59203980099453,
+        "n": 603,
+        "qualitative_mechanism": "absolute_and_relative_positive"
+      },
+      "other": {
+        "absolute_event_markout": -11.244367417677788,
+        "event_control_difference": 12.876949740034798,
+        "n": 577,
+        "qualitative_mechanism": "relative_resilience"
+      }
+    },
+    "spread_regime": {
+      "high": {
+        "absolute_event_markout": -17.865191146881845,
+        "event_control_difference": 0.23943661971776362,
+        "n": 497,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "low": {
+        "absolute_event_markout": 0.9853963838663737,
+        "event_control_difference": 20.689151599443555,
+        "n": 1438,
+        "qualitative_mechanism": "absolute_and_relative_positive"
+      },
+      "medium": {
+        "absolute_event_markout": -2.950495049504855,
+        "event_control_difference": 7.308910891089311,
+        "n": 505,
+        "qualitative_mechanism": "relative_resilience"
+      }
+    },
+    "volatility_regime": {
+      "high": {
+        "absolute_event_markout": -6.234643734643582,
+        "event_control_difference": 13.49877149877153,
+        "n": 814,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "low": {
+        "absolute_event_markout": -3.7174447174450793,
+        "event_control_difference": 15.292383292382814,
+        "n": 814,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "medium": {
+        "absolute_event_markout": -1.0480295566505056,
+        "event_control_difference": 12.469211822660135,
+        "n": 812,
+        "qualitative_mechanism": "relative_resilience"
+      }
+    },
+    "year": {
+      "2015": {
+        "absolute_event_markout": -3.512711864406602,
+        "event_control_difference": 30.15889830508492,
+        "n": 472,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "2016": {
+        "absolute_event_markout": 10.042105263157943,
+        "event_control_difference": 21.945263157895138,
+        "n": 475,
+        "qualitative_mechanism": "absolute_and_relative_positive"
+      },
+      "2017": {
+        "absolute_event_markout": -12.372233400402674,
+        "event_control_difference": 3.331991951709846,
+        "n": 497,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "2018": {
+        "absolute_event_markout": -8.214814814815197,
+        "event_control_difference": 6.327777777777202,
+        "n": 540,
+        "qualitative_mechanism": "relative_resilience"
+      },
+      "2019": {
+        "absolute_event_markout": -3.24342105263192,
+        "event_control_difference": 8.396929824561203,
+        "n": 456,
+        "qualitative_mechanism": "relative_resilience"
+      }
+    }
+  }
+}

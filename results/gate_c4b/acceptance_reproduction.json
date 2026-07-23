@@ -1,0 +1,135 @@
+{
+  "acceptance_primary_non_overlap_count": 2440,
+  "acceptance_total_event_count": 3977,
+  "comparisons": [
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 0,
+      "match_status": "MATCH",
+      "name": "event_count",
+      "original_value": 2440,
+      "reproduced_value": 2440
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 0,
+      "match_status": "MATCH",
+      "name": "acceptance_total_event_count",
+      "original_value": 3977,
+      "reproduced_value": 3977
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 0,
+      "match_status": "MATCH",
+      "name": "acceptance_primary_non_overlap_count",
+      "original_value": 2440,
+      "reproduced_value": 2440
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 1e-09,
+      "match_status": "MATCH",
+      "name": "absolute_executable_event_markout",
+      "original_value": -3.66885245901655,
+      "reproduced_value": -3.66885245901655
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 1e-09,
+      "match_status": "MATCH",
+      "name": "matched_control_executable_markout",
+      "original_value": -17.423360655737724,
+      "reproduced_value": -17.423360655737724
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 1e-09,
+      "match_status": "MATCH",
+      "name": "matched_control_differential",
+      "original_value": 13.754508196721174,
+      "reproduced_value": 13.754508196721174
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 1e-09,
+      "match_status": "MATCH",
+      "name": "discovery_differential",
+      "original_value": 18.22368421052636,
+      "reproduced_value": 18.22368421052636
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 1e-09,
+      "match_status": "MATCH",
+      "name": "replication_differential",
+      "original_value": 7.2751004016060214,
+      "reproduced_value": 7.2751004016060214
+    },
+    {
+      "absolute_difference": 0.0,
+      "deterministic_tolerance": 1e-09,
+      "match_status": "MATCH",
+      "name": "robustness_non_overlap",
+      "original_value": 13.754508196721174,
+      "reproduced_value": 13.754508196721174
+    },
+    {
+      "absolute_difference": null,
+      "deterministic_tolerance": null,
+      "match_status": "HASH_VERIFIED",
+      "name": "placebo_result",
+      "original_value": false,
+      "reproduced_value": "artifact_hash_verified"
+    }
+  ],
+  "reproduced_discovery_summary": {
+    "ci95_event_minus_control_points": [
+      7.608279941044278,
+      29.292777764902965
+    ],
+    "event_outperforms_control_probability": 0.5408587257617729,
+    "mean_control_executable_markout_points": -20.326869806094244,
+    "mean_control_mid_return_points": -16.074445983379512,
+    "mean_event_executable_markout_points": -2.103185595567882,
+    "mean_event_mid_return_points": 2.134349030470938,
+    "mean_event_minus_control_points": 18.22368421052636,
+    "n": 1444,
+    "paired_permutation_p_value": 0.02048975512243878,
+    "positive_control_probability": 0.4265927977839335,
+    "positive_event_probability": 0.47645429362880887
+  },
+  "reproduced_primary_summary": {
+    "ci95_event_minus_control_points": [
+      6.798095384417963,
+      20.80758065249811
+    ],
+    "event_outperforms_control_probability": 0.5315573770491804,
+    "mean_control_executable_markout_points": -17.423360655737724,
+    "mean_control_mid_return_points": -13.478073770491832,
+    "mean_event_executable_markout_points": -3.66885245901655,
+    "mean_event_mid_return_points": 0.2961065573769135,
+    "mean_event_minus_control_points": 13.754508196721174,
+    "n": 2440,
+    "paired_permutation_p_value": 0.005497251374312844,
+    "positive_control_probability": 0.430327868852459,
+    "positive_event_probability": 0.46352459016393444
+  },
+  "reproduced_replication_summary": {
+    "ci95_event_minus_control_points": [
+      -0.5664576752117559,
+      14.731018903145278
+    ],
+    "event_outperforms_control_probability": 0.5180722891566265,
+    "mean_control_executable_markout_points": -13.213855421686706,
+    "mean_control_mid_return_points": -9.713855421686802,
+    "mean_event_executable_markout_points": -5.938755020080684,
+    "mean_event_mid_return_points": -2.3689759036148264,
+    "mean_event_minus_control_points": 7.2751004016060214,
+    "n": 996,
+    "paired_permutation_p_value": 0.17091454272863568,
+    "positive_control_probability": 0.4357429718875502,
+    "positive_event_probability": 0.44477911646586343
+  },
+  "status": "PASS"
+}

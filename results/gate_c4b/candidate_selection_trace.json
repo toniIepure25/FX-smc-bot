@@ -1,0 +1,21 @@
+{
+  "class_pass_fail": {
+    "CONTRARIAN_ACCEPTANCE": false,
+    "COST_LIMITED_CONTINUATION": false,
+    "LATE_CONFIRMATION_DECAY": false,
+    "RELATIVE_RESILIENCE": true
+  },
+  "final_decision": "ACCEPTANCE_RELATIVE_RESILIENCE_HYPOTHESIS_FROZEN_FOR_VALIDATION",
+  "mechanistic_precedence": [
+    "COST_LIMITED_CONTINUATION",
+    "RELATIVE_RESILIENCE",
+    "CONTRARIAN_ACCEPTANCE",
+    "LATE_CONFIRMATION_DECAY",
+    "NO_ACTIONABLE_MECHANISM"
+  ],
+  "passed_classes": [
+    "RELATIVE_RESILIENCE"
+  ],
+  "selected_mechanism": "RELATIVE_RESILIENCE",
+  "selection_not_based_on_effect_magnitude": true
+}

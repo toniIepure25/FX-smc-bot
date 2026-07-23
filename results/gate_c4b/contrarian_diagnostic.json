@@ -1,0 +1,24 @@
+{
+  "flipped_direction_absolute_markout": -4.261065573770377,
+  "flipped_discovery_absolute_markout": -6.37188365650976,
+  "flipped_matched_control_differential": -13.793852459016316,
+  "flipped_replication_absolute_markout": -1.2008032128510322,
+  "flipped_year_by_year_absolute_markout": {
+    "2015": -5.023305084746416,
+    "2016": -20.18315789473685,
+    "2017": 5.5472837022137185,
+    "2018": 0.7555555555558473,
+    "2019": -3.517543859648653
+  },
+  "original_direction_absolute_markout": -3.66885245901655,
+  "original_matched_control_differential": 13.754508196721174,
+  "placebo_relationship": "C4 direction-flip placebo is diagnostic only; this C4-B flip uses executable bid/ask-equivalent identity",
+  "requirements": {
+    "flipped_discovery_positive": false,
+    "flipped_executable_positive": false,
+    "flipped_replication_positive": false,
+    "latency_supports_reversal": false,
+    "non_overlap_positive": true,
+    "not_dominated_by_one_year": true
+  }
+}

@@ -201,6 +201,8 @@ def acceptance_reproduction(paths: GateC4BPaths, merged: pd.DataFrame) -> dict[s
     replication = summarize_markouts(sample[sample["year"].isin(REPLICATION_YEARS)])
     comparisons = [
         compare("event_count", c4_estimands["n_events"], summary["n"], 0),
+        compare("acceptance_total_event_count", 3977, int(len(merged)), 0),
+        compare("acceptance_primary_non_overlap_count", c4_estimands["n_events"], len(sample), 0),
         compare(
             "absolute_executable_event_markout",
             c4_estimands["mean_event_markout_points"],
@@ -253,6 +255,8 @@ def acceptance_reproduction(paths: GateC4BPaths, merged: pd.DataFrame) -> dict[s
         if all(row["match_status"] in {"MATCH", "HASH_VERIFIED"} for row in comparisons)
         else "FAIL",
         "comparisons": comparisons,
+        "acceptance_total_event_count": int(len(merged)),
+        "acceptance_primary_non_overlap_count": int(len(sample)),
         "reproduced_primary_summary": summary,
         "reproduced_discovery_summary": discovery,
         "reproduced_replication_summary": replication,

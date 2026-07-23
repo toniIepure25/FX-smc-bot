@@ -1,0 +1,30 @@
+{
+  "available_fields": [
+    "confirmation_index",
+    "earliest_entry_index",
+    "source_level",
+    "subtype",
+    "primary_executable_markout_points"
+  ],
+  "discovery_post_entry_continuation_points": -2.103185595567882,
+  "fraction_of_eventual_move_before_admissible_entry": null,
+  "fraction_of_eventual_move_before_confirmation": null,
+  "mean_post_entry_continuation_points": -3.66885245901655,
+  "mean_time_from_break_to_confirmation_minutes": 5.0,
+  "mean_time_from_confirmation_to_entry_minutes": 5.0,
+  "replication_post_entry_continuation_points": -5.938755020080684,
+  "status": "PARTIAL_FROM_FROZEN_EVENT_TABLE",
+  "timing_decay_requirements": {
+    "discovery_replication_same_qualitative_decay": true,
+    "lifecycle_price_data_sufficient": false,
+    "no_retroactive_entry_rule": true,
+    "post_entry_continuation_non_positive": true,
+    "pre_entry_move_fraction_material": false
+  },
+  "unavailable_fields": [
+    "break_price",
+    "confirmation_price",
+    "entry_price",
+    "pre_confirmation_bar_prices"
+  ]
+}
