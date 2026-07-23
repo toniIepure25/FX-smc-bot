@@ -1,0 +1,160 @@
+{
+  "blocked_by": [
+    {
+      "field": "matching_balance_threshold",
+      "reason": "C4 reports max absolute SMD and covariate balance but no prospectively frozen pass/fail balance threshold was found in C4 or C4-B artifacts.",
+      "severity": "MANDATORY_RULE_UNRECOVERABLE"
+    },
+    {
+      "field": "exact_matching_and_no_match_policy",
+      "reason": "C4-B handoff states exact year/month/session/direction matching, while the inherited C4 implementation groups candidates by year/month/session and contains fallback relaxation when no exact candidates exist. C5 prohibits relaxing exact keys, so the executable no-match policy is ambiguous before validation access.",
+      "severity": "MANDATORY_RULE_CONFLICT"
+    },
+    {
+      "field": "ci_success_rule",
+      "reason": "The handoff names day-cluster bootstrap CI, but neither C4-B handoff nor C4 preregistration states whether CI exclusion of zero is mandatory for validating the C4-B relative-resilience hypothesis.",
+      "severity": "MANDATORY_RULE_UNRECOVERABLE"
+    },
+    {
+      "field": "placebo_relative_resilience_failure_rule",
+      "reason": "C4 placebo reproduces primary positive event direction with a 0.5x rule, but the C4-B relative-resilience handoff requires placebo not reproduced without a hash-verifiable rule for the event-minus-control relative-resilience differential under validation.",
+      "severity": "MANDATORY_RULE_UNRECOVERABLE"
+    }
+  ],
+  "decision_matrix_complete": false,
+  "final_decision": "BLOCKED_BY_VALIDATION_HANDOFF_AMBIGUITY",
+  "gate": "C.5",
+  "mandatory_criteria": [
+    {
+      "comparison_operator": "equals",
+      "criterion": "hypothesis_id",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/new_hypothesis_specification.json",
+      "source_field": "hypothesis_id",
+      "source_hash": "a95ec153d73150564529ca2720d570103b33507225af0218dd36be7fa53f01bc",
+      "threshold": "C4B_USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_V1"
+    },
+    {
+      "comparison_operator": "equals",
+      "criterion": "hypothesis_hash",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/new_hypothesis_specification.json",
+      "source_field": "hypothesis_hash",
+      "source_hash": "a95ec153d73150564529ca2720d570103b33507225af0218dd36be7fa53f01bc",
+      "threshold": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d"
+    },
+    {
+      "comparison_operator": "equals",
+      "criterion": "pair",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/untouched_validation_handoff.json",
+      "source_field": "pair",
+      "source_hash": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+      "threshold": "USDJPY"
+    },
+    {
+      "comparison_operator": "within_closed_interval",
+      "criterion": "validation_period",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/untouched_validation_handoff.json",
+      "source_field": "validation_period",
+      "source_hash": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+      "threshold": "2020-01-01 through 2022-12-31"
+    },
+    {
+      "comparison_operator": "equals",
+      "criterion": "primary_horizon_minutes",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/untouched_validation_handoff.json",
+      "source_field": "primary_horizon_minutes",
+      "source_hash": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+      "threshold": 120
+    },
+    {
+      "comparison_operator": "greater_than_or_equal",
+      "criterion": "minimum_event_count_sample",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/untouched_validation_handoff.json",
+      "source_field": "minimum_event_count + overlap_policy",
+      "source_hash": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+      "threshold": "40 on primary non-overlap sample"
+    },
+    {
+      "comparison_operator": "greater_than",
+      "criterion": "event_minus_control_executable_markout",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/untouched_validation_handoff.json",
+      "source_field": "success_threshold",
+      "source_hash": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+      "threshold": 0
+    },
+    {
+      "comparison_operator": "less_than_or_equal",
+      "criterion": "absolute_event_executable_markout",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/untouched_validation_handoff.json",
+      "source_field": "success_threshold",
+      "source_hash": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+      "threshold": 0
+    },
+    {
+      "comparison_operator": "less_than_or_equal",
+      "criterion": "paired_permutation_alpha",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED_BY_C4_INHERITANCE",
+      "source_artifact": "results/gate_c4/preregistration.json",
+      "source_field": "core.decision_rules.confirmed",
+      "source_hash": "97f6c0e8ec11afc58c0139d5d267ed995987e50bf809f9d4b3a2b3ac5e03256c",
+      "threshold": 0.05
+    },
+    {
+      "comparison_operator": "undefined",
+      "criterion": "day_cluster_ci_success_rule",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "UNRESOLVED",
+      "source_artifact": "results/gate_c4b/untouched_validation_handoff.json",
+      "source_field": "confidence_interval",
+      "source_hash": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+      "threshold": null
+    },
+    {
+      "comparison_operator": "undefined",
+      "criterion": "matching_balance_threshold",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "UNRESOLVED",
+      "source_artifact": "results/gate_c4/control_matching_audit.json",
+      "source_field": "max_abs_standardized_mean_difference",
+      "source_hash": "21f491047a6a1476532ca7e44c86b0e8d04e971c0f0d6706977d42eac90bf54d",
+      "threshold": null
+    },
+    {
+      "comparison_operator": "undefined",
+      "criterion": "no_match_policy",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "UNRESOLVED_CONFLICTING_INHERITANCE",
+      "source_artifact": "src/fx_smc_bot/research/gate_c4_event_alpha.py",
+      "source_field": "match_controls",
+      "source_hash": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+      "threshold": null
+    },
+    {
+      "comparison_operator": "equals",
+      "criterion": "holdout_unopened",
+      "mandatory_or_diagnostic": "mandatory",
+      "resolution_status": "RESOLVED",
+      "source_artifact": "results/gate_c4b/split_integrity.json",
+      "source_field": "holdout_*",
+      "source_hash": "bee8b431fbb23cdc1ead9ed2705dc171324fa9eed8ca530b3a9a51075d972db7",
+      "threshold": false
+    }
+  ],
+  "validation_or_holdout_accessed": false
+}

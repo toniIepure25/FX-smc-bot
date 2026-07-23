@@ -1,0 +1,25 @@
+{
+  "final_decision": "BLOCKED_BY_VALIDATION_HANDOFF_AMBIGUITY",
+  "git_diff_check": {
+    "status": "PASS",
+    "summary": "git diff --check passed after C5 pre-unblinding block artifacts were created"
+  },
+  "json_artifacts": {
+    "status": "PASS",
+    "summary": "repository_state, hypothesis_integrity, and validation_decision_matrix parsed with python -m json.tool"
+  },
+  "node_npm": {
+    "status": "NOT_RUN_BLOCKED_BEFORE_PROTOCOL_FREEZE",
+    "summary": "C5 stopped in Phase 1 before validation protocol freeze or validation access"
+  },
+  "pytest": {
+    "status": "NOT_RUN_BLOCKED_BEFORE_PROTOCOL_FREEZE",
+    "summary": "No C5 scientific code or protocol was frozen because the decision matrix was incomplete"
+  },
+  "ruff_mypy": {
+    "status": "NOT_RUN_BLOCKED_BEFORE_PROTOCOL_FREEZE",
+    "summary": "No C5 scientific code was added"
+  },
+  "status": "COMPLETE_BLOCKED_PRE_UNBLINDING",
+  "validation_or_holdout_accessed": false
+}
