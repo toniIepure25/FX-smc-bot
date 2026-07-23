@@ -1,0 +1,5 @@
+{
+  "reason": "Validation data quality failed before detector, matching, outcome, inference, or placebo execution.",
+  "status": "NOT_RUN_DATA_QUALITY_FAILED",
+  "validation_decision": "BLOCKED_BY_VALIDATION_DATA_QUALITY"
+}
