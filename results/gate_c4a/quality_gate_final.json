@@ -1,0 +1,50 @@
+{
+  "final_decision": "C4_MIXED_RESULT_UPHELD_DO_NOT_OPEN_VALIDATION",
+  "new_code_mde_not_used": true,
+  "new_code_no_validation_or_holdout_access": true,
+  "status": "COMPLETE",
+  "verification_commands": {
+    "bundled_node_test": {
+      "status": "PASS",
+      "summary": "2 tests passed with bundled node.exe"
+    },
+    "git_diff_check": {
+      "status": "PASS",
+      "summary": "no whitespace errors"
+    },
+    "mypy_c4a_file": {
+      "status": "PASS",
+      "summary": "Success: no issues found in 1 source file"
+    },
+    "mypy_requested_scope": {
+      "status": "FAIL_PRE_EXISTING",
+      "summary": "3 missing stub errors: scipy in statistical_inference.py and overfitting.py, yaml in experiments.py"
+    },
+    "node_path_command": {
+      "status": "NOT_RUN_NODE_UNAVAILABLE_ON_PATH",
+      "summary": "node command not recognized on PATH"
+    },
+    "npm_audit_omit_dev": {
+      "status": "NOT_RUN_NPM_UNAVAILABLE",
+      "summary": "npm command not recognized on PATH"
+    },
+    "npm_test": {
+      "status": "NOT_RUN_NPM_UNAVAILABLE",
+      "summary": "npm command not recognized on PATH"
+    },
+    "pytest_full": {
+      "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_gate_c4a tests/ -q",
+      "status": "PASS",
+      "summary": "693 passed, 91 warnings"
+    },
+    "ruff_c4a_files": {
+      "command": "python -m ruff check scripts/run_gate_c4a*.py src/fx_smc_bot/research/gate_c4a_decision_audit.py tests/test_gate_c4a",
+      "status": "PASS",
+      "summary": "All checks passed"
+    },
+    "ruff_requested_scope": {
+      "status": "FAIL_PRE_EXISTING",
+      "summary": "124 existing Ruff issues in src/fx_smc_bot/research outside Gate C4-A additions"
+    }
+  }
+}
