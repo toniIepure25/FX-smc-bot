@@ -1,0 +1,177 @@
+{
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "pair_year_certifications": {
+    "EURUSD": {
+      "2015": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2016": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2017": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2018": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2019": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      }
+    },
+    "GBPUSD": {
+      "2015": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2016": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2017": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2018": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2019": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      }
+    },
+    "USDJPY": {
+      "2015": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2016": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2017": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2018": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      },
+      "2019": {
+        "canonical_status": "SEE_GATE_C3FV",
+        "certification": "PAIR_YEAR_EXPLORATORY_ONLY",
+        "coverage": "SEE_GATE_C3FV",
+        "excluded_days": "SEE_GATE_C3FV",
+        "one_sided_ratios": "SEE_GATE_C3FV",
+        "resampling_result": "SEE_GATE_C3FV",
+        "spread_statistics": "SEE_GATE_C3FV",
+        "structural_status": "SEE_GATE_C3FV",
+        "tick_audit_result": "TICK_AUDIT_NOT_EXECUTABLE"
+      }
+    }
+  },
+  "status": "PARTIAL_CERTIFICATION_INCOMPLETE"
+}

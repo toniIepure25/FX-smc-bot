@@ -1,0 +1,12 @@
+{
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "pair_certifications": {
+    "EURUSD": "DATASET_EXPLORATORY_ONLY",
+    "GBPUSD": "DATASET_EXPLORATORY_ONLY",
+    "USDJPY": "DATASET_EXPLORATORY_ONLY"
+  },
+  "reason": "Tick audit not executable because frozen plan cannot be proven.",
+  "selected_research_universe": [],
+  "selection_basis": "data quality only; no event counts or profitability used",
+  "status": "PARTIAL_CERTIFICATION_INCOMPLETE"
+}

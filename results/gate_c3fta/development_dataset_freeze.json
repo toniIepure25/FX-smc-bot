@@ -1,0 +1,58 @@
+{
+  "2019_audit_hash": "9139bc4a30494a6b52744d7d605767757b75d81e27892f4856efdd45f6badfad",
+  "acquisition_manifest_hash": "",
+  "audit_plan_hash": "431393f773545e15dd557931f07dd19a8055d1180ade977ac321d65dd11de601",
+  "branch": "research/rigorous-intraday-smc-validation",
+  "canonical_manifest_hash": "a4060b799d5f185ad3f995d7d285ff15d433302b154449af199e31005dc5829e",
+  "checksum_sets": {
+    "gate_c3fv_freeze": "74b9b9dcc35e88543c47585b50b86ff67d5ac9833587cbfbfed47438c3c1855e"
+  },
+  "created_at": "2026-07-23T11:20:16.995810+00:00",
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "development_audit_hash": "d0a81d361a556f5cbcc4fe3929d96d4bc233422d5d17ad26d4db5ae1cb9619ca",
+  "development_certification_hash": "b88eacb5fece5e491ffe40fdf93c7b29b5ae9b92dbe7d2939c5772dac28034b2",
+  "downstream_enforcement": {
+    "reject_mismatched_certification_hash": true,
+    "reject_mismatched_checksums": true,
+    "reject_non_ready_freeze": true,
+    "reject_pairs_outside_approved_universe": true
+  },
+  "dukascopy_node_version": "1.46.4",
+  "event_smoke_hash": "5ef59369b71d3909cdae95ffd1677b7c8e635082f5cb90e3983b0f0f013fbe00",
+  "git_sha": "9490bab45366f96c244b6bd13b14f8ae357ac8b6",
+  "holdout_policy_hash": "fd75b773e371cb5f79f3a8046ded17aa21a531f84829ff56b9392699bb6561f0",
+  "known_exclusions": [
+    "frozen tick audit plan not proven"
+  ],
+  "node_version": "",
+  "npm_audit": "NOT_RUN_BLOCKED_BY_FROZEN_PLAN_MISSING",
+  "npm_test": "NOT_RUN_BLOCKED_BY_FROZEN_PLAN_MISSING",
+  "pair_year_certification_hash": "847c7d30d8adbd043d6280168476d91baee59e3b1fad8ad1c4d03fb69988db76",
+  "python_version": "3.13.5",
+  "required_hashes": {
+    "blocker_analysis": "d2b464f5d6228368516dda5cb3353995b6d9adc16c638ad2206ed7d920c036d9",
+    "frozen_plan": "431393f773545e15dd557931f07dd19a8055d1180ade977ac321d65dd11de601",
+    "holdout": "9a4d09ec132418c208bb5ebe09a79458c6077a015f3db0dc11f7a9827e8e0e1f",
+    "protocol": "e48dd4f3abcfc51b12cd1ec71958c11f4a1eb74115f2190d71191dcb04a9360f",
+    "single_window": "31a12791f6ef398563e6c0bb6af2c675fde8550364153c48c8e4237b8098e804",
+    "tick_manifest": "ec9a9426a01535a2858e186eb2c26d2457084f6de782f98518c224c1314ffeaa"
+  },
+  "resampling_code_hash": "37bbc6fabf9acaa2a10efbc6794c8a9f15d3f891f8fe1f4249b87a8f61bc6489",
+  "selected_research_universe": [],
+  "split_boundaries": {
+    "development": [
+      "2015-01-01",
+      "2019-12-31"
+    ],
+    "holdout": [
+      "2023-01-01",
+      "2025-12-31"
+    ],
+    "validation": [
+      "2020-01-01",
+      "2022-12-31"
+    ]
+  },
+  "status": "BLOCKED",
+  "tick_to_m1_protocol_hash": "e48dd4f3abcfc51b12cd1ec71958c11f4a1eb74115f2190d71191dcb04a9360f"
+}

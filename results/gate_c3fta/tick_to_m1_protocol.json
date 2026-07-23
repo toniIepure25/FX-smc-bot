@@ -1,0 +1,31 @@
+{
+  "dst_handling": "none; UTC timestamps only",
+  "duplicate_timestamp_ordering": "preserve provider order within identical timestamps",
+  "flat_ticks": "preserve; no flat tick removal in tick aggregation",
+  "friday_close": "UTC calendar handling only; market-close gaps classified separately",
+  "identical_timestamp_tie_breaking": "stable input order",
+  "integer_quantization": {
+    "EURUSD": 100000,
+    "GBPUSD": 100000,
+    "USDJPY": 1000
+  },
+  "m1_ignore_flats_interaction": "canonical M1 acquisition used ignoreFlats=false/flat policy notes; tick-side aggregation keeps flats and reports no-tick minutes separately",
+  "minute_boundary_ticks": "tick exactly at minute_start belongs to that minute",
+  "minute_bucket": "floor tick timestamp to UTC minute",
+  "minute_endpoints": "[minute_start, minute_start + 60s)",
+  "missing_bid_or_ask_side": "side-specific no bar; comparison excludes unavailable side",
+  "no_tick_minutes": "no forward fill unless canonical behavior is independently proven",
+  "ohlc": {
+    "close": "last tick",
+    "high": "maximum tick",
+    "low": "minimum tick",
+    "open": "first tick"
+  },
+  "partial_first_last_minutes": "exclude boundary partial minutes from equality summary",
+  "protocol_hash": "f7f8d7fb9161a3dbc5b1448e4bb0d8c75e9914559c715f2b2af6d219189ff995",
+  "status": "DEFINED_NOT_EXECUTED_BLOCKED_BY_FROZEN_PLAN_MISSING",
+  "sunday_open": "UTC calendar handling only; market-open gaps classified separately",
+  "timezone": "UTC",
+  "window_endpoints": "audit windows are [start, end), UTC",
+  "zero_volume": "preserve when present; volume not used for OHLC equality"
+}

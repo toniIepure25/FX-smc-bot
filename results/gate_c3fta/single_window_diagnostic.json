@@ -1,0 +1,23 @@
+{
+  "artifact": "single_window_diagnostic.json",
+  "ask_below_bid_violations": 0,
+  "canonical_m1_bars": 0,
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "duplicate_timestamps": 0,
+  "first_tick": null,
+  "frozen_window": null,
+  "generated_ask_m1_bars": 0,
+  "generated_bid_m1_bars": 0,
+  "input_blocker": "FROZEN_PLAN_MISSING",
+  "last_tick": null,
+  "maximum_raw_point_difference": null,
+  "missing_intervals": [],
+  "ohlc_matches": 0,
+  "out_of_order_ticks": 0,
+  "partial_boundary_intervals": [],
+  "reason": "Frozen 44-window tick-audit plan cannot be proven from committed artifacts.",
+  "request_parameters": {},
+  "status": "NOT_RUN_BLOCKED_BY_FROZEN_PLAN_MISSING",
+  "tick_count": 0,
+  "timestamp_matches": 0
+}

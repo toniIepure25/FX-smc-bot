@@ -1,0 +1,31 @@
+{
+  "artifact": "development_tick_audit.json",
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "input_blocker": "FROZEN_PLAN_MISSING",
+  "pair_year_results": {
+    "EURUSD": {
+      "2015": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2016": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2017": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2018": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2019": "TICK_AUDIT_NOT_EXECUTABLE"
+    },
+    "GBPUSD": {
+      "2015": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2016": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2017": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2018": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2019": "TICK_AUDIT_NOT_EXECUTABLE"
+    },
+    "USDJPY": {
+      "2015": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2016": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2017": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2018": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2019": "TICK_AUDIT_NOT_EXECUTABLE"
+    }
+  },
+  "reason": "Frozen 44-window tick-audit plan cannot be proven from committed artifacts.",
+  "status": "NOT_RUN_BLOCKED_BY_FROZEN_PLAN_MISSING",
+  "window_results": []
+}

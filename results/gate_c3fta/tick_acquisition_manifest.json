@@ -1,0 +1,13 @@
+{
+  "artifact": "tick_acquisition_manifest.json",
+  "checksummed": false,
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "input_blocker": "FROZEN_PLAN_MISSING",
+  "output_dir": "data/tick_audit",
+  "raw_tick_data_committed": false,
+  "reason": "Frozen 44-window tick-audit plan cannot be proven from committed artifacts.",
+  "status": "NOT_RUN_BLOCKED_BY_FROZEN_PLAN_MISSING",
+  "windows_downloaded": 0,
+  "windows_requested": 0,
+  "workers": 0
+}

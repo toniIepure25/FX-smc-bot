@@ -1,0 +1,9 @@
+{
+  "artifact": "2019_event_funnels.json",
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "forbidden_metric_fields_present": false,
+  "funnels": {},
+  "input_blocker": "FROZEN_PLAN_MISSING",
+  "reason": "Frozen 44-window tick-audit plan cannot be proven from committed artifacts.",
+  "status": "NOT_RUN_BLOCKED_BY_FROZEN_PLAN_MISSING"
+}
