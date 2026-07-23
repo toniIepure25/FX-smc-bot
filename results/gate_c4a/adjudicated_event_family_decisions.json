@@ -1,0 +1,37 @@
+{
+  "families": {
+    "liquidity_acceptance_fvg_continuation": {
+      "decision": "MIXED_EXPLORATORY_SIGNAL",
+      "failed_mandatory_criteria": [
+        "positive_event_primary_effect"
+      ],
+      "mandatory_pass": false
+    },
+    "liquidity_sweep_mss_fvg_reversal": {
+      "decision": "NULL_SUPPORTED",
+      "failed_mandatory_criteria": [
+        "positive_event_primary_effect",
+        "positive_matched_control_difference",
+        "positive_replication_effect"
+      ],
+      "mandatory_pass": false
+    },
+    "opening_range_london": {
+      "decision": "MIXED_EXPLORATORY_SIGNAL",
+      "failed_mandatory_criteria": [
+        "placebo_not_reproduced"
+      ],
+      "mandatory_pass": false
+    },
+    "opening_range_new_york": {
+      "decision": "MIXED_EXPLORATORY_SIGNAL",
+      "failed_mandatory_criteria": [
+        "positive_event_primary_effect",
+        "holm_adjusted_p_value",
+        "positive_replication_effect"
+      ],
+      "mandatory_pass": false
+    }
+  },
+  "overall_gate_c4a_decision": "C4_MIXED_RESULT_UPHELD_DO_NOT_OPEN_VALIDATION"
+}

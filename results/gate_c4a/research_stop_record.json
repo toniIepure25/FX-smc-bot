@@ -1,0 +1,7 @@
+{
+  "current_frozen_event_definitions_eligible_for_untouched_validation": false,
+  "final_decision": "C4_MIXED_RESULT_UPHELD_DO_NOT_OPEN_VALIDATION",
+  "reason": "Acceptance Continuation did not pass every mandatory frozen confirmation criterion.",
+  "status": "STOP",
+  "validation_handoff_created": false
+}
