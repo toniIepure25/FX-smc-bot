@@ -1,0 +1,45 @@
+{
+  "available_windows": 0,
+  "bars_compared": 0,
+  "blocking_ambiguity": "A standalone frozen 44-window tick-audit plan artifact was not materialized before result inspection. Only four 2019 windows are listed in the prior placeholder, and no executable tick-to-M1 audit command is present.",
+  "completed_windows": 0,
+  "expected_full_plan_windows": 44,
+  "filtering_rules": {
+    "comparison": "integer raw-point representation required",
+    "floating_point_equality": "NOT_USED"
+  },
+  "flat_tick_policy": "No mutable policy artifact found beyond prior flats=false notes.",
+  "pair_distribution": {
+    "EURUSD": 0,
+    "GBPUSD": 0,
+    "USDJPY": 0
+  },
+  "plan_hash": "c9fc33d4b3cffcd43380895832a6a72bd6037b3984147aa93671e26d1a98a252",
+  "plan_path": "results\\gate_c3f\\2019_tick_audit.json",
+  "planned_2019_windows": 4,
+  "seed": 42,
+  "session_distribution": {
+    "london": 2,
+    "new_york": 2
+  },
+  "status": "BLOCKED_BY_TICK_AUDIT",
+  "status_by_pair": {
+    "EURUSD": "TICK_AUDIT_NOT_EXECUTABLE",
+    "GBPUSD": "TICK_AUDIT_NOT_EXECUTABLE",
+    "USDJPY": "TICK_AUDIT_NOT_EXECUTABLE"
+  },
+  "timestamp_boundary_rules": "Exact timestamp agreement after common filtering.",
+  "tolerances": {
+    "bar_count": "exact_after_common_filtering",
+    "eurusd_gbpusd_quantization": "5_decimal_raw_points_0.00001",
+    "floating_point_equality": "NOT_USED",
+    "high_low": "exact",
+    "open_close": "exact_after_price_quantization",
+    "timestamps": "exact",
+    "usdjpy_quantization": "3_decimal_raw_points_0.001"
+  },
+  "window_count_materialized": 4,
+  "year_distribution": {
+    "2019": 4
+  }
+}

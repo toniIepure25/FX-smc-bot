@@ -1,0 +1,27 @@
+{
+  "pair_year_results": {
+    "EURUSD": {
+      "2015": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2016": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2017": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2018": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2019": "TICK_AUDIT_NOT_EXECUTABLE"
+    },
+    "GBPUSD": {
+      "2015": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2016": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2017": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2018": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2019": "TICK_AUDIT_NOT_EXECUTABLE"
+    },
+    "USDJPY": {
+      "2015": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2016": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2017": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2018": "TICK_AUDIT_NOT_EXECUTABLE",
+      "2019": "TICK_AUDIT_NOT_EXECUTABLE"
+    }
+  },
+  "reason": "A standalone frozen 44-window tick-audit plan artifact was not materialized before result inspection. Only four 2019 windows are listed in the prior placeholder, and no executable tick-to-M1 audit command is present.",
+  "status": "TICK_AUDIT_NOT_EXECUTABLE"
+}

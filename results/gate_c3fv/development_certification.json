@@ -1,0 +1,11 @@
+{
+  "pair_certifications": {
+    "EURUSD": "DATASET_EXPLORATORY_ONLY",
+    "GBPUSD": "DATASET_EXPLORATORY_ONLY",
+    "USDJPY": "DATASET_EXPLORATORY_ONLY"
+  },
+  "reason": "Tick audit not executable; no pair can be certified READY.",
+  "selected_research_universe": [],
+  "selection_basis": "data quality only",
+  "status": "PARTIAL_CERTIFICATION_INCOMPLETE"
+}

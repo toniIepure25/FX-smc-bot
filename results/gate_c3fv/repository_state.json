@@ -1,0 +1,57 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "git_status_short": [
+    "?? docs/research/GATE_C3FV_2019_EVENT_SMOKE_TEST.md",
+    "?? docs/research/GATE_C3FV_2019_TICK_AUDIT.md",
+    "?? docs/research/GATE_C3FV_DATASET_FREEZE.md",
+    "?? docs/research/GATE_C3FV_DEVELOPMENT_CERTIFICATION.md",
+    "?? docs/research/GATE_C3FV_DEVELOPMENT_TICK_AUDIT.md",
+    "?? docs/research/GATE_C3FV_FINAL_DECISION_MEMO.md",
+    "?? docs/research/GATE_C3FV_RAW_ACQUISITION_AUDIT.md",
+    "?? scripts/run_gate_c3fv_validation.py",
+    "?? src/fx_smc_bot/data/development_freeze.py",
+    "?? tests/test_gate_c3f/test_c3fv_validation.py"
+  ],
+  "head": "3163bc495757be5d25d1ada47deac347e19029b1",
+  "log_oneline_decorate_15": [
+    "3163bc4 (HEAD -> research/rigorous-intraday-smc-validation, origin/research/rigorous-intraday-smc-validation) Fix repair-missing for compacted partitions",
+    "05cd067 research(data): checkpoint active development acquisition",
+    "570a92d research(data): launch development acquisition completion",
+    "c23a6b2 fix(data): harden C3F continuation runner controls",
+    "37a2efd docs: update Gate C.3F-R with 2019 certification results",
+    "860ab03 research(data): complete and certify 2019 FX data for all three pairs",
+    "1994cf3 fix(data): isolate per-worker temp dirs, add retry backoff, optimize batch settings",
+    "82ff8ed fix(data): make NODE_PROCESS_ERROR retryable (concurrent Node.js crash on Windows)",
+    "997f592 docs: issue Gate C.3F-R runner audit, artifacts, and partial decision memo",
+    "047fc99 fix(data): implement true bounded concurrent acquisition, retry, heartbeat, and Windows pid_exists",
+    "4df9c35 docs: issue Gate C.3F development data decision memo",
+    "7428840 feat(data): add concurrent acquisition, GBPUSD repair diagnosis, and Gate C.3F artifacts",
+    "cfcba0f feat(data): add scope-aware certification, daily checkpoints, and persistent runner",
+    "36f0109 docs: update Gate C.3R artifacts with holdout enforcement and quality metrics",
+    "2681f68 test(data): add holdout access, gap classification, tick audit, and atomic tests"
+  ],
+  "runner_status": {
+    "completed": 37,
+    "failed": 0,
+    "log_file": "D:\\ComputaCenter\\FX-smc-bot\\logs\\acquisition\\acq_20260721_164236.log",
+    "max_observed_concurrent_tasks": 2,
+    "skipped": 0,
+    "total_partitions": 37,
+    "total_rows": 1098977,
+    "workers_configured": 2
+  },
+  "split_boundaries": {
+    "development": [
+      "2015-01-01",
+      "2019-12-31"
+    ],
+    "holdout": [
+      "2023-01-01",
+      "2025-12-31"
+    ],
+    "validation": [
+      "2020-01-01",
+      "2022-12-31"
+    ]
+  }
+}

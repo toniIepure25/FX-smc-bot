@@ -1,0 +1,6 @@
+{
+  "funnels": {},
+  "forbidden_metric_fields_present": false,
+  "reason": "2019 tick-audit gate did not pass.",
+  "status": "NOT_RUN_BLOCKED_BY_TICK_AUDIT"
+}
