@@ -1,0 +1,391 @@
+{
+  "affected_pair_month_count": 16,
+  "created_at": "2026-07-23T15:41:12.107845+00:00",
+  "items": [
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2015\\month=01\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 1,
+      "new_m1_hash": "aae314665194524a5a617895db038ef6ef8f911d9e5a7341b831de23fbb5966a",
+      "old_m1_hash": "aae314665194524a5a617895db038ef6ef8f911d9e5a7341b831de23fbb5966a",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 0,
+        "ask_rows": 28790,
+        "bid_only_rows": 1439,
+        "bid_rows": 30229,
+        "paired_rows": 28790
+      },
+      "resample_hashes": {
+        "H1": "449a1bc7acb25d14044dae9055ab9f432c10fc00d73a26971b389b4be83356c3",
+        "H4": "1cb10cdf07ad3955a84df384795d30e63006c42481dd062d18414eb30bf5042c",
+        "M1": "aae314665194524a5a617895db038ef6ef8f911d9e5a7341b831de23fbb5966a",
+        "M15": "3617c338340bdcf5676f382f6a6be70569ae96df222195335f84f792efb27002",
+        "M5": "5be1a44b2a6ccd8d5f8358f3184226ca8131fc968436ccc74a48104dce8f31e6"
+      },
+      "year": 2015
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2015\\month=12\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 12,
+      "new_m1_hash": "ecf340e8a21f4149f43d74d1fb3bd8957cfd1c2a12c134006e6935af661d9ee2",
+      "old_m1_hash": "ecf340e8a21f4149f43d74d1fb3bd8957cfd1c2a12c134006e6935af661d9ee2",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 2879,
+        "ask_rows": 29124,
+        "bid_only_rows": 2877,
+        "bid_rows": 29122,
+        "paired_rows": 26245
+      },
+      "resample_hashes": {
+        "H1": "b77cd9ba480a0e5f7e8c1fd6b863952762563eced8e009eee81b4614f93ff7dc",
+        "H4": "0b11a2087f3e1839ccbf86d8c30787a9954444abe3bfec34fc4389a3c3759d60",
+        "M1": "ecf340e8a21f4149f43d74d1fb3bd8957cfd1c2a12c134006e6935af661d9ee2",
+        "M15": "f9066058c4703b7a454eb138b971b4d434c731fc3a61004f4034a472bb3e5aa0",
+        "M5": "9d7c470f6cb5804e6e59e0ba1a95154276d1f063502153f7ee3186008815cd70"
+      },
+      "year": 2015
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2016\\month=10\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 10,
+      "new_m1_hash": "4390276e48bd97b481b1ce402ea0b4b7a5a158581b7d8fdf9528a692c2b28544",
+      "old_m1_hash": "4390276e48bd97b481b1ce402ea0b4b7a5a158581b7d8fdf9528a692c2b28544",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 4673,
+        "ask_rows": 23371,
+        "bid_only_rows": 0,
+        "bid_rows": 18698,
+        "paired_rows": 18698
+      },
+      "resample_hashes": {
+        "H1": "fae3d51b33e4a62aa4cc85552084ffbe24120bfdf4ba76d19850c309abaf3719",
+        "H4": "c14e50c77cb60506d77785aec7620101998ee12e75cf9504dcf0778535e5acd0",
+        "M1": "4390276e48bd97b481b1ce402ea0b4b7a5a158581b7d8fdf9528a692c2b28544",
+        "M15": "fe9f4bb178f5c0d63d63846b1717623b2f9cb3668dff594b7e78daf80e319791",
+        "M5": "3c3693cdf67fdf641f763e602c47c59849d73603f7afc3116950eff8dbd09ee8"
+      },
+      "year": 2016
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2017\\month=01\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 1,
+      "new_m1_hash": "d3cd53abfb00ba5e5b4d449640d0ea5ea9720fbfa9787bfe791b9d968d34335c",
+      "old_m1_hash": "d3cd53abfb00ba5e5b4d449640d0ea5ea9720fbfa9787bfe791b9d968d34335c",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 0,
+        "ask_rows": 24587,
+        "bid_only_rows": 2760,
+        "bid_rows": 27347,
+        "paired_rows": 24587
+      },
+      "resample_hashes": {
+        "H1": "d9150f2c589d6da3116af5a28dc9f6848c35fb06facd501ec21b18ecb36dbc38",
+        "H4": "05a25a04b7f698d281337c9e731dba9fbe11b54fc0795129aaa20f3b90afcbe7",
+        "M1": "d3cd53abfb00ba5e5b4d449640d0ea5ea9720fbfa9787bfe791b9d968d34335c",
+        "M15": "2b41193d5502595e1f3ac66c412fddd525dfdc522dfef176a0a6146a6aac8e19",
+        "M5": "80cabf23f5aeeb5eb770d9c95e99a1726dc21eefdae7dc67e183d37fc547acd4"
+      },
+      "year": 2017
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2017\\month=07\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 7,
+      "new_m1_hash": "6704c075aa5a4b981ba0e5179131ad8d1325c985f1a77867cda99e850466cd49",
+      "old_m1_hash": "6704c075aa5a4b981ba0e5179131ad8d1325c985f1a77867cda99e850466cd49",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 5578,
+        "ask_rows": 26091,
+        "bid_only_rows": 4318,
+        "bid_rows": 24831,
+        "paired_rows": 20513
+      },
+      "resample_hashes": {
+        "H1": "e475b323578c844af312e1ca44762f2b7b7a295c1c93451215a31a095cd0b179",
+        "H4": "4a764aa7d619121f3fd8aa257b267fed55957645251f9c3f96cc828a677cbe9f",
+        "M1": "6704c075aa5a4b981ba0e5179131ad8d1325c985f1a77867cda99e850466cd49",
+        "M15": "88b63145b7f86927364a25e2fca6656386198323bf0ebb382c51afffeff210dd",
+        "M5": "3c55349aab3aeebcb3fe79315b603ad196e6bb803b3de6bfcf07be3870a79d9d"
+      },
+      "year": 2017
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2017\\month=10\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 10,
+      "new_m1_hash": "6f282610c52a76a33401328d245876737cdd001f3195269de4fec5902e0ccdec",
+      "old_m1_hash": "6f282610c52a76a33401328d245876737cdd001f3195269de4fec5902e0ccdec",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 8459,
+        "ask_rows": 28798,
+        "bid_only_rows": 1620,
+        "bid_rows": 21959,
+        "paired_rows": 20339
+      },
+      "resample_hashes": {
+        "H1": "1d5cfd1b9297c0729680757f4a957d0d637f72b20ea568f331864066563db6b2",
+        "H4": "1ec21741bc5bd46458b564d24f5e1061ec078b4e920361fabc85e736e91f1916",
+        "M1": "6f282610c52a76a33401328d245876737cdd001f3195269de4fec5902e0ccdec",
+        "M15": "09b7e7b402278408f1aa8f34af7c7c186cee9d15db12d33c4a101eeaf7b20b58",
+        "M5": "f6e75ddf6523658034874fa07acde889c065dd81109f858a785f9554bccd3cdc"
+      },
+      "year": 2017
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2018\\month=04\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 4,
+      "new_m1_hash": "1e61a8ff5efccc54758184422d73485a91d67e309ba1566fed245a6f208576b8",
+      "old_m1_hash": "1e61a8ff5efccc54758184422d73485a91d67e309ba1566fed245a6f208576b8",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 2700,
+        "ask_rows": 12950,
+        "bid_only_rows": 17457,
+        "bid_rows": 27707,
+        "paired_rows": 10250
+      },
+      "resample_hashes": {
+        "H1": "668ab0740b1fe5fc2d679f6599c8be85c029ba18423cbf29f9f83095ce382a00",
+        "H4": "4efe875bd5ebb3a91ce3f19f7dd17954a9641342a0957f9b5cfde21c7ccf9436",
+        "M1": "1e61a8ff5efccc54758184422d73485a91d67e309ba1566fed245a6f208576b8",
+        "M15": "b465f89363cc92d0f06c6527cda71fc7aebaad55e338f1a0362fad62c562dacc",
+        "M5": "9d406416b2eaa57e1b1a75a9ef8eaa9f94c704c5e2f412eeb75bc54d92f803ae"
+      },
+      "year": 2018
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2018\\month=09\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 9,
+      "new_m1_hash": "db0218496faa308a3ce458f2c12ff8e3cb49d5d2d50a29c5d63efd0e702b7971",
+      "old_m1_hash": "db0218496faa308a3ce458f2c12ff8e3cb49d5d2d50a29c5d63efd0e702b7971",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 5757,
+        "ask_rows": 28968,
+        "bid_only_rows": 0,
+        "bid_rows": 23211,
+        "paired_rows": 23211
+      },
+      "resample_hashes": {
+        "H1": "011968771430ffe7304a5515e87bb2fe58a8238d908b905abe0fd8e915faa3a5",
+        "H4": "877152b2532c85d2be7aa5ec1d84c3895b159c35fb4c1f4c2e3fc35a8acc6f23",
+        "M1": "db0218496faa308a3ce458f2c12ff8e3cb49d5d2d50a29c5d63efd0e702b7971",
+        "M15": "8ca01e0dccbb2663c022c164f1e3db483e9db3c368ee8d0b0c77ed0420940872",
+        "M5": "5858cf29063584b509adc5ea98ac47f41866e2096100eeb791ae98c84ac21175"
+      },
+      "year": 2018
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2018\\month=10\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 10,
+      "new_m1_hash": "5b365f42206ce5361be175d9628e04350606685c34794dffd74f6f2131d303d8",
+      "old_m1_hash": "5b365f42206ce5361be175d9628e04350606685c34794dffd74f6f2131d303d8",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 1439,
+        "ask_rows": 23210,
+        "bid_only_rows": 9899,
+        "bid_rows": 31670,
+        "paired_rows": 21771
+      },
+      "resample_hashes": {
+        "H1": "5076b743ff91d21cd529d29051fe50c345700dbdfe8a3bc67897f3097a042d1b",
+        "H4": "383cb73ccf5cd1d4945e77d0e3f853ecc82a8f9f291b7785aadd6cc41d336ab0",
+        "M1": "5b365f42206ce5361be175d9628e04350606685c34794dffd74f6f2131d303d8",
+        "M15": "c3391b0a8b98c3aa5096cfad36a241e18384dfbf5376f6ffa173701b6f3661f8",
+        "M5": "5534a2ada2be8831eaa16743b2cce55851602e054eb959d1cca40fe6b02cc01d"
+      },
+      "year": 2018
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\EURUSD\\timeframe=M1\\year=2019\\month=11\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 11,
+      "new_m1_hash": "2d6fd2cca7fdf3873f7ea2c8aabdedcb61cc1238d754874ff02f8781d728bdaa",
+      "old_m1_hash": "2d6fd2cca7fdf3873f7ea2c8aabdedcb61cc1238d754874ff02f8781d728bdaa",
+      "pair": "EURUSD",
+      "raw_meta": {
+        "ask_only_rows": 0,
+        "ask_rows": 28770,
+        "bid_only_rows": 1260,
+        "bid_rows": 30030,
+        "paired_rows": 28770
+      },
+      "resample_hashes": {
+        "H1": "279a48f28ad56fddba155b119a55473e6d2291ec599004dd150405ab996ae71e",
+        "H4": "a8a3433b5f9e111e2638adf292d56116b119f47a946bb554e432546135091362",
+        "M1": "2d6fd2cca7fdf3873f7ea2c8aabdedcb61cc1238d754874ff02f8781d728bdaa",
+        "M15": "ad596cb75bead5a6c6a8eb22b021b277b5da8f292063c8c2eea3082365b6c9af",
+        "M5": "90cd83c20c5f3ea7c53c851ee88fd1e135a1b15b745411c5897deb8a9fcd1a9d"
+      },
+      "year": 2019
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\GBPUSD\\timeframe=M1\\year=2015\\month=01\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 1,
+      "new_m1_hash": "9a4a08271155e88e3619abc1d813138a7f8e87a184251a428b72564eaa0fe042",
+      "old_m1_hash": "9a4a08271155e88e3619abc1d813138a7f8e87a184251a428b72564eaa0fe042",
+      "pair": "GBPUSD",
+      "raw_meta": {
+        "ask_only_rows": 11396,
+        "ask_rows": 17276,
+        "bid_only_rows": 11520,
+        "bid_rows": 17400,
+        "paired_rows": 5880
+      },
+      "resample_hashes": {
+        "H1": "b83fcfb3cf2a3bcd47eba91fb7f5def987e712e1d5e2a33af70a599f966b3cc2",
+        "H4": "df6bee8e9fe34bb6c12cd5007a105b16fea0584e31f004d14c78e5f974435766",
+        "M1": "9a4a08271155e88e3619abc1d813138a7f8e87a184251a428b72564eaa0fe042",
+        "M15": "e8ae7c5f16d45986d2de5322450ab99a3a592a28581e89b2e23e0cb79433816e",
+        "M5": "b8f589d2af96c43404dbbf34dbd07d79f06523d304b9bfd26b48606d75e5b054"
+      },
+      "year": 2015
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\GBPUSD\\timeframe=M1\\year=2015\\month=04\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 4,
+      "new_m1_hash": "ece493e8b0ed1defcdc5c775c055df5e4cc1d0589d3f1d0b64c9127ad62ea051",
+      "old_m1_hash": "ece493e8b0ed1defcdc5c775c055df5e4cc1d0589d3f1d0b64c9127ad62ea051",
+      "pair": "GBPUSD",
+      "raw_meta": {
+        "ask_only_rows": 21595,
+        "ask_rows": 28972,
+        "bid_only_rows": 2700,
+        "bid_rows": 10077,
+        "paired_rows": 7377
+      },
+      "resample_hashes": {
+        "H1": "04a1a8e2dcdc860fe325d24bfee9cee3a952c401daa52a47ee49beccba734c21",
+        "H4": "34377a75fb9a2f4cd0eb60b926f2474775e31647a4f7abd4b2091ee4a6661cb6",
+        "M1": "ece493e8b0ed1defcdc5c775c055df5e4cc1d0589d3f1d0b64c9127ad62ea051",
+        "M15": "ba5895d444f181d66f489d168757504979e4b14ac148c8ceb9c8e1da1164b0e8",
+        "M5": "e120563f1e3f21530e8ecb53ac7421cbfb79426a1c1a6ee6a102cc7d391ee3fb"
+      },
+      "year": 2015
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\GBPUSD\\timeframe=M1\\year=2015\\month=09\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 9,
+      "new_m1_hash": "19493e33362de42b1f5848945585eedabf94abfc9eb7e8fde1eec393468f895d",
+      "old_m1_hash": "19493e33362de42b1f5848945585eedabf94abfc9eb7e8fde1eec393468f895d",
+      "pair": "GBPUSD",
+      "raw_meta": {
+        "ask_only_rows": 2700,
+        "ask_rows": 24292,
+        "bid_only_rows": 7372,
+        "bid_rows": 28964,
+        "paired_rows": 21592
+      },
+      "resample_hashes": {
+        "H1": "f694aa35d7398decfe5e4b3fe40f5640c33068c0be667650bf9c0809c7c97719",
+        "H4": "9a707657f89e8ff5652dde6af2c75ad47387eba4f6dd936f97f49a707a9e63c8",
+        "M1": "19493e33362de42b1f5848945585eedabf94abfc9eb7e8fde1eec393468f895d",
+        "M15": "aea95d2bad0e93f810384dcafce503742ae421e986943ad2df340877d07d035a",
+        "M5": "d856f6e4fe4933112caae82df770265cf5e23b8855c8be0318491f7f4950902d"
+      },
+      "year": 2015
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\GBPUSD\\timeframe=M1\\year=2018\\month=10\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 10,
+      "new_m1_hash": "2e42347fe0bd516de7c64ccdae4b2859df3efbc0c20412175bd3674b8285da8e",
+      "old_m1_hash": "2e42347fe0bd516de7c64ccdae4b2859df3efbc0c20412175bd3674b8285da8e",
+      "pair": "GBPUSD",
+      "raw_meta": {
+        "ask_only_rows": 0,
+        "ask_rows": 33104,
+        "bid_only_rows": 0,
+        "bid_rows": 33104,
+        "paired_rows": 33104
+      },
+      "resample_hashes": {
+        "H1": "f6c4a79ff2ee0bfed298d170b0be26197750f7db36dc17161ae235e497c7c468",
+        "H4": "6bfc3c172ddc7535411c8bd3f08551c122ced8028fc5f9029c231bb86beabccb",
+        "M1": "2e42347fe0bd516de7c64ccdae4b2859df3efbc0c20412175bd3674b8285da8e",
+        "M15": "effa07a60bd27495f3c7ed839f31cde7635ffe2dfedaf4fb57f5e3058c05ef03",
+        "M5": "e92665167ea559a7f49a7cb69d4868fa8b7340a640d5a26659e88246f1a8bf13"
+      },
+      "year": 2018
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\GBPUSD\\timeframe=M1\\year=2019\\month=03\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 3,
+      "new_m1_hash": "5592d69be6bf0e666c93be2958f8562c2117990ca3041ff651288a0ae386d4be",
+      "old_m1_hash": "5592d69be6bf0e666c93be2958f8562c2117990ca3041ff651288a0ae386d4be",
+      "pair": "GBPUSD",
+      "raw_meta": {
+        "ask_only_rows": 2879,
+        "ask_rows": 30293,
+        "bid_only_rows": 0,
+        "bid_rows": 27414,
+        "paired_rows": 27414
+      },
+      "resample_hashes": {
+        "H1": "fff774b90afe5ad96bf920b8012f0511d414e7b9c692e915b517642f8bc2bc10",
+        "H4": "67d4db9b3fa03d80f3a15f1da5e1b51b7d9f803efe864ee6670562bf51d73b57",
+        "M1": "5592d69be6bf0e666c93be2958f8562c2117990ca3041ff651288a0ae386d4be",
+        "M15": "167f4503a03d1d135191b8d7aca35e2a099e107c67419b0ac71fb50b6de668ae",
+        "M5": "bc95120b32ab682af9abcf23ca29ae9ec272d66e433c201c7926a4a8a895fe77"
+      },
+      "year": 2019
+    },
+    {
+      "canonical_m1_path": "data\\canonical\\gate_c3fv\\GBPUSD\\timeframe=M1\\year=2019\\month=11\\part.parquet",
+      "deterministic_roundtrip": true,
+      "hash_changed": false,
+      "month": 11,
+      "new_m1_hash": "51b3dbb2545a7b92e7f7a331f55b2d47842f1ae861d758595e9e6a071154559e",
+      "old_m1_hash": "51b3dbb2545a7b92e7f7a331f55b2d47842f1ae861d758595e9e6a071154559e",
+      "pair": "GBPUSD",
+      "raw_meta": {
+        "ask_only_rows": 0,
+        "ask_rows": 28726,
+        "bid_only_rows": 1320,
+        "bid_rows": 30046,
+        "paired_rows": 28726
+      },
+      "resample_hashes": {
+        "H1": "bb4467411fd8256b3875f06768411e7bac9a1803b68b66c2321b2e5b72c8c26f",
+        "H4": "d2f340bba0fcdf9567d7260114ea62f35bdf04b88eec7a6137a7654e822f8bb3",
+        "M1": "51b3dbb2545a7b92e7f7a331f55b2d47842f1ae861d758595e9e6a071154559e",
+        "M15": "5db26c05229b7e2938751889fc09caa9c97fefb4c268c24c7078aeb4ad24137f",
+        "M5": "6633eac848a5dd01d052fec981646ee0469bbc36d0929bd5ac7941dbc9998da5"
+      },
+      "year": 2019
+    }
+  ],
+  "raw_repair_performed_before_rebuild": false
+}

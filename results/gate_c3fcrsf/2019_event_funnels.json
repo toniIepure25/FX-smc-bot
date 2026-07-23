@@ -1,0 +1,790 @@
+{
+  "approved_pairs": [
+    "USDJPY"
+  ],
+  "created_at": "2026-07-23T15:42:05.327525+00:00",
+  "families": {
+    "Acceptance Continuation": {
+      "2019-01": {
+        "bars_processed": 30214,
+        "by_direction": {
+          "long": 15688,
+          "short": 14526
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5040,
+          "new_york": 5039,
+          "other": 20135
+        }
+      },
+      "2019-02": {
+        "bars_processed": 27319,
+        "by_direction": {
+          "long": 14480,
+          "short": 12839
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4559,
+          "new_york": 4559,
+          "other": 18201
+        }
+      },
+      "2019-03": {
+        "bars_processed": 28817,
+        "by_direction": {
+          "long": 15250,
+          "short": 13567
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4799,
+          "new_york": 4798,
+          "other": 19220
+        }
+      },
+      "2019-04": {
+        "bars_processed": 31416,
+        "by_direction": {
+          "long": 17056,
+          "short": 14360
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5267,
+          "new_york": 5280,
+          "other": 20869
+        }
+      },
+      "2019-05": {
+        "bars_processed": 31449,
+        "by_direction": {
+          "long": 16658,
+          "short": 14791
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5277,
+          "new_york": 5279,
+          "other": 20893
+        }
+      },
+      "2019-06": {
+        "bars_processed": 28954,
+        "by_direction": {
+          "long": 15096,
+          "short": 13858
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4800,
+          "new_york": 4800,
+          "other": 19354
+        }
+      },
+      "2019-07": {
+        "bars_processed": 33071,
+        "by_direction": {
+          "long": 17440,
+          "short": 15631
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5518,
+          "new_york": 5519,
+          "other": 22034
+        }
+      },
+      "2019-08": {
+        "bars_processed": 31486,
+        "by_direction": {
+          "long": 16165,
+          "short": 15321
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5280,
+          "new_york": 5280,
+          "other": 20926
+        }
+      },
+      "2019-09": {
+        "bars_processed": 27497,
+        "by_direction": {
+          "long": 14385,
+          "short": 13112
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4560,
+          "new_york": 4560,
+          "other": 18377
+        }
+      },
+      "2019-10": {
+        "bars_processed": 33089,
+        "by_direction": {
+          "long": 17427,
+          "short": 15662
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5520,
+          "new_york": 5520,
+          "other": 22049
+        }
+      },
+      "2019-11": {
+        "bars_processed": 28576,
+        "by_direction": {
+          "long": 15224,
+          "short": 13352
+        },
+        "by_level_type": {
+          "prior_day_high_low": 24,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4798,
+          "new_york": 4799,
+          "other": 18979
+        }
+      },
+      "2019-12": {
+        "bars_processed": 30630,
+        "by_direction": {
+          "long": 16304,
+          "short": 14326
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5089,
+          "new_york": 5032,
+          "other": 20509
+        }
+      }
+    },
+    "Opening Range London": {
+      "2019-01": {
+        "bars_processed": 30214,
+        "by_direction": {
+          "long": 15688,
+          "short": 14526
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5040,
+          "new_york": 5039,
+          "other": 20135
+        }
+      },
+      "2019-02": {
+        "bars_processed": 27319,
+        "by_direction": {
+          "long": 14480,
+          "short": 12839
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4559,
+          "new_york": 4559,
+          "other": 18201
+        }
+      },
+      "2019-03": {
+        "bars_processed": 28817,
+        "by_direction": {
+          "long": 15250,
+          "short": 13567
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4799,
+          "new_york": 4798,
+          "other": 19220
+        }
+      },
+      "2019-04": {
+        "bars_processed": 31416,
+        "by_direction": {
+          "long": 17056,
+          "short": 14360
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5267,
+          "new_york": 5280,
+          "other": 20869
+        }
+      },
+      "2019-05": {
+        "bars_processed": 31449,
+        "by_direction": {
+          "long": 16658,
+          "short": 14791
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5277,
+          "new_york": 5279,
+          "other": 20893
+        }
+      },
+      "2019-06": {
+        "bars_processed": 28954,
+        "by_direction": {
+          "long": 15096,
+          "short": 13858
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4800,
+          "new_york": 4800,
+          "other": 19354
+        }
+      },
+      "2019-07": {
+        "bars_processed": 33071,
+        "by_direction": {
+          "long": 17440,
+          "short": 15631
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5518,
+          "new_york": 5519,
+          "other": 22034
+        }
+      },
+      "2019-08": {
+        "bars_processed": 31486,
+        "by_direction": {
+          "long": 16165,
+          "short": 15321
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5280,
+          "new_york": 5280,
+          "other": 20926
+        }
+      },
+      "2019-09": {
+        "bars_processed": 27497,
+        "by_direction": {
+          "long": 14385,
+          "short": 13112
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4560,
+          "new_york": 4560,
+          "other": 18377
+        }
+      },
+      "2019-10": {
+        "bars_processed": 33089,
+        "by_direction": {
+          "long": 17427,
+          "short": 15662
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5520,
+          "new_york": 5520,
+          "other": 22049
+        }
+      },
+      "2019-11": {
+        "bars_processed": 28576,
+        "by_direction": {
+          "long": 15224,
+          "short": 13352
+        },
+        "by_level_type": {
+          "prior_day_high_low": 24,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4798,
+          "new_york": 4799,
+          "other": 18979
+        }
+      },
+      "2019-12": {
+        "bars_processed": 30630,
+        "by_direction": {
+          "long": 16304,
+          "short": 14326
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5089,
+          "new_york": 5032,
+          "other": 20509
+        }
+      }
+    },
+    "Opening Range New York": {
+      "2019-01": {
+        "bars_processed": 30214,
+        "by_direction": {
+          "long": 15688,
+          "short": 14526
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5040,
+          "new_york": 5039,
+          "other": 20135
+        }
+      },
+      "2019-02": {
+        "bars_processed": 27319,
+        "by_direction": {
+          "long": 14480,
+          "short": 12839
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4559,
+          "new_york": 4559,
+          "other": 18201
+        }
+      },
+      "2019-03": {
+        "bars_processed": 28817,
+        "by_direction": {
+          "long": 15250,
+          "short": 13567
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4799,
+          "new_york": 4798,
+          "other": 19220
+        }
+      },
+      "2019-04": {
+        "bars_processed": 31416,
+        "by_direction": {
+          "long": 17056,
+          "short": 14360
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5267,
+          "new_york": 5280,
+          "other": 20869
+        }
+      },
+      "2019-05": {
+        "bars_processed": 31449,
+        "by_direction": {
+          "long": 16658,
+          "short": 14791
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5277,
+          "new_york": 5279,
+          "other": 20893
+        }
+      },
+      "2019-06": {
+        "bars_processed": 28954,
+        "by_direction": {
+          "long": 15096,
+          "short": 13858
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4800,
+          "new_york": 4800,
+          "other": 19354
+        }
+      },
+      "2019-07": {
+        "bars_processed": 33071,
+        "by_direction": {
+          "long": 17440,
+          "short": 15631
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5518,
+          "new_york": 5519,
+          "other": 22034
+        }
+      },
+      "2019-08": {
+        "bars_processed": 31486,
+        "by_direction": {
+          "long": 16165,
+          "short": 15321
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5280,
+          "new_york": 5280,
+          "other": 20926
+        }
+      },
+      "2019-09": {
+        "bars_processed": 27497,
+        "by_direction": {
+          "long": 14385,
+          "short": 13112
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4560,
+          "new_york": 4560,
+          "other": 18377
+        }
+      },
+      "2019-10": {
+        "bars_processed": 33089,
+        "by_direction": {
+          "long": 17427,
+          "short": 15662
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5520,
+          "new_york": 5520,
+          "other": 22049
+        }
+      },
+      "2019-11": {
+        "bars_processed": 28576,
+        "by_direction": {
+          "long": 15224,
+          "short": 13352
+        },
+        "by_level_type": {
+          "prior_day_high_low": 24,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4798,
+          "new_york": 4799,
+          "other": 18979
+        }
+      },
+      "2019-12": {
+        "bars_processed": 30630,
+        "by_direction": {
+          "long": 16304,
+          "short": 14326
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5089,
+          "new_york": 5032,
+          "other": 20509
+        }
+      }
+    },
+    "Sweep Reversal": {
+      "2019-01": {
+        "bars_processed": 30214,
+        "by_direction": {
+          "long": 15688,
+          "short": 14526
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5040,
+          "new_york": 5039,
+          "other": 20135
+        }
+      },
+      "2019-02": {
+        "bars_processed": 27319,
+        "by_direction": {
+          "long": 14480,
+          "short": 12839
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4559,
+          "new_york": 4559,
+          "other": 18201
+        }
+      },
+      "2019-03": {
+        "bars_processed": 28817,
+        "by_direction": {
+          "long": 15250,
+          "short": 13567
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4799,
+          "new_york": 4798,
+          "other": 19220
+        }
+      },
+      "2019-04": {
+        "bars_processed": 31416,
+        "by_direction": {
+          "long": 17056,
+          "short": 14360
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5267,
+          "new_york": 5280,
+          "other": 20869
+        }
+      },
+      "2019-05": {
+        "bars_processed": 31449,
+        "by_direction": {
+          "long": 16658,
+          "short": 14791
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5277,
+          "new_york": 5279,
+          "other": 20893
+        }
+      },
+      "2019-06": {
+        "bars_processed": 28954,
+        "by_direction": {
+          "long": 15096,
+          "short": 13858
+        },
+        "by_level_type": {
+          "prior_day_high_low": 25,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4800,
+          "new_york": 4800,
+          "other": 19354
+        }
+      },
+      "2019-07": {
+        "bars_processed": 33071,
+        "by_direction": {
+          "long": 17440,
+          "short": 15631
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5518,
+          "new_york": 5519,
+          "other": 22034
+        }
+      },
+      "2019-08": {
+        "bars_processed": 31486,
+        "by_direction": {
+          "long": 16165,
+          "short": 15321
+        },
+        "by_level_type": {
+          "prior_day_high_low": 26,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5280,
+          "new_york": 5280,
+          "other": 20926
+        }
+      },
+      "2019-09": {
+        "bars_processed": 27497,
+        "by_direction": {
+          "long": 14385,
+          "short": 13112
+        },
+        "by_level_type": {
+          "prior_day_high_low": 23,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4560,
+          "new_york": 4560,
+          "other": 18377
+        }
+      },
+      "2019-10": {
+        "bars_processed": 33089,
+        "by_direction": {
+          "long": 17427,
+          "short": 15662
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5520,
+          "new_york": 5520,
+          "other": 22049
+        }
+      },
+      "2019-11": {
+        "bars_processed": 28576,
+        "by_direction": {
+          "long": 15224,
+          "short": 13352
+        },
+        "by_level_type": {
+          "prior_day_high_low": 24,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 4798,
+          "new_york": 4799,
+          "other": 18979
+        }
+      },
+      "2019-12": {
+        "bars_processed": 30630,
+        "by_direction": {
+          "long": 16304,
+          "short": 14326
+        },
+        "by_level_type": {
+          "prior_day_high_low": 27,
+          "session_high_low": 2
+        },
+        "by_session": {
+          "london": 5089,
+          "new_york": 5032,
+          "other": 20509
+        }
+      }
+    }
+  },
+  "forbidden_metric_fields_present": false,
+  "status": "PASS",
+  "zero_transition_review": {
+    "classification": "no zero terminal transition in scan counters",
+    "first_zero": null
+  }
+}

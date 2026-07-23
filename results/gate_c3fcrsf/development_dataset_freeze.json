@@ -1,0 +1,43 @@
+{
+  "amendment_commit": "1eae93f3cbebea5fa9637d40e07eb1d527097f08",
+  "created_at": "2026-07-23T15:42:04.959704+00:00",
+  "development_audit_hash": "8b5a19c1fb21e734dc7abdc2c9e3b4f0e2cbe59455d0ad60bb5e52c38ee61565",
+  "development_certification_hash": "57028fa3e5f7fc1ee0838db4e0885017267d96ebe23a596742357d8cf6241346",
+  "downstream_validation_policy": "load pair only if freeze READY, pair in selected_research_universe, and audit/certification/checksum hashes match",
+  "excluded_pair_metadata": {
+    "EURUSD": "not all 2015-2019 pair-years passed tick/canonical audit",
+    "GBPUSD": "not all 2015-2019 pair-years passed tick/canonical audit"
+  },
+  "excluded_pairs": {
+    "EURUSD": "not all 2015-2019 pair-years passed tick/canonical audit",
+    "GBPUSD": "not all 2015-2019 pair-years passed tick/canonical audit"
+  },
+  "freeze_scope_hash": "c0ef7c5897b61dabfebda0ed1b8cf5cccaf61fbfac83003c6d97c792aa837912",
+  "git_sha": "10ccb2bbd65f55f01b3533a2e8e2f45826e1e61b",
+  "holdout_integrity_hash": "15f80d8b2cbbfef9cfe43b2fd4729ed5ef18ab2dad0ff6ee44f2a4901fe81b93",
+  "included_canonical_checksums": {
+    "USDJPY": "2e8287ccfe8a7b8503f5d55e969f6af4adea68819642247966b0a00e850ed377"
+  },
+  "pair_year_certification_hash": "e131a8f071560d933fc65cc594bdf5636dfa609a20d97df397f4dde76b244480",
+  "plan_hash": "bbcebd0b6cc0",
+  "protocol_hash": "2fbffeead35214ad78ab462115347f28186654b91fa5ba1e8e37025562252d5e",
+  "scope": "PAIR_SCOPED",
+  "selected_research_universe": [
+    "USDJPY"
+  ],
+  "split_boundaries": {
+    "development": [
+      "2015-01-01",
+      "2019-12-31"
+    ],
+    "holdout": [
+      "2023-01-01",
+      "2025-12-31"
+    ],
+    "validation": [
+      "2020-01-01",
+      "2022-12-31"
+    ]
+  },
+  "status": "READY"
+}

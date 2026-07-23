@@ -1,0 +1,24 @@
+{
+  "actual_sha": "10ccb2bbd65f55f01b3533a2e8e2f45826e1e61b",
+  "branch": "research/rigorous-intraday-smc-validation",
+  "created_at": "2026-07-23T15:40:15.796978+00:00",
+  "diff_check": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0,
+    "stderr_lines": [
+      "warning: in the working copy of 'src/fx_smc_bot/data/development_freeze.py', LF will be replaced by CRLF the next time Git touches it"
+    ],
+    "stdout_lines": []
+  },
+  "prior_final_decision": "DEVELOPMENT_DATA_EXPLORATORY_ONLY",
+  "starting_sha": "10ccb2bbd65f55f01b3533a2e8e2f45826e1e61b",
+  "status": [
+    " M src/fx_smc_bot/data/development_freeze.py",
+    "?? scripts/run_gate_c3fcrsf.py",
+    "?? tests/test_gate_c3f/test_c3fcrsf.py"
+  ]
+}

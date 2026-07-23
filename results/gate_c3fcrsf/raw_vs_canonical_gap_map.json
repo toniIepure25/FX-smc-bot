@@ -1,0 +1,283 @@
+{
+  "created_at": "2026-07-23T15:41:07.493793+00:00",
+  "items": [
+    {
+      "cause": "RAW_ASK_MISSING",
+      "missing_canonical_count": 1439,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 0,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 1439,
+      "tick_derived_only": 1439,
+      "window": {
+        "quarter": 1,
+        "session": "london",
+        "week_end": "2015-01-24",
+        "week_start": "2015-01-19",
+        "year": 2015
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 4199,
+      "neither_raw_side": 0,
+      "pair": "GBPUSD",
+      "raw_ask_only": 4199,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 4199,
+      "window": {
+        "quarter": 1,
+        "session": "london",
+        "week_end": "2015-01-24",
+        "week_start": "2015-01-19",
+        "year": 2015
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 7019,
+      "neither_raw_side": 0,
+      "pair": "GBPUSD",
+      "raw_ask_only": 7019,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 7019,
+      "window": {
+        "quarter": 2,
+        "session": "new_york",
+        "week_end": "2015-04-11",
+        "week_start": "2015-04-06",
+        "year": 2015
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 2700,
+      "neither_raw_side": 0,
+      "pair": "GBPUSD",
+      "raw_ask_only": 2700,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 2700,
+      "window": {
+        "quarter": 3,
+        "session": "london",
+        "week_end": "2015-09-12",
+        "week_start": "2015-09-07",
+        "year": 2015
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 2879,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 2879,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 2879,
+      "window": {
+        "quarter": 4,
+        "session": "london",
+        "week_end": "2015-12-19",
+        "week_start": "2015-12-14",
+        "year": 2015
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 1440,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 1440,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 1440,
+      "window": {
+        "quarter": 4,
+        "session": "new_york",
+        "week_end": "2016-10-15",
+        "week_start": "2016-10-10",
+        "year": 2016
+      }
+    },
+    {
+      "cause": "RAW_BID_ASK_ALIGNMENT_GAP",
+      "missing_canonical_count": 7001,
+      "neither_raw_side": 4241,
+      "pair": "EURUSD",
+      "raw_ask_only": 0,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 2760,
+      "tick_derived_only": 7001,
+      "window": {
+        "quarter": 1,
+        "session": "new_york",
+        "week_end": "2017-01-07",
+        "week_start": "2017-01-02",
+        "year": 2017
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 7018,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 5578,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 1440,
+      "tick_derived_only": 7018,
+      "window": {
+        "quarter": 3,
+        "session": "london",
+        "week_end": "2017-07-15",
+        "week_start": "2017-07-10",
+        "year": 2017
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 7019,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 7019,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 7019,
+      "window": {
+        "quarter": 4,
+        "session": "london",
+        "week_end": "2017-10-14",
+        "week_start": "2017-10-09",
+        "year": 2017
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 2700,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 2700,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 2700,
+      "window": {
+        "quarter": 2,
+        "session": "new_york",
+        "week_end": "2018-04-21",
+        "week_start": "2018-04-16",
+        "year": 2018
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 5757,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 5757,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 5757,
+      "window": {
+        "quarter": 3,
+        "session": "new_york",
+        "week_end": "2018-09-08",
+        "week_start": "2018-09-03",
+        "year": 2018
+      }
+    },
+    {
+      "cause": "RAW_ASK_MISSING",
+      "missing_canonical_count": 2700,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 0,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 2700,
+      "tick_derived_only": 2700,
+      "window": {
+        "quarter": 4,
+        "session": "new_york",
+        "week_end": "2018-10-20",
+        "week_start": "2018-10-15",
+        "year": 2018
+      }
+    },
+    {
+      "cause": "TICK_WINDOW_BOUNDARY_ONLY",
+      "missing_canonical_count": 0,
+      "neither_raw_side": 0,
+      "pair": "GBPUSD",
+      "raw_ask_only": 0,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 0,
+      "window": {
+        "quarter": 4,
+        "session": "new_york",
+        "week_end": "2018-10-20",
+        "week_start": "2018-10-15",
+        "year": 2018
+      }
+    },
+    {
+      "cause": "RAW_BID_MISSING",
+      "missing_canonical_count": 1440,
+      "neither_raw_side": 0,
+      "pair": "GBPUSD",
+      "raw_ask_only": 1440,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 1440,
+      "window": {
+        "quarter": 1,
+        "session": "new_york",
+        "week_end": "2019-03-23",
+        "week_start": "2019-03-18",
+        "year": 2019
+      }
+    },
+    {
+      "cause": "TICK_WINDOW_BOUNDARY_ONLY",
+      "missing_canonical_count": 0,
+      "neither_raw_side": 0,
+      "pair": "EURUSD",
+      "raw_ask_only": 0,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 0,
+      "window": {
+        "quarter": 4,
+        "session": "london",
+        "week_end": "2019-11-09",
+        "week_start": "2019-11-04",
+        "year": 2019
+      }
+    },
+    {
+      "cause": "TICK_WINDOW_BOUNDARY_ONLY",
+      "missing_canonical_count": 0,
+      "neither_raw_side": 0,
+      "pair": "GBPUSD",
+      "raw_ask_only": 0,
+      "raw_bid_and_ask": 0,
+      "raw_bid_only": 0,
+      "tick_derived_only": 0,
+      "window": {
+        "quarter": 4,
+        "session": "london",
+        "week_end": "2019-11-09",
+        "week_start": "2019-11-04",
+        "year": 2019
+      }
+    }
+  ],
+  "summary": {
+    "RAW_ASK_MISSING": 2,
+    "RAW_BID_ASK_ALIGNMENT_GAP": 1,
+    "RAW_BID_MISSING": 10,
+    "TICK_WINDOW_BOUNDARY_ONLY": 3
+  }
+}

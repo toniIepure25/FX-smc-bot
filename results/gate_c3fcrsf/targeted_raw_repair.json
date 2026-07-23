@@ -1,0 +1,545 @@
+{
+  "changed_checksums": {},
+  "created_at": "2026-07-23T15:41:12.130141+00:00",
+  "failed_units": [
+    {
+      "day": 19,
+      "error": "targeted provider probe returned Unknown error and Node assertion failure",
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2015
+    }
+  ],
+  "provider": "dukascopy-node 1.46.4",
+  "repaired_row_counts": {},
+  "requested_units": [
+    {
+      "day": 19,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "day": 20,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "day": 21,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "day": 22,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "day": 23,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "day": 2,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 3,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 4,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 5,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 6,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 10,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 11,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 12,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 13,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 14,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "day": 15,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "day": 16,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "day": 17,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "day": 18,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "day": 19,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "day": 14,
+      "month": 12,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 15,
+      "month": 12,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 16,
+      "month": 12,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 17,
+      "month": 12,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 18,
+      "month": 12,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 10,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "day": 11,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "day": 12,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "day": 13,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "day": 14,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "day": 2,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 3,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 4,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 5,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 6,
+      "month": 1,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 10,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 11,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 12,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 13,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 14,
+      "month": 7,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 9,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 10,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 11,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 12,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 13,
+      "month": 10,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "day": 16,
+      "month": 4,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 17,
+      "month": 4,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 18,
+      "month": 4,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 19,
+      "month": 4,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 20,
+      "month": 4,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 3,
+      "month": 9,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 4,
+      "month": 9,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 5,
+      "month": 9,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 6,
+      "month": 9,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 7,
+      "month": 9,
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "day": 19,
+      "month": 1,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 20,
+      "month": 1,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 21,
+      "month": 1,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 22,
+      "month": 1,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 23,
+      "month": 1,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 6,
+      "month": 4,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 7,
+      "month": 4,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 8,
+      "month": 4,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 9,
+      "month": 4,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 10,
+      "month": 4,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 7,
+      "month": 9,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 8,
+      "month": 9,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 9,
+      "month": 9,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 10,
+      "month": 9,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 11,
+      "month": 9,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "day": 18,
+      "month": 3,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "day": 19,
+      "month": 3,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "day": 20,
+      "month": 3,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "day": 21,
+      "month": 3,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "day": 22,
+      "month": 3,
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2019
+    }
+  ],
+  "status": "NOT_EXECUTABLE_WITH_CURRENT_PINNED_M1_PROVIDER",
+  "successful_units": []
+}
