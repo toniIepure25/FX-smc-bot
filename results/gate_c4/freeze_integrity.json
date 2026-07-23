@@ -1,0 +1,36 @@
+{
+  "excluded_pair_rejection_audit": {
+    "EURUSD": {
+      "passed": false,
+      "reasons": [
+        "requested pairs outside research universe: ['EURUSD']",
+        "missing expected checksum for requested pair: EURUSD"
+      ]
+    },
+    "GBPUSD": {
+      "passed": false,
+      "reasons": [
+        "requested pairs outside research universe: ['GBPUSD']",
+        "missing expected checksum for requested pair: GBPUSD"
+      ]
+    },
+    "USDJPY,EURUSD": {
+      "passed": false,
+      "reasons": [
+        "requested pairs outside research universe: ['EURUSD']",
+        "missing expected checksum for requested pair: EURUSD"
+      ]
+    }
+  },
+  "freeze_file": "D:\\ComputaCenter\\FX-smc-bot\\results\\gate_c3fcrsf\\development_dataset_freeze.json",
+  "freeze_file_sha256": "80803afeccaafca33f533352c07e02ea96d300a1ccc04f08529b5376e75d6949",
+  "freeze_scope_hash": "c0ef7c5897b61dabfebda0ed1b8cf5cccaf61fbfac83003c6d97c792aa837912",
+  "recomputed_freeze_scope_hash": "c0ef7c5897b61dabfebda0ed1b8cf5cccaf61fbfac83003c6d97c792aa837912",
+  "scope": "PAIR_SCOPED",
+  "selected_research_universe": [
+    "USDJPY"
+  ],
+  "status": "READY",
+  "usd_jpy_validation_passed": true,
+  "usd_jpy_validation_reasons": []
+}

@@ -1,0 +1,48 @@
+{
+  "config_hash": "736428ec62cfb04efa5b5de6dc759f50c97b71bfa585f57c6b03a451c169b8f1",
+  "config_instrument_audit": {
+    "finding": "Runtime universe is narrowed by the CRSF pair-scoped freeze.",
+    "gate_c4_runtime_universe": [
+      "USDJPY"
+    ],
+    "historical_configs_include": [
+      "EURUSD",
+      "GBPUSD",
+      "USDJPY"
+    ]
+  },
+  "families": {
+    "liquidity_acceptance_fvg_continuation": {
+      "config": "D:\\ComputaCenter\\FX-smc-bot\\configs\\research\\intraday_smc\\acceptance_continuation.yaml",
+      "operational_event": "two consecutive closes beyond prior-day high/low liquidity level, direction with the break",
+      "primary_horizon_minutes": 120,
+      "source": "D:\\ComputaCenter\\FX-smc-bot\\src\\fx_smc_bot\\alpha\\intraday\\acceptance_continuation.py"
+    },
+    "liquidity_sweep_mss_fvg_reversal": {
+      "config": "D:\\ComputaCenter\\FX-smc-bot\\configs\\research\\intraday_smc\\sweep_reversal.yaml",
+      "operational_event": "prior-day high/low liquidity sweep, same-bar close reclaim, direction opposite the swept side",
+      "primary_horizon_minutes": 60,
+      "source": "D:\\ComputaCenter\\FX-smc-bot\\src\\fx_smc_bot\\alpha\\intraday\\sweep_reversal.py"
+    },
+    "opening_range_london": {
+      "config": "D:\\ComputaCenter\\FX-smc-bot\\configs\\research\\intraday_smc\\opening_range.yaml",
+      "operational_event": "first London opening-range displacement close before cutoff",
+      "primary_horizon_minutes": 60,
+      "source": "D:\\ComputaCenter\\FX-smc-bot\\src\\fx_smc_bot\\alpha\\intraday\\opening_range.py"
+    },
+    "opening_range_new_york": {
+      "config": "D:\\ComputaCenter\\FX-smc-bot\\configs\\research\\intraday_smc\\opening_range.yaml",
+      "operational_event": "first New York opening-range displacement close before cutoff",
+      "primary_horizon_minutes": 60,
+      "source": "D:\\ComputaCenter\\FX-smc-bot\\src\\fx_smc_bot\\alpha\\intraday\\opening_range.py"
+    }
+  },
+  "file_hashes": {
+    "acceptance_config": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+    "acceptance_source": "831aada49cc661a2a30a2dce030b6e9d4f2fbc01af0b0813d00aae47c4b3efb0",
+    "opening_range_config": "0a9a05b4137d83968cedc944e41dfbb583f74780274db848da0d1f5236e3ac77",
+    "opening_range_source": "851ca8a9eec8a4f7e58984261f100ce1652665a8e564f57d1efce7e1b818d192",
+    "sweep_config": "342def379cd60590b69b1072468e7a0014657382cb8b2dfd4dffd24a1ce8bc7b",
+    "sweep_source": "171cea6f92bf492ada5cdd5e5e05681a5fc84404f8b44ea557a8de68dc16b22a"
+  }
+}
