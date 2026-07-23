@@ -1,0 +1,29 @@
+{
+  "amendment_commit_sha": "bd6d4d63e35edcd7afa1f65bba04aa903f86d281",
+  "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+  "analysis_code_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+  "development_replay_hash": "04e7babfa8a5f29643ea1e6e91c2ad0f0510edab919c6f5fb8f39b42b52c0c9c",
+  "execution_protocol_commit_sha": "0d054c2de2aa30ebe8bd9ad6e4028d30d74526d7",
+  "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+  "ready_checks": {
+    "amendment_commit_exists": true,
+    "development_replay_passes": true,
+    "execution_protocol_commit_exists": true,
+    "holdout_not_accessed": true,
+    "targeted_tests_pass": true,
+    "validation_not_accessed": true,
+    "working_tree_clean": true
+  },
+  "recorded_at_utc": "2026-07-23T20:09:16.851164+00:00",
+  "status": "READY_TO_UNBLIND_VALIDATION",
+  "targeted_test_result": "PASS",
+  "validation_access_checks": {
+    "c5_validation_access_ledger_absent": true,
+    "c5a_holdout_access_ledger_absent": true,
+    "c5a_validation_access_ledger_absent": true,
+    "c5a_validation_event_manifest_absent": true,
+    "c5a_validation_primary_estimand_absent": true
+  },
+  "working_tree_short_status": ""
+}
