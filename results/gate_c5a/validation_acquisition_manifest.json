@@ -1,0 +1,71 @@
+{
+  "acquisition_configuration_hash": "77598f9422d1792b6b81bd83342b810297d15d09ce49c12ef54086d005629936",
+  "complete_partitions": 72,
+  "failed_partitions": 0,
+  "max_observed_concurrent_tasks": 4,
+  "pair": "USDJPY",
+  "partition_count": 72,
+  "period": "2020-01-01 through 2022-12-31",
+  "provider_package_version": "dukascopy-node 1.46.4",
+  "repair_attempt": {
+    "command": "run_persistent_acquisition USDJPY 2020-01-01..2020-02-29 workers=4",
+    "log_file": "logs/gate_c5a/acquisition_repair_janfeb/acq_20260723_211952.log",
+    "result": "4 partitions completed with 0 rows"
+  },
+  "sides": [
+    "bid",
+    "ask"
+  ],
+  "status": "COMPLETE_BUT_INVALID_ZERO_ROW_PARTITIONS",
+  "timeframe": "M1",
+  "total_rows": 1500286,
+  "validation_access_ledger_hash": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216",
+  "workers_configured": 4,
+  "zero_row_partition_records": [
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=ask\\year=2020\\month=01\\manifest.json",
+      "month": 1,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "ask",
+      "status": "complete",
+      "year": 2020
+    },
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=ask\\year=2020\\month=02\\manifest.json",
+      "month": 2,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "ask",
+      "status": "complete",
+      "year": 2020
+    },
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=bid\\year=2020\\month=01\\manifest.json",
+      "month": 1,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "bid",
+      "status": "complete",
+      "year": 2020
+    },
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=bid\\year=2020\\month=02\\manifest.json",
+      "month": 2,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "bid",
+      "status": "complete",
+      "year": 2020
+    }
+  ],
+  "zero_row_partitions": 4
+}

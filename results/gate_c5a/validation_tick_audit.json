@@ -1,0 +1,5 @@
+{
+  "outcome_inspection": false,
+  "reason": "Tick audit not run because validation dataset freeze was not READY.",
+  "status": "NOT_RUN_VALIDATION_DATA_QUALITY_FAILED"
+}

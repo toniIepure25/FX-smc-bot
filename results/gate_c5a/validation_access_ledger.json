@@ -1,0 +1,14 @@
+{
+  "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+  "command": "$env:PATH='C:\\Users\\ComputaCenter\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin;' + $env:PATH; python scripts/run_persistent_acquisition.py --pairs USDJPY --start 2020-01-01 --end 2022-12-31 --workers 4 --raw-dir data/raw/gate_c5a/dukascopy-node --state-dir data/acquisition_state/gate_c5a --log-dir logs/gate_c5a/acquisition --resume",
+  "first_access_timestamp_utc": "2026-07-23T20:10:44.594725+00:00",
+  "git_sha": "78177a7db4989592d313e776286a9ef32d5d0d72",
+  "holdout_unblinded": false,
+  "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "interval": "2020-01-01 through 2022-12-31",
+  "pair": "USDJPY",
+  "protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+  "requested_data_type": "M1 bid and ask",
+  "validation_unblinded": true,
+  "working_tree_short_status_pre_access": ""
+}

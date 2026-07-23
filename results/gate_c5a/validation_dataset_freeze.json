@@ -1,0 +1,9 @@
+{
+  "holdout_included": false,
+  "pair": "USDJPY",
+  "period": "2020-01-01 through 2022-12-31",
+  "reason": "validation_data_quality failed due zero-row partitions",
+  "scope": "VALIDATION_ONLY",
+  "status": "NOT_READY",
+  "validation_data_quality_hash": "1466d7ae748be3442744a090135545b5553b8d70e69929c4471f378f0ebed415"
+}
