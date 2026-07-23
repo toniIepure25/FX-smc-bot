@@ -1,0 +1,754 @@
+{
+  "attachment_text_search": {
+    "command": [
+      "rg",
+      "-n",
+      "bbcebd0b6cc0|seed.?42|44.*window|audit_plan|tick_audit",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments",
+      "--glob",
+      "*.txt"
+    ],
+    "first_lines": [
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\7b9f6ccb-2d15-458e-b0af-e635f29a4ca5\\pasted-text.txt:416:44 deterministic audit windows",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\7b9f6ccb-2d15-458e-b0af-e635f29a4ca5\\pasted-text.txt:490:results/gate_c3fv/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\7b9f6ccb-2d15-458e-b0af-e635f29a4ca5\\pasted-text.txt:628:results/gate_c3fv/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\7b9f6ccb-2d15-458e-b0af-e635f29a4ca5\\pasted-text.txt:912:results/gate_c3fv/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\7b9f6ccb-2d15-458e-b0af-e635f29a4ca5\\pasted-text.txt:914:results/gate_c3fv/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:36:- The documented audit design describes 44 deterministic windows.",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:38:- The documented plan hash is bbcebd0b6cc0.",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:41:    plan_hash = bbcebd0b6cc0",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:58:results/gate_c3fta/frozen_tick_audit_plan.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:199:git log --all -S\"bbcebd0b6cc0\" --oneline --decorate",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:200:git log --all -S\"seed=42\" --oneline --decorate",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:205:rg -n \"bbcebd0b6cc0|seed.?42|44.*window|audit_plan|tick_audit\" .",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:233:generate_audit_plan(2015, 2025, seed=42)",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:251:generated_plan_hash = bbcebd0b6cc0",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:322:results/gate_c3ftpr/amended_frozen_tick_audit_plan.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:331:4. its hash matches the pre-existing documented hash `bbcebd0b6cc0`;",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:332:5. the complete 44-window plan is being materialized prospectively;",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:506:results/gate_c3ftpr/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:533:results/gate_c3ftpr/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:713:results/gate_c3ftpr/amended_frozen_tick_audit_plan.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:718:results/gate_c3ftpr/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\196e8df7-2a2c-4d3a-8c21-a110ed2c02e4\\pasted-text.txt:719:results/gate_c3ftpr/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\5ac5ebef-0a38-4861-8ce6-7115bbb1d8b1\\pasted-text.txt:323:src/fx_smc_bot/data/tick_audit.py",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\5ac5ebef-0a38-4861-8ce6-7115bbb1d8b1\\pasted-text.txt:723:results/gate_c3f_continuation/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\5ac5ebef-0a38-4861-8ce6-7115bbb1d8b1\\pasted-text.txt:859:results/gate_c3f_continuation/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\5ac5ebef-0a38-4861-8ce6-7115bbb1d8b1\\pasted-text.txt:1020:results/gate_c3f_continuation/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\5ac5ebef-0a38-4861-8ce6-7115bbb1d8b1\\pasted-text.txt:1023:results/gate_c3f_continuation/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\6d9fb14a-06c8-4f63-8521-154ec1b176cc\\pasted-text.txt:343:results/gate_c3f_completion/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\6d9fb14a-06c8-4f63-8521-154ec1b176cc\\pasted-text.txt:435:results/gate_c3f_completion/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\6d9fb14a-06c8-4f63-8521-154ec1b176cc\\pasted-text.txt:585:results/gate_c3f_completion/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\6d9fb14a-06c8-4f63-8521-154ec1b176cc\\pasted-text.txt:587:results/gate_c3f_completion/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\beb41a65-12df-4198-9af9-895e9659c3f1\\pasted-text.txt:328:results/gate_c3f_completion/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\beb41a65-12df-4198-9af9-895e9659c3f1\\pasted-text.txt:456:results/gate_c3f_completion/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\beb41a65-12df-4198-9af9-895e9659c3f1\\pasted-text.txt:629:results/gate_c3f_completion/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\beb41a65-12df-4198-9af9-895e9659c3f1\\pasted-text.txt:631:results/gate_c3f_completion/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:55:results/gate_c3fv/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:56:results/gate_c3fv/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:163:seed=42",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:164:44 deterministic windows",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:195:results/gate_c3fta/frozen_tick_audit_plan.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:271:python scripts/acquire_tick_audit_windows.py \\",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:272:  --plan results/gate_c3fta/frozen_tick_audit_plan.json \\",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:273:  --output-dir data/tick_audit \\",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:373:results/gate_c3fta/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:423:results/gate_c3fta/development_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:704:results/gate_c3fta/frozen_tick_audit_plan.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:708:results/gate_c3fta/2019_tick_audit.json",
+      "C:\\Users\\ComputaCenter\\.codex\\attachments\\da7cb869-5c24-4572-a429-9bf11a87997a\\pasted-text.txt:709:results/gate_c3fta/development_tick_audit.json"
+    ],
+    "line_count": 48,
+    "returncode": 0,
+    "stderr_first_lines": []
+  },
+  "commands": {
+    "fsck_unreachable": {
+      "command": [
+        "git",
+        "fsck",
+        "--full",
+        "--no-reflogs",
+        "--unreachable"
+      ],
+      "first_lines": [
+        "unreachable blob 2270a2f5c50ca0d89dbe61138b4d9c03eced865f",
+        "unreachable blob 8be0d06486d3ae0448e864d43b2aa83e809dd620",
+        "unreachable tree ae9041717214a7916de500980c5335002198f259",
+        "unreachable tree bff0c9eb240425a2e9094297a77eb1f4be388b38",
+        "unreachable tree c090bb8ee2a58c696d593de82edb13a187eaf4da",
+        "unreachable tree ae3199f42d3de71801acdf0f4c7b734ae942db4f",
+        "unreachable tree 63a26c000c3c2c6bda28fc20ce92278d47bc5ad9",
+        "unreachable tree 6ce26e1f7e9de0326d57cfd5e11578725af90722",
+        "unreachable tree f0536ded2e01b1df2ba9a446e8fa05c2cfc7b51d",
+        "unreachable tree 79d4355b1d1f21a9b7fa8b2c40e43b9c0da8249d",
+        "unreachable tree fb74fa200582f11cc2e86d07d409ebcd8a49b4b0",
+        "unreachable tree 78e5e027a11baeefdd4ef0701a23c730557f8efe",
+        "unreachable tree 91f6c451af37fdb4ace4cd0635a3a0665813e083",
+        "unreachable blob 0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+        "unreachable tree 18d7a425f756f23e4621d36481c621adf3647759",
+        "unreachable commit c438a557ae4936dce6d417157f31e3ddc7c8719a",
+        "unreachable tree 8639ca5e155dc1804e81734a41673a8900d46917",
+        "unreachable tree 4e4b6a6148f8f09080fc2b64f0e170110ddef3e6",
+        "unreachable tree 9e4bdba7be3675a872f0682b97e55032709b4c62",
+        "unreachable blob e4bbd9687a7ce89112a1ab47cd7ba2fbdc7db5a3",
+        "unreachable blob 1b5ef5ff2bdfd835b43a59250a99ed1b4bc05355",
+        "unreachable tree 3f3fad2a5d43e1489d452a1f720362f922fa0d7a",
+        "unreachable blob b2bf83769b2815235399d9e6c8bd352264979272"
+      ],
+      "line_count": 23,
+      "returncode": 0,
+      "stderr_first_lines": []
+    },
+    "history_tick_audit_plan": {
+      "command": [
+        "git",
+        "log",
+        "--all",
+        "--full-history",
+        "--name-status",
+        "--",
+        "*tick*",
+        "*audit*",
+        "*plan*"
+      ],
+      "first_lines": [
+        "commit abb583a8c646c8cdad7537d8897c3508b809d2b2",
+        "Author: Iepure Antoniu <iepuretoni533@gmail.com>",
+        "Date:   Thu Jul 23 14:24:04 2026 +0300",
+        "",
+        "    research(data): document C3FTA frozen plan blocker",
+        "",
+        "A\tresults/gate_c3fta/2019_tick_audit.json",
+        "A\tresults/gate_c3fta/development_tick_audit.json",
+        "A\tresults/gate_c3fta/frozen_tick_audit_plan.json",
+        "A\tresults/gate_c3fta/tick_acquisition_manifest.json",
+        "A\tresults/gate_c3fta/tick_to_m1_protocol.json",
+        "",
+        "commit 9490bab45366f96c244b6bd13b14f8ae357ac8b6",
+        "Author: Iepure Antoniu <iepuretoni533@gmail.com>",
+        "Date:   Thu Jul 23 14:11:21 2026 +0300",
+        "",
+        "    research(data): issue Gate C3FV blocked decision",
+        "",
+        "A\tresults/gate_c3fv/2019_tick_audit.json",
+        "A\tresults/gate_c3fv/development_tick_audit.json",
+        "A\tresults/gate_c3fv/raw_acquisition_audit.json",
+        "",
+        "commit 05cd067f2552b651dc59274783d0b094dccf8fbc",
+        "Author: Iepure Antoniu <iepuretoni533@gmail.com>",
+        "Date:   Mon Jul 20 14:33:23 2026 +0300",
+        "",
+        "    research(data): checkpoint active development acquisition",
+        "",
+        "M\tresults/gate_c3f_completion/2019_tick_audit.json",
+        "M\tresults/gate_c3f_completion/development_tick_audit.json",
+        "",
+        "commit 570a92de0f545268481be61865ddf97c86c9ab5a",
+        "Author: Iepure Antoniu <iepuretoni533@gmail.com>",
+        "Date:   Mon Jul 20 14:13:52 2026 +0300",
+        "",
+        "    research(data): launch development acquisition completion",
+        "",
+        "A\tresults/gate_c3f_completion/2019_tick_audit.json",
+        "A\tresults/gate_c3f_completion/development_tick_audit.json",
+        "",
+        "commit c23a6b2323869761f172e685ac291d76e20ff25e",
+        "Author: Iepure Antoniu <iepuretoni533@gmail.com>",
+        "Date:   Mon Jul 20 13:44:47 2026 +0300",
+        "",
+        "    fix(data): harden C3F continuation runner controls",
+        "",
+        "A\tresults/gate_c3f_continuation/2019_tick_audit.json",
+        "A\tresults/gate_c3f_continuation/development_tick_audit.json",
+        "",
+        "commit 997f59247ee39d349aae225261c6eb9b4a329506"
+      ],
+      "line_count": 116,
+      "returncode": 0,
+      "stderr_first_lines": []
+    },
+    "pickaxe_44_deterministic": {
+      "command": [
+        "git",
+        "log",
+        "--all",
+        "-S44 deterministic",
+        "--oneline",
+        "--decorate"
+      ],
+      "first_lines": [],
+      "line_count": 0,
+      "returncode": 0,
+      "stderr_first_lines": []
+    },
+    "pickaxe_plan_hash": {
+      "command": [
+        "git",
+        "log",
+        "--all",
+        "-Sbbcebd0b6cc0",
+        "--oneline",
+        "--decorate"
+      ],
+      "first_lines": [
+        "abb583a (HEAD -> research/rigorous-intraday-smc-validation, origin/research/rigorous-intraday-smc-validation) research(data): document C3FTA frozen plan blocker",
+        "05cd067 research(data): checkpoint active development acquisition",
+        "36f0109 docs: update Gate C.3R artifacts with holdout enforcement and quality metrics"
+      ],
+      "line_count": 3,
+      "returncode": 0,
+      "stderr_first_lines": []
+    },
+    "pickaxe_seed": {
+      "command": [
+        "git",
+        "log",
+        "--all",
+        "-Sseed=42",
+        "--oneline",
+        "--decorate"
+      ],
+      "first_lines": [
+        "abb583a (HEAD -> research/rigorous-intraday-smc-validation, origin/research/rigorous-intraday-smc-validation) research(data): document C3FTA frozen plan blocker",
+        "7428840 feat(data): add concurrent acquisition, GBPUSD repair diagnosis, and Gate C.3F artifacts",
+        "36f0109 docs: update Gate C.3R artifacts with holdout enforcement and quality metrics",
+        "ece2e2e test: add Gate C.2 end-to-end runtime integration tests",
+        "5ea48b5 docs: issue pre-holdout research decision (BLOCKED)",
+        "12f45b0 feat(research): add configurable prop challenge simulation",
+        "25d5a11 feat: final promotion-gate wave \u00e2\u20ac\u201d BOS-only USDJPY confirmed for paper trading",
+        "89ff85c feat: USDJPY-focused simplification wave \u00e2\u20ac\u201d BOS-only promoted to paper trading",
+        "461114f test: add comprehensive test suite (199 tests)"
+      ],
+      "line_count": 9,
+      "returncode": 0,
+      "stderr_first_lines": []
+    },
+    "stash": {
+      "command": [
+        "git",
+        "stash",
+        "list"
+      ],
+      "first_lines": [],
+      "line_count": 0,
+      "returncode": 0,
+      "stderr_first_lines": []
+    }
+  },
+  "conclusion": {
+    "original_complete_plan_recovered": false,
+    "summary": "No complete original 44-window plan artifact was found. Committed docs and generator support the documented hash."
+  },
+  "created_at": "2026-07-23T11:36:51.001550+00:00",
+  "repo_text_search": {
+    "command": [
+      "rg",
+      "-n",
+      "bbcebd0b6cc0|seed.?42|44.*window|audit_plan|tick_audit",
+      ".",
+      "--glob",
+      "!data/raw/**",
+      "--glob",
+      "!data/canonical/**",
+      "--glob",
+      "!tools/dukascopy-node/node_modules/**",
+      "--glob",
+      "!.git/**"
+    ],
+    "first_lines": [
+      ".\\docs\\research\\GATE_C3FTA_2019_TICK_AUDIT.md:6:because the frozen 44-window audit plan cannot be proven.",
+      ".\\docs\\research\\GATE_C3FTA_BLOCKER_ANALYSIS.md:7:Exact input artifact: `results\\gate_c3f\\2019_tick_audit.json`",
+      ".\\docs\\research\\GATE_C3FTA_BLOCKER_ANALYSIS.md:11:Documented deterministic plan hash: `bbcebd0b6cc0`",
+      ".\\docs\\research\\GATE_C3FTA_BLOCKER_ANALYSIS.md:13:Generated candidate hash used only for verification: `bbcebd0b6cc0`",
+      ".\\scripts\\run_final_promotion_gate.py:149:        start_date=\"2024-04-10\", end_date=\"2026-04-10\", seed=42,",
+      ".\\scripts\\run_gate_c2_control.py:155:    report1 = run_campaign(seed=42)",
+      ".\\scripts\\run_gate_c2_control.py:156:    report2 = run_campaign(seed=42)",
+      ".\\docs\\research\\GATE_C3FTA_FINAL_DECISION_MEMO.md:5:The exact frozen 44-window tick-audit plan cannot be proven from committed",
+      ".\\tests\\test_structure\\test_market_structure.py:19:        bars = make_trending_bars(n=80, direction=\"up\", seed=42)",
+      ".\\tests\\test_structure\\test_market_structure.py:28:        bars = make_trending_bars(n=80, direction=\"down\", seed=42)",
+      ".\\tests\\test_structure\\test_market_structure.py:37:        bars = make_trending_bars(n=80, direction=\"up\", seed=42)",
+      ".\\scripts\\run_gate_c3fv_validation.py:627:                \"tick_audit_result\": \"TICK_AUDIT_NOT_EXECUTABLE\",",
+      ".\\scripts\\run_gate_c3fv_validation.py:656:    plan_path = REPO / \"results\" / \"gate_c3f\" / \"2019_tick_audit.json\"",
+      ".\\scripts\\run_gate_c3fv_validation.py:680:            \"A standalone frozen 44-window tick-audit plan artifact was not \"",
+      ".\\scripts\\run_gate_c3fv_validation.py:877:    tick_2019_hash = write_json(RESULTS_DIR / \"2019_tick_audit.json\", tick_2019)",
+      ".\\scripts\\run_gate_c3fv_validation.py:901:        RESULTS_DIR / \"development_tick_audit.json\", dev_tick,",
+      ".\\scripts\\run_gate_c3fv_validation.py:1004:        \"tick_audit_plan_hash\": tick_review[\"plan_hash\"],",
+      ".\\scripts\\run_gate_c3fv_validation.py:1005:        \"2019_tick_audit_hash\": tick_2019_hash,",
+      ".\\scripts\\run_gate_c3fv_validation.py:1006:        \"development_tick_audit_hash\": dev_tick_hash,",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:4:44-window tick-audit plan cannot be proven from committed artifacts.",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:17:from fx_smc_bot.data.tick_audit import generate_audit_plan",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:22:C3F_PLACEHOLDER = ROOT / \"results\" / \"gate_c3f\" / \"2019_tick_audit.json\"",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:23:C3FV_2019 = ROOT / \"results\" / \"gate_c3fv\" / \"2019_tick_audit.json\"",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:131:    generated = generate_audit_plan(2015, 2025, seed=42)",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:145:            \"windows that do not match the deterministic 44-window plan \"",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:161:        documented_plan_hash=\"bbcebd0b6cc0\",",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:163:        seed=42,",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:267:        \"reason\": \"Frozen 44-window tick-audit plan cannot be proven from committed artifacts.\",",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:300:            \"from fx_smc_bot.data.tick_audit import generate_audit_plan\\n\"",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:301:            \"print(generate_audit_plan(2015, 2025, seed=42).plan_hash)\\n\"",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:305:        \"audit_plan_hash\": proof.placeholder_plan_hash,",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:311:    frozen_plan_hash = write_json(RESULTS_DIR / \"frozen_tick_audit_plan.json\", frozen_plan)",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:344:            \"output_dir\": \"data/tick_audit\",",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:351:        \"2019_tick_audit.json\",",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:366:    audit_2019_hash = write_json(RESULTS_DIR / \"2019_tick_audit.json\", audit_2019)",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:369:        \"development_tick_audit.json\",",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:378:    dev_audit_hash = write_json(RESULTS_DIR / \"development_tick_audit.json\", dev_audit)",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:405:                    \"tick_audit_result\": \"TICK_AUDIT_NOT_EXECUTABLE\",",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:458:        \"audit_plan_hash\": frozen_plan_hash,",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:571:This protocol was not used to execute an audit because the frozen 44-window",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:583:because the frozen 44-window audit plan cannot be proven.",
+      ".\\scripts\\run_gate_c3fta_blocker_analysis.py:640:The exact frozen 44-window tick-audit plan cannot be proven from committed",
+      ".\\docs\\research\\GATE_C3FTA_TICK_TO_M1_PROTOCOL.md:19:This protocol was not used to execute an audit because the frozen 44-window",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:17:from fx_smc_bot.data.tick_audit import generate_audit_plan",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:22:DOCUMENTED_PLAN_HASH = \"bbcebd0b6cc0\"",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:82:    plan = generate_audit_plan(START_YEAR, END_YEAR, seed=SEED)",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:125:    import fx_smc_bot.data.tick_audit as tick_audit",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:127:    source_path = Path(inspect.getsourcefile(generate_audit_plan) or \"\")",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:132:        \"function_signature\": str(inspect.signature(generate_audit_plan)),",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:133:        \"function_source_sha256\": sha256_text(inspect.getsource(generate_audit_plan)),",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:135:        \"audit_seed_constant\": tick_audit.AUDIT_SEED,",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:142:        ROOT / \"data\" / \"tick_audit\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:163:        \"tick_audit_data_directories\": tick_dir_state,",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:169:        \"history_tick_audit_plan\": [\"git\", \"log\", \"--all\", \"--full-history\", \"--name-status\", \"--\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:171:        \"pickaxe_plan_hash\": [\"git\", \"log\", \"--all\", \"-Sbbcebd0b6cc0\", \"--oneline\", \"--decorate\"],",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:172:        \"pickaxe_seed\": [\"git\", \"log\", \"--all\", \"-Sseed=42\", \"--oneline\", \"--decorate\"],",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:184:        r\"bbcebd0b6cc0|seed.?42|44.*window|audit_plan|tick_audit\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:202:            r\"bbcebd0b6cc0|seed.?42|44.*window|audit_plan|tick_audit\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:212:        ROOT / \"src\" / \"fx_smc_bot\" / \"data\" / \"tick_audit.py\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:213:        ROOT / \"results\" / \"gate_c3f\" / \"2019_tick_audit.json\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:214:        ROOT / \"results\" / \"gate_c3fta\" / \"frozen_tick_audit_plan.json\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:223:                \"contains_exact_windows\": path.name == \"tick_audit.py\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:225:                and path.name != \"tick_audit.py\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:260:                \"No complete original 44-window plan artifact was found. \"",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:272:        \"from fx_smc_bot.data.tick_audit import generate_audit_plan;\"",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:273:        \"p=generate_audit_plan(2015,2025,seed=42).to_dict();\"",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:313:            \"generated_window_count_is_44\": plan_obj[\"window_count\"] == 44,",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:326:        \"data/tick_audit/**/*\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:348:        if str(p[\"path\"]).startswith(\"data\\\\tick_audit\")",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:349:        or str(p[\"path\"]).startswith(\"data/tick_audit\")",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:365:        \"tick_audit_output_files\": tick_outputs,",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:366:        \"prior_tick_audit_placeholder_or_blocked_results\": prior_audit_results,",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:436:            \"generator_source\": \"src/fx_smc_bot/data/tick_audit.py\",",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:491:The complete original 44-window artifact was not recovered. The documented",
+      ".\\scripts\\run_gate_c3ftpr_plan_amendment.py:563:    write_json(RESULTS_DIR / \"amended_frozen_tick_audit_plan.json\", amendment)",
+      ".\\scripts\\run_rootcause_investigation.py:335:            seed=42,",
+      ".\\scripts\\run_simplification_decision.py:513:            start_date=\"2024-04-10\", end_date=\"2026-04-10\", seed=42,",
+      ".\\tests\\test_backtesting\\test_engine.py:19:        bars = make_bars(n=200, volatility=0.002, seed=42)",
+      ".\\tests\\test_backtesting\\test_engine.py:31:        bars = make_trending_bars(n=200, direction=\"up\", seed=42)",
+      ".\\tests\\test_research\\test_prop_simulation.py:41:            daily_pnls, profile, n_paths=100, seed=42,",
+      ".\\tests\\test_research\\test_prop_simulation.py:52:            daily_pnls, profile, n_paths=100, seed=42,",
+      ".\\tests\\test_research\\test_prop_simulation.py:62:            daily_pnls, profile, n_paths=200, seed=42,",
+      ".\\tests\\test_research\\test_prop_simulation.py:72:            daily_pnls, profile, n_paths=50, seed=42,",
+      ".\\tests\\test_research\\test_prop_simulation.py:84:            daily_pnls, profile, n_paths=50, seed=42,",
+      ".\\tests\\test_research\\test_prop_simulation.py:99:                risk_per_trade=risk_pct, seed=42,",
+      ".\\tests\\test_research\\test_prop_simulation.py:118:            daily_pnls, profile, n_paths=200, seed=42,",
+      ".\\src\\fx_smc_bot\\data\\tick_audit.py:54:def generate_audit_plan(",
+      ".\\tests\\test_ml\\test_microstructure.py:21:    np.random.seed(42)",
+      ".\\tests\\test_gate_c3f\\test_c3ftpr_plan_amendment.py:26:        assert reproduced[\"generated_plan_hash\"] == \"bbcebd0b6cc0\"",
+      ".\\tests\\test_gate_c3f\\test_c3fta_blocker_analysis.py:26:        assert proof.documented_plan_hash == \"bbcebd0b6cc0\"",
+      ".\\tests\\test_gate_c3f\\test_c3fta_blocker_analysis.py:27:        assert proof.generated_candidate_hash == \"bbcebd0b6cc0\"",
+      ".\\docs\\research\\GATE_C3FTPR_PROSPECTIVE_AMENDMENT.md:8:Documented plan hash: `bbcebd0b6cc0`",
+      ".\\docs\\research\\GATE_C3FTPR_PROSPECTIVE_AMENDMENT.md:10:Generated candidate hash: `bbcebd0b6cc0`",
+      ".\\docs\\research\\GATE_C3FV_2019_TICK_AUDIT.md:5:Plan path: `results\\gate_c3f\\2019_tick_audit.json`",
+      ".\\docs\\research\\GATE_C3FV_2019_TICK_AUDIT.md:10:A standalone frozen 44-window tick-audit plan artifact was not materialized before result inspection. Only four 2019 windows are listed in the prior placeholder, and no executable tick-to-M1 audit command is present.",
+      ".\\docs\\research\\GATE_C3FTPR_PROVENANCE_RECOVERY.md:15:The complete original 44-window artifact was not recovered. The documented",
+      ".\\docs\\research\\GATE_C3FTPR_PROVENANCE_RECOVERY.md:16:hash `bbcebd0b6cc0` is present in committed Gate C.3R documentation,",
+      ".\\docs\\research\\GATE_C3F_2019_TICK_AUDIT.md:5:The frozen 2019 windows and tolerances remain preserved from `results/gate_c3f/2019_tick_audit.json`. The audit was not run because the first-pass development acquisition is actively using the provider.",
+      ".\\docs\\research\\GATE_C3R_DECISION_MEMO.md:33:7. **Tick audit framework** (`tick_audit.py`): deterministic audit window",
+      ".\\docs\\research\\GATE_C3R_DECISION_MEMO.md:80:2. **Tick audit**: Plan generated (44 windows, seed=42), requires full",
+      ".\\docs\\research\\GATE_C3R_TICK_AUDIT.md:18:- **Plan hash**: `bbcebd0b6cc0`",
+      ".\\docs\\research\\GATE_C3R_TICK_AUDIT.md:27:File: `src/fx_smc_bot/data/tick_audit.py`",
+      ".\\docs\\research\\GATE_C3R_TICK_AUDIT.md:29:The plan is deterministic \u00e2\u20ac\u201d running `generate_audit_plan(2015, 2025, seed=42)`",
+      ".\\docs\\research\\GATE_C3R_TICK_AUDIT.md:30:always produces the same 44 windows with the same plan hash.",
+      ".\\docs\\research\\SYNTHETIC_CONTROL_REPORT.md:11:- **Data**: Dukascopy-style GBM synthetic M5 data, seed=42"
+    ],
+    "line_count": 105,
+    "returncode": 0,
+    "stderr_first_lines": []
+  },
+  "sources": [
+    {
+      "confidence": "high",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": true,
+      "content_hash": "ba0e35ce192c3b045062175547d8585de0ecfc6da1413bb539b7a553b35f00b1",
+      "path": "docs\\research\\GATE_C3R_TICK_AUDIT.md",
+      "predates_tick_execution": true,
+      "source_type": "tracked_or_local_file",
+      "timestamp": "2026-07-14T12:54:02.797304+00:00"
+    },
+    {
+      "confidence": "high",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": true,
+      "content_hash": "2518b2453f375be2a0d7cc4bdb1b06b9918d3fdf5d6aa8e8306bbbd55282fe50",
+      "path": "docs\\research\\GATE_C3R_DECISION_MEMO.md",
+      "predates_tick_execution": true,
+      "source_type": "tracked_or_local_file",
+      "timestamp": "2026-07-14T12:52:53.777337+00:00"
+    },
+    {
+      "confidence": "high",
+      "contains_exact_windows": true,
+      "contains_only_summary_metadata": false,
+      "content_hash": "1221e5789bea8d20c43b95e72276b766da0784ba0e858592c102de401284d356",
+      "path": "src\\fx_smc_bot\\data\\tick_audit.py",
+      "predates_tick_execution": true,
+      "source_type": "tracked_or_local_file",
+      "timestamp": "2026-07-14T12:56:00.608143+00:00"
+    },
+    {
+      "confidence": "high",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": true,
+      "content_hash": "c9fc33d4b3cffcd43380895832a6a72bd6037b3984147aa93671e26d1a98a252",
+      "path": "results\\gate_c3f\\2019_tick_audit.json",
+      "predates_tick_execution": true,
+      "source_type": "tracked_or_local_file",
+      "timestamp": "2026-07-14T13:43:33.814321+00:00"
+    },
+    {
+      "confidence": "high",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": true,
+      "content_hash": "431393f773545e15dd557931f07dd19a8055d1180ade977ac321d65dd11de601",
+      "path": "results\\gate_c3fta\\frozen_tick_audit_plan.json",
+      "predates_tick_execution": true,
+      "source_type": "tracked_or_local_file",
+      "timestamp": "2026-07-23T11:20:17.126915+00:00"
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "2270a2f5c50ca0d89dbe61138b4d9c03eced865f",
+      "git_object": "2270a2f5c50ca0d89dbe61138b4d9c03eced865f",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_blob",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "8be0d06486d3ae0448e864d43b2aa83e809dd620",
+      "git_object": "8be0d06486d3ae0448e864d43b2aa83e809dd620",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_blob",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "ae9041717214a7916de500980c5335002198f259",
+      "git_object": "ae9041717214a7916de500980c5335002198f259",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "bff0c9eb240425a2e9094297a77eb1f4be388b38",
+      "git_object": "bff0c9eb240425a2e9094297a77eb1f4be388b38",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "c090bb8ee2a58c696d593de82edb13a187eaf4da",
+      "git_object": "c090bb8ee2a58c696d593de82edb13a187eaf4da",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "ae3199f42d3de71801acdf0f4c7b734ae942db4f",
+      "git_object": "ae3199f42d3de71801acdf0f4c7b734ae942db4f",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "63a26c000c3c2c6bda28fc20ce92278d47bc5ad9",
+      "git_object": "63a26c000c3c2c6bda28fc20ce92278d47bc5ad9",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "6ce26e1f7e9de0326d57cfd5e11578725af90722",
+      "git_object": "6ce26e1f7e9de0326d57cfd5e11578725af90722",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "f0536ded2e01b1df2ba9a446e8fa05c2cfc7b51d",
+      "git_object": "f0536ded2e01b1df2ba9a446e8fa05c2cfc7b51d",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "79d4355b1d1f21a9b7fa8b2c40e43b9c0da8249d",
+      "git_object": "79d4355b1d1f21a9b7fa8b2c40e43b9c0da8249d",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "fb74fa200582f11cc2e86d07d409ebcd8a49b4b0",
+      "git_object": "fb74fa200582f11cc2e86d07d409ebcd8a49b4b0",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "78e5e027a11baeefdd4ef0701a23c730557f8efe",
+      "git_object": "78e5e027a11baeefdd4ef0701a23c730557f8efe",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "91f6c451af37fdb4ace4cd0635a3a0665813e083",
+      "git_object": "91f6c451af37fdb4ace4cd0635a3a0665813e083",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "git_object": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_blob",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "18d7a425f756f23e4621d36481c621adf3647759",
+      "git_object": "18d7a425f756f23e4621d36481c621adf3647759",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "c438a557ae4936dce6d417157f31e3ddc7c8719a",
+      "git_object": "c438a557ae4936dce6d417157f31e3ddc7c8719a",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_commit",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "8639ca5e155dc1804e81734a41673a8900d46917",
+      "git_object": "8639ca5e155dc1804e81734a41673a8900d46917",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "4e4b6a6148f8f09080fc2b64f0e170110ddef3e6",
+      "git_object": "4e4b6a6148f8f09080fc2b64f0e170110ddef3e6",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "9e4bdba7be3675a872f0682b97e55032709b4c62",
+      "git_object": "9e4bdba7be3675a872f0682b97e55032709b4c62",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "e4bbd9687a7ce89112a1ab47cd7ba2fbdc7db5a3",
+      "git_object": "e4bbd9687a7ce89112a1ab47cd7ba2fbdc7db5a3",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_blob",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "1b5ef5ff2bdfd835b43a59250a99ed1b4bc05355",
+      "git_object": "1b5ef5ff2bdfd835b43a59250a99ed1b4bc05355",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_blob",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "3f3fad2a5d43e1489d452a1f720362f922fa0d7a",
+      "git_object": "3f3fad2a5d43e1489d452a1f720362f922fa0d7a",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_tree",
+      "timestamp": ""
+    },
+    {
+      "confidence": "low_until_inspected",
+      "contains_exact_windows": false,
+      "contains_only_summary_metadata": false,
+      "content_hash": "b2bf83769b2815235399d9e6c8bd352264979272",
+      "git_object": "b2bf83769b2815235399d9e6c8bd352264979272",
+      "predates_tick_execution": "UNKNOWN",
+      "source_type": "git_unreachable_blob",
+      "timestamp": ""
+    }
+  ],
+  "untracked_or_ignored_result_files": [
+    {
+      "last_write_time_utc": "2026-07-14T13:43:33.814321+00:00",
+      "length": 1067,
+      "path": "results\\gate_c3f\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T11:30:26.791053+00:00",
+      "length": 1229,
+      "path": "results\\gate_c3f_completion\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T11:30:26.792052+00:00",
+      "length": 230,
+      "path": "results\\gate_c3f_completion\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T10:41:43.666950+00:00",
+      "length": 517,
+      "path": "results\\gate_c3f_continuation\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T10:41:43.674951+00:00",
+      "length": 181,
+      "path": "results\\gate_c3f_continuation\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-14T15:04:18.426685+00:00",
+      "length": 519,
+      "path": "results\\gate_c3fr\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-14T15:04:34.089466+00:00",
+      "length": 209,
+      "path": "results\\gate_c3fr\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.151018+00:00",
+      "length": 612,
+      "path": "results\\gate_c3fta\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.154014+00:00",
+      "length": 1084,
+      "path": "results\\gate_c3fta\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.126915+00:00",
+      "length": 8647,
+      "path": "results\\gate_c3fta\\frozen_tick_audit_plan.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.146973+00:00",
+      "length": 469,
+      "path": "results\\gate_c3fta\\tick_acquisition_manifest.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.141913+00:00",
+      "length": 1654,
+      "path": "results\\gate_c3fta\\tick_to_m1_protocol.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:35:44.623322+00:00",
+      "length": 8796,
+      "path": "results\\gate_c3ftpr\\amended_frozen_tick_audit_plan.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:35:44.604316+00:00",
+      "length": 9225,
+      "path": "results\\gate_c3ftpr\\pre_amendment_information_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:35:38.290664+00:00",
+      "length": 13197,
+      "path": "results\\gate_c3ftpr\\reproduced_candidate_plan.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-21T17:09:56.672359+00:00",
+      "length": 1606,
+      "path": "results\\gate_c3fv\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-21T17:09:56.674355+00:00",
+      "length": 1016,
+      "path": "results\\gate_c3fv\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-21T17:08:27.002189+00:00",
+      "length": 788479,
+      "path": "results\\gate_c3fv\\raw_acquisition_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-14T12:13:25.784249+00:00",
+      "length": 664,
+      "path": "results\\gate_c3r\\acquisition_plan.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-14T12:42:15.940539+00:00",
+      "length": 7108,
+      "path": "results\\gate_c3r\\tick_audit.json"
+    }
+  ]
+}

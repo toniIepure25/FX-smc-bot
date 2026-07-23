@@ -1,0 +1,254 @@
+{
+  "amendment_eligible": true,
+  "m1_candle_cache_files_count": 10515,
+  "m1_candle_cache_sample": [
+    {
+      "last_write_time_utc": "2026-07-14T20:50:08.465677+00:00",
+      "length": 11657,
+      "path": ".dukascopy-cache\\EURUSD-2019-05-03-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:26:36.514073+00:00",
+      "length": 2812,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-01-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:26:15.750787+00:00",
+      "length": 2862,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-01-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:28:25.743186+00:00",
+      "length": 11413,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-02-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:28:50.246439+00:00",
+      "length": 10963,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-02-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:29:08.667246+00:00",
+      "length": 1889,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-03-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:29:09.588749+00:00",
+      "length": 1889,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-03-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:29:28.911378+00:00",
+      "length": 2905,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-04-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:29:16.524989+00:00",
+      "length": 2906,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-04-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:32:25.053859+00:00",
+      "length": 12221,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-05-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:29:25.486170+00:00",
+      "length": 12221,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-05-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:32:35.173728+00:00",
+      "length": 12391,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-06-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:32:36.611678+00:00",
+      "length": 12114,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-06-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:33:16.507372+00:00",
+      "length": 12305,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-07-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-21T16:42:38.087864+00:00",
+      "length": 12173,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-07-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:35:07.869124+00:00",
+      "length": 12035,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-08-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:37:03.401057+00:00",
+      "length": 11682,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-08-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:37:11.207937+00:00",
+      "length": 11090,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-09-ASK_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-21T16:42:39.527121+00:00",
+      "length": 11209,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-09-BID_candles_min_1.bi5"
+    },
+    {
+      "last_write_time_utc": "2026-07-16T14:40:10.396339+00:00",
+      "length": 1888,
+      "path": "tools\\dukascopy-node\\.dukascopy-cache\\EURUSD-2015-00-10-ASK_candles_min_1.bi5"
+    }
+  ],
+  "note": "M1 candle caches are not tick-window audit outputs and do not contain tick-derived OHLC comparison outcomes.",
+  "ohlc_results_observed": false,
+  "outcome_information_available": false,
+  "prior_tick_audit_placeholder_or_blocked_results": [
+    {
+      "last_write_time_utc": "2026-07-14T13:43:33.814321+00:00",
+      "length": 1067,
+      "path": "results\\gate_c3f\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T11:30:26.791053+00:00",
+      "length": 1229,
+      "path": "results\\gate_c3f_completion\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T11:30:26.792052+00:00",
+      "length": 230,
+      "path": "results\\gate_c3f_completion\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T10:41:43.666950+00:00",
+      "length": 517,
+      "path": "results\\gate_c3f_continuation\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-20T10:41:43.674951+00:00",
+      "length": 181,
+      "path": "results\\gate_c3f_continuation\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-14T15:04:18.426685+00:00",
+      "length": 519,
+      "path": "results\\gate_c3fr\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-14T15:04:34.089466+00:00",
+      "length": 209,
+      "path": "results\\gate_c3fr\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.151018+00:00",
+      "length": 612,
+      "path": "results\\gate_c3fta\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.154014+00:00",
+      "length": 1084,
+      "path": "results\\gate_c3fta\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.126915+00:00",
+      "length": 8647,
+      "path": "results\\gate_c3fta\\frozen_tick_audit_plan.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.146973+00:00",
+      "length": 469,
+      "path": "results\\gate_c3fta\\tick_acquisition_manifest.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:20:17.141913+00:00",
+      "length": 1654,
+      "path": "results\\gate_c3fta\\tick_to_m1_protocol.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-23T11:35:44.623322+00:00",
+      "length": 8796,
+      "path": "results\\gate_c3ftpr\\amended_frozen_tick_audit_plan.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-21T17:09:56.672359+00:00",
+      "length": 1606,
+      "path": "results\\gate_c3fv\\2019_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-21T17:09:56.674355+00:00",
+      "length": 1016,
+      "path": "results\\gate_c3fv\\development_tick_audit.json"
+    },
+    {
+      "last_write_time_utc": "2026-07-14T12:42:15.940539+00:00",
+      "length": 7108,
+      "path": "results\\gate_c3r\\tick_audit.json"
+    }
+  ],
+  "tick_audit_output_files": [],
+  "tick_comparison_like_files": [],
+  "tick_comparisons_executed": false,
+  "tick_windows_downloaded": false,
+  "tolerances_changed_after_results": false,
+  "unrelated_comparison_like_files": [
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.645754+00:00",
+      "length": 4012,
+      "path": "results\\holdout_stability_wave\\data_source_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.647755+00:00",
+      "length": 1768,
+      "path": "results\\holdout_stability_wave\\updated_candidate_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.667753+00:00",
+      "length": 1018,
+      "path": "results\\real_data_campaign\\final_package\\final_candidate_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.675840+00:00",
+      "length": 1850,
+      "path": "results\\risk_compression_wave\\hardened_candidate_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.678843+00:00",
+      "length": 2265,
+      "path": "results\\rootcause_wave\\data_source_quality_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.680844+00:00",
+      "length": 2118,
+      "path": "results\\rootcause_wave\\updated_champion_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.683844+00:00",
+      "length": 1444,
+      "path": "results\\simplification_wave\\pair_universe_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.683844+00:00",
+      "length": 2185,
+      "path": "results\\simplification_wave\\simplified_candidate_data_source_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.702935+00:00",
+      "length": 1007,
+      "path": "results\\validation_wave1\\final_package\\final_candidate_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.723933+00:00",
+      "length": 1011,
+      "path": "results\\validation_wave2\\final_package\\final_candidate_comparison.md"
+    },
+    {
+      "last_write_time_utc": "2026-07-10T15:55:13.736935+00:00",
+      "length": 509,
+      "path": "results\\validation_wave2_final\\final_package\\final_candidate_comparison.md"
+    }
+  ],
+  "windows_changed_after_results": false
+}

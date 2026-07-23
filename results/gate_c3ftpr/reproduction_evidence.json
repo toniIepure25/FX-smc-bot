@@ -1,0 +1,12 @@
+{
+  "byte_identical": true,
+  "current_process_sha256": "bc27827e5ae6bd9145767e16adfab4bdcd908bf8ccc5afcbd53648d5005b330f",
+  "fresh_process_a_sha256": "bc27827e5ae6bd9145767e16adfab4bdcd908bf8ccc5afcbd53648d5005b330f",
+  "fresh_process_b_sha256": "bc27827e5ae6bd9145767e16adfab4bdcd908bf8ccc5afcbd53648d5005b330f",
+  "requirements": {
+    "generated_plan_hash_matches_documented": true,
+    "generated_window_count_is_44": true
+  },
+  "status": "PASS",
+  "test_process_equivalent_sha256": "bc27827e5ae6bd9145767e16adfab4bdcd908bf8ccc5afcbd53648d5005b330f"
+}

@@ -1,0 +1,50 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "created_at": "2026-07-23T11:36:48.661850+00:00",
+  "documented_plan_hash": "bbcebd0b6cc0",
+  "generator": {
+    "audit_seed_constant": 42,
+    "function_signature": "(start_year: 'int' = 2015, end_year: 'int' = 2025, seed: 'int' = 42) -> 'TickAuditPlan'",
+    "function_source_sha256": "0482b8f4fbeed9fc2c556f79ad4739dc42c039d9049601c88131e52e00aa989d",
+    "module_commit": "4b2e592bb71514fdeb62af4187a492df1c3a66a1",
+    "module_path": "src\\fx_smc_bot\\data\\tick_audit.py",
+    "module_sha256": "dc31538bdf3f58543bdb94705e56fe38db25bbabfcb2385f0f404a1899fe1070"
+  },
+  "git_diff_check": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "first_lines": [],
+    "line_count": 0,
+    "returncode": 0,
+    "stderr_first_lines": []
+  },
+  "git_status": [
+    "?? .pytest_tmp_c3ftpr/",
+    "?? docs/research/GATE_C3FTPR_FINAL_DECISION_MEMO.md",
+    "?? docs/research/GATE_C3FTPR_PROSPECTIVE_AMENDMENT.md",
+    "?? docs/research/GATE_C3FTPR_PROVENANCE_RECOVERY.md",
+    "?? scripts/run_gate_c3ftpr_plan_amendment.py",
+    "?? tests/test_gate_c3f/test_c3ftpr_plan_amendment.py"
+  ],
+  "starting_sha": "abb583a8c646c8cdad7537d8897c3508b809d2b2",
+  "tick_audit_data_directories": [
+    {
+      "exists": false,
+      "file_count": 0,
+      "path": "data\\tick_audit"
+    },
+    {
+      "exists": false,
+      "file_count": 0,
+      "path": "data\\raw_tick"
+    },
+    {
+      "exists": true,
+      "file_count": 7,
+      "path": "results\\gate_c3ftpr"
+    }
+  ]
+}
