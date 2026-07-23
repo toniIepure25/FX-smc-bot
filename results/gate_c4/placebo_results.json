@@ -1,0 +1,34 @@
+{
+  "liquidity_acceptance_fvg_continuation": {
+    "direction_flip_mid_mean_points": -0.2961065573769135,
+    "n_events": 2440,
+    "placebo_reproduces_primary_direction": false,
+    "primary_event_mean_points": -3.66885245901655,
+    "random_matched_time_mean_points": -17.423360655737724,
+    "timestamp_shift_plus_one_day_mean_points": -0.4507111329082536
+  },
+  "liquidity_sweep_mss_fvg_reversal": {
+    "direction_flip_mid_mean_points": 4.507559395248264,
+    "n_events": 1389,
+    "placebo_reproduces_primary_direction": false,
+    "primary_event_mean_points": -8.406047516198633,
+    "random_matched_time_mean_points": 5.045356371490041,
+    "timestamp_shift_plus_one_day_mean_points": -5.969217238346368
+  },
+  "opening_range_london": {
+    "direction_flip_mid_mean_points": -3.2896253602306307,
+    "n_events": 694,
+    "placebo_reproduces_primary_direction": true,
+    "primary_event_mean_points": 0.21181556195970366,
+    "random_matched_time_mean_points": -14.948126801152547,
+    "timestamp_shift_plus_one_day_mean_points": 0.52919708029206
+  },
+  "opening_range_new_york": {
+    "direction_flip_mid_mean_points": 6.585000000000196,
+    "n_events": 800,
+    "placebo_reproduces_primary_direction": false,
+    "primary_event_mean_points": -9.677499999999919,
+    "random_matched_time_mean_points": -9.772500000000104,
+    "timestamp_shift_plus_one_day_mean_points": 6.984326018808448
+  }
+}

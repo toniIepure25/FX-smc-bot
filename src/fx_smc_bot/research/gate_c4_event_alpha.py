@@ -17,9 +17,9 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import numpy as np
-import pandas as pd
-import yaml
-from scipy import stats
+import pandas as pd  # type: ignore[import-untyped]
+import yaml  # type: ignore[import-untyped]
+from scipy import stats  # type: ignore[import-untyped]
 
 from fx_smc_bot.data.development_freeze import (
     freeze_scope_hash,
@@ -826,7 +826,7 @@ def temporal_replication(events: pd.DataFrame, controls: pd.DataFrame) -> dict[s
         on="event_id",
         how="inner",
     )
-    out = {}
+    out: dict[str, dict[str, Any]] = {}
     for family, fam in merged.groupby("family"):
         parts = {}
         for name, years in (("discovery", DISCOVERY_YEARS), ("replication", REPLICATION_YEARS)):
@@ -856,7 +856,7 @@ def placebo_results(
         on="event_id",
         how="inner",
     )
-    out = {}
+    out: dict[str, dict[str, Any]] = {}
     index_by_ts = {ts: i for i, ts in enumerate(df["timestamp"])}
     for family, fam in merged.groupby("family"):
         sample = fam[fam["non_overlap_primary"]].copy()
@@ -975,7 +975,7 @@ def power_and_sensitivity(events: pd.DataFrame, controls: pd.DataFrame) -> dict[
         on="event_id",
         how="inner",
     )
-    out = {}
+    out: dict[str, dict[str, Any]] = {}
     for family, fam in merged.groupby("family"):
         sample = fam[fam["non_overlap_primary"]]
         diff = sample["primary_executable_markout_points"].to_numpy(dtype=float) - sample[

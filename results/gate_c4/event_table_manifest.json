@@ -1,0 +1,9 @@
+{
+  "control_count": 7245,
+  "control_matches_path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\gate_c4\\usdjpy_control_matches.parquet",
+  "event_count": 7245,
+  "event_table_hash": "2e83eb47603c4ec1ae97a4cf040a92f2b8977f37f0a031c61dc500b6c2c37977",
+  "event_table_path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\gate_c4\\usdjpy_event_table.parquet",
+  "preregistration_hash": "508ad3540b0f8f82b710775a50781f3f936695c2978284edc13942658624a349",
+  "row_data_ignored_by_git": true
+}

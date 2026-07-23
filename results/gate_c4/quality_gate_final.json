@@ -1,0 +1,44 @@
+{
+  "final_decision": "USDJPY_EVENT_ALPHA_MIXED_EXPLORATORY_ONLY",
+  "no_prohibited_metric_keys_found": true,
+  "prohibited_metric_key_hits": [],
+  "verification_commands": {
+    "git_diff_check": {
+      "status": "PASS",
+      "summary": "no whitespace errors"
+    },
+    "mypy_c4_file": {
+      "status": "PASS",
+      "summary": "Success: no issues found in 1 source file"
+    },
+    "mypy_requested_scope": {
+      "status": "FAIL_PRE_EXISTING",
+      "summary": "3 missing stub errors: scipy in statistical_inference.py and overfitting.py, yaml in experiments.py"
+    },
+    "node_test_acquire": {
+      "status": "PASS",
+      "summary": "2 tests passed with bundled node.exe"
+    },
+    "npm_audit_omit_dev": {
+      "status": "UNAVAILABLE",
+      "summary": "npm is not available on PATH and bundled node bin only contains node.exe"
+    },
+    "npm_test": {
+      "status": "UNAVAILABLE",
+      "summary": "npm is not available on PATH and bundled node bin only contains node.exe"
+    },
+    "pytest_tests_full": {
+      "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_gate_c4 tests/ -q",
+      "status": "PASS",
+      "summary": "680 passed, 91 warnings"
+    },
+    "ruff_c4_files": {
+      "status": "PASS",
+      "summary": "All checks passed"
+    },
+    "ruff_requested_scope": {
+      "status": "FAIL_PRE_EXISTING",
+      "summary": "148 existing lint errors in src/fx_smc_bot/data and src/fx_smc_bot/research outside Gate C4 additions"
+    }
+  }
+}
