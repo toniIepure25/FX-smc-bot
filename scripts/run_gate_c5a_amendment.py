@@ -9,13 +9,18 @@ from pathlib import Path
 from fx_smc_bot.research.gate_c5a_amendment import (
     GateC5APaths,
     initialize_amendment,
+    initialize_execution_protocol,
     run_development_replay,
 )
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mode", choices=["amend", "development-replay"], required=True)
+    parser.add_argument(
+        "--mode",
+        choices=["amend", "development-replay", "execution-protocol"],
+        required=True,
+    )
     parser.add_argument(
         "--root",
         type=Path,
@@ -35,8 +40,10 @@ def main() -> None:
     paths = GateC5APaths(root=args.root.resolve())
     if args.mode == "amend":
         result = initialize_amendment(paths, args.expected_sha)
-    else:
+    elif args.mode == "development-replay":
         result = run_development_replay(paths)
+    else:
+        result = initialize_execution_protocol(paths)
     print(json.dumps(result, indent=2, sort_keys=True, default=str))
 
 

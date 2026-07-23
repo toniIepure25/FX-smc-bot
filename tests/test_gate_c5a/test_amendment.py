@@ -88,3 +88,9 @@ def test_criterion_trace_requires_non_positive_absolute_event_markout() -> None:
     trace = criterion_trace(primary, matching, placebo)
     assert trace["criteria"]["mean_absolute_event_executable_markout"] is False
     assert trace["all_pass"] is False
+
+
+def test_amendment_does_not_create_access_ledger_semantics() -> None:
+    amendment = handoff_amendment_payload()
+    assert "validation_access_ledger" not in amendment
+    assert amendment["amendment_scope"] == "operational confirmation rules only"

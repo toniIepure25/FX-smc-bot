@@ -760,3 +760,162 @@ rule-selection step.
 ```
 """,
     )
+
+
+def execution_protocol_payload(paths: GateC5APaths) -> dict[str, Any]:
+    amendment = read_json(paths.results_dir / "handoff_amendment.json")
+    matrix = read_json(paths.results_dir / "amended_validation_decision_matrix.json")
+    integrity = read_json(paths.results_dir / "amendment_integrity.json")
+    replay = read_json(paths.results_dir / "amended_development_replay.json")
+    code_hashes = {
+        "c5a_amendment_module": file_sha256(Path(__file__)),
+        "c4_event_alpha_module": file_sha256(
+            paths.root / "src" / "fx_smc_bot" / "research" / "gate_c4_event_alpha.py"
+        ),
+        "runner": file_sha256(paths.root / "scripts" / "run_gate_c5a_amendment.py"),
+        "acceptance_detector": file_sha256(
+            paths.root
+            / "src"
+            / "fx_smc_bot"
+            / "alpha"
+            / "intraday"
+            / "acceptance_continuation.py"
+        ),
+        "acceptance_config": file_sha256(
+            paths.root
+            / "configs"
+            / "research"
+            / "intraday_smc"
+            / "acceptance_continuation.yaml"
+        ),
+    }
+    core = {
+        "gate": "C.5-A",
+        "hypothesis_id": HYPOTHESIS_ID,
+        "hypothesis_hash": HYPOTHESIS_HASH,
+        "amendment_id": AMENDMENT_ID,
+        "amendment_hash": amendment["amendment_hash"],
+        "validation_period": "2020-01-01 through 2022-12-31",
+        "pair": "USDJPY",
+        "event_family": "Acceptance Continuation",
+        "event_configuration_hash": EVENT_CONFIGURATION_HASH,
+        "detector_hash": code_hashes["acceptance_detector"],
+        "configuration_file_hash": code_hashes["acceptance_config"],
+        "primary_horizon_minutes": PRIMARY_HORIZON_MINUTES,
+        "primary_sample": "primary non-overlap sample",
+        "event_schema": [
+            "event_id",
+            "pair",
+            "family",
+            "direction",
+            "confirmation_timestamp",
+            "earliest_entry_timestamp",
+            "session",
+            "source_level",
+            "pre-event covariates",
+            "year",
+            "month",
+            "configuration_hash",
+            "hypothesis_hash",
+        ],
+        "matching_protocol": matching_protocol(),
+        "matching_implementation_hash": code_hashes["c5a_amendment_module"],
+        "outcome_implementation_hash": code_hashes["c4_event_alpha_module"],
+        "inference_protocol": inference_protocol(),
+        "bootstrap_seed": RNG_SEED,
+        "permutation_seed": RNG_SEED,
+        "placebo_protocol": placebo_protocol(),
+        "placebo_implementation_hash": code_hashes["c5a_amendment_module"],
+        "mandatory_criteria": matrix["mandatory_criteria"],
+        "development_replay_hash": stable_json_hash(replay),
+        "development_replay_status": replay["status"],
+        "amendment_integrity_hashes": integrity,
+        "analysis_code_hashes": code_hashes,
+        "no_adaptation_policy": True,
+        "post_unblinding_failure_policy": (
+            "If a scientific-code defect appears after validation unblinding, stop with "
+            "BLOCKED_BY_POST_UNBLINDING_EXECUTION_FAILURE; do not patch and continue."
+        ),
+    }
+    return {
+        **core,
+        "execution_protocol_hash": stable_json_hash(core),
+        "created_at_utc": datetime.now(UTC).isoformat(),
+    }
+
+
+def render_protocol_doc(paths: GateC5APaths, protocol: dict[str, Any]) -> None:
+    write_text(
+        paths.docs_dir / "GATE_C5A_EXECUTION_PROTOCOL.md",
+        f"""# Gate C.5-A Execution Protocol
+
+Protocol hash: `{protocol["execution_protocol_hash"]}`
+
+This protocol freezes the amended C5 validation execution before any validation
+access. Scientific code and decision rules are immutable after validation
+unblinding.
+
+```json
+{json.dumps(protocol, indent=2, sort_keys=True)}
+```
+""",
+    )
+
+
+def initialize_execution_protocol(paths: GateC5APaths) -> dict[str, Any]:
+    replay = read_json(paths.results_dir / "amended_development_replay.json")
+    if replay.get("status") != "PASS":
+        raise RuntimeError("Cannot freeze C5-A execution protocol: development replay failed")
+    protocol = execution_protocol_payload(paths)
+    write_json(paths.results_dir / "execution_protocol.json", protocol)
+    render_protocol_doc(paths, protocol)
+    return protocol
+
+
+def pre_unblinding_freeze_payload(
+    paths: GateC5APaths,
+    amendment_commit_sha: str,
+    protocol_commit_sha: str,
+    targeted_test_result: str,
+) -> dict[str, Any]:
+    status = git(paths.root, ["status", "--short"])
+    amendment = read_json(paths.results_dir / "handoff_amendment.json")
+    protocol = read_json(paths.results_dir / "execution_protocol.json")
+    replay = read_json(paths.results_dir / "amended_development_replay.json")
+    access_absent = validation_access_artifacts_absent(paths)
+    ready_checks = {
+        "amendment_commit_exists": bool(amendment_commit_sha),
+        "execution_protocol_commit_exists": bool(protocol_commit_sha),
+        "development_replay_passes": replay["status"] == "PASS",
+        "targeted_tests_pass": targeted_test_result == "PASS",
+        "working_tree_clean": status == "",
+        "validation_not_accessed": all(access_absent.values()),
+        "holdout_not_accessed": access_absent["c5a_holdout_access_ledger_absent"],
+    }
+    return {
+        "status": "READY_TO_UNBLIND_VALIDATION" if all(ready_checks.values()) else "NOT_READY",
+        "ready_checks": ready_checks,
+        "amendment_commit_sha": amendment_commit_sha,
+        "execution_protocol_commit_sha": protocol_commit_sha,
+        "hypothesis_hash": HYPOTHESIS_HASH,
+        "amendment_hash": amendment["amendment_hash"],
+        "protocol_hash": protocol["execution_protocol_hash"],
+        "development_replay_hash": stable_json_hash(replay),
+        "analysis_code_hash": file_sha256(Path(__file__)),
+        "targeted_test_result": targeted_test_result,
+        "working_tree_short_status": status,
+        "validation_access_checks": access_absent,
+        "recorded_at_utc": datetime.now(UTC).isoformat(),
+    }
+
+
+def holdout_integrity_payload() -> dict[str, Any]:
+    return {
+        "status": "PASS",
+        "holdout_market_data_loaded": False,
+        "holdout_events_detected": False,
+        "holdout_event_counts_computed": False,
+        "holdout_controls_constructed": False,
+        "holdout_outcomes_computed": False,
+        "holdout_results_reported": False,
+    }
