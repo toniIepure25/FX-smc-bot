@@ -1,0 +1,10 @@
+{
+  "amended_decision_matrix_hash": "86f8bcbcd510ba457ef36cd1fff36efe7299d77f662a2e16ffa0bc30fe51eb87",
+  "amendment_id": "C5A_C4B_USDJPY_RELATIVE_RESILIENCE_HANDOFF_AMENDMENT_V1",
+  "handoff_amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+  "inference_protocol_hash": "2b0f1651dabdf00028238ef3708655cf2034c0f916a5ec42dc908e2aaa9db5c4",
+  "matching_protocol_hash": "6a58ebb23b02729b6ee08119c0d0de5449ec3e441b8376dbf0ed97e840f86114",
+  "placebo_protocol_hash": "2d116dd997ee112c44af8bdf6cc1eb3beaebf2d5c83047b0fecc60548559a81c",
+  "status": "PASS",
+  "validation_or_holdout_accessed": false
+}
