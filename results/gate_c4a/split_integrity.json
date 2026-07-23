@@ -1,0 +1,11 @@
+{
+  "holdout_counts_reported": false,
+  "holdout_data_loaded": false,
+  "holdout_events_detected": false,
+  "holdout_outcomes_computed": false,
+  "status": "PASS",
+  "validation_counts_reported": false,
+  "validation_data_loaded": false,
+  "validation_events_detected": false,
+  "validation_outcomes_computed": false
+}

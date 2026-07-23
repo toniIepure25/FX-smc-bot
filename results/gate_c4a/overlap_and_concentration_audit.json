@@ -1,0 +1,92 @@
+{
+  "families": {
+    "liquidity_acceptance_fvg_continuation": {
+      "actual_criterion_result": "diagnostic_only",
+      "embargo_minutes": 120,
+      "full_sample_effect": 11.189338697510573,
+      "full_sample_is_secondary": true,
+      "leave_one_year_out_effect_directions": {
+        "2015": "positive",
+        "2016": "positive",
+        "2017": "positive",
+        "2018": "positive",
+        "2019": "positive"
+      },
+      "maximum_year_contribution_points": 33.86175710594296,
+      "primary_non_overlap_effect": 13.754508196721174,
+      "primary_sample_is_non_overlapping": true,
+      "required_stability_criterion": "none preregistered",
+      "strongest_year": 2015,
+      "strongest_year_removed_mean_year_effect": 5.510959229020902
+    },
+    "liquidity_sweep_mss_fvg_reversal": {
+      "actual_criterion_result": "diagnostic_only",
+      "embargo_minutes": 120,
+      "full_sample_effect": -7.319052987598358,
+      "full_sample_is_secondary": true,
+      "leave_one_year_out_effect_directions": {
+        "2015": "non_positive",
+        "2016": "non_positive",
+        "2017": "non_positive",
+        "2018": "non_positive",
+        "2019": "non_positive"
+      },
+      "maximum_year_contribution_points": 2.4738095238102407,
+      "primary_non_overlap_effect": -13.451403887688675,
+      "primary_sample_is_non_overlapping": true,
+      "required_stability_criterion": "none preregistered",
+      "strongest_year": 2017,
+      "strongest_year_removed_mean_year_effect": -12.228039635637456
+    },
+    "opening_range_london": {
+      "actual_criterion_result": "diagnostic_only",
+      "embargo_minutes": 120,
+      "full_sample_effect": 15.15994236311225,
+      "full_sample_is_secondary": true,
+      "leave_one_year_out_effect_directions": {
+        "2015": "positive",
+        "2016": "positive",
+        "2017": "positive",
+        "2018": "positive",
+        "2019": "positive"
+      },
+      "maximum_year_contribution_points": 44.917808219178134,
+      "primary_non_overlap_effect": 15.15994236311225,
+      "primary_sample_is_non_overlapping": true,
+      "required_stability_criterion": "none preregistered",
+      "strongest_year": 2017,
+      "strongest_year_removed_mean_year_effect": 7.2240153540849095
+    },
+    "opening_range_new_york": {
+      "actual_criterion_result": "diagnostic_only",
+      "embargo_minutes": 120,
+      "full_sample_effect": 0.0950000000001873,
+      "full_sample_is_secondary": true,
+      "leave_one_year_out_effect_directions": {
+        "2015": "non_positive",
+        "2016": "non_positive",
+        "2017": "positive",
+        "2018": "non_positive",
+        "2019": "positive"
+      },
+      "maximum_year_contribution_points": 11.618750000001299,
+      "primary_non_overlap_effect": 0.0950000000001873,
+      "primary_sample_is_non_overlapping": true,
+      "required_stability_criterion": "none preregistered",
+      "strongest_year": 2015,
+      "strongest_year_removed_mean_year_effect": -3.135772048945971
+    }
+  },
+  "overlap": {
+    "by_family_non_overlap": {
+      "liquidity_acceptance_fvg_continuation": 2440,
+      "liquidity_sweep_mss_fvg_reversal": 1389,
+      "opening_range_london": 694,
+      "opening_range_new_york": 800
+    },
+    "non_overlap_primary_events": 5323,
+    "overlapped_primary_events": 1922,
+    "total_events": 7245
+  },
+  "status": "PASS"
+}

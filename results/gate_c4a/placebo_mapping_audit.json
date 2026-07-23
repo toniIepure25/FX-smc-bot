@@ -1,0 +1,118 @@
+{
+  "families": {
+    "liquidity_acceptance_fvg_continuation": {
+      "aggregated_failure_rule": "fails confirmation if placebo_reproduces_primary_direction is true",
+      "aggregated_passed": true,
+      "applies_to_family": true,
+      "family_label": "Acceptance Continuation",
+      "placebo_reproduces_primary_direction": false,
+      "placebo_types": {
+        "direction_flip_mid_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": -0.2961065573769135,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "random_matched_time_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": -17.423360655737724,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "timestamp_shift_plus_one_day_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": -0.4507111329082536,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        }
+      },
+      "primary_or_diagnostic": "required aggregated placebo criterion for placebo_reproduces_primary_direction; individual placebo effects are diagnostics"
+    },
+    "liquidity_sweep_mss_fvg_reversal": {
+      "aggregated_failure_rule": "fails confirmation if placebo_reproduces_primary_direction is true",
+      "aggregated_passed": true,
+      "applies_to_family": true,
+      "family_label": "Sweep Reversal",
+      "placebo_reproduces_primary_direction": false,
+      "placebo_types": {
+        "direction_flip_mid_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": 4.507559395248264,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "random_matched_time_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": 5.045356371490041,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "timestamp_shift_plus_one_day_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": -5.969217238346368,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        }
+      },
+      "primary_or_diagnostic": "required aggregated placebo criterion for placebo_reproduces_primary_direction; individual placebo effects are diagnostics"
+    },
+    "opening_range_london": {
+      "aggregated_failure_rule": "fails confirmation if placebo_reproduces_primary_direction is true",
+      "aggregated_passed": false,
+      "applies_to_family": true,
+      "family_label": "London Opening Range",
+      "placebo_reproduces_primary_direction": true,
+      "placebo_types": {
+        "direction_flip_mid_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": -3.2896253602306307,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "random_matched_time_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": -14.948126801152547,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "timestamp_shift_plus_one_day_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": 0.52919708029206,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        }
+      },
+      "primary_or_diagnostic": "required aggregated placebo criterion for placebo_reproduces_primary_direction; individual placebo effects are diagnostics"
+    },
+    "opening_range_new_york": {
+      "aggregated_failure_rule": "fails confirmation if placebo_reproduces_primary_direction is true",
+      "aggregated_passed": true,
+      "applies_to_family": true,
+      "family_label": "New York Opening Range",
+      "placebo_reproduces_primary_direction": false,
+      "placebo_types": {
+        "direction_flip_mid_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": 6.585000000000196,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "random_matched_time_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": -9.772500000000104,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        },
+        "timestamp_shift_plus_one_day_mean_points": {
+          "confidence_interval": null,
+          "observed_effect": 6.984326018808448,
+          "p_value": null,
+          "pass_fail": "diagnostic_only"
+        }
+      },
+      "primary_or_diagnostic": "required aggregated placebo criterion for placebo_reproduces_primary_direction; individual placebo effects are diagnostics"
+    }
+  },
+  "london_or_not_assigned_to_acceptance": true,
+  "status": "PASS"
+}
