@@ -1,0 +1,54 @@
+{
+  "aggregation": {
+    "close": "last tick in minute and side",
+    "high": "maximum tick in minute and side",
+    "low": "minimum tick in minute and side",
+    "open": "first tick in minute and side"
+  },
+  "amended_plan_file_sha256": "4dbf5a0d6c2d06ed4f32eeda925b7b7599e0aa3c449262c26a59672e3f77a7d8",
+  "amended_plan_hash": "bbcebd0b6cc0",
+  "amendment_commit_sha": "1eae93f3cbebea5fa9637d40e07eb1d527097f08",
+  "comparison_mask": {
+    "ask_ohlc": "integer raw-point exact comparison",
+    "bid_ohlc": "integer raw-point exact comparison",
+    "canonical_m1_ignoreFlats": "canonical provider notes indicate ignoreFlats=false for M1 acquisition; audit preserves flats and reports no-tick minutes separately",
+    "timestamps": "exact common UTC minute timestamps after boundary exclusions"
+  },
+  "created_at": "2026-07-23T11:39:24.131224+00:00",
+  "flat_tick_policy": "preserve flat ticks; canonical ignoreFlats interaction reported",
+  "immutability": {
+    "protocol_frozen_before_tick_download": true,
+    "tolerances_frozen_before_tick_download": true,
+    "windows_frozen_before_tick_download": true
+  },
+  "intervals": {
+    "audit_window": "[window_start_utc, window_end_utc)",
+    "minute": "[minute_start_utc, minute_start_utc + 60s)",
+    "partial_first_last_minutes": "excluded from equality summary, reported separately",
+    "tick_on_minute_boundary": "belongs to minute starting at that timestamp"
+  },
+  "missing_side": "side-specific generated bar missing; classify separately",
+  "no_tick_minutes": "do not forward fill; classify missing tick-derived bars",
+  "ordering": {
+    "duplicate_timestamp": "stable provider/input order",
+    "equal_timestamp_tie_break": "stable provider/input order",
+    "out_of_order_ticks": "count and sort stably before aggregation",
+    "primary": "provider timestamp ascending"
+  },
+  "protocol_hash": "2fbffeead35214ad78ab462115347f28186654b91fa5ba1e8e37025562252d5e",
+  "quantization": {
+    "EURUSD": 100000,
+    "GBPUSD": 100000,
+    "USDJPY": 1000,
+    "float_equality": "not used",
+    "method": "round(price * scale) to integer raw points before comparison"
+  },
+  "status": "FROZEN_BEFORE_AUDIT_EXECUTION",
+  "utc_policy": {
+    "dst": "not applicable after UTC normalization",
+    "friday_close": "classified by UTC timestamp; no local-time conversion",
+    "sunday_open": "classified by UTC timestamp; no local-time conversion",
+    "timezone": "UTC only"
+  },
+  "zero_volume": "preserve if present; not used for OHLC equality"
+}
