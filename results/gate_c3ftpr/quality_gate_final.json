@@ -1,0 +1,53 @@
+{
+  "command_results": {
+    "git_diff_check": {
+      "command": "git diff --check",
+      "status": "PASS"
+    },
+    "mypy_src_fx_smc_bot_data": {
+      "command": "python -m mypy src/fx_smc_bot/data",
+      "status": "FAIL_EXISTING_DATA_MODULE_TYPING",
+      "summary": "10 errors: missing pandas stubs plus existing type issues in historical_providers.py and providers/oanda_feed.py"
+    },
+    "node_test_repo_root": {
+      "command": "node --test tools/dukascopy-node/test_acquire.mjs",
+      "status": "NOT_RUN_NODE_NOT_IN_PATH"
+    },
+    "node_test_with_bundled_node": {
+      "command": "node --test test_acquire.mjs",
+      "cwd": "tools/dukascopy-node",
+      "status": "PASS"
+    },
+    "npm_audit": {
+      "command": "npm --prefix tools/dukascopy-node audit --omit=dev",
+      "status": "NOT_RUN_NPM_NOT_IN_PATH"
+    },
+    "npm_test": {
+      "command": "npm --prefix tools/dukascopy-node test",
+      "status": "NOT_RUN_NPM_NOT_IN_PATH"
+    },
+    "pytest_all": {
+      "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_c3ftpr_final tests/ -q",
+      "status": "PASS",
+      "summary": "668 passed, 91 warnings"
+    },
+    "ruff_required_scope": {
+      "command": "python -m ruff check scripts/run_gate_c3ftpr*.py src/fx_smc_bot/data tests/test_gate_c3f",
+      "status": "FAIL_EXISTING_DATA_MODULE_LINT",
+      "summary": "28 lint findings in pre-existing src/fx_smc_bot/data and older tests; C3FTPR script/tests pass targeted Ruff"
+    }
+  },
+  "created_at": "2026-07-23T13:08:43.003008+00:00",
+  "final_decision": "DEVELOPMENT_DATA_EXPLORATORY_ONLY",
+  "required_artifacts_present": {
+    "results\\gate_c3ftpr\\2019_event_funnels.json": true,
+    "results\\gate_c3ftpr\\2019_tick_audit.json": true,
+    "results\\gate_c3ftpr\\development_certification.json": true,
+    "results\\gate_c3ftpr\\development_dataset_freeze.json": true,
+    "results\\gate_c3ftpr\\development_tick_audit.json": true,
+    "results\\gate_c3ftpr\\holdout_integrity.json": true,
+    "results\\gate_c3ftpr\\pair_year_certifications.json": true,
+    "results\\gate_c3ftpr\\single_window_diagnostic.json": true,
+    "results\\gate_c3ftpr\\tick_acquisition_manifest.json": true
+  }
+}

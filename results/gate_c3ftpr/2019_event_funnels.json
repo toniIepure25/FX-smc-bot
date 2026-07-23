@@ -1,0 +1,12 @@
+{
+  "contains_performance_fields": false,
+  "created_at": "2026-07-23T13:08:42.930528+00:00",
+  "families": {
+    "Acceptance Continuation": {},
+    "Opening Range London": {},
+    "Opening Range New York": {},
+    "Sweep Reversal": {}
+  },
+  "reason": "tick audit did not pass",
+  "status": "NOT_RUN"
+}
