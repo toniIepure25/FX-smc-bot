@@ -1,0 +1,22 @@
+{
+  "causality_checks": {
+    "confirmation_knowable_at_detection": true,
+    "entry_after_confirmation_bar": true,
+    "excluded_pair_present": false,
+    "future_bars_used_by_detector": false,
+    "holdout_timestamp_present": false,
+    "timestamps_inside_2020_2022": true
+  },
+  "configuration_hash": "736428ec62cfb04efa5b5de6dc759f50c97b71bfa585f57c6b03a451c169b8f1",
+  "event_family": "Acceptance Continuation",
+  "event_table_path_ignored": "data/raw/gate_c5ar/validation_acceptance_events.parquet",
+  "event_table_sha256": "8703217484bfee351d0b229c118f41e1849c4dbfce4db10b11cb0eb64d562c17",
+  "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "interval": "2020-01-01 through 2022-12-31",
+  "pair": "USDJPY",
+  "required_fields_present": true,
+  "source_partition_hash_count": 36,
+  "status": "PASS",
+  "total_detected_acceptance_events": 1935,
+  "validation_freeze_hash": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866"
+}

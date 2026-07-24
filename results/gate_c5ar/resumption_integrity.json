@@ -1,0 +1,39 @@
+{
+  "checks": {
+    "amendment_hash_matches": true,
+    "dqr_final_decision_ready": true,
+    "dqr_freeze_hash_matches_handoff": true,
+    "dqr_freeze_ready": true,
+    "dqr_handoff_ready": true,
+    "events_previously_not_detected": true,
+    "holdout_not_accessed": true,
+    "hypothesis_hash_matches": true,
+    "interval_2020_2022": true,
+    "outcomes_previously_not_computed": true,
+    "pair_usdjpy": true,
+    "protocol_hash_matches": true,
+    "repository_head_matches_expected": true,
+    "validation_access_ledger_hash_matches_dqr": true,
+    "working_tree_clean_before_gate_outputs": true
+  },
+  "decision_if_failed": "BLOCKED_BY_RESUMPTION_HANDOFF_INTEGRITY",
+  "hashes": {
+    "adjudication_implementation_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+    "dqr_resumption_handoff_hash": "a8374ba7245274bf9f64c03a869fd1dd2ec584d4f86dc4dcef57eae1d4f7f223",
+    "dqr_validation_freeze_hash": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866",
+    "event_configuration_file_hash": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+    "event_configuration_protocol_hash": "736428ec62cfb04efa5b5de6dc759f50c97b71bfa585f57c6b03a451c169b8f1",
+    "event_detector_source_hash": "831aada49cc661a2a30a2dce030b6e9d4f2fbc01af0b0813d00aae47c4b3efb0",
+    "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+    "inference_implementation_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "matching_implementation_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "outcome_implementation_hash": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "overlap_implementation_hash": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "placebo_implementation_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+    "validation_access_ledger_hash": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216"
+  },
+  "recorded_at_utc": "2026-07-24T10:13:04.814756+00:00",
+  "status": "PASS"
+}

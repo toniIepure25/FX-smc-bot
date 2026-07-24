@@ -1,0 +1,121 @@
+{
+  "by_direction": {
+    "LONG": {
+      "control_markout": -11.275757575757286,
+      "differential": 16.571212121212227,
+      "event_count": 660,
+      "event_markout": 5.295454545454941,
+      "matched_count": 660,
+      "probability_event_outperforms_control": 0.5484848484848485
+    },
+    "SHORT": {
+      "control_markout": -22.120300751879725,
+      "differential": 40.95300751879682,
+      "event_count": 532,
+      "event_markout": 18.83270676691709,
+      "matched_count": 532,
+      "probability_event_outperforms_control": 0.5507518796992481
+    }
+  },
+  "by_session": {
+    "asia": {
+      "control_markout": -27.874999999999734,
+      "differential": 46.57051282051273,
+      "event_count": 312,
+      "event_markout": 18.695512820513,
+      "matched_count": 312,
+      "probability_event_outperforms_control": 0.5576923076923077
+    },
+    "london": {
+      "control_markout": -13.815498154981606,
+      "differential": 33.88929889298903,
+      "event_count": 271,
+      "event_markout": 20.073800738007428,
+      "matched_count": 271,
+      "probability_event_outperforms_control": 0.5793357933579336
+    },
+    "new_york": {
+      "control_markout": -17.960000000000004,
+      "differential": 25.834285714286043,
+      "event_count": 350,
+      "event_markout": 7.874285714286043,
+      "matched_count": 350,
+      "probability_event_outperforms_control": 0.5514285714285714
+    },
+    "other": {
+      "control_markout": -1.8648648648644413,
+      "differential": -0.12355212355265731,
+      "event_count": 259,
+      "event_markout": -1.9884169884171061,
+      "matched_count": 259,
+      "probability_event_outperforms_control": 0.5057915057915058
+    }
+  },
+  "by_spread_regime": {
+    "high": {
+      "control_markout": -17.66947723440086,
+      "differential": 39.377740303540904,
+      "event_count": 593,
+      "event_markout": 21.708263069140042,
+      "matched_count": 593,
+      "probability_event_outperforms_control": 0.5564924114671164
+    },
+    "low": {
+      "control_markout": -14.577629382304028,
+      "differential": 15.647746243739931,
+      "event_count": 599,
+      "event_markout": 1.070116861435901,
+      "matched_count": 599,
+      "probability_event_outperforms_control": 0.5425709515859767
+    }
+  },
+  "by_volatility_regime": {
+    "high": {
+      "control_markout": -23.70637583892609,
+      "differential": 38.69630872483231,
+      "event_count": 596,
+      "event_markout": 14.989932885906226,
+      "matched_count": 596,
+      "probability_event_outperforms_control": 0.5687919463087249
+    },
+    "low": {
+      "control_markout": -8.52516778523469,
+      "differential": 16.20973154362402,
+      "event_count": 596,
+      "event_markout": 7.684563758389329,
+      "matched_count": 596,
+      "probability_event_outperforms_control": 0.5302013422818792
+    }
+  },
+  "by_year": {
+    "2020": {
+      "control_markout": -25.339195979899877,
+      "differential": 38.31909547738741,
+      "event_count": 398,
+      "event_markout": 12.979899497487537,
+      "matched_count": 398,
+      "probability_event_outperforms_control": 0.5703517587939698
+    },
+    "2021": {
+      "control_markout": -13.368811881187654,
+      "differential": 16.30445544554428,
+      "event_count": 404,
+      "event_markout": 2.935643564356629,
+      "matched_count": 404,
+      "probability_event_outperforms_control": 0.5346534653465347
+    },
+    "2022": {
+      "control_markout": -9.548717948717599,
+      "differential": 27.912820512820243,
+      "event_count": 390,
+      "event_markout": 18.36410256410265,
+      "matched_count": 390,
+      "probability_event_outperforms_control": 0.5435897435897435
+    }
+  },
+  "overlap_status": {
+    "overlapping_excluded": 743,
+    "primary_non_overlap": 1192
+  },
+  "status": "PASS"
+}

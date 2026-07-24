@@ -1,0 +1,24 @@
+{
+  "ci95_day_cluster_bootstrap": [
+    14.784214406740844,
+    40.27386831699497
+  ],
+  "deterministic_seeds": {
+    "bootstrap": 4242,
+    "permutation": 4242
+  },
+  "holm_adjusted_p_value": 0.004497751124437781,
+  "independent_day_count": 572,
+  "iterations": {
+    "day_cluster_bootstrap": 1000,
+    "paired_permutation": 2000
+  },
+  "matched_pair_count": 1192,
+  "median_differential": 26.50000000000574,
+  "point_estimate": 27.453020134228165,
+  "raw_permutation_p_value": 0.004497751124437781,
+  "repeated_run_determinism_check": true,
+  "standardized_paired_effect": 0.08880457390703933,
+  "status": "PASS",
+  "trimmed_mean_differential": 25.07442348008378
+}
