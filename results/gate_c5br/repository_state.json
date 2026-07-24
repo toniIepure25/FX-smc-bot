@@ -1,0 +1,216 @@
+{
+  "actual_branch": "research/rigorous-intraday-smc-validation",
+  "actual_head": "1b71ea4e17a24c51c6b7bc2f8271ac67fd0ae295",
+  "created_at_utc": "2026-07-24T17:13:54.889739+00:00",
+  "expected_branch": "research/rigorous-intraday-smc-validation",
+  "expected_starting_sha": "1b71ea4e17a24c51c6b7bc2f8271ac67fd0ae295",
+  "gate": "C5-B-R",
+  "git_diff": {
+    "command": "git diff",
+    "name": "diff",
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "git_diff_check": {
+    "command": "git diff --check",
+    "name": "diff_check",
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "git_log_oneline_decorate_35": [
+    "1b71ea4 (HEAD -> research/rigorous-intraday-smc-validation) docs: issue C5-A-R-IR final decision",
+    "fc7a704 fix(research): reconcile C5-A-R artifact lock provenance",
+    "d0cb3d6 test(research): reproduce C5-A-R lock mismatch",
+    "ee4f433 research: audit C5-A-R artifact lineage",
+    "1f59fb2 research: block C5-B on artifact integrity",
+    "abd879c (origin/research/rigorous-intraday-smc-validation) research: reconcile C5-A-R artifact integrity",
+    "4cd388b research: execute frozen USDJPY C5-A validation",
+    "a8b8d4b research(data): certify USDJPY validation dataset",
+    "9845c75 data: freeze C5-A Dukascopy provider fallback protocol",
+    "edd2de7 fix(data): prevent false zero-row acquisition certification",
+    "92e992d docs: issue Gate C5-A final decision",
+    "c11bd40 research: lock post-validation hypothesis lineage",
+    "59084c4 feat(data): acquire and certify USDJPY validation dataset",
+    "78177a7 research: record C5-A pre-unblinding freeze",
+    "0d054c2 research: freeze amended C5 validation execution protocol",
+    "bd6d4d6 research: prospectively amend C5 validation handoff",
+    "771ac92 research: block C5 validation on handoff ambiguity",
+    "e39faa5 docs: issue Gate C4-B final decision",
+    "624561f research: freeze new Acceptance hypothesis lineage",
+    "8e89f82 research: execute Acceptance mechanism decomposition",
+    "865ba3b Add Gate C4-B mechanism decomposition flow",
+    "d420c3a research: preregister Acceptance mechanism decomposition",
+    "d9a9e51 docs: issue Gate C4-A final decision",
+    "5bfba55 research: adjudicate USDJPY Acceptance signal",
+    "deee74a research: audit C4 preregistration compliance",
+    "467e44f test(research): reproduce Gate C4 family decision logic",
+    "df5d446 research: complete USDJPY gate C4 event-alpha analysis",
+    "2089ff1 research: preregister USDJPY development event-alpha study",
+    "8fb676d research(data): certify USDJPY-only CRSF development freeze",
+    "f988510 fix(research): allow certified pair-scoped development freeze",
+    "10ccb2b research(data): certify and freeze C3FTPR development dataset",
+    "6c8312b research(data): execute frozen development tick audit",
+    "9a66239 feat(data): implement deterministic tick-to-M1 audit",
+    "6aa275e research(data): freeze C3FTPR tick-to-M1 protocol",
+    "1eae93f research(data): prospectively freeze recovered tick audit plan"
+  ],
+  "git_status": {
+    "command": "git status",
+    "name": "status",
+    "returncode": 0,
+    "stderr": "warning: unable to access 'C:\\Users\\ComputaCenter/.config/git/ignore': Permission denied\nwarning: unable to access 'C:\\Users\\ComputaCenter/.config/git/ignore': Permission denied\n",
+    "stdout": "On branch research/rigorous-intraday-smc-validation\nYour branch is ahead of 'origin/research/rigorous-intraday-smc-validation' by 5 commits.\n  (use \"git push\" to publish your local commits)\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tscripts/run_gate_c5br_preregistration.py\n\nnothing added to commit but untracked files present (use \"git add\" to track)\n"
+  },
+  "phase0_paths_read": {
+    "docs/research/GATE_C5ARIR_ARTIFACT_HISTORY.md": {
+      "exists": true,
+      "file_size_bytes": 5497,
+      "path": "docs/research/GATE_C5ARIR_ARTIFACT_HISTORY.md",
+      "raw_file_sha256": "91e13cf104ad71d340cccba62afd7921bee53e8ed68ffca1afd76cd1499ddd1a"
+    },
+    "docs/research/GATE_C5ARIR_C5B_RESUMPTION_HANDOFF.md": {
+      "exists": true,
+      "file_size_bytes": 248,
+      "path": "docs/research/GATE_C5ARIR_C5B_RESUMPTION_HANDOFF.md",
+      "raw_file_sha256": "c7b5a9d2712bf2bfb100142c29a16ee2205d25281827d147434b4d12e31d2e65"
+    },
+    "docs/research/GATE_C5ARIR_FINAL_DECISION_MEMO.md": {
+      "exists": true,
+      "file_size_bytes": 323,
+      "path": "docs/research/GATE_C5ARIR_FINAL_DECISION_MEMO.md",
+      "raw_file_sha256": "91a97b6382ef4d4a62924dd610c2ebcb2875c58e4c897c1a2489d3f1121457c5"
+    },
+    "docs/research/GATE_C5ARIR_LOCK_GENERATION_AUDIT.md": {
+      "exists": true,
+      "file_size_bytes": 360,
+      "path": "docs/research/GATE_C5ARIR_LOCK_GENERATION_AUDIT.md",
+      "raw_file_sha256": "551b7fccee9187e708646443caab5f25770347c7347c731d4a2747ac6fca9098"
+    },
+    "docs/research/GATE_C5ARIR_RECONCILIATION_REPORT.md": {
+      "exists": true,
+      "file_size_bytes": 385,
+      "path": "docs/research/GATE_C5ARIR_RECONCILIATION_REPORT.md",
+      "raw_file_sha256": "5067fd39c84aad2bd476b240248bda3311b032abd909375435799a74be422ec2"
+    },
+    "docs/research/GATE_C5ARIR_SEMANTIC_DIFF.md": {
+      "exists": true,
+      "file_size_bytes": 677,
+      "path": "docs/research/GATE_C5ARIR_SEMANTIC_DIFF.md",
+      "raw_file_sha256": "e74892459b58e6b8673128523a0bbd13137682ce9335771bbb79e2b278546188"
+    },
+    "results/gate_c5ar/post_validation_lock.json": {
+      "canonical_json_sha256": "f8e1f9b2af66c52dab227d7be105102e03bd49d45a4e4e6f6470cc600c122de1",
+      "exists": true,
+      "file_size_bytes": 2825,
+      "path": "results/gate_c5ar/post_validation_lock.json",
+      "raw_file_sha256": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7"
+    },
+    "results/gate_c5ar/validation_criterion_adjudication.json": {
+      "canonical_json_sha256": "82533389578b20e026b9e7cf5bf26019275536329009eede5d83212fae167e7a",
+      "exists": true,
+      "file_size_bytes": 4830,
+      "path": "results/gate_c5ar/validation_criterion_adjudication.json",
+      "raw_file_sha256": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9"
+    },
+    "results/gate_c5ar/validation_inference.json": {
+      "canonical_json_sha256": "4feb4d2dfcf3573664c934edde26c43c3920e065771f8094e6324be61043d64f",
+      "exists": true,
+      "file_size_bytes": 691,
+      "path": "results/gate_c5ar/validation_inference.json",
+      "raw_file_sha256": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2"
+    },
+    "results/gate_c5ar/validation_placebo.json": {
+      "canonical_json_sha256": "50d76f727bd96081d5264596dfc916b03747e79b66acd505c0c6a61dd98843de",
+      "exists": true,
+      "file_size_bytes": 1992,
+      "path": "results/gate_c5ar/validation_placebo.json",
+      "raw_file_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a"
+    },
+    "results/gate_c5ar/validation_primary_estimand.json": {
+      "canonical_json_sha256": "354a795d4aa506ceddfd3347dab5e13ab0c38c57f29795020331e59969bf6e24",
+      "exists": true,
+      "file_size_bytes": 816,
+      "path": "results/gate_c5ar/validation_primary_estimand.json",
+      "raw_file_sha256": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d"
+    },
+    "results/gate_c5ar/validation_stability.json": {
+      "canonical_json_sha256": "e8e60608bff39156a07ba07db03e4ee2a43d390a43ef37bb9caa5db574776c2f",
+      "exists": true,
+      "file_size_bytes": 3884,
+      "path": "results/gate_c5ar/validation_stability.json",
+      "raw_file_sha256": "c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8"
+    },
+    "results/gate_c5arir/adjudication_reproduction.json": {
+      "canonical_json_sha256": "55f97b1207080540bcc50f8af3628d878c026b9fd3645f28a7ec29fe3fb3b21d",
+      "exists": true,
+      "file_size_bytes": 2797,
+      "path": "results/gate_c5arir/adjudication_reproduction.json",
+      "raw_file_sha256": "23a8dfaa2a2c07d3504779696fe186f33814cc7fdad95f83c5fe1fbadcdb72b7"
+    },
+    "results/gate_c5arir/artifact_history.json": {
+      "canonical_json_sha256": "f874256f79d3be0488bd244e97d7642fe0138a532ae97b56b39313dfa9411fd1",
+      "exists": true,
+      "file_size_bytes": 48749,
+      "path": "results/gate_c5arir/artifact_history.json",
+      "raw_file_sha256": "acb47cdadef8cde589b45348f8c7b8df2504950b04ef6c182f3a745e729ff5d6"
+    },
+    "results/gate_c5arir/artifact_reconciliation_overlay.json": {
+      "canonical_json_sha256": "3ffc4cbe549de15a9531d51d7cc56dcd66b1eaf913ab276a5277a6e32665fc5d",
+      "exists": true,
+      "file_size_bytes": 12736,
+      "path": "results/gate_c5arir/artifact_reconciliation_overlay.json",
+      "raw_file_sha256": "55b3c9282dcbd5777db4fae38cb714a108b35f5255de4b8921a7d8173a79d669"
+    },
+    "results/gate_c5arir/authoritative_artifact_determination.json": {
+      "canonical_json_sha256": "d2cb00b4f290c21c4d4fd5071c45c2b5d47b3d84118e2aefe78b0d898bb18df9",
+      "exists": true,
+      "file_size_bytes": 815,
+      "path": "results/gate_c5arir/authoritative_artifact_determination.json",
+      "raw_file_sha256": "84cd0013d2ca0e0baccfe9fa9677882b22c58ea2206c1d761e6eaabca5a2200a"
+    },
+    "results/gate_c5arir/c5b_resumption_handoff.json": {
+      "canonical_json_sha256": "9fd7371f6825bc0457d044db3759c442a617a14771da10981e37c1f07da5ce29",
+      "exists": true,
+      "file_size_bytes": 7589,
+      "path": "results/gate_c5arir/c5b_resumption_handoff.json",
+      "raw_file_sha256": "fae78cd57abfdaa29f3c69e5d0062afeaccd7d3a5010e0e2326921201a0c4b0b"
+    },
+    "results/gate_c5arir/cross_artifact_identity_audit.json": {
+      "canonical_json_sha256": "bcede90818fcd897c1550356d517317541eece76dcf26bd46742e10a5da613bd",
+      "exists": true,
+      "file_size_bytes": 1123,
+      "path": "results/gate_c5arir/cross_artifact_identity_audit.json",
+      "raw_file_sha256": "13118099e4190eefb91c92816e342eb93238d86bd751ceb6c52e2ce357e29a9d"
+    },
+    "results/gate_c5arir/expected_hash_provenance.json": {
+      "canonical_json_sha256": "9b3a3e9f03c7571c766dac5007b04275e4725d4dac88563a1a74d44ee6a94c46",
+      "exists": true,
+      "file_size_bytes": 4811,
+      "path": "results/gate_c5arir/expected_hash_provenance.json",
+      "raw_file_sha256": "105f86f13f351851885bb6de52ddef7a3eb04352315952a929fe201a0871be54"
+    },
+    "results/gate_c5arir/holdout_integrity.json": {
+      "canonical_json_sha256": "4b77c5ac1d2bb74487a5bf0b05b98dc04ea7306e080c96aec4011d2f5f674f22",
+      "exists": true,
+      "file_size_bytes": 1429,
+      "path": "results/gate_c5arir/holdout_integrity.json",
+      "raw_file_sha256": "e49eb77597028a4f8b959d4cb01cdfca88a8b57d7e577baa8611544abed58548"
+    },
+    "results/gate_c5arir/lock_generation_audit.json": {
+      "canonical_json_sha256": "edd1dce95845bee7bdb08086eb9f9e5eb2faef42bf104d329da879170686e70d",
+      "exists": true,
+      "file_size_bytes": 1182,
+      "path": "results/gate_c5arir/lock_generation_audit.json",
+      "raw_file_sha256": "9389f20ae0fe7a8c6f7d66d17de8e2cb93bd8a1bd8392188df6ddce092f226a8"
+    },
+    "results/gate_c5arir/semantic_diff.json": {
+      "canonical_json_sha256": "a67a705fbc93bb84f02a7140ef4acee976aee6e23f21c3937cf5e777cc8e506c",
+      "exists": true,
+      "file_size_bytes": 4436,
+      "path": "results/gate_c5arir/semantic_diff.json",
+      "raw_file_sha256": "0844d1ac8414658f28cb10e74d7659a3647643f4188384536c2614d47f3e6c37"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "authoritative_current_artifact": true,
+    "c5arir_final_decision": true,
+    "handoff_hash": true,
+    "handoff_status": true,
+    "holdout_access_false": true,
+    "overlay_hash": true,
+    "overlay_id": true,
+    "scientific_semantic_equality": true
+  },
+  "created_at_utc": "2026-07-24T17:13:54.897864+00:00",
+  "handoff_hash": "05b11d2ce5b59ed66b556fc3596f733f93ffac0ca61a2d7f828f774ae6bad2ad",
+  "overlay_hash": "64c00bb924b5f6db96a876ab476e53741da6377060150546df2a1b16ed10be06",
+  "status": "PASS"
+}
