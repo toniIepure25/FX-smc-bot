@@ -1,0 +1,51 @@
+{
+  "artifact_hashes": {
+    "results/gate_c5ar/holdout_integrity.json": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3",
+    "results/gate_c5ar/post_validation_lock.json": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7",
+    "results/gate_c5ar/quality_gate_final.json": "2d5c4ddb5cc7474683c3fcb3e7d83478d22e56362dbad0c64dcbf64fc03f18a5",
+    "results/gate_c5ar/resumption_integrity.json": "2b5e0490027eea87462cc925490128d759528b4626346de7a7797aa4a78c3083",
+    "results/gate_c5ar/scientific_code_integrity.json": "d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23",
+    "results/gate_c5ar/validation_criterion_adjudication.json": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+    "results/gate_c5ar/validation_inference.json": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+    "results/gate_c5ar/validation_placebo.json": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+    "results/gate_c5ar/validation_primary_estimand.json": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+    "results/gate_c5ar/validation_stability.json": "c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8"
+  },
+  "blocking_mismatches": [
+    {
+      "actual_current_hash": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+      "artifact": "results/gate_c5ar/validation_criterion_adjudication.json",
+      "expected_hash_from_c5ar_post_validation_lock": "45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724",
+      "match": false
+    }
+  ],
+  "c5b_action": "STOPPED_BEFORE_MECHANISM_PREREGISTRATION_AND_DIAGNOSTICS",
+  "checks": {
+    "c4_directional_alpha_stopped": true,
+    "c4b_relative_resilience_hypothesis_class": true,
+    "c5ar_artifact_hashes_match_lock": false,
+    "c5ar_final_not_validated": true,
+    "c5ar_lock_final_decision_matches": true,
+    "c5ar_post_validation_lock_present": true,
+    "c5ar_resumption_integrity_pass": true,
+    "holdout_events_detected_false": true,
+    "holdout_integrity_pass": true,
+    "holdout_market_data_loaded_false": true,
+    "holdout_outcomes_computed_false": true,
+    "placebo_not_reproduced": true,
+    "scientific_code_integrity_pass": true,
+    "validation_absolute_positive_failed_old_criterion": true,
+    "validation_relative_positive": true
+  },
+  "decision_if_failed": "BLOCKED_BY_C5AR_ARTIFACT_INTEGRITY",
+  "final_decision_if_failed": "BLOCKED_BY_C5AR_ARTIFACT_INTEGRITY",
+  "holdout_accessed": false,
+  "lineage": {
+    "c4a_final_decision": "C4_MIXED_RESULT_UPHELD_DO_NOT_OPEN_VALIDATION",
+    "c4b_hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+    "c4b_hypothesis_id": "C4B_USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_V1",
+    "c5ar_final_decision": "USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED"
+  },
+  "recorded_at_utc": "2026-07-24T15:38:19.314317+00:00",
+  "status": "FAIL"
+}
