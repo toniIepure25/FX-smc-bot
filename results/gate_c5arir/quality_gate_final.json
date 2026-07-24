@@ -1,0 +1,18 @@
+{
+  "c5ar_scientific_decision": "USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED",
+  "checks": {
+    "adjudication_regeneration_pass": true,
+    "artifact_history_complete": true,
+    "authoritative_artifact_proven": true,
+    "c5b_handoff_created": true,
+    "compact_source_identities_pass": true,
+    "expected_hash_provenance_established": true,
+    "holdout_integrity_pass": true,
+    "reconciliation_overlay_created": true,
+    "semantic_diff_no_scientific_change": true
+  },
+  "created_at_utc": "2026-07-24T16:07:20.622078+00:00",
+  "final_decision": "C5AR_ARTIFACT_INTEGRITY_RECONCILED_READY_FOR_C5B",
+  "gate": "C5-A-R-IR",
+  "status": "PASS"
+}
