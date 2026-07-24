@@ -1,0 +1,46 @@
+{
+  "checks": {
+    "amendment_hash": true,
+    "analysis_code_hash": true,
+    "configuration_file_hash": true,
+    "detector_hash": true,
+    "hypothesis_hash": true,
+    "protocol_hash": true,
+    "validation_access_ledger_hash": true
+  },
+  "current_hashes": {
+    "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+    "analysis_code_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "configuration_file_hash": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+    "detector_hash": "831aada49cc661a2a30a2dce030b6e9d4f2fbc01af0b0813d00aae47c4b3efb0",
+    "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+    "protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+    "validation_access_ledger_hash": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216"
+  },
+  "event_outcome_artifacts": {
+    "validation_event_manifest_status": "NOT_RUN_DATA_QUALITY_FAILED",
+    "validation_primary_estimand_status": "NOT_RUN_DATA_QUALITY_FAILED"
+  },
+  "expected_hashes": {
+    "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+    "analysis_code_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "configuration_file_hash": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+    "detector_hash": "831aada49cc661a2a30a2dce030b6e9d4f2fbc01af0b0813d00aae47c4b3efb0",
+    "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+    "protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+    "validation_access_ledger_hash": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216"
+  },
+  "holdout_integrity": {
+    "holdout_controls_constructed": false,
+    "holdout_event_counts_computed": false,
+    "holdout_events_detected": false,
+    "holdout_market_data_loaded": false,
+    "holdout_outcomes_computed": false,
+    "holdout_results_reported": false,
+    "status": "PASS"
+  },
+  "latest_acquisition_certification_fix_present": true,
+  "scientific_code_changed": false,
+  "status": "PASS",
+  "validation_access_ledger_immutable": true
+}

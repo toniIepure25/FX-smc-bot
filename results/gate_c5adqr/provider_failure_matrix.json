@@ -1,0 +1,83 @@
+{
+  "bounded_retries": true,
+  "conclusion": "Failure is not specific to Jan-Feb, side, cache, or concurrency; it is specific to Node/default-client transport being rate-limited by Dukascopy while browser-UA native access succeeds.",
+  "fresh_isolated_cache": true,
+  "fresh_output_directory": true,
+  "matrix": [
+    {
+      "classification": "runtime_or_client_fingerprint_specific",
+      "day": "2020-01-06",
+      "label": "same_day_bid",
+      "native_browser_ua_status": "PASS",
+      "native_content_length": 11580,
+      "native_http_status": 200,
+      "node_fetch_body": "{\"error\": \"Too Many Requests\"}",
+      "node_fetch_status": 429,
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2020/00/06/BID_candles_min_1.bi5"
+    },
+    {
+      "classification": "runtime_or_client_fingerprint_specific",
+      "day": "2020-01-06",
+      "label": "same_day_ask",
+      "native_browser_ua_status": "PASS",
+      "native_content_length": 11572,
+      "native_http_status": 200,
+      "node_fetch_body": "{\"error\": \"Too Many Requests\"}",
+      "node_fetch_status": 429,
+      "side": "ask",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2020/00/06/ASK_candles_min_1.bi5"
+    },
+    {
+      "classification": "runtime_or_client_fingerprint_specific",
+      "day": "2020-01-03",
+      "label": "previous_trading_day",
+      "native_browser_ua_status": "PASS",
+      "native_content_length": 11210,
+      "native_http_status": 200,
+      "node_fetch_body": "{\"error\": \"Too Many Requests\"}",
+      "node_fetch_status": 429,
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2020/00/03/BID_candles_min_1.bi5"
+    },
+    {
+      "classification": "runtime_or_client_fingerprint_specific",
+      "day": "2020-01-07",
+      "label": "next_trading_day",
+      "native_browser_ua_status": "PASS",
+      "native_content_length": 11575,
+      "native_http_status": 200,
+      "node_fetch_body": "{\"error\": \"Too Many Requests\"}",
+      "node_fetch_status": 429,
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2020/00/07/BID_candles_min_1.bi5"
+    },
+    {
+      "classification": "runtime_or_client_fingerprint_specific",
+      "day": "2019-01-06",
+      "label": "same_calendar_2019",
+      "native_browser_ua_status": "PASS",
+      "native_content_length": 2888,
+      "native_http_status": 200,
+      "node_fetch_body": "{\"error\": \"Too Many Requests\"}",
+      "node_fetch_status": 429,
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2019/00/06/BID_candles_min_1.bi5"
+    },
+    {
+      "classification": "runtime_or_client_fingerprint_specific",
+      "day": "2021-01-06",
+      "label": "same_calendar_2021",
+      "native_browser_ua_status": "PASS",
+      "native_content_length": 11814,
+      "native_http_status": 200,
+      "node_fetch_body": "{\"error\": \"Too Many Requests\"}",
+      "node_fetch_status": 429,
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2021/00/06/BID_candles_min_1.bi5"
+    }
+  ],
+  "resume": false,
+  "single_worker": true,
+  "status": "COMPLETE"
+}

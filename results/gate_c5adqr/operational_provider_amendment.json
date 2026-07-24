@@ -1,0 +1,16 @@
+{
+  "amendment_id": "C5ADQR_OPERATIONAL_DUKASCOPY_BI5_FALLBACK_V1",
+  "c5a_amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+  "c5a_protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+  "change_scope": "transport/parser implementation only",
+  "created_at_utc": "2026-07-24T09:11:33.588382+00:00",
+  "data_source": "Dukascopy datafeed BI5",
+  "events_or_outcomes_computed_before_amendment": false,
+  "fallback_provider": "native-bi5-browser-ua",
+  "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "operational_provider_amendment_hash": "ca7a612aff5ad1b279da51e2f0afe6fa2ee3f81e08235a6c57770c4a3408b586",
+  "provider_parity_required_before_failed_unit_repair": true,
+  "validation_access_ledger_hash": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216",
+  "validation_result_available_when_choosing_fallback": false,
+  "validation_structurally_accessed_before_amendment": true
+}
