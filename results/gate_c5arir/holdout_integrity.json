@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "holdout_controls_constructed": false,
+    "holdout_event_counts_computed": false,
+    "holdout_events_detected": false,
+    "holdout_market_data_loaded": false,
+    "holdout_outcomes_computed": false,
+    "holdout_results_reported": false,
+    "holdout_structural_data_inspected": false
+  },
+  "hashes": {
+    "canonical_json_sha256": "5375d77f8e7af5ad5838cfb27e3d451a0748e5503cd71fd43b48597a2de46a78",
+    "crlf_normalized_sha256": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3",
+    "file_size_bytes": 265,
+    "json_key_set": [
+      "holdout_controls_constructed",
+      "holdout_event_counts_computed",
+      "holdout_events_detected",
+      "holdout_market_data_loaded",
+      "holdout_outcomes_computed",
+      "holdout_results_reported",
+      "status"
+    ],
+    "lf_normalized_sha256": "aa04067d94ca482316e10dcfb5ac57007a06723e4f7858d4b7721e90f05c2e0f",
+    "line_ending_style": "CRLF",
+    "path": "results/gate_c5ar/holdout_integrity.json",
+    "raw_crlf_sha256": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3",
+    "raw_file_sha256": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3",
+    "raw_lf_sha256": "aa04067d94ca482316e10dcfb5ac57007a06723e4f7858d4b7721e90f05c2e0f"
+  },
+  "missing_flags_treated_as_false": [
+    "holdout_structural_data_inspected"
+  ],
+  "status": "PASS",
+  "violations": []
+}

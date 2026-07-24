@@ -1,0 +1,44 @@
+{
+  "c5b_recorded_current_hash_explanation": {
+    "current_file_match": "raw_file_sha256",
+    "hash": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9"
+  },
+  "expected_hash": "45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724",
+  "git_grep_hits": [
+    "1f59fb21258c211429846bff44065c80ef0a7e59:docs/research/GATE_C5B_FINAL_DECISION_MEMO.md:11:- Expected hash from C5-A-R post-validation lock: `45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724`",
+    "1f59fb21258c211429846bff44065c80ef0a7e59:results/gate_c5ar/post_validation_lock.json:17:    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",",
+    "1f59fb21258c211429846bff44065c80ef0a7e59:results/gate_c5b/artifact_integrity.json:18:      \"expected_hash_from_c5ar_post_validation_lock\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",",
+    "1f59fb21258c211429846bff44065c80ef0a7e59:results/gate_c5b/quality_gate_final.json:13:      \"expected_hash_from_c5ar_post_validation_lock\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",",
+    "abd879cd59381f614e67ffec42e8deeb002036a4:results/gate_c5ar/post_validation_lock.json:17:    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",",
+    "4cd388be9137b8df7f506180ba9b0189af2efc5a:results/gate_c5ar/post_validation_lock.json:16:    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",",
+    "4cd388be9137b8df7f506180ba9b0189af2efc5a:results/gate_c5ar/quality_gate_final.json:11:    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\","
+  ],
+  "origin": "raw_crlf_sha256_of_4cd388b_validation_criterion_adjudication",
+  "provenance_status": "ESTABLISHED",
+  "relevant_reflog_hits": [
+    "1f59fb2 refs/heads/research/rigorous-intraday-smc-validation@{2026-07-24 18:39:07 +0300}: commit: research: block C5-B on artifact integrity",
+    "1f59fb2 HEAD@{2026-07-24 18:39:07 +0300}: commit: research: block C5-B on artifact integrity",
+    "abd879c refs/remotes/origin/research/rigorous-intraday-smc-validation@{2026-07-24 18:23:09 +0300}: update by push",
+    "abd879c refs/heads/research/rigorous-intraday-smc-validation@{2026-07-24 13:22:29 +0300}: commit: research: reconcile C5-A-R artifact integrity",
+    "abd879c HEAD@{2026-07-24 13:22:29 +0300}: commit: research: reconcile C5-A-R artifact integrity",
+    "4cd388b refs/heads/research/rigorous-intraday-smc-validation@{2026-07-24 13:21:01 +0300}: commit: research: execute frozen USDJPY C5-A validation",
+    "4cd388b HEAD@{2026-07-24 13:21:01 +0300}: commit: research: execute frozen USDJPY C5-A validation"
+  ],
+  "representation_matches": {
+    "4cd388b": "crlf_normalized_sha256",
+    "abd879c": "NO_MATCH",
+    "current": "NO_MATCH"
+  },
+  "rev_list_object_match": false,
+  "stash_entries": [],
+  "unreachable_blob_inspection": {
+    "fsck": {
+      "command": "git fsck --full --no-reflogs --unreachable --lost-found",
+      "name": "fsck_unreachable",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "unreachable blob 2270a2f5c50ca0d89dbe61138b4d9c03eced865f\nunreachable blob 8be0d06486d3ae0448e864d43b2aa83e809dd620\nunreachable tree ae9041717214a7916de500980c5335002198f259\nunreachable tree bff0c9eb240425a2e9094297a77eb1f4be388b38\nunreachable tree c090bb8ee2a58c696d593de82edb13a187eaf4da\nunreachable tree ae3199f42d3de71801acdf0f4c7b734ae942db4f\nunreachable tree 63a26c000c3c2c6bda28fc20ce92278d47bc5ad9\nunreachable tree 6ce26e1f7e9de0326d57cfd5e11578725af90722\nunreachable tree f0536ded2e01b1df2ba9a446e8fa05c2cfc7b51d\nunreachable tree 79d4355b1d1f21a9b7fa8b2c40e43b9c0da8249d\nunreachable tree fb74fa200582f11cc2e86d07d409ebcd8a49b4b0\nunreachable tree 78e5e027a11baeefdd4ef0701a23c730557f8efe\nunreachable tree 91f6c451af37fdb4ace4cd0635a3a0665813e083\nunreachable blob fd5686a73ad99416ad3507356a6ce91ec2957764\nunreachable blob 0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc\nunreachable tree 18d7a425f756f23e4621d36481c621adf3647759\nunreachable commit c438a557ae4936dce6d417157f31e3ddc7c8719a\nunreachable tree 8639ca5e155dc1804e81734a41673a8900d46917\nunreachable tree 4e4b6a6148f8f09080fc2b64f0e170110ddef3e6\nunreachable tree 9e4bdba7be3675a872f0682b97e55032709b4c62\nunreachable blob e4bbd9687a7ce89112a1ab47cd7ba2fbdc7db5a3\nunreachable blob 1b5ef5ff2bdfd835b43a59250a99ed1b4bc05355\nunreachable tree 3f3fad2a5d43e1489d452a1f720362f922fa0d7a\nunreachable blob b2bf83769b2815235399d9e6c8bd352264979272\n"
+    },
+    "relevant_unreachable_json_blobs": []
+  }
+}

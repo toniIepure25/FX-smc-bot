@@ -1,0 +1,143 @@
+{
+  "changes": [
+    {
+      "classification": "SOURCE_REFERENCE_ONLY",
+      "json_path": "$.criteria[0].source_hash",
+      "new_value": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7",
+      "old_value": "f80dc541418769d7f93a6fd25870ace40784730dc41a6df7eb905c0db2f67649",
+      "scientific_relevance": false
+    }
+  ],
+  "combined_pass_count": 10,
+  "criterion_comparison": [
+    {
+      "criterion": "artifact_integrity",
+      "criterion_name_equal": true,
+      "criterion_number": 1,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": false,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "validation_data_quality",
+      "criterion_name_equal": true,
+      "criterion_number": 2,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "successfully_matched_primary_events",
+      "criterion_name_equal": true,
+      "criterion_number": 3,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "exact_key_relaxations",
+      "criterion_name_equal": true,
+      "criterion_number": 4,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "every_post_match_abs_SMD",
+      "criterion_name_equal": true,
+      "criterion_number": 5,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "mean_event_minus_control_executable_differential",
+      "criterion_name_equal": true,
+      "criterion_number": 6,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "paired_permutation_p_value",
+      "criterion_name_equal": true,
+      "criterion_number": 7,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "95pct_day_cluster_bootstrap_CI_lower_bound",
+      "criterion_name_equal": true,
+      "criterion_number": 8,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "mean_absolute_event_executable_markout",
+      "criterion_name_equal": true,
+      "criterion_number": 9,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "plus_24h_placebo_reproduces_relative_resilience",
+      "criterion_name_equal": true,
+      "criterion_number": 10,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    },
+    {
+      "criterion": "holdout_integrity",
+      "criterion_name_equal": true,
+      "criterion_number": 11,
+      "observed_value_equal": true,
+      "operator_equal": true,
+      "passed_equal": true,
+      "source_artifact_equal": true,
+      "source_hash_equal": true,
+      "threshold_equal": true
+    }
+  ],
+  "current_commit": "1f59fb21258c211429846bff44065c80ef0a7e59",
+  "failed_criteria": [
+    "mean_absolute_event_executable_markout"
+  ],
+  "final_decision_equal": true,
+  "historical_commit": "4cd388be9137b8df7f506180ba9b0189af2efc5a",
+  "scientific_changes": [],
+  "scientific_projection_equal": true
+}

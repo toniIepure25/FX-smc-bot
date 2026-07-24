@@ -1,0 +1,31 @@
+{
+  "exact_defect": "post_validation_lock stored the CRLF raw SHA-256 of the 4cd388b adjudication artifact and was not regenerated after abd879c changed only the non-scientific source_hash reference for the artifact_integrity criterion.",
+  "findings": {
+    "adjudication_regenerated_after_lock": true,
+    "canonical_hash_stored_but_raw_hash_later_compared": false,
+    "hash_function_read_stale_bytes": true,
+    "lock_generated_before_final_adjudication_serialization": false,
+    "lock_hashed_temporary_file": false,
+    "post_validation_lock_not_regenerated_after_legitimate_correction": true,
+    "reconciliation_commit_altered_adjudication_artifact": true,
+    "self_referential_artifact_dependency": true,
+    "wrong_hash_mode_stored": true
+  },
+  "generation_sequence": [
+    "event manifest",
+    "overlap audit",
+    "outcome coverage",
+    "control matching",
+    "primary estimand",
+    "inference",
+    "placebo",
+    "criterion adjudication",
+    "stability",
+    "holdout integrity",
+    "post-validation lock",
+    "quality gate",
+    "documentation",
+    "reconciliation"
+  ],
+  "reconcilable_after_scientific_reproduction": true
+}

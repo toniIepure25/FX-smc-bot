@@ -1,0 +1,543 @@
+{
+  "artifacts": {
+    "results/gate_c5ar/post_validation_lock.json": {
+      "diffs": {
+        "4cd388b_parent_to_4cd388b": "diff --git a/results/gate_c5ar/post_validation_lock.json b/results/gate_c5ar/post_validation_lock.json\nnew file mode 100644\nindex 0000000..fc7eec8\n--- /dev/null\n+++ b/results/gate_c5ar/post_validation_lock.json\n@@ -0,0 +1,29 @@\n+{\n+  \"final_decision\": \"USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED\",\n+  \"hashes\": {\n+    \"amendment\": \"1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830\",\n+    \"dqr_resumption_handoff\": \"a8374ba7245274bf9f64c03a869fd1dd2ec584d4f86dc4dcef57eae1d4f7f223\",\n+    \"dqr_validation_freeze\": \"8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866\",\n+    \"hypothesis\": \"e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d\",\n+    \"protocol\": \"25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30\",\n+    \"results/gate_c5ar/control_matching_audit.json\": \"1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd\",\n+    \"results/gate_c5ar/execution_start_record.json\": \"6b7baba6c19de29dc875fd2615995b9501f711fe48e896f5c6606e0efffb3c6e\",\n+    \"results/gate_c5ar/holdout_integrity.json\": \"7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3\",\n+    \"results/gate_c5ar/outcome_coverage_audit.json\": \"b5ff2f1fd535ea0b1b373bf4e368d14db355c55a1e2525f0e01a20dcfa2f4b92\",\n+    \"results/gate_c5ar/repository_state.json\": \"e9f8b57fa8a9294ffec34206324a63e48a5b10fdde34ee03a4828215bf245b14\",\n+    \"results/gate_c5ar/resumption_integrity.json\": \"2b5e0490027eea87462cc925490128d759528b4626346de7a7797aa4a78c3083\",\n+    \"results/gate_c5ar/scientific_code_integrity.json\": \"d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23\",\n+    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",\n+    \"results/gate_c5ar/validation_event_manifest.json\": \"be45c3a85daf00bfaa053f44dabc84c7252f4b07d7defdbc6bf349c11cab7bf8\",\n+    \"results/gate_c5ar/validation_freeze_integrity.json\": \"28eeee017226c36968364b266350679513da2fe886b07dfe0fcacd6043a376c2\",\n+    \"results/gate_c5ar/validation_inference.json\": \"f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2\",\n+    \"results/gate_c5ar/validation_overlap_audit.json\": \"c79c8e3c520d450c7ce9fff495ab0362f197cfab810083ae78d51155bb70f4f0\",\n+    \"results/gate_c5ar/validation_placebo.json\": \"e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a\",\n+    \"results/gate_c5ar/validation_primary_estimand.json\": \"68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d\",\n+    \"results/gate_c5ar/validation_stability.json\": \"c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8\",\n+    \"scientific_code\": \"0eafca073eaf2ee26390c5d99c63f5b6e5461b4496afbb6a172c1806e7263b01\",\n+    \"validation_access_ledger\": \"0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216\"\n+  },\n+  \"statement\": \"No validation-informed modification is permitted for this hypothesis lineage.\",\n+  \"status\": \"LOCKED\"\n+}",
+        "4cd388b_to_abd879c": "diff --git a/results/gate_c5ar/post_validation_lock.json b/results/gate_c5ar/post_validation_lock.json\nindex fc7eec8..d9f7e6e 100644\n--- a/results/gate_c5ar/post_validation_lock.json\n+++ b/results/gate_c5ar/post_validation_lock.json\n@@ -9,7 +9,8 @@\n     \"results/gate_c5ar/control_matching_audit.json\": \"1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd\",\n     \"results/gate_c5ar/execution_start_record.json\": \"6b7baba6c19de29dc875fd2615995b9501f711fe48e896f5c6606e0efffb3c6e\",\n     \"results/gate_c5ar/holdout_integrity.json\": \"7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3\",\n-    \"results/gate_c5ar/outcome_coverage_audit.json\": \"b5ff2f1fd535ea0b1b373bf4e368d14db355c55a1e2525f0e01a20dcfa2f4b92\",\n+    \"results/gate_c5ar/outcome_coverage_audit.json\": \"59bf1f946ddb2493a0fe3fd7e3f9825280b4b6b09a9c5046c6bdf12271c54dad\",\n+    \"results/gate_c5ar/quality_gate_final.json\": \"1884eebb47183ac191130c10352c67243d97a82a8841798b42ac248c4cdee011\",\n     \"results/gate_c5ar/repository_state.json\": \"e9f8b57fa8a9294ffec34206324a63e48a5b10fdde34ee03a4828215bf245b14\",\n     \"results/gate_c5ar/resumption_integrity.json\": \"2b5e0490027eea87462cc925490128d759528b4626346de7a7797aa4a78c3083\",\n     \"results/gate_c5ar/scientific_code_integrity.json\": \"d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23\",",
+        "abd879c_to_1f59fb2": ""
+      },
+      "git_log": [
+        "abd879cd59381f614e67ffec42e8deeb002036a4 2026-07-24T13:22:29+03:00 research: reconcile C5-A-R artifact integrity",
+        "4cd388be9137b8df7f506180ba9b0189af2efc5a 2026-07-24T13:21:01+03:00 research: execute frozen USDJPY C5-A validation"
+      ],
+      "versions": [
+        {
+          "canonical_json_sha256": "37a9a693d34ca494ba18eea006ef6155970ed273acccefb90bc41c173cbef742",
+          "commit": "4cd388be9137b8df7f506180ba9b0189af2efc5a",
+          "commit_subject": "research: execute frozen USDJPY C5-A validation",
+          "commit_timestamp": "2026-07-24T13:21:01+03:00",
+          "existed_after_lock_creation": false,
+          "existed_before_commit": false,
+          "file_size_bytes": 2678,
+          "git_blob_sha": "fc7eec832c7463a2935aa68f70a5863fff53dede",
+          "json_key_set": [
+            "final_decision",
+            "hashes",
+            "statement",
+            "status"
+          ],
+          "path": "results/gate_c5ar/post_validation_lock.json",
+          "raw_crlf_sha256": "c22feaa0e292cda76832d823d5b0dc4b77df5733622d5b6b9f4356e78587664d",
+          "raw_lf_sha256": "b2c37a19be3d2e03bb1595ba8cabfdb25aa32a82762e3016b48f5792991994af",
+          "short_commit": "4cd388b"
+        },
+        {
+          "canonical_json_sha256": "f8e1f9b2af66c52dab227d7be105102e03bd49d45a4e4e6f6470cc600c122de1",
+          "commit": "abd879cd59381f614e67ffec42e8deeb002036a4",
+          "commit_subject": "research: reconcile C5-A-R artifact integrity",
+          "commit_timestamp": "2026-07-24T13:22:29+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 2795,
+          "git_blob_sha": "d9f7e6ecc9de3969ad2ac81e10fda1c0a34da010",
+          "json_key_set": [
+            "final_decision",
+            "hashes",
+            "statement",
+            "status"
+          ],
+          "path": "results/gate_c5ar/post_validation_lock.json",
+          "raw_crlf_sha256": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7",
+          "raw_lf_sha256": "0d36df21d6923731e314091876c4eda1bc8412c6a7a1539f740e4a9b8dd4828a",
+          "short_commit": "abd879c"
+        },
+        {
+          "canonical_json_sha256": "f8e1f9b2af66c52dab227d7be105102e03bd49d45a4e4e6f6470cc600c122de1",
+          "commit": "1f59fb21258c211429846bff44065c80ef0a7e59",
+          "commit_subject": "research: block C5-B on artifact integrity",
+          "commit_timestamp": "2026-07-24T18:39:07+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 2795,
+          "git_blob_sha": "d9f7e6ecc9de3969ad2ac81e10fda1c0a34da010",
+          "json_key_set": [
+            "final_decision",
+            "hashes",
+            "statement",
+            "status"
+          ],
+          "path": "results/gate_c5ar/post_validation_lock.json",
+          "raw_crlf_sha256": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7",
+          "raw_lf_sha256": "0d36df21d6923731e314091876c4eda1bc8412c6a7a1539f740e4a9b8dd4828a",
+          "short_commit": "1f59fb2"
+        }
+      ]
+    },
+    "results/gate_c5ar/quality_gate_final.json": {
+      "diffs": {
+        "4cd388b_parent_to_4cd388b": "diff --git a/results/gate_c5ar/quality_gate_final.json b/results/gate_c5ar/quality_gate_final.json\nnew file mode 100644\nindex 0000000..3a30a1d\n--- /dev/null\n+++ b/results/gate_c5ar/quality_gate_final.json\n@@ -0,0 +1,84 @@\n+{\n+  \"artifact_hashes\": {\n+    \"results/gate_c5ar/control_matching_audit.json\": \"1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd\",\n+    \"results/gate_c5ar/execution_start_record.json\": \"6b7baba6c19de29dc875fd2615995b9501f711fe48e896f5c6606e0efffb3c6e\",\n+    \"results/gate_c5ar/holdout_integrity.json\": \"7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3\",\n+    \"results/gate_c5ar/outcome_coverage_audit.json\": \"b5ff2f1fd535ea0b1b373bf4e368d14db355c55a1e2525f0e01a20dcfa2f4b92\",\n+    \"results/gate_c5ar/post_validation_lock.json\": \"c22feaa0e292cda76832d823d5b0dc4b77df5733622d5b6b9f4356e78587664d\",\n+    \"results/gate_c5ar/repository_state.json\": \"e9f8b57fa8a9294ffec34206324a63e48a5b10fdde34ee03a4828215bf245b14\",\n+    \"results/gate_c5ar/resumption_integrity.json\": \"2b5e0490027eea87462cc925490128d759528b4626346de7a7797aa4a78c3083\",\n+    \"results/gate_c5ar/scientific_code_integrity.json\": \"d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23\",\n+    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",\n+    \"results/gate_c5ar/validation_event_manifest.json\": \"be45c3a85daf00bfaa053f44dabc84c7252f4b07d7defdbc6bf349c11cab7bf8\",\n+    \"results/gate_c5ar/validation_freeze_integrity.json\": \"28eeee017226c36968364b266350679513da2fe886b07dfe0fcacd6043a376c2\",\n+    \"results/gate_c5ar/validation_inference.json\": \"f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2\",\n+    \"results/gate_c5ar/validation_overlap_audit.json\": \"c79c8e3c520d450c7ce9fff495ab0362f197cfab810083ae78d51155bb70f4f0\",\n+    \"results/gate_c5ar/validation_placebo.json\": \"e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a\",\n+    \"results/gate_c5ar/validation_primary_estimand.json\": \"68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d\",\n+    \"results/gate_c5ar/validation_stability.json\": \"c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8\"\n+  },\n+  \"controls_constructed\": true,\n+  \"docs_hashes\": {\n+    \"docs/research/GATE_C5AR_CONTROL_MATCHING.md\": \"aac83649e36e72be4e7f9653dea8c44a8e742251ea49127c7a721dd7f0fb00f7\",\n+    \"docs/research/GATE_C5AR_CRITERION_ADJUDICATION.md\": \"6694d64dbb06c1649e68c5a01c189643fdfeded8ed64d5c2c14910c18196ba08\",\n+    \"docs/research/GATE_C5AR_FINAL_DECISION_MEMO.md\": \"277842b231fd64a5209329472c9388eb8a7b2179fac14eef2b43b17519f7fa67\",\n+    \"docs/research/GATE_C5AR_VALIDATION_RESULTS.md\": \"66c051f950dbf94bb11d6832ff4558c942c6c2b7a7466185db7cf021bbf82982\"\n+  },\n+  \"ending_sha_before_commit\": \"a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6\",\n+  \"event_counts_computed\": true,\n+  \"event_detection_executed\": true,\n+  \"execution_sha\": \"a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6\",\n+  \"final_decision\": \"USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED\",\n+  \"holdout_accessed\": false,\n+  \"inference_computed\": true,\n+  \"outcomes_computed\": true,\n+  \"placebo_computed\": true,\n+  \"quality_gate\": {\n+    \"bundled_node_smoke\": {\n+      \"command\": \"bundled node.exe --test test_acquire.mjs from tools/dukascopy-node\",\n+      \"result\": \"2 passed, 0 failed\",\n+      \"status\": \"PASS\"\n+    },\n+    \"git_diff_check\": {\n+      \"command\": \"git diff --check\",\n+      \"result\": \"no whitespace errors\",\n+      \"status\": \"PASS\"\n+    },\n+    \"git_status_before_commit\": {\n+      \"short_status\": \"?? docs/research/GATE_C5AR_CONTROL_MATCHING.md\\n?? docs/research/GATE_C5AR_CRITERION_ADJUDICATION.md\\n?? docs/research/GATE_C5AR_FINAL_DECISION_MEMO.md\\n?? docs/research/GATE_C5AR_VALIDATION_RESULTS.md\",\n+      \"status\": \"DIRTY_EXPECTED_RESULTS_DOCS_ONLY\"\n+    },\n+    \"mypy\": {\n+      \"command\": \"python -m mypy src/fx_smc_bot/research\",\n+      \"result\": \"3 missing-library-stub import-untyped errors: scipy in statistical_inference.py and overfitting.py; yaml in experiments.py\",\n+      \"status\": \"FAIL_PRE_EXISTING_REPOSITORY_DEBT\"\n+    },\n+    \"node_path\": {\n+      \"command\": \"node --test tools/dukascopy-node/test_acquire.mjs\",\n+      \"result\": \"node command not recognized on PATH\",\n+      \"status\": \"NOT_ON_PATH\"\n+    },\n+    \"npm_audit\": {\n+      \"command\": \"npm --prefix tools/dukascopy-node audit --omit=dev\",\n+      \"result\": \"npm command not recognized on PATH; bundled runtime exposes node.exe only\",\n+      \"status\": \"NOT_RUN_NPM_UNAVAILABLE\"\n+    },\n+    \"npm_test\": {\n+      \"command\": \"npm --prefix tools/dukascopy-node test\",\n+      \"result\": \"npm command not recognized on PATH; bundled runtime exposes node.exe only\",\n+      \"status\": \"NOT_RUN_NPM_UNAVAILABLE\"\n+    },\n+    \"pytest\": {\n+      \"command\": \"python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_gate_c5ar tests/ -q\",\n+      \"result\": \"728 passed, 91 warnings in 245.26s\",\n+      \"status\": \"PASS\"\n+    },\n+    \"ruff\": {\n+      \"command\": \"python -m ruff check scripts/run_gate_c5*.py src/fx_smc_bot/research src/fx_smc_bot/data tests/test_gate_c5a tests/test_gate_c5adqr\",\n+      \"result\": \"148 errors reported across existing src/fx_smc_bot/research and src/fx_smc_bot/data files; no C5-A-R scientific code or tests were modified\",\n+      \"status\": \"FAIL_PRE_EXISTING_REPOSITORY_DEBT\"\n+    }\n+  },\n+  \"starting_sha\": \"a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6\",\n+  \"status\": \"PASS\"\n+}",
+        "4cd388b_to_abd879c": "diff --git a/results/gate_c5ar/quality_gate_final.json b/results/gate_c5ar/quality_gate_final.json\nindex 3a30a1d..3a57b9e 100644\n--- a/results/gate_c5ar/quality_gate_final.json\n+++ b/results/gate_c5ar/quality_gate_final.json\n@@ -3,12 +3,12 @@\n     \"results/gate_c5ar/control_matching_audit.json\": \"1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd\",\n     \"results/gate_c5ar/execution_start_record.json\": \"6b7baba6c19de29dc875fd2615995b9501f711fe48e896f5c6606e0efffb3c6e\",\n     \"results/gate_c5ar/holdout_integrity.json\": \"7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3\",\n-    \"results/gate_c5ar/outcome_coverage_audit.json\": \"b5ff2f1fd535ea0b1b373bf4e368d14db355c55a1e2525f0e01a20dcfa2f4b92\",\n-    \"results/gate_c5ar/post_validation_lock.json\": \"c22feaa0e292cda76832d823d5b0dc4b77df5733622d5b6b9f4356e78587664d\",\n+    \"results/gate_c5ar/outcome_coverage_audit.json\": \"59bf1f946ddb2493a0fe3fd7e3f9825280b4b6b09a9c5046c6bdf12271c54dad\",\n+    \"results/gate_c5ar/post_validation_lock.json\": \"114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7\",\n     \"results/gate_c5ar/repository_state.json\": \"e9f8b57fa8a9294ffec34206324a63e48a5b10fdde34ee03a4828215bf245b14\",\n     \"results/gate_c5ar/resumption_integrity.json\": \"2b5e0490027eea87462cc925490128d759528b4626346de7a7797aa4a78c3083\",\n     \"results/gate_c5ar/scientific_code_integrity.json\": \"d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23\",\n-    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724\",\n+    \"results/gate_c5ar/validation_criterion_adjudication.json\": \"af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9\",\n     \"results/gate_c5ar/validation_event_manifest.json\": \"be45c3a85daf00bfaa053f44dabc84c7252f4b07d7defdbc6bf349c11cab7bf8\",\n     \"results/gate_c5ar/validation_freeze_integrity.json\": \"28eeee017226c36968364b266350679513da2fe886b07dfe0fcacd6043a376c2\",\n     \"results/gate_c5ar/validation_inference.json\": \"f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2\",\n@@ -17,6 +17,11 @@\n     \"results/gate_c5ar/validation_primary_estimand.json\": \"68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d\",\n     \"results/gate_c5ar/validation_stability.json\": \"c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8\"\n   },\n+  \"artifact_integrity_reconciliation\": {\n+    \"outcome_coverage_audit_hash\": \"59bf1f946ddb2493a0fe3fd7e3f9825280b4b6b09a9c5046c6bdf12271c54dad\",\n+    \"reason\": \"outcome_coverage_audit status derived from unchanged individual checks; no scientific result recomputed or modified\",\n+    \"status\": \"PASS\"\n+  },\n   \"controls_constructed\": true,\n   \"docs_hashes\": {\n     \"docs/research/GATE_C5AR_CONTROL_MATCHING.md\": \"aac83649e36e72be4e7f9653dea8c44a8e742251ea49127c7a721dd7f0fb00f7\",",
+        "abd879c_to_1f59fb2": ""
+      },
+      "git_log": [
+        "abd879cd59381f614e67ffec42e8deeb002036a4 2026-07-24T13:22:29+03:00 research: reconcile C5-A-R artifact integrity",
+        "4cd388be9137b8df7f506180ba9b0189af2efc5a 2026-07-24T13:21:01+03:00 research: execute frozen USDJPY C5-A validation"
+      ],
+      "versions": [
+        {
+          "canonical_json_sha256": "5fc80a2f177b142c5207ffbe7d128c3ced0728b172a51ec47dcab6f62297fc79",
+          "commit": "4cd388be9137b8df7f506180ba9b0189af2efc5a",
+          "commit_subject": "research: execute frozen USDJPY C5-A validation",
+          "commit_timestamp": "2026-07-24T13:21:01+03:00",
+          "existed_after_lock_creation": false,
+          "existed_before_commit": false,
+          "file_size_bytes": 5140,
+          "git_blob_sha": "3a30a1d8c50ca8b3675b8dfb41cab3b051c52560",
+          "json_key_set": [
+            "artifact_hashes",
+            "controls_constructed",
+            "docs_hashes",
+            "ending_sha_before_commit",
+            "event_counts_computed",
+            "event_detection_executed",
+            "execution_sha",
+            "final_decision",
+            "holdout_accessed",
+            "inference_computed",
+            "outcomes_computed",
+            "placebo_computed",
+            "quality_gate",
+            "starting_sha",
+            "status"
+          ],
+          "path": "results/gate_c5ar/quality_gate_final.json",
+          "raw_crlf_sha256": "1884eebb47183ac191130c10352c67243d97a82a8841798b42ac248c4cdee011",
+          "raw_lf_sha256": "98cbca3fd34e26725f4f469ad91c875ab5577408cf56899999361dd4127ec6aa",
+          "short_commit": "4cd388b"
+        },
+        {
+          "canonical_json_sha256": "2037bc963c5a72fed550a85d80c1a946b9e0464c126f0ec6d4afc278d233f784",
+          "commit": "abd879cd59381f614e67ffec42e8deeb002036a4",
+          "commit_subject": "research: reconcile C5-A-R artifact integrity",
+          "commit_timestamp": "2026-07-24T13:22:29+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 5443,
+          "git_blob_sha": "3a57b9ebc1b6485f74da2eb060b521c3bafa4fbf",
+          "json_key_set": [
+            "artifact_hashes",
+            "artifact_integrity_reconciliation",
+            "controls_constructed",
+            "docs_hashes",
+            "ending_sha_before_commit",
+            "event_counts_computed",
+            "event_detection_executed",
+            "execution_sha",
+            "final_decision",
+            "holdout_accessed",
+            "inference_computed",
+            "outcomes_computed",
+            "placebo_computed",
+            "quality_gate",
+            "starting_sha",
+            "status"
+          ],
+          "path": "results/gate_c5ar/quality_gate_final.json",
+          "raw_crlf_sha256": "2d5c4ddb5cc7474683c3fcb3e7d83478d22e56362dbad0c64dcbf64fc03f18a5",
+          "raw_lf_sha256": "c9321a50be6359a251b0e47711906009229a1882344c286d02fb73b6b2ea86da",
+          "short_commit": "abd879c"
+        },
+        {
+          "canonical_json_sha256": "2037bc963c5a72fed550a85d80c1a946b9e0464c126f0ec6d4afc278d233f784",
+          "commit": "1f59fb21258c211429846bff44065c80ef0a7e59",
+          "commit_subject": "research: block C5-B on artifact integrity",
+          "commit_timestamp": "2026-07-24T18:39:07+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 5443,
+          "git_blob_sha": "3a57b9ebc1b6485f74da2eb060b521c3bafa4fbf",
+          "json_key_set": [
+            "artifact_hashes",
+            "artifact_integrity_reconciliation",
+            "controls_constructed",
+            "docs_hashes",
+            "ending_sha_before_commit",
+            "event_counts_computed",
+            "event_detection_executed",
+            "execution_sha",
+            "final_decision",
+            "holdout_accessed",
+            "inference_computed",
+            "outcomes_computed",
+            "placebo_computed",
+            "quality_gate",
+            "starting_sha",
+            "status"
+          ],
+          "path": "results/gate_c5ar/quality_gate_final.json",
+          "raw_crlf_sha256": "2d5c4ddb5cc7474683c3fcb3e7d83478d22e56362dbad0c64dcbf64fc03f18a5",
+          "raw_lf_sha256": "c9321a50be6359a251b0e47711906009229a1882344c286d02fb73b6b2ea86da",
+          "short_commit": "1f59fb2"
+        }
+      ]
+    },
+    "results/gate_c5ar/validation_criterion_adjudication.json": {
+      "diffs": {
+        "4cd388b_parent_to_4cd388b": "diff --git a/results/gate_c5ar/validation_criterion_adjudication.json b/results/gate_c5ar/validation_criterion_adjudication.json\nnew file mode 100644\nindex 0000000..da83eb3\n--- /dev/null\n+++ b/results/gate_c5ar/validation_criterion_adjudication.json\n@@ -0,0 +1,134 @@\n+{\n+  \"all_mandatory_criteria_passed\": false,\n+  \"criteria\": [\n+    {\n+      \"criterion\": \"artifact_integrity\",\n+      \"criterion_number\": 1,\n+      \"mandatory\": true,\n+      \"observed_value\": \"PASS\",\n+      \"operator\": \"equals\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/post_validation_lock.json\",\n+      \"source_hash\": \"f80dc541418769d7f93a6fd25870ace40784730dc41a6df7eb905c0db2f67649\",\n+      \"threshold\": \"PASS\"\n+    },\n+    {\n+      \"criterion\": \"validation_data_quality\",\n+      \"criterion_number\": 2,\n+      \"mandatory\": true,\n+      \"observed_value\": \"PASS\",\n+      \"operator\": \"equals\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5adqr/validation_data_quality.json\",\n+      \"source_hash\": \"a359d450f4d944cf3758475b79dd57f19385ffa13832e7de1e82259e87362271\",\n+      \"threshold\": \"PASS\"\n+    },\n+    {\n+      \"criterion\": \"successfully_matched_primary_events\",\n+      \"criterion_number\": 3,\n+      \"mandatory\": true,\n+      \"observed_value\": 1192,\n+      \"operator\": \">=\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/control_matching_audit.json\",\n+      \"source_hash\": \"1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd\",\n+      \"threshold\": 40\n+    },\n+    {\n+      \"criterion\": \"exact_key_relaxations\",\n+      \"criterion_number\": 4,\n+      \"mandatory\": true,\n+      \"observed_value\": 0,\n+      \"operator\": \"equals\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/control_matching_audit.json\",\n+      \"source_hash\": \"1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd\",\n+      \"threshold\": 0\n+    },\n+    {\n+      \"criterion\": \"every_post_match_abs_SMD\",\n+      \"criterion_number\": 5,\n+      \"mandatory\": true,\n+      \"observed_value\": {\n+        \"atr\": 0.031762838550213744,\n+        \"pre_event_trend\": 0.00041490711061651676,\n+        \"pre_event_volatility\": 0.05813439292604498,\n+        \"range_position\": -0.010403247286512483,\n+        \"spread\": 0.02026055574499356\n+      },\n+      \"operator\": \"every_abs<=\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/control_matching_audit.json\",\n+      \"source_hash\": \"1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd\",\n+      \"threshold\": 0.1\n+    },\n+    {\n+      \"criterion\": \"mean_event_minus_control_executable_differential\",\n+      \"criterion_number\": 6,\n+      \"mandatory\": true,\n+      \"observed_value\": 27.453020134228165,\n+      \"operator\": \">\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/validation_primary_estimand.json\",\n+      \"source_hash\": \"68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d\",\n+      \"threshold\": 0\n+    },\n+    {\n+      \"criterion\": \"paired_permutation_p_value\",\n+      \"criterion_number\": 7,\n+      \"mandatory\": true,\n+      \"observed_value\": 0.004497751124437781,\n+      \"operator\": \"<=\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/validation_inference.json\",\n+      \"source_hash\": \"f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2\",\n+      \"threshold\": 0.05\n+    },\n+    {\n+      \"criterion\": \"95pct_day_cluster_bootstrap_CI_lower_bound\",\n+      \"criterion_number\": 8,\n+      \"mandatory\": true,\n+      \"observed_value\": 14.784214406740844,\n+      \"operator\": \">\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/validation_inference.json\",\n+      \"source_hash\": \"f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2\",\n+      \"threshold\": 0\n+    },\n+    {\n+      \"criterion\": \"mean_absolute_event_executable_markout\",\n+      \"criterion_number\": 9,\n+      \"mandatory\": true,\n+      \"observed_value\": 11.33724832214778,\n+      \"operator\": \"<=\",\n+      \"passed\": false,\n+      \"source_artifact\": \"results/gate_c5ar/validation_primary_estimand.json\",\n+      \"source_hash\": \"68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d\",\n+      \"threshold\": 0\n+    },\n+    {\n+      \"criterion\": \"plus_24h_placebo_reproduces_relative_resilience\",\n+      \"criterion_number\": 10,\n+      \"mandatory\": true,\n+      \"observed_value\": false,\n+      \"operator\": \"equals\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/validation_placebo.json\",\n+      \"source_hash\": \"e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a\",\n+      \"threshold\": false\n+    },\n+    {\n+      \"criterion\": \"holdout_integrity\",\n+      \"criterion_number\": 11,\n+      \"mandatory\": true,\n+      \"observed_value\": \"PASS\",\n+      \"operator\": \"equals\",\n+      \"passed\": true,\n+      \"source_artifact\": \"results/gate_c5ar/holdout_integrity.json\",\n+      \"source_hash\": \"7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3\",\n+      \"threshold\": \"PASS\"\n+    }\n+  ],\n+  \"final_decision\": \"USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED\",\n+  \"status\": \"PASS\"\n+}",
+        "4cd388b_to_abd879c": "diff --git a/results/gate_c5ar/validation_criterion_adjudication.json b/results/gate_c5ar/validation_criterion_adjudication.json\nindex da83eb3..7f0fcbf 100644\n--- a/results/gate_c5ar/validation_criterion_adjudication.json\n+++ b/results/gate_c5ar/validation_criterion_adjudication.json\n@@ -9,7 +9,7 @@\n       \"operator\": \"equals\",\n       \"passed\": true,\n       \"source_artifact\": \"results/gate_c5ar/post_validation_lock.json\",\n-      \"source_hash\": \"f80dc541418769d7f93a6fd25870ace40784730dc41a6df7eb905c0db2f67649\",\n+      \"source_hash\": \"114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7\",\n       \"threshold\": \"PASS\"\n     },\n     {",
+        "abd879c_to_1f59fb2": ""
+      },
+      "git_log": [
+        "abd879cd59381f614e67ffec42e8deeb002036a4 2026-07-24T13:22:29+03:00 research: reconcile C5-A-R artifact integrity",
+        "4cd388be9137b8df7f506180ba9b0189af2efc5a 2026-07-24T13:21:01+03:00 research: execute frozen USDJPY C5-A validation"
+      ],
+      "versions": [
+        {
+          "canonical_json_sha256": "29473717ea838a44b77683a7bf508cca2a6ff3b14aba83e05f25bab12c5e17e1",
+          "commit": "4cd388be9137b8df7f506180ba9b0189af2efc5a",
+          "commit_subject": "research: execute frozen USDJPY C5-A validation",
+          "commit_timestamp": "2026-07-24T13:21:01+03:00",
+          "existed_after_lock_creation": false,
+          "existed_before_commit": false,
+          "file_size_bytes": 4696,
+          "git_blob_sha": "da83eb3a2a92f527d87cbae05a422bde61e4cfca",
+          "json_key_set": [
+            "all_mandatory_criteria_passed",
+            "criteria",
+            "final_decision",
+            "status"
+          ],
+          "path": "results/gate_c5ar/validation_criterion_adjudication.json",
+          "raw_crlf_sha256": "45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724",
+          "raw_lf_sha256": "a30abe50904801120a8251602ed5bbbccf269ea753a0ec6ec2d951ca197048b6",
+          "short_commit": "4cd388b"
+        },
+        {
+          "canonical_json_sha256": "82533389578b20e026b9e7cf5bf26019275536329009eede5d83212fae167e7a",
+          "commit": "abd879cd59381f614e67ffec42e8deeb002036a4",
+          "commit_subject": "research: reconcile C5-A-R artifact integrity",
+          "commit_timestamp": "2026-07-24T13:22:29+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 4696,
+          "git_blob_sha": "7f0fcbf556eb3fb842969b96917296e3756edd3b",
+          "json_key_set": [
+            "all_mandatory_criteria_passed",
+            "criteria",
+            "final_decision",
+            "status"
+          ],
+          "path": "results/gate_c5ar/validation_criterion_adjudication.json",
+          "raw_crlf_sha256": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+          "raw_lf_sha256": "9e3920b607de3d3fb1e4a2a0d316d28d65941e8920b27737b3fcea2c187b5dd4",
+          "short_commit": "abd879c"
+        },
+        {
+          "canonical_json_sha256": "82533389578b20e026b9e7cf5bf26019275536329009eede5d83212fae167e7a",
+          "commit": "1f59fb21258c211429846bff44065c80ef0a7e59",
+          "commit_subject": "research: block C5-B on artifact integrity",
+          "commit_timestamp": "2026-07-24T18:39:07+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 4696,
+          "git_blob_sha": "7f0fcbf556eb3fb842969b96917296e3756edd3b",
+          "json_key_set": [
+            "all_mandatory_criteria_passed",
+            "criteria",
+            "final_decision",
+            "status"
+          ],
+          "path": "results/gate_c5ar/validation_criterion_adjudication.json",
+          "raw_crlf_sha256": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+          "raw_lf_sha256": "9e3920b607de3d3fb1e4a2a0d316d28d65941e8920b27737b3fcea2c187b5dd4",
+          "short_commit": "1f59fb2"
+        }
+      ]
+    },
+    "results/gate_c5ar/validation_inference.json": {
+      "diffs": {
+        "4cd388b_parent_to_4cd388b": "diff --git a/results/gate_c5ar/validation_inference.json b/results/gate_c5ar/validation_inference.json\nnew file mode 100644\nindex 0000000..0767507\n--- /dev/null\n+++ b/results/gate_c5ar/validation_inference.json\n@@ -0,0 +1,24 @@\n+{\n+  \"ci95_day_cluster_bootstrap\": [\n+    14.784214406740844,\n+    40.27386831699497\n+  ],\n+  \"deterministic_seeds\": {\n+    \"bootstrap\": 4242,\n+    \"permutation\": 4242\n+  },\n+  \"holm_adjusted_p_value\": 0.004497751124437781,\n+  \"independent_day_count\": 572,\n+  \"iterations\": {\n+    \"day_cluster_bootstrap\": 1000,\n+    \"paired_permutation\": 2000\n+  },\n+  \"matched_pair_count\": 1192,\n+  \"median_differential\": 26.50000000000574,\n+  \"point_estimate\": 27.453020134228165,\n+  \"raw_permutation_p_value\": 0.004497751124437781,\n+  \"repeated_run_determinism_check\": true,\n+  \"standardized_paired_effect\": 0.08880457390703933,\n+  \"status\": \"PASS\",\n+  \"trimmed_mean_differential\": 25.07442348008378\n+}",
+        "4cd388b_to_abd879c": "",
+        "abd879c_to_1f59fb2": ""
+      },
+      "git_log": [
+        "4cd388be9137b8df7f506180ba9b0189af2efc5a 2026-07-24T13:21:01+03:00 research: execute frozen USDJPY C5-A validation"
+      ],
+      "versions": [
+        {
+          "canonical_json_sha256": "4feb4d2dfcf3573664c934edde26c43c3920e065771f8094e6324be61043d64f",
+          "commit": "4cd388be9137b8df7f506180ba9b0189af2efc5a",
+          "commit_subject": "research: execute frozen USDJPY C5-A validation",
+          "commit_timestamp": "2026-07-24T13:21:01+03:00",
+          "existed_after_lock_creation": false,
+          "existed_before_commit": false,
+          "file_size_bytes": 667,
+          "git_blob_sha": "0767507127ae25dd4bd9f3e302e563ff1ed23348",
+          "json_key_set": [
+            "ci95_day_cluster_bootstrap",
+            "deterministic_seeds",
+            "holm_adjusted_p_value",
+            "independent_day_count",
+            "iterations",
+            "matched_pair_count",
+            "median_differential",
+            "point_estimate",
+            "raw_permutation_p_value",
+            "repeated_run_determinism_check",
+            "standardized_paired_effect",
+            "status",
+            "trimmed_mean_differential"
+          ],
+          "path": "results/gate_c5ar/validation_inference.json",
+          "raw_crlf_sha256": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+          "raw_lf_sha256": "91d330e85a328c26e4843dc03bea6b9dbe758ed24393907ec92adb2dd7d81e64",
+          "short_commit": "4cd388b"
+        },
+        {
+          "canonical_json_sha256": "4feb4d2dfcf3573664c934edde26c43c3920e065771f8094e6324be61043d64f",
+          "commit": "abd879cd59381f614e67ffec42e8deeb002036a4",
+          "commit_subject": "research: reconcile C5-A-R artifact integrity",
+          "commit_timestamp": "2026-07-24T13:22:29+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 667,
+          "git_blob_sha": "0767507127ae25dd4bd9f3e302e563ff1ed23348",
+          "json_key_set": [
+            "ci95_day_cluster_bootstrap",
+            "deterministic_seeds",
+            "holm_adjusted_p_value",
+            "independent_day_count",
+            "iterations",
+            "matched_pair_count",
+            "median_differential",
+            "point_estimate",
+            "raw_permutation_p_value",
+            "repeated_run_determinism_check",
+            "standardized_paired_effect",
+            "status",
+            "trimmed_mean_differential"
+          ],
+          "path": "results/gate_c5ar/validation_inference.json",
+          "raw_crlf_sha256": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+          "raw_lf_sha256": "91d330e85a328c26e4843dc03bea6b9dbe758ed24393907ec92adb2dd7d81e64",
+          "short_commit": "abd879c"
+        },
+        {
+          "canonical_json_sha256": "4feb4d2dfcf3573664c934edde26c43c3920e065771f8094e6324be61043d64f",
+          "commit": "1f59fb21258c211429846bff44065c80ef0a7e59",
+          "commit_subject": "research: block C5-B on artifact integrity",
+          "commit_timestamp": "2026-07-24T18:39:07+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 667,
+          "git_blob_sha": "0767507127ae25dd4bd9f3e302e563ff1ed23348",
+          "json_key_set": [
+            "ci95_day_cluster_bootstrap",
+            "deterministic_seeds",
+            "holm_adjusted_p_value",
+            "independent_day_count",
+            "iterations",
+            "matched_pair_count",
+            "median_differential",
+            "point_estimate",
+            "raw_permutation_p_value",
+            "repeated_run_determinism_check",
+            "standardized_paired_effect",
+            "status",
+            "trimmed_mean_differential"
+          ],
+          "path": "results/gate_c5ar/validation_inference.json",
+          "raw_crlf_sha256": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+          "raw_lf_sha256": "91d330e85a328c26e4843dc03bea6b9dbe758ed24393907ec92adb2dd7d81e64",
+          "short_commit": "1f59fb2"
+        }
+      ]
+    },
+    "results/gate_c5ar/validation_placebo.json": {
+      "diffs": {
+        "4cd388b_parent_to_4cd388b": "diff --git a/results/gate_c5ar/validation_placebo.json b/results/gate_c5ar/validation_placebo.json\nnew file mode 100644\nindex 0000000..ecc3c63\n--- /dev/null\n+++ b/results/gate_c5ar/validation_placebo.json\n@@ -0,0 +1,59 @@\n+{\n+  \"eligible_shifted_placebo_events\": 699,\n+  \"estimand\": {\n+    \"cluster_bootstrap_ci95_mean_diff_points\": [\n+      -0.1923192771084638,\n+      0.0\n+    ],\n+    \"event_outperforms_control_probability\": 0.0,\n+    \"holm_adjusted_p_value\": 1.0,\n+    \"mean_control_executable_markout_points\": -10.882689556509298,\n+    \"mean_event_executable_markout_points\": -10.997138769670975,\n+    \"mean_event_minus_control_points\": -0.1144492131616774,\n+    \"median_event_minus_control_points\": 0.0,\n+    \"n\": 699,\n+    \"paired_permutation_p_value\": 1.0,\n+    \"positive_control_probability\": 0.47782546494992845,\n+    \"positive_event_probability\": 0.47782546494992845,\n+    \"standardized_paired_effect\": -0.03782347372361169,\n+    \"trimmed_mean_event_minus_control_points\": 0.0\n+  },\n+  \"matching\": {\n+    \"balance_pass\": true,\n+    \"candidate_count_max\": 1769,\n+    \"candidate_count_median\": 1055.0,\n+    \"candidate_count_min\": 633,\n+    \"exact_key_relaxations\": 0,\n+    \"exact_keys\": [\n+      \"year\",\n+      \"month\",\n+      \"session\",\n+      \"direction\"\n+    ],\n+    \"matching_seed\": 4242,\n+    \"max_abs_post_match_smd\": 0.0004017028796181762,\n+    \"post_match_smd\": {\n+      \"atr\": 8.903608743049646e-05,\n+      \"pre_event_trend\": 0.0002456935942187473,\n+      \"pre_event_volatility\": 0.0004017028796181762,\n+      \"range_position\": -8.98835755181728e-05,\n+      \"spread\": 0.0\n+    },\n+    \"pre_match_smd\": {\n+      \"atr\": 8.903608743049646e-05,\n+      \"pre_event_trend\": 0.0002456935942187473,\n+      \"pre_event_volatility\": 0.0004017028796181762,\n+      \"range_position\": -8.98835755181728e-05,\n+      \"spread\": 0.0\n+    },\n+    \"primary_eligible_events\": 699,\n+    \"replacement\": true,\n+    \"successfully_matched_events\": 699,\n+    \"unmatched_event_records\": [],\n+    \"unmatched_events\": 0\n+  },\n+  \"placebo_reproduces_relative_resilience\": false,\n+  \"placebo_type\": \"+24-hour shifted pseudo-event relative-resilience placebo\",\n+  \"status\": \"PASS\",\n+  \"successfully_matched_placebo_events\": 699\n+}",
+        "4cd388b_to_abd879c": "",
+        "abd879c_to_1f59fb2": ""
+      },
+      "git_log": [
+        "4cd388be9137b8df7f506180ba9b0189af2efc5a 2026-07-24T13:21:01+03:00 research: execute frozen USDJPY C5-A validation"
+      ],
+      "versions": [
+        {
+          "canonical_json_sha256": "50d76f727bd96081d5264596dfc916b03747e79b66acd505c0c6a61dd98843de",
+          "commit": "4cd388be9137b8df7f506180ba9b0189af2efc5a",
+          "commit_subject": "research: execute frozen USDJPY C5-A validation",
+          "commit_timestamp": "2026-07-24T13:21:01+03:00",
+          "existed_after_lock_creation": false,
+          "existed_before_commit": false,
+          "file_size_bytes": 1933,
+          "git_blob_sha": "ecc3c63808442032070d17cc32ac9552eddb85a5",
+          "json_key_set": [
+            "eligible_shifted_placebo_events",
+            "estimand",
+            "matching",
+            "placebo_reproduces_relative_resilience",
+            "placebo_type",
+            "status",
+            "successfully_matched_placebo_events"
+          ],
+          "path": "results/gate_c5ar/validation_placebo.json",
+          "raw_crlf_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+          "raw_lf_sha256": "8fc8baf62cc93e91dcd46b016367c27e8005df9dbb904e0e79cc674e711e946c",
+          "short_commit": "4cd388b"
+        },
+        {
+          "canonical_json_sha256": "50d76f727bd96081d5264596dfc916b03747e79b66acd505c0c6a61dd98843de",
+          "commit": "abd879cd59381f614e67ffec42e8deeb002036a4",
+          "commit_subject": "research: reconcile C5-A-R artifact integrity",
+          "commit_timestamp": "2026-07-24T13:22:29+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 1933,
+          "git_blob_sha": "ecc3c63808442032070d17cc32ac9552eddb85a5",
+          "json_key_set": [
+            "eligible_shifted_placebo_events",
+            "estimand",
+            "matching",
+            "placebo_reproduces_relative_resilience",
+            "placebo_type",
+            "status",
+            "successfully_matched_placebo_events"
+          ],
+          "path": "results/gate_c5ar/validation_placebo.json",
+          "raw_crlf_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+          "raw_lf_sha256": "8fc8baf62cc93e91dcd46b016367c27e8005df9dbb904e0e79cc674e711e946c",
+          "short_commit": "abd879c"
+        },
+        {
+          "canonical_json_sha256": "50d76f727bd96081d5264596dfc916b03747e79b66acd505c0c6a61dd98843de",
+          "commit": "1f59fb21258c211429846bff44065c80ef0a7e59",
+          "commit_subject": "research: block C5-B on artifact integrity",
+          "commit_timestamp": "2026-07-24T18:39:07+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 1933,
+          "git_blob_sha": "ecc3c63808442032070d17cc32ac9552eddb85a5",
+          "json_key_set": [
+            "eligible_shifted_placebo_events",
+            "estimand",
+            "matching",
+            "placebo_reproduces_relative_resilience",
+            "placebo_type",
+            "status",
+            "successfully_matched_placebo_events"
+          ],
+          "path": "results/gate_c5ar/validation_placebo.json",
+          "raw_crlf_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+          "raw_lf_sha256": "8fc8baf62cc93e91dcd46b016367c27e8005df9dbb904e0e79cc674e711e946c",
+          "short_commit": "1f59fb2"
+        }
+      ]
+    },
+    "results/gate_c5ar/validation_primary_estimand.json": {
+      "diffs": {
+        "4cd388b_parent_to_4cd388b": "diff --git a/results/gate_c5ar/validation_primary_estimand.json b/results/gate_c5ar/validation_primary_estimand.json\nnew file mode 100644\nindex 0000000..d1c95de\n--- /dev/null\n+++ b/results/gate_c5ar/validation_primary_estimand.json\n@@ -0,0 +1,20 @@\n+{\n+  \"cluster_bootstrap_ci95_mean_diff_points\": [\n+    14.784214406740844,\n+    40.27386831699497\n+  ],\n+  \"event_outperforms_control_probability\": 0.549496644295302,\n+  \"holm_adjusted_p_value\": 0.004497751124437781,\n+  \"mean_control_executable_markout_points\": -16.11577181208039,\n+  \"mean_event_executable_markout_points\": 11.33724832214778,\n+  \"mean_event_minus_control_points\": 27.453020134228165,\n+  \"median_event_minus_control_points\": 26.50000000000574,\n+  \"n\": 1192,\n+  \"paired_permutation_p_value\": 0.004497751124437781,\n+  \"positive_control_probability\": 0.4236577181208054,\n+  \"positive_event_probability\": 0.5058724832214765,\n+  \"primary_horizon_minutes\": 120,\n+  \"standardized_paired_effect\": 0.08880457390703933,\n+  \"status\": \"PASS\",\n+  \"trimmed_mean_event_minus_control_points\": 25.07442348008378\n+}",
+        "4cd388b_to_abd879c": "",
+        "abd879c_to_1f59fb2": ""
+      },
+      "git_log": [
+        "4cd388be9137b8df7f506180ba9b0189af2efc5a 2026-07-24T13:21:01+03:00 research: execute frozen USDJPY C5-A validation"
+      ],
+      "versions": [
+        {
+          "canonical_json_sha256": "354a795d4aa506ceddfd3347dab5e13ab0c38c57f29795020331e59969bf6e24",
+          "commit": "4cd388be9137b8df7f506180ba9b0189af2efc5a",
+          "commit_subject": "research: execute frozen USDJPY C5-A validation",
+          "commit_timestamp": "2026-07-24T13:21:01+03:00",
+          "existed_after_lock_creation": false,
+          "existed_before_commit": false,
+          "file_size_bytes": 796,
+          "git_blob_sha": "d1c95dec7dd4c9c5c94088148f507914c0ab4be0",
+          "json_key_set": [
+            "cluster_bootstrap_ci95_mean_diff_points",
+            "event_outperforms_control_probability",
+            "holm_adjusted_p_value",
+            "mean_control_executable_markout_points",
+            "mean_event_executable_markout_points",
+            "mean_event_minus_control_points",
+            "median_event_minus_control_points",
+            "n",
+            "paired_permutation_p_value",
+            "positive_control_probability",
+            "positive_event_probability",
+            "primary_horizon_minutes",
+            "standardized_paired_effect",
+            "status",
+            "trimmed_mean_event_minus_control_points"
+          ],
+          "path": "results/gate_c5ar/validation_primary_estimand.json",
+          "raw_crlf_sha256": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+          "raw_lf_sha256": "7b4ed3f4a297c1eaa3d4698ec46c5699c2fe9651feabd4d9d1468428aadb57db",
+          "short_commit": "4cd388b"
+        },
+        {
+          "canonical_json_sha256": "354a795d4aa506ceddfd3347dab5e13ab0c38c57f29795020331e59969bf6e24",
+          "commit": "abd879cd59381f614e67ffec42e8deeb002036a4",
+          "commit_subject": "research: reconcile C5-A-R artifact integrity",
+          "commit_timestamp": "2026-07-24T13:22:29+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 796,
+          "git_blob_sha": "d1c95dec7dd4c9c5c94088148f507914c0ab4be0",
+          "json_key_set": [
+            "cluster_bootstrap_ci95_mean_diff_points",
+            "event_outperforms_control_probability",
+            "holm_adjusted_p_value",
+            "mean_control_executable_markout_points",
+            "mean_event_executable_markout_points",
+            "mean_event_minus_control_points",
+            "median_event_minus_control_points",
+            "n",
+            "paired_permutation_p_value",
+            "positive_control_probability",
+            "positive_event_probability",
+            "primary_horizon_minutes",
+            "standardized_paired_effect",
+            "status",
+            "trimmed_mean_event_minus_control_points"
+          ],
+          "path": "results/gate_c5ar/validation_primary_estimand.json",
+          "raw_crlf_sha256": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+          "raw_lf_sha256": "7b4ed3f4a297c1eaa3d4698ec46c5699c2fe9651feabd4d9d1468428aadb57db",
+          "short_commit": "abd879c"
+        },
+        {
+          "canonical_json_sha256": "354a795d4aa506ceddfd3347dab5e13ab0c38c57f29795020331e59969bf6e24",
+          "commit": "1f59fb21258c211429846bff44065c80ef0a7e59",
+          "commit_subject": "research: block C5-B on artifact integrity",
+          "commit_timestamp": "2026-07-24T18:39:07+03:00",
+          "existed_after_lock_creation": true,
+          "existed_before_commit": true,
+          "file_size_bytes": 796,
+          "git_blob_sha": "d1c95dec7dd4c9c5c94088148f507914c0ab4be0",
+          "json_key_set": [
+            "cluster_bootstrap_ci95_mean_diff_points",
+            "event_outperforms_control_probability",
+            "holm_adjusted_p_value",
+            "mean_control_executable_markout_points",
+            "mean_event_executable_markout_points",
+            "mean_event_minus_control_points",
+            "median_event_minus_control_points",
+            "n",
+            "paired_permutation_p_value",
+            "positive_control_probability",
+            "positive_event_probability",
+            "primary_horizon_minutes",
+            "standardized_paired_effect",
+            "status",
+            "trimmed_mean_event_minus_control_points"
+          ],
+          "path": "results/gate_c5ar/validation_primary_estimand.json",
+          "raw_crlf_sha256": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+          "raw_lf_sha256": "7b4ed3f4a297c1eaa3d4698ec46c5699c2fe9651feabd4d9d1468428aadb57db",
+          "short_commit": "1f59fb2"
+        }
+      ]
+    }
+  }
+}
