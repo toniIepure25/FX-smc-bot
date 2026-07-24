@@ -1,0 +1,3 @@
+# Gate C5-A-DQR Resumption Handoff
+
+Status: `READY_TO_RESUME_FROZEN_C5A_FROM_EVENT_DETECTION`

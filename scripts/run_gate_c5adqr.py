@@ -16,33 +16,46 @@ import shutil
 import subprocess
 import sys
 import time
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+
+import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from fx_smc_bot.data.daily_checkpoint import (  # noqa: E402
     DayStatus,
+    MonthManifest,
+    compact_month,
     load_month_manifest,
+    save_month_manifest,
 )
 from fx_smc_bot.data.dukascopy_bi5 import (  # noqa: E402
     dukascopy_candle_url,
     fetch_bi5_day,
+    parse_bi5_m1_candles,
     sha256_file,
+    validate_m1_rows,
 )
+from fx_smc_bot.data.dukascopy_node_provider import _compute_checksum  # noqa: E402
 
 RESULTS = ROOT / "results" / "gate_c5adqr"
 DOCS = ROOT / "docs" / "research"
 RAW_DIR = ROOT / "data" / "raw" / "gate_c5a" / "dukascopy-node"
+DEV_RAW_DIR = ROOT / "data" / "raw" / "dukascopy-node"
 NATIVE_RAW_DIR = ROOT / "data" / "raw" / "gate_c5adqr" / "native-bi5"
 CANONICAL_DIR = ROOT / "data" / "canonical" / "gate_c5adqr" / "dukascopy"
 NODE_TOOL = ROOT / "tools" / "dukascopy-node"
 PAIR = "USDJPY"
 SIDES = ("bid", "ask")
 FAILED_MONTHS = ((2020, 1), (2020, 2))
+VALIDATION_YEARS = (2020, 2021, 2022)
+TIMEFRAMES = {"M5": "5min", "M15": "15min", "H1": "1h", "H4": "4h"}
 FINAL_BLOCKED = "BLOCKED_BY_DUKASCOPY_PROVIDER_ACCESS"
 FINAL_READY = "VALIDATION_DATA_CERTIFIED_READY_TO_RESUME_FROZEN_C5A"
 
@@ -661,8 +674,824 @@ def operational_amendment() -> dict[str, Any]:
     return load_json(path)
 
 
+def strip_native_fields(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        {
+            "timestamp": int(r["timestamp"]),
+            "open": float(r["open"]),
+            "high": float(r["high"]),
+            "low": float(r["low"]),
+            "close": float(r["close"]),
+            "volume": float(r["volume"]),
+        }
+        for r in rows
+    ]
+
+
+def load_day_rows(raw_dir: Path, side: str, day: date) -> list[dict[str, Any]]:
+    path = day_file(raw_dir, side, day)
+    if not path.exists() or path.stat().st_size <= 2:
+        return []
+    return json.loads(path.read_text())
+
+
+def raw_points(row: dict[str, Any]) -> tuple[int, int, int, int]:
+    if "open_raw" in row:
+        return (
+            int(row["open_raw"]),
+            int(row["high_raw"]),
+            int(row["low_raw"]),
+            int(row["close_raw"]),
+        )
+    return (
+        round(float(row["open"]) * 1000),
+        round(float(row["high"]) * 1000),
+        round(float(row["low"]) * 1000),
+        round(float(row["close"]) * 1000),
+    )
+
+
+def fetch_native_rows(
+    side: str,
+    day: date,
+    scope: str,
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    url = dukascopy_candle_url(PAIR, day, side)
+    raw_path = raw_bi5_file(side, day)
+    if scope:
+        raw_path = NATIVE_RAW_DIR / scope / raw_path.relative_to(NATIVE_RAW_DIR)
+    fetch = fetch_bi5_day(url, raw_path, retries=3)
+    if fetch.status != "PASS":
+        return fetch.to_dict(), []
+    payload = raw_path.read_bytes()
+    rows = parse_bi5_m1_candles(payload, day)
+    validation = validate_m1_rows(rows, day)
+    rows_path = raw_path.with_name("data.json")
+    rows_path.write_text(json.dumps(strip_native_fields(rows)))
+    meta = fetch.to_dict()
+    meta.update({
+        "row_count": len(rows),
+        "rows_path": str(rows_path.relative_to(ROOT)),
+        "rows_checksum": sha256_file(rows_path),
+        "validation": validation,
+    })
+    if not (
+        rows
+        and validation["monotonic_timestamps"]
+        and validation["timestamps_in_requested_day"]
+        and validation["ohlc_valid"]
+    ):
+        meta["status"] = "FAIL"
+        meta["error"] = "native rows failed structural validation"
+    return meta, rows
+
+
+def first_complete_day(raw_dir: Path, year: int, months: tuple[int, ...]) -> date:
+    for month in months:
+        for day in expected_days(year, month):
+            if is_expected_market_closed(day):
+                continue
+            if all(load_day_rows(raw_dir, side, day) for side in SIDES):
+                return day
+    raise FileNotFoundError(f"No complete sample day found for {year}/{months}")
+
+
+def provider_parity() -> dict[str, Any]:
+    samples = [
+        ("development_2017", DEV_RAW_DIR, first_complete_day(DEV_RAW_DIR, 2017, (1, 2, 3))),
+        ("development_2018", DEV_RAW_DIR, first_complete_day(DEV_RAW_DIR, 2018, (1, 2, 3))),
+        ("development_2019", DEV_RAW_DIR, first_complete_day(DEV_RAW_DIR, 2019, (1, 2, 3))),
+        ("validation_2020_healthy", RAW_DIR, first_complete_day(RAW_DIR, 2020, (3, 4, 5))),
+        ("validation_2021_healthy", RAW_DIR, first_complete_day(RAW_DIR, 2021, (1, 2, 3))),
+        ("validation_2022_healthy", RAW_DIR, first_complete_day(RAW_DIR, 2022, (1, 2, 3))),
+    ]
+    comparisons: list[dict[str, Any]] = []
+    for label, raw_dir, day in samples:
+        for side in SIDES:
+            node_rows = load_day_rows(raw_dir, side, day)
+            native_meta, native_rows = fetch_native_rows(side, day, "parity")
+            node_by_ts = {int(r["timestamp"]): r for r in node_rows}
+            native_by_ts = {int(r["timestamp"]): r for r in native_rows}
+            common_ts = sorted(set(node_by_ts) & set(native_by_ts))
+            mismatches = [
+                ts for ts in common_ts
+                if raw_points(node_by_ts[ts]) != raw_points(native_by_ts[ts])
+            ]
+            item = {
+                "label": label,
+                "day": day.isoformat(),
+                "side": side,
+                "node_raw_dir": str(raw_dir.relative_to(ROOT)),
+                "node_rows": len(node_rows),
+                "native_rows": len(native_rows),
+                "common_timestamps": len(common_ts),
+                "node_only_timestamps": len(set(node_by_ts) - set(native_by_ts)),
+                "native_only_timestamps": len(set(native_by_ts) - set(node_by_ts)),
+                "raw_point_mismatches": len(mismatches),
+                "mismatch_sample": mismatches[:10],
+                "native_fetch": native_meta,
+                "status": "PASS",
+            }
+            if (
+                native_meta.get("status") != "PASS"
+                or len(node_rows) != len(native_rows)
+                or item["node_only_timestamps"]
+                or item["native_only_timestamps"]
+                or mismatches
+            ):
+                item["status"] = "FAIL"
+            comparisons.append(item)
+    status = "PASS" if all(c["status"] == "PASS" for c in comparisons) else "FAIL"
+    payload = {
+        "status": status,
+        "provider_parity_passed": status == "PASS",
+        "sample_count": len(comparisons),
+        "comparisons": comparisons,
+        "decision_if_failed": "BLOCKED_BY_PROVIDER_SEMANTIC_PARITY",
+    }
+    write_json(RESULTS / "provider_parity_results.json", payload)
+    lines = [
+        "# Gate C5-A-DQR Provider Parity Results",
+        "",
+        f"Status: `{status}`",
+        "",
+        "| Sample | Day | Side | Node rows | Native rows | Mismatches | Status |",
+        "| --- | --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for c in comparisons:
+        lines.append(
+            f"| {c['label']} | {c['day']} | {c['side']} | "
+            f"{c['node_rows']} | {c['native_rows']} | "
+            f"{c['raw_point_mismatches']} | {c['status']} |"
+        )
+    write_text(DOCS / "GATE_C5ADQR_PROVIDER_PARITY_RESULTS.md", "\n".join(lines) + "\n")
+    return payload
+
+
+def units_to_repair() -> list[tuple[date, str]]:
+    units: set[tuple[date, str]] = set()
+    if (RESULTS / "failed_unit_inventory.json").exists():
+        inv = load_json(RESULTS / "failed_unit_inventory.json")
+        for unit in inv["units"]:
+            if (
+                unit["market_day_classification"] == "REQUIRED_BUSINESS_DAY"
+                and unit["classification"] != "VALID_EXISTING_DAY"
+            ):
+                units.add((date.fromisoformat(unit["day"]), unit["side"]))
+    for year in VALIDATION_YEARS:
+        for month in range(1, 13):
+            for side in SIDES:
+                manifest = load_month_manifest(RAW_DIR, PAIR, side, year, month)
+                if manifest is None:
+                    continue
+                for day_status in manifest.days:
+                    day = date(year, month, day_status.day)
+                    if (
+                        day_status.status == "failed"
+                        and not is_expected_market_closed(day)
+                    ):
+                        units.add((day, side))
+    return sorted(units)
+
+
+def repair_one_unit(item: tuple[date, str]) -> dict[str, Any]:
+    day, side = item
+    meta, native_rows = fetch_native_rows(side, day, "repair")
+    rows = strip_native_fields(native_rows)
+    target = day_file(RAW_DIR, side, day)
+    if meta.get("status") == "PASS" and rows:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        tmp = target.with_suffix(".tmp")
+        tmp.write_text(json.dumps(rows))
+        os.replace(str(tmp), str(target))
+        meta["target_raw_file"] = str(target.relative_to(ROOT))
+        meta["target_rows"] = len(rows)
+        meta["target_checksum_16"] = _compute_checksum(target)
+    else:
+        meta["target_raw_file"] = str(target.relative_to(ROOT))
+        meta["target_rows"] = 0
+    meta["day"] = day.isoformat()
+    meta["side"] = side
+    return meta
+
+
+def update_repaired_manifests(repairs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    changed: list[dict[str, Any]] = []
+    by_month_side: dict[tuple[int, int, str], list[dict[str, Any]]] = {}
+    for repair in repairs:
+        day = date.fromisoformat(repair["day"])
+        by_month_side.setdefault((day.year, day.month, repair["side"]), []).append(repair)
+    for (year, month, side), month_repairs in sorted(by_month_side.items()):
+        manifest = load_month_manifest(RAW_DIR, PAIR, side, year, month)
+        if manifest is None:
+            manifest = MonthManifest(PAIR, side, year, month)
+        by_day = {d.day: d for d in manifest.days}
+        for repair in month_repairs:
+            day = date.fromisoformat(repair["day"])
+            target = day_file(RAW_DIR, side, day)
+            if repair.get("status") == "PASS" and target.exists():
+                ds = DayStatus(
+                    pair=PAIR,
+                    side=side,
+                    year=year,
+                    month=month,
+                    day=day.day,
+                    status="complete",
+                    rows=int(repair["target_rows"]),
+                    checksum=_compute_checksum(target),
+                    file_size=target.stat().st_size,
+                    failure_category="",
+                    error="",
+                    attempts=int(repair.get("attempts", 1)),
+                    completed_at=datetime.now(timezone.utc).isoformat(),
+                )
+            else:
+                ds = DayStatus(
+                    pair=PAIR,
+                    side=side,
+                    year=year,
+                    month=month,
+                    day=day.day,
+                    status="failed",
+                    rows=0,
+                    failure_category="PROVIDER_ACCESS_FAILURE",
+                    error=repair.get("error", "native fallback failed"),
+                    attempts=int(repair.get("attempts", 1)),
+                )
+            by_day[day.day] = ds
+        for day in expected_days(year, month):
+            if is_expected_market_closed(day):
+                by_day[day.day] = DayStatus(
+                    pair=PAIR,
+                    side=side,
+                    year=year,
+                    month=month,
+                    day=day.day,
+                    status="market_closed",
+                    failure_category=(
+                        "MARKET_CLOSED_WEEKEND"
+                        if day.weekday() >= 5
+                        else "MARKET_CLOSED_HOLIDAY"
+                    ),
+                )
+        manifest.days = [by_day[d] for d in sorted(by_day)]
+        manifest.compacted = False
+        manifest.compacted_checksum = ""
+        manifest.compacted_rows = 0
+        compact_month(RAW_DIR, manifest)
+        save_month_manifest(RAW_DIR, manifest)
+        month_path = month_file(RAW_DIR, side, year, month)
+        changed.append({
+            "pair": PAIR,
+            "side": side,
+            "year": year,
+            "month": month,
+            "compacted": manifest.compacted,
+            "compacted_rows": manifest.compacted_rows,
+            "compacted_checksum": manifest.compacted_checksum,
+            "month_sha256": sha256_file(month_path) if month_path.exists() else "",
+            "remaining_failed": sum(1 for d in manifest.days if d.status == "failed"),
+        })
+    return changed
+
+
+def targeted_repair(workers: int) -> dict[str, Any]:
+    parity = load_json(RESULTS / "provider_parity_results.json")
+    amendment = load_json(RESULTS / "operational_provider_amendment.json")
+    if not parity.get("provider_parity_passed") or not amendment.get(
+        "operational_provider_amendment_hash",
+    ):
+        payload = {
+            "status": "BLOCKED",
+            "final_decision": "BLOCKED_BY_PROVIDER_SEMANTIC_PARITY",
+            "reason": "Provider parity and committed amendment are required first.",
+        }
+        write_json(RESULTS / "targeted_repair_manifest.json", payload)
+        return payload
+
+    requested = units_to_repair()
+    repairs: list[dict[str, Any]] = []
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        futures = [pool.submit(repair_one_unit, item) for item in requested]
+        for future in as_completed(futures):
+            repairs.append(future.result())
+    repairs.sort(key=lambda r: (r["day"], r["side"]))
+    month_updates = update_repaired_manifests(repairs)
+    failures = [r for r in repairs if r.get("status") != "PASS"]
+    payload = {
+        "status": "PASS" if not failures else "FAIL",
+        "fallback_provider": "native-bi5-browser-ua",
+        "workers": workers,
+        "full_redownload": False,
+        "requested_units": [{"day": d.isoformat(), "side": s} for d, s in requested],
+        "repair_results": repairs,
+        "monthly_manifest_updates": month_updates,
+        "failed_repairs": failures,
+        "decision_if_failed": FINAL_BLOCKED,
+    }
+    write_json(RESULTS / "targeted_repair_manifest.json", payload)
+    return payload
+
+
+def monthly_recompaction() -> dict[str, Any]:
+    records = []
+    for year in VALIDATION_YEARS:
+        for month in range(1, 13):
+            for side in SIDES:
+                manifest = load_month_manifest(RAW_DIR, PAIR, side, year, month)
+                if manifest is None:
+                    continue
+                by_day = {d.day: d for d in manifest.days}
+                for day in expected_days(year, month):
+                    if is_expected_market_closed(day):
+                        by_day[day.day] = DayStatus(
+                            pair=PAIR,
+                            side=side,
+                            year=year,
+                            month=month,
+                            day=day.day,
+                            status="market_closed",
+                            failure_category=(
+                                "MARKET_CLOSED_WEEKEND"
+                                if day.weekday() >= 5
+                                else "MARKET_CLOSED_HOLIDAY"
+                            ),
+                        )
+                manifest.days = [by_day[d] for d in sorted(by_day)]
+                manifest.compacted = False
+                manifest.compacted_checksum = ""
+                manifest.compacted_rows = 0
+                compact_month(RAW_DIR, manifest)
+                save_month_manifest(RAW_DIR, manifest)
+                month_path = month_file(RAW_DIR, side, year, month)
+                records.append({
+                    "pair": PAIR,
+                    "side": side,
+                    "year": year,
+                    "month": month,
+                    "compacted": manifest.compacted,
+                    "rows": manifest.compacted_rows,
+                    "checksum": manifest.compacted_checksum,
+                    "sha256": sha256_file(month_path) if month_path.exists() else "",
+                    "remaining_failed": sum(
+                        1
+                        for d in manifest.days
+                        if d.status == "failed"
+                        and not is_expected_market_closed(date(year, month, d.day))
+                    ),
+                })
+    payload = {
+        "status": "PASS" if all(
+            r["compacted"] and r["rows"] > 0 and r["remaining_failed"] == 0
+            for r in records
+        ) else "FAIL",
+        "months": records,
+    }
+    write_json(RESULTS / "monthly_recompaction.json", payload)
+    return payload
+
+
+def legacy_monthly_recompaction() -> dict[str, Any]:
+    records = []
+    for year, month in FAILED_MONTHS:
+        for side in SIDES:
+            manifest = load_month_manifest(RAW_DIR, PAIR, side, year, month)
+            if manifest is None:
+                continue
+            by_day = {d.day: d for d in manifest.days}
+            for day in expected_days(year, month):
+                if is_expected_market_closed(day):
+                    by_day[day.day] = DayStatus(
+                        pair=PAIR,
+                        side=side,
+                        year=year,
+                        month=month,
+                        day=day.day,
+                        status="market_closed",
+                        failure_category=(
+                            "MARKET_CLOSED_WEEKEND"
+                            if day.weekday() >= 5
+                            else "MARKET_CLOSED_HOLIDAY"
+                        ),
+                    )
+            manifest.days = [by_day[d] for d in sorted(by_day)]
+            manifest.compacted = False
+            manifest.compacted_checksum = ""
+            manifest.compacted_rows = 0
+            compact_month(RAW_DIR, manifest)
+            save_month_manifest(RAW_DIR, manifest)
+            month_path = month_file(RAW_DIR, side, year, month)
+            records.append({
+                "pair": PAIR,
+                "side": side,
+                "year": year,
+                "month": month,
+                "compacted": manifest.compacted,
+                "rows": manifest.compacted_rows,
+                "checksum": manifest.compacted_checksum,
+                "sha256": sha256_file(month_path) if month_path.exists() else "",
+                "remaining_failed": sum(1 for d in manifest.days if d.status == "failed"),
+            })
+    payload = {
+        "status": "PASS" if all(r["compacted"] and r["rows"] > 0 for r in records) else "FAIL",
+        "months": records,
+    }
+    write_json(RESULTS / "monthly_recompaction.json", payload)
+    return payload
+
+
+def load_month_rows(side: str, year: int, month: int) -> list[dict[str, Any]]:
+    path = month_file(RAW_DIR, side, year, month)
+    if not path.exists() or path.stat().st_size <= 2:
+        return []
+    return json.loads(path.read_text())
+
+
+def rows_to_frame(rows: list[dict[str, Any]], prefix: str) -> tuple[pd.DataFrame, int]:
+    columns = [
+        "timestamp",
+        f"{prefix}_open",
+        f"{prefix}_high",
+        f"{prefix}_low",
+        f"{prefix}_close",
+        f"{prefix}_volume",
+    ]
+    if not rows:
+        return pd.DataFrame(columns=columns), 0
+    df = pd.DataFrame(rows)
+    dup = int(df["timestamp"].duplicated(keep=False).sum())
+    df = df.drop_duplicates("timestamp", keep="last")
+    df["timestamp"] = pd.to_datetime(df["timestamp"], unit="ms", utc=True)
+    df = df.rename(columns={
+        "open": f"{prefix}_open",
+        "high": f"{prefix}_high",
+        "low": f"{prefix}_low",
+        "close": f"{prefix}_close",
+        "volume": f"{prefix}_volume",
+    })
+    return df[columns].sort_values("timestamp").reset_index(drop=True), dup
+
+
+def invalid_ohlc(df: pd.DataFrame, prefix: str) -> int:
+    if df.empty:
+        return 0
+    return int((
+        (df[f"{prefix}_high"] < df[f"{prefix}_low"])
+        | (df[f"{prefix}_open"] < df[f"{prefix}_low"])
+        | (df[f"{prefix}_open"] > df[f"{prefix}_high"])
+        | (df[f"{prefix}_close"] < df[f"{prefix}_low"])
+        | (df[f"{prefix}_close"] > df[f"{prefix}_high"])
+    ).sum())
+
+
+def resample_frame(df: pd.DataFrame, rule: str) -> pd.DataFrame:
+    if df.empty:
+        return df.copy()
+    spec = {
+        "bid_open": "first",
+        "bid_high": "max",
+        "bid_low": "min",
+        "bid_close": "last",
+        "ask_open": "first",
+        "ask_high": "max",
+        "ask_low": "min",
+        "ask_close": "last",
+        "bid_volume": "sum",
+        "ask_volume": "sum",
+    }
+    out = df.set_index("timestamp").resample(
+        rule,
+        label="left",
+        closed="left",
+    ).agg(spec)
+    return out.dropna(subset=["bid_open", "ask_open"]).reset_index()
+
+
+def canonical_rebuild() -> tuple[dict[str, Any], dict[str, Any]]:
+    monthly: list[dict[str, Any]] = []
+    checksums: dict[str, str] = {}
+    for year in VALIDATION_YEARS:
+        for month in range(1, 13):
+            bid, bid_dup = rows_to_frame(load_month_rows("bid", year, month), "bid")
+            ask, ask_dup = rows_to_frame(load_month_rows("ask", year, month), "ask")
+            joined = bid.merge(ask, on="timestamp", how="inner").sort_values(
+                "timestamp",
+            ).reset_index(drop=True)
+            out_dir = (
+                CANONICAL_DIR / PAIR / "timeframe=M1"
+                / f"year={year}" / f"month={month:02d}"
+            )
+            out_dir.mkdir(parents=True, exist_ok=True)
+            out_path = out_dir / "part.parquet"
+            tmp = out_path.with_suffix(".tmp")
+            joined.to_parquet(tmp, index=False, engine="pyarrow")
+            os.replace(str(tmp), str(out_path))
+            checksums[f"{PAIR}/M1/{year}-{month:02d}"] = sha256_file(out_path)
+            resample_hashes = {}
+            for tf, rule in TIMEFRAMES.items():
+                rs = resample_frame(joined, rule)
+                tf_dir = (
+                    CANONICAL_DIR / PAIR / f"timeframe={tf}"
+                    / f"year={year}" / f"month={month:02d}"
+                )
+                tf_dir.mkdir(parents=True, exist_ok=True)
+                tf_path = tf_dir / "part.parquet"
+                tmp_tf = tf_path.with_suffix(".tmp")
+                rs.to_parquet(tmp_tf, index=False, engine="pyarrow")
+                os.replace(str(tmp_tf), str(tf_path))
+                resample_hashes[tf] = sha256_file(tf_path)
+                checksums[f"{PAIR}/{tf}/{year}-{month:02d}"] = resample_hashes[tf]
+            spreads = (
+                joined["ask_close"] - joined["bid_close"]
+                if not joined.empty
+                else pd.Series(dtype=float)
+            )
+            monthly.append({
+                "pair": PAIR,
+                "year": year,
+                "month": month,
+                "bid_rows": len(bid),
+                "ask_rows": len(ask),
+                "joined_rows": len(joined),
+                "bid_only_rows": int(len(bid) - len(joined)),
+                "ask_only_rows": int(len(ask) - len(joined)),
+                "duplicate_bid_rows": bid_dup,
+                "duplicate_ask_rows": ask_dup,
+                "invalid_ohlc_count": invalid_ohlc(joined, "bid") + invalid_ohlc(joined, "ask"),
+                "negative_spread_count": int((spreads < 0).sum()) if len(spreads) else 0,
+                "strictly_increasing_timestamps": bool(
+                    joined["timestamp"].is_monotonic_increasing
+                    and not joined["timestamp"].duplicated().any()
+                ) if not joined.empty else False,
+                "canonical_checksum": sha256_file(out_path),
+                "canonical_bytes": out_path.stat().st_size,
+                "resample_hashes": resample_hashes,
+                "status": "PASS" if len(joined) > 0 else "FAIL",
+            })
+    manifest = {
+        "status": "PASS" if all(m["status"] == "PASS" for m in monthly) else "FAIL",
+        "canonical_root": str(CANONICAL_DIR.relative_to(ROOT)),
+        "canonical_files_are_gitignored": True,
+        "monthly": monthly,
+        "canonical_checksums": checksums,
+        "canonical_checksum_set_hash": json_sha256(checksums),
+    }
+    quality = {
+        "status": "PASS" if (
+            manifest["status"] == "PASS"
+            and all(m["invalid_ohlc_count"] == 0 for m in monthly)
+            and all(m["negative_spread_count"] == 0 for m in monthly)
+            and all(m["strictly_increasing_timestamps"] for m in monthly)
+        ) else "FAIL",
+        "months": monthly,
+        "failure_reasons": [
+            f"{m['year']}-{m['month']:02d}"
+            for m in monthly
+            if (
+                m["status"] != "PASS"
+                or m["invalid_ohlc_count"]
+                or m["negative_spread_count"]
+                or not m["strictly_increasing_timestamps"]
+            )
+        ],
+    }
+    write_json(RESULTS / "canonical_rebuild_manifest.json", manifest)
+    write_json(RESULTS / "canonical_quality_after_repair.json", quality)
+    return manifest, quality
+
+
+def json_sha256(obj: Any) -> str:
+    import hashlib
+    payload = json.dumps(obj, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def validation_recertification() -> dict[str, Any]:
+    partitions = []
+    zero_rows = []
+    missing = []
+    failed = []
+    for year in VALIDATION_YEARS:
+        for month in range(1, 13):
+            for side in SIDES:
+                manifest = load_month_manifest(RAW_DIR, PAIR, side, year, month)
+                path = month_file(RAW_DIR, side, year, month)
+                rows = manifest.compacted_rows if manifest else 0
+                item = {
+                    "pair": PAIR,
+                    "side": side,
+                    "year": year,
+                    "month": month,
+                    "manifest_exists": manifest is not None,
+                    "compacted": bool(manifest.compacted) if manifest else False,
+                    "rows": rows,
+                    "checksum_valid": (
+                        path.exists()
+                        and manifest is not None
+                        and _compute_checksum(path) == manifest.compacted_checksum
+                    ),
+                    "file_size": path.stat().st_size if path.exists() else 0,
+                }
+                partitions.append(item)
+                if manifest is None or not path.exists():
+                    missing.append(item)
+                elif (
+                    not manifest.compacted
+                    or not item["checksum_valid"]
+                    or any(
+                        d.status == "failed"
+                        and not is_expected_market_closed(date(year, month, d.day))
+                        for d in manifest.days
+                    )
+                ):
+                    failed.append(item)
+                elif rows == 0:
+                    zero_rows.append(item)
+    checks = {
+        "usdjpy_only": True,
+        "years_2020_2022_only": True,
+        "expected_partition_count_72": len(partitions) == 72,
+        "bid_ask_sides_present": True,
+        "all_partitions_complete": not missing and not failed,
+        "no_zero_row_partitions": not zero_rows,
+        "holdout_not_acquired": (
+            load_json(ROOT / "results/gate_c5a/holdout_integrity.json")["status"]
+            == "PASS"
+        ),
+        "canonical_parquet_written": (RESULTS / "canonical_rebuild_manifest.json").exists(),
+    }
+    status = "PASS" if all(checks.values()) else "FAIL"
+    payload = {
+        "status": status,
+        "checks": checks,
+        "partitions": partitions,
+        "zero_row_partitions": zero_rows,
+        "missing_partitions": missing,
+        "failed_partitions": failed,
+        "event_detection_allowed": status == "PASS",
+        "structural_certification_completed": status == "PASS",
+        "final_decision": FINAL_READY if status == "PASS" else "BLOCKED_BY_RAW_VALIDATION_GAPS",
+    }
+    write_json(RESULTS / "validation_data_quality.json", payload)
+    lines = [
+        "# Gate C5-A-DQR Validation Data Recertification",
+        "",
+        f"Status: `{status}`",
+        f"Monthly side partitions: `{len(partitions)}`",
+        f"Zero-row partitions: `{len(zero_rows)}`",
+        f"Failed/missing partitions: `{len(failed) + len(missing)}`",
+    ]
+    write_text(
+        DOCS / "GATE_C5ADQR_VALIDATION_DATA_RECERTIFICATION.md",
+        "\n".join(lines) + "\n",
+    )
+    return payload
+
+
+def validation_tick_audit() -> dict[str, Any]:
+    quality = load_json(RESULTS / "canonical_quality_after_repair.json")
+    counts = Counter(m["status"] for m in quality.get("months", []))
+    payload = {
+        "status": "PASS" if quality.get("status") == "PASS" else "FAIL",
+        "audit_type": "structural_m1_bid_ask_repair_audit",
+        "outcome_inspection": False,
+        "event_detection_executed": False,
+        "canonical_month_status_counts": dict(counts),
+        "reason": (
+            "Protocol does not require external tick-data acquisition; DQR "
+            "audit verifies repaired M1 bid/ask structural parity and canonical coherence."
+        ),
+        "decision_if_failed": "BLOCKED_BY_VALIDATION_TICK_AUDIT",
+    }
+    write_json(RESULTS / "validation_tick_audit.json", payload)
+    write_text(
+        DOCS / "GATE_C5ADQR_VALIDATION_TICK_AUDIT.md",
+        "\n".join([
+            "# Gate C5-A-DQR Validation Tick Audit",
+            "",
+            f"Status: `{payload['status']}`",
+            payload["reason"],
+        ]) + "\n",
+    )
+    return payload
+
+
+def validation_freeze_and_handoff() -> tuple[dict[str, Any], dict[str, Any]]:
+    holdout = load_json(ROOT / "results/gate_c5a/holdout_integrity.json")
+    freeze = {
+        "status": "READY",
+        "scope": "VALIDATION_ONLY",
+        "pair": PAIR,
+        "period": "2020-01-01 through 2022-12-31",
+        "holdout_included": False,
+        "validation_data_quality_hash": sha256_file(RESULTS / "validation_data_quality.json"),
+        "canonical_rebuild_manifest_hash": sha256_file(RESULTS / "canonical_rebuild_manifest.json"),
+        "canonical_quality_hash": sha256_file(RESULTS / "canonical_quality_after_repair.json"),
+        "validation_tick_audit_hash": sha256_file(RESULTS / "validation_tick_audit.json"),
+        "post_unblinding_integrity_hash": sha256_file(RESULTS / "post_unblinding_integrity.json"),
+        "holdout_integrity": holdout,
+    }
+    handoff = {
+        "status": "READY_TO_RESUME_FROZEN_C5A_FROM_EVENT_DETECTION",
+        "event_counts_computed": False,
+        "events_detected": False,
+        "controls_constructed": False,
+        "outcomes_computed": False,
+        "inference_computed": False,
+        "placebo_computed": False,
+        "holdout_accessed": False,
+        "resume_from": "frozen C5-A validation event detection",
+        "validation_dataset_freeze_hash": "",
+    }
+    write_json(RESULTS / "validation_dataset_freeze.json", freeze)
+    handoff["validation_dataset_freeze_hash"] = sha256_file(
+        RESULTS / "validation_dataset_freeze.json",
+    )
+    write_json(RESULTS / "resumption_handoff.json", handoff)
+    write_json(RESULTS / "holdout_integrity.json", holdout)
+    write_text(
+        DOCS / "GATE_C5ADQR_VALIDATION_DATASET_FREEZE.md",
+        f"# Gate C5-A-DQR Validation Dataset Freeze\n\nStatus: `{freeze['status']}`\n",
+    )
+    write_text(
+        DOCS / "GATE_C5ADQR_RESUMPTION_HANDOFF.md",
+        f"# Gate C5-A-DQR Resumption Handoff\n\nStatus: `{handoff['status']}`\n",
+    )
+    return freeze, handoff
+
+
+def final_decision() -> dict[str, Any]:
+    integrity = load_json(RESULTS / "post_unblinding_integrity.json")
+    parity = load_json(RESULTS / "provider_parity_results.json")
+    repair = load_json(RESULTS / "targeted_repair_manifest.json")
+    recert = load_json(RESULTS / "validation_data_quality.json")
+    canonical = load_json(RESULTS / "canonical_quality_after_repair.json")
+    tick = load_json(RESULTS / "validation_tick_audit.json")
+    if integrity.get("scientific_code_changed"):
+        decision = "BLOCKED_BY_POST_UNBLINDING_INTEGRITY"
+    elif not parity.get("provider_parity_passed"):
+        decision = "BLOCKED_BY_PROVIDER_SEMANTIC_PARITY"
+    elif repair.get("status") != "PASS":
+        decision = FINAL_BLOCKED
+    elif canonical.get("status") != "PASS":
+        decision = "BLOCKED_BY_CANONICAL_REBUILD"
+    elif recert.get("status") != "PASS":
+        decision = "BLOCKED_BY_RAW_VALIDATION_GAPS"
+    elif tick.get("status") != "PASS":
+        decision = "BLOCKED_BY_VALIDATION_TICK_AUDIT"
+    else:
+        decision = FINAL_READY
+    payload = {
+        "status": "PASS" if decision == FINAL_READY else "BLOCKED",
+        "final_decision": decision,
+        "event_detection_executed": False,
+        "event_counts_computed": False,
+        "controls_constructed": False,
+        "outcomes_computed": False,
+        "inference_computed": False,
+        "placebo_computed": False,
+        "holdout_accessed": False,
+        "artifact_hashes": {
+            name: sha256_file(RESULTS / name)
+            for name in [
+                "post_unblinding_integrity.json",
+                "failed_unit_inventory.json",
+                "provider_failure_analysis.json",
+                "provider_failure_matrix.json",
+                "provider_capability_matrix.json",
+                "operational_provider_amendment.json",
+                "provider_parity_results.json",
+                "targeted_repair_manifest.json",
+                "monthly_recompaction.json",
+                "canonical_rebuild_manifest.json",
+                "canonical_quality_after_repair.json",
+                "validation_data_quality.json",
+                "validation_tick_audit.json",
+                "validation_dataset_freeze.json",
+                "resumption_handoff.json",
+                "holdout_integrity.json",
+            ]
+            if (RESULTS / name).exists()
+        },
+    }
+    write_json(RESULTS / "quality_gate_final.json", payload)
+    write_text(
+        DOCS / "GATE_C5ADQR_FINAL_DECISION_MEMO.md",
+        "\n".join([
+            "# Gate C5-A-DQR Final Decision Memo",
+            "",
+            f"Final decision: `{decision}`",
+            "",
+            "No event detection, event counts, controls, outcomes, inference, "
+            "placebo, or holdout access were executed by DQR.",
+        ]) + "\n",
+    )
+    return payload
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--workers", type=int, default=4)
     parser.add_argument(
         "--mode",
         choices=[
@@ -672,6 +1501,14 @@ def main() -> None:
             "failure-matrix",
             "capability-matrix",
             "operational-amendment",
+            "parity",
+            "repair",
+            "recompact",
+            "canonical",
+            "recertify",
+            "tick-audit",
+            "freeze",
+            "final",
         ],
         required=True,
     )
@@ -686,8 +1523,26 @@ def main() -> None:
         payload = provider_failure_matrix()
     elif args.mode == "capability-matrix":
         payload = capability_matrix()
-    else:
+    elif args.mode == "operational-amendment":
         payload = operational_amendment()
+    elif args.mode == "parity":
+        payload = provider_parity()
+    elif args.mode == "repair":
+        payload = targeted_repair(args.workers)
+    elif args.mode == "recompact":
+        payload = monthly_recompaction()
+    elif args.mode == "canonical":
+        manifest, quality = canonical_rebuild()
+        payload = {"manifest": manifest, "quality": quality}
+    elif args.mode == "recertify":
+        payload = validation_recertification()
+    elif args.mode == "tick-audit":
+        payload = validation_tick_audit()
+    elif args.mode == "freeze":
+        freeze, handoff = validation_freeze_and_handoff()
+        payload = {"freeze": freeze, "handoff": handoff}
+    else:
+        payload = final_decision()
     print(json.dumps(payload, indent=2, sort_keys=True))
 
 
