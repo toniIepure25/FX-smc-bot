@@ -208,12 +208,8 @@ def download_day_with_checkpoint(
             ):
                 status.status = "market_closed"
                 return status
-            status.status = "complete"
-            status.rows = 0
-            day_d.mkdir(parents=True, exist_ok=True)
-            day_file.write_text("[]")
-            status.checksum = _compute_checksum(day_file)
-            status.file_size = day_file.stat().st_size
+            status.status = "failed"
+            status.error = "No provider data returned for open-market business day"
             return status
 
         cat = classify_failure(err, year, month, day, 0)
@@ -235,6 +231,79 @@ def download_day_with_checkpoint(
     return status
 
 
+def _is_complete_nonfailed_month(manifest: MonthManifest) -> bool:
+    days_in_month = calendar.monthrange(manifest.year, manifest.month)[1]
+    if len({d.day for d in manifest.days}) != days_in_month:
+        return False
+    return all(d.status in ("complete", "market_closed") for d in manifest.days)
+
+
+def _is_valid_compacted_month(manifest: MonthManifest) -> bool:
+    return (
+        manifest.compacted
+        and manifest.compacted_rows > 0
+        and _is_complete_nonfailed_month(manifest)
+    )
+
+
+def _is_empty_business_day(ds: DayStatus) -> bool:
+    if ds.status != "complete" or ds.rows != 0:
+        return False
+    cat = (
+        FailureCategory(ds.failure_category)
+        if ds.failure_category else classify_failure(
+            "", ds.year, ds.month, ds.day, 0,
+        )
+    )
+    return cat == FailureCategory.NO_PROVIDER_DATA
+
+
+def _repair_needed(ds: DayStatus | None) -> bool:
+    if ds is None:
+        return True
+    if ds.status in ("pending", "failed"):
+        return True
+    if _is_empty_business_day(ds):
+        return True
+    if ds.status in ("complete", "market_closed"):
+        return False
+    return True
+
+
+def normalize_month_manifest_for_repair(
+    raw_dir: Path,
+    manifest: MonthManifest,
+) -> MonthManifest:
+    """Mark invalid zero-row business days and compacted months repairable."""
+    changed = False
+    for ds in manifest.days:
+        if _is_empty_business_day(ds):
+            ds.status = "failed"
+            ds.failure_category = FailureCategory.NO_PROVIDER_DATA.value
+            ds.error = "No provider data returned for open-market business day"
+            ds.checksum = ""
+            ds.file_size = 0
+            day_file = (
+                _day_dir(
+                    raw_dir, ds.pair, ds.side,
+                    ds.year, ds.month, ds.day,
+                ) / "data.json"
+            )
+            if day_file.exists() and day_file.stat().st_size <= 2:
+                day_file.unlink()
+            changed = True
+
+    if manifest.compacted and not _is_valid_compacted_month(manifest):
+        manifest.compacted = False
+        manifest.compacted_checksum = ""
+        manifest.compacted_rows = 0
+        changed = True
+
+    if changed:
+        save_month_manifest(raw_dir, manifest)
+    return manifest
+
+
 def acquire_month_daily(
     pair: str,
     side: str,
@@ -252,7 +321,9 @@ def acquire_month_daily(
     days_in_month = calendar.monthrange(year, month)[1]
 
     existing = load_month_manifest(raw_dir, pair, side, year, month)
-    if existing and existing.compacted:
+    if existing:
+        existing = normalize_month_manifest_for_repair(raw_dir, existing)
+    if existing and _is_valid_compacted_month(existing):
         logger.info(f"  {pair}/{side}/{year}-{month:02d}: already compacted")
         return existing
 
@@ -265,11 +336,6 @@ def acquire_month_daily(
         if day_num in existing_days:
             ds = existing_days[day_num]
             if ds.status in ("complete", "market_closed"):
-                continue
-            if ds.status == "failed" and not is_retryable(
-                FailureCategory(ds.failure_category)
-                if ds.failure_category else FailureCategory.UNKNOWN_ERROR
-            ):
                 continue
 
         ds = download_day_with_checkpoint(
@@ -306,11 +372,7 @@ def compact_month(raw_dir: Path, manifest: MonthManifest) -> None:
     if manifest.compacted:
         return
 
-    all_terminal = all(
-        d.status in ("complete", "market_closed", "failed")
-        for d in manifest.days
-    )
-    if not all_terminal:
+    if not _is_complete_nonfailed_month(manifest):
         return
 
     all_rows: list[dict] = []
@@ -326,6 +388,9 @@ def compact_month(raw_dir: Path, manifest: MonthManifest) -> None:
         if day_file.exists():
             data = json.loads(day_file.read_text())
             all_rows.extend(data)
+
+    if not all_rows:
+        return
 
     all_rows.sort(key=lambda r: r.get("timestamp", 0))
 
@@ -350,17 +415,14 @@ def find_missing_days(
     """Find days that need downloading or repair."""
     days_in_month = calendar.monthrange(year, month)[1]
     manifest = load_month_manifest(raw_dir, pair, side, year, month)
+    if manifest:
+        manifest = normalize_month_manifest_for_repair(raw_dir, manifest)
     existing_days = {d.day: d for d in manifest.days} if manifest else {}
 
     missing = []
     for day_num in range(1, days_in_month + 1):
         ds = existing_days.get(day_num)
-        if ds is None:
-            missing.append(day_num)
-        elif ds.status == "failed" and is_retryable(
-            FailureCategory(ds.failure_category)
-            if ds.failure_category else FailureCategory.UNKNOWN_ERROR
-        ):
+        if _repair_needed(ds):
             missing.append(day_num)
     return missing
 

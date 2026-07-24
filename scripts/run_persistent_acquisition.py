@@ -43,6 +43,7 @@ from fx_smc_bot.data.daily_checkpoint import (  # noqa: E402
     acquire_month_daily,
     find_missing_days,
     load_month_manifest,
+    normalize_month_manifest_for_repair,
     save_month_manifest,
 )
 from fx_smc_bot.data.dukascopy_node_provider import (  # noqa: E402
@@ -238,7 +239,10 @@ class PersistentRunner:
         manifest = load_month_manifest(
             self.raw_dir, pair, side, year, month,
         )
-        return manifest is not None and manifest.compacted
+        if manifest is None:
+            return False
+        manifest = normalize_month_manifest_for_repair(self.raw_dir, manifest)
+        return manifest.compacted and manifest.compacted_rows > 0
 
     def _has_retryable_failures(
         self, pair: str, side: str, year: int, month: int,
@@ -411,7 +415,9 @@ class PersistentRunner:
                     self.raw_dir, pair, side, year, month,
                 )
                 if manifest and manifest.compacted:
-                    manifest.compacted = False
+                    manifest = normalize_month_manifest_for_repair(
+                        self.raw_dir, manifest,
+                    )
                     save_month_manifest(self.raw_dir, manifest)
                 to_repair.append((pair, side, year, month))
 

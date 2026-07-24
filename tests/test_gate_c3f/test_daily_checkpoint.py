@@ -83,6 +83,18 @@ class TestDailyCheckpoint:
         assert ds.status == "market_closed"
 
     @patch("fx_smc_bot.data.daily_checkpoint._download_single_day")
+    def test_empty_business_day_is_failed(
+        self, mock_download, tmp_path: Path,
+    ) -> None:
+        mock_download.return_value = ([], "")
+        ds = download_day_with_checkpoint(
+            "EURUSD", "bid", 2019, 1, 7, tmp_path,
+            instrument="eurusd",
+        )
+        assert ds.status == "failed"
+        assert ds.failure_category == "NO_PROVIDER_DATA"
+
+    @patch("fx_smc_bot.data.daily_checkpoint._download_single_day")
     def test_network_failure_retried(
         self, mock_download, tmp_path: Path,
     ) -> None:
@@ -159,7 +171,9 @@ class TestInterruptedRecovery:
         missing = find_missing_days(tmp_path, "EURUSD", "bid", 2019, 1)
         assert 7 in missing
 
-    def test_failed_nonretryable_not_missing(self, tmp_path: Path) -> None:
+    def test_failed_nonretryable_is_missing_for_repair(
+        self, tmp_path: Path,
+    ) -> None:
         manifest = MonthManifest(
             pair="EURUSD", side="bid", year=2019, month=1,
         )
@@ -172,7 +186,7 @@ class TestInterruptedRecovery:
         save_month_manifest(tmp_path, manifest)
 
         missing = find_missing_days(tmp_path, "EURUSD", "bid", 2019, 1)
-        assert 7 not in missing
+        assert 7 in missing
 
 
 class TestMonthlyCompaction:
@@ -219,6 +233,38 @@ class TestMonthlyCompaction:
             pair="EURUSD", side="bid", year=2019, month=1, day=2,
             status="pending",
         ))
+
+        compact_month(tmp_path, manifest)
+        assert not manifest.compacted
+
+    def test_compaction_skips_failed_days(self, tmp_path: Path) -> None:
+        manifest = MonthManifest(
+            pair="EURUSD", side="bid", year=2019, month=1,
+        )
+        for day_num in range(1, 32):
+            status = "complete"
+            rows = 10
+            if day_num == 7:
+                status = "failed"
+                rows = 0
+            manifest.days.append(DayStatus(
+                pair="EURUSD", side="bid", year=2019, month=1,
+                day=day_num, status=status, rows=rows,
+                failure_category="UNKNOWN_ERROR" if status == "failed" else "",
+            ))
+
+        compact_month(tmp_path, manifest)
+        assert not manifest.compacted
+
+    def test_compaction_skips_all_zero_rows(self, tmp_path: Path) -> None:
+        manifest = MonthManifest(
+            pair="EURUSD", side="bid", year=2019, month=1,
+        )
+        for day_num in range(1, 32):
+            manifest.days.append(DayStatus(
+                pair="EURUSD", side="bid", year=2019, month=1,
+                day=day_num, status="complete", rows=0,
+            ))
 
         compact_month(tmp_path, manifest)
         assert not manifest.compacted

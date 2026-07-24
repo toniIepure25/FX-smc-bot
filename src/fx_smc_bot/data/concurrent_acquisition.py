@@ -22,6 +22,7 @@ from fx_smc_bot.data.daily_checkpoint import (
     MonthManifest,
     acquire_month_daily,
     load_month_manifest,
+    normalize_month_manifest_for_repair,
 )
 
 logger = logging.getLogger(__name__)
@@ -154,7 +155,11 @@ def acquire_concurrent(
 
         try:
             existing = load_month_manifest(raw_dir, pair, side, year, month)
-            if existing and existing.compacted:
+            if existing:
+                existing = normalize_month_manifest_for_repair(
+                    raw_dir, existing,
+                )
+            if existing and existing.compacted and existing.compacted_rows > 0:
                 return existing
 
             rate_limiter.wait()
