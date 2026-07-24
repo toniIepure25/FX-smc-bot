@@ -9,5 +9,6 @@
     "valid_source_hash": true
   },
   "eligible_primary_events": 1192,
-  "status": "FAIL"
+  "status": "PASS",
+  "status_derivation": "all required positive checks true and holdout_timestamp_present is false"
 }
