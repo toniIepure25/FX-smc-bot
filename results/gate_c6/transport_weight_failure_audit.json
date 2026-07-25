@@ -1,0 +1,96 @@
+{
+  "balance_before_after_weighting": {
+    "development": {
+      "atr": 0.05435215708934559,
+      "pre_event_trend": -0.002653131219811562,
+      "pre_event_volatility": 0.09501540210119847,
+      "range_position": -0.001199291556264466,
+      "spread": 0.04721272971392561
+    },
+    "requirements": {
+      "all_post_match_abs_smd_lte_0_10": true,
+      "minimum_matched_events_both_periods": true,
+      "no_material_covariate_support_failure": true,
+      "zero_exact_key_relaxation_both_periods": true
+    },
+    "validation": {
+      "atr": 0.031749512416398666,
+      "pre_event_trend": 0.00041473303588235327,
+      "pre_event_volatility": 0.05811000257761417,
+      "range_position": -0.010398882592682228,
+      "spread": 0.020252055406568235
+    }
+  },
+  "c5br_transport_source": {
+    "raw": {
+      "control": -16.11577181208039,
+      "differential": 27.453020134228165,
+      "event": 11.33724832214778
+    },
+    "standardized": {
+      "control": -23.273405199016704,
+      "differential": 35.53894763198631,
+      "event": 12.26554243296961
+    },
+    "weight_diagnostics": {
+      "effective_sample_size": 648.8235812754006,
+      "max_weight_median_multiple": 10.399999999999999,
+      "maximum_weight": 6.350819672131148,
+      "p99_weight": 3.6859180327868653,
+      "weight_coefficient_of_variation": 0.9149706028103928
+    },
+    "weight_rules_pass": false
+  },
+  "close_to_threshold": true,
+  "created_at_utc": "2026-07-25T13:38:34.850107+00:00",
+  "failure_scope": {
+    "local_or_widespread": "local threshold breach with broader tail weight instability",
+    "total_weighted_observations": 1192,
+    "weights_above_median_times_10": 1,
+    "weights_above_p95": 59
+  },
+  "formal_result": "FAIL",
+  "maximum_weight_median_multiple": 10.399999999999999,
+  "maximum_weight_observation": {
+    "cell_key": "1|1|1|0|0|other|SHORT",
+    "confirmation_timestamp": "2021-10-19 06:35:00+00:00",
+    "direction": "SHORT",
+    "earliest_entry_timestamp": "2021-10-19 06:40:00+00:00",
+    "event_id": "f80322468cbe6955b01c7a27",
+    "month": 10,
+    "pre_event_covariates": {
+      "atr": 0.04014285714286103,
+      "pre_event_trend": -6.202846975088956,
+      "pre_event_volatility": 0.00023137597184712412,
+      "range_position": 0.019841269841251043,
+      "spread": 0.0030000000000001137
+    },
+    "session": "other",
+    "source_cell_count": 1,
+    "source_cell_proportion": 0.0008389261744966443,
+    "source_period": "validation 2020-2022",
+    "target_cell_count": 13,
+    "target_cell_proportion": 0.005327868852459016,
+    "transport_cell": {
+      "atr_bin": "1",
+      "direction": "SHORT",
+      "range_position_bin": "0",
+      "session": "other",
+      "spread_bin": "1",
+      "trend_bin": "0",
+      "volatility_bin": "1"
+    },
+    "weight": 6.350819672131148,
+    "year": 2021
+  },
+  "no_trimming_capping_removal_or_threshold_change": true,
+  "status": "PASS",
+  "threshold": 10.0,
+  "weight_diagnostics": {
+    "effective_sample_size": 648.8235812754006,
+    "maximum_weight": 6.350819672131148,
+    "p95_weight": 2.0762295081967213,
+    "p99_weight": 3.6859180327868653,
+    "weight_coefficient_of_variation": 0.9149706028103928
+  }
+}
