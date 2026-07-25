@@ -8,7 +8,7 @@
     "quality": "FAIL",
     "seal": "PASS"
   },
-  "created_at_utc": "2026-07-25T20:47:19.939875+00:00",
+  "created_at_utc": "2026-07-25T21:05:48.141458+00:00",
   "hashes": {
     "c6_final_decision": {
       "exists": true,
@@ -31,31 +31,31 @@
       "size_bytes": 11266
     },
     "documentation_audit": {
-      "canonical_json_sha256": "27f9ea157ded8a4d7982faf7a8b758131b0db417fe508a16e04e66fa01f5eebb",
+      "canonical_json_sha256": "9bbf1c361b4e4f20451efc32473b0e29b2b0b88295213b1c3ac4efa017b65363",
       "exists": true,
       "path": "results/gate_c6r/documentation_quality_audit.json",
-      "sha256": "cf0c87b6199740ba06162dd87ebdcdd0b0ed7db1d0ffa9561c5adf52294a8833",
+      "sha256": "09ab123590245e81b9e85779058414890671788ae44e4ac0b844b139a13fe0ec",
       "size_bytes": 1068
     },
     "manifest_audit": {
-      "canonical_json_sha256": "5c90262e431aebe424d4c96b509613199555a1594c33c84c8ba0a44c09e5a5d6",
+      "canonical_json_sha256": "65ab82453594afa1249e41c9404b97505e63bce8b171d05da63feb4f18f0f714",
       "exists": true,
       "path": "results/gate_c6r/reproducibility_manifest_audit.json",
-      "sha256": "127f647be70117b65bdcc87c204e02e889788b0c13a3cca40156543f95cbbc2b",
+      "sha256": "8c1ef5bc16ef4ecad59bd235bf5fcc567909b9250dbac76e784f189791b3f9c6",
       "size_bytes": 16757
     },
     "merge_readiness_audit": {
-      "canonical_json_sha256": "486d5d8842fd28c0faad3e2c033f022f426129a8baaf35342765bab459a6dea8",
+      "canonical_json_sha256": "6bb417cdd9977d9d25ee8174ddf614d2b568c76835e84eb7cb081dea90797de5",
       "exists": true,
       "path": "results/gate_c6r/merge_readiness.json",
-      "sha256": "215b4559f44796c13b7d402504ca63021b9912558cd4cc0ec3ca5f2bfc75bfbf",
-      "size_bytes": 54293
+      "sha256": "bedb2c9aedfaed875d3c8a1eb1c8e2e29d2e1bdfb092e4e302491fd892eed30c",
+      "size_bytes": 57124
     },
     "package_consistency_audit": {
-      "canonical_json_sha256": "6d033710db5fb37d46ad10ad85213065720dbb1909952f4c096ade1bcc64a276",
+      "canonical_json_sha256": "385d9fae92c8594916cad3cd9dc9ea95e7c746a4759725e62382a39c8a6a52f2",
       "exists": true,
       "path": "results/gate_c6r/package_consistency_audit.json",
-      "sha256": "6d7cd967bccb34a6a4875b7c3986f87b433b11c734fb2b60753be1adc517501f",
+      "sha256": "69aebdc0823fa1a5700cab4a1abecfd73f54ff87e31a50c4f3a0ac6c6dd314f6",
       "size_bytes": 938
     },
     "package_index": {
@@ -65,27 +65,27 @@
       "size_bytes": 972
     },
     "prohibited_data_audit": {
-      "canonical_json_sha256": "453a08513922e378d21a48c9e4112db43c760310677fb5b2da53e4aec56b717a",
+      "canonical_json_sha256": "9a564a5ff56fb175d7309dba7779570f3de2d0a4732a8131a60594f111e850c6",
       "exists": true,
       "path": "results/gate_c6r/prohibited_data_audit.json",
-      "sha256": "8df58393fb46f1628784e1f9c83a21f167cc239d3dd5df1cf165a409d6a6175a",
-      "size_bytes": 29915
+      "sha256": "7217bb020003d622112b86209701423801ab72447b20e56be637b446eb2c8c34",
+      "size_bytes": 31033
     },
     "quality_gate": {
-      "canonical_json_sha256": "e9c1eab7a5e9567ecd427266f787e9a464f4512c529190a54f2e8c5b9c10abb3",
+      "canonical_json_sha256": "7c2a940f1e3421713ceb165fc2a1be4d3281a6506a4eb670678022824931cf31",
       "exists": true,
       "path": "results/gate_c6r/quality_gate_final.json",
-      "sha256": "c1c2922259c20fc47a021ced8307495037670180dee70da8c1d5a8b39e2b58cb",
+      "sha256": "26dcaed48a0658c3f876158d9a1277066dafc26c3a5d9f5798203c8ce3ab7cf4",
       "size_bytes": 639
     },
     "seal_enforcement_audit": {
-      "canonical_json_sha256": "015977231bd8565f98f53eccccc8b9a68cab224363cfd5a69b1a9b5e9b106cf5",
+      "canonical_json_sha256": "66e947b8018bab62c9c68439441018d4226829063382995b4136205c4ba89e80",
       "exists": true,
       "path": "results/gate_c6r/lineage_seal_enforcement.json",
-      "sha256": "73959b06e776ba1012247dc06c87ced8a8dbf6b7744d010aa0a6f2eebfe8509d",
+      "sha256": "98b3c3f4cd0a51f4b7f2d23b3774ab6584404d2daccde7ecdf384bf7e9ba8556",
       "size_bytes": 542
     }
   },
   "review_id": "USDJPY_ACCEPTANCE_RESEARCH_PACKAGE_REVIEW_V1",
-  "review_lock_hash": "9dbb963aeef70203653d7c2fe9f02de4cfc8be8aac2e0a908c34476228b930bf"
+  "review_lock_hash": "b2539c0bea428c0e607e8a3e9ff8803b360af5d594013c659cec478a47b53259"
 }

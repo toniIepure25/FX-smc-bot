@@ -16,7 +16,7 @@
     "validation_event": true,
     "validation_relative_p_ci": true
   },
-  "created_at_utc": "2026-07-25T20:47:10.596605+00:00",
+  "created_at_utc": "2026-07-25T21:05:39.134129+00:00",
   "final_gate_c6_decision": "ACCEPTANCE_RESEARCH_PROGRAM_CLOSED_WITH_MIXED_NONTRANSPORTABLE_RESULT",
   "manifest_hash": "9b3d806fec2a5730c30854b82cdf57f1f17b8cf185f6a6826658e3bf394808bb",
   "seal_hash": "00581da471f6c7c7d06d10d59c2b58fd03fab7a654bf4dac792451a829e4b1e4",

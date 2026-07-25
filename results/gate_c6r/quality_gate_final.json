@@ -12,7 +12,7 @@
     "targeted_static_analysis_pass": true,
     "worktree_hygiene_resolved": true
   },
-  "created_at_utc": "2026-07-25T20:47:19.847298+00:00",
+  "created_at_utc": "2026-07-25T21:05:48.001983+00:00",
   "final_decision": "BLOCKED_BY_CI_FAILURE",
   "gate": "C6-R",
   "status": "FAIL"

@@ -313,20 +313,20 @@ def build_prohibited_data_audit() -> dict[str, Any]:
             path = parts[4]
             if size > 1_000_000:
                 large_files.append({"path": path, "size_bytes": size})
-    checks = {
-        "raw_canonical_data_committed": not any(
+    findings = {
+        "raw_canonical_data_committed": any(
             path.startswith(("data/raw/", "data/canonical/")) for path in prohibited_objects
         ),
-        "row_level_research_data_committed": not any(
+        "row_level_research_data_committed": any(
             path.endswith(".parquet") for path in prohibited_objects
         ),
-        "holdout_data_committed": not any("holdout" in path.lower() for path in prohibited_objects),
-        "credentials_committed": not any(
+        "holdout_data_committed": any("holdout" in path.lower() for path in prohibited_objects),
+        "credentials_committed": any(
             token in path.lower()
             for path in branch_paths
             for token in [".env", "credential", "secret"]
         ),
-        "unexpected_generated_caches_committed": not any(
+        "unexpected_generated_caches_committed": any(
             cache in path.lower()
             for path in prohibited_objects
             for cache in ["node_modules", "__pycache__", ".pytest_tmp_", ".pytest_cache"]
@@ -338,8 +338,8 @@ def build_prohibited_data_audit() -> dict[str, Any]:
         "prohibited_changed_paths": prohibited_changed,
         "prohibited_new_objects": prohibited_objects,
         "large_files_over_1mb": large_files,
-        "checks": checks,
-        "status": "PASS" if all(checks.values()) else "FAIL",
+        "findings": findings,
+        "status": "PASS" if not any(findings.values()) else "FAIL",
         "created_at_utc": now_utc(),
     }
 
@@ -551,7 +551,11 @@ def build_merge_readiness() -> dict[str, Any]:
     diff_check = run_command(["git", "diff", "--check", f"{TARGET_BRANCH}...HEAD"])
     merge_tree = run_command(["git", "merge-tree", base, TARGET_BRANCH, "HEAD"])
     conflicts = [
-        line for line in merge_tree["stdout"].splitlines() if "changed in both" in line.lower()
+        line
+        for line in merge_tree["stdout"].splitlines()
+        if line.startswith("CONFLICT")
+        or line.startswith("<<<<<<<")
+        or line.startswith(">>>>>>>")
     ]
     changed = branch_changed_paths()
     return {
