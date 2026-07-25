@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "final_claim_statuses_locked": true,
+    "reject_acceptance_holdout_handoff": true,
+    "reject_acceptance_holdout_loading": true,
+    "reject_new_acceptance_hypothesis_on_preserved_holdout": true,
+    "seal_change_requires_external_data_lineage": true,
+    "seal_identity_and_hash": true
+  },
+  "created_at_utc": "2026-07-25T21:05:39.459938+00:00",
+  "seal_hash": "00581da471f6c7c7d06d10d59c2b58fd03fab7a654bf4dac792451a829e4b1e4",
+  "seal_id": "USDJPY_ACCEPTANCE_RESEARCH_LINEAGE_V1",
+  "status": "PASS"
+}

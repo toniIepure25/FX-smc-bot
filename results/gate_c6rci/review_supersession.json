@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "decision_is_merge_approval": true,
+    "v1_blocker_recorded": true,
+    "v1_review_lock_preserved": true,
+    "v2_review_id_present": true,
+    "v2_supersedes_v1": true
+  },
+  "created_at_utc": "2026-07-25T22:19:30.964375+00:00",
+  "final_decision": "ACCEPTANCE_RESEARCH_PACKAGE_APPROVED_FOR_MERGE",
+  "review_supersession_hash": "ca1efc6a47ffcef3368c118cd4238f32e98bdf33bf63064bd363f9159c5a7462",
+  "ruff_new_on_branch_after": 0,
+  "status": "PASS",
+  "v1_blocking_reason": "25_NEW_BRANCH_RUFF_FINDINGS",
+  "v1_review_id": "USDJPY_ACCEPTANCE_RESEARCH_PACKAGE_REVIEW_V1",
+  "v1_review_lock_path": "results/gate_c6r/review_lock.json",
+  "v2_review_id": "USDJPY_ACCEPTANCE_RESEARCH_PACKAGE_REVIEW_V2",
+  "v2_supersedes_v1": true,
+  "v2_supersession_basis": "Exact Ruff delta reduced from 25 new branch findings to zero."
+}
