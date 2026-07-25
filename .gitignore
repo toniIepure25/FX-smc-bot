@@ -37,6 +37,7 @@ env/
 
 # --- Test / coverage / typecheck caches ---
 .pytest_cache/
+.pytest_tmp_*/
 .mypy_cache/
 .ruff_cache/
 .coverage
