@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Literal
 
 import numpy as np
 from numpy.typing import NDArray
@@ -57,12 +56,23 @@ def random_direction_matched(
         else:
             pnl = entry_price - exit_price
 
-        ts = timestamps[bar_idx].astype("datetime64[us]").astype(datetime) if bar_idx < len(timestamps) else None
-        trades.append(PlaceboTrade(
-            direction=direction, entry_bar=bar_idx + 1, exit_bar=exit_bar,
-            entry_price=entry_price, exit_price=exit_price,
-            pnl=pnl, holding_bars=exit_bar - bar_idx - 1, timestamp=ts,
-        ))
+        ts = (
+            timestamps[bar_idx].astype("datetime64[us]").astype(datetime)
+            if bar_idx < len(timestamps)
+            else None
+        )
+        trades.append(
+            PlaceboTrade(
+                direction=direction,
+                entry_bar=bar_idx + 1,
+                exit_bar=exit_bar,
+                entry_price=entry_price,
+                exit_price=exit_price,
+                pnl=pnl,
+                holding_bars=exit_bar - bar_idx - 1,
+                timestamp=ts,
+            )
+        )
 
     return trades
 
@@ -105,12 +115,23 @@ def random_time_matched(
         else:
             pnl = entry_price - exit_price
 
-        ts = timestamps[bar_idx].astype("datetime64[us]").astype(datetime) if bar_idx < len(timestamps) else None
-        trades.append(PlaceboTrade(
-            direction=direction, entry_bar=bar_idx + 1, exit_bar=exit_bar,
-            entry_price=entry_price, exit_price=exit_price,
-            pnl=pnl, holding_bars=holding_bars, timestamp=ts,
-        ))
+        ts = (
+            timestamps[bar_idx].astype("datetime64[us]").astype(datetime)
+            if bar_idx < len(timestamps)
+            else None
+        )
+        trades.append(
+            PlaceboTrade(
+                direction=direction,
+                entry_bar=bar_idx + 1,
+                exit_bar=exit_bar,
+                entry_price=entry_price,
+                exit_price=exit_price,
+                pnl=pnl,
+                holding_bars=holding_bars,
+                timestamp=ts,
+            )
+        )
 
     return trades
 
@@ -126,7 +147,7 @@ def signal_inversion(
     n = len(close)
     trades: list[PlaceboTrade] = []
 
-    for bar_idx, orig_dir in zip(signal_bars, signal_directions):
+    for bar_idx, orig_dir in zip(signal_bars, signal_directions, strict=False):
         if bar_idx + 1 >= n:
             continue
         direction = "short" if orig_dir == "long" else "long"
@@ -139,10 +160,17 @@ def signal_inversion(
         else:
             pnl = entry_price - exit_price
 
-        ts = timestamps[bar_idx].astype("datetime64[us]").astype(datetime) if bar_idx < len(timestamps) else None
+        ts = (
+            timestamps[bar_idx].astype("datetime64[us]").astype(datetime)
+            if bar_idx < len(timestamps)
+            else None
+        )
         trades.append(PlaceboTrade(
-            direction=direction, entry_bar=bar_idx + 1, exit_bar=exit_bar,
-            entry_price=entry_price, exit_price=exit_price,
+            direction=direction,
+            entry_bar=bar_idx + 1,
+            exit_bar=exit_bar,
+            entry_price=entry_price,
+            exit_price=exit_price,
             pnl=pnl, holding_bars=exit_bar - bar_idx - 1, timestamp=ts,
         ))
 
@@ -197,12 +225,24 @@ CANONICAL_ABLATIONS: list[AblationSpec] = [
     AblationSpec("full", "Full canonical model", {}),
     AblationSpec("no_session_filter", "Without session filter", {"session_filter": False}),
     AblationSpec("no_htf_filter", "Without HTF bias filter", {"htf_filter": False}),
-    AblationSpec("no_displacement", "Without displacement requirement", {"displacement_body_ratio": 0.0, "displacement_tr_ratio": 0.0}),
+    AblationSpec(
+        "no_displacement",
+        "Without displacement requirement",
+        {"displacement_body_ratio": 0.0, "displacement_tr_ratio": 0.0},
+    ),
     AblationSpec("no_mss", "Without MSS requirement", {"require_mss": False}),
     AblationSpec("no_fvg", "Without FVG requirement", {"require_fvg": False}),
-    AblationSpec("no_liquidity_type", "Without liquidity classification", {"eligible_level_types": ["equal_highs", "equal_lows"]}),
+    AblationSpec(
+        "no_liquidity_type",
+        "Without liquidity classification",
+        {"eligible_level_types": ["equal_highs", "equal_lows"]},
+    ),
     AblationSpec("fixed_stop", "Fixed pip stop (no ATR normalization)", {"fixed_stop_pips": 20.0}),
-    AblationSpec("opposing_liq_target", "Target at opposing liquidity", {"target_mode": "opposing_liquidity"}),
+    AblationSpec(
+        "opposing_liq_target",
+        "Target at opposing liquidity",
+        {"target_mode": "opposing_liquidity"},
+    ),
     AblationSpec("cost_1_5x", "1.5x realistic costs", {"cost_multiplier": 1.5}),
     AblationSpec("cost_2x", "2x realistic costs", {"cost_multiplier": 2.0}),
     AblationSpec("cost_3x", "3x realistic costs", {"cost_multiplier": 3.0}),

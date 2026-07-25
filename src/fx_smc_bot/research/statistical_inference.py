@@ -8,8 +8,7 @@ respect the non-IID nature of financial time series.
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass, field
-from typing import Sequence
+from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import NDArray
@@ -305,7 +304,11 @@ def build_inference_report(
         n_bootstrap=sr_ci.n_bootstrap, method=sr_ci.method,
     )
 
-    daily_sr = float(np.mean(daily_returns) / np.std(daily_returns, ddof=1)) if np.std(daily_returns, ddof=1) > 0 else 0.0
+    daily_sr = (
+        float(np.mean(daily_returns) / np.std(daily_returns, ddof=1))
+        if np.std(daily_returns, ddof=1) > 0
+        else 0.0
+    )
     daily_benchmark = benchmark_sr / np.sqrt(252.0) if benchmark_sr != 0 else 0.0
     psr = probabilistic_sharpe_ratio(daily_sr, daily_benchmark, n, skew, kurt)
     dsr = deflated_sharpe_ratio(daily_sr, n, max(n_trials, 2), skew, kurt)

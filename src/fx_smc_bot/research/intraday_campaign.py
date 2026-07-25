@@ -6,29 +6,26 @@ statistical analysis, placebo comparison, and result persistence.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import logging
-from dataclasses import asdict, dataclass, field
-from datetime import datetime, date
+from dataclasses import dataclass, field
+from datetime import date, datetime
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
 import numpy as np
 
+from fx_smc_bot.backtesting.engine import BacktestEngine
+from fx_smc_bot.backtesting.metrics import compute_metrics
 from fx_smc_bot.config import (
     AppConfig,
-    PAIR_PIP_INFO,
-    TIMEFRAME_MINUTES,
     Timeframe,
     TradingPair,
 )
 from fx_smc_bot.data.loader import load_htf_data, load_pair_data
 from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.data.provenance import build_provenance
-from fx_smc_bot.backtesting.engine import BacktestEngine
-from fx_smc_bot.backtesting.metrics import compute_metrics
-from fx_smc_bot.domain import BacktestResult, ClosedTrade
+from fx_smc_bot.domain import BacktestResult
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +73,9 @@ class RunResult:
             "net_pnl": round(self.net_pnl, 2),
             "sharpe": round(self.sharpe, 4) if self.sharpe is not None else None,
             "win_rate": round(self.win_rate, 4) if self.win_rate is not None else None,
-            "profit_factor": round(self.profit_factor, 4) if self.profit_factor is not None else None,
+            "profit_factor": (
+                round(self.profit_factor, 4) if self.profit_factor is not None else None
+            ),
             "max_drawdown": round(self.max_drawdown, 4) if self.max_drawdown is not None else None,
             "error": self.error,
         }
@@ -212,7 +211,12 @@ def run_campaign(
         timestamp=datetime.now().isoformat(),
     )
 
-    logger.info("Loading data from %s (exec_tf=%s, htf_tf=%s)", data_dir, exec_tf.value, htf_tf.value)
+    logger.info(
+        "Loading data from %s (exec_tf=%s, htf_tf=%s)",
+        data_dir,
+        exec_tf.value,
+        htf_tf.value,
+    )
     data = load_pair_data(data_dir, pairs=pairs, timeframe=exec_tf)
     htf_data = load_htf_data(data, htf_timeframe=htf_tf, data_dir=data_dir) if data else None
 
@@ -301,7 +305,9 @@ def build_statistical_report(
             run.backtest_result.initial_capital,
         )
         if len(daily_rets) < 10:
-            report["strategies"][run.config.label] = {"error": "insufficient data (<10 daily returns)"}
+            report["strategies"][run.config.label] = {
+                "error": "insufficient data (<10 daily returns)"
+            }
             continue
 
         try:

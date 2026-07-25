@@ -45,7 +45,7 @@ def holm_bonferroni(
         corrected[orig_idx] = min(adj, 1.0)
 
     max_so_far = 0.0
-    for rank, (orig_idx, _) in enumerate(indexed):
+    for _rank, (orig_idx, _) in enumerate(indexed):
         max_so_far = max(max_so_far, corrected[orig_idx])
         corrected[orig_idx] = max_so_far
         rejected[orig_idx] = corrected[orig_idx] <= alpha

@@ -13,7 +13,6 @@ from typing import Literal
 
 import numpy as np
 from numpy.typing import NDArray
-
 from pydantic import BaseModel, Field
 
 
@@ -155,7 +154,7 @@ def _simulate_one_path(
     max_dd_pct = 0.0
     best_day_pnl = 0.0
 
-    for i, pnl_pct in enumerate(daily_pnls):
+    for _i, pnl_pct in enumerate(daily_pnls):
         pnl = day_start_balance * pnl_pct
         trading_days += 1
 
