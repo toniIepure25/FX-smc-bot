@@ -524,6 +524,7 @@
     "src/fx_smc_bot/execution/fills.py",
     "src/fx_smc_bot/execution/slippage.py",
     "src/fx_smc_bot/execution/swap.py",
+    "src/fx_smc_bot/py.typed",
     "src/fx_smc_bot/research/ablations.py",
     "src/fx_smc_bot/research/gate_c4_event_alpha.py",
     "src/fx_smc_bot/research/gate_c4a_decision_audit.py",
@@ -601,7 +602,7 @@
     "tools/dukascopy-node/package.json",
     "tools/dukascopy-node/test_acquire.mjs"
   ],
-  "created_at_utc": "2026-07-25T22:23:01.436679+00:00",
+  "created_at_utc": "2026-07-25T22:23:53.049121+00:00",
   "holdout_content_not_enumerated": true,
   "prohibited_paths": [
     "docs/research/GATE_C3_SPLIT_AND_HOLDOUT_POLICY.md",

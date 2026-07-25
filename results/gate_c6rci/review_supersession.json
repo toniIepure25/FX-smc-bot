@@ -6,9 +6,9 @@
     "v2_review_id_present": true,
     "v2_supersedes_v1": true
   },
-  "created_at_utc": "2026-07-25T22:23:01.441835+00:00",
+  "created_at_utc": "2026-07-25T22:23:53.054286+00:00",
   "final_decision": "ACCEPTANCE_RESEARCH_PACKAGE_APPROVED_FOR_MERGE",
-  "review_supersession_hash": "748e06e2534e61036a38ea81289ef79685c83804c7238df8dea26aaaa179a8b3",
+  "review_supersession_hash": "60c95d1dd7685f57d1a259f60f318fca3b1ce197712ee007b445d4cd25e2a4c0",
   "ruff_new_on_branch_after": 0,
   "status": "PASS",
   "v1_blocking_reason": "25_NEW_BRANCH_RUFF_FINDINGS",
