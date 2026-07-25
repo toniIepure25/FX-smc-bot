@@ -8,7 +8,6 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-
 REPO = Path(__file__).resolve().parents[1]
 SRC = REPO / "src"
 if str(SRC) not in sys.path:
@@ -16,27 +15,16 @@ if str(SRC) not in sys.path:
 
 from fx_smc_bot.research.gate_c5arir import canonical_json_sha256, write_json  # noqa: E402
 
-
 EXPECTED_BRANCH = "research/rigorous-intraday-smc-validation"
 EXPECTED_START_SHA = "1b71ea4e17a24c51c6b7bc2f8271ac67fd0ae295"
 EXPECTED_C5ARIR_DECISION = "C5AR_ARTIFACT_INTEGRITY_RECONCILED_READY_FOR_C5B"
 EXPECTED_OVERLAY_ID = "C5AR_ARTIFACT_RECONCILIATION_V1"
-EXPECTED_OVERLAY_HASH = (
-    "64c00bb924b5f6db96a876ab476e53741da6377060150546df2a1b16ed10be06"
-)
+EXPECTED_OVERLAY_HASH = "64c00bb924b5f6db96a876ab476e53741da6377060150546df2a1b16ed10be06"
 EXPECTED_HANDOFF_STATUS = "READY_TO_RESUME_C5B_PHASE_0"
-EXPECTED_HANDOFF_HASH = (
-    "05b11d2ce5b59ed66b556fc3596f733f93ffac0ca61a2d7f828f774ae6bad2ad"
-)
-EXPECTED_ADJUDICATION_RAW = (
-    "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9"
-)
-EXPECTED_ADJUDICATION_CANONICAL = (
-    "82533389578b20e026b9e7cf5bf26019275536329009eede5d83212fae167e7a"
-)
-EXPECTED_ORIGINAL_LOCK_RAW = (
-    "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7"
-)
+EXPECTED_HANDOFF_HASH = "05b11d2ce5b59ed66b556fc3596f733f93ffac0ca61a2d7f828f774ae6bad2ad"
+EXPECTED_ADJUDICATION_RAW = "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9"
+EXPECTED_ADJUDICATION_CANONICAL = "82533389578b20e026b9e7cf5bf26019275536329009eede5d83212fae167e7a"
+EXPECTED_ORIGINAL_LOCK_RAW = "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7"
 
 RESULT_DIR = REPO / "results" / "gate_c5br"
 DOC_DIR = REPO / "docs" / "research"
@@ -147,21 +135,15 @@ def build_reconciliation_integrity() -> dict[str, Any]:
     handoff = json_payload("results/gate_c5arir/c5b_resumption_handoff.json")
     holdout = json_payload("results/gate_c5arir/holdout_integrity.json")
     checks = {
-        "c5arir_final_decision": quality["final_decision"]
-        == EXPECTED_C5ARIR_DECISION,
+        "c5arir_final_decision": quality["final_decision"] == EXPECTED_C5ARIR_DECISION,
         "overlay_id": overlay["overlay_id"] == EXPECTED_OVERLAY_ID,
-        "overlay_hash": overlay["reconciliation_overlay_hash"]
-        == EXPECTED_OVERLAY_HASH,
+        "overlay_hash": overlay["reconciliation_overlay_hash"] == EXPECTED_OVERLAY_HASH,
         "handoff_status": handoff["status"] == EXPECTED_HANDOFF_STATUS,
         "handoff_hash": handoff["handoff_hash"] == EXPECTED_HANDOFF_HASH,
-        "authoritative_current_artifact": overlay[
-            "authoritative_artifact_designation"
-        ]
+        "authoritative_current_artifact": overlay["authoritative_artifact_designation"]
         == "AUTHORITATIVE_CURRENT_ARTIFACT",
-        "scientific_semantic_equality": overlay["scientific_semantic_equality"]
-        is True,
-        "holdout_access_false": holdout["status"] == "PASS"
-        and not holdout["violations"],
+        "scientific_semantic_equality": overlay["scientific_semantic_equality"] is True,
+        "holdout_access_false": holdout["status"] == "PASS" and not holdout["violations"],
     }
     return {
         "status": "PASS" if all(checks.values()) else "FAIL",
@@ -376,10 +358,14 @@ def main() -> int:
         preregistration,
     )
     write_prereg_doc(preregistration)
-    return 0 if (
-        reconciliation_integrity["status"] == "PASS"
-        and c5ar_artifact_integrity["status"] == "PASS"
-    ) else 1
+    return (
+        0
+        if (
+            reconciliation_integrity["status"] == "PASS"
+            and c5ar_artifact_integrity["status"] == "PASS"
+        )
+        else 1
+    )
 
 
 if __name__ == "__main__":
