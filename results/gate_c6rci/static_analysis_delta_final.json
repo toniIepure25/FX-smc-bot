@@ -3,7 +3,7 @@
     "mypy_no_new_delta": true,
     "ruff_exact_zero_new_delta": true
   },
-  "created_at_utc": "2026-07-25T22:21:10.272706+00:00",
+  "created_at_utc": "2026-07-25T22:23:01.357732+00:00",
   "expected_counts": {
     "mypy_head": 3,
     "mypy_target": 4,

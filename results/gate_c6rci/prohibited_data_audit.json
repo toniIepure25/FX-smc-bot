@@ -601,7 +601,7 @@
     "tools/dukascopy-node/package.json",
     "tools/dukascopy-node/test_acquire.mjs"
   ],
-  "created_at_utc": "2026-07-25T22:21:10.369827+00:00",
+  "created_at_utc": "2026-07-25T22:23:01.436679+00:00",
   "holdout_content_not_enumerated": true,
   "prohibited_paths": [
     "docs/research/GATE_C3_SPLIT_AND_HOLDOUT_POLICY.md",

@@ -266,7 +266,7 @@ def build_prohibited_data_audit() -> dict[str, Any]:
 
 
 def build_holdout_integrity() -> dict[str, Any]:
-    payload = {flag: False for flag in validate_holdout_closed({})["checks"]}
+    payload: dict[str, Any] = {flag: False for flag in validate_holdout_closed({})["checks"]}
     payload.update(
         {
             "gate": "C6-R-CI",
