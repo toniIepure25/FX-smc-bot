@@ -1,0 +1,249 @@
+{
+  "created_at_utc": "2026-07-25T11:05:43.978105+00:00",
+  "development_reproduction": {
+    "common_protocol_context": {
+      "mean_control_executable_markout_points": -17.33688524590164,
+      "mean_event_executable_markout_points": -3.66885245901655,
+      "mean_event_minus_control_points": 13.668032786885094,
+      "source": "results/gate_c5a/amended_development_replay.json"
+    },
+    "comparisons": [
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "mean_event_executable_markout",
+        "original_value": -3.66885245901655,
+        "reproduced_value": -3.66885245901655,
+        "source_artifact": "results/gate_c4b/acceptance_reproduction.json",
+        "source_artifact_hash": "7383f5940e04e939d98d6bb27ef723ac4f771f2dd80c5b313c2fe1e95ff08bf3",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "mean_control_executable_markout",
+        "original_value": -17.423360655737724,
+        "reproduced_value": -17.423360655737724,
+        "source_artifact": "results/gate_c4b/acceptance_reproduction.json",
+        "source_artifact_hash": "7383f5940e04e939d98d6bb27ef723ac4f771f2dd80c5b313c2fe1e95ff08bf3",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "event_minus_control_differential",
+        "original_value": 13.754508196721174,
+        "reproduced_value": 13.754508196721174,
+        "source_artifact": "results/gate_c4b/acceptance_reproduction.json",
+        "source_artifact_hash": "7383f5940e04e939d98d6bb27ef723ac4f771f2dd80c5b313c2fe1e95ff08bf3",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "primary_non_overlap_events",
+        "original_value": 2440,
+        "reproduced_value": 2440,
+        "source_artifact": "results/gate_c4b/acceptance_reproduction.json",
+        "source_artifact_hash": "7383f5940e04e939d98d6bb27ef723ac4f771f2dd80c5b313c2fe1e95ff08bf3",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "discovery_differential",
+        "original_value": 18.22368421052636,
+        "reproduced_value": 18.22368421052636,
+        "source_artifact": "results/gate_c4b/acceptance_reproduction.json",
+        "source_artifact_hash": "7383f5940e04e939d98d6bb27ef723ac4f771f2dd80c5b313c2fe1e95ff08bf3",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "internal_replication_differential",
+        "original_value": 7.2751004016060214,
+        "reproduced_value": 7.2751004016060214,
+        "source_artifact": "results/gate_c4b/acceptance_reproduction.json",
+        "source_artifact_hash": "7383f5940e04e939d98d6bb27ef723ac4f771f2dd80c5b313c2fe1e95ff08bf3",
+        "tolerance": 1e-09
+      }
+    ],
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "validation_reproduction": {
+    "absolute_effect_inference": {
+      "ci95_day_cluster_bootstrap": [
+        0.7861459649301382,
+        22.05861848144365
+      ],
+      "mean": 11.33724832214778,
+      "passes": false,
+      "sign_flip_permutation_p_value": 0.12843578210894552
+    },
+    "adjudication": {
+      "failed_criteria": [
+        "mean_absolute_event_executable_markout"
+      ],
+      "final_decision": "USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED",
+      "passed_count": 10,
+      "total_count": 11
+    },
+    "comparisons": [
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "mean_event_executable_markout",
+        "original_value": 11.33724832214778,
+        "reproduced_value": 11.33724832214778,
+        "source_artifact": "data/raw/gate_c5ar/validation_acceptance_events.parquet",
+        "source_artifact_hash": "8703217484bfee351d0b229c118f41e1849c4dbfce4db10b11cb0eb64d562c17",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "mean_control_executable_markout",
+        "original_value": -16.11577181208039,
+        "reproduced_value": -16.11577181208039,
+        "source_artifact": "data/raw/gate_c5ar/validation_control_matches.parquet",
+        "source_artifact_hash": "a4af1d8174f70927f9ea6d0dbbb483775208bd699bf91770b371945d3c580442",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "event_minus_control_differential",
+        "original_value": 27.453020134228165,
+        "reproduced_value": 27.453020134228165,
+        "source_artifact": "results/gate_c5ar/validation_primary_estimand.json",
+        "source_artifact_hash": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "matched_events",
+        "original_value": 1192,
+        "reproduced_value": 1192,
+        "source_artifact": "results/gate_c5ar/control_matching_audit.json",
+        "source_artifact_hash": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "permutation_p",
+        "original_value": 0.004497751124437781,
+        "reproduced_value": 0.004497751124437781,
+        "source_artifact": "results/gate_c5ar/validation_inference.json",
+        "source_artifact_hash": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "bootstrap_ci_lower",
+        "original_value": 14.784214406740844,
+        "reproduced_value": 14.784214406740844,
+        "source_artifact": "results/gate_c5ar/validation_inference.json",
+        "source_artifact_hash": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+        "tolerance": 1e-09
+      },
+      {
+        "absolute_difference": 0.0,
+        "match_status": "MATCH",
+        "name": "bootstrap_ci_upper",
+        "original_value": 40.27386831699497,
+        "reproduced_value": 40.27386831699497,
+        "source_artifact": "results/gate_c5ar/validation_inference.json",
+        "source_artifact_hash": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+        "tolerance": 1e-09
+      }
+    ],
+    "computed_from_frozen_rows": {
+      "ci95_day_cluster_bootstrap": [
+        14.784214406740844,
+        40.27386831699497
+      ],
+      "event_minus_control_mid_differential": 27.486577181207956,
+      "mean_control_executable_markout_points": -16.11577181208039,
+      "mean_control_mid_return_points": -11.206375838925988,
+      "mean_event_executable_markout_points": 11.33724832214778,
+      "mean_event_mid_return_points": 16.280201342281966,
+      "mean_event_minus_control_points": 27.453020134228165,
+      "n": 1192,
+      "paired_permutation_p_value": 0.004497751124437781,
+      "positive_control_probability": 0.4236577181208054,
+      "positive_event_probability": 0.5058724832214765
+    },
+    "placebo": {
+      "eligible_shifted_placebo_events": 699,
+      "estimand": {
+        "cluster_bootstrap_ci95_mean_diff_points": [
+          -0.1923192771084638,
+          0.0
+        ],
+        "event_outperforms_control_probability": 0.0,
+        "holm_adjusted_p_value": 1.0,
+        "mean_control_executable_markout_points": -10.882689556509298,
+        "mean_event_executable_markout_points": -10.997138769670975,
+        "mean_event_minus_control_points": -0.1144492131616774,
+        "median_event_minus_control_points": 0.0,
+        "n": 699,
+        "paired_permutation_p_value": 1.0,
+        "positive_control_probability": 0.47782546494992845,
+        "positive_event_probability": 0.47782546494992845,
+        "standardized_paired_effect": -0.03782347372361169,
+        "trimmed_mean_event_minus_control_points": 0.0
+      },
+      "matching": {
+        "balance_pass": true,
+        "candidate_count_max": 1769,
+        "candidate_count_median": 1055.0,
+        "candidate_count_min": 633,
+        "exact_key_relaxations": 0,
+        "exact_keys": [
+          "year",
+          "month",
+          "session",
+          "direction"
+        ],
+        "matching_seed": 4242,
+        "max_abs_post_match_smd": 0.0004017028796181762,
+        "post_match_smd": {
+          "atr": 8.903608743049646e-05,
+          "pre_event_trend": 0.0002456935942187473,
+          "pre_event_volatility": 0.0004017028796181762,
+          "range_position": -8.98835755181728e-05,
+          "spread": 0.0
+        },
+        "pre_match_smd": {
+          "atr": 8.903608743049646e-05,
+          "pre_event_trend": 0.0002456935942187473,
+          "pre_event_volatility": 0.0004017028796181762,
+          "range_position": -8.98835755181728e-05,
+          "spread": 0.0
+        },
+        "primary_eligible_events": 699,
+        "replacement": true,
+        "successfully_matched_events": 699,
+        "unmatched_event_records": [],
+        "unmatched_events": 0
+      },
+      "placebo_reproduces_relative_resilience": false,
+      "placebo_type": "+24-hour shifted pseudo-event relative-resilience placebo",
+      "status": "PASS",
+      "successfully_matched_placebo_events": 699
+    },
+    "post_match_smds": {
+      "atr": 0.031762838550213744,
+      "pre_event_trend": 0.00041490711061651676,
+      "pre_event_volatility": 0.05813439292604498,
+      "range_position": -0.010403247286512483,
+      "spread": 0.02026055574499356
+    },
+    "status": "PASS"
+  }
+}

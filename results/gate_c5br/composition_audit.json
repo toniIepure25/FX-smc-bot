@@ -1,0 +1,336 @@
+{
+  "no_subgroup_selection": true,
+  "periods": {
+    "development": {
+      "direction": {
+        "LONG": {
+          "category_count": 1278,
+          "category_proportion": 0.5237704918032787,
+          "control_absolute_markout": -15.998435054773225,
+          "event_absolute_markout": -1.0594679186229485,
+          "event_minus_control_differential": 14.938967136150277
+        },
+        "SHORT": {
+          "category_count": 1162,
+          "category_proportion": 0.47622950819672133,
+          "control_absolute_markout": -18.990533562822602,
+          "event_absolute_markout": -6.538726333907276,
+          "event_minus_control_differential": 12.451807228915328
+        }
+      },
+      "event_subtype": {
+        "prior_day_high_acceptance": {
+          "category_count": 1278,
+          "category_proportion": 0.5237704918032787,
+          "control_absolute_markout": -15.998435054773225,
+          "event_absolute_markout": -1.0594679186229485,
+          "event_minus_control_differential": 14.938967136150277
+        },
+        "prior_day_low_acceptance": {
+          "category_count": 1162,
+          "category_proportion": 0.47622950819672133,
+          "control_absolute_markout": -18.990533562822602,
+          "event_absolute_markout": -6.538726333907276,
+          "event_minus_control_differential": 12.451807228915328
+        }
+      },
+      "overlap_status": {
+        "primary_non_overlap": {
+          "category_count": 2440,
+          "category_proportion": 1.0,
+          "control_absolute_markout": -17.423360655737724,
+          "event_absolute_markout": -3.66885245901655,
+          "event_minus_control_differential": 13.754508196721174
+        }
+      },
+      "pre_event_trend_regime": {
+        "high": {
+          "category_count": 814,
+          "category_proportion": 0.3336065573770492,
+          "control_absolute_markout": -18.389434889434952,
+          "event_absolute_markout": -2.798525798525771,
+          "event_minus_control_differential": 15.59090909090918
+        },
+        "low": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": -28.916359163591515,
+          "event_absolute_markout": -4.051660516605513,
+          "event_minus_control_differential": 24.864698646986003
+        },
+        "medium": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": -4.963099630996428,
+          "event_absolute_markout": -4.157441574415896,
+          "event_minus_control_differential": 0.8056580565805334
+        }
+      },
+      "range_position_regime": {
+        "high": {
+          "category_count": 814,
+          "category_proportion": 0.3336065573770492,
+          "control_absolute_markout": -22.373464373464504,
+          "event_absolute_markout": 1.2727272727273264,
+          "event_minus_control_differential": 23.646191646191824
+        },
+        "low": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": -32.361623616236024,
+          "event_absolute_markout": -5.852398523985323,
+          "event_minus_control_differential": 26.5092250922507
+        },
+        "medium": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": 2.4710947109470394,
+          "event_absolute_markout": -6.432964329643738,
+          "event_minus_control_differential": -8.904059040590777
+        }
+      },
+      "session": {
+        "asia": {
+          "category_count": 774,
+          "category_proportion": 0.31721311475409836,
+          "control_absolute_markout": -22.665374677002795,
+          "event_absolute_markout": -4.667958656330767,
+          "event_minus_control_differential": 17.997416020672027
+        },
+        "london": {
+          "category_count": 486,
+          "category_proportion": 0.19918032786885245,
+          "control_absolute_markout": -16.03497942386812,
+          "event_absolute_markout": 2.131687242798008,
+          "event_minus_control_differential": 18.166666666666128
+        },
+        "new_york": {
+          "category_count": 603,
+          "category_proportion": 0.24713114754098361,
+          "control_absolute_markout": -5.404643449419264,
+          "event_absolute_markout": 0.18739635157526488,
+          "event_minus_control_differential": 5.59203980099453
+        },
+        "other": {
+          "category_count": 577,
+          "category_proportion": 0.23647540983606558,
+          "control_absolute_markout": -24.121317157712586,
+          "event_absolute_markout": -11.244367417677788,
+          "event_minus_control_differential": 12.876949740034798
+        }
+      },
+      "spread_regime": {
+        "high": {
+          "category_count": 814,
+          "category_proportion": 0.3336065573770492,
+          "control_absolute_markout": -15.093366093366164,
+          "event_absolute_markout": -9.898034398034628,
+          "event_minus_control_differential": 5.195331695331537
+        },
+        "low": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": -21.09348093480923,
+          "event_absolute_markout": 7.451414514145222,
+          "event_minus_control_differential": 28.544895448954446
+        },
+        "medium": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": -16.086100861008717,
+          "event_absolute_markout": -8.552275522755545,
+          "event_minus_control_differential": 7.533825338253174
+        }
+      },
+      "volatility_regime": {
+        "high": {
+          "category_count": 814,
+          "category_proportion": 0.3336065573770492,
+          "control_absolute_markout": -17.976658476658436,
+          "event_absolute_markout": -5.613022113022044,
+          "event_minus_control_differential": 12.36363636363639
+        },
+        "low": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": -22.364083640836462,
+          "event_absolute_markout": -2.8892988929892325,
+          "event_minus_control_differential": 19.47478474784723
+        },
+        "medium": {
+          "category_count": 813,
+          "category_proportion": 0.33319672131147543,
+          "control_absolute_markout": -11.92865928659291,
+          "event_absolute_markout": -2.501845018450419,
+          "event_minus_control_differential": 9.426814268142493
+        }
+      }
+    },
+    "validation": {
+      "direction": {
+        "LONG": {
+          "category_count": 660,
+          "category_proportion": 0.5536912751677853,
+          "control_absolute_markout": -11.275757575757286,
+          "event_absolute_markout": 5.295454545454941,
+          "event_minus_control_differential": 16.571212121212227
+        },
+        "SHORT": {
+          "category_count": 532,
+          "category_proportion": 0.4463087248322148,
+          "control_absolute_markout": -22.120300751879725,
+          "event_absolute_markout": 18.83270676691709,
+          "event_minus_control_differential": 40.95300751879682
+        }
+      },
+      "event_subtype": {
+        "prior_day_high_acceptance": {
+          "category_count": 660,
+          "category_proportion": 0.5536912751677853,
+          "control_absolute_markout": -11.275757575757286,
+          "event_absolute_markout": 5.295454545454941,
+          "event_minus_control_differential": 16.571212121212227
+        },
+        "prior_day_low_acceptance": {
+          "category_count": 532,
+          "category_proportion": 0.4463087248322148,
+          "control_absolute_markout": -22.120300751879725,
+          "event_absolute_markout": 18.83270676691709,
+          "event_minus_control_differential": 40.95300751879682
+        }
+      },
+      "overlap_status": {
+        "primary_non_overlap": {
+          "category_count": 1192,
+          "category_proportion": 1.0,
+          "control_absolute_markout": -16.11577181208039,
+          "event_absolute_markout": 11.33724832214778,
+          "event_minus_control_differential": 27.453020134228165
+        }
+      },
+      "pre_event_trend_regime": {
+        "high": {
+          "category_count": 398,
+          "category_proportion": 0.3338926174496644,
+          "control_absolute_markout": -16.517587939697954,
+          "event_absolute_markout": 17.87688442211093,
+          "event_minus_control_differential": 34.39447236180889
+        },
+        "low": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -29.130982367758644,
+          "event_absolute_markout": 21.090680100755893,
+          "event_minus_control_differential": 50.22166246851453
+        },
+        "medium": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -2.697732997480747,
+          "event_absolute_markout": -4.972292191435993,
+          "event_minus_control_differential": -2.2745591939552456
+        }
+      },
+      "range_position_regime": {
+        "high": {
+          "category_count": 398,
+          "category_proportion": 0.3338926174496644,
+          "control_absolute_markout": -15.238693467335892,
+          "event_absolute_markout": 7.834170854271807,
+          "event_minus_control_differential": 23.072864321607703
+        },
+        "low": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -26.45340050377833,
+          "event_absolute_markout": 21.984886649874365,
+          "event_minus_control_differential": 48.43828715365269
+        },
+        "medium": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -6.657430730478949,
+          "event_absolute_markout": 4.201511335012216,
+          "event_minus_control_differential": 10.858942065491165
+        }
+      },
+      "session": {
+        "asia": {
+          "category_count": 312,
+          "category_proportion": 0.26174496644295303,
+          "control_absolute_markout": -27.874999999999734,
+          "event_absolute_markout": 18.695512820513,
+          "event_minus_control_differential": 46.57051282051273
+        },
+        "london": {
+          "category_count": 271,
+          "category_proportion": 0.2273489932885906,
+          "control_absolute_markout": -13.815498154981606,
+          "event_absolute_markout": 20.073800738007428,
+          "event_minus_control_differential": 33.88929889298903
+        },
+        "new_york": {
+          "category_count": 350,
+          "category_proportion": 0.2936241610738255,
+          "control_absolute_markout": -17.960000000000004,
+          "event_absolute_markout": 7.874285714286043,
+          "event_minus_control_differential": 25.834285714286043
+        },
+        "other": {
+          "category_count": 259,
+          "category_proportion": 0.21728187919463088,
+          "control_absolute_markout": -1.8648648648644413,
+          "event_absolute_markout": -1.9884169884171061,
+          "event_minus_control_differential": -0.12355212355265731
+        }
+      },
+      "spread_regime": {
+        "high": {
+          "category_count": 398,
+          "category_proportion": 0.3338926174496644,
+          "control_absolute_markout": -12.489949748743266,
+          "event_absolute_markout": 24.876884422110475,
+          "event_minus_control_differential": 37.36683417085374
+        },
+        "low": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -12.183879093199181,
+          "event_absolute_markout": 1.30478589420698,
+          "event_minus_control_differential": 13.48866498740616
+        },
+        "medium": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -23.682619647354986,
+          "event_absolute_markout": 7.795969773299783,
+          "event_minus_control_differential": 31.478589420654764
+        }
+      },
+      "volatility_regime": {
+        "high": {
+          "category_count": 398,
+          "category_proportion": 0.3338926174496644,
+          "control_absolute_markout": -33.21859296482413,
+          "event_absolute_markout": 24.959798994975436,
+          "event_minus_control_differential": 58.17839195979956
+        },
+        "low": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -8.272040302266944,
+          "event_absolute_markout": 9.365239294710515,
+          "event_minus_control_differential": 17.637279596977464
+        },
+        "medium": {
+          "category_count": 397,
+          "category_proportion": 0.33305369127516776,
+          "control_absolute_markout": -6.813602015112953,
+          "event_absolute_markout": -0.3476070528970954,
+          "event_minus_control_differential": 6.4659949622158575
+        }
+      }
+    }
+  },
+  "status": "PASS"
+}

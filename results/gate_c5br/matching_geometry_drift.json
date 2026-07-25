@@ -1,0 +1,52 @@
+{
+  "development": {
+    "candidate_controls_per_event": {
+      "max": 1808,
+      "median": 945.0,
+      "min": 394
+    },
+    "exact_key_relaxations": 0,
+    "historical_c4_row_level_smd_context_not_principal": {
+      "atr": 0.06659471616383596,
+      "pre_event_trend": -0.008020820070675894,
+      "pre_event_volatility": 0.10577884761425302,
+      "range_position": -0.003713285871951243,
+      "spread": 0.04620193580452427
+    },
+    "matched_events": 2440,
+    "matched_utc_days": null,
+    "post_match_smds": {
+      "atr": 0.05435215708934559,
+      "pre_event_trend": -0.002653131219811562,
+      "pre_event_volatility": 0.09501540210119847,
+      "range_position": -0.001199291556264466,
+      "spread": 0.04721272971392561
+    },
+    "unmatched_event_rate": 0.0
+  },
+  "requirements": {
+    "all_post_match_abs_smd_lte_0_10": true,
+    "minimum_matched_events_both_periods": true,
+    "no_material_covariate_support_failure": true,
+    "zero_exact_key_relaxation_both_periods": true
+  },
+  "status": "PASS",
+  "validation": {
+    "candidate_controls_per_event": {
+      "max": 1769,
+      "median": 1023.0,
+      "min": 633
+    },
+    "exact_key_relaxations": 0,
+    "matched_events": 1192,
+    "matched_utc_days": 572,
+    "post_match_smds": {
+      "atr": 0.031749512416398666,
+      "pre_event_trend": 0.00041473303588235327,
+      "pre_event_volatility": 0.05811000257761417,
+      "range_position": -0.010398882592682228,
+      "spread": 0.020252055406568235
+    },
+    "unmatched_event_rate": 0.0
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "candidate_class": "DUAL_POSITIVE_ACCEPTANCE_RESPONSE",
+  "candidate_passes": false,
+  "criteria": [
+    {
+      "criterion": "C5-A-R artifact and reconciliation integrity pass",
+      "criterion_number": 1,
+      "observed": true,
+      "passed": true,
+      "threshold": "PASS"
+    },
+    {
+      "criterion": "Development and validation reproduction pass",
+      "criterion_number": 2,
+      "observed": "PASS",
+      "passed": true,
+      "threshold": "PASS"
+    },
+    {
+      "criterion": "Cross-period semantic comparability passes",
+      "criterion_number": 3,
+      "observed": "PASS",
+      "passed": true,
+      "threshold": "PASS"
+    },
+    {
+      "criterion": "Validation mean absolute event executable markout > 0",
+      "criterion_number": 4,
+      "observed": 11.33724832214778,
+      "passed": true,
+      "threshold": ">0"
+    },
+    {
+      "criterion": "Validation mean event-minus-control executable differential > 0",
+      "criterion_number": 5,
+      "observed": 27.453020134228165,
+      "passed": true,
+      "threshold": ">0"
+    },
+    {
+      "criterion": "Validation absolute-effect inference passes",
+      "criterion_number": 6,
+      "observed": {
+        "ci95_day_cluster_bootstrap": [
+          0.7861459649301382,
+          22.05861848144365
+        ],
+        "mean": 11.33724832214778,
+        "passes": false,
+        "sign_flip_permutation_p_value": 0.12843578210894552
+      },
+      "passed": false,
+      "threshold": "p<=0.05 and CI lower>0"
+    },
+    {
+      "criterion": "Validation relative-differential inference passes",
+      "criterion_number": 7,
+      "observed": {
+        "ci95_day_cluster_bootstrap": [
+          14.784214406740844,
+          40.27386831699497
+        ],
+        "deterministic_seeds": {
+          "bootstrap": 4242,
+          "permutation": 4242
+        },
+        "holm_adjusted_p_value": 0.004497751124437781,
+        "independent_day_count": 572,
+        "iterations": {
+          "day_cluster_bootstrap": 1000,
+          "paired_permutation": 2000
+        },
+        "matched_pair_count": 1192,
+        "median_differential": 26.50000000000574,
+        "point_estimate": 27.453020134228165,
+        "raw_permutation_p_value": 0.004497751124437781,
+        "repeated_run_determinism_check": true,
+        "standardized_paired_effect": 0.08880457390703933,
+        "status": "PASS",
+        "trimmed_mean_differential": 25.07442348008378
+      },
+      "passed": true,
+      "threshold": "p<=0.05 and CI lower>0"
+    },
+    {
+      "criterion": "Validation placebo does not reproduce either co-primary effect",
+      "criterion_number": 8,
+      "observed": false,
+      "passed": true,
+      "threshold": "false"
+    },
+    {
+      "criterion": "Relative differential positive in 2020, 2021 and 2022",
+      "criterion_number": 9,
+      "observed": {
+        "2020": {
+          "absolute_control_executable_markout": -25.339195979899877,
+          "absolute_event_executable_markout": 12.979899497487537,
+          "bootstrap_ci": [
+            17.90121291098714,
+            58.77744542259522
+          ],
+          "eligible_events": 398,
+          "event_minus_control_differential": 38.31909547738741,
+          "matched_events": 398
+        },
+        "2021": {
+          "absolute_control_executable_markout": -13.368811881187654,
+          "absolute_event_executable_markout": 2.935643564356629,
+          "bootstrap_ci": [
+            4.694096656406014,
+            29.578429729323833
+          ],
+          "eligible_events": 404,
+          "event_minus_control_differential": 16.30445544554428,
+          "matched_events": 404
+        },
+        "2022": {
+          "absolute_control_executable_markout": -9.548717948717599,
+          "absolute_event_executable_markout": 18.36410256410265,
+          "bootstrap_ci": [
+            -1.6567207366227235,
+            58.58885648250037
+          ],
+          "eligible_events": 390,
+          "event_minus_control_differential": 27.912820512820243,
+          "matched_events": 390
+        }
+      },
+      "passed": true,
+      "threshold": "all true"
+    },
+    {
+      "criterion": "Validation absolute positivity occurs in at least two of three years",
+      "criterion_number": 10,
+      "observed": {
+        "2020": {
+          "absolute_control_executable_markout": -25.339195979899877,
+          "absolute_event_executable_markout": 12.979899497487537,
+          "bootstrap_ci": [
+            17.90121291098714,
+            58.77744542259522
+          ],
+          "eligible_events": 398,
+          "event_minus_control_differential": 38.31909547738741,
+          "matched_events": 398
+        },
+        "2021": {
+          "absolute_control_executable_markout": -13.368811881187654,
+          "absolute_event_executable_markout": 2.935643564356629,
+          "bootstrap_ci": [
+            4.694096656406014,
+            29.578429729323833
+          ],
+          "eligible_events": 404,
+          "event_minus_control_differential": 16.30445544554428,
+          "matched_events": 404
+        },
+        "2022": {
+          "absolute_control_executable_markout": -9.548717948717599,
+          "absolute_event_executable_markout": 18.36410256410265,
+          "bootstrap_ci": [
+            -1.6567207366227235,
+            58.58885648250037
+          ],
+          "eligible_events": 390,
+          "event_minus_control_differential": 27.912820512820243,
+          "matched_events": 390
+        }
+      },
+      "passed": true,
+      "threshold": ">=2 years"
+    },
+    {
+      "criterion": "Leave-one-validation-year-out absolute markout remains positive",
+      "criterion_number": 11,
+      "observed": {
+        "2020": {
+          "absolute_event_markout": 10.513853904282257,
+          "absolute_positive": true,
+          "differential": 22.006297229218873,
+          "differential_positive": true,
+          "excluded_year": 2020
+        },
+        "2021": {
+          "absolute_event_markout": 15.644670050761519,
+          "absolute_positive": true,
+          "differential": 33.16878172588843,
+          "differential_positive": true,
+          "excluded_year": 2021
+        },
+        "2022": {
+          "absolute_event_markout": 7.920199501247028,
+          "absolute_positive": true,
+          "differential": 27.229426433915307,
+          "differential_positive": true,
+          "excluded_year": 2022
+        }
+      },
+      "passed": true,
+      "threshold": "all true"
+    },
+    {
+      "criterion": "Leave-one-validation-year-out differential remains positive",
+      "criterion_number": 12,
+      "observed": {
+        "2020": {
+          "absolute_event_markout": 10.513853904282257,
+          "absolute_positive": true,
+          "differential": 22.006297229218873,
+          "differential_positive": true,
+          "excluded_year": 2020
+        },
+        "2021": {
+          "absolute_event_markout": 15.644670050761519,
+          "absolute_positive": true,
+          "differential": 33.16878172588843,
+          "differential_positive": true,
+          "excluded_year": 2021
+        },
+        "2022": {
+          "absolute_event_markout": 7.920199501247028,
+          "absolute_positive": true,
+          "differential": 27.229426433915307,
+          "differential_positive": true,
+          "excluded_year": 2022
+        }
+      },
+      "passed": true,
+      "threshold": "all true"
+    },
+    {
+      "criterion": "Positive absolute effect is not explained solely by transaction costs",
+      "criterion_number": 13,
+      "observed": "underlying_price_response",
+      "passed": true,
+      "threshold": "not cost-only"
+    },
+    {
+      "criterion": "Valid transport standardization preserves both co-primary signs",
+      "criterion_number": 14,
+      "observed": {
+        "control": -23.273405199016704,
+        "differential": 35.53894763198631,
+        "event": 12.26554243296961
+      },
+      "passed": false,
+      "threshold": "event>0 and differential>0"
+    },
+    {
+      "criterion": "No subgroup selection is required",
+      "criterion_number": 15,
+      "observed": true,
+      "passed": true,
+      "threshold": "true"
+    },
+    {
+      "criterion": "Matching support and balance pass in both periods",
+      "criterion_number": 16,
+      "observed": {
+        "all_post_match_abs_smd_lte_0_10": true,
+        "minimum_matched_events_both_periods": true,
+        "no_material_covariate_support_failure": true,
+        "zero_exact_key_relaxation_both_periods": true
+      },
+      "passed": true,
+      "threshold": "all matching requirements"
+    },
+    {
+      "criterion": "Holdout remains completely unopened",
+      "criterion_number": 17,
+      "observed": {
+        "checks": {
+          "holdout_controls_constructed": false,
+          "holdout_event_counts_computed": false,
+          "holdout_events_detected": false,
+          "holdout_files_enumerated_for_content": false,
+          "holdout_market_data_loaded": false,
+          "holdout_outcomes_computed": false,
+          "holdout_results_reported": false,
+          "holdout_structural_data_inspected": false
+        },
+        "note": "C5-B-R did not read or enumerate holdout files for content.",
+        "status": "PASS",
+        "violations": []
+      },
+      "passed": true,
+      "threshold": "PASS"
+    }
+  ],
+  "decision": "VALIDATION_SIGNAL_NONTRANSPORTABLE_RESEARCH_STOP",
+  "development_counterevidence": {
+    "common_protocol_development_absolute_event_markout": -3.66885245901655,
+    "historical_development_absolute_event_markout": -3.66885245901655,
+    "meaning": "Development remains absolute-negative while relative-positive."
+  },
+  "failed_criteria": [
+    "Validation absolute-effect inference passes",
+    "Valid transport standardization preserves both co-primary signs"
+  ],
+  "intersection_union_example": true,
+  "single_candidate_class": true
+}
