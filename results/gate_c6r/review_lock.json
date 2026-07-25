@@ -1,0 +1,91 @@
+{
+  "audit_statuses": {
+    "data": "PASS",
+    "documentation": "PASS",
+    "manifest": "PASS",
+    "merge": "PASS",
+    "package": "PASS",
+    "quality": "FAIL",
+    "seal": "PASS"
+  },
+  "created_at_utc": "2026-07-25T20:47:19.939875+00:00",
+  "hashes": {
+    "c6_final_decision": {
+      "exists": true,
+      "path": "docs/research/GATE_C6_FINAL_DECISION_MEMO.md",
+      "sha256": "5d9f9c35357399e8f8c997c01d2b43d9e04de5a19b57fe496229317e634997fb",
+      "size_bytes": 555
+    },
+    "c6_lineage_seal": {
+      "canonical_json_sha256": "e3c829b851fc95a4ca448e8c082ef96695b202aa316cf2d8d2778162cd78990c",
+      "exists": true,
+      "path": "results/gate_c6/acceptance_lineage_seal.json",
+      "sha256": "041ad3bfc9e5bd9a3a71aa60a1df75f37c07a6de5014d45cf7cc6b142021a0ee",
+      "size_bytes": 2955
+    },
+    "c6_reproducibility_manifest": {
+      "canonical_json_sha256": "850442f0c4d31a413370c7d4f600a1f5b83f48c18b0b306209eb61e8d5fdf5a8",
+      "exists": true,
+      "path": "results/gate_c6/reproducibility_manifest.json",
+      "sha256": "9c2387dc5599a4e984b7d6ebb5082a400e5641035111b54f30bb91f8cfc1b544",
+      "size_bytes": 11266
+    },
+    "documentation_audit": {
+      "canonical_json_sha256": "27f9ea157ded8a4d7982faf7a8b758131b0db417fe508a16e04e66fa01f5eebb",
+      "exists": true,
+      "path": "results/gate_c6r/documentation_quality_audit.json",
+      "sha256": "cf0c87b6199740ba06162dd87ebdcdd0b0ed7db1d0ffa9561c5adf52294a8833",
+      "size_bytes": 1068
+    },
+    "manifest_audit": {
+      "canonical_json_sha256": "5c90262e431aebe424d4c96b509613199555a1594c33c84c8ba0a44c09e5a5d6",
+      "exists": true,
+      "path": "results/gate_c6r/reproducibility_manifest_audit.json",
+      "sha256": "127f647be70117b65bdcc87c204e02e889788b0c13a3cca40156543f95cbbc2b",
+      "size_bytes": 16757
+    },
+    "merge_readiness_audit": {
+      "canonical_json_sha256": "486d5d8842fd28c0faad3e2c033f022f426129a8baaf35342765bab459a6dea8",
+      "exists": true,
+      "path": "results/gate_c6r/merge_readiness.json",
+      "sha256": "215b4559f44796c13b7d402504ca63021b9912558cd4cc0ec3ca5f2bfc75bfbf",
+      "size_bytes": 54293
+    },
+    "package_consistency_audit": {
+      "canonical_json_sha256": "6d033710db5fb37d46ad10ad85213065720dbb1909952f4c096ade1bcc64a276",
+      "exists": true,
+      "path": "results/gate_c6r/package_consistency_audit.json",
+      "sha256": "6d7cd967bccb34a6a4875b7c3986f87b433b11c734fb2b60753be1adc517501f",
+      "size_bytes": 938
+    },
+    "package_index": {
+      "exists": true,
+      "path": "docs/research/ACCEPTANCE_RESEARCH_PACKAGE_INDEX.md",
+      "sha256": "1d0e1c47b66a97b6b16aead6b6cde5a7d1505c15b9df4b31ef60d357bafcab74",
+      "size_bytes": 972
+    },
+    "prohibited_data_audit": {
+      "canonical_json_sha256": "453a08513922e378d21a48c9e4112db43c760310677fb5b2da53e4aec56b717a",
+      "exists": true,
+      "path": "results/gate_c6r/prohibited_data_audit.json",
+      "sha256": "8df58393fb46f1628784e1f9c83a21f167cc239d3dd5df1cf165a409d6a6175a",
+      "size_bytes": 29915
+    },
+    "quality_gate": {
+      "canonical_json_sha256": "e9c1eab7a5e9567ecd427266f787e9a464f4512c529190a54f2e8c5b9c10abb3",
+      "exists": true,
+      "path": "results/gate_c6r/quality_gate_final.json",
+      "sha256": "c1c2922259c20fc47a021ced8307495037670180dee70da8c1d5a8b39e2b58cb",
+      "size_bytes": 639
+    },
+    "seal_enforcement_audit": {
+      "canonical_json_sha256": "015977231bd8565f98f53eccccc8b9a68cab224363cfd5a69b1a9b5e9b106cf5",
+      "exists": true,
+      "path": "results/gate_c6r/lineage_seal_enforcement.json",
+      "sha256": "73959b06e776ba1012247dc06c87ced8a8dbf6b7744d010aa0a6f2eebfe8509d",
+      "size_bytes": 542
+    }
+  },
+  "review_id": "USDJPY_ACCEPTANCE_RESEARCH_PACKAGE_REVIEW_V1",
+  "review_lock_hash": "9dbb963aeef70203653d7c2fe9f02de4cfc8be8aac2e0a908c34476228b930bf"
+}
