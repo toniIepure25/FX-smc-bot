@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-import pandas as pd
+import pandas as pd  # type: ignore[import-untyped]
 
 from fx_smc_bot.research.gate_c4_event_alpha import (
     cluster_bootstrap_ci,
