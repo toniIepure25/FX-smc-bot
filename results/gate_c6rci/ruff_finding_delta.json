@@ -1,0 +1,661 @@
+{
+  "ambiguous_count": 0,
+  "fixed_on_branch": [],
+  "fixed_on_branch_count": 0,
+  "head_count": 124,
+  "new_on_branch": [
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 58,
+        "row": 31
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 1,
+        "row": 7
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "proposed_remediation": "sort imports without changing imported names",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "IMPORT_ORDER_ONLY",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 15,
+        "row": 9
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`hashlib` imported but unused|ada1d9e0a360cda0fd1c8757d297aa74a4fc8d7193a69d3c28b43afc6950e9f9",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 8,
+        "row": 9
+      },
+      "message": "`hashlib` imported but unused",
+      "normalized_message": "`hashlib` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "import hashlib",
+      "source_line_fingerprint": "ada1d9e0a360cda0fd1c8757d297aa74a4fc8d7193a69d3c28b43afc6950e9f9"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 31,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`dataclasses.asdict` imported but unused|8d17440119cc8b2cd4ef37fef6fddb4c1715e232db9fe6cdb36eabfe95c8cfe6",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 25,
+        "row": 12
+      },
+      "message": "`dataclasses.asdict` imported but unused",
+      "normalized_message": "`dataclasses.asdict` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from dataclasses import asdict, dataclass, field",
+      "source_line_fingerprint": "8d17440119cc8b2cd4ef37fef6fddb4c1715e232db9fe6cdb36eabfe95c8cfe6"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 32,
+        "row": 15
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`typing.Literal` imported but unused|d617ea780138bae78c96ca5b97e998ad4a1abaccd5401dbaeedf3c665840ad27",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 25,
+        "row": 15
+      },
+      "message": "`typing.Literal` imported but unused",
+      "normalized_message": "`typing.Literal` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from typing import Any, Literal",
+      "source_line_fingerprint": "d617ea780138bae78c96ca5b97e998ad4a1abaccd5401dbaeedf3c665840ad27"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 18,
+        "row": 21
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`fx_smc_bot.config.PAIR_PIP_INFO` imported but unused|7c56cf5581fc0ba47ba83188449aea235a4c288a45b728cde320a27b8427ec3e",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 5,
+        "row": 21
+      },
+      "message": "`fx_smc_bot.config.PAIR_PIP_INFO` imported but unused",
+      "normalized_message": "`fx_smc_bot.config.PAIR_PIP_INFO` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "PAIR_PIP_INFO,",
+      "source_line_fingerprint": "7c56cf5581fc0ba47ba83188449aea235a4c288a45b728cde320a27b8427ec3e"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 22,
+        "row": 22
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`fx_smc_bot.config.TIMEFRAME_MINUTES` imported but unused|98b8e0d7fc95923b3de668f86c173bfb06a765a87f1497d8d19e21a72239d194",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 5,
+        "row": 22
+      },
+      "message": "`fx_smc_bot.config.TIMEFRAME_MINUTES` imported but unused",
+      "normalized_message": "`fx_smc_bot.config.TIMEFRAME_MINUTES` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "TIMEFRAME_MINUTES,",
+      "source_line_fingerprint": "98b8e0d7fc95923b3de668f86c173bfb06a765a87f1497d8d19e21a72239d194"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 58,
+        "row": 31
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`fx_smc_bot.domain.ClosedTrade` imported but unused|ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 47,
+        "row": 31
+      },
+      "message": "`fx_smc_bot.domain.ClosedTrade` imported but unused",
+      "normalized_message": "`fx_smc_bot.domain.ClosedTrade` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.domain import BacktestResult, ClosedTrade",
+      "source_line_fingerprint": "ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 103,
+        "row": 79
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|E501|Line too long (102 > 100)|9b0960ff203874a2656915dbb258a539271eb1b5c721cd69f5cc08a5a19fbf6d",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 79
+      },
+      "message": "Line too long (102 > 100)",
+      "normalized_message": "Line too long (102 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "\"profit_factor\": round(self.profit_factor, 4) if self.profit_factor is not None else None,",
+      "source_line_fingerprint": "9b0960ff203874a2656915dbb258a539271eb1b5c721cd69f5cc08a5a19fbf6d"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 103,
+        "row": 215
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|E501|Line too long (102 > 100)|231fa0624e9b1dbdbbfdf28e5524b0dffbc30883a8b8bb6479b450a2a1774d57",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 215
+      },
+      "message": "Line too long (102 > 100)",
+      "normalized_message": "Line too long (102 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "logger.info(\"Loading data from %s (exec_tf=%s, htf_tf=%s)\", data_dir, exec_tf.value, htf_tf.value)",
+      "source_line_fingerprint": "231fa0624e9b1dbdbbfdf28e5524b0dffbc30883a8b8bb6479b450a2a1774d57"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 104,
+        "row": 304
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|E501|Line too long (103 > 100)|aaa538d3b64aa63d140b5eb1a3ecf2b99c1aa4080168ec1e83aa918bc25aa01a",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 304
+      },
+      "message": "Line too long (103 > 100)",
+      "normalized_message": "Line too long (103 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "report[\"strategies\"][run.config.label] = {\"error\": \"insufficient data (<10 daily returns)\"}",
+      "source_line_fingerprint": "aaa538d3b64aa63d140b5eb1a3ecf2b99c1aa4080168ec1e83aa918bc25aa01a"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 13,
+        "row": 48
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/overfitting.py|B007|Loop control variable `rank` not used within loop body|ca02827888df9dd29cb32ff0511ed90a1ca21c63ab110efa22500955632af913",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 9,
+        "row": 48
+      },
+      "message": "Loop control variable `rank` not used within loop body",
+      "normalized_message": "Loop control variable `rank` not used within loop body",
+      "proposed_remediation": "rename unused loop variable or remove unused enumerate output",
+      "relative_path": "src/fx_smc_bot/research/overfitting.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "STYLE_REWRITE",
+      "rule_code": "B007",
+      "source_line": "for rank, (orig_idx, _) in enumerate(indexed):",
+      "source_line_fingerprint": "ca02827888df9dd29cb32ff0511ed90a1ca21c63ab110efa22500955632af913"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 27,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/placebos.py|F401|`typing.Literal` imported but unused|7020312c57cf927ec1e3bd64dd00e291f72a1410d6d54754defafb2a6f501e59",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 20,
+        "row": 12
+      },
+      "message": "`typing.Literal` imported but unused",
+      "normalized_message": "`typing.Literal` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from typing import Literal",
+      "source_line_fingerprint": "7020312c57cf927ec1e3bd64dd00e291f72a1410d6d54754defafb2a6f501e59"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 114,
+        "row": 60
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (113 > 100)|d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 60
+      },
+      "message": "Line too long (113 > 100)",
+      "normalized_message": "Line too long (113 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "ts = timestamps[bar_idx].astype(\"datetime64[us]\").astype(datetime) if bar_idx < len(timestamps) else None",
+      "source_line_fingerprint": "d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 114,
+        "row": 108
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (113 > 100)|d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 108
+      },
+      "message": "Line too long (113 > 100)",
+      "normalized_message": "Line too long (113 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "ts = timestamps[bar_idx].astype(\"datetime64[us]\").astype(datetime) if bar_idx < len(timestamps) else None",
+      "source_line_fingerprint": "d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 65,
+        "row": 129
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/placebos.py|B905|`zip()` without an explicit `strict=` parameter|7654125e43b9614a1a1ac26b61ed8a0c3ce8294ded51ee598d951b2215cffe71",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 30,
+        "row": 129
+      },
+      "message": "`zip()` without an explicit `strict=` parameter",
+      "normalized_message": "`zip()` without an explicit `strict=` parameter",
+      "proposed_remediation": "add strict=False to preserve truncating zip behavior",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "STYLE_REWRITE",
+      "rule_code": "B905",
+      "source_line": "for bar_idx, orig_dir in zip(signal_bars, signal_directions):",
+      "source_line_fingerprint": "7654125e43b9614a1a1ac26b61ed8a0c3ce8294ded51ee598d951b2215cffe71"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 114,
+        "row": 142
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (113 > 100)|d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 142
+      },
+      "message": "Line too long (113 > 100)",
+      "normalized_message": "Line too long (113 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "ts = timestamps[bar_idx].astype(\"datetime64[us]\").astype(datetime) if bar_idx < len(timestamps) else None",
+      "source_line_fingerprint": "d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 137,
+        "row": 200
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (136 > 100)|d2daf1a4263d42466376179fdf557db46a6dceb4c0509bb41b4bfa73d98668e2",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 200
+      },
+      "message": "Line too long (136 > 100)",
+      "normalized_message": "Line too long (136 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "AblationSpec(\"no_displacement\", \"Without displacement requirement\", {\"displacement_body_ratio\": 0.0, \"displacement_tr_ratio\": 0.0}),",
+      "source_line_fingerprint": "d2daf1a4263d42466376179fdf557db46a6dceb4c0509bb41b4bfa73d98668e2"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 132,
+        "row": 203
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (131 > 100)|e71e73d7a1b348df5e0a7c0d457e62164f5799c9c8630292d71be3ebe2bed49a",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 203
+      },
+      "message": "Line too long (131 > 100)",
+      "normalized_message": "Line too long (131 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "AblationSpec(\"no_liquidity_type\", \"Without liquidity classification\", {\"eligible_level_types\": [\"equal_highs\", \"equal_lows\"]}),",
+      "source_line_fingerprint": "e71e73d7a1b348df5e0a7c0d457e62164f5799c9c8630292d71be3ebe2bed49a"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 112,
+        "row": 205
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (111 > 100)|4b869b87679e0521452729992f9a6580ba212912485579fbe986539a3e24a231",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 205
+      },
+      "message": "Line too long (111 > 100)",
+      "normalized_message": "Line too long (111 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "AblationSpec(\"opposing_liq_target\", \"Target at opposing liquidity\", {\"target_mode\": \"opposing_liquidity\"}),",
+      "source_line_fingerprint": "4b869b87679e0521452729992f9a6580ba212912485579fbe986539a3e24a231"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 38,
+        "row": 17
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/prop_simulation.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "introducing_commit": "12f45b03dd48",
+      "introducing_commit_subject": "feat(research): add configurable prop challenge simulation",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 1,
+        "row": 9
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "proposed_remediation": "sort imports without changing imported names",
+      "relative_path": "src/fx_smc_bot/research/prop_simulation.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "IMPORT_ORDER_ONLY",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 10,
+        "row": 158
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/prop_simulation.py|B007|Loop control variable `i` not used within loop body|1697dbaf82ed45d9164e6d8c1d163437161bbb0be571d38c62e43e960a8085c3",
+      "introducing_commit": "12f45b03dd48",
+      "introducing_commit_subject": "feat(research): add configurable prop challenge simulation",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 9,
+        "row": 158
+      },
+      "message": "Loop control variable `i` not used within loop body",
+      "normalized_message": "Loop control variable `i` not used within loop body",
+      "proposed_remediation": "rename unused loop variable or remove unused enumerate output",
+      "relative_path": "src/fx_smc_bot/research/prop_simulation.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "STYLE_REWRITE",
+      "rule_code": "B007",
+      "source_line": "for i, pnl_pct in enumerate(daily_pnls):",
+      "source_line_fingerprint": "1697dbaf82ed45d9164e6d8c1d163437161bbb0be571d38c62e43e960a8085c3"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 41,
+        "row": 11
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|F401|`dataclasses.field` imported but unused|e98b1ef8c905ca7881ab778fdd7ac7001d0bb818527b22a1bc7321b3198135da",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 36,
+        "row": 11
+      },
+      "message": "`dataclasses.field` imported but unused",
+      "normalized_message": "`dataclasses.field` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from dataclasses import dataclass, field",
+      "source_line_fingerprint": "e98b1ef8c905ca7881ab778fdd7ac7001d0bb818527b22a1bc7321b3198135da"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 28,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|UP035|Import from `collections.abc` instead: `Sequence`|8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 1,
+        "row": 12
+      },
+      "message": "Import from `collections.abc` instead: `Sequence`",
+      "normalized_message": "Import from `collections.abc` instead: `Sequence`",
+      "proposed_remediation": "remove unused typing import or move to collections.abc if still needed",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "TYPE_ONLY_IMPORT",
+      "rule_code": "UP035",
+      "source_line": "from typing import Sequence",
+      "source_line_fingerprint": "8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 28,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|F401|`typing.Sequence` imported but unused|8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 20,
+        "row": 12
+      },
+      "message": "`typing.Sequence` imported but unused",
+      "normalized_message": "`typing.Sequence` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from typing import Sequence",
+      "source_line_fingerprint": "8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 123,
+        "row": 308
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|E501|Line too long (122 > 100)|e0a01bb8d23b9467013582d208511e83b287f2907e43f43d3672a890af65ba86",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 308
+      },
+      "message": "Line too long (122 > 100)",
+      "normalized_message": "Line too long (122 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "daily_sr = float(np.mean(daily_returns) / np.std(daily_returns, ddof=1)) if np.std(daily_returns, ddof=1) > 0 else 0.0",
+      "source_line_fingerprint": "e0a01bb8d23b9467013582d208511e83b287f2907e43f43d3672a890af65ba86"
+    }
+  ],
+  "new_on_branch_count": 25,
+  "status": "PASS",
+  "target_count": 99
+}
