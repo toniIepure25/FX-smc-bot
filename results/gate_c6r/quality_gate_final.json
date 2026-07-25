@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "documentation_quality_pass": true,
+    "holdout_remains_unopened": true,
+    "lineage_seal_enforcement_pass": true,
+    "merge_conflict_audit_pass": true,
+    "no_new_broad_static_debt_against_target": false,
+    "no_prohibited_data_committed": true,
+    "package_consistency_pass": true,
+    "remote_lineage_synchronized": true,
+    "reproducibility_manifest_pass": true,
+    "targeted_static_analysis_pass": true,
+    "worktree_hygiene_resolved": true
+  },
+  "created_at_utc": "2026-07-25T20:47:19.847298+00:00",
+  "final_decision": "BLOCKED_BY_CI_FAILURE",
+  "gate": "C6-R",
+  "status": "FAIL"
+}

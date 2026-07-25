@@ -1,0 +1,384 @@
+{
+  "checks": {
+    "all_hashes_match": true,
+    "all_paths_exist": true,
+    "claim_matrix_present": true,
+    "lineage_seal_present": true,
+    "manifest_hash": true,
+    "no_excluded_raw_dataset_reference": true
+  },
+  "created_at_utc": "2026-07-25T20:47:10.615471+00:00",
+  "entries": [
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "8724a300a52f41d22838e5954d9576462bc162da3eed249f00d54b48c72891e3",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "compact_result_artifacts",
+      "hash_matches": true,
+      "path": "results/gate_c5br/common_protocol_development_analysis.json",
+      "recomputed_sha256": "8724a300a52f41d22838e5954d9576462bc162da3eed249f00d54b48c72891e3"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "1eac30479519f114fe09510037487e18ebab0bde6183ec99558b86e8c0162aa0",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "compact_result_artifacts",
+      "hash_matches": true,
+      "path": "results/gate_c5br/development_validation_reproduction.json",
+      "recomputed_sha256": "1eac30479519f114fe09510037487e18ebab0bde6183ec99558b86e8c0162aa0"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "858a6b695c16b9cf0bc3b452e915ec4b912cdadf34b17c30518504335693a586",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "compact_result_artifacts",
+      "hash_matches": true,
+      "path": "results/gate_c5br/transport_standardization.json",
+      "recomputed_sha256": "858a6b695c16b9cf0bc3b452e915ec4b912cdadf34b17c30518504335693a586"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "68276d64df46d8e2f04c9ecc7db8d5b237fc7dfd031f0abbcbf2207042cf4f04",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "compact_result_artifacts",
+      "hash_matches": true,
+      "path": "results/gate_c5br/candidate_eligibility_trace.json",
+      "recomputed_sha256": "68276d64df46d8e2f04c9ecc7db8d5b237fc7dfd031f0abbcbf2207042cf4f04"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "11ec2ec20f9154d549a67163e3dd114c4be0984f982fa4d6e564657ff763722c",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "compact_result_artifacts",
+      "hash_matches": true,
+      "path": "results/gate_c6/final_result_reproduction.json",
+      "recomputed_sha256": "11ec2ec20f9154d549a67163e3dd114c4be0984f982fa4d6e564657ff763722c"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "a4a7836dc536a92fdcd2e165cfda0a1af12dd0e245318c4574189d9282bd6967",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "compact_result_artifacts",
+      "hash_matches": true,
+      "path": "results/gate_c6/inference_coherence_audit.json",
+      "recomputed_sha256": "a4a7836dc536a92fdcd2e165cfda0a1af12dd0e245318c4574189d9282bd6967"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "8193d7d2c137a0c21e5308b1b73d189a7a3a016c56bfb7c34828e8e89de0cf8a",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "compact_result_artifacts",
+      "hash_matches": true,
+      "path": "results/gate_c6/transport_weight_failure_audit.json",
+      "recomputed_sha256": "8193d7d2c137a0c21e5308b1b73d189a7a3a016c56bfb7c34828e8e89de0cf8a"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "c174ca71f98a4a6fd7c7bb6705d2a584217f873f636a3bbe846ffd996c6474bf",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "development_freeze",
+      "hash_matches": true,
+      "path": "docs/research/GATE_C3FCRSF_DATASET_FREEZE.md",
+      "recomputed_sha256": "c174ca71f98a4a6fd7c7bb6705d2a584217f873f636a3bbe846ffd996c6474bf"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "80803afeccaafca33f533352c07e02ea96d300a1ccc04f08529b5376e75d6949",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "development_freeze",
+      "hash_matches": true,
+      "path": "results/gate_c3fcrsf/development_dataset_freeze.json",
+      "recomputed_sha256": "80803afeccaafca33f533352c07e02ea96d300a1ccc04f08529b5376e75d6949"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "a95ec153d73150564529ca2720d570103b33507225af0218dd36be7fa53f01bc",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "event_configuration",
+      "hash_matches": true,
+      "path": "results/gate_c4b/new_hypothesis_specification.json",
+      "recomputed_sha256": "a95ec153d73150564529ca2720d570103b33507225af0218dd36be7fa53f01bc"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "event_configuration",
+      "hash_matches": true,
+      "path": "results/gate_c5ar/scientific_code_integrity.json",
+      "recomputed_sha256": "d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23"
+    },
+    {
+      "artifact_type": ".py",
+      "declared_sha256": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "event_detector",
+      "hash_matches": true,
+      "path": "src/fx_smc_bot/research/gate_c4_event_alpha.py",
+      "recomputed_sha256": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644"
+    },
+    {
+      "artifact_type": ".py",
+      "declared_sha256": "0fe147f34181ceeb60509000edbe4e6374c0fa8ebdf73dc0036f21a35f7332bc",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "event_detector",
+      "hash_matches": true,
+      "path": "src/fx_smc_bot/research/gate_c4b_mechanism.py",
+      "recomputed_sha256": "0fe147f34181ceeb60509000edbe4e6374c0fa8ebdf73dc0036f21a35f7332bc"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "0734425a9582c7bc45dd3699d09c0739d0c6eee57b0adff976bd0165e2c9e04a",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "final_claim_matrix",
+      "hash_matches": true,
+      "path": "results/gate_c6/final_claim_matrix.json",
+      "recomputed_sha256": "0734425a9582c7bc45dd3699d09c0739d0c6eee57b0adff976bd0165e2c9e04a"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "de8819e843e4ac571635711491dde6d402e79461abcb8cdb28157d85a7f77d7d",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "final_claim_matrix",
+      "hash_matches": true,
+      "path": "docs/research/ACCEPTANCE_FINAL_CLAIM_MATRIX.md",
+      "recomputed_sha256": "de8819e843e4ac571635711491dde6d402e79461abcb8cdb28157d85a7f77d7d"
+    },
+    {
+      "artifact_type": ".py",
+      "declared_sha256": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "inference_implementations",
+      "hash_matches": true,
+      "path": "src/fx_smc_bot/research/gate_c4_event_alpha.py",
+      "recomputed_sha256": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644"
+    },
+    {
+      "artifact_type": ".py",
+      "declared_sha256": "4ce9a29aba2f71ef87605431faee81f1b9d0651d60b1a83b1c59bb282e7a8ce2",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "inference_implementations",
+      "hash_matches": true,
+      "path": "src/fx_smc_bot/research/gate_c5br.py",
+      "recomputed_sha256": "4ce9a29aba2f71ef87605431faee81f1b9d0651d60b1a83b1c59bb282e7a8ce2"
+    },
+    {
+      "artifact_type": ".py",
+      "declared_sha256": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "matching_implementations",
+      "hash_matches": true,
+      "path": "src/fx_smc_bot/research/gate_c5a_amendment.py",
+      "recomputed_sha256": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55"
+    },
+    {
+      "artifact_type": ".py",
+      "declared_sha256": "4ce9a29aba2f71ef87605431faee81f1b9d0651d60b1a83b1c59bb282e7a8ce2",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "matching_implementations",
+      "hash_matches": true,
+      "path": "src/fx_smc_bot/research/gate_c5br.py",
+      "recomputed_sha256": "4ce9a29aba2f71ef87605431faee81f1b9d0651d60b1a83b1c59bb282e7a8ce2"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "ac25eacba71982893ddf951060da9f0c20cadf259360c99d225dd419a0aa01c0",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "methods_and_results_reports",
+      "hash_matches": true,
+      "path": "docs/research/ACCEPTANCE_RESEARCH_METHODS.md",
+      "recomputed_sha256": "ac25eacba71982893ddf951060da9f0c20cadf259360c99d225dd419a0aa01c0"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "b8e427b6b0a3c9273abc84da04b3f894c1e6ac5155b2ccfb2edda788d9ea0882",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "methods_and_results_reports",
+      "hash_matches": true,
+      "path": "docs/research/ACCEPTANCE_RESEARCH_RESULTS.md",
+      "recomputed_sha256": "b8e427b6b0a3c9273abc84da04b3f894c1e6ac5155b2ccfb2edda788d9ea0882"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "56cd0d57b8f74392382ce10f8a1ca7abeaceaeea3fad024d605ad1997ed6ef20",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "methods_and_results_reports",
+      "hash_matches": true,
+      "path": "docs/research/ACCEPTANCE_RESEARCH_ABSTRACT.md",
+      "recomputed_sha256": "56cd0d57b8f74392382ce10f8a1ca7abeaceaeea3fad024d605ad1997ed6ef20"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "613ea1b130b701db63ce345f16bfa4d40de7ca573da998fe6bce1fc93db4ff83",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "methods_and_results_reports",
+      "hash_matches": true,
+      "path": "docs/research/ACCEPTANCE_LIMITATIONS.md",
+      "recomputed_sha256": "613ea1b130b701db63ce345f16bfa4d40de7ca573da998fe6bce1fc93db4ff83"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "223eee6087d68a68a363b920390b128c136ce5a17f83b67e059d8a39ad4dae40",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "placebo_implementations",
+      "hash_matches": true,
+      "path": "results/gate_c5a/amended_development_replay.json",
+      "recomputed_sha256": "223eee6087d68a68a363b920390b128c136ce5a17f83b67e059d8a39ad4dae40"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "placebo_implementations",
+      "hash_matches": true,
+      "path": "results/gate_c5ar/validation_placebo.json",
+      "recomputed_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "72147c8d4161d67075feeefa408e331fbae008d02cbfdee9865b6564d815c19b",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "preregistrations",
+      "hash_matches": true,
+      "path": "docs/research/GATE_C4_PREREGISTRATION.md",
+      "recomputed_sha256": "72147c8d4161d67075feeefa408e331fbae008d02cbfdee9865b6564d815c19b"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "d4793da5fb02ed03863e8d421131e37ae49f1323ef740079ec3b2fef5c1b661a",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "preregistrations",
+      "hash_matches": true,
+      "path": "docs/research/GATE_C4B_MECHANISM_PREREGISTRATION.md",
+      "recomputed_sha256": "d4793da5fb02ed03863e8d421131e37ae49f1323ef740079ec3b2fef5c1b661a"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "42379016a7832eddcaa4b42d15e8b251b9a7a06315ece223684708c7be5cc17b",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "preregistrations",
+      "hash_matches": true,
+      "path": "docs/research/GATE_C5A_PROSPECTIVE_HANDOFF_AMENDMENT.md",
+      "recomputed_sha256": "42379016a7832eddcaa4b42d15e8b251b9a7a06315ece223684708c7be5cc17b"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "bd98902b677da011da9cc4d6fc561c1d5646bda4cd70a30ae5bb78d3aa1e7aee",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "preregistrations",
+      "hash_matches": true,
+      "path": "docs/research/GATE_C5BR_MECHANISM_TRANSITION_PREREGISTRATION.md",
+      "recomputed_sha256": "bd98902b677da011da9cc4d6fc561c1d5646bda4cd70a30ae5bb78d3aa1e7aee"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "55b3c9282dcbd5777db4fae38cb714a108b35f5255de4b8921a7d8173a79d669",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "reconciliation_overlays",
+      "hash_matches": true,
+      "path": "results/gate_c5arir/artifact_reconciliation_overlay.json",
+      "recomputed_sha256": "55b3c9282dcbd5777db4fae38cb714a108b35f5255de4b8921a7d8173a79d669"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "fae78cd57abfdaa29f3c69e5d0062afeaccd7d3a5010e0e2326921201a0c4b0b",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "reconciliation_overlays",
+      "hash_matches": true,
+      "path": "results/gate_c5arir/c5b_resumption_handoff.json",
+      "recomputed_sha256": "fae78cd57abfdaa29f3c69e5d0062afeaccd7d3a5010e0e2326921201a0c4b0b"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "da30e8eb5e5f71a398d13da502118be6ccd23122be779b51b6c9b4e1cb718280",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "reconciliation_overlays",
+      "hash_matches": true,
+      "path": "results/gate_c5br/reconciliation_integrity.json",
+      "recomputed_sha256": "da30e8eb5e5f71a398d13da502118be6ccd23122be779b51b6c9b4e1cb718280"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "6186514b65331fb3116e7b7ebef01f6e28d81a118a254db0b1cd84a73bd2bde8",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "research_stop_record",
+      "hash_matches": true,
+      "path": "results/gate_c5br/research_stop_record.json",
+      "recomputed_sha256": "6186514b65331fb3116e7b7ebef01f6e28d81a118a254db0b1cd84a73bd2bde8"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "row_level_artifact_manifests",
+      "hash_matches": true,
+      "path": "results/gate_c5ar/post_validation_lock.json",
+      "recomputed_sha256": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "665f344fd29cbff81e9eaa6f197a69c0c42342a8d85b2325f889974e9293dffa",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "row_level_artifact_manifests",
+      "hash_matches": true,
+      "path": "results/gate_c5br/c5ar_artifact_integrity.json",
+      "recomputed_sha256": "665f344fd29cbff81e9eaa6f197a69c0c42342a8d85b2325f889974e9293dffa"
+    },
+    {
+      "artifact_type": ".md",
+      "declared_sha256": "4cc900b5ca16e1cfa5bb69b87e4022096655fdb7a80368db5f29662213188717",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "validation_freeze",
+      "hash_matches": true,
+      "path": "docs/research/GATE_C5ADQR_VALIDATION_DATASET_FREEZE.md",
+      "recomputed_sha256": "4cc900b5ca16e1cfa5bb69b87e4022096655fdb7a80368db5f29662213188717"
+    },
+    {
+      "artifact_type": ".json",
+      "declared_sha256": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866",
+      "excluded_raw_dataset_reference": false,
+      "exists": true,
+      "group": "validation_freeze",
+      "hash_matches": true,
+      "path": "results/gate_c5adqr/validation_dataset_freeze.json",
+      "recomputed_sha256": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866"
+    }
+  ],
+  "status": "PASS"
+}

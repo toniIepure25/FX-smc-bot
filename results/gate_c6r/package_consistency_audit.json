@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "claim_statuses": true,
+    "development_control": true,
+    "development_differential": true,
+    "development_event": true,
+    "development_p_ci": true,
+    "final_c6_decision": true,
+    "manifest_hash": true,
+    "seal_identity": true,
+    "transport_effects": true,
+    "transport_threshold_result": true,
+    "validation_absolute_p_ci": true,
+    "validation_control": true,
+    "validation_differential": true,
+    "validation_event": true,
+    "validation_relative_p_ci": true
+  },
+  "created_at_utc": "2026-07-25T20:47:10.596605+00:00",
+  "final_gate_c6_decision": "ACCEPTANCE_RESEARCH_PROGRAM_CLOSED_WITH_MIXED_NONTRANSPORTABLE_RESULT",
+  "manifest_hash": "9b3d806fec2a5730c30854b82cdf57f1f17b8cf185f6a6826658e3bf394808bb",
+  "seal_hash": "00581da471f6c7c7d06d10d59c2b58fd03fab7a654bf4dac792451a829e4b1e4",
+  "seal_id": "USDJPY_ACCEPTANCE_RESEARCH_LINEAGE_V1",
+  "status": "PASS"
+}

@@ -1,0 +1,14 @@
+{
+  "created_at_utc": "2026-07-25T20:47:19.837148+00:00",
+  "holdout_controls_constructed": false,
+  "holdout_event_counts_computed": false,
+  "holdout_events_detected": false,
+  "holdout_files_enumerated_for_content": false,
+  "holdout_market_data_loaded": false,
+  "holdout_outcomes_computed": false,
+  "holdout_results_reported": false,
+  "holdout_structural_data_inspected": false,
+  "source": "results/gate_c6/holdout_integrity.json",
+  "status": "PASS",
+  "violations": []
+}

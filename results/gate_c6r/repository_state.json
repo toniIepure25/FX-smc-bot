@@ -1,0 +1,50 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "created_at_utc": "2026-07-25T20:47:06.957995+00:00",
+  "diff": "diff --git a/.gitignore b/.gitignore\nindex 0b2a686..1960021 100644\n--- a/.gitignore\n+++ b/.gitignore\n@@ -37,6 +37,7 @@ env/\n \n # --- Test / coverage / typecheck caches ---\n .pytest_cache/\n+.pytest_tmp_*/\n .mypy_cache/\n .ruff_cache/\n .coverage\n@@ -88,4 +89,4 @@ logs/\n /tools/dukascopy-node/smoke_test/\n /tools/dukascopy-node/test_out/\n /tools/dukascopy-node/output/\n-/tools/dukascopy-node/_tmp_*\n\\ No newline at end of file\n+/tools/dukascopy-node/_tmp_*\n",
+  "diff_check": "",
+  "expected_branch": "research/rigorous-intraday-smc-validation",
+  "expected_start_or_descendant": "6c0586f8f25bc5eec1bc355f6dfd8b0630c2161f",
+  "gate": "C6-R",
+  "head": "6c0586f8f25bc5eec1bc355f6dfd8b0630c2161f",
+  "is_descendant_of_expected_start": true,
+  "log_oneline_decorate_25": [
+    "6c0586f (HEAD -> research/rigorous-intraday-smc-validation, origin/research/rigorous-intraday-smc-validation) docs: issue Gate C6 final decision",
+    "4e7578e research: permanently seal USDJPY Acceptance lineage",
+    "00acce4 docs: publish Acceptance mixed-results research package",
+    "9bf37dc research: audit final Acceptance inference and transportability",
+    "e8d4a58 research: assemble Acceptance research gate ledger",
+    "c3a872d fix(research): keep C5-B-R helper typed without pandas stubs",
+    "08fcff2 docs: issue Gate C5-B-R final decision",
+    "a5cc01c research: execute reconciled Acceptance mechanism transition audit",
+    "0f585dd feat(research): implement reconciled development-validation transport diagnostics",
+    "61aa358 research: preregister reconciled C5-B mechanism transition audit",
+    "1b71ea4 docs: issue C5-A-R-IR final decision",
+    "fc7a704 fix(research): reconcile C5-A-R artifact lock provenance",
+    "d0cb3d6 test(research): reproduce C5-A-R lock mismatch",
+    "ee4f433 research: audit C5-A-R artifact lineage",
+    "1f59fb2 research: block C5-B on artifact integrity",
+    "abd879c research: reconcile C5-A-R artifact integrity",
+    "4cd388b research: execute frozen USDJPY C5-A validation",
+    "a8b8d4b research(data): certify USDJPY validation dataset",
+    "9845c75 data: freeze C5-A Dukascopy provider fallback protocol",
+    "edd2de7 fix(data): prevent false zero-row acquisition certification",
+    "92e992d docs: issue Gate C5-A final decision",
+    "c11bd40 research: lock post-validation hypothesis lineage",
+    "59084c4 feat(data): acquire and certify USDJPY validation dataset",
+    "78177a7 research: record C5-A pre-unblinding freeze",
+    "0d054c2 research: freeze amended C5 validation execution protocol"
+  ],
+  "remote_v": [
+    "origin\thttps://github.com/toniIepure25/FX-smc-bot.git (fetch)",
+    "origin\thttps://github.com/toniIepure25/FX-smc-bot.git (push)"
+  ],
+  "status_short": " M .gitignore\n?? docs/research/ACCEPTANCE_RESEARCH_PACKAGE_INDEX.md\n?? docs/research/GATE_C6R_COMMIT_LINEAGE_AUDIT.md\n?? docs/research/GATE_C6R_DATA_SAFETY_AUDIT.md\n?? docs/research/GATE_C6R_FINAL_DECISION_MEMO.md\n?? docs/research/GATE_C6R_FINAL_REVIEW.md\n?? docs/research/GATE_C6R_PACKAGE_REVIEW.md\n?? scripts/run_gate_c6r.py\n?? src/fx_smc_bot/research/gate_c6r.py\n?? tests/test_gate_c6r/\n",
+  "status_short_branch": "## research/rigorous-intraday-smc-validation...origin/research/rigorous-intraday-smc-validation\n M .gitignore\n?? docs/research/ACCEPTANCE_RESEARCH_PACKAGE_INDEX.md\n?? docs/research/GATE_C6R_COMMIT_LINEAGE_AUDIT.md\n?? docs/research/GATE_C6R_DATA_SAFETY_AUDIT.md\n?? docs/research/GATE_C6R_FINAL_DECISION_MEMO.md\n?? docs/research/GATE_C6R_FINAL_REVIEW.md\n?? docs/research/GATE_C6R_PACKAGE_REVIEW.md\n?? scripts/run_gate_c6r.py\n?? src/fx_smc_bot/research/gate_c6r.py\n?? tests/test_gate_c6r/\n",
+  "temp_directory": {
+    "exists_after_cleanup": false,
+    "gitignore_rule_present": true,
+    "ignored_by_git": false,
+    "path": ".pytest_tmp_gate_c6"
+  }
+}

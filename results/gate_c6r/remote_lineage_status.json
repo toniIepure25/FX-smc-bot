@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-07-25T20:47:07.275258+00:00",
+  "local_head": "6c0586f8f25bc5eec1bc355f6dfd8b0630c2161f",
+  "remote_ahead_left_local_ahead_right": "0\t0",
+  "remote_branch": "origin/research/rigorous-intraday-smc-validation",
+  "remote_contains_c6_start": true,
+  "remote_contains_local_head_at_phase0": true,
+  "remote_head": "6c0586f8f25bc5eec1bc355f6dfd8b0630c2161f",
+  "remote_lineage_synchronized": true,
+  "remote_log": [
+    "6c0586f (HEAD -> research/rigorous-intraday-smc-validation, origin/research/rigorous-intraday-smc-validation) docs: issue Gate C6 final decision",
+    "4e7578e research: permanently seal USDJPY Acceptance lineage",
+    "00acce4 docs: publish Acceptance mixed-results research package",
+    "9bf37dc research: audit final Acceptance inference and transportability",
+    "e8d4a58 research: assemble Acceptance research gate ledger",
+    "c3a872d fix(research): keep C5-B-R helper typed without pandas stubs",
+    "08fcff2 docs: issue Gate C5-B-R final decision",
+    "a5cc01c research: execute reconciled Acceptance mechanism transition audit"
+  ],
+  "status": "PASS"
+}
