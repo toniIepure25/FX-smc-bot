@@ -113,7 +113,9 @@ def test_raw_tick_and_canonical_payloads_are_rejected() -> None:
     assert classify_content(Path("data/raw/EURUSD/sample.bi5"), b"\x00\x01").classification == (
         "RAW_MARKET_DATA"
     )
-    assert classify_content(Path("data/canonical/USDJPY/events.parquet"), b"PAR1").classification == (
+    canonical = classify_content(Path("data/canonical/USDJPY/events.parquet"), b"PAR1")
+
+    assert canonical.classification == (
         "CANONICAL_MARKET_DATA"
     )
 
@@ -121,12 +123,20 @@ def test_raw_tick_and_canonical_payloads_are_rejected() -> None:
 def test_row_level_json_and_jsonl_payloads_are_rejected() -> None:
     ohlc_rows = {
         "rows": [
-            {"timestamp": "2020-01-01T00:00:00Z", "open": 1.0, "high": 1.1, "low": 0.9, "close": 1.0}
+            {
+                "timestamp": "2020-01-01T00:00:00Z",
+                "open": 1.0,
+                "high": 1.1,
+                "low": 0.9,
+                "close": 1.0,
+            }
         ]
     }
     event_line = b'{"event_id": 1, "timestamp": "t", "outcome": 2.0, "markout": 1.5}\n'
 
-    assert classify_content(Path("results/x/ohlc.json"), json.dumps(ohlc_rows).encode()).classification == (
+    ohlc_result = classify_content(Path("results/x/ohlc.json"), json.dumps(ohlc_rows).encode())
+
+    assert ohlc_result.classification == (
         "ROW_LEVEL_EVENT_DATA"
     )
     assert classify_content(Path("results/x/events.jsonl"), event_line).classification == (
@@ -156,6 +166,11 @@ def test_credentials_large_binary_and_ambiguous_json_fail_closed() -> None:
     assert classify_content(Path("results/blob.bin"), large_binary).classification == (
         "UNEXPLAINED_BINARY"
     )
-    assert classify_content(Path("results/ambiguous.json"), json.dumps(ambiguous_json).encode()).classification == (
+    ambiguous = classify_content(
+        Path("results/ambiguous.json"),
+        json.dumps(ambiguous_json).encode(),
+    )
+
+    assert ambiguous.classification == (
         "AMBIGUOUS"
     )

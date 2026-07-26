@@ -46,6 +46,7 @@ from fx_smc_bot.research.gate_c6rci import (  # noqa: E402
     validate_review_supersession,
     write_json,
 )
+from fx_smc_bot.research.gate_c6rcipda import corrected_prohibited_data_audit  # noqa: E402
 
 RESULT_DIR = REPO / "results" / "gate_c6rci"
 DOC_DIR = REPO / "docs" / "research"
@@ -250,18 +251,18 @@ def build_prohibited_data_audit() -> dict[str, Any]:
         for line in git(["diff", "--name-only", f"{TARGET_BRANCH}...HEAD"]).splitlines()
         if line
     ]
-    blocked_patterns = ["data/raw/", "data/canonical/", ".parquet", ".bi5", "holdout"]
-    prohibited = [
-        path
-        for path in changed
-        if any(pattern in path.replace("\\", "/").lower() for pattern in blocked_patterns)
-    ]
+    corrected = corrected_prohibited_data_audit(REPO, changed)
     return {
         "created_at_utc": now_utc(),
-        "changed_paths": changed,
-        "prohibited_paths": prohibited,
+        "changed_paths": corrected["changed_paths"],
+        "reviewed_safe_control_paths": corrected["reviewed_safe_control_paths"],
+        "prohibited_payload_paths": corrected["prohibited_payload_paths"],
+        "ambiguous_paths": corrected["ambiguous_paths"],
+        "prohibited_paths": [
+            record["path"] for record in corrected["prohibited_payload_paths"]
+        ],
         "holdout_content_not_enumerated": True,
-        "status": "PASS" if not prohibited else "FAIL",
+        "status": corrected["status"],
     }
 
 
