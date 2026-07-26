@@ -1,0 +1,78 @@
+{
+  "created_at_utc": "2026-07-26T10:26:57.200868+00:00",
+  "paths": [
+    {
+      "blame_line_count": 605,
+      "blame_returncode": 0,
+      "log_follow": [
+        "f03810e87763bdb519d84fa94347b3c2f2fdd907 2026-07-26T00:06:40+03:00 fix(research): report C6-R safety and merge audit accurately",
+        "59ff3775e8726746abbc63e5f13276a0fee82f5f 2026-07-26T00:02:12+03:00 research: audit Acceptance package merge readiness"
+      ],
+      "path": "results/gate_c6r/prohibited_data_audit.json"
+    },
+    {
+      "blame_line_count": 631,
+      "blame_returncode": 0,
+      "log_follow": [
+        "a4dfdbd9fd8330c3ff9a908bb0d9278756c8c0fa 2026-07-26T01:24:17+03:00 docs: refresh Gate C6-R-CI final certification",
+        "aa4675fdd6a14c9e5498fa24440dd5d490fa0c7e 2026-07-26T01:23:31+03:00 fix(ci): make C6-R-CI mypy typed",
+        "4aa336692cc24dcadeeed9bc8314a44ec29ed039 2026-07-26T01:22:04+03:00 docs: issue Gate C6-R-CI final decision",
+        "e21b1bfc11a2a76edddf3d758f3efce26d52fc4e 2026-07-26T01:20:36+03:00 research: rerun Acceptance package merge certification",
+        "f03810e87763bdb519d84fa94347b3c2f2fdd907 2026-07-26T00:06:40+03:00 fix(research): report C6-R safety and merge audit accurately",
+        "59ff3775e8726746abbc63e5f13276a0fee82f5f 2026-07-26T00:02:12+03:00 research: audit Acceptance package merge readiness"
+      ],
+      "path": "results/gate_c6rci/prohibited_data_audit.json"
+    },
+    {
+      "blame_line_count": 144,
+      "blame_returncode": 0,
+      "log_follow": [
+        "f83723e267cf36e05760b641d2f0b311bf99af9b 2026-07-26T00:01:30+03:00 test(research): enforce sealed Acceptance lineage"
+      ],
+      "path": "src/fx_smc_bot/research/gate_c6r.py"
+    },
+    {
+      "blame_line_count": 278,
+      "blame_returncode": 0,
+      "log_follow": [
+        "e21b1bfc11a2a76edddf3d758f3efce26d52fc4e 2026-07-26T01:20:36+03:00 research: rerun Acceptance package merge certification"
+      ],
+      "path": "src/fx_smc_bot/research/gate_c6rci.py"
+    },
+    {
+      "blame_line_count": 810,
+      "blame_returncode": 0,
+      "log_follow": [
+        "f03810e87763bdb519d84fa94347b3c2f2fdd907 2026-07-26T00:06:40+03:00 fix(research): report C6-R safety and merge audit accurately",
+        "59ff3775e8726746abbc63e5f13276a0fee82f5f 2026-07-26T00:02:12+03:00 research: audit Acceptance package merge readiness"
+      ],
+      "path": "scripts/run_gate_c6r.py"
+    },
+    {
+      "blame_line_count": 420,
+      "blame_returncode": 0,
+      "log_follow": [
+        "aa4675fdd6a14c9e5498fa24440dd5d490fa0c7e 2026-07-26T01:23:31+03:00 fix(ci): make C6-R-CI mypy typed",
+        "e21b1bfc11a2a76edddf3d758f3efce26d52fc4e 2026-07-26T01:20:36+03:00 research: rerun Acceptance package merge certification"
+      ],
+      "path": "scripts/run_gate_c6rci.py"
+    },
+    {
+      "blame_line_count": 85,
+      "blame_returncode": 0,
+      "log_follow": [
+        "f83723e267cf36e05760b641d2f0b311bf99af9b 2026-07-26T00:01:30+03:00 test(research): enforce sealed Acceptance lineage"
+      ],
+      "path": "tests/test_gate_c6r/test_review_guards.py"
+    },
+    {
+      "blame_line_count": 151,
+      "blame_returncode": 0,
+      "log_follow": [
+        "028128b56b0e15744921f9d9e55f262a117a222c 2026-07-26T01:20:51+03:00 test(research): certify nonsemantic lint remediation"
+      ],
+      "path": "tests/test_gate_c6rci/test_ci_certification.py"
+    }
+  ],
+  "status": "PASS"
+}

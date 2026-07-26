@@ -1,0 +1,52 @@
+{
+  "allowed_classifier_changes": [
+    "add content-role classifier",
+    "separate changed_paths from prohibited_payload_paths",
+    "allow verified policy docs, compact metadata, access-control code/tests",
+    "fail closed on ambiguity"
+  ],
+  "created_at_utc": "2026-07-26T10:26:57.200868+00:00",
+  "final_pass_fail_rule": "PASS only when prohibited_payload_paths and ambiguous_paths are empty and independent audit passes",
+  "holdout_prohibition": "Do not enumerate or parse any actual holdout market-data storage.",
+  "original_artifact_preservation_rule": "results/gate_c6rci/prohibited_data_audit.json must remain unchanged",
+  "prohibited_classifier_changes": [
+    "blanket allow docs/results/json/holdout paths",
+    "weaken raw/canonical/row-level/credential/cache detection",
+    "overwrite historical C6-R-CI FAIL artifact"
+  ],
+  "prohibited_payload_categories": [
+    "RAW_MARKET_DATA",
+    "CANONICAL_MARKET_DATA",
+    "ROW_LEVEL_EVENT_DATA",
+    "ROW_LEVEL_CONTROL_DATA",
+    "HOLDOUT_PAYLOAD",
+    "CREDENTIAL_OR_SECRET",
+    "GENERATED_CACHE",
+    "UNEXPLAINED_BINARY",
+    "AMBIGUOUS"
+  ],
+  "regression_fixtures": [
+    "safe holdout markdown",
+    "safe holdout_integrity json",
+    "safe holdout access python",
+    "safe pre_holdout metadata",
+    "raw tick fixture",
+    "parquet fixture name",
+    "ohlc row-array json",
+    "jsonl event rows",
+    "credential env",
+    "large binary",
+    "ambiguous json"
+  ],
+  "safe_artifact_categories": [
+    "POLICY_DOCUMENTATION",
+    "DECISION_DOCUMENTATION",
+    "INTEGRITY_METADATA",
+    "FREEZE_OR_PROVENANCE_METADATA",
+    "DATA_QUALITY_SUMMARY",
+    "ACCESS_CONTROL_CODE",
+    "ACCESS_CONTROL_TEST",
+    "RESEARCH_RESULT_SUMMARY"
+  ],
+  "status": "FROZEN"
+}
