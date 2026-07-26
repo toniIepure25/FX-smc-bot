@@ -1,7 +1,7 @@
 # Gate C6-R-CI-PDA Corrected Data Safety Audit
 
 Status: `PASS`
-Reviewed safe/control paths: `618`
+Reviewed safe/control paths: `637`
 Prohibited payload paths: `0`
 Ambiguous paths: `0`
 

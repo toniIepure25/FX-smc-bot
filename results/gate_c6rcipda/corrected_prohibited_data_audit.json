@@ -139,11 +139,15 @@
     "docs/research/GATE_C5B_FINAL_DECISION_MEMO.md",
     "docs/research/GATE_C5_FINAL_DECISION_MEMO.md",
     "docs/research/GATE_C5_VALIDATION_DECISION_MATRIX.md",
+    "docs/research/GATE_C6RCIPDA_C7_RESUMPTION_HANDOFF.md",
     "docs/research/GATE_C6RCIPDA_CLASSIFIER_FORENSICS.md",
+    "docs/research/GATE_C6RCIPDA_CORRECTED_DATA_SAFETY_AUDIT.md",
     "docs/research/GATE_C6RCIPDA_CORRECTION_PLAN.md",
+    "docs/research/GATE_C6RCIPDA_FINAL_DECISION_MEMO.md",
     "docs/research/GATE_C6RCIPDA_FLAGGED_PATH_REVIEW.md",
     "docs/research/GATE_C6RCIPDA_INDEPENDENT_DATA_SAFETY_AUDIT.md",
     "docs/research/GATE_C6RCIPDA_ORIGINAL_FAILURE_REPRODUCTION.md",
+    "docs/research/GATE_C6RCIPDA_RECONCILIATION_REPORT.md",
     "docs/research/GATE_C6RCIPDA_ROOT_CAUSE.md",
     "docs/research/GATE_C6RCI_FINAL_DECISION_MEMO.md",
     "docs/research/GATE_C6RCI_FINAL_REVIEW.md",
@@ -468,14 +472,28 @@
     "results/gate_c6rci/semantic_equivalence_audit.json",
     "results/gate_c6rci/static_analysis_delta_final.json",
     "results/gate_c6rcipda/audit_generation_history.json",
+    "results/gate_c6rcipda/c7_resumption_handoff.json",
     "results/gate_c6rcipda/classifier_provenance.json",
+    "results/gate_c6rcipda/corrected_prohibited_data_audit.json",
     "results/gate_c6rcipda/correction_plan.json",
+    "results/gate_c6rcipda/documentation_quality_audit.json",
     "results/gate_c6rcipda/flagged_path_classification.json",
+    "results/gate_c6rcipda/holdout_integrity.json",
     "results/gate_c6rcipda/independent_prohibited_data_audit.json",
+    "results/gate_c6rcipda/lineage_seal_enforcement.json",
+    "results/gate_c6rcipda/merge_conflict_audit.json",
     "results/gate_c6rcipda/original_failure_reproduction.json",
+    "results/gate_c6rcipda/package_consistency_audit.json",
     "results/gate_c6rcipda/pre_forensic_integrity.json",
+    "results/gate_c6rcipda/prohibited_data_audit_reconciliation_overlay.json",
+    "results/gate_c6rcipda/quality_gate_final.json",
     "results/gate_c6rcipda/repository_state.json",
+    "results/gate_c6rcipda/reproducibility_manifest_audit.json",
     "results/gate_c6rcipda/root_cause_analysis.json",
+    "results/gate_c6rcipda/ruff_head_after.json",
+    "results/gate_c6rcipda/ruff_target_baseline.json",
+    "results/gate_c6rcipda/scientific_immutability_audit.json",
+    "results/gate_c6rcipda/static_analysis_delta.json",
     "results/pre_holdout/data_quality/data_quality.json",
     "results/pre_holdout/research_freeze.json",
     "scripts/_benchmark_bulk.py",
@@ -503,6 +521,7 @@
     "scripts/run_gate_c6.py",
     "scripts/run_gate_c6r.py",
     "scripts/run_gate_c6rci.py",
+    "scripts/run_gate_c6rcipda.py",
     "scripts/run_intraday_smc_campaign.py",
     "scripts/run_persistent_acquisition.py",
     "scripts/run_prop_monte_carlo.py",
@@ -620,7 +639,7 @@
     "tools/dukascopy-node/package.json",
     "tools/dukascopy-node/test_acquire.mjs"
   ],
-  "created_at_utc": "2026-07-26T10:42:52.348338+00:00",
+  "created_at_utc": "2026-07-26T10:44:45.819742+00:00",
   "holdout_content_not_enumerated": true,
   "prohibited_payload_paths": [],
   "reviewed_safe_control_paths": [
@@ -2566,6 +2585,20 @@
       "is_ambiguous": false,
       "is_prohibited": false,
       "json_shape": null,
+      "path": "docs/research/GATE_C6RCIPDA_C7_RESUMPTION_HANDOFF.md",
+      "raw_sha256": "076fa03cf33af4eb4a46ec30d14f1214cf6dae315f2e2b151a1d2f0a0fbef9c1",
+      "size_bytes": 258
+    },
+    {
+      "classification": "DECISION_DOCUMENTATION",
+      "details": {
+        "embedded_large_table_or_payload": false
+      },
+      "evidence": "Markdown reviewed as documentation; no encoded payload signal.",
+      "extension": ".md",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": null,
       "path": "docs/research/GATE_C6RCIPDA_CLASSIFIER_FORENSICS.md",
       "raw_sha256": "50f33186fd14c5e7531e588e4ce69b32759b0b71ce8590639f39b4aa8e4c67cd",
       "size_bytes": 593
@@ -2580,9 +2613,37 @@
       "is_ambiguous": false,
       "is_prohibited": false,
       "json_shape": null,
+      "path": "docs/research/GATE_C6RCIPDA_CORRECTED_DATA_SAFETY_AUDIT.md",
+      "raw_sha256": "ba88ec3edd52dc8cbe9c5091e513a80795b05a7290bb955b569abd015ee2b808",
+      "size_bytes": 232
+    },
+    {
+      "classification": "DECISION_DOCUMENTATION",
+      "details": {
+        "embedded_large_table_or_payload": false
+      },
+      "evidence": "Markdown reviewed as documentation; no encoded payload signal.",
+      "extension": ".md",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": null,
       "path": "docs/research/GATE_C6RCIPDA_CORRECTION_PLAN.md",
       "raw_sha256": "e293a6615fd508d893129a677a22741b2fc68270b4b252ee0987fd8e691797d7",
       "size_bytes": 468
+    },
+    {
+      "classification": "DECISION_DOCUMENTATION",
+      "details": {
+        "embedded_large_table_or_payload": false
+      },
+      "evidence": "Markdown reviewed as documentation; no encoded payload signal.",
+      "extension": ".md",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": null,
+      "path": "docs/research/GATE_C6RCIPDA_FINAL_DECISION_MEMO.md",
+      "raw_sha256": "fd6965e153af114db355a8bc8d39548e6ecbe898774e990d069dc18d75adea0e",
+      "size_bytes": 206
     },
     {
       "classification": "DECISION_DOCUMENTATION",
@@ -2625,6 +2686,20 @@
       "path": "docs/research/GATE_C6RCIPDA_ORIGINAL_FAILURE_REPRODUCTION.md",
       "raw_sha256": "2d0d7c5def983fee9b7d39d9095c07b955aa63b755c18b17e648d372b7a4eb92",
       "size_bytes": 368
+    },
+    {
+      "classification": "DECISION_DOCUMENTATION",
+      "details": {
+        "embedded_large_table_or_payload": false
+      },
+      "evidence": "Markdown reviewed as documentation; no encoded payload signal.",
+      "extension": ".md",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": null,
+      "path": "docs/research/GATE_C6RCIPDA_RECONCILIATION_REPORT.md",
+      "raw_sha256": "0fd89d171bc102e1ca60f29e21bf5941b73a832b2e68b372ef23c768774b3684",
+      "size_bytes": 301
     },
     {
       "classification": "DECISION_DOCUMENTATION",
@@ -8673,6 +8748,25 @@
       "size_bytes": 3483
     },
     {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/c7_resumption_handoff.json",
+      "raw_sha256": "bdde71c3881e1b7aba0b390dd31bf22d4f9602eabd1bc16702de20c5e24419af",
+      "size_bytes": 1603
+    },
+    {
       "classification": "FREEZE_OR_PROVENANCE_METADATA",
       "details": {},
       "evidence": "JSON inspected by schema signals without printing values.",
@@ -8690,6 +8784,25 @@
       "path": "results/gate_c6rcipda/classifier_provenance.json",
       "raw_sha256": "a1968d42a77dafc65ef41ac42825105436aed28c7e3204bf8860a547fe956841",
       "size_bytes": 830
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 618,
+        "numeric_or_time_series_array_signal": true,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/corrected_prohibited_data_audit.json",
+      "raw_sha256": "8ac87b77927e04c9945eb5052791a1ef088d9ddc4dd67f30e9bd4a37ed46ca92",
+      "size_bytes": 420924
     },
     {
       "classification": "RESEARCH_RESULT_SUMMARY",
@@ -8720,6 +8833,25 @@
       "json_shape": {
         "credential_key_signal": false,
         "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/documentation_quality_audit.json",
+      "raw_sha256": "98f3d271ea00260a9f150d8ec6005c1075ebdd4ecab7a8f07b273166bd7f0299",
+      "size_bytes": 633
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
         "maximum_nested_list_length": 21,
         "numeric_or_time_series_array_signal": false,
         "row_array_count_sampled": 0,
@@ -8728,6 +8860,25 @@
       "path": "results/gate_c6rcipda/flagged_path_classification.json",
       "raw_sha256": "ac79ae714b001d4d3ddf6d51f45e094f587fe22e98a5c3a869303f0b754f8938",
       "size_bytes": 24646
+    },
+    {
+      "classification": "INTEGRITY_METADATA",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/holdout_integrity.json",
+      "raw_sha256": "79b110af9c5b09414b3d655e7cc2b3512496d1bb09d5a9f16856a1bf65aa6e40",
+      "size_bytes": 545
     },
     {
       "classification": "RESEARCH_RESULT_SUMMARY",
@@ -8745,8 +8896,46 @@
         "row_array_presence": false
       },
       "path": "results/gate_c6rcipda/independent_prohibited_data_audit.json",
-      "raw_sha256": "d942820a19f20445553c547b4786817ef308250bbbdedbfba16272fc15574d3c",
+      "raw_sha256": "98b3a3cf5510b6a5bf1256cb42fc9e50cff218385068a02319ee24278dfacacc",
       "size_bytes": 521
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/lineage_seal_enforcement.json",
+      "raw_sha256": "4d528eb47bc02b31b3082e7ef14a8e1573688f6a202f7604faaa8c63fa66f05b",
+      "size_bytes": 204
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/merge_conflict_audit.json",
+      "raw_sha256": "5d735108176a19f64d7f7a0fc8e0dbabffd435529d3a043a2ff6a6106224aa07",
+      "size_bytes": 299
     },
     {
       "classification": "RESEARCH_RESULT_SUMMARY",
@@ -8777,6 +8966,25 @@
       "json_shape": {
         "credential_key_signal": false,
         "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/package_consistency_audit.json",
+      "raw_sha256": "779e692c745345b9fa55832e6241030c04fe63e962742376ba24e2d77393c378",
+      "size_bytes": 267
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
         "maximum_nested_list_length": 10,
         "numeric_or_time_series_array_signal": false,
         "row_array_count_sampled": 0,
@@ -8785,6 +8993,44 @@
       "path": "results/gate_c6rcipda/pre_forensic_integrity.json",
       "raw_sha256": "f8de9453c8c9ca4ed898607ca2d9534e068e0ecbe15833d18f684253fcde561e",
       "size_bytes": 3678
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 4,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/prohibited_data_audit_reconciliation_overlay.json",
+      "raw_sha256": "147b4854d6fad93a8df6448326bff5ecfe7e39a11c9b8ad11e5100d704e7803d",
+      "size_bytes": 1976
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/quality_gate_final.json",
+      "raw_sha256": "97c1be71b5faf03438930b81ead9aa544c139130d4781704b340224ef4793bc6",
+      "size_bytes": 517
     },
     {
       "classification": "RESEARCH_RESULT_SUMMARY",
@@ -8806,6 +9052,25 @@
       "size_bytes": 2698
     },
     {
+      "classification": "FREEZE_OR_PROVENANCE_METADATA",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 37,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/reproducibility_manifest_audit.json",
+      "raw_sha256": "ed8f7dd0ec8a8b19996b3616789a4851788d1f50fcf843e0d02dfd924ac4739a",
+      "size_bytes": 12529
+    },
+    {
       "classification": "RESEARCH_RESULT_SUMMARY",
       "details": {},
       "evidence": "JSON inspected by schema signals without printing values.",
@@ -8823,6 +9088,82 @@
       "path": "results/gate_c6rcipda/root_cause_analysis.json",
       "raw_sha256": "f47c2431e6d17db4e229cc5502157572bde31b5bb345f14234104bad751257b0",
       "size_bytes": 2796
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 99,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/ruff_head_after.json",
+      "raw_sha256": "a959e2db818e2648756d5a7372158d2b351dd5aa0b5021e8aede152402d4dcbd",
+      "size_bytes": 68622
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 99,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/ruff_target_baseline.json",
+      "raw_sha256": "25aa8c61820b28077567a23871793e621d4c6c3423ca261622f608eb4b8e8e80",
+      "size_bytes": 72879
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 8,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/scientific_immutability_audit.json",
+      "raw_sha256": "6ff3ef89fd219f73819e542e4cfe733d1b0b38174e570c06ef601c2cfc9b5dbe",
+      "size_bytes": 4987
+    },
+    {
+      "classification": "RESEARCH_RESULT_SUMMARY",
+      "details": {},
+      "evidence": "JSON inspected by schema signals without printing values.",
+      "extension": ".json",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": {
+        "credential_key_signal": false,
+        "market_key_dict_count_sampled": 0,
+        "maximum_nested_list_length": 0,
+        "numeric_or_time_series_array_signal": false,
+        "row_array_count_sampled": 0,
+        "row_array_presence": false
+      },
+      "path": "results/gate_c6rcipda/static_analysis_delta.json",
+      "raw_sha256": "37599eb044e3b738316aefc5310ce9da6a3d69958a3db1c36d5623c33ab010d4",
+      "size_bytes": 423
     },
     {
       "classification": "DATA_QUALITY_SUMMARY",
@@ -9211,6 +9552,20 @@
       "path": "scripts/run_gate_c6rci.py",
       "raw_sha256": "7f6978e12462f3fab809ce9f72fc202a3e0d663e3f161a33833b9cc948201903",
       "size_bytes": 16006
+    },
+    {
+      "classification": "ACCESS_CONTROL_CODE",
+      "details": {
+        "large_string_literal_signal": false
+      },
+      "evidence": "Python source reviewed as access-control code/test; no embedded data.",
+      "extension": ".py",
+      "is_ambiguous": false,
+      "is_prohibited": false,
+      "json_shape": null,
+      "path": "scripts/run_gate_c6rcipda.py",
+      "raw_sha256": "8b5026fbb752741746694adb3b5bda420860cb833c9dc50bead18eb96a60a82c",
+      "size_bytes": 24003
     },
     {
       "classification": "ACCESS_CONTROL_CODE",

@@ -1,7 +1,7 @@
 {
   "actual_holdout_storage_enumerated": false,
   "committed_control_metadata_reviewed_only": true,
-  "created_at_utc": "2026-07-26T10:42:55.169202+00:00",
+  "created_at_utc": "2026-07-26T10:44:51.061690+00:00",
   "gate": "C6-R-CI-PDA",
   "holdout_controls_constructed": false,
   "holdout_event_counts_computed": false,

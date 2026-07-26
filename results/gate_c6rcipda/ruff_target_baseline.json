@@ -6,7 +6,7 @@
       "column": 12,
       "row": 9
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\ablation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\ablation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -41,7 +41,7 @@
       "column": 79,
       "row": 15
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\ablation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\ablation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -76,7 +76,7 @@
       "column": 42,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\ablation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\ablation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -111,7 +111,7 @@
       "column": 45,
       "row": 18
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\ablation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\ablation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -146,7 +146,7 @@
       "column": 38,
       "row": 14
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -181,7 +181,7 @@
       "column": 102,
       "row": 73
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -200,7 +200,7 @@
       "column": 122,
       "row": 78
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -219,7 +219,7 @@
       "column": 12,
       "row": 7
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -254,7 +254,7 @@
       "column": 62,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -289,7 +289,7 @@
       "column": 79,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -324,7 +324,7 @@
       "column": 45,
       "row": 19
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -359,7 +359,7 @@
       "column": 19,
       "row": 21
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -394,7 +394,7 @@
       "column": 24,
       "row": 22
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -429,7 +429,7 @@
       "column": 24,
       "row": 23
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -464,7 +464,7 @@
       "column": 25,
       "row": 24
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -499,7 +499,7 @@
       "column": 105,
       "row": 48
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -518,7 +518,7 @@
       "column": 105,
       "row": 142
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\campaigns.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\campaigns.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -537,7 +537,7 @@
       "column": 51,
       "row": 14
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\candidate_selection.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -572,7 +572,7 @@
       "column": 41,
       "row": 11
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\candidate_selection.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -607,7 +607,7 @@
       "column": 51,
       "row": 14
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\candidate_selection.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -642,7 +642,7 @@
       "column": 103,
       "row": 87
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\candidate_selection.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -661,7 +661,7 @@
       "column": 123,
       "row": 88
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\candidate_selection.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -680,7 +680,7 @@
       "column": 115,
       "row": 177
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\candidate_selection.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -699,7 +699,7 @@
       "column": 104,
       "row": 201
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\candidate_selection.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -718,7 +718,7 @@
       "column": 38,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -753,7 +753,7 @@
       "column": 50,
       "row": 23
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -788,7 +788,7 @@
       "column": 24,
       "row": 101
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -823,7 +823,7 @@
       "column": 125,
       "row": 182
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -842,7 +842,7 @@
       "column": 103,
       "row": 186
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -861,7 +861,7 @@
       "column": 115,
       "row": 189
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -880,7 +880,7 @@
       "column": 102,
       "row": 191
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -899,7 +899,7 @@
       "column": 116,
       "row": 192
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -918,7 +918,7 @@
       "column": 111,
       "row": 210
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\champion_bundle.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -937,7 +937,7 @@
       "column": 85,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\decision_memo.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -972,7 +972,7 @@
       "column": 8,
       "row": 69
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\decision_memo.py",
     "fix": {
       "applicability": "unsafe",
       "edits": [
@@ -1007,7 +1007,7 @@
       "column": 11,
       "row": 124
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\decision_memo.py",
     "fix": {
       "applicability": "unsafe",
       "edits": [
@@ -1042,7 +1042,7 @@
       "column": 118,
       "row": 128
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\decision_memo.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1061,7 +1061,7 @@
       "column": 117,
       "row": 138
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\decision_memo.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1080,7 +1080,7 @@
       "column": 75,
       "row": 143
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\decision_memo.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1115,7 +1115,7 @@
       "column": 36,
       "row": 9
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\evaluation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\evaluation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1150,7 +1150,7 @@
       "column": 23,
       "row": 11
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\evaluation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\evaluation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1185,7 +1185,7 @@
       "column": 63,
       "row": 51
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\evaluation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\evaluation.py",
     "fix": {
       "applicability": "unsafe",
       "edits": [
@@ -1220,7 +1220,7 @@
       "column": 15,
       "row": 10
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\experiments.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\experiments.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1255,7 +1255,7 @@
       "column": 12,
       "row": 11
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\experiments.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\experiments.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1290,7 +1290,7 @@
       "column": 30,
       "row": 14
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\experiments.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\experiments.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1325,7 +1325,7 @@
       "column": 79,
       "row": 21
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\experiments.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\experiments.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1360,7 +1360,7 @@
       "column": 38,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\final_package.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\final_package.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1395,7 +1395,7 @@
       "column": 60,
       "row": 19
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\final_package.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\final_package.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1430,7 +1430,7 @@
       "column": 107,
       "row": 109
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\final_package.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\final_package.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1449,7 +1449,7 @@
       "column": 114,
       "row": 138
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\final_package.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\final_package.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1468,7 +1468,7 @@
       "column": 102,
       "row": 106
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\frozen_config.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\frozen_config.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1487,7 +1487,7 @@
       "column": 104,
       "row": 79
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1506,7 +1506,7 @@
       "column": 102,
       "row": 83
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1525,7 +1525,7 @@
       "column": 110,
       "row": 103
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1544,7 +1544,7 @@
       "column": 115,
       "row": 116
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1563,7 +1563,7 @@
       "column": 115,
       "row": 118
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1582,7 +1582,7 @@
       "column": 113,
       "row": 128
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1601,7 +1601,7 @@
       "column": 111,
       "row": 155
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1620,7 +1620,7 @@
       "column": 110,
       "row": 156
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\gating.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\gating.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1639,7 +1639,7 @@
       "column": 30,
       "row": 13
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\paper_campaign.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\paper_campaign.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1674,7 +1674,7 @@
       "column": 40,
       "row": 18
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\paper_campaign.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\paper_campaign.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1709,7 +1709,7 @@
       "column": 41,
       "row": 184
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\paper_campaign.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\paper_campaign.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1744,7 +1744,7 @@
       "column": 12,
       "row": 8
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\paper_review.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\paper_review.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1779,7 +1779,7 @@
       "column": 25,
       "row": 12
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\paper_review.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\paper_review.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1814,7 +1814,7 @@
       "column": 107,
       "row": 302
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\paper_review.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\paper_review.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1833,7 +1833,7 @@
       "column": 47,
       "row": 332
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\paper_review.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\paper_review.py",
     "fix": {
       "applicability": "unsafe",
       "edits": [
@@ -1868,7 +1868,7 @@
       "column": 12,
       "row": 9
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reconciliation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1903,7 +1903,7 @@
       "column": 58,
       "row": 14
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reconciliation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1938,7 +1938,7 @@
       "column": 49,
       "row": 15
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reconciliation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -1973,7 +1973,7 @@
       "column": 110,
       "row": 110
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reconciliation.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -1992,7 +1992,7 @@
       "column": 112,
       "row": 125
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reconciliation.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2011,7 +2011,7 @@
       "column": 130,
       "row": 126
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reconciliation.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2030,7 +2030,7 @@
       "column": 118,
       "row": 127
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reconciliation.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2049,7 +2049,7 @@
       "column": 31,
       "row": 12
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reporting.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reporting.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2084,7 +2084,7 @@
       "column": 13,
       "row": 21
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reporting.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reporting.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2119,7 +2119,7 @@
       "column": 119,
       "row": 212
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reporting.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reporting.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2138,7 +2138,7 @@
       "column": 106,
       "row": 214
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reporting.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reporting.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2157,7 +2157,7 @@
       "column": 110,
       "row": 218
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\reporting.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\reporting.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2176,7 +2176,7 @@
       "column": 33,
       "row": 10
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\robustness.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\robustness.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2211,7 +2211,7 @@
       "column": 45,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\scores.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\scores.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2246,7 +2246,7 @@
       "column": 57,
       "row": 17
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\scores.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\scores.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2281,7 +2281,7 @@
       "column": 19,
       "row": 107
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\scores.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\scores.py",
     "fix": {
       "applicability": "unsafe",
       "edits": [
@@ -2316,7 +2316,7 @@
       "column": 103,
       "row": 173
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\scores.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\scores.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2335,7 +2335,7 @@
       "column": 106,
       "row": 182
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\scores.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\scores.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2354,7 +2354,7 @@
       "column": 38,
       "row": 12
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\simplification.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\simplification.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2389,7 +2389,7 @@
       "column": 30,
       "row": 83
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\simplification.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\simplification.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2424,7 +2424,7 @@
       "column": 11,
       "row": 93
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\simplification.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\simplification.py",
     "fix": {
       "applicability": "unsafe",
       "edits": [
@@ -2459,7 +2459,7 @@
       "column": 106,
       "row": 121
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\simplification.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\simplification.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2478,7 +2478,7 @@
       "column": 105,
       "row": 138
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\simplification.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\simplification.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2497,7 +2497,7 @@
       "column": 111,
       "row": 206
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\simplification.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\simplification.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2516,7 +2516,7 @@
       "column": 111,
       "row": 207
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\simplification.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\simplification.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2535,7 +2535,7 @@
       "column": 79,
       "row": 22
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\validation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\validation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2570,7 +2570,7 @@
       "column": 40,
       "row": 23
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\validation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\validation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2605,7 +2605,7 @@
       "column": 16,
       "row": 36
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\validation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\validation.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2640,7 +2640,7 @@
       "column": 111,
       "row": 146
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\validation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\validation.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2659,7 +2659,7 @@
       "column": 102,
       "row": 186
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\validation.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\validation.py",
     "fix": null,
     "location": {
       "column": 101,
@@ -2678,7 +2678,7 @@
       "column": 30,
       "row": 13
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\walk_forward.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\walk_forward.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2713,7 +2713,7 @@
       "column": 19,
       "row": 15
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\walk_forward.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\walk_forward.py",
     "fix": {
       "applicability": "safe",
       "edits": [
@@ -2748,7 +2748,7 @@
       "column": 33,
       "row": 16
     },
-    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_lrvjbxgt\\src\\fx_smc_bot\\research\\walk_forward.py",
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\c6rcipda_origin_main_iucx1w2k\\src\\fx_smc_bot\\research\\walk_forward.py",
     "fix": {
       "applicability": "safe",
       "edits": [
