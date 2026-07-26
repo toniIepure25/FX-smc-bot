@@ -15,9 +15,7 @@ REPO = Path(__file__).resolve().parents[2]
 
 def test_all_original_false_positive_paths_are_safe() -> None:
     original = json.loads(
-        (REPO / "results/gate_c6rci/prohibited_data_audit.json").read_text(
-            encoding="utf-8"
-        )
+        (REPO / "results/gate_c6rci/prohibited_data_audit.json").read_text(encoding="utf-8")
     )
 
     records = [classify_committed_path(REPO / path) for path in original["prohibited_paths"]]
@@ -29,9 +27,7 @@ def test_all_original_false_positive_paths_are_safe() -> None:
 
 def test_corrected_audit_separates_safe_paths_from_payload_violations() -> None:
     original = json.loads(
-        (REPO / "results/gate_c6rci/prohibited_data_audit.json").read_text(
-            encoding="utf-8"
-        )
+        (REPO / "results/gate_c6rci/prohibited_data_audit.json").read_text(encoding="utf-8")
     )
 
     audit = corrected_prohibited_data_audit(REPO, original["prohibited_paths"])
@@ -109,15 +105,48 @@ def test_decision_memo_is_allowed() -> None:
     assert not result.is_prohibited
 
 
+def test_documented_placeholder_credentials_are_allowed() -> None:
+    result = classify_content(
+        Path("docs/research/GATE_C2_DATA_ACQUISITION_GUIDE.md"),
+        b'export OANDA_API_TOKEN="your-token-here"\n',
+    )
+
+    assert result.classification == "DECISION_DOCUMENTATION"
+    assert not result.is_prohibited
+
+
+def test_aggregate_audit_json_with_path_lists_is_allowed() -> None:
+    payload = {
+        "changed_paths": [f"docs/research/{index}.md" for index in range(30)],
+        "status": "FAIL",
+        "findings": [],
+    }
+
+    result = classify_content(
+        Path("results/gate_c6rci/prohibited_data_audit.json"),
+        json.dumps(payload).encode("utf-8"),
+    )
+
+    assert result.classification == "RESEARCH_RESULT_SUMMARY"
+    assert not result.is_prohibited
+    assert not result.is_ambiguous
+
+
+def test_script_documentation_string_is_allowed() -> None:
+    source = 'NOTE = """' + ("Acceptance research methods.\n" * 80) + '"""\n'
+    result = classify_content(Path("scripts/run_gate_c6.py"), source.encode("utf-8"))
+
+    assert result.classification == "ACCESS_CONTROL_CODE"
+    assert not result.is_ambiguous
+
+
 def test_raw_tick_and_canonical_payloads_are_rejected() -> None:
     assert classify_content(Path("data/raw/EURUSD/sample.bi5"), b"\x00\x01").classification == (
         "RAW_MARKET_DATA"
     )
     canonical = classify_content(Path("data/canonical/USDJPY/events.parquet"), b"PAR1")
 
-    assert canonical.classification == (
-        "CANONICAL_MARKET_DATA"
-    )
+    assert canonical.classification == ("CANONICAL_MARKET_DATA")
 
 
 def test_row_level_json_and_jsonl_payloads_are_rejected() -> None:
@@ -136,9 +165,7 @@ def test_row_level_json_and_jsonl_payloads_are_rejected() -> None:
 
     ohlc_result = classify_content(Path("results/x/ohlc.json"), json.dumps(ohlc_rows).encode())
 
-    assert ohlc_result.classification == (
-        "ROW_LEVEL_EVENT_DATA"
-    )
+    assert ohlc_result.classification == ("ROW_LEVEL_EVENT_DATA")
     assert classify_content(Path("results/x/events.jsonl"), event_line).classification == (
         "ROW_LEVEL_EVENT_DATA"
     )
@@ -151,10 +178,13 @@ def test_row_level_control_table_and_holdout_outcomes_are_rejected() -> None:
     assert classify_content(Path("results/x/control_table.csv"), control_csv).classification == (
         "ROW_LEVEL_CONTROL_DATA"
     )
-    assert classify_content(
-        Path("results/holdout/outcomes.json"),
-        json.dumps(holdout_outcome).encode(),
-    ).classification == "HOLDOUT_PAYLOAD"
+    assert (
+        classify_content(
+            Path("results/holdout/outcomes.json"),
+            json.dumps(holdout_outcome).encode(),
+        ).classification
+        == "HOLDOUT_PAYLOAD"
+    )
 
 
 def test_credentials_large_binary_and_ambiguous_json_fail_closed() -> None:
@@ -171,6 +201,4 @@ def test_credentials_large_binary_and_ambiguous_json_fail_closed() -> None:
         json.dumps(ambiguous_json).encode(),
     )
 
-    assert ambiguous.classification == (
-        "AMBIGUOUS"
-    )
+    assert ambiguous.classification == ("AMBIGUOUS")

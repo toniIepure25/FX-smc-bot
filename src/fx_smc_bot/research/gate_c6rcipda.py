@@ -5,6 +5,7 @@ from __future__ import annotations
 import ast
 import hashlib
 import json
+import re
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
@@ -48,10 +49,31 @@ MARKET_ROW_KEYS = {
 }
 
 CREDENTIAL_KEYS = {"password", "secret", "token", "api_key", "private_key"}
+PLACEHOLDER_SECRET_VALUES = {
+    "example",
+    "placeholder",
+    "redacted",
+    "your-token-here",
+    "your_token_here",
+    "<token>",
+    "<secret>",
+}
 RAW_EXTENSIONS = {".bi5"}
 CANONICAL_EXTENSIONS = {".parquet", ".feather", ".arrow", ".h5", ".hdf5"}
 ROW_TABLE_EXTENSIONS = {".csv", ".tsv", ".jsonl", ".json.gz", ".csv.gz"}
 GENERATED_CACHE_TOKENS = {"node_modules", "__pycache__", ".pytest_cache", ".ruff_cache"}
+SAFE_AGGREGATE_JSON_TOKENS = {
+    "audit",
+    "classification",
+    "correction_plan",
+    "diagnostic",
+    "inventory",
+    "merge_readiness",
+    "quality_summary",
+    "repository_state",
+    "root_cause",
+    "summary",
+}
 
 
 @dataclass(frozen=True, slots=True)
@@ -117,7 +139,45 @@ def _looks_like_credential(path: Path, data: bytes) -> bool:
     if path.name.lower().startswith(".env") or "credential" in lower_path:
         return True
     text = data[:4096].decode("utf-8", errors="ignore").lower()
-    return any(f"{key}=" in text or f"{key}:" in text for key in CREDENTIAL_KEYS)
+    for match in re.finditer(
+        r"\b(password|secret|token|api_key|private_key)\b\s*[:=]\s*[\"']?([^\"'\s`]+)",
+        text,
+    ):
+        value = match.group(2).strip().strip(",;")
+        if value in PLACEHOLDER_SECRET_VALUES:
+            continue
+        if len(value) >= 12:
+            return True
+    return False
+
+
+def _is_safe_aggregate_json(path: Path) -> bool:
+    lower = _path_text(path)
+    is_results_artifact = lower.startswith("results/") or "/results/" in lower
+    return is_results_artifact and any(token in lower for token in SAFE_AGGREGATE_JSON_TOKENS)
+
+
+def _python_literal_has_payload_signal(value: str) -> bool:
+    lower = value.lower()
+    market_token_count = sum(
+        token in lower
+        for token in (
+            "timestamp",
+            "open",
+            "high",
+            "low",
+            "close",
+            "event_id",
+            "control_id",
+            "markout",
+        )
+    )
+    return (
+        len(value) > 50_000
+        or "base64," in lower
+        or "par1" in lower
+        or (market_token_count >= 3 and ("[" in value or "{" in value))
+    )
 
 
 def json_shape(payload: Any) -> JsonShape:
@@ -142,8 +202,7 @@ def json_shape(payload: Any) -> JsonShape:
             sample = value[:10]
             if sample and all(isinstance(item, dict) for item in sample):
                 if any(
-                    len({str(k).lower() for k in item} & MARKET_ROW_KEYS) >= 3
-                    for item in sample
+                    len({str(k).lower() for k in item} & MARKET_ROW_KEYS) >= 3 for item in sample
                 ):
                     row_arrays += 1
             if (
@@ -205,6 +264,7 @@ def _classify_python(path: Path, data: bytes) -> PathClassification:
             isinstance(node, ast.Constant)
             and isinstance(node.value, str)
             and len(node.value) > 1000
+            and _python_literal_has_payload_signal(node.value)
             for node in ast.walk(tree)
         )
     except SyntaxError:
@@ -242,6 +302,8 @@ def _classify_json(path: Path, data: bytes) -> PathClassification:
         classification = "HOLDOUT_PAYLOAD"
     elif shape.row_array_presence:
         classification = "ROW_LEVEL_EVENT_DATA"
+    elif shape.numeric_or_time_series_array_signal and _is_safe_aggregate_json(path):
+        classification = "RESEARCH_RESULT_SUMMARY"
     elif shape.numeric_or_time_series_array_signal and "manifest" not in lower:
         classification = "AMBIGUOUS"
     elif lower.endswith("/holdout_integrity.json"):
@@ -349,7 +411,12 @@ def classify_content(path: Path, data: bytes) -> PathClassification:
 
 
 def classify_committed_path(path: Path) -> PathClassification:
-    return classify_content(Path(path.as_posix()), path.read_bytes())
+    display_path = path
+    try:
+        display_path = path.resolve().relative_to(Path.cwd().resolve())
+    except ValueError:
+        pass
+    return classify_content(Path(display_path.as_posix()), path.read_bytes())
 
 
 def corrected_prohibited_data_audit(repo: Path, paths: list[str]) -> dict[str, Any]:
@@ -357,9 +424,7 @@ def corrected_prohibited_data_audit(repo: Path, paths: list[str]) -> dict[str, A
     prohibited = [record for record in records if record["is_prohibited"]]
     ambiguous = [record for record in records if record["is_ambiguous"]]
     safe = [
-        record
-        for record in records
-        if not record["is_prohibited"] and not record["is_ambiguous"]
+        record for record in records if not record["is_prohibited"] and not record["is_ambiguous"]
     ]
     return {
         "changed_paths": paths,

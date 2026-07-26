@@ -1,19 +1,15 @@
 {
   "ambiguous_paths": [],
   "canonical_market_data_committed": false,
-  "changed_path_count": 601,
-  "created_at_utc": "2026-07-26T10:26:57.200868+00:00",
+  "changed_path_count": 618,
+  "created_at_utc": "2026-07-26T10:42:55.068465+00:00",
   "credentials_committed": false,
-  "extension_or_name_suspicion_count": 0,
-  "extension_or_name_suspicion_false_positive_examples": [],
   "generated_caches_committed": false,
   "holdout_payload_committed": false,
-  "large_json_reviewed_count": 1,
   "merge_base": "8742c932382ce0eef96655ae972a63d4da4d87e2",
   "prohibited_payload_paths": [],
   "raw_market_data_committed": false,
-  "rev_list_objects_count": 1434,
-  "reviewed_safe_control_paths_count": 601,
+  "reviewed_safe_path_count": 618,
   "row_level_event_control_data_committed": false,
   "status": "PASS"
 }
