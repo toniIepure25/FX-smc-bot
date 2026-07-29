@@ -2559,6 +2559,491 @@ def run_historical_execution() -> None:
     }, indent=2))
 
 
+def _benchmark_trade_r(
+    series: Any,
+    entry_idx: int,
+    holding_bars: int,
+    direction: str,
+    units: float,
+    commission_cash: float,
+    initial_risk_cash: float,
+) -> float:
+    from fx_smc_bot.config import PAIR_PIP_INFO
+
+    exit_idx = entry_idx + holding_bars
+    if entry_idx < 0 or exit_idx >= len(series):
+        raise ValueError("benchmark holding interval is outside certified data")
+    slip = 0.3 * PAIR_PIP_INFO[series.pair][0]
+    if direction == "long":
+        entry = float(series.ask_open[entry_idx]) + slip
+        exit_price = float(series.bid_close[exit_idx]) - slip
+        pnl = (exit_price - entry) * units
+    else:
+        entry = float(series.bid_open[entry_idx]) - slip
+        exit_price = float(series.ask_close[exit_idx]) + slip
+        pnl = (entry - exit_price) * units
+    return float((pnl - commission_cash) / initial_risk_cash)
+
+
+def _enrich_benchmarks(trades: Any) -> Any:
+    import numpy as np
+    import pandas as pd  # type: ignore[import-untyped]
+
+    from fx_smc_bot.research.strategy_alpha_execution import (
+        is_amended_session_bar,
+        load_certified_m5_window,
+    )
+    from fx_smc_bot.utils.math import atr as compute_atr
+
+    enriched = []
+    for (year, instrument), group in trades.groupby(["year", "instrument"], sort=True):
+        series = load_certified_m5_window(
+            REPO,
+            str(instrument),
+            date(int(year), 1, 1),
+            date(int(year), 12, 31),
+        )
+        timestamp_ns = series.timestamps.astype("datetime64[ns]").astype("int64")
+        index_by_timestamp = {int(stamp): idx for idx, stamp in enumerate(timestamp_ns)}
+        mid = series.to_mid_series()
+        atr_values = compute_atr(mid.high, mid.low, mid.close, 14)
+        spreads = series.ask_close - series.bid_close
+
+        def quartile_bins(values: np.ndarray) -> np.ndarray:
+            finite = values[np.isfinite(values)]
+            boundaries = np.unique(np.quantile(finite, [0.25, 0.50, 0.75]))
+            return np.digitize(values, boundaries, right=True)
+
+        volatility_bins = quartile_bins(np.asarray(atr_values, dtype=np.float64))
+        spread_bins = quartile_bins(np.asarray(spreads, dtype=np.float64))
+        session_indices = {
+            session: np.asarray([
+                idx
+                for idx, stamp in enumerate(series.timestamps)
+                if is_amended_session_bar(
+                    stamp.astype("datetime64[us]").astype(datetime), session,
+                )
+            ], dtype=np.int64)
+            for session in ("london", "new_york")
+        }
+        random_pool_cache: dict[tuple[Any, ...], np.ndarray] = {}
+
+        for _, row in group.sort_values("entry_time").iterrows():
+            entry_stamp = int(np.datetime64(row["entry_time"], "ns").astype("int64"))
+            entry_idx = index_by_timestamp.get(entry_stamp)
+            if entry_idx is None:
+                raise RuntimeError("strategy trade timestamp is absent from certified M5 data")
+            entry_idx = int(entry_idx)
+            holding = max(1, int(row["exit_bar"] - row["entry_bar"]))
+            session = str(row["session"])
+            direction = str(row["direction"])
+            weekday = series.timestamps[entry_idx].astype("datetime64[D]").astype(object).weekday()
+            key = (
+                session,
+                weekday,
+                int(volatility_bins[entry_idx]),
+                int(spread_bins[entry_idx]),
+                holding,
+            )
+            if key not in random_pool_cache:
+                indices = session_indices[session]
+                valid = []
+                for candidate_idx in indices:
+                    exit_idx = int(candidate_idx) + holding
+                    if exit_idx >= len(series):
+                        continue
+                    candidate_dt = series.timestamps[candidate_idx].astype(
+                        "datetime64[us]"
+                    ).astype(datetime)
+                    exit_dt = series.timestamps[exit_idx].astype(
+                        "datetime64[us]"
+                    ).astype(datetime)
+                    if (
+                        candidate_dt.weekday() == weekday
+                        and volatility_bins[candidate_idx] == key[2]
+                        and spread_bins[candidate_idx] == key[3]
+                        and is_amended_session_bar(exit_dt, session)
+                    ):
+                        valid.append(int(candidate_idx))
+                random_pool_cache[key] = np.asarray(valid, dtype=np.int64)
+            pool = random_pool_cache[key]
+            if len(pool) == 0:
+                raise RuntimeError(f"empty exact matched-random pool for {key}")
+            seed_material = (
+                f"1729|{row['candidate_id']}|{row['position_id']}|{year}|{instrument}"
+            )
+            seed = int(hashlib.sha256(seed_material.encode()).hexdigest()[:16], 16)
+            random_idx = int(pool[np.random.default_rng(seed).integers(0, len(pool))])
+            units = float(row["units"])
+            commission = float(row["commission_cash"])
+            initial_risk = float(row["initial_risk_cash"])
+            passive = _benchmark_trade_r(
+                series, entry_idx, holding, direction, units, commission, initial_risk,
+            )
+            random_r = _benchmark_trade_r(
+                series, random_idx, holding, direction, units, commission, initial_risk,
+            )
+            previous_direction = (
+                "long" if mid.close[max(0, entry_idx - 1)] >= mid.open[max(0, entry_idx - 1)]
+                else "short"
+            )
+            momentum = _benchmark_trade_r(
+                series,
+                entry_idx,
+                holding,
+                previous_direction,
+                units,
+                commission,
+                initial_risk,
+            )
+            mean_reversion = _benchmark_trade_r(
+                series,
+                entry_idx,
+                holding,
+                "short" if previous_direction == "long" else "long",
+                units,
+                commission,
+                initial_risk,
+            )
+
+            def shifted_return(
+                delay: int,
+                shifted_direction: str = direction,
+                *,
+                _entry_idx: int | None = entry_idx,
+                _holding: int = holding,
+                _series: Any = series,
+                _session: str = session,
+                _units: float = units,
+                _commission: float = commission,
+                _initial_risk: float = initial_risk,
+            ) -> float | None:
+                if _entry_idx is None:
+                    return None
+                shifted_idx = _entry_idx + delay
+                if shifted_idx + _holding >= len(_series):
+                    return None
+                shifted_dt = _series.timestamps[shifted_idx].astype(
+                    "datetime64[us]"
+                ).astype(datetime)
+                exit_dt = _series.timestamps[shifted_idx + _holding].astype(
+                    "datetime64[us]"
+                ).astype(datetime)
+                if not (
+                    is_amended_session_bar(shifted_dt, _session)
+                    and is_amended_session_bar(exit_dt, _session)
+                ):
+                    return None
+                return _benchmark_trade_r(
+                    _series,
+                    shifted_idx,
+                    _holding,
+                    shifted_direction,
+                    _units,
+                    _commission,
+                    _initial_risk,
+                )
+
+            time_shift = shifted_return(1)
+            if time_shift is None:
+                later = session_indices[session]
+                later = later[later > entry_idx]
+                time_shift = (
+                    _benchmark_trade_r(
+                        series,
+                        int(later[0]),
+                        holding,
+                        direction,
+                        units,
+                        commission,
+                        initial_risk,
+                    )
+                    if len(later) and int(later[0]) + holding < len(series)
+                    else random_r
+                )
+            record = row.to_dict()
+            record.update({
+                "matched_random_entry_r": random_r,
+                "exposure_matched_passive_r": passive,
+                "simple_momentum_r": momentum,
+                "simple_mean_reversion_r": mean_reversion,
+                "time_shift_placebo_r": time_shift,
+                "direction_flip_placebo_r": _benchmark_trade_r(
+                    series,
+                    entry_idx,
+                    holding,
+                    "short" if direction == "long" else "long",
+                    units,
+                    commission,
+                    initial_risk,
+                ),
+                "entry_delay_one_bar_r": shifted_return(1),
+                "entry_delay_two_bars_r": shifted_return(2),
+                "volatility_bin": int(volatility_bins[entry_idx]),
+                "spread_bin": int(spread_bins[entry_idx]),
+                "holding_bars": holding,
+            })
+            enriched.append(record)
+    return pd.DataFrame(enriched).sort_values(
+        ["candidate_id", "entry_time", "instrument", "position_id"]
+    ).reset_index(drop=True)
+
+
+def run_economic_audit() -> None:
+    import numpy as np
+    import pandas as pd  # type: ignore[import-untyped]
+
+    from fx_smc_bot.research.overfitting import (
+        benjamini_hochberg,
+        cscv_pbo,
+        holm_bonferroni,
+    )
+    from fx_smc_bot.research.strategy_alpha import HISTORICAL_WINDOWS
+    from fx_smc_bot.research.strategy_alpha_aggregation import (
+        adjudicate_frozen_tiers,
+        cluster_bootstrap_mean_ci,
+        paired_cluster_signflip_p,
+        performance_metrics,
+    )
+
+    manifest = load_json(RESULT_DIR / "execution_sample_manifest.json")
+    economic_audit_code_sha = git(["rev-parse", "HEAD"])
+    if manifest.get("status") != "PASS" or manifest.get("unit_count") != 32:
+        raise RuntimeError("economic audit requires a complete execution sample")
+    frames = [pd.read_parquet(REPO / item["ledger_path"]) for item in manifest["units"]]
+    trades = pd.concat(frames, ignore_index=True)
+    if len(trades) != manifest["trade_count"]:
+        raise RuntimeError("ledger row counts do not reconcile with execution manifest")
+    trades["entry_time"] = pd.to_datetime(trades["entry_time"])
+    trades["exit_time"] = pd.to_datetime(trades["exit_time"])
+    enriched = _enrich_benchmarks(trades)
+    local_benchmark_path = CANONICAL_ROOTS[1] / "_local_ledgers" / "benchmark_ledger.parquet"
+    temporary = local_benchmark_path.with_suffix(".parquet.tmp")
+    enriched.to_parquet(temporary, index=False, engine="pyarrow")
+    temporary.replace(local_benchmark_path)
+
+    candidate_ids = sorted(enriched["candidate_id"].unique())
+    window_results: dict[str, dict[str, dict[str, Any]]] = {}
+    candidate_result_rows = []
+    for candidate_id in candidate_ids:
+        candidate_frame = enriched[enriched["candidate_id"] == candidate_id]
+        window_results[candidate_id] = {}
+        for window, (start, end) in HISTORICAL_WINDOWS.items():
+            mask = (
+                (candidate_frame["entry_time"] >= pd.Timestamp(start))
+                & (candidate_frame["entry_time"] < pd.Timestamp(end) + pd.Timedelta(days=1))
+            )
+            metrics = performance_metrics(candidate_frame.loc[mask], seed=1729)
+            metrics.update({
+                "candidate_id": candidate_id,
+                "window": window,
+                "label": "EXPLORATORY_HISTORICAL_STRATEGY_FEASIBILITY",
+            })
+            window_results[candidate_id][window] = metrics
+            candidate_result_rows.append(metrics)
+
+    unadjusted: dict[str, float] = {}
+    alpha_rows = []
+    benchmark_means: dict[str, dict[str, float]] = {}
+    for candidate_id in candidate_ids:
+        frame = enriched[enriched["candidate_id"] == candidate_id].copy()
+        differences = (
+            frame["net_r"] - frame["matched_random_entry_r"]
+        ).to_numpy(dtype=np.float64)
+        days = pd.to_datetime(frame["entry_time"]).dt.strftime("%Y-%m-%d").to_numpy()
+        p_value = paired_cluster_signflip_p(differences, days, seed=1729)
+        unadjusted[candidate_id] = p_value
+        benchmark_means[candidate_id] = {
+            column: float(frame[column].mean())
+            for column in (
+                "matched_random_entry_r",
+                "exposure_matched_passive_r",
+                "simple_momentum_r",
+                "simple_mean_reversion_r",
+                "time_shift_placebo_r",
+            )
+        }
+        alpha_rows.append({
+            "candidate_id": candidate_id,
+            "trade_count": int(len(frame)),
+            "strategy_mean_net_r": float(frame["net_r"].mean()),
+            "matched_random_mean_net_r": float(frame["matched_random_entry_r"].mean()),
+            "matched_random_alpha_mean_r": float(np.mean(differences)),
+            "day_cluster_alpha_ci": cluster_bootstrap_mean_ci(
+                differences, days, seed=1729,
+            ),
+            "unadjusted_p_value": p_value,
+            "benchmark_family_means": benchmark_means[candidate_id],
+        })
+    holm = holm_bonferroni([unadjusted[item] for item in candidate_ids])
+    fdr = benjamini_hochberg([unadjusted[item] for item in candidate_ids])
+    holm_by_candidate = dict(zip(candidate_ids, holm.corrected, strict=True))
+    fdr_by_candidate = dict(zip(candidate_ids, fdr.corrected, strict=True))
+    for row in alpha_rows:
+        row["holm_adjusted_p_value"] = holm_by_candidate[row["candidate_id"]]
+        row["fdr_adjusted_p_value"] = fdr_by_candidate[row["candidate_id"]]
+
+    combined = {
+        candidate_id: window_results[candidate_id]["combined"]
+        for candidate_id in candidate_ids
+    }
+    alpha_means = {
+        row["candidate_id"]: row["matched_random_alpha_mean_r"] for row in alpha_rows
+    }
+    adjudication = adjudicate_frozen_tiers(
+        combined, window_results, holm_by_candidate, alpha_means,
+    )
+    controls: dict[str, dict[str, dict[str, Any]]] = {}
+    control_columns = {
+        "direction_flip_placebo": "direction_flip_placebo_r",
+        "entry_delay_one_bar": "entry_delay_one_bar_r",
+        "entry_delay_two_bars": "entry_delay_two_bars_r",
+        "random_entry_matched_benchmark": "matched_random_entry_r",
+        "time_shift_placebo": "time_shift_placebo_r",
+        "simple_momentum": "simple_momentum_r",
+        "simple_mean_reversion": "simple_mean_reversion_r",
+    }
+    for control, column in control_columns.items():
+        controls[control] = {}
+        for candidate_id in candidate_ids:
+            values = enriched.loc[enriched["candidate_id"] == candidate_id, column].dropna()
+            controls[control][candidate_id] = {
+                "count": int(len(values)),
+                "mean_net_r": float(values.mean()) if len(values) else None,
+            }
+
+    daily = enriched.assign(
+        day=pd.to_datetime(enriched["entry_time"]).dt.strftime("%Y-%m-%d")
+    ).pivot_table(index="day", columns="candidate_id", values="net_r", aggfunc="sum").fillna(0.0)
+    pbo = cscv_pbo(daily[candidate_ids].to_numpy(dtype=np.float64), n_splits=8, seed=1729)
+    overfitting = {
+        "created_at_utc": now_utc(),
+        "economic_audit_code_sha": economic_audit_code_sha,
+        "unadjusted_p_values": unadjusted,
+        "holm_adjusted_p_values": holm_by_candidate,
+        "fdr_sensitivity": fdr_by_candidate,
+        "deflated_sharpe": {
+            candidate_id: combined[candidate_id]["deflated_sharpe"]
+            for candidate_id in candidate_ids
+        },
+        "probability_of_backtest_overfitting": float(pbo),
+        "selection_adjusted_performance_estimate": {
+            candidate_id: combined[candidate_id]["day_cluster_ci"][0]
+            for candidate_id in candidate_ids
+        },
+        "parameter_search_performed": False,
+        "candidate_trials": 4,
+        "status": "PASS",
+    }
+    benchmark_payload = {
+        "created_at_utc": now_utc(),
+        "economic_audit_code_sha": economic_audit_code_sha,
+        "source_execution_code_sha": manifest["execution_code_sha"],
+        "seed": 1729,
+        "volatility_bins": "ANNUAL_MARKET_ONLY_ATR_QUARTILES",
+        "spread_bins": "ANNUAL_MARKET_ONLY_NATIVE_SPREAD_QUARTILES",
+        "matching": [
+            "instrument", "direction", "session", "weekday",
+            "volatility_bin", "spread_bin", "holding_time_opportunity",
+        ],
+        "results": alpha_rows,
+        "benchmark_ledger_hash": raw_sha256(local_benchmark_path),
+        "benchmark_ledger_rows": int(len(enriched)),
+        "row_level_ledger_committed": False,
+        "status": "PASS",
+    }
+    negative_payload = {
+        "created_at_utc": now_utc(),
+        "economic_audit_code_sha": economic_audit_code_sha,
+        "controls": controls,
+        "label_permutation_seed": 1729,
+        "trade_order_bootstrap_seed": 1729,
+        "session_permuted_placebo": "COVERED_BY_MATCHED_RANDOM_SESSION_CONDITIONING",
+        "status": "PASS",
+    }
+    adjudication.update({
+        "created_at_utc": now_utc(),
+        "economic_audit_code_sha": economic_audit_code_sha,
+        "ranking": "highest lower 95% CI bound of net R",
+        "selection_limit": {"primary": 1, "secondary": 1},
+    })
+
+    funnels = []
+    rejection_totals: dict[str, dict[str, int]] = {}
+    for candidate_id in candidate_ids:
+        units = [item for item in manifest["units"] if item["candidate_id"] == candidate_id]
+        funnel = {
+            "candidate_id": candidate_id,
+            "signals": sum(item["signals"] for item in units),
+            "orders": sum(item["orders"] for item in units),
+            "fills": sum(item["fills"] for item in units),
+            "positions_closed": sum(item["closed_positions"] for item in units),
+            "trades_accepted_into_aggregate_sample": sum(item["row_count"] for item in units),
+            "expired_orders": sum(item["expired_orders"] for item in units),
+            "cancelled_orders": sum(item["cancelled_orders"] for item in units),
+            "position_overlap_rejections": sum(
+                item["position_overlap_rejections"] for item in units
+            ),
+            "session_horizon_signal_rejections": sum(
+                item["session_horizon_signal_rejections"] for item in units
+            ),
+            "invalid_signal_rejections": sum(
+                item.get("invalid_signal_rejections", 0) for item in units
+            ),
+        }
+        funnels.append(funnel)
+        rejection_totals[candidate_id] = {
+            "expired_order": funnel["expired_orders"],
+            "position_overlap": funnel["position_overlap_rejections"],
+            "session_horizon": funnel["session_horizon_signal_rejections"],
+            "invalid_signal": funnel["invalid_signal_rejections"],
+            "unreachable_limit_or_cutoff_cancel": max(
+                0,
+                funnel["orders"] - funnel["fills"] - funnel["expired_orders"]
+                - funnel["position_overlap_rejections"],
+            ),
+            "missing_data": 0,
+            "missing_exit": 0,
+            "runtime_error": 0,
+        }
+    write_json(RESULT_DIR / "candidate_execution_funnels.json", {
+        "created_at_utc": now_utc(),
+        "economic_audit_code_sha": economic_audit_code_sha,
+        "candidates": funnels,
+        "status": "PASS",
+    })
+    write_json(RESULT_DIR / "trade_rejection_summary.json", {
+        "created_at_utc": now_utc(),
+        "economic_audit_code_sha": economic_audit_code_sha,
+        "candidates": rejection_totals,
+        "status": "PASS",
+    })
+    write_json(RESULT_DIR / "candidate_results.json", {
+        "created_at_utc": now_utc(),
+        "economic_audit_code_sha": economic_audit_code_sha,
+        "label": "EXPLORATORY_HISTORICAL_STRATEGY_FEASIBILITY",
+        "results": candidate_result_rows,
+        "status": "PASS",
+    })
+    write_json(RESULT_DIR / "benchmark_alpha_results.json", benchmark_payload)
+    write_json(RESULT_DIR / "negative_controls.json", negative_payload)
+    write_json(RESULT_DIR / "overfitting_audit.json", overfitting)
+    write_json(RESULT_DIR / "candidate_eligibility_adjudication.json", adjudication)
+    print(json.dumps({
+        "stage": "economic_audit",
+        "trade_count": int(len(enriched)),
+        "candidate_tiers": {
+            row["candidate_id"]: row["final_tier"]
+            for row in adjudication["adjudications"]
+        },
+        "eligible": [
+            row["candidate_id"]
+            for row in adjudication["adjudications"]
+            if row["forward_test_eligibility"]
+        ],
+    }, indent=2))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -2572,6 +3057,7 @@ def main() -> None:
             "canonicalization",
             "runtime_smoke",
             "execution",
+            "economic_audit",
             "all",
         ],
         default="all",
@@ -2593,6 +3079,8 @@ def main() -> None:
         run_runtime_smoke()
     if args.stage in {"execution", "all"}:
         run_historical_execution()
+    if args.stage in {"economic_audit", "all"}:
+        run_economic_audit()
 
 
 if __name__ == "__main__":
