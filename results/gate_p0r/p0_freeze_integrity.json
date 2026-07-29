@@ -1,0 +1,104 @@
+{
+  "artifacts": [
+    {
+      "canonical_json_sha256": "976295bafd68a686ff069aa188cc7b8d0cdb90d9399e746840202d977fcf36e1",
+      "exists": true,
+      "git_blob_sha": "b62a3edff89864aa4a9f3806f2b9b46de845da05",
+      "path": "results/gate_p0/candidate_universe_freeze.json",
+      "raw_sha256": "a84a0f05fab3e7db8e44d1daf14215f8914a830aedf2ed8f513b30746da04c28"
+    },
+    {
+      "canonical_json_sha256": "af1a78b0559f51cc82a1532ebb5e03c325386b8a5ec99b107e8c3289f8176f4b",
+      "exists": true,
+      "git_blob_sha": "516445b33e9bc3edf4db7d87baf167855bd11685",
+      "path": "results/gate_p0/data_boundary_freeze.json",
+      "raw_sha256": "498c4fb90227b81c76b898eaec491fac9673b6c24da11e38700649c35bf7e84f"
+    },
+    {
+      "canonical_json_sha256": "ae1394072a7137f5ec6afbf4bfd09c277371fd819aac7cab3c218fa1579d02ff",
+      "exists": true,
+      "git_blob_sha": "18393961b3bead3a209e0d90cc55787e35c61728",
+      "path": "results/gate_p0/execution_model_freeze.json",
+      "raw_sha256": "f366b1cd75149e1213526361450058809499dbc7fc1138fc703fad7d38edcb28"
+    },
+    {
+      "canonical_json_sha256": "79f29b41a2948d406a83d5c89e9da65d845799b0ea18318a138f1f6fe885b400",
+      "exists": true,
+      "git_blob_sha": "32891f6f8aab5c8e4d499eb9ea1b58266fd7d737",
+      "path": "results/gate_p0/estimand_and_metric_freeze.json",
+      "raw_sha256": "26aae3ed45610b4c2be4dc842bb82537c31afb4c94f1b855cbb5337c35a4770b"
+    },
+    {
+      "canonical_json_sha256": "c1bb1f625b8c98120f484917cf3fce43f2e48fd8a2a7d3d2c48e530797b90b59",
+      "exists": true,
+      "git_blob_sha": "86526f9f9dbf4e9a9526d0bdae8005b6fafc8406",
+      "path": "results/gate_p0/benchmark_freeze.json",
+      "raw_sha256": "1458bee4e38dd0acbedc142d092f368ab2de192eed160b5612114f5bbe96710e"
+    },
+    {
+      "canonical_json_sha256": "ea5405f1bb41547a3b7908be222e26b25f05c42a0438b5d7f54a83cef68ce3a2",
+      "exists": true,
+      "git_blob_sha": "54b4f9dc66e4a539a25bf11340d35e1f281491c2",
+      "path": "results/gate_p0/historical_eligibility_freeze.json",
+      "raw_sha256": "0406b8e30ac3f8cea9e64c998734f3c810c291c7a0bfea1534d7a3e80ccbab47"
+    },
+    {
+      "canonical_json_sha256": "3a68fdb579b642ad7d0999672f09a52985f02eb7908dae826a63e2082425e35e",
+      "exists": true,
+      "git_blob_sha": "f79a52194e572ffb020b80eedb47c1a676ab9dc8",
+      "path": "results/gate_p0/lookahead_audit.json",
+      "raw_sha256": "aebc0e8b1426b925e7336c4cd1b753b02666fbb9d8f29aada0dd8af269ff1b1e"
+    },
+    {
+      "canonical_json_sha256": "006ade2fe568e96b1306ed6094e9615d63c657b31051894ca65b18edf6bbff98",
+      "exists": true,
+      "git_blob_sha": "1bbce359a40c577734254bbe479e020a8d33034a",
+      "path": "results/gate_p0/determinism_audit.json",
+      "raw_sha256": "74d2ae9772973a6cc7c78a75ca430403e9c89f516f8b90e804ec16ad4abc1b06"
+    },
+    {
+      "canonical_json_sha256": "7d651191caa3e43cb1b8f55ed9003bba878f9cee34cf185219805dd0581fd49a",
+      "exists": true,
+      "git_blob_sha": "a9db3e7a30b4525a96ff6fb3c78a6ae1e36a6d0c",
+      "path": "results/gate_p0/legacy_lineage_boundary.json",
+      "raw_sha256": "c1196d33ca927aaeb32b66b665e4e05cf9b72b15ca421e3a2b39b5efe35d3a87"
+    },
+    {
+      "canonical_json_sha256": "fa392b2cd7bebcf6d8104cba28c60572003261dff4fc685d35e6c8f44cf750f0",
+      "exists": true,
+      "git_blob_sha": "deb84f00c6523525f3596bd4e39fa6ae9b5e6085",
+      "path": "results/gate_p0/holdout_integrity.json",
+      "raw_sha256": "ec33032d9814c2b0c8dc4f9b8228eca455b1b96f9ad90d2b9e1ef9ebf3bc761a"
+    },
+    {
+      "canonical_json_sha256": "e17c4be95ba85f5d2d3609ecc8cfba028e274be5aa2ead88f606f59833aa73d7",
+      "exists": true,
+      "git_blob_sha": "f788ff1e8d2894d4f8a201fcdd0a646e57bbcb8f",
+      "path": "results/gate_p0/final_decision.json",
+      "raw_sha256": "b6eeb0c912c5986da95814d38a357f3823ad7e3ef8ffb6d2d9fcad84698cbac2"
+    },
+    {
+      "exists": true,
+      "git_blob_sha": "847a1b04b0704a03503f3ce451165aec66b603df",
+      "path": "configs/research/strategy_alpha_v1.yaml",
+      "raw_sha256": "dc65416e1e0bb4a9882734dcf34d7341820cff966d7f500491c5534fa4b0c6ab"
+    }
+  ],
+  "checks": {
+    "allowed_end": true,
+    "allowed_start": true,
+    "candidate_ids": true,
+    "confirmatory_claim_forbidden": true,
+    "forbidden_end": true,
+    "forbidden_start": true,
+    "holdout_access_forbidden": true
+  },
+  "created_at_utc": "2026-07-29T14:14:28.312238+00:00",
+  "frozen_candidate_ids": [
+    "SMC_A_SWEEP_REVERSAL_V1",
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+    "SMC_C_LONDON_OPENING_RANGE_V1",
+    "SMC_C_NEWYORK_OPENING_RANGE_V1"
+  ],
+  "status": "PASS"
+}

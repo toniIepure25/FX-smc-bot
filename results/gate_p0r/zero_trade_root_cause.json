@@ -1,0 +1,142 @@
+{
+  "candidate_funnels": [
+    {
+      "candidate_detection_opportunities": 0,
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "causally_valid_signals": 0,
+      "eligible_market_bars": 0,
+      "orders_created": 0,
+      "orders_eligible_for_execution": 0,
+      "orders_filled": 0,
+      "positions_closed": 0,
+      "positions_opened": 0,
+      "raw_signals": 0,
+      "rejection_counts": {
+        "expired_order": 0,
+        "invalid_signal": 0,
+        "missing_cost_inputs": 0,
+        "missing_data": 1,
+        "missing_exit": 0,
+        "missing_spread": 0,
+        "outside_session": 0,
+        "position_overlap": 0,
+        "runtime_error": 0,
+        "uncertified_partition": 1,
+        "unreachable_limit": 0
+      },
+      "root_causes": [
+        "NO_DATA_DISCOVERED",
+        "DATA_PRESENT_NOT_CERTIFIED",
+        "STRATEGY_RUNTIME_NOT_CONNECTED",
+        "EXECUTION_OUTPUT_NOT_CONNECTED_TO_AGGREGATOR"
+      ],
+      "trades_accepted_into_aggregate_sample": 0
+    },
+    {
+      "candidate_detection_opportunities": 0,
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "causally_valid_signals": 0,
+      "eligible_market_bars": 0,
+      "orders_created": 0,
+      "orders_eligible_for_execution": 0,
+      "orders_filled": 0,
+      "positions_closed": 0,
+      "positions_opened": 0,
+      "raw_signals": 0,
+      "rejection_counts": {
+        "expired_order": 0,
+        "invalid_signal": 0,
+        "missing_cost_inputs": 0,
+        "missing_data": 1,
+        "missing_exit": 0,
+        "missing_spread": 0,
+        "outside_session": 0,
+        "position_overlap": 0,
+        "runtime_error": 0,
+        "uncertified_partition": 1,
+        "unreachable_limit": 0
+      },
+      "root_causes": [
+        "NO_DATA_DISCOVERED",
+        "DATA_PRESENT_NOT_CERTIFIED",
+        "STRATEGY_RUNTIME_NOT_CONNECTED",
+        "EXECUTION_OUTPUT_NOT_CONNECTED_TO_AGGREGATOR"
+      ],
+      "trades_accepted_into_aggregate_sample": 0
+    },
+    {
+      "candidate_detection_opportunities": 0,
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "causally_valid_signals": 0,
+      "eligible_market_bars": 0,
+      "orders_created": 0,
+      "orders_eligible_for_execution": 0,
+      "orders_filled": 0,
+      "positions_closed": 0,
+      "positions_opened": 0,
+      "raw_signals": 0,
+      "rejection_counts": {
+        "expired_order": 0,
+        "invalid_signal": 0,
+        "missing_cost_inputs": 0,
+        "missing_data": 1,
+        "missing_exit": 0,
+        "missing_spread": 0,
+        "outside_session": 0,
+        "position_overlap": 0,
+        "runtime_error": 0,
+        "uncertified_partition": 1,
+        "unreachable_limit": 0
+      },
+      "root_causes": [
+        "NO_DATA_DISCOVERED",
+        "DATA_PRESENT_NOT_CERTIFIED",
+        "STRATEGY_RUNTIME_NOT_CONNECTED",
+        "EXECUTION_OUTPUT_NOT_CONNECTED_TO_AGGREGATOR"
+      ],
+      "trades_accepted_into_aggregate_sample": 0
+    },
+    {
+      "candidate_detection_opportunities": 0,
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "causally_valid_signals": 0,
+      "eligible_market_bars": 0,
+      "orders_created": 0,
+      "orders_eligible_for_execution": 0,
+      "orders_filled": 0,
+      "positions_closed": 0,
+      "positions_opened": 0,
+      "raw_signals": 0,
+      "rejection_counts": {
+        "expired_order": 0,
+        "invalid_signal": 0,
+        "missing_cost_inputs": 0,
+        "missing_data": 1,
+        "missing_exit": 0,
+        "missing_spread": 0,
+        "outside_session": 0,
+        "position_overlap": 0,
+        "runtime_error": 0,
+        "uncertified_partition": 1,
+        "unreachable_limit": 0
+      },
+      "root_causes": [
+        "NO_DATA_DISCOVERED",
+        "DATA_PRESENT_NOT_CERTIFIED",
+        "STRATEGY_RUNTIME_NOT_CONNECTED",
+        "EXECUTION_OUTPUT_NOT_CONNECTED_TO_AGGREGATOR"
+      ],
+      "trades_accepted_into_aggregate_sample": 0
+    }
+  ],
+  "created_at_utc": "2026-07-29T14:14:28.667128+00:00",
+  "exact_root_cause": "P0 was a freeze and aggregate-safety gate. scripts/run_gate_p0_strategy_alpha.py generated deterministic blocked aggregate placeholders and never loaded market storage, so no candidate runtime reached an executable historical ledger.",
+  "root_cause_classes": [
+    "NO_DATA_DISCOVERED",
+    "DATA_PRESENT_NOT_CERTIFIED",
+    "STRATEGY_RUNTIME_NOT_CONNECTED",
+    "EXECUTION_OUTPUT_NOT_CONNECTED_TO_AGGREGATOR",
+    "ROW_LEDGER_POLICY_PREVENTED_EXECUTION"
+  ],
+  "status": "PASS"
+}
