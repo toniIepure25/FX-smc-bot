@@ -1,0 +1,56 @@
+program:
+  program_id: FX_SMC_STRATEGY_ALPHA_V1
+  lineage_id: FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1
+  legacy_lineage_id: USDJPY_ACCEPTANCE_RESEARCH_LINEAGE_V1
+  purpose: exploratory_strategy_level_profitability_and_forward_test_screen
+
+research_boundary:
+  historical_label: EXPLORATORY_HISTORICAL_STRATEGY_FEASIBILITY
+  confirmatory_alpha_claim_permitted: false
+  sealed_holdout_access_permitted: false
+  parameter_search_permitted: false
+
+data_boundary:
+  allowed_historical_start: "2015-01-01"
+  allowed_historical_end: "2022-12-31"
+  forbidden_holdout_start: "2023-01-01"
+  forbidden_holdout_end: "2025-12-31"
+  windows:
+    engineering: "2015-2018"
+    historical_replay: "2019"
+    historical_stress: "2020-2022"
+
+candidate_universe:
+  - candidate_id: SMC_A_SWEEP_REVERSAL_V1
+    config_path: configs/research/intraday_smc/sweep_reversal.yaml
+    strategy_family: liquidity_sweep_mss_fvg_reversal
+  - candidate_id: SMC_B_ACCEPTANCE_CONTINUATION_V1
+    config_path: configs/research/intraday_smc/acceptance_continuation.yaml
+    strategy_family: liquidity_acceptance_fvg_continuation
+  - candidate_id: SMC_C_LONDON_OPENING_RANGE_V1
+    config_path: configs/research/intraday_smc/opening_range.yaml
+    strategy_family: opening_range_displacement_fvg_retest
+    session: london
+  - candidate_id: SMC_C_NEWYORK_OPENING_RANGE_V1
+    config_path: configs/research/intraday_smc/opening_range.yaml
+    strategy_family: opening_range_displacement_fvg_retest
+    session: new_york
+
+execution:
+  primary_fill_policy: adverse_first
+  market_entry_long: ask
+  market_entry_short: bid
+  exit_long: bid
+  exit_short: ask
+  limit_fill_side_required: executable_bid_ask
+  missing_data_behavior: NO_TRADE_WITH_RECORDED_REASON
+  cost_stress_multipliers:
+    base: 1.0
+    stress_1: 1.5
+    stress_2: 2.0
+
+eligibility:
+  minimum_completed_historical_trades: 100
+  minimum_years_with_20_trades: 3
+  maximum_primary_candidates: 1
+  maximum_secondary_candidates: 1
