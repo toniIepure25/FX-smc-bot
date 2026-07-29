@@ -1,0 +1,30 @@
+{
+  "created_at_utc": "2026-07-29T18:20:19.945756+00:00",
+  "failed_units": 0,
+  "failures": [],
+  "native_fallback_failures": 0,
+  "native_fallback_market_closed": 0,
+  "native_fallback_requests": 2,
+  "native_fallback_successes": 2,
+  "operational_history": {
+    "http_status_counts": {
+      "200": 1552,
+      "NONE": 2
+    },
+    "native_failure_records": 19,
+    "native_market_closed_records": 3,
+    "native_pass_records": 1532,
+    "native_request_records": 1554,
+    "native_transport_attempts": 1618,
+    "operational_log_present": true,
+    "primary_month_result_records": 737,
+    "unique_failed_units_eventually_recovered": 3,
+    "unique_native_day_side_units": 1551,
+    "unique_units_with_historical_failure": 19
+  },
+  "planned_units": 270,
+  "primary_provider": "dukascopy-node@1.46.4",
+  "provider_access_observed": true,
+  "status": "PASS",
+  "successful_units": 270
+}

@@ -4,10 +4,14 @@ import argparse
 import calendar
 import hashlib
 import json
+import lzma
 import math
 import shutil
 import subprocess
 import sys
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
@@ -31,6 +35,7 @@ from fx_smc_bot.research.strategy_alpha_data import (  # noqa: E402
     RecoveryPartition,
     amended_requirement_contract,
     recovery_partition_record,
+    validate_amended_provider_request,
 )
 
 RESULT_DIR = REPO / "results" / "gate_p0rdcra1a"
@@ -1021,6 +1026,19 @@ def run_recertification() -> None:
     recertification, repair = build_recertification_results()
     write_json(RESULT_DIR / "recertification_results.json", recertification)
     write_json(RESULT_DIR / "repair_inventory.json", repair)
+    repair_results_path = RESULT_DIR / "repair_results.json"
+    if repair_results_path.is_file() and not repair["repair_units"]:
+        repair_results = load_json(repair_results_path)
+        repair_results.update(
+            {
+                "recertified_pair_months": recertification[
+                    "recertified_pair_months"
+                ],
+                "remaining_failed": 0,
+                "status": "PASS_RECERTIFIED",
+            }
+        )
+        write_json(repair_results_path, repair_results)
     print(
         json.dumps(
             {
@@ -1036,11 +1054,556 @@ def run_recertification() -> None:
     )
 
 
+def _acquire_repair_unit(
+    instrument: str,
+    side: str,
+    year: int,
+    month: int,
+    planned_ids: set[str],
+) -> dict[str, Any]:
+    from fx_smc_bot.data.daily_checkpoint import (
+        acquire_month_bulk,
+        load_month_manifest,
+        save_month_manifest,
+    )
+
+    partition = RecoveryPartition(instrument, year, month, side)
+    last_day = calendar.monthrange(year, month)[1]
+    validate_amended_provider_request(
+        requested_start=f"{year:04d}-{month:02d}-01",
+        requested_end=f"{year:04d}-{month:02d}-{last_day:02d}",
+        instrument=instrument,
+        partition=partition,
+        planned_partition_ids=planned_ids,
+    )
+    existing_manifest = load_month_manifest(
+        RAW_ROOTS[2],
+        instrument,
+        side,
+        year,
+        month,
+    )
+    if existing_manifest is not None and _normalize_native_checkpoint_categories(
+        existing_manifest
+    ):
+        save_month_manifest(RAW_ROOTS[2], existing_manifest)
+    started = time.monotonic()
+    try:
+        manifest = acquire_month_bulk(
+            instrument,
+            side,
+            year,
+            month,
+            RAW_ROOTS[2],
+            timeframe="m1",
+            batch_size=30,
+            retries=5,
+            pause_between_batches_ms=250,
+        )
+        normalized_closed_saturdays = sum(
+            1
+            for day in manifest.days
+            if _is_closed_saturday_repair_candidate(day)
+        )
+        native_attempts = _repair_manifest_with_native_bi5(
+            manifest,
+            raw_root=RAW_ROOTS[2],
+            planned_ids=planned_ids,
+        )
+        failed_days = sum(1 for day in manifest.days if day.status == "failed")
+        zero_row_business_days = sum(
+            1
+            for day in manifest.days
+            if day.status == "complete" and day.rows == 0
+        )
+        status = (
+            "COMPLETE_PENDING_RECERTIFICATION"
+            if manifest.compacted
+            and manifest.compacted_rows > 0
+            and failed_days == 0
+            and zero_row_business_days == 0
+            else "FAILED_OR_INCOMPLETE"
+        )
+        return {
+            "partition_id": partition.partition_id,
+            "instrument": instrument,
+            "side": side,
+            "year": year,
+            "month": month,
+            "status": status,
+            "compacted": manifest.compacted,
+            "compacted_rows": manifest.compacted_rows,
+            "manifest_day_count": len(manifest.days),
+            "failed_days": failed_days,
+            "zero_row_business_days": zero_row_business_days,
+            "native_fallback_requests": len(native_attempts),
+            "native_fallback_successes": sum(
+                1 for item in native_attempts if item["status"] == "PASS"
+            ),
+            "native_fallback_market_closed": sum(
+                1 for item in native_attempts if item["status"] == "MARKET_CLOSED"
+            ),
+            "native_fallback_failures": sum(
+                1 for item in native_attempts if item["status"] == "FAIL"
+            ),
+            "closed_saturdays_normalized": normalized_closed_saturdays,
+            "elapsed_seconds": round(time.monotonic() - started, 3),
+            "error": "",
+            "_provider_attempts": native_attempts,
+        }
+    except Exception as exc:
+        return {
+            "partition_id": partition.partition_id,
+            "instrument": instrument,
+            "side": side,
+            "year": year,
+            "month": month,
+            "status": "PROVIDER_OR_ACQUISITION_ERROR",
+            "compacted": False,
+            "compacted_rows": 0,
+            "manifest_day_count": 0,
+            "failed_days": 0,
+            "zero_row_business_days": 0,
+            "native_fallback_requests": 0,
+            "native_fallback_successes": 0,
+            "native_fallback_market_closed": 0,
+            "native_fallback_failures": 0,
+            "closed_saturdays_normalized": 0,
+            "elapsed_seconds": round(time.monotonic() - started, 3),
+            "error": f"{type(exc).__name__}: {str(exc)[:300]}",
+            "_provider_attempts": [],
+        }
+
+
+def _requires_native_fallback(day_status: Any) -> bool:
+    if _is_closed_saturday_repair_candidate(day_status):
+        return False
+    if day_status.status == "failed":
+        return True
+    if day_status.status != "complete" or day_status.rows != 0:
+        return False
+    return date(day_status.year, day_status.month, day_status.day).weekday() != 5
+
+
+def _is_closed_saturday_repair_candidate(day_status: Any) -> bool:
+    requested_day = date(day_status.year, day_status.month, day_status.day)
+    return requested_day.weekday() == 5 and (
+        day_status.status == "failed"
+        or (day_status.status == "complete" and day_status.rows == 0)
+    )
+
+
+def _normalize_native_checkpoint_categories(manifest: Any) -> bool:
+    replacements = {
+        "NATIVE_BI5_FETCH_FAILURE": "UNKNOWN_ERROR",
+        "NATIVE_BI5_VALIDATION_FAILURE": "PARSER_ERROR",
+    }
+    changed = False
+    for day_status in manifest.days:
+        replacement = replacements.get(day_status.failure_category)
+        if replacement is not None:
+            day_status.failure_category = replacement
+            changed = True
+    return changed
+
+
+def _atomic_write_rows(path: Path, rows: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(rows), encoding="utf-8")
+    temporary.replace(path)
+
+
+def _repair_manifest_with_native_bi5(
+    manifest: Any,
+    *,
+    raw_root: Path,
+    planned_ids: set[str],
+) -> list[dict[str, Any]]:
+    from fx_smc_bot.data.daily_checkpoint import compact_month, save_month_manifest
+    from fx_smc_bot.data.dukascopy_bi5 import (
+        dukascopy_candle_url,
+        fetch_bi5_day,
+        parse_bi5_m1_candles,
+        validate_m1_rows,
+    )
+    from fx_smc_bot.data.dukascopy_node_provider import _compute_checksum
+    from fx_smc_bot.data.failure_categories import classify_failure
+
+    partition = RecoveryPartition(
+        manifest.pair,
+        manifest.year,
+        manifest.month,
+        manifest.side,
+    )
+    attempts: list[dict[str, Any]] = []
+    normalized_saturday = False
+    for day_status in manifest.days:
+        if not _is_closed_saturday_repair_candidate(day_status):
+            continue
+        day_status.status = "market_closed"
+        day_status.rows = 0
+        day_status.checksum = ""
+        day_status.file_size = 0
+        day_status.failure_category = "MARKET_CLOSED_WEEKEND"
+        day_status.error = ""
+        normalized_saturday = True
+
+    fallback_days = [
+        item
+        for item in sorted(manifest.days, key=lambda day: day.day)
+        if _requires_native_fallback(item)
+    ]
+    if fallback_days or normalized_saturday:
+        manifest.compacted = False
+        manifest.compacted_checksum = ""
+        manifest.compacted_rows = 0
+        save_month_manifest(raw_root, manifest)
+
+    for day_status in fallback_days:
+
+        requested_day = date(
+            day_status.year,
+            day_status.month,
+            day_status.day,
+        )
+        day_text = requested_day.isoformat()
+        validate_amended_provider_request(
+            requested_start=day_text,
+            requested_end=day_text,
+            instrument=manifest.pair,
+            partition=partition,
+            planned_partition_ids=planned_ids,
+        )
+        day_dir = (
+            raw_root
+            / manifest.pair
+            / f"price={manifest.side}"
+            / f"year={manifest.year}"
+            / f"month={manifest.month:02d}"
+            / f"day={day_status.day:02d}"
+        )
+        raw_path = (
+            day_dir
+            / "_provider_raw"
+            / f"{manifest.side.upper()}_candles_min_1.bi5"
+        )
+        url = dukascopy_candle_url(
+            manifest.pair,
+            requested_day,
+            manifest.side,
+        )
+        fetched = fetch_bi5_day(
+            url,
+            raw_path,
+            retries=3,
+            backoff_seconds=1.0,
+            timeout_seconds=30,
+        )
+        attempt = {
+            "type": "native_bi5_day_fallback",
+            "instrument": manifest.pair,
+            "side": manifest.side,
+            "date": day_text,
+            **fetched.to_dict(),
+        }
+        day_status.attempts += fetched.attempts
+        if fetched.status != "PASS":
+            day_status.status = "failed"
+            day_status.failure_category = classify_failure(
+                fetched.error,
+                day_status.year,
+                day_status.month,
+                day_status.day,
+                0,
+            ).value
+            day_status.error = fetched.error
+            attempt["validation_status"] = "NOT_REACHED"
+            attempts.append(attempt)
+            save_month_manifest(raw_root, manifest)
+            continue
+
+        try:
+            payload = raw_path.read_bytes()
+            rows = parse_bi5_m1_candles(
+                payload,
+                requested_day,
+                integer_scale=100_000,
+                ignore_flats=True,
+            )
+            validation = validate_m1_rows(rows, requested_day)
+            if validation["row_count"] == 0:
+                day_status.status = "market_closed"
+                day_status.rows = 0
+                day_status.checksum = ""
+                day_status.file_size = 0
+                day_status.failure_category = "MARKET_CLOSED_HOLIDAY"
+                day_status.error = ""
+                day_status.completed_at = now_utc()
+                attempt["validation_status"] = "PROVIDER_CLOSED_ZERO_VOLUME"
+                attempt["row_count"] = 0
+                attempt["status"] = "MARKET_CLOSED"
+                attempts.append(attempt)
+                save_month_manifest(raw_root, manifest)
+                continue
+            timestamps = [int(row["timestamp"]) for row in rows]
+            prices_valid = all(
+                math.isfinite(float(row[field])) and float(row[field]) > 0
+                for row in rows
+                for field in ("open", "high", "low", "close")
+            )
+            validation_passed = (
+                validation["monotonic_timestamps"]
+                and validation["timestamps_in_requested_day"]
+                and validation["ohlc_valid"]
+                and len(timestamps) == len(set(timestamps))
+                and prices_valid
+            )
+            if not validation_passed:
+                raise ValueError("native BI5 M1 validation failed")
+
+            day_file = day_dir / "data.json"
+            _atomic_write_rows(day_file, rows)
+            day_status.status = "complete"
+            day_status.rows = len(rows)
+            day_status.checksum = _compute_checksum(day_file)
+            day_status.file_size = day_file.stat().st_size
+            day_status.failure_category = ""
+            day_status.error = ""
+            day_status.completed_at = now_utc()
+            attempt["validation_status"] = "PASS"
+            attempt["row_count"] = len(rows)
+            attempt["status"] = "PASS"
+        except (KeyError, lzma.LZMAError, OSError, OverflowError, TypeError, ValueError) as exc:
+            day_status.status = "failed"
+            day_status.rows = 0
+            day_status.checksum = ""
+            day_status.file_size = 0
+            day_status.failure_category = "PARSER_ERROR"
+            day_status.error = f"{type(exc).__name__}: {str(exc)[:300]}"
+            attempt["validation_status"] = "FAIL"
+            attempt["status"] = "FAIL"
+            attempt["error"] = day_status.error
+        attempts.append(attempt)
+        save_month_manifest(raw_root, manifest)
+
+    if fallback_days or normalized_saturday:
+        compact_month(raw_root, manifest)
+        save_month_manifest(raw_root, manifest)
+    return attempts
+
+
+def _write_operational_log(record: dict[str, Any], lock: threading.Lock) -> None:
+    log_path = REPO / "logs" / "p0rdcra1a" / "provider_requests.jsonl"
+    with lock:
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        with log_path.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(record, sort_keys=True) + "\n")
+
+
+def _operational_records() -> list[dict[str, Any]]:
+    log_path = REPO / "logs" / "p0rdcra1a" / "provider_requests.jsonl"
+    records: list[dict[str, Any]] = []
+    if log_path.is_file():
+        for line in log_path.read_text(encoding="utf-8").splitlines():
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(record, dict):
+                records.append(record)
+    return records
+
+
+def _latest_primary_results_from_history() -> list[dict[str, Any]]:
+    latest: dict[str, dict[str, Any]] = {}
+    for item in _operational_records():
+        if item.get("type") != "primary_month_result":
+            continue
+        partition_id = str(item.get("partition_id", ""))
+        if not partition_id:
+            continue
+        latest[partition_id] = {
+            key: value for key, value in item.items() if key != "type"
+        }
+    return sorted(latest.values(), key=lambda item: str(item["partition_id"]))
+
+
+def _operational_provider_history() -> dict[str, Any]:
+    log_path = REPO / "logs" / "p0rdcra1a" / "provider_requests.jsonl"
+    records = _operational_records()
+
+    native = [
+        item for item in records if item.get("type") == "native_bi5_day_fallback"
+    ]
+    primary = [item for item in records if item.get("type") == "primary_month_result"]
+    native_units: dict[tuple[str, str, str], set[str]] = {}
+    for item in native:
+        key = (
+            str(item.get("instrument", "")),
+            str(item.get("side", "")),
+            str(item.get("date", "")),
+        )
+        native_units.setdefault(key, set()).add(str(item.get("status", "")))
+    http_status_counts: dict[str, int] = {}
+    for item in native:
+        status = str(item.get("http_status") or "NONE")
+        http_status_counts[status] = http_status_counts.get(status, 0) + 1
+
+    return {
+        "operational_log_present": log_path.is_file(),
+        "primary_month_result_records": len(primary),
+        "native_request_records": len(native),
+        "native_transport_attempts": sum(int(item.get("attempts", 0)) for item in native),
+        "unique_native_day_side_units": len(native_units),
+        "native_pass_records": sum(1 for item in native if item.get("status") == "PASS"),
+        "native_market_closed_records": sum(
+            1 for item in native if item.get("status") == "MARKET_CLOSED"
+        ),
+        "native_failure_records": sum(1 for item in native if item.get("status") == "FAIL"),
+        "unique_units_with_historical_failure": sum(
+            1 for statuses in native_units.values() if "FAIL" in statuses
+        ),
+        "unique_failed_units_eventually_recovered": sum(
+            1
+            for statuses in native_units.values()
+            if "FAIL" in statuses and bool(statuses & {"PASS", "MARKET_CLOSED"})
+        ),
+        "http_status_counts": dict(sorted(http_status_counts.items())),
+    }
+
+
+def run_acquisition() -> None:
+    repair = load_json(RESULT_DIR / "repair_inventory.json")
+    units = [
+        (
+            str(item["instrument"]),
+            str(item["side"]),
+            int(item["year"]),
+            int(item["month"]),
+        )
+        for item in repair["repair_units"]
+    ]
+    units = sorted(set(units))
+    planned_ids = {item.partition_id for item in planned_partitions()}
+    results: list[dict[str, Any]] = []
+    log_lock = threading.Lock()
+    started = time.monotonic()
+    if units:
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            futures = {
+                executor.submit(_acquire_repair_unit, *unit, planned_ids): unit
+                for unit in units
+            }
+            for future in as_completed(futures):
+                result = future.result()
+                provider_attempts = result.pop("_provider_attempts", [])
+                results.append(result)
+                _write_operational_log(
+                    {"type": "primary_month_result", **result},
+                    log_lock,
+                )
+                for provider_attempt in provider_attempts:
+                    _write_operational_log(provider_attempt, log_lock)
+                if len(results) % 10 == 0 or len(results) == len(units):
+                    progress = {
+                        "created_at_utc": now_utc(),
+                        "protocol_id": RECOVERY_PROTOCOL_ID,
+                        "planned_units": len(units),
+                        "completed_units": len(results),
+                        "successful_pending_recertification": sum(
+                            1
+                            for item in results
+                            if item["status"] == "COMPLETE_PENDING_RECERTIFICATION"
+                        ),
+                        "failed_or_incomplete_units": sum(
+                            1
+                            for item in results
+                            if item["status"] != "COMPLETE_PENDING_RECERTIFICATION"
+                        ),
+                        "elapsed_seconds": round(time.monotonic() - started, 3),
+                        "status": (
+                            "RUNNING" if len(results) < len(units) else "COMPLETE"
+                        ),
+                    }
+                    write_json(RESULT_DIR / "acquisition_progress.json", progress)
+    else:
+        results = _latest_primary_results_from_history()
+
+    results.sort(key=lambda item: item["partition_id"])
+    planned_unit_count = len(units) if units else len(results)
+    failures = [
+        item for item in results if item["status"] != "COMPLETE_PENDING_RECERTIFICATION"
+    ]
+    failure_summary = {
+        "created_at_utc": now_utc(),
+        "primary_provider": "dukascopy-node@1.46.4",
+        "planned_units": planned_unit_count,
+        "successful_units": len(results) - len(failures),
+        "failed_units": len(failures),
+        "native_fallback_requests": sum(
+            int(item["native_fallback_requests"]) for item in results
+        ),
+        "native_fallback_successes": sum(
+            int(item["native_fallback_successes"]) for item in results
+        ),
+        "native_fallback_market_closed": sum(
+            int(item["native_fallback_market_closed"]) for item in results
+        ),
+        "native_fallback_failures": sum(
+            int(item["native_fallback_failures"]) for item in results
+        ),
+        "failures": failures,
+        "provider_access_observed": bool(results),
+        "operational_history": _operational_provider_history(),
+        "status": "PASS" if not failures else "FAIL",
+    }
+    repair_results = {
+        "created_at_utc": now_utc(),
+        "unit_results": results,
+        "repaired_pending_recertification": len(results) - len(failures),
+        "remaining_failed": len(failures),
+        "status": "PENDING_RECERTIFICATION" if not failures else "INCOMPLETE",
+    }
+    progress = {
+        "created_at_utc": now_utc(),
+        "protocol_id": RECOVERY_PROTOCOL_ID,
+        "planned_units": planned_unit_count,
+        "completed_units": len(results),
+        "successful_pending_recertification": len(results) - len(failures),
+        "failed_or_incomplete_units": len(failures),
+        "elapsed_seconds": round(time.monotonic() - started, 3),
+        "status": "COMPLETE",
+    }
+    write_json(RESULT_DIR / "acquisition_progress.json", progress)
+    write_json(RESULT_DIR / "provider_failure_summary.json", failure_summary)
+    write_json(RESULT_DIR / "repair_results.json", repair_results)
+    print(
+        json.dumps(
+            {
+                "stage": "acquisition",
+                "planned_units": planned_unit_count,
+                "successful_units": len(results) - len(failures),
+                "failed_units": len(failures),
+                "elapsed_seconds": round(time.monotonic() - started, 3),
+            },
+            indent=2,
+        )
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--stage",
-        choices=["audit", "amendment", "stage2_prep", "recertification", "all"],
+        choices=[
+            "audit",
+            "amendment",
+            "stage2_prep",
+            "recertification",
+            "acquisition",
+            "all",
+        ],
         default="all",
     )
     args = parser.parse_args()
@@ -1052,6 +1615,8 @@ def main() -> None:
         run_stage2_prep()
     if args.stage in {"recertification", "all"}:
         run_recertification()
+    if args.stage in {"acquisition", "all"}:
+        run_acquisition()
 
 
 if __name__ == "__main__":
