@@ -1,0 +1,59 @@
+{
+  "artifacts": [
+    {
+      "canonical_json_sha256": "e3c829b851fc95a4ca448e8c082ef96695b202aa316cf2d8d2778162cd78990c",
+      "exists": true,
+      "git_blob_sha": "c03b5053009eec7f7002790d6f06680928c0cf0f",
+      "path": "results/gate_c6/acceptance_lineage_seal.json",
+      "raw_sha256": "041ad3bfc9e5bd9a3a71aa60a1df75f37c07a6de5014d45cf7cc6b142021a0ee"
+    },
+    {
+      "canonical_json_sha256": "850442f0c4d31a413370c7d4f600a1f5b83f48c18b0b306209eb61e8d5fdf5a8",
+      "exists": true,
+      "git_blob_sha": "02343a2d9cb491ba551fc5464268793f605610d2",
+      "path": "results/gate_c6/reproducibility_manifest.json",
+      "raw_sha256": "9c2387dc5599a4e984b7d6ebb5082a400e5641035111b54f30bb91f8cfc1b544"
+    },
+    {
+      "canonical_json_sha256": "82b1b38b2134bf5f82e0d4cda5fac376eb6eec3a9d6e3f4e895b1ddf76856ef5",
+      "exists": true,
+      "git_blob_sha": "2b741ffdb2adb7a3404cf8abf544fb360c316c66",
+      "path": "results/gate_c6/final_claim_matrix.json",
+      "raw_sha256": "0734425a9582c7bc45dd3699d09c0739d0c6eee57b0adff976bd0165e2c9e04a"
+    },
+    {
+      "canonical_json_sha256": "ffb5fddd3cbfba9f494bfcf812980dad0c98768f1a7205caf39969acdf4034a1",
+      "exists": true,
+      "git_blob_sha": "40256ad3ba0df7b971d6b685b8c7dd78f79343ff",
+      "path": "results/gate_c6/final_result_reproduction.json",
+      "raw_sha256": "11ec2ec20f9154d549a67163e3dd114c4be0984f982fa4d6e564657ff763722c"
+    },
+    {
+      "canonical_json_sha256": "cd8905d22d980a7426cb31f732458bade83045b9a805c069b56c74fd1c91f8a9",
+      "exists": true,
+      "git_blob_sha": "f865567703e6e5b9e76f98f02ddc344ef5dcaa1a",
+      "path": "results/gate_c6rcipda/prohibited_data_audit_reconciliation_overlay.json",
+      "raw_sha256": "9496b77c8ad49d728922480175df5464689f580eb769aa3f00737255cd30cd7c"
+    },
+    {
+      "canonical_json_sha256": "62cad6b0a37673c698b01cb867ad298b3c0bb5160a214aa90d937b8560f7c349",
+      "exists": true,
+      "git_blob_sha": "414be240b7e394fe94157f738d55d64a2347df5e",
+      "path": "results/gate_c6rcipda/corrected_prohibited_data_audit.json",
+      "raw_sha256": "e58a307364a755732eed0e371c8b497bceeb87c4ea95f6bebfae743b0a364dfb"
+    }
+  ],
+  "checks": {
+    "acceptance_holdout_authorized_for_new_program": false,
+    "legacy_lineage_id": true,
+    "legacy_lineage_status_closed": true,
+    "legacy_manifest_hash": true,
+    "legacy_seal_hash": true,
+    "new_acceptance_hypothesis_inside_old_lineage": false
+  },
+  "created_at_utc": "2026-07-29T13:50:18.214281+00:00",
+  "legacy_lineage_id": "USDJPY_ACCEPTANCE_RESEARCH_LINEAGE_V1",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "status": "PASS"
+}
