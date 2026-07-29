@@ -113,6 +113,11 @@ class TradeRecord:
     exit_time: datetime | None = None
     price_mode: str = EXECUTION_MODE_MID
     exit_reason: str = ""
+    stop_loss: float = 0.0
+    take_profit: float = 0.0
+    initial_risk_cash: float = 0.0
+    entry_slippage_price: float = 0.0
+    exit_slippage_price: float = 0.0
 
 
 @dataclass(slots=True)
@@ -1069,6 +1074,10 @@ class IntradayBacktestEngine:
         swap_cost = self._position_swap.pop(pos.id, 0.0)
         spread_cost = exit_fill.spread_cost
         slippage_cost = exit_fill.slippage
+        entry_slippage = pos.entry_fill.slippage if pos.entry_fill is not None else 0.0
+        initial_risk_cash = (
+            abs(pos.entry_price - pos.stop_loss) * pos.units + commission_cost
+        )
 
         net_pnl = gross_pnl - commission_cost + swap_cost
 
@@ -1148,6 +1157,11 @@ class IntradayBacktestEngine:
                 self._position_exit_kind.pop(pos.id, "")
                 or exit_fill.reason.value
             ),
+            stop_loss=pos.stop_loss,
+            take_profit=pos.take_profit,
+            initial_risk_cash=initial_risk_cash,
+            entry_slippage_price=entry_slippage,
+            exit_slippage_price=slippage_cost,
         ))
 
     @staticmethod

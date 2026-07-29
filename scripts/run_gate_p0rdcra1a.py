@@ -6,6 +6,7 @@ import hashlib
 import json
 import lzma
 import math
+import os
 import shutil
 import subprocess
 import sys
@@ -2296,6 +2297,265 @@ def run_runtime_smoke() -> None:
     }, indent=2))
 
 
+def _execution_unit_paths(candidate_id: str, year: int) -> tuple[Path, Path]:
+    root = CANONICAL_ROOTS[1] / "_local_ledgers"
+    stem = f"{candidate_id}__{year}"
+    return root / f"{stem}.parquet", root / f"{stem}.json"
+
+
+def _execution_year_worker(candidate_id: str, year: int) -> dict[str, Any]:
+    from dataclasses import asdict, replace
+
+    import numpy as np
+    import pandas as pd  # type: ignore[import-untyped]
+
+    from fx_smc_bot.backtesting.intraday_engine import IntradayBacktestEngine
+    from fx_smc_bot.config import AppConfig, TradingPair
+    from fx_smc_bot.research.strategy_alpha import load_candidate_specs
+    from fx_smc_bot.research.strategy_alpha_execution import (
+        amended_execution_policy,
+        build_candidate_runtime_bindings,
+        is_amended_session_bar,
+        load_certified_m5_window,
+    )
+
+    ledger_path, metadata_path = _execution_unit_paths(candidate_id, year)
+    execution_code_sha = git(["rev-parse", "HEAD"])
+    if metadata_path.is_file() and ledger_path.is_file():
+        existing = load_json(metadata_path)
+        if (
+            existing.get("status") == "PASS"
+            and existing.get("execution_code_sha") == execution_code_sha
+            and existing.get("ledger_hash") == raw_sha256(ledger_path)
+        ):
+            return {**existing, "resumed": True}
+
+    candidate = next(
+        item for item in load_candidate_specs(REPO) if item.candidate_id == candidate_id
+    )
+    target_start = date(year, 1, 1)
+    target_end = date(year, 12, 31)
+    source_start = date(year, 1, 1) if year == 2015 else date(year - 1, 12, 1)
+    data = {
+        TradingPair(instrument): load_certified_m5_window(
+            REPO, instrument, source_start, target_end,
+        )
+        for instrument in sorted(AUTHORIZED_STRATEGY_INSTRUMENTS)
+    }
+    target_start_ns = np.datetime64(target_start.isoformat(), "ns")
+    pre_target_counts = {
+        pair.value: int(np.sum(series.timestamps < target_start_ns))
+        for pair, series in data.items()
+    }
+    if year > 2015 and any(count < 500 for count in pre_target_counts.values()):
+        raise RuntimeError(f"insufficient prior-year warmup for {candidate_id}/{year}")
+
+    base_policy = amended_execution_policy()
+    if year == 2015:
+        policy = base_policy
+    else:
+        def target_session_filter(value: datetime, session: str) -> bool:
+            return value >= datetime(year, 1, 1) and is_amended_session_bar(value, session)
+
+        policy = replace(
+            base_policy,
+            warmup_bars=0,
+            runtime_bar_filter=target_session_filter,
+        )
+    engine = IntradayBacktestEngine(AppConfig(), execution_policy=policy)
+    bindings = build_candidate_runtime_bindings(REPO, candidate)
+    for binding in bindings:
+        engine.add_runtime(binding.runtime)
+    result = engine.run(data)
+    reconciliation = engine.reconcile()
+    if reconciliation.violations:
+        raise RuntimeError(
+            f"execution reconciliation failed for {candidate_id}/{year}: "
+            f"{reconciliation.violations}"
+        )
+
+    rows = []
+    for record in engine.get_trade_records():
+        if record.entry_time is None or record.exit_time is None:
+            raise RuntimeError("closed trade is missing entry or exit time")
+        if record.entry_time.year != year:
+            raise RuntimeError("year shard emitted a trade outside its target year")
+        if record.initial_risk_cash <= 0:
+            raise RuntimeError("trade has non-positive initial risk")
+        slippage_cash = (
+            record.entry_slippage_price + record.exit_slippage_price
+        ) * record.units
+        explicit_cost_cash = record.commission_cost + slippage_cash
+        no_explicit_cost_pnl = record.net_pnl + explicit_cost_cash
+        rows.append({
+            "candidate_id": candidate_id,
+            "year": year,
+            "position_id": record.position_id,
+            "order_id": record.order_id,
+            "intent_id": record.intent_id,
+            "instrument": record.pair,
+            "direction": record.direction,
+            "session": record.session,
+            "entry_time": record.entry_time,
+            "exit_time": record.exit_time,
+            "entry_price": record.entry_price,
+            "exit_price": record.exit_price,
+            "stop_loss": record.stop_loss,
+            "take_profit": record.take_profit,
+            "units": record.units,
+            "initial_risk_cash": record.initial_risk_cash,
+            "gross_r": no_explicit_cost_pnl / record.initial_risk_cash,
+            "net_r": record.net_pnl / record.initial_risk_cash,
+            "cost_drag_r": explicit_cost_cash / record.initial_risk_cash,
+            "stress_1_5x_net_r": (
+                record.net_pnl - 0.5 * explicit_cost_cash
+            ) / record.initial_risk_cash,
+            "stress_2_0x_net_r": (
+                record.net_pnl - explicit_cost_cash
+            ) / record.initial_risk_cash,
+            "commission_cash": record.commission_cost,
+            "slippage_cash": slippage_cash,
+            "swap_cash": record.swap_cost,
+            "exit_reason": record.exit_reason,
+            "entry_bar": record.entry_bar,
+            "exit_bar": record.exit_bar,
+        })
+    columns = [
+        "candidate_id", "year", "position_id", "order_id", "intent_id",
+        "instrument", "direction", "session", "entry_time", "exit_time",
+        "entry_price", "exit_price", "stop_loss", "take_profit", "units",
+        "initial_risk_cash", "gross_r", "net_r", "cost_drag_r",
+        "stress_1_5x_net_r", "stress_2_0x_net_r", "commission_cash",
+        "slippage_cash", "swap_cash", "exit_reason", "entry_bar", "exit_bar",
+    ]
+    frame = pd.DataFrame(rows, columns=columns)
+    if not frame.empty:
+        frame = frame.sort_values(
+            ["entry_time", "instrument", "session", "position_id"]
+        ).reset_index(drop=True)
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = ledger_path.with_suffix(".parquet.tmp")
+    frame.to_parquet(temporary, index=False, engine="pyarrow")
+    temporary.replace(ledger_path)
+    schema = {column: str(dtype) for column, dtype in frame.dtypes.items()}
+    funnels = [asdict(item) for item in engine.get_funnels().values()]
+    metadata = {
+        "candidate_id": candidate_id,
+        "candidate_hash": candidate.config_canonical_hash,
+        "execution_code_sha": execution_code_sha,
+        "year": year,
+        "source_start": source_start.isoformat(),
+        "target_start": target_start.isoformat(),
+        "target_end": target_end.isoformat(),
+        "pre_target_warmup_rows": pre_target_counts,
+        "dataset_freeze_hash": load_json(
+            RESULT_DIR / "permitted_dataset_freeze.json"
+        )["dataset_freeze_hash"],
+        "ledger_path": _relative(ledger_path),
+        "ledger_hash": raw_sha256(ledger_path),
+        "schema_hash": canonical_json_sha256(schema),
+        "row_count": int(len(frame)),
+        "minimum_date": (
+            frame["entry_time"].min().isoformat() if not frame.empty else None
+        ),
+        "maximum_date": (
+            frame["exit_time"].max().isoformat() if not frame.empty else None
+        ),
+        "signals": sum(item["intents_generated"] for item in funnels),
+        "orders": sum(item["orders_accepted"] for item in funnels),
+        "fills": sum(item["orders_filled"] for item in funnels),
+        "closed_positions": sum(item["positions_closed"] for item in funnels),
+        "expired_orders": sum(item["orders_expired"] for item in funnels),
+        "cancelled_orders": sum(item["orders_cancelled"] for item in funnels),
+        "position_overlap_rejections": sum(
+            item["position_overlap_rejections"] for item in funnels
+        ),
+        "session_horizon_signal_rejections": sum(
+            item["session_horizon_signal_rejections"] for item in funnels
+        ),
+        "execution_errors": list(result.metadata.get("execution_errors", [])),
+        "open_positions_at_end": result.metadata.get("open_positions_at_end"),
+        "pending_orders_at_end": result.metadata.get("pending_orders_at_end"),
+        "status": "PASS",
+        "resumed": False,
+    }
+    metadata_path.write_text(
+        json.dumps(metadata, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return metadata
+
+
+def run_historical_execution() -> None:
+    execution_code_sha = git(["rev-parse", "HEAD"])
+    if git(["merge-base", "--is-ancestor", "e4e73ed76c58a23b35a6c469b236ae2c73c895a8", "HEAD"]):
+        raise RuntimeError("certified dataset freeze is not an ancestor of execution code")
+    candidate_ids = [
+        "SMC_A_SWEEP_REVERSAL_V1",
+        "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+        "SMC_C_LONDON_OPENING_RANGE_V1",
+        "SMC_C_NEWYORK_OPENING_RANGE_V1",
+    ]
+    tasks = [(candidate_id, year) for candidate_id in candidate_ids for year in range(2015, 2023)]
+    started = time.monotonic()
+    completed: list[dict[str, Any]] = []
+    worker_count = min(10, os.cpu_count() or 4)
+    with ProcessPoolExecutor(max_workers=worker_count) as pool:
+        futures = {
+            pool.submit(_execution_year_worker, candidate_id, year): (candidate_id, year)
+            for candidate_id, year in tasks
+        }
+        for future in as_completed(futures):
+            candidate_id, year = futures[future]
+            record = future.result()
+            completed.append(record)
+            progress = {
+                "created_at_utc": now_utc(),
+                "execution_code_sha": execution_code_sha,
+                "worker_count": worker_count,
+                "completed_units": len(completed),
+                "total_units": len(tasks),
+                "latest_unit": {"candidate_id": candidate_id, "year": year},
+                "elapsed_seconds": round(time.monotonic() - started, 3),
+                "status": "IN_PROGRESS" if len(completed) < len(tasks) else "PASS",
+            }
+            write_json(RESULT_DIR / "execution_progress.json", progress)
+            print(json.dumps(progress), flush=True)
+    completed.sort(key=lambda item: (item["candidate_id"], item["year"]))
+    if len(completed) != 32 or any(item["status"] != "PASS" for item in completed):
+        raise RuntimeError("historical execution did not certify all 32 units")
+    manifest = {
+        "created_at_utc": now_utc(),
+        "program_id": PROGRAM_ID,
+        "lineage_id": LINEAGE_ID,
+        "execution_code_sha": execution_code_sha,
+        "outcome_access_predecessor_sha": "e4e73ed76c58a23b35a6c469b236ae2c73c895a8",
+        "dataset_freeze_hash": load_json(
+            RESULT_DIR / "permitted_dataset_freeze.json"
+        )["dataset_freeze_hash"],
+        "worker_count": worker_count,
+        "unit_count": len(completed),
+        "trade_count": sum(int(item["row_count"]) for item in completed),
+        "minimum_date": min(
+            item["minimum_date"] for item in completed if item["minimum_date"]
+        ),
+        "maximum_date": max(
+            item["maximum_date"] for item in completed if item["maximum_date"]
+        ),
+        "units": completed,
+        "row_level_ledgers_committed": False,
+        "status": "PASS",
+    }
+    write_json(RESULT_DIR / "execution_sample_manifest.json", manifest)
+    print(json.dumps({
+        "stage": "historical_execution",
+        "units": len(completed),
+        "trades": manifest["trade_count"],
+        "workers": worker_count,
+        "elapsed_seconds": round(time.monotonic() - started, 3),
+    }, indent=2))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -2308,6 +2568,7 @@ def main() -> None:
             "acquisition",
             "canonicalization",
             "runtime_smoke",
+            "execution",
             "all",
         ],
         default="all",
@@ -2327,6 +2588,8 @@ def main() -> None:
         run_canonicalization()
     if args.stage in {"runtime_smoke", "all"}:
         run_runtime_smoke()
+    if args.stage in {"execution", "all"}:
+        run_historical_execution()
 
 
 if __name__ == "__main__":
