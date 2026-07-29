@@ -1,0 +1,22 @@
+{
+  "created_at_utc": "2026-07-29T14:16:45.835326+00:00",
+  "fdr_sensitivity": {
+    "SMC_A_SWEEP_REVERSAL_V1": null,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": null,
+    "SMC_C_LONDON_OPENING_RANGE_V1": null,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": null
+  },
+  "holm_adjusted_p_values": {
+    "SMC_A_SWEEP_REVERSAL_V1": null,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": null,
+    "SMC_C_LONDON_OPENING_RANGE_V1": null,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": null
+  },
+  "status": "NOT_EXECUTED",
+  "unadjusted_p_values": {
+    "SMC_A_SWEEP_REVERSAL_V1": null,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": null,
+    "SMC_C_LONDON_OPENING_RANGE_V1": null,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": null
+  }
+}

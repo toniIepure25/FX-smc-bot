@@ -1,0 +1,38 @@
+{
+  "created_at_utc": "2026-07-29T14:16:45.835306+00:00",
+  "results": {
+    "SMC_A_SWEEP_REVERSAL_V1": {
+      "alpha": null,
+      "benchmark_net_r": null,
+      "candidate_net_r": null,
+      "holm_adjusted_p": null,
+      "permutation_p": null,
+      "status": "NOT_EXECUTED_INCOMPLETE_PERMITTED_DATA_COVERAGE"
+    },
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+      "alpha": null,
+      "benchmark_net_r": null,
+      "candidate_net_r": null,
+      "holm_adjusted_p": null,
+      "permutation_p": null,
+      "status": "NOT_EXECUTED_INCOMPLETE_PERMITTED_DATA_COVERAGE"
+    },
+    "SMC_C_LONDON_OPENING_RANGE_V1": {
+      "alpha": null,
+      "benchmark_net_r": null,
+      "candidate_net_r": null,
+      "holm_adjusted_p": null,
+      "permutation_p": null,
+      "status": "NOT_EXECUTED_INCOMPLETE_PERMITTED_DATA_COVERAGE"
+    },
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+      "alpha": null,
+      "benchmark_net_r": null,
+      "candidate_net_r": null,
+      "holm_adjusted_p": null,
+      "permutation_p": null,
+      "status": "NOT_EXECUTED_INCOMPLETE_PERMITTED_DATA_COVERAGE"
+    }
+  },
+  "status": "NOT_EXECUTED"
+}
