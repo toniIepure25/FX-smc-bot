@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "commission_conversion_defined": true,
+    "future_bar_forbidden": true,
+    "limit_long_ask_touch": true,
+    "limit_short_bid_touch": true,
+    "market_long_ask": true,
+    "market_short_bid": true,
+    "missing_data_no_trade_reason": true,
+    "order_expiry_defined": true,
+    "overlap_rejection_defined": true,
+    "rollover_defined": true,
+    "same_bar_adverse_first": true,
+    "uncertified_data_rejected": true
+  },
+  "created_at_utc": "2026-07-29T14:16:02.004620+00:00",
+  "execution_sample_generated": false,
+  "status": "PASS"
+}
