@@ -1,0 +1,14 @@
+{
+  "artifact_hashes_identical": true,
+  "created_at_utc": "2026-07-29T13:52:04.726716+00:00",
+  "fills_identical": true,
+  "net_r_identical": true,
+  "order_timestamps_identical": true,
+  "replay_hashes": [
+    "229d5b3d8431c69ca35400c0df22a7fa897661e0a35beb884f468112a8ba1205",
+    "229d5b3d8431c69ca35400c0df22a7fa897661e0a35beb884f468112a8ba1205",
+    "229d5b3d8431c69ca35400c0df22a7fa897661e0a35beb884f468112a8ba1205"
+  ],
+  "status": "PASS",
+  "trade_ids_identical": true
+}
