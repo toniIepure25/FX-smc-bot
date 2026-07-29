@@ -2473,6 +2473,9 @@ def _execution_year_worker(candidate_id: str, year: int) -> dict[str, Any]:
         "session_horizon_signal_rejections": sum(
             item["session_horizon_signal_rejections"] for item in funnels
         ),
+        "invalid_signal_rejections": sum(
+            item["invalid_signal_rejections"] for item in funnels
+        ),
         "execution_errors": list(result.metadata.get("execution_errors", [])),
         "open_positions_at_end": result.metadata.get("open_positions_at_end"),
         "pending_orders_at_end": result.metadata.get("pending_orders_at_end"),

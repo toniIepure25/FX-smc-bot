@@ -139,6 +139,7 @@ def test_amended_policy_binds_exact_warmup_and_no_carry() -> None:
     assert policy.close_at_fx_week_end is True
     assert policy.close_at_final_bar is True
     assert policy.apply_swap is False
+    assert policy.fixed_risk_cash == 500.0
 
 
 def test_engine_enforces_exact_activation_bar() -> None:
@@ -237,6 +238,24 @@ def test_invalid_executable_quote_fails_closed() -> None:
     engine = IntradayBacktestEngine(_config(), execution_policy=_policy())
     with pytest.raises(ValueError, match="EXECUTION_DATA_MISSING"):
         engine.run({TradingPair.EURUSD: series})
+
+
+def test_invalid_trade_geometry_is_rejected_before_order_creation() -> None:
+    class InvalidRuntime(EmittingRuntime):
+        def on_bar(self, ctx: CausalBarContext) -> list[OrderIntent]:
+            intents = super().on_bar(ctx)
+            for intent in intents:
+                intent.stop_loss = intent.entry_price
+            return intents
+
+    runtime = InvalidRuntime(signal_bar=0)
+    engine = IntradayBacktestEngine(_config(), execution_policy=_policy())
+    engine.add_runtime(runtime)
+    engine.run({TradingPair.EURUSD: _series("2019-01-07T08:00", 2)})
+    funnel = engine.get_funnels()[0]
+    assert funnel.invalid_signal_rejections == 1
+    assert funnel.orders_accepted == 0
+    assert engine.get_trade_records() == []
 
 
 def test_amended_session_filter_and_cutoff_are_dst_aware() -> None:

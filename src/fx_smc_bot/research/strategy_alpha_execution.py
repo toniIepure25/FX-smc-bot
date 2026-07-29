@@ -270,6 +270,7 @@ def amended_execution_policy() -> IntradayExecutionPolicy:
         single_position_per_pair=True,
         apply_swap=False,
         structure_lookback_bars=WARMUP_M5_BARS,
+        fixed_risk_cash=500.0,
         session_cutoff_resolver=amended_session_cutoff,
         fx_week_close_resolver=amended_fx_week_close,
         runtime_bar_filter=is_amended_session_bar,

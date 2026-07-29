@@ -79,6 +79,7 @@ class IntradayExecutionPolicy:
     single_position_per_pair: bool = False
     apply_swap: bool = True
     structure_lookback_bars: int = 201
+    fixed_risk_cash: float | None = None
     session_cutoff_resolver: Callable[[datetime, str], datetime] | None = None
     fx_week_close_resolver: Callable[[datetime], datetime] | None = None
     runtime_bar_filter: Callable[[datetime, str], bool] | None = None
@@ -152,6 +153,7 @@ class EventFunnel:
     final_bar_exits: int = 0
     position_overlap_rejections: int = 0
     session_horizon_signal_rejections: int = 0
+    invalid_signal_rejections: int = 0
 
 
 class IntradayBacktestEngine:
@@ -457,10 +459,17 @@ class IntradayBacktestEngine:
                             funnel.session_horizon_signal_rejections += 1
                             continue
 
+                        if not self._valid_intent(intent):
+                            funnel.invalid_signal_rejections += 1
+                            continue
+
                         if intent.activation_bar <= bar_idx:
                             intent.activation_bar = bar_idx + 1
 
                         order = self._intent_to_order_obj(intent, bar_time)
+                        if not np.isfinite(order.units) or order.units <= 0:
+                            funnel.invalid_signal_rejections += 1
+                            continue
                         self._portfolio.add_order(order)
                         self._intent_to_order[intent.intent_id] = order.id
                         self._order_to_intent[order.id] = intent.intent_id
@@ -535,13 +544,25 @@ class IntradayBacktestEngine:
 
     def _compute_units(self, intent: OrderIntent) -> float:
         """Size position based on config risk fraction."""
-        risk_fraction = self._cfg.risk.base_risk_per_trade
-        equity = self._portfolio.equity({})
-        risk_amount = equity * risk_fraction
+        if self._policy.fixed_risk_cash is not None:
+            risk_amount = self._policy.fixed_risk_cash
+        else:
+            risk_fraction = self._cfg.risk.base_risk_per_trade
+            equity = self._portfolio.equity({})
+            risk_amount = equity * risk_fraction
         risk_dist = abs(intent.entry_price - intent.stop_loss)
-        if risk_dist <= 0:
+        if risk_dist <= 0 or risk_amount <= 0:
             return 0.0
         return risk_amount / risk_dist
+
+    @staticmethod
+    def _valid_intent(intent: OrderIntent) -> bool:
+        prices = (intent.entry_price, intent.stop_loss, intent.take_profit)
+        if not all(np.isfinite(value) and value > 0 for value in prices):
+            return False
+        if intent.direction == Direction.LONG:
+            return intent.stop_loss < intent.entry_price < intent.take_profit
+        return intent.take_profit < intent.entry_price < intent.stop_loss
 
     def _process_exits(
         self,
