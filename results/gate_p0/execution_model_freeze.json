@@ -1,0 +1,38 @@
+{
+  "created_at_utc": "2026-07-29T13:52:04.726594+00:00",
+  "execution_model": {
+    "costs_primary": [
+      "spread",
+      "commission",
+      "slippage",
+      "swap"
+    ],
+    "data_failure": "NO_TRADE_WITH_RECORDED_REASON",
+    "exit": {
+      "long": "bid",
+      "short": "ask"
+    },
+    "exposure": "config max concurrent, one active same-instrument position per candidate",
+    "limit_orders": "executable side must reach price after order creation",
+    "market_entry": {
+      "long": "ask at first executable bar after signal",
+      "short": "bid at first executable bar after signal"
+    },
+    "position_sizing": [
+      "1R normalized",
+      "0.25% fixed fractional",
+      "0.50% fixed fractional"
+    ],
+    "same_bar_ambiguity_primary": "adverse-first",
+    "same_bar_optimistic_sensitivity": "reported but never primary",
+    "signal_availability": "orders may be placed only after signal bar t is final",
+    "slippage_scenarios": {
+      "base": 1.0,
+      "stress_1": 1.5,
+      "stress_2": 2.0
+    }
+  },
+  "primary_fill_policy": "adverse-first",
+  "status": "PASS",
+  "unsafe_same_bar_assumptions": false
+}

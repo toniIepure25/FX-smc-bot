@@ -1,0 +1,30 @@
+{
+  "cluster_inference": [
+    "UTC trading day",
+    "week-cluster sensitivity"
+  ],
+  "created_at_utc": "2026-07-29T13:52:04.726722+00:00",
+  "metrics": [
+    "trade_count",
+    "gross_R",
+    "net_R",
+    "mean_net_R_per_trade",
+    "median_net_R",
+    "win_rate",
+    "profit_factor",
+    "Sharpe",
+    "probabilistic_Sharpe",
+    "deflated_Sharpe",
+    "Sortino",
+    "Calmar",
+    "maximum_drawdown_R",
+    "maximum_drawdown_pct",
+    "CVaR_95",
+    "cost_drag",
+    "concentration"
+  ],
+  "primary_alpha_estimand": "mean strategy net R minus mean matched-benchmark net R",
+  "primary_strategy_estimand": "mean net executable R per eligible trade",
+  "row_level_trade_commit_permitted": false,
+  "status": "PASS"
+}
