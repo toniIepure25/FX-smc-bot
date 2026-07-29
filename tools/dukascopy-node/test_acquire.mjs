@@ -3,11 +3,14 @@
  */
 import { describe, it } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { readFileSync } from 'fs';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+const packageJsonPath = fileURLToPath(new URL('./package.json', import.meta.url));
 
 describe('dukascopy-node tool', () => {
   it('package.json pins exact version', () => {
-    const pkg = JSON.parse(readFileSync('./package.json', 'utf-8'));
+    const pkg = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
     assert.equal(pkg.dependencies['dukascopy-node'], '1.46.4');
   });
 
