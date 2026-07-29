@@ -1,0 +1,18 @@
+{
+  "candidate_tiers": {
+    "SMC_A_SWEEP_REVERSAL_V1": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+    "SMC_C_LONDON_OPENING_RANGE_V1": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST"
+  },
+  "created_at_utc": "2026-07-29T23:36:14.7589077Z",
+  "decision": "P0RDCRA1A_ECONOMIC_AUDIT_COMPLETED_NO_FORWARD_TEST",
+  "economic_audit_completed": true,
+  "forward_configuration_created": false,
+  "forward_protocol_created": false,
+  "manual_override": false,
+  "primary_candidate": null,
+  "prospective_handoff_created": false,
+  "secondary_candidate": null,
+  "status": "FINAL"
+}
