@@ -1,0 +1,30 @@
+{
+  "amendment_hash": "e6b93c1ef826ce0f2338b965ecc37b547b4be5da10e835748b7b2667747f9c25",
+  "amendment_id": "P0RDCR_DATA_REQUIREMENT_AMENDMENT_V1",
+  "candidate_certification_hash": "5f0d7aff72808c50dbb96d3402b226a1ea0bf50b1366a0d4405c71b140707611",
+  "candidate_count_fully_certified": 4,
+  "canonical_hierarchy": [
+    "UTC_M1_BID_ASK_OHLC",
+    "M5_BID_ASK_OHLC"
+  ],
+  "canonical_partition_manifest_hash": "8cae31d053d2c6808bad56f05161a814e512419e67387b4cbe03313dcdc78679",
+  "certified_pair_months": 192,
+  "created_at_utc": "2026-07-29T18:47:23.980124+00:00",
+  "dataset_freeze_hash": "3065b7f507afac9759ae5b319a7550842e24df6e25fd258f2f02c25839dd301a",
+  "dataset_freeze_id": "FX_SMC_STRATEGY_ALPHA_PERMITTED_2015_2022_V2",
+  "economic_outcomes_accessed": false,
+  "end": "2022-12-31",
+  "instruments": [
+    "EURUSD",
+    "GBPUSD"
+  ],
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "outcome_access_predecessor_sha_recorded_in_successor_audit": true,
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "raw_or_canonical_payload_committed": false,
+  "recovery_protocol_hash": "c249fe88bd2c50497de2942a5415a909bfbb485707134a2791231beead5e21a1",
+  "recovery_protocol_id": "P0RDCRA1A_PERMITTED_DATA_RECOVERY_PROTOCOL_V1",
+  "sealed_holdout_accessed": false,
+  "start": "2015-01-01",
+  "status": "FROZEN_BEFORE_OUTCOMES"
+}

@@ -12,7 +12,7 @@ import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -45,6 +45,7 @@ EXPECTED_START_SHA = "6ed045dd3cf79345ffc567f7b981106281489586"
 ORIGIN_MAIN_AT_START = "ada8177c738b08f9a119d28a3e8b1fdeea7ef0b2"
 AMENDMENT_PRE_DATA_ACCESS_SHA = "3c10bba09f7536b3dd7417f4328bda12a3f59541"
 RECOVERY_PROTOCOL_ID = "P0RDCRA1A_PERMITTED_DATA_RECOVERY_PROTOCOL_V1"
+DATASET_FREEZE_ID = "FX_SMC_STRATEGY_ALPHA_PERMITTED_2015_2022_V2"
 RAW_ROOTS = (
     REPO / "data" / "real" / "raw" / "dukascopy-node",
     REPO / "data" / "raw" / "dukascopy-node",
@@ -1592,6 +1593,575 @@ def run_acquisition() -> None:
     )
 
 
+def _series_semantic_sha256(series: Any) -> str:
+    import numpy as np
+
+    digest = hashlib.sha256()
+    digest.update(str(series.pair.value).encode("ascii"))
+    digest.update(str(series.timeframe.value).encode("ascii"))
+    digest.update(
+        np.asarray(series.timestamps).astype("datetime64[ns]").astype("<i8").tobytes()
+    )
+    for field in (
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close",
+    ):
+        digest.update(np.asarray(getattr(series, field), dtype="<f8").tobytes())
+    return digest.hexdigest()
+
+
+def _canonical_series_from_raw_rows(
+    instrument: str,
+    bid_rows: list[dict[str, Any]],
+    ask_rows: list[dict[str, Any]],
+) -> Any:
+    import numpy as np
+
+    from fx_smc_bot.config import Timeframe, TradingPair
+    from fx_smc_bot.data.bidask import BidAskBarSeries
+
+    bid = {int(item["timestamp"]): item for item in bid_rows}
+    ask = {int(item["timestamp"]): item for item in ask_rows}
+    if len(bid) != len(bid_rows) or len(ask) != len(ask_rows):
+        raise ValueError("duplicate raw M1 timestamp")
+    if set(bid) != set(ask):
+        raise ValueError("raw M1 bid/ask timestamp mismatch")
+    timestamps = sorted(bid)
+    if not timestamps:
+        raise ValueError("zero-row canonical M1 partition")
+
+    def values(side: dict[int, dict[str, Any]], field: str) -> Any:
+        return np.asarray([float(side[ts][field]) for ts in timestamps], dtype=np.float64)
+
+    return BidAskBarSeries(
+        pair=TradingPair(instrument),
+        timeframe=Timeframe.M1,
+        timestamps=np.asarray(timestamps, dtype="datetime64[ms]").astype("datetime64[ns]"),
+        bid_open=values(bid, "open"),
+        bid_high=values(bid, "high"),
+        bid_low=values(bid, "low"),
+        bid_close=values(bid, "close"),
+        ask_open=values(ask, "open"),
+        ask_high=values(ask, "high"),
+        ask_low=values(ask, "low"),
+        ask_close=values(ask, "close"),
+    )
+
+
+def _canonical_partition_path(
+    instrument: str,
+    timeframe: str,
+    year: int,
+    month: int,
+) -> Path:
+    return (
+        CANONICAL_ROOTS[1]
+        / instrument
+        / f"timeframe={timeframe}"
+        / f"year={year}"
+        / f"month={month:02d}"
+        / "part.parquet"
+    )
+
+
+def _write_series_parquet_atomic(series: Any, path: Path) -> None:
+    import pandas as pd  # type: ignore[import-untyped]
+
+    frame = pd.DataFrame(
+        {
+            "timestamp": series.timestamps,
+            "bid_open": series.bid_open,
+            "bid_high": series.bid_high,
+            "bid_low": series.bid_low,
+            "bid_close": series.bid_close,
+            "ask_open": series.ask_open,
+            "ask_high": series.ask_high,
+            "ask_low": series.ask_low,
+            "ask_close": series.ask_close,
+        }
+    )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    frame.to_parquet(temporary, index=False, engine="pyarrow")
+    temporary.replace(path)
+
+
+def _session_coverage_for_month(
+    m5_series: Any,
+    instrument: str,
+    year: int,
+    month: int,
+    bid_raw_root: Path,
+    ask_raw_root: Path,
+) -> dict[str, Any]:
+    import numpy as np
+
+    from fx_smc_bot.data.daily_checkpoint import load_month_manifest
+    from fx_smc_bot.research.strategy_alpha_data import SESSION_CONTRACTS, session_bounds_utc
+
+    bid_manifest = load_month_manifest(bid_raw_root, instrument, "bid", year, month)
+    ask_manifest = load_month_manifest(ask_raw_root, instrument, "ask", year, month)
+    if bid_manifest is None or ask_manifest is None:
+        raise ValueError("certified month manifest missing during session audit")
+    bid_days = {item.day: item for item in bid_manifest.days}
+    ask_days = {item.day: item for item in ask_manifest.days}
+    available_ns = set(
+        np.asarray(m5_series.timestamps).astype("datetime64[ns]").astype("int64").tolist()
+    )
+    available_utc_days = {
+        str(value)[:10]
+        for value in np.asarray(m5_series.timestamps).astype("datetime64[D]")
+    }
+    reports: dict[str, Any] = {}
+    for session in sorted(SESSION_CONTRACTS):
+        eligible_days = 0
+        complete_days = 0
+        partial_days = 0
+        missing_days = 0
+        manifest_market_closed_days = 0
+        provider_closed_observed_days = 0
+        expected_buckets = 0
+        available_buckets = 0
+        missing_dates: list[str] = []
+        for day_number in range(1, calendar.monthrange(year, month)[1] + 1):
+            local_day = date(year, month, day_number)
+            if local_day.weekday() >= 5:
+                continue
+            bid_day = bid_days.get(day_number)
+            ask_day = ask_days.get(day_number)
+            if bid_day is None or ask_day is None:
+                missing_days += 1
+                continue
+            if bid_day.status == "market_closed" and ask_day.status == "market_closed":
+                manifest_market_closed_days += 1
+                continue
+            if local_day.isoformat() not in available_utc_days:
+                provider_closed_observed_days += 1
+                continue
+            eligible_days += 1
+            start, end = session_bounds_utc(local_day, session)
+            expected = {
+                int((start + timedelta(minutes=offset)).timestamp() * 1_000_000_000)
+                for offset in range(0, int((end - start).total_seconds() // 60), 5)
+            }
+            observed = len(expected & available_ns)
+            expected_buckets += len(expected)
+            available_buckets += observed
+            if observed == len(expected):
+                complete_days += 1
+            elif observed > 0:
+                partial_days += 1
+            else:
+                missing_days += 1
+                missing_dates.append(local_day.isoformat())
+        reports[session] = {
+            "eligible_days": eligible_days,
+            "complete_days": complete_days,
+            "partial_days": partial_days,
+            "missing_days": missing_days,
+            "missing_dates": missing_dates,
+            "manifest_market_closed_days": manifest_market_closed_days,
+            "provider_closed_observed_days": provider_closed_observed_days,
+            "expected_m5_buckets": expected_buckets,
+            "available_m5_buckets": available_buckets,
+            "coverage_ratio": (
+                round(available_buckets / expected_buckets, 8)
+                if expected_buckets
+                else 1.0
+            ),
+        }
+    return reports
+
+
+def _reconcile_cross_instrument_provider_closures(
+    records: list[dict[str, Any]],
+) -> int:
+    missing_by_key: dict[tuple[int, int, str, str], set[str]] = {}
+    for item in records:
+        for session_name, session in item["session_coverage"].items():
+            for missing_date in session["missing_dates"]:
+                key = (int(item["year"]), int(item["month"]), session_name, missing_date)
+                missing_by_key.setdefault(key, set()).add(str(item["instrument"]))
+
+    required_instruments = set(AUTHORIZED_STRATEGY_INSTRUMENTS)
+    reconciled = 0
+    for item in records:
+        for session_name, session in item["session_coverage"].items():
+            accepted_dates = [
+                missing_date
+                for missing_date in session["missing_dates"]
+                if missing_by_key[
+                    (
+                        int(item["year"]),
+                        int(item["month"]),
+                        session_name,
+                        missing_date,
+                    )
+                ]
+                == required_instruments
+            ]
+            if not accepted_dates:
+                session["provider_closed_cross_instrument_dates"] = []
+                continue
+            count = len(accepted_dates)
+            session["missing_dates"] = sorted(
+                set(session["missing_dates"]) - set(accepted_dates)
+            )
+            session["missing_days"] -= count
+            session["eligible_days"] -= count
+            session["expected_m5_buckets"] -= 36 * count
+            session["provider_closed_observed_days"] += count
+            session["provider_closed_cross_instrument_dates"] = accepted_dates
+            expected = int(session["expected_m5_buckets"])
+            available = int(session["available_m5_buckets"])
+            session["coverage_ratio"] = (
+                round(available / expected, 8) if expected else 1.0
+            )
+            reconciled += count
+    return reconciled
+
+
+def _canonicalize_pair_month(
+    instrument: str,
+    year: int,
+    month: int,
+) -> dict[str, Any]:
+    from fx_smc_bot.config import Timeframe
+    from fx_smc_bot.data.bidask_resampling import resample_bidask
+    from fx_smc_bot.data.dukascopy_node_provider import parquet_to_bidask_series
+
+    bid_path = _selected_raw_path(instrument, "bid", year, month)
+    ask_path = _selected_raw_path(instrument, "ask", year, month)
+    if bid_path is None or ask_path is None:
+        raise ValueError("recertified raw M1 source path missing")
+    bid_rows = json.loads(bid_path.read_text(encoding="utf-8"))
+    ask_rows = json.loads(ask_path.read_text(encoding="utf-8"))
+    if not isinstance(bid_rows, list) or not isinstance(ask_rows, list):
+        raise ValueError("raw M1 partition is not a list")
+
+    run_hashes: list[dict[str, str]] = []
+    first_m1: Any = None
+    first_m5: Any = None
+    for _run_number in range(1, 4):
+        m1 = _canonical_series_from_raw_rows(instrument, bid_rows, ask_rows)
+        m5 = resample_bidask(m1, Timeframe.M5)
+        run_hashes.append(
+            {
+                "m1_semantic_sha256": _series_semantic_sha256(m1),
+                "m5_semantic_sha256": _series_semantic_sha256(m5),
+            }
+        )
+        if first_m1 is None:
+            first_m1 = m1
+            first_m5 = m5
+    deterministic = len(
+        {(item["m1_semantic_sha256"], item["m5_semantic_sha256"]) for item in run_hashes}
+    ) == 1
+    if not deterministic:
+        raise ValueError("three-run canonicalization is non-deterministic")
+    if first_m1.validate_invariants() or first_m5.validate_invariants():
+        raise ValueError("canonical bid/ask invariant failure")
+    for series in (first_m1, first_m5):
+        for field in ("open", "high", "low", "close"):
+            bid_values = getattr(series, f"bid_{field}")
+            ask_values = getattr(series, f"ask_{field}")
+            if bool((ask_values <= bid_values).any()):
+                raise ValueError(f"non-positive canonical {field} spread")
+
+    m1_path = _canonical_partition_path(instrument, "M1", year, month)
+    m5_path = _canonical_partition_path(instrument, "M5", year, month)
+    _write_series_parquet_atomic(first_m1, m1_path)
+    _write_series_parquet_atomic(first_m5, m5_path)
+    m1_roundtrip = parquet_to_bidask_series(m1_path, first_m1.pair, Timeframe.M1)
+    m5_roundtrip = parquet_to_bidask_series(m5_path, first_m1.pair, Timeframe.M5)
+    if _series_semantic_sha256(m1_roundtrip) != run_hashes[0]["m1_semantic_sha256"]:
+        raise ValueError("canonical M1 parquet roundtrip mismatch")
+    if _series_semantic_sha256(m5_roundtrip) != run_hashes[0]["m5_semantic_sha256"]:
+        raise ValueError("canonical M5 parquet roundtrip mismatch")
+
+    return {
+        "partition_id": f"{instrument}:{year:04d}-{month:02d}:M1_M5",
+        "instrument": instrument,
+        "year": year,
+        "month": month,
+        "source_bid_sha256": _sha256(bid_path),
+        "source_ask_sha256": _sha256(ask_path),
+        "m1_path": _relative(m1_path),
+        "m1_rows": len(first_m1),
+        "m1_file_sha256": _sha256(m1_path),
+        "m1_semantic_sha256": run_hashes[0]["m1_semantic_sha256"],
+        "m5_path": _relative(m5_path),
+        "m5_rows": len(first_m5),
+        "m5_file_sha256": _sha256(m5_path),
+        "m5_semantic_sha256": run_hashes[0]["m5_semantic_sha256"],
+        "minimum_timestamp": str(first_m1.timestamps[0]),
+        "maximum_timestamp": str(first_m1.timestamps[-1]),
+        "three_run_hashes": run_hashes,
+        "three_run_deterministic": deterministic,
+        "parquet_roundtrip": "PASS",
+        "session_coverage": _session_coverage_for_month(
+            first_m5,
+            instrument,
+            year,
+            month,
+            bid_path.parents[4],
+            ask_path.parents[4],
+        ),
+        "status": "CERTIFIED",
+    }
+
+
+def _candidate_level_certification(
+    partition_records: list[dict[str, Any]],
+) -> dict[str, Any]:
+    from fx_smc_bot.research.strategy_alpha import HISTORICAL_WINDOWS
+
+    candidate_freeze = load_json(REPO / "results/gate_p0/candidate_universe_freeze.json")
+    certified = {
+        (str(item["instrument"]), int(item["year"]), int(item["month"]))
+        for item in partition_records
+        if item["status"] == "CERTIFIED"
+    }
+    candidates: list[dict[str, Any]] = []
+    for candidate in candidate_freeze["candidates"]:
+        required_instruments = sorted(
+            set(candidate["instruments"]) & set(AUTHORIZED_STRATEGY_INSTRUMENTS)
+        )
+        windows: list[dict[str, Any]] = []
+        candidate_failures = 0
+        for window, (start, end) in HISTORICAL_WINDOWS.items():
+            start_year = int(start[:4])
+            end_year = int(end[:4])
+            required = {
+                (instrument, year, month)
+                for instrument in required_instruments
+                for year in range(start_year, end_year + 1)
+                for month in range(1, 13)
+            }
+            missing = sorted(required - certified)
+            candidate_failures += len(missing)
+            windows.append(
+                {
+                    "window": window,
+                    "start": start,
+                    "end": end,
+                    "required_partitions": len(required),
+                    "certified_partitions": len(required & certified),
+                    "missing_partitions": len(missing),
+                    "failed_partitions": 0,
+                    "successful_zero_row_partitions": 0,
+                    "status": "FULLY_CERTIFIED" if not missing else "FAILED",
+                }
+            )
+        candidates.append(
+            {
+                "candidate_id": candidate["candidate_id"],
+                "required_instruments": required_instruments,
+                "excluded_optional_diagnostics": ["USDJPY"],
+                "windows": windows,
+                "status": "FULLY_CERTIFIED" if candidate_failures == 0 else "FAILED",
+            }
+        )
+    all_certified = (
+        len(candidates) == 4
+        and all(item["status"] == "FULLY_CERTIFIED" for item in candidates)
+    )
+    missing_partitions = sum(
+        int(window["missing_partitions"])
+        for candidate in candidates
+        for window in candidate["windows"]
+    )
+    return {
+        "created_at_utc": now_utc(),
+        "candidate_count": len(candidates),
+        "candidates": candidates,
+        "all_four_candidates_fully_certified": all_certified,
+        "missing_required_partitions": missing_partitions,
+        "failed_required_partitions": 0,
+        "successful_zero_row_partitions": 0,
+        "status": "PASS" if all_certified and missing_partitions == 0 else "FAIL",
+    }
+
+
+def _write_data_certification_doc(
+    audit: dict[str, Any],
+    certification: dict[str, Any],
+    dataset_freeze: dict[str, Any],
+) -> None:
+    write_doc(
+        DOC_DIR / "P0RDCRA1A_DATA_CERTIFICATION.md",
+        [
+            "# Gate P.0-R-DCR-A1A Data Certification",
+            "",
+            f"- Dataset freeze: `{dataset_freeze['dataset_freeze_id']}`",
+            f"- Dataset hash: `{dataset_freeze['dataset_freeze_hash']}`",
+            f"- Certified pair-months: `{audit['certified_pair_months']}/192`",
+            f"- Canonical M1 rows: `{audit['canonical_m1_rows']}`",
+            f"- Canonical M5 rows: `{audit['canonical_m5_rows']}`",
+            "- Three-run deterministic M1/M5: `PASS`",
+            "- Forward fill/interpolation: `false`",
+            "- Candidate certification: `FULLY_CERTIFIED` for all four candidates",
+            "- USDJPY role: `OPTIONAL_DIAGNOSTIC`, excluded from this dataset freeze",
+            "- Economic outcomes accessed: `false`",
+            "",
+            "Canonical Parquet payloads remain local and ignored by Git.",
+        ],
+    )
+
+
+def run_canonicalization() -> None:
+    import pandas as pd  # type: ignore[import-untyped]
+    import pyarrow  # type: ignore[import-untyped]
+
+    recertification = load_json(RESULT_DIR / "recertification_results.json")
+    if (
+        recertification.get("recertified_pair_months") != 192
+        or recertification.get("repair_required_pair_months") != 0
+    ):
+        raise RuntimeError("canonicalization requires 192/192 recertified pair-months")
+
+    started = time.monotonic()
+    records: list[dict[str, Any]] = []
+    for instrument in sorted(AUTHORIZED_STRATEGY_INSTRUMENTS):
+        for year in range(2015, 2023):
+            for month in range(1, 13):
+                records.append(_canonicalize_pair_month(instrument, year, month))
+                if len(records) % 12 == 0:
+                    print(
+                        json.dumps(
+                            {
+                                "stage": "canonicalization",
+                                "completed_pair_months": len(records),
+                                "planned_pair_months": 192,
+                                "elapsed_seconds": round(time.monotonic() - started, 3),
+                            }
+                        ),
+                        flush=True,
+                    )
+
+    cross_instrument_provider_closed = _reconcile_cross_instrument_provider_closures(
+        records
+    )
+    failures = [item for item in records if item["status"] != "CERTIFIED"]
+    session_missing_days = sum(
+        int(session["missing_days"])
+        for item in records
+        for session in item["session_coverage"].values()
+    )
+    session_partial_days = sum(
+        int(session["partial_days"])
+        for item in records
+        for session in item["session_coverage"].values()
+    )
+    provider_closed_observed_days = sum(
+        int(session["provider_closed_observed_days"])
+        for item in records
+        for session in item["session_coverage"].values()
+    )
+    manifest = {
+        "created_at_utc": now_utc(),
+        "canonical_root": _relative(CANONICAL_ROOTS[1]),
+        "partition_count": len(records),
+        "partitions": records,
+        "raw_or_canonical_payload_committed": False,
+        "status": "PASS" if not failures else "FAIL",
+    }
+    manifest_hash = canonical_json_sha256(manifest)
+    manifest["manifest_hash"] = manifest_hash
+    audit = {
+        "created_at_utc": now_utc(),
+        "source_resolution": "DUKASCOPY_TICK_BI5_BID_ASK_TO_UTC_M1_TO_M5",
+        "certified_pair_months": len(records) - len(failures),
+        "failed_pair_months": len(failures),
+        "canonical_m1_rows": sum(int(item["m1_rows"]) for item in records),
+        "canonical_m5_rows": sum(int(item["m5_rows"]) for item in records),
+        "three_run_determinism_required": 3,
+        "three_run_determinism_passed": all(
+            bool(item["three_run_deterministic"]) for item in records
+        ),
+        "parquet_roundtrip_passed": all(
+            item["parquet_roundtrip"] == "PASS" for item in records
+        ),
+        "session_missing_days": session_missing_days,
+        "session_partial_days": session_partial_days,
+        "provider_closed_observed_session_days": provider_closed_observed_days,
+        "provider_closed_cross_instrument_session_records": (
+            cross_instrument_provider_closed
+        ),
+        "provider_closed_classification_rule": (
+            "same date and named session absent for both EURUSD and GBPUSD"
+        ),
+        "synthetic_bank_holiday_calendar_used": False,
+        "forward_fill_used": False,
+        "interpolation_used": False,
+        "holdout_accessed": False,
+        "runtime_versions": {
+            "python": sys.version.split()[0],
+            "pandas": pd.__version__,
+            "pyarrow": pyarrow.__version__,
+        },
+        "status": "PASS" if not failures and session_missing_days == 0 else "FAIL",
+    }
+    certification = _candidate_level_certification(records)
+    freeze_base = {
+        "created_at_utc": now_utc(),
+        "dataset_freeze_id": DATASET_FREEZE_ID,
+        "program_id": PROGRAM_ID,
+        "lineage_id": LINEAGE_ID,
+        "amendment_id": AMENDMENT_ID,
+        "amendment_hash": load_json(
+            RESULT_DIR / "data_requirement_amendment.json"
+        )["amendment_hash"],
+        "recovery_protocol_id": RECOVERY_PROTOCOL_ID,
+        "recovery_protocol_hash": load_json(
+            RESULT_DIR / "data_recovery_protocol.json"
+        )["protocol_hash"],
+        "instruments": sorted(AUTHORIZED_STRATEGY_INSTRUMENTS),
+        "start": "2015-01-01",
+        "end": "2022-12-31",
+        "canonical_hierarchy": ["UTC_M1_BID_ASK_OHLC", "M5_BID_ASK_OHLC"],
+        "canonical_partition_manifest_hash": manifest_hash,
+        "candidate_certification_hash": canonical_json_sha256(certification),
+        "certified_pair_months": len(records) - len(failures),
+        "candidate_count_fully_certified": sum(
+            1 for item in certification["candidates"] if item["status"] == "FULLY_CERTIFIED"
+        ),
+        "economic_outcomes_accessed": False,
+        "sealed_holdout_accessed": False,
+        "raw_or_canonical_payload_committed": False,
+        "outcome_access_predecessor_sha_recorded_in_successor_audit": True,
+        "status": "FROZEN_BEFORE_OUTCOMES",
+    }
+    freeze_base["dataset_freeze_hash"] = canonical_json_sha256(freeze_base)
+    if audit["status"] != "PASS" or certification["status"] != "PASS":
+        raise RuntimeError("candidate-level canonical data certification failed")
+    write_json(RESULT_DIR / "canonicalization_audit.json", audit)
+    write_json(RESULT_DIR / "canonical_partition_manifest.json", manifest)
+    write_json(RESULT_DIR / "candidate_level_data_certification.json", certification)
+    write_json(RESULT_DIR / "permitted_dataset_freeze.json", freeze_base)
+    _write_data_certification_doc(audit, certification, freeze_base)
+    print(
+        json.dumps(
+            {
+                "stage": "canonicalization",
+                "certified_pair_months": audit["certified_pair_months"],
+                "m1_rows": audit["canonical_m1_rows"],
+                "m5_rows": audit["canonical_m5_rows"],
+                "session_missing_days": audit["session_missing_days"],
+                "dataset_freeze_hash": freeze_base["dataset_freeze_hash"],
+                "elapsed_seconds": round(time.monotonic() - started, 3),
+            },
+            indent=2,
+        )
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -1602,6 +2172,7 @@ def main() -> None:
             "stage2_prep",
             "recertification",
             "acquisition",
+            "canonicalization",
             "all",
         ],
         default="all",
@@ -1617,6 +2188,8 @@ def main() -> None:
         run_recertification()
     if args.stage in {"acquisition", "all"}:
         run_acquisition()
+    if args.stage in {"canonicalization", "all"}:
+        run_canonicalization()
 
 
 if __name__ == "__main__":

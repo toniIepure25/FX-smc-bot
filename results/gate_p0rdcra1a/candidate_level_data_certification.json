@@ -1,0 +1,239 @@
+{
+  "all_four_candidates_fully_certified": true,
+  "candidate_count": 4,
+  "candidates": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "excluded_optional_diagnostics": [
+        "USDJPY"
+      ],
+      "required_instruments": [
+        "EURUSD",
+        "GBPUSD"
+      ],
+      "status": "FULLY_CERTIFIED",
+      "windows": [
+        {
+          "certified_partitions": 96,
+          "end": "2018-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 96,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "engineering"
+        },
+        {
+          "certified_partitions": 24,
+          "end": "2019-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 24,
+          "start": "2019-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_replay"
+        },
+        {
+          "certified_partitions": 72,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 72,
+          "start": "2020-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_stress"
+        },
+        {
+          "certified_partitions": 192,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 192,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "combined"
+        }
+      ]
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "excluded_optional_diagnostics": [
+        "USDJPY"
+      ],
+      "required_instruments": [
+        "EURUSD",
+        "GBPUSD"
+      ],
+      "status": "FULLY_CERTIFIED",
+      "windows": [
+        {
+          "certified_partitions": 96,
+          "end": "2018-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 96,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "engineering"
+        },
+        {
+          "certified_partitions": 24,
+          "end": "2019-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 24,
+          "start": "2019-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_replay"
+        },
+        {
+          "certified_partitions": 72,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 72,
+          "start": "2020-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_stress"
+        },
+        {
+          "certified_partitions": 192,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 192,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "combined"
+        }
+      ]
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "excluded_optional_diagnostics": [
+        "USDJPY"
+      ],
+      "required_instruments": [
+        "EURUSD",
+        "GBPUSD"
+      ],
+      "status": "FULLY_CERTIFIED",
+      "windows": [
+        {
+          "certified_partitions": 96,
+          "end": "2018-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 96,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "engineering"
+        },
+        {
+          "certified_partitions": 24,
+          "end": "2019-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 24,
+          "start": "2019-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_replay"
+        },
+        {
+          "certified_partitions": 72,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 72,
+          "start": "2020-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_stress"
+        },
+        {
+          "certified_partitions": 192,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 192,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "combined"
+        }
+      ]
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "excluded_optional_diagnostics": [
+        "USDJPY"
+      ],
+      "required_instruments": [
+        "EURUSD",
+        "GBPUSD"
+      ],
+      "status": "FULLY_CERTIFIED",
+      "windows": [
+        {
+          "certified_partitions": 96,
+          "end": "2018-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 96,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "engineering"
+        },
+        {
+          "certified_partitions": 24,
+          "end": "2019-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 24,
+          "start": "2019-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_replay"
+        },
+        {
+          "certified_partitions": 72,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 72,
+          "start": "2020-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "historical_stress"
+        },
+        {
+          "certified_partitions": 192,
+          "end": "2022-12-31",
+          "failed_partitions": 0,
+          "missing_partitions": 0,
+          "required_partitions": 192,
+          "start": "2015-01-01",
+          "status": "FULLY_CERTIFIED",
+          "successful_zero_row_partitions": 0,
+          "window": "combined"
+        }
+      ]
+    }
+  ],
+  "created_at_utc": "2026-07-29T18:47:23.980103+00:00",
+  "failed_required_partitions": 0,
+  "missing_required_partitions": 0,
+  "status": "PASS",
+  "successful_zero_row_partitions": 0
+}
