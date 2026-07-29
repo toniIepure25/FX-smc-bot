@@ -1,0 +1,139 @@
+{
+  "artifacts": [
+    {
+      "exists": true,
+      "git_blob_sha": "847a1b04b0704a03503f3ce451165aec66b603df",
+      "path": "configs/research/strategy_alpha_v1.yaml",
+      "raw_sha256": "dc65416e1e0bb4a9882734dcf34d7341820cff966d7f500491c5534fa4b0c6ab"
+    },
+    {
+      "canonical_json_sha256": "976295bafd68a686ff069aa188cc7b8d0cdb90d9399e746840202d977fcf36e1",
+      "exists": true,
+      "git_blob_sha": "b62a3edff89864aa4a9f3806f2b9b46de845da05",
+      "path": "results/gate_p0/candidate_universe_freeze.json",
+      "raw_sha256": "a84a0f05fab3e7db8e44d1daf14215f8914a830aedf2ed8f513b30746da04c28"
+    },
+    {
+      "canonical_json_sha256": "af1a78b0559f51cc82a1532ebb5e03c325386b8a5ec99b107e8c3289f8176f4b",
+      "exists": true,
+      "git_blob_sha": "516445b33e9bc3edf4db7d87baf167855bd11685",
+      "path": "results/gate_p0/data_boundary_freeze.json",
+      "raw_sha256": "498c4fb90227b81c76b898eaec491fac9673b6c24da11e38700649c35bf7e84f"
+    },
+    {
+      "canonical_json_sha256": "ae1394072a7137f5ec6afbf4bfd09c277371fd819aac7cab3c218fa1579d02ff",
+      "exists": true,
+      "git_blob_sha": "18393961b3bead3a209e0d90cc55787e35c61728",
+      "path": "results/gate_p0/execution_model_freeze.json",
+      "raw_sha256": "f366b1cd75149e1213526361450058809499dbc7fc1138fc703fad7d38edcb28"
+    },
+    {
+      "canonical_json_sha256": "79f29b41a2948d406a83d5c89e9da65d845799b0ea18318a138f1f6fe885b400",
+      "exists": true,
+      "git_blob_sha": "32891f6f8aab5c8e4d499eb9ea1b58266fd7d737",
+      "path": "results/gate_p0/estimand_and_metric_freeze.json",
+      "raw_sha256": "26aae3ed45610b4c2be4dc842bb82537c31afb4c94f1b855cbb5337c35a4770b"
+    },
+    {
+      "canonical_json_sha256": "c1bb1f625b8c98120f484917cf3fce43f2e48fd8a2a7d3d2c48e530797b90b59",
+      "exists": true,
+      "git_blob_sha": "86526f9f9dbf4e9a9526d0bdae8005b6fafc8406",
+      "path": "results/gate_p0/benchmark_freeze.json",
+      "raw_sha256": "1458bee4e38dd0acbedc142d092f368ab2de192eed160b5612114f5bbe96710e"
+    },
+    {
+      "canonical_json_sha256": "ea5405f1bb41547a3b7908be222e26b25f05c42a0438b5d7f54a83cef68ce3a2",
+      "exists": true,
+      "git_blob_sha": "54b4f9dc66e4a539a25bf11340d35e1f281491c2",
+      "path": "results/gate_p0/historical_eligibility_freeze.json",
+      "raw_sha256": "0406b8e30ac3f8cea9e64c998734f3c810c291c7a0bfea1534d7a3e80ccbab47"
+    },
+    {
+      "canonical_json_sha256": "e17c4be95ba85f5d2d3609ecc8cfba028e274be5aa2ead88f606f59833aa73d7",
+      "exists": true,
+      "git_blob_sha": "f788ff1e8d2894d4f8a201fcdd0a646e57bbcb8f",
+      "path": "results/gate_p0/final_decision.json",
+      "raw_sha256": "b6eeb0c912c5986da95814d38a357f3823ad7e3ef8ffb6d2d9fcad84698cbac2"
+    },
+    {
+      "canonical_json_sha256": "8c48a68e5d8cf07b17da0daaa428315c03cf62b803d56d9e43d226baccd89ac5",
+      "exists": true,
+      "git_blob_sha": "d5c78a7aba7b3cd5ae80e0e0caf1b259d18eba95",
+      "path": "results/gate_p0r/p0_freeze_integrity.json",
+      "raw_sha256": "ea0596d2a7a8770d5db3a76b12d5844961fb74b0cda7e999347b7736480c4710"
+    },
+    {
+      "canonical_json_sha256": "4faeae848168a045445e2188bbbdbd55ddcdbb1bc8ba84e2686b55eca5de0235",
+      "exists": true,
+      "git_blob_sha": "ad917aa8e0793379efc1118d24e6cc99ec0a3708",
+      "path": "results/gate_p0r/implementation_clarification_overlay.json",
+      "raw_sha256": "722ae69536fa203cb9d1d5f2a3af4f0f86b58b0dc4b65bfbcfcc230d8c32d6ad"
+    },
+    {
+      "canonical_json_sha256": "da85e2b88fb3a7a60856105792f44ae3f3a348f623682fbfa31391f4a21026f8",
+      "exists": true,
+      "git_blob_sha": "1d9d7d2ae594e3343f5dbd43a914a7127d962ca3",
+      "path": "results/gate_p0r/permitted_data_coverage.json",
+      "raw_sha256": "aedeee6d82a885e8bd818842338a27abff20db0802f56e8da1ab868c3eef2bd3"
+    },
+    {
+      "canonical_json_sha256": "e43137192c1d1976d04d83cd5ecbda9bef2ffa19f1d0ca69ae8abaa4d31c8fb8",
+      "exists": true,
+      "git_blob_sha": "36cf76ccf24fb057498d46ca610dbfac2ddd6bb8",
+      "path": "results/gate_p0r/permitted_dataset_certification.json",
+      "raw_sha256": "b6ada4b0385565954d4f5a6f705df916b63ba678fa4abf2f16037e25811aca2e"
+    },
+    {
+      "canonical_json_sha256": "e17f3f6623af1698114d0f6b4b2198978bb43dd775e1ff69e405dd1d4d3e05e3",
+      "exists": true,
+      "git_blob_sha": "9ae923fb0b3186d67e0395a2f3f791b4b936743c",
+      "path": "results/gate_p0r/final_decision.json",
+      "raw_sha256": "c152c4a90179703659244d882a086aba5ebdcba5352e72a2bfa5024d0a3f765c"
+    },
+    {
+      "canonical_json_sha256": "ba183df5e7291dcbbf36eb41227865b605dc0417c4ef2e3f022f8c8be6c099b0",
+      "exists": true,
+      "git_blob_sha": "b0eee2313da98f815859418ffebf336e75a43ca6",
+      "path": "results/gate_p0rdcr/data_requirement_matrix.json",
+      "raw_sha256": "b0c1c8e4f67979577f27cbae58954157a295d33de6245e80b426df1e552c2cab"
+    },
+    {
+      "canonical_json_sha256": "0df86c733468b2e352b1bba1bbb0fece9f8ac5e4cdee01f04940239e13e8009d",
+      "exists": true,
+      "git_blob_sha": "a6f2e17662f8e4efa6dd23a7bdd8fbc20f7d5c37",
+      "path": "results/gate_p0rdcr/pre_data_integrity.json",
+      "raw_sha256": "686acfdde9aa90ade55d85969869f95f67bfcf6ac7b7e42b2241b2420d70bf44"
+    },
+    {
+      "canonical_json_sha256": "0749630277346348aeec1a8c87a626a17130f3973916b358c8f8343b2464d347",
+      "exists": true,
+      "git_blob_sha": "df43774b5a2652053c389b864b33168ecf399ed3",
+      "path": "results/gate_p0rdcr/final_decision.json",
+      "raw_sha256": "269caf6fdb2585c142a77ede4f85546f414b84ca0e7621caf12f96d0307ff9ef"
+    },
+    {
+      "canonical_json_sha256": "80c027dc2484b4c373406499f7d0a13d3370fb111b8e9d9804cb02f2d96d7e73",
+      "exists": true,
+      "git_blob_sha": "73a32d3d11845070c1d6a3b0d915e1710c8cfef2",
+      "path": "results/gate_p0rdcr/holdout_integrity.json",
+      "raw_sha256": "5c739d6163ad1cd07408d94101c00be748c98c433e9d47b0338a4c7506b81856"
+    },
+    {
+      "canonical_json_sha256": "747ef01797caf6b3561d9376b9c635600fa11670ce955abc68aef83183b70c5e",
+      "exists": true,
+      "git_blob_sha": "2df406cfbe64c1682a3400d3bde2efd1468f7211",
+      "path": "results/gate_p0rdcr/reproducibility_manifest.json",
+      "raw_sha256": "c64561c1d7c1752239fc99c16b66dd2c01d63e79eccb5d4a11c7db15a5289d08"
+    }
+  ],
+  "checks": {
+    "all_required_artifacts_exist": true,
+    "legacy_lineage_preserved": true,
+    "lineage_id_preserved": true,
+    "program_id_preserved": true,
+    "starting_decision_is_provenance_block": true
+  },
+  "created_at_utc": "2026-07-29T15:42:57.380748+00:00",
+  "legacy_status": "CLOSED_MIXED_NONTRANSPORTABLE_RESULT",
+  "status": "PASS"
+}
