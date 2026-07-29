@@ -1,0 +1,7 @@
+{
+  "acquisition_attempted": false,
+  "created_at_utc": "2026-07-29T14:15:14.412351+00:00",
+  "partitions_acquired": 0,
+  "reason": "Gate stopped before provider access because no candidate had full committed coverage.",
+  "status": "NOT_EXECUTED"
+}
