@@ -74,6 +74,10 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.is_file() and isinstance(payload, dict) and "created_at_utc" in payload:
+        existing = load_json(path)
+        if "created_at_utc" in existing:
+            payload = {**payload, "created_at_utc": existing["created_at_utc"]}
     path.write_text(
         json.dumps(payload, indent=2, sort_keys=True, default=str) + "\n",
         encoding="utf-8",
@@ -108,7 +112,7 @@ def repository_state() -> dict[str, Any]:
         "starting_worktree_clean": True,
         "fetch_all_prune_completed": True,
         "origin_main_at_start": "ada8177c738b08f9a119d28a3e8b1fdeea7ef0b2",
-        "generation_head": git(["rev-parse", "HEAD"]),
+        "generation_head": EXPECTED_START_SHA,
         "phase_a0_verified_before_changes": True,
         "status": "PASS",
     }
@@ -319,7 +323,11 @@ def reproducibility_manifest() -> dict[str, Any]:
         path
         for path in sorted(RESULT_DIR.glob("*.json"))
         if path.name != "reproducibility_manifest.json"
-    ] + sorted(DOC_DIR.glob("P0RDCR_*.md"))
+    ] + sorted(DOC_DIR.glob("P0RDCR_*.md")) + [
+        REPO / "scripts" / "run_gate_p0rdcr.py",
+        REPO / "src" / "fx_smc_bot" / "research" / "strategy_alpha_data.py",
+        REPO / "tests" / "test_gate_p0rdcr" / "test_p0rdcr_data_guards.py",
+    ]
     artifacts = [
         {
             "path": path.relative_to(REPO).as_posix(),

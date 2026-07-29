@@ -1,0 +1,13 @@
+{
+  "created_at_utc": "2026-07-29T14:51:12.372791+00:00",
+  "final_decision": "BLOCKED_BY_DATA_REQUIREMENT_PROVENANCE",
+  "full_pytest": "827 passed, 91 warnings in 260.74s",
+  "git_diff_check": "PASS",
+  "holdout_integrity": "PASS",
+  "node": "PASS",
+  "prohibited_data_audit": "PASS",
+  "static_analysis_delta": "PASS",
+  "status": "PASS",
+  "targeted_mypy": "PASS",
+  "targeted_ruff": "PASS"
+}
