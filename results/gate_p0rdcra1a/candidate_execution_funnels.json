@@ -1,0 +1,59 @@
+{
+  "candidates": [
+    {
+      "cancelled_orders": 223,
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "expired_orders": 38,
+      "fills": 202,
+      "invalid_signal_rejections": 1,
+      "orders": 463,
+      "position_overlap_rejections": 61,
+      "positions_closed": 202,
+      "session_horizon_signal_rejections": 16,
+      "signals": 480,
+      "trades_accepted_into_aggregate_sample": 202
+    },
+    {
+      "cancelled_orders": 4513,
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "expired_orders": 857,
+      "fills": 2676,
+      "invalid_signal_rejections": 82,
+      "orders": 8046,
+      "position_overlap_rejections": 2067,
+      "positions_closed": 2676,
+      "session_horizon_signal_rejections": 269,
+      "signals": 8397,
+      "trades_accepted_into_aggregate_sample": 2676
+    },
+    {
+      "cancelled_orders": 191,
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "expired_orders": 52,
+      "fills": 360,
+      "invalid_signal_rejections": 9,
+      "orders": 603,
+      "position_overlap_rejections": 0,
+      "positions_closed": 360,
+      "session_horizon_signal_rejections": 17,
+      "signals": 629,
+      "trades_accepted_into_aggregate_sample": 360
+    },
+    {
+      "cancelled_orders": 299,
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "expired_orders": 125,
+      "fills": 753,
+      "invalid_signal_rejections": 38,
+      "orders": 1177,
+      "position_overlap_rejections": 0,
+      "positions_closed": 753,
+      "session_horizon_signal_rejections": 24,
+      "signals": 1239,
+      "trades_accepted_into_aggregate_sample": 753
+    }
+  ],
+  "created_at_utc": "2026-07-29T23:12:28.404373+00:00",
+  "economic_audit_code_sha": "a53699dab97f41d105f809d71e57200569bbd677",
+  "status": "PASS"
+}

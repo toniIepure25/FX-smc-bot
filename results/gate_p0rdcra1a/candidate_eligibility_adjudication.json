@@ -1,0 +1,142 @@
+{
+  "adjudications": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "manual_override": false,
+      "positive_historical_windows": 2,
+      "ranking_value_ci_lower": -0.07471524624636247,
+      "sample_eligibility": true,
+      "tier_a_criteria": {
+        "base_and_1_5x_cost_positive": false,
+        "best_5_trades_lt_35pct": true,
+        "best_year_lt_50pct": true,
+        "day_cluster_ci_lower_gt_0": false,
+        "holm_alpha_p_lt_0_05": false,
+        "leave_one_year_out_positive": false,
+        "max_drawdown_lte_20r": true,
+        "mean_net_r_gt_0": true,
+        "minimum_sample": true,
+        "profit_factor_gt_1_05": false
+      },
+      "tier_b_criteria": {
+        "base_positive_1_5x_nonnegative": false,
+        "benchmark_alpha_mean_gt_0": false,
+        "best_year_lt_60pct": true,
+        "day_cluster_ci_lower_gte_minus_0_05": false,
+        "max_drawdown_lte_25r": true,
+        "mean_net_r_gt_0": true,
+        "minimum_sample": true,
+        "positive_2_of_3_windows": true,
+        "profit_factor_gt_1_00": true
+      }
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "manual_override": false,
+      "positive_historical_windows": 0,
+      "ranking_value_ci_lower": -0.19886181889211968,
+      "sample_eligibility": true,
+      "tier_a_criteria": {
+        "base_and_1_5x_cost_positive": false,
+        "best_5_trades_lt_35pct": true,
+        "best_year_lt_50pct": true,
+        "day_cluster_ci_lower_gt_0": false,
+        "holm_alpha_p_lt_0_05": false,
+        "leave_one_year_out_positive": false,
+        "max_drawdown_lte_20r": false,
+        "mean_net_r_gt_0": false,
+        "minimum_sample": true,
+        "profit_factor_gt_1_05": false
+      },
+      "tier_b_criteria": {
+        "base_positive_1_5x_nonnegative": false,
+        "benchmark_alpha_mean_gt_0": false,
+        "best_year_lt_60pct": true,
+        "day_cluster_ci_lower_gte_minus_0_05": false,
+        "max_drawdown_lte_25r": false,
+        "mean_net_r_gt_0": false,
+        "minimum_sample": true,
+        "positive_2_of_3_windows": false,
+        "profit_factor_gt_1_00": false
+      }
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "manual_override": false,
+      "positive_historical_windows": 0,
+      "ranking_value_ci_lower": -0.14648950392805243,
+      "sample_eligibility": true,
+      "tier_a_criteria": {
+        "base_and_1_5x_cost_positive": false,
+        "best_5_trades_lt_35pct": true,
+        "best_year_lt_50pct": true,
+        "day_cluster_ci_lower_gt_0": false,
+        "holm_alpha_p_lt_0_05": false,
+        "leave_one_year_out_positive": false,
+        "max_drawdown_lte_20r": false,
+        "mean_net_r_gt_0": false,
+        "minimum_sample": true,
+        "profit_factor_gt_1_05": false
+      },
+      "tier_b_criteria": {
+        "base_positive_1_5x_nonnegative": false,
+        "benchmark_alpha_mean_gt_0": false,
+        "best_year_lt_60pct": true,
+        "day_cluster_ci_lower_gte_minus_0_05": false,
+        "max_drawdown_lte_25r": false,
+        "mean_net_r_gt_0": false,
+        "minimum_sample": true,
+        "positive_2_of_3_windows": false,
+        "profit_factor_gt_1_00": false
+      }
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "manual_override": false,
+      "positive_historical_windows": 1,
+      "ranking_value_ci_lower": -0.08720909862743417,
+      "sample_eligibility": true,
+      "tier_a_criteria": {
+        "base_and_1_5x_cost_positive": false,
+        "best_5_trades_lt_35pct": true,
+        "best_year_lt_50pct": true,
+        "day_cluster_ci_lower_gt_0": false,
+        "holm_alpha_p_lt_0_05": false,
+        "leave_one_year_out_positive": false,
+        "max_drawdown_lte_20r": false,
+        "mean_net_r_gt_0": false,
+        "minimum_sample": true,
+        "profit_factor_gt_1_05": false
+      },
+      "tier_b_criteria": {
+        "base_positive_1_5x_nonnegative": false,
+        "benchmark_alpha_mean_gt_0": true,
+        "best_year_lt_60pct": true,
+        "day_cluster_ci_lower_gte_minus_0_05": false,
+        "max_drawdown_lte_25r": false,
+        "mean_net_r_gt_0": false,
+        "minimum_sample": true,
+        "positive_2_of_3_windows": false,
+        "profit_factor_gt_1_00": false
+      }
+    }
+  ],
+  "created_at_utc": "2026-07-29T23:12:28.404246+00:00",
+  "economic_audit_code_sha": "a53699dab97f41d105f809d71e57200569bbd677",
+  "primary_candidate": null,
+  "ranking": "highest lower 95% CI bound of net R",
+  "secondary_candidate": null,
+  "selection_limit": {
+    "primary": 1,
+    "secondary": 1
+  },
+  "status": "PASS"
+}
