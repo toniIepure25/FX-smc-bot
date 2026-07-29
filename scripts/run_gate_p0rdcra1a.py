@@ -11,7 +11,7 @@ import subprocess
 import sys
 import threading
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -2162,6 +2162,140 @@ def run_canonicalization() -> None:
     )
 
 
+def _runtime_smoke_worker(candidate_id: str) -> dict[str, Any]:
+    from dataclasses import asdict
+
+    from fx_smc_bot.backtesting.intraday_engine import IntradayBacktestEngine
+    from fx_smc_bot.config import AppConfig, TradingPair
+    from fx_smc_bot.research.strategy_alpha import load_candidate_specs
+    from fx_smc_bot.research.strategy_alpha_execution import (
+        amended_execution_policy,
+        build_candidate_runtime_bindings,
+        load_certified_m5_window,
+    )
+
+    candidate = next(
+        item for item in load_candidate_specs(REPO) if item.candidate_id == candidate_id
+    )
+    start = date(2015, 1, 1)
+    end = date(2015, 1, 16)
+    data = {
+        TradingPair(instrument): load_certified_m5_window(
+            REPO, instrument, start, end,
+        )
+        for instrument in sorted(AUTHORIZED_STRATEGY_INSTRUMENTS)
+    }
+
+    def execute_once() -> dict[str, Any]:
+        engine = IntradayBacktestEngine(
+            AppConfig(),
+            execution_policy=amended_execution_policy(),
+        )
+        bindings = build_candidate_runtime_bindings(REPO, candidate)
+        for binding in bindings:
+            engine.add_runtime(binding.runtime)
+        result = engine.run(data)
+        funnels = list(engine.get_funnels().values())
+        reconciliation = engine.reconcile()
+        return {
+            "bars": sum(len(series) for series in data.values()),
+            "eligible_session_bars": sum(item.bars_processed for item in funnels),
+            "signals": sum(item.intents_generated for item in funnels),
+            "orders": sum(item.orders_accepted for item in funnels),
+            "fills": sum(item.orders_filled for item in funnels),
+            "closed_positions": sum(item.positions_closed for item in funnels),
+            "errors": list(result.metadata.get("execution_errors", [])),
+            "open_positions_at_end": result.metadata.get("open_positions_at_end"),
+            "pending_orders_at_end": result.metadata.get("pending_orders_at_end"),
+            "reconciliation_violations": list(reconciliation.violations),
+            "funnels": [asdict(item) for item in funnels],
+            "runtime_bindings": [
+                {
+                    "candidate_id": binding.candidate_id,
+                    "instrument": binding.instrument,
+                    "session": binding.session,
+                    "family": binding.family,
+                    "config_hash": binding.config_hash,
+                }
+                for binding in bindings
+            ],
+        }
+
+    first = execute_once()
+    second = execute_once()
+    return {
+        "candidate_id": candidate_id,
+        "first_run": first,
+        "second_run": second,
+        "deterministic": canonical_json_sha256(first) == canonical_json_sha256(second),
+    }
+
+
+def run_runtime_smoke() -> None:
+    predecessor = git(["rev-parse", "HEAD"])
+    expected = "e4e73ed76c58a23b35a6c469b236ae2c73c895a8"
+    if predecessor != expected:
+        raise RuntimeError("runtime smoke must begin from the certified dataset predecessor")
+    preregistration = load_json(RESULT_DIR / "preregistration_order_audit.json")
+    if preregistration.get("outcome_access_predecessor_sha") != predecessor:
+        raise RuntimeError("preregistration predecessor does not match HEAD")
+    candidate_ids = [
+        "SMC_A_SWEEP_REVERSAL_V1",
+        "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+        "SMC_C_LONDON_OPENING_RANGE_V1",
+        "SMC_C_NEWYORK_OPENING_RANGE_V1",
+    ]
+    started = time.monotonic()
+    with ProcessPoolExecutor(max_workers=4) as pool:
+        records = list(pool.map(_runtime_smoke_worker, candidate_ids))
+    records.sort(key=lambda item: item["candidate_id"])
+    checks = {
+        "all_candidates_executed": len(records) == 4,
+        "all_runs_deterministic": all(item["deterministic"] for item in records),
+        "all_runtimes_bound": all(item["first_run"]["runtime_bindings"] for item in records),
+        "no_runtime_errors": all(not item["first_run"]["errors"] for item in records),
+        "no_open_positions_at_end": all(
+            item["first_run"]["open_positions_at_end"] == 0 for item in records
+        ),
+        "no_pending_orders_at_end": all(
+            item["first_run"]["pending_orders_at_end"] == 0 for item in records
+        ),
+        "no_reconciliation_violations": all(
+            not item["first_run"]["reconciliation_violations"] for item in records
+        ),
+    }
+    audit = {
+        "created_at_utc": now_utc(),
+        "program_id": PROGRAM_ID,
+        "lineage_id": LINEAGE_ID,
+        "outcome_access_predecessor_sha": predecessor,
+        "dataset_freeze_id": DATASET_FREEZE_ID,
+        "dataset_freeze_hash": load_json(
+            RESULT_DIR / "permitted_dataset_freeze.json"
+        )["dataset_freeze_hash"],
+        "smoke_window": ["2015-01-01", "2015-01-16"],
+        "reported_fields": [
+            "bars", "signals", "orders", "fills", "closed_positions", "errors"
+        ],
+        "economic_metrics_reported": False,
+        "worker_count": 4,
+        "checks": checks,
+        "candidates": records,
+        "elapsed_seconds": round(time.monotonic() - started, 3),
+        "status": "PASS" if all(checks.values()) else "FAIL",
+    }
+    write_json(RESULT_DIR / "runtime_integration_audit.json", audit)
+    if audit["status"] != "PASS":
+        raise RuntimeError("strategy-alpha runtime smoke failed")
+    print(json.dumps({
+        "stage": "runtime_smoke",
+        "worker_count": 4,
+        "candidate_count": len(records),
+        "deterministic": checks["all_runs_deterministic"],
+        "elapsed_seconds": audit["elapsed_seconds"],
+    }, indent=2))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -2173,6 +2307,7 @@ def main() -> None:
             "recertification",
             "acquisition",
             "canonicalization",
+            "runtime_smoke",
             "all",
         ],
         default="all",
@@ -2190,6 +2325,8 @@ def main() -> None:
         run_acquisition()
     if args.stage in {"canonicalization", "all"}:
         run_canonicalization()
+    if args.stage in {"runtime_smoke", "all"}:
+        run_runtime_smoke()
 
 
 if __name__ == "__main__":

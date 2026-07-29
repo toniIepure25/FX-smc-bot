@@ -8,9 +8,10 @@ from __future__ import annotations
 
 import hashlib
 import logging
-from dataclasses import dataclass, field
-from datetime import datetime
-from typing import Any
+from collections.abc import Callable
+from dataclasses import dataclass, field, replace
+from datetime import datetime, timedelta
+from typing import Any, cast
 
 import numpy as np
 
@@ -29,6 +30,8 @@ from fx_smc_bot.config import (
     PAIR_PIP_INFO,
     TIMEFRAME_MINUTES,
     AppConfig,
+    SessionConfig,
+    StructureConfig,
     Timeframe,
     TradingPair,
 )
@@ -37,12 +40,14 @@ from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.domain import (
     BacktestResult,
     Direction,
+    Fill,
     FillReason,
     Order,
     OrderState,
     OrderType,
     Position,
     StructureRegime,
+    StructureSnapshot,
 )
 from fx_smc_bot.execution.fills import BidAskFillEngine, FillEngine
 from fx_smc_bot.execution.slippage import (
@@ -61,6 +66,25 @@ _MIN_WARMUP_BARS = 30
 
 EXECUTION_MODE_BID_ASK = "BID_ASK_NATIVE"
 EXECUTION_MODE_MID = "MID_PRICE_EXPLORATORY_MODE"
+
+
+@dataclass(frozen=True, slots=True)
+class IntradayExecutionPolicy:
+    """Optional stricter lifecycle rules for prospective research protocols."""
+
+    warmup_bars: int = _MIN_WARMUP_BARS
+    close_at_session_cutoff: bool = False
+    close_at_fx_week_end: bool = False
+    close_at_final_bar: bool = False
+    single_position_per_pair: bool = False
+    apply_swap: bool = True
+    structure_lookback_bars: int = 201
+    session_cutoff_resolver: Callable[[datetime, str], datetime] | None = None
+    fx_week_close_resolver: Callable[[datetime], datetime] | None = None
+    runtime_bar_filter: Callable[[datetime, str], bool] | None = None
+    snapshot_builder: Callable[
+        [BarSeries, StructureConfig, SessionConfig], StructureSnapshot
+    ] | None = None
 
 
 @dataclass(slots=True)
@@ -88,6 +112,7 @@ class TradeRecord:
     entry_time: datetime | None = None
     exit_time: datetime | None = None
     price_mode: str = EXECUTION_MODE_MID
+    exit_reason: str = ""
 
 
 @dataclass(slots=True)
@@ -117,6 +142,11 @@ class EventFunnel:
     positions_closed: int = 0
     sl_exits: int = 0
     tp_exits: int = 0
+    session_exits: int = 0
+    fx_week_exits: int = 0
+    final_bar_exits: int = 0
+    position_overlap_rejections: int = 0
+    session_horizon_signal_rejections: int = 0
 
 
 class IntradayBacktestEngine:
@@ -130,14 +160,16 @@ class IntradayBacktestEngine:
         self,
         config: AppConfig | None = None,
         swap_rates: dict | None = None,
+        execution_policy: IntradayExecutionPolicy | None = None,
     ) -> None:
         self._cfg = config or AppConfig()
         self._fill_engine = FillEngine(
             FixedSpreadSlippage(self._cfg.execution),
             fill_policy=self._cfg.execution.fill_policy,
         )
+        self._bidask_slippage = NativeBidAskSlippage(self._cfg.execution)
         self._bidask_fill_engine = BidAskFillEngine(
-            NativeBidAskSlippage(self._cfg.execution),
+            self._bidask_slippage,
             fill_policy=self._cfg.execution.fill_policy,
         )
         self._swap_calc = SwapCalculator(rates=swap_rates)
@@ -146,18 +178,24 @@ class IntradayBacktestEngine:
             lot_size=self._cfg.backtest.lot_size,
         )
         self._portfolio = PortfolioState(self._cfg.backtest.initial_capital)
+        self._policy = execution_policy or IntradayExecutionPolicy()
+        if self._policy.warmup_bars < 0:
+            raise ValueError("warmup_bars must be non-negative")
 
         self._runtimes: list[StatefulStrategyRuntime] = []
         self._intent_to_order: dict[str, str] = {}
         self._order_to_intent: dict[str, str] = {}
         self._order_to_runtime_idx: dict[str, int] = {}
+        self._order_activation_bar: dict[str, int] = {}
         self._position_to_order: dict[str, str] = {}
         self._position_entry_bars: dict[str, int] = {}
         self._position_swap: dict[str, float] = {}
+        self._position_exit_kind: dict[str, str] = {}
         self._prev_bar_times: dict[TradingPair, datetime] = {}
         self._funnels: dict[int, EventFunnel] = {}
         self._trade_records: list[TradeRecord] = []
         self._execution_mode: str = EXECUTION_MODE_MID
+        self._execution_errors: list[str] = []
 
     def add_runtime(self, runtime: StatefulStrategyRuntime) -> int:
         """Register a strategy runtime. Returns its index."""
@@ -203,7 +241,7 @@ class IntradayBacktestEngine:
         ba_data: dict[TradingPair, BidAskBarSeries] = {}
         if use_bidask:
             for pair, series in data.items():
-                ba_series = series  # type: ignore[assignment]
+                ba_series = cast(BidAskBarSeries, series)
                 ba_data[pair] = ba_series
                 mid_data[pair] = ba_series.to_mid_series()
         else:
@@ -224,6 +262,8 @@ class IntradayBacktestEngine:
             for i, ts in enumerate(series.timestamps):
                 mapping[ts] = i
             ts_to_idx[pair] = mapping
+
+        final_idx = {pair: len(series) - 1 for pair, series in mid_data.items()}
 
         atr_cache: dict[TradingPair, list[float]] = {}
         for pair, series in mid_data.items():
@@ -252,9 +292,9 @@ class IntradayBacktestEngine:
         start_dt = sorted_ts[0].astype("datetime64[us]").astype(datetime)
         end_dt = sorted_ts[-1].astype("datetime64[us]").astype(datetime)
 
+        current_prices: dict[str, float] = {}
         for ts in sorted_ts:
             bar_time = ts.astype("datetime64[us]").astype(datetime)
-            current_prices: dict[str, float] = {}
 
             for pair in pairs:
                 idx_map = ts_to_idx[pair]
@@ -262,17 +302,34 @@ class IntradayBacktestEngine:
                     continue
                 bar_idx = idx_map[ts]
                 mid_series = mid_data[pair]
+                next_bar_time = (
+                    mid_series.timestamps[bar_idx + 1]
+                    .astype("datetime64[us]")
+                    .astype(datetime)
+                    if bar_idx < final_idx[pair]
+                    else None
+                )
                 current_prices[pair.value] = float(
                     mid_series.close[bar_idx]
                 )
 
                 if use_bidask:
                     ba = ba_data[pair]
+                    self._validate_bidask_bar(ba, bar_idx, bar_time)
                     self._process_exits_bidask(
                         pair, ba, mid_series, bar_idx, bar_time,
                     )
                     self._process_pending_fills_bidask(
                         pair, ba, mid_series, bar_idx, bar_time,
+                    )
+                    self._process_protocol_time_exits_bidask(
+                        pair,
+                        ba,
+                        mid_series,
+                        bar_idx,
+                        bar_time,
+                        next_bar_time=next_bar_time,
+                        is_final_bar=bar_idx == final_idx[pair],
                     )
                 else:
                     self._process_exits(
@@ -281,18 +338,38 @@ class IntradayBacktestEngine:
                     self._process_pending_fills(
                         pair, mid_series, bar_idx, bar_time,
                     )
-                self._process_swap(pair, bar_time)
+                if self._policy.apply_swap:
+                    self._process_swap(pair, bar_time)
 
-                if bar_idx < _MIN_WARMUP_BARS:
+                if bar_idx < self._policy.warmup_bars:
                     self._prev_bar_times[pair] = bar_time
                     continue
 
-                ltf_slice = mid_series.slice(
-                    max(0, bar_idx - 200), bar_idx + 1,
+                eligible_runtime_indices = [
+                    rt_idx
+                    for rt_idx, runtime in enumerate(self._runtimes)
+                    if runtime.pair == pair
+                    and (
+                        self._policy.runtime_bar_filter is None
+                        or self._policy.runtime_bar_filter(bar_time, runtime.session)
+                    )
+                ]
+                if not eligible_runtime_indices:
+                    self._prev_bar_times[pair] = bar_time
+                    continue
+
+                slice_start = max(
+                    0,
+                    bar_idx - self._policy.structure_lookback_bars + 1,
                 )
-                snapshot = build_structure_snapshot(
+                ltf_slice = mid_series.slice(slice_start, bar_idx + 1)
+                snapshot_builder = (
+                    self._policy.snapshot_builder or build_structure_snapshot
+                )
+                snapshot = snapshot_builder(
                     ltf_slice, self._cfg.structure, self._cfg.sessions,
                 )
+                self._offset_snapshot_indices(snapshot, slice_start)
 
                 htf_bias = None
                 htf_snapshot = None
@@ -355,9 +432,8 @@ class IntradayBacktestEngine:
                     htf_snapshot=htf_snapshot,
                 )
 
-                for rt_idx, runtime in enumerate(self._runtimes):
-                    if runtime.pair != pair:
-                        continue
+                for rt_idx in eligible_runtime_indices:
+                    runtime = self._runtimes[rt_idx]
 
                     funnel = self._funnels[rt_idx]
                     funnel.bars_processed += 1
@@ -367,6 +443,15 @@ class IntradayBacktestEngine:
                     for intent in intents:
                         funnel.intents_generated += 1
 
+                        if self._bar_reaches_session_cutoff(
+                            bar_time,
+                            next_bar_time,
+                            runtime.session,
+                            mid_series.timeframe,
+                        ):
+                            funnel.session_horizon_signal_rejections += 1
+                            continue
+
                         if intent.activation_bar <= bar_idx:
                             intent.activation_bar = bar_idx + 1
 
@@ -375,6 +460,7 @@ class IntradayBacktestEngine:
                         self._intent_to_order[intent.intent_id] = order.id
                         self._order_to_intent[order.id] = intent.intent_id
                         self._order_to_runtime_idx[order.id] = rt_idx
+                        self._order_activation_bar[order.id] = intent.activation_bar
 
                         funnel.orders_accepted += 1
                         runtime.on_order_accepted(OrderAcceptedEvent(
@@ -389,11 +475,18 @@ class IntradayBacktestEngine:
                 eq_point = self._portfolio.equity_point(bar_time, current_prices)
                 self._ledger.record_equity(eq_point)
 
+        if self._policy.close_at_final_bar:
+            self._cancel_all_pending("final_available_certified_bar", end_dt)
+
         metadata = {
             "pairs": [p.value for p in pairs],
             "runtimes": len(self._runtimes),
             "trade_records": len(self._trade_records),
             "execution_mode": self._execution_mode,
+            "execution_errors": list(self._execution_errors),
+            "open_positions_at_end": len(self._portfolio.open_positions),
+            "pending_orders_at_end": len(self._portfolio.pending_orders),
+            "warmup_bars": self._policy.warmup_bars,
         }
 
         return BacktestResult(
@@ -437,7 +530,7 @@ class IntradayBacktestEngine:
 
     def _compute_units(self, intent: OrderIntent) -> float:
         """Size position based on config risk fraction."""
-        risk_fraction = self._cfg.risk.risk_per_trade
+        risk_fraction = self._cfg.risk.base_risk_per_trade
         equity = self._portfolio.equity({})
         risk_amount = equity * risk_fraction
         risk_dist = abs(intent.entry_price - intent.stop_loss)
@@ -502,8 +595,12 @@ class IntradayBacktestEngine:
         bar_idx: int,
         bar_time: datetime,
     ) -> None:
+        self._expire_orders(pair, bar_time)
         pending = [
-            o for o in self._portfolio.pending_orders if o.pair == pair
+            o
+            for o in self._portfolio.pending_orders
+            if o.pair == pair
+            and self._order_activation_bar.get(o.id, 0) <= bar_idx
         ]
         fills = self._bidask_fill_engine.process_pending_orders(
             pending,
@@ -518,6 +615,11 @@ class IntradayBacktestEngine:
             bar_time=bar_time,
         )
         for order, fill in fills:
+            if self._policy.single_position_per_pair and any(
+                pos.pair == pair for pos in self._portfolio.open_positions
+            ):
+                self._reject_overlap(order, bar_time)
+                continue
             pos = Position(
                 pair=order.pair,
                 direction=order.direction,
@@ -563,29 +665,6 @@ class IntradayBacktestEngine:
                     pos, same_exit, pair, bar_idx, bar_time, mid,
                 )
 
-        expired = [
-            o for o in self._portfolio.pending_orders
-            if o.pair == pair
-            and o.state == OrderState.PENDING
-            and o.expires_at is not None
-            and bar_time >= o.expires_at
-        ]
-        for order in expired:
-            order.state = OrderState.EXPIRED
-            self._portfolio.remove_order(order.id)
-            rt_idx = self._order_to_runtime_idx.get(order.id)
-            intent_id = self._order_to_intent.get(order.id, "")
-            if rt_idx is not None:
-                self._funnels[rt_idx].orders_expired += 1
-                self._runtimes[rt_idx].on_order_cancelled(
-                    OrderCancelledEvent(
-                        order_id=order.id,
-                        intent_id=intent_id,
-                        reason="expired",
-                        timestamp=bar_time,
-                    )
-                )
-
     def _process_pending_fills(
         self,
         pair: TradingPair,
@@ -593,7 +672,13 @@ class IntradayBacktestEngine:
         bar_idx: int,
         bar_time: datetime,
     ) -> None:
-        pending = [o for o in self._portfolio.pending_orders if o.pair == pair]
+        self._expire_orders(pair, bar_time)
+        pending = [
+            o
+            for o in self._portfolio.pending_orders
+            if o.pair == pair
+            and self._order_activation_bar.get(o.id, 0) <= bar_idx
+        ]
         fills = self._fill_engine.process_pending_orders(
             pending,
             float(series.open[bar_idx]),
@@ -603,6 +688,11 @@ class IntradayBacktestEngine:
             bar_time,
         )
         for order, fill in fills:
+            if self._policy.single_position_per_pair and any(
+                pos.pair == pair for pos in self._portfolio.open_positions
+            ):
+                self._reject_overlap(order, bar_time)
+                continue
             pos = Position(
                 pair=order.pair,
                 direction=order.direction,
@@ -644,12 +734,13 @@ class IntradayBacktestEngine:
                     pos, same_bar_exit, pair, bar_idx, bar_time, series,
                 )
 
+    def _expire_orders(self, pair: TradingPair, bar_time: datetime) -> None:
         expired = [
-            o for o in self._portfolio.pending_orders
-            if o.pair == pair
-            and o.state == OrderState.PENDING
-            and o.expires_at is not None
-            and bar_time >= o.expires_at
+            order
+            for order in self._portfolio.pending_orders
+            if order.pair == pair
+            and order.expires_at is not None
+            and bar_time >= order.expires_at
         ]
         for order in expired:
             order.state = OrderState.EXPIRED
@@ -664,6 +755,261 @@ class IntradayBacktestEngine:
                     reason="expired",
                     timestamp=bar_time,
                 ))
+
+    def _reject_overlap(self, order: Order, bar_time: datetime) -> None:
+        order.state = OrderState.CANCELLED
+        self._portfolio.remove_order(order.id)
+        rt_idx = self._order_to_runtime_idx.get(order.id)
+        if rt_idx is None:
+            return
+        self._funnels[rt_idx].orders_cancelled += 1
+        self._funnels[rt_idx].position_overlap_rejections += 1
+        self._runtimes[rt_idx].on_order_cancelled(OrderCancelledEvent(
+            order_id=order.id,
+            intent_id=self._order_to_intent.get(order.id, ""),
+            reason="position_overlap",
+            timestamp=bar_time,
+        ))
+
+    def _cancel_all_pending(self, reason: str, bar_time: datetime) -> None:
+        for order in list(self._portfolio.pending_orders):
+            order.state = OrderState.CANCELLED
+            self._portfolio.remove_order(order.id)
+            rt_idx = self._order_to_runtime_idx.get(order.id)
+            if rt_idx is not None:
+                self._funnels[rt_idx].orders_cancelled += 1
+                self._runtimes[rt_idx].on_order_cancelled(OrderCancelledEvent(
+                    order_id=order.id,
+                    intent_id=self._order_to_intent.get(order.id, ""),
+                    reason=reason,
+                    timestamp=bar_time,
+                ))
+
+    @staticmethod
+    def _same_time_basis(value: datetime, reference: datetime) -> datetime:
+        if reference.tzinfo is None and value.tzinfo is not None:
+            return value.replace(tzinfo=None)
+        if reference.tzinfo is not None and value.tzinfo is None:
+            return value.replace(tzinfo=reference.tzinfo)
+        return value
+
+    def _position_runtime(self, pos: Position) -> tuple[int | None, str]:
+        order_id = self._position_to_order.get(pos.id, "")
+        rt_idx = self._order_to_runtime_idx.get(order_id)
+        session = self._runtimes[rt_idx].session if rt_idx is not None else ""
+        return rt_idx, session
+
+    def _process_protocol_time_exits_bidask(
+        self,
+        pair: TradingPair,
+        ba: BidAskBarSeries,
+        mid: BarSeries,
+        bar_idx: int,
+        bar_time: datetime,
+        *,
+        next_bar_time: datetime | None,
+        is_final_bar: bool,
+    ) -> None:
+        bar_end = bar_time + timedelta(minutes=TIMEFRAME_MINUTES[mid.timeframe])
+        for pos in list(self._portfolio.open_positions):
+            if pos.pair != pair:
+                continue
+            rt_idx, session = self._position_runtime(pos)
+            exit_kind = ""
+            if (
+                self._policy.close_at_session_cutoff
+                and self._policy.session_cutoff_resolver is not None
+                and pos.opened_at is not None
+            ):
+                cutoff = self._policy.session_cutoff_resolver(pos.opened_at, session)
+                cutoff = self._same_time_basis(cutoff, bar_end)
+                if self._reaches_boundary(
+                    bar_time, bar_end, next_bar_time, cutoff,
+                ):
+                    exit_kind = "originating_session_cutoff"
+            if (
+                not exit_kind
+                and self._policy.close_at_fx_week_end
+                and self._policy.fx_week_close_resolver is not None
+            ):
+                week_close = self._policy.fx_week_close_resolver(bar_time)
+                week_close = self._same_time_basis(week_close, bar_end)
+                if self._reaches_boundary(
+                    bar_time, bar_end, next_bar_time, week_close,
+                ):
+                    exit_kind = "fx_week_safety_close"
+            if not exit_kind and self._policy.close_at_final_bar and is_final_bar:
+                exit_kind = "final_available_certified_bar"
+            if not exit_kind:
+                continue
+
+            exit_direction = (
+                Direction.SHORT if pos.direction == Direction.LONG else Direction.LONG
+            )
+            executable_close = (
+                float(ba.bid_close[bar_idx])
+                if pos.direction == Direction.LONG
+                else float(ba.ask_close[bar_idx])
+            )
+            fill_price, spread, slippage = self._bidask_slippage.apply(
+                executable_close, exit_direction, pair,
+            )
+            self._position_exit_kind[pos.id] = exit_kind
+            self._close_position(
+                pos,
+                Fill(
+                    order_id=pos.id,
+                    fill_price=fill_price,
+                    units=pos.units,
+                    spread_cost=spread,
+                    slippage=slippage,
+                    timestamp=bar_time,
+                    reason=FillReason.MANUAL_CLOSE,
+                ),
+                pair,
+                bar_idx,
+                bar_time,
+                mid,
+            )
+            if rt_idx is not None:
+                if exit_kind == "originating_session_cutoff":
+                    self._funnels[rt_idx].session_exits += 1
+                elif exit_kind == "fx_week_safety_close":
+                    self._funnels[rt_idx].fx_week_exits += 1
+                else:
+                    self._funnels[rt_idx].final_bar_exits += 1
+
+        if self._policy.close_at_session_cutoff:
+            for order in list(self._portfolio.pending_orders):
+                if order.pair != pair:
+                    continue
+                rt_idx = self._order_to_runtime_idx.get(order.id)
+                if rt_idx is None:
+                    continue
+                session = self._runtimes[rt_idx].session
+                resolver = self._policy.session_cutoff_resolver
+                if resolver is None or order.created_at is None:
+                    continue
+                cutoff = self._same_time_basis(resolver(order.created_at, session), bar_end)
+                if self._reaches_boundary(
+                    bar_time, bar_end, next_bar_time, cutoff,
+                ):
+                    order.state = OrderState.CANCELLED
+                    self._portfolio.remove_order(order.id)
+                    self._funnels[rt_idx].orders_cancelled += 1
+                    self._runtimes[rt_idx].on_order_cancelled(OrderCancelledEvent(
+                        order_id=order.id,
+                        intent_id=self._order_to_intent.get(order.id, ""),
+                        reason="originating_session_cutoff",
+                        timestamp=bar_time,
+                    ))
+
+    @staticmethod
+    def _reaches_boundary(
+        bar_time: datetime,
+        bar_end: datetime,
+        next_bar_time: datetime | None,
+        boundary: datetime,
+    ) -> bool:
+        if bar_end >= boundary:
+            return True
+        return (
+            bar_time < boundary
+            and next_bar_time is not None
+            and next_bar_time >= boundary
+        )
+
+    def _bar_reaches_session_cutoff(
+        self,
+        bar_time: datetime,
+        next_bar_time: datetime | None,
+        session: str,
+        timeframe: Timeframe,
+    ) -> bool:
+        if (
+            not self._policy.close_at_session_cutoff
+            or self._policy.session_cutoff_resolver is None
+        ):
+            return False
+        bar_end = bar_time + timedelta(minutes=TIMEFRAME_MINUTES[timeframe])
+        cutoff = self._same_time_basis(
+            self._policy.session_cutoff_resolver(bar_time, session),
+            bar_end,
+        )
+        return self._reaches_boundary(
+            bar_time, bar_end, next_bar_time, cutoff,
+        )
+
+    @staticmethod
+    def _validate_bidask_bar(
+        series: BidAskBarSeries,
+        bar_idx: int,
+        bar_time: datetime,
+    ) -> None:
+        values = (
+            series.bid_open[bar_idx], series.bid_high[bar_idx],
+            series.bid_low[bar_idx], series.bid_close[bar_idx],
+            series.ask_open[bar_idx], series.ask_high[bar_idx],
+            series.ask_low[bar_idx], series.ask_close[bar_idx],
+        )
+        if not all(np.isfinite(value) and value > 0 for value in values):
+            raise ValueError(f"EXECUTION_DATA_MISSING at {bar_time.isoformat()}")
+
+    @staticmethod
+    def _offset_snapshot_indices(
+        snapshot: StructureSnapshot,
+        offset: int,
+    ) -> None:
+        if offset == 0:
+            return
+        snapshot.bar_index += offset
+        snapshot.swings = [
+            replace(item, bar_index=item.bar_index + offset)
+            for item in snapshot.swings
+        ]
+        snapshot.breaks = [
+            replace(
+                item,
+                break_bar_index=item.break_bar_index + offset,
+                swing_broken=replace(
+                    item.swing_broken,
+                    bar_index=item.swing_broken.bar_index + offset,
+                ),
+            )
+            for item in snapshot.breaks
+        ]
+        snapshot.liquidity_levels = [
+            replace(
+                item,
+                formation_index=item.formation_index + offset,
+                sweep_index=(
+                    item.sweep_index + offset
+                    if item.sweep_index is not None
+                    else None
+                ),
+            )
+            for item in snapshot.liquidity_levels
+        ]
+        snapshot.active_fvgs = [
+            replace(item, bar_index=item.bar_index + offset)
+            for item in snapshot.active_fvgs
+        ]
+        snapshot.active_order_blocks = [
+            replace(item, bar_index=item.bar_index + offset)
+            for item in snapshot.active_order_blocks
+        ]
+        snapshot.displacements = [
+            replace(item, bar_index=item.bar_index + offset)
+            for item in snapshot.displacements
+        ]
+        snapshot.session_windows = [
+            replace(
+                item,
+                high_index=item.high_index + offset,
+                low_index=item.low_index + offset,
+            )
+            for item in snapshot.session_windows
+        ]
 
     def _process_swap(self, pair: TradingPair, bar_time: datetime) -> None:
         """Apply swap charges for positions crossing rollover."""
@@ -798,6 +1144,10 @@ class IntradayBacktestEngine:
             entry_time=pos.opened_at,
             exit_time=bar_time,
             price_mode=self._execution_mode,
+            exit_reason=(
+                self._position_exit_kind.pop(pos.id, "")
+                or exit_fill.reason.value
+            ),
         ))
 
     @staticmethod
@@ -828,9 +1178,10 @@ class IntradayBacktestEngine:
         recon = RuntimeReconciliation()
 
         for rec in self._trade_records:
-            oid = self._position_to_order.get(rec.position_id)
-            if oid:
+            if rec.order_id and rec.intent_id:
                 recon.filled_with_matching_trade += 1
+            else:
+                recon.orphan_trades += 1
 
         for rec in self._trade_records:
             if rec.exit_time is not None:

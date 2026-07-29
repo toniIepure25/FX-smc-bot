@@ -1,0 +1,803 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "deterministic": true,
+      "first_run": {
+        "bars": 6336,
+        "closed_positions": 1,
+        "eligible_session_bars": 1304,
+        "errors": [],
+        "fills": 1,
+        "funnels": [
+          {
+            "bars_processed": 324,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 1,
+            "orders_accepted": 1,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 1,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 1,
+            "session": "london",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 0,
+            "orders_accepted": 0,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 0,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 0,
+            "session": "new_york",
+            "session_exits": 0,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 324,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 0,
+            "orders_accepted": 0,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 0,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 0,
+            "session": "london",
+            "session_exits": 0,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 0,
+            "orders_accepted": 0,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 0,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 0,
+            "session": "new_york",
+            "session_exits": 0,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 1,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "EURUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "EURUSD",
+            "session": "new_york"
+          },
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "GBPUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "GBPUSD",
+            "session": "new_york"
+          }
+        ],
+        "signals": 1
+      },
+      "second_run": {
+        "bars": 6336,
+        "closed_positions": 1,
+        "eligible_session_bars": 1304,
+        "errors": [],
+        "fills": 1,
+        "funnels": [
+          {
+            "bars_processed": 324,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 1,
+            "orders_accepted": 1,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 1,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 1,
+            "session": "london",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 0,
+            "orders_accepted": 0,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 0,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 0,
+            "session": "new_york",
+            "session_exits": 0,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 324,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 0,
+            "orders_accepted": 0,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 0,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 0,
+            "session": "london",
+            "session_exits": 0,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 0,
+            "orders_accepted": 0,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 0,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 0,
+            "session": "new_york",
+            "session_exits": 0,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 1,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "EURUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "EURUSD",
+            "session": "new_york"
+          },
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "GBPUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+            "config_hash": "93781ed18f6384e5",
+            "family": "liquidity_sweep_mss_fvg_reversal",
+            "instrument": "GBPUSD",
+            "session": "new_york"
+          }
+        ],
+        "signals": 1
+      }
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "deterministic": true,
+      "first_run": {
+        "bars": 6336,
+        "closed_positions": 16,
+        "eligible_session_bars": 1304,
+        "errors": [],
+        "fills": 16,
+        "funnels": [
+          {
+            "bars_processed": 324,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 8,
+            "orders_accepted": 8,
+            "orders_cancelled": 5,
+            "orders_expired": 0,
+            "orders_filled": 3,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 3,
+            "positions_closed": 3,
+            "session": "london",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 1,
+            "tp_exits": 1
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 8,
+            "orders_accepted": 8,
+            "orders_cancelled": 4,
+            "orders_expired": 1,
+            "orders_filled": 3,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 1,
+            "positions_closed": 3,
+            "session": "new_york",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 2,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 324,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 17,
+            "orders_accepted": 17,
+            "orders_cancelled": 11,
+            "orders_expired": 0,
+            "orders_filled": 6,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 10,
+            "positions_closed": 6,
+            "session": "london",
+            "session_exits": 3,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 2,
+            "tp_exits": 1
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 9,
+            "orders_accepted": 9,
+            "orders_cancelled": 5,
+            "orders_expired": 0,
+            "orders_filled": 4,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 5,
+            "positions_closed": 4,
+            "session": "new_york",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 1,
+            "tp_exits": 2
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 42,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "EURUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "EURUSD",
+            "session": "new_york"
+          },
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "GBPUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "GBPUSD",
+            "session": "new_york"
+          }
+        ],
+        "signals": 42
+      },
+      "second_run": {
+        "bars": 6336,
+        "closed_positions": 16,
+        "eligible_session_bars": 1304,
+        "errors": [],
+        "fills": 16,
+        "funnels": [
+          {
+            "bars_processed": 324,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 8,
+            "orders_accepted": 8,
+            "orders_cancelled": 5,
+            "orders_expired": 0,
+            "orders_filled": 3,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 3,
+            "positions_closed": 3,
+            "session": "london",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 1,
+            "tp_exits": 1
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 8,
+            "orders_accepted": 8,
+            "orders_cancelled": 4,
+            "orders_expired": 1,
+            "orders_filled": 3,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 1,
+            "positions_closed": 3,
+            "session": "new_york",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 2,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 324,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 17,
+            "orders_accepted": 17,
+            "orders_cancelled": 11,
+            "orders_expired": 0,
+            "orders_filled": 6,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 10,
+            "positions_closed": 6,
+            "session": "london",
+            "session_exits": 3,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 2,
+            "tp_exits": 1
+          },
+          {
+            "bars_processed": 328,
+            "family": "liquidity_acceptance_fvg_continuation",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 9,
+            "orders_accepted": 9,
+            "orders_cancelled": 5,
+            "orders_expired": 0,
+            "orders_filled": 4,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 5,
+            "positions_closed": 4,
+            "session": "new_york",
+            "session_exits": 1,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 1,
+            "tp_exits": 2
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 42,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "EURUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "EURUSD",
+            "session": "new_york"
+          },
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "GBPUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+            "config_hash": "33dc85219863d306",
+            "family": "liquidity_acceptance_fvg_continuation",
+            "instrument": "GBPUSD",
+            "session": "new_york"
+          }
+        ],
+        "signals": 42
+      }
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "deterministic": true,
+      "first_run": {
+        "bars": 6336,
+        "closed_positions": 5,
+        "eligible_session_bars": 648,
+        "errors": [],
+        "fills": 5,
+        "funnels": [
+          {
+            "bars_processed": 324,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 3,
+            "orders_accepted": 3,
+            "orders_cancelled": 1,
+            "orders_expired": 0,
+            "orders_filled": 2,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 2,
+            "session": "london",
+            "session_exits": 2,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 324,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 3,
+            "orders_accepted": 3,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 3,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 3,
+            "session": "london",
+            "session_exits": 3,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 6,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+            "config_hash": "9eb256ac0bd12644",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "EURUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+            "config_hash": "9eb256ac0bd12644",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "GBPUSD",
+            "session": "london"
+          }
+        ],
+        "signals": 6
+      },
+      "second_run": {
+        "bars": 6336,
+        "closed_positions": 5,
+        "eligible_session_bars": 648,
+        "errors": [],
+        "fills": 5,
+        "funnels": [
+          {
+            "bars_processed": 324,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 3,
+            "orders_accepted": 3,
+            "orders_cancelled": 1,
+            "orders_expired": 0,
+            "orders_filled": 2,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 2,
+            "session": "london",
+            "session_exits": 2,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 324,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 3,
+            "orders_accepted": 3,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 3,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 3,
+            "session": "london",
+            "session_exits": 3,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 6,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+            "config_hash": "9eb256ac0bd12644",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "EURUSD",
+            "session": "london"
+          },
+          {
+            "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+            "config_hash": "9eb256ac0bd12644",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "GBPUSD",
+            "session": "london"
+          }
+        ],
+        "signals": 6
+      }
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "deterministic": true,
+      "first_run": {
+        "bars": 6336,
+        "closed_positions": 5,
+        "eligible_session_bars": 656,
+        "errors": [],
+        "fills": 5,
+        "funnels": [
+          {
+            "bars_processed": 328,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 5,
+            "orders_accepted": 5,
+            "orders_cancelled": 2,
+            "orders_expired": 0,
+            "orders_filled": 3,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 3,
+            "session": "new_york",
+            "session_exits": 3,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 328,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 2,
+            "orders_accepted": 2,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 2,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 2,
+            "session": "new_york",
+            "session_exits": 2,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 7,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+            "config_hash": "7cc355d0cf078766",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "EURUSD",
+            "session": "new_york"
+          },
+          {
+            "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+            "config_hash": "7cc355d0cf078766",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "GBPUSD",
+            "session": "new_york"
+          }
+        ],
+        "signals": 7
+      },
+      "second_run": {
+        "bars": 6336,
+        "closed_positions": 5,
+        "eligible_session_bars": 656,
+        "errors": [],
+        "fills": 5,
+        "funnels": [
+          {
+            "bars_processed": 328,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 5,
+            "orders_accepted": 5,
+            "orders_cancelled": 2,
+            "orders_expired": 0,
+            "orders_filled": 3,
+            "pair": "EURUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 3,
+            "session": "new_york",
+            "session_exits": 3,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          },
+          {
+            "bars_processed": 328,
+            "family": "opening_range_displacement_fvg_retest",
+            "final_bar_exits": 0,
+            "fx_week_exits": 0,
+            "intents_generated": 2,
+            "orders_accepted": 2,
+            "orders_cancelled": 0,
+            "orders_expired": 0,
+            "orders_filled": 2,
+            "pair": "GBPUSD",
+            "position_overlap_rejections": 0,
+            "positions_closed": 2,
+            "session": "new_york",
+            "session_exits": 2,
+            "session_horizon_signal_rejections": 0,
+            "sl_exits": 0,
+            "tp_exits": 0
+          }
+        ],
+        "open_positions_at_end": 0,
+        "orders": 7,
+        "pending_orders_at_end": 0,
+        "reconciliation_violations": [],
+        "runtime_bindings": [
+          {
+            "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+            "config_hash": "7cc355d0cf078766",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "EURUSD",
+            "session": "new_york"
+          },
+          {
+            "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+            "config_hash": "7cc355d0cf078766",
+            "family": "opening_range_displacement_fvg_retest",
+            "instrument": "GBPUSD",
+            "session": "new_york"
+          }
+        ],
+        "signals": 7
+      }
+    }
+  ],
+  "checks": {
+    "all_candidates_executed": true,
+    "all_runs_deterministic": true,
+    "all_runtimes_bound": true,
+    "no_open_positions_at_end": true,
+    "no_pending_orders_at_end": true,
+    "no_reconciliation_violations": true,
+    "no_runtime_errors": true
+  },
+  "created_at_utc": "2026-07-29T19:04:22.088405+00:00",
+  "dataset_freeze_hash": "3065b7f507afac9759ae5b319a7550842e24df6e25fd258f2f02c25839dd301a",
+  "dataset_freeze_id": "FX_SMC_STRATEGY_ALPHA_PERMITTED_2015_2022_V2",
+  "economic_metrics_reported": false,
+  "elapsed_seconds": 78.882,
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "outcome_access_predecessor_sha": "e4e73ed76c58a23b35a6c469b236ae2c73c895a8",
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "reported_fields": [
+    "bars",
+    "signals",
+    "orders",
+    "fills",
+    "closed_positions",
+    "errors"
+  ],
+  "smoke_window": [
+    "2015-01-01",
+    "2015-01-16"
+  ],
+  "status": "PASS",
+  "worker_count": 4
+}
