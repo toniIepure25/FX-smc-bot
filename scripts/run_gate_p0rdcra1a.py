@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import argparse
+import calendar
+import hashlib
 import json
+import math
 import shutil
 import subprocess
 import sys
@@ -781,11 +784,263 @@ def run_stage2_prep() -> None:
     )
 
 
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _selected_raw_path(instrument: str, side: str, year: int, month: int) -> Path | None:
+    priority_roots = (RAW_ROOTS[2], RAW_ROOTS[1], RAW_ROOTS[0])
+    for root in priority_roots:
+        candidate = (
+            root
+            / instrument
+            / f"price={side}"
+            / f"year={year}"
+            / f"month={month:02d}"
+            / "data.json"
+        )
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def _validate_raw_side(
+    instrument: str,
+    side: str,
+    year: int,
+    month: int,
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    path = _selected_raw_path(instrument, side, year, month)
+    failures: list[str] = []
+    rows: list[dict[str, Any]] = []
+    if path is None:
+        return (
+            {
+                "instrument": instrument,
+                "side": side,
+                "year": year,
+                "month": month,
+                "path": None,
+                "failures": ["MISSING_FILE"],
+                "status": "MISSING",
+            },
+            rows,
+        )
+
+    size = path.stat().st_size
+    if size == 0:
+        failures.append("ZERO_BYTE_FILE")
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        payload = []
+        failures.append("PARSE_FAILURE")
+    if not isinstance(payload, list):
+        payload = []
+        failures.append("INVALID_CONTAINER")
+    rows = [item for item in payload if isinstance(item, dict)]
+    if len(rows) != len(payload):
+        failures.append("INVALID_CONTAINER")
+    if not rows:
+        failures.append("ZERO_ROWS")
+
+    timestamps: list[int] = []
+    invalid_price = False
+    for row in rows:
+        try:
+            timestamp = int(row["timestamp"])
+            values = [float(row[field]) for field in ("open", "high", "low", "close")]
+        except (KeyError, TypeError, ValueError, OverflowError):
+            invalid_price = True
+            continue
+        timestamps.append(timestamp)
+        open_price, high, low, close = values
+        if (
+            not all(math.isfinite(value) and value > 0 for value in values)
+            or high < max(open_price, close)
+            or low > min(open_price, close)
+            or high < low
+        ):
+            invalid_price = True
+    if invalid_price or len(timestamps) != len(rows):
+        failures.append("INVALID_PRICE")
+    if timestamps != sorted(timestamps):
+        failures.append("NON_MONOTONIC")
+    if len(timestamps) != len(set(timestamps)):
+        failures.append("DUPLICATE_CONFLICT")
+
+    start_ms = int(datetime(year, month, 1, tzinfo=UTC).timestamp() * 1000)
+    if month == 12:
+        next_month = datetime(year + 1, 1, 1, tzinfo=UTC)
+    else:
+        next_month = datetime(year, month + 1, 1, tzinfo=UTC)
+    end_ms = int(next_month.timestamp() * 1000)
+    if timestamps and not all(start_ms <= timestamp < end_ms for timestamp in timestamps):
+        failures.append("WRONG_DATE")
+
+    manifest = path.parent / "manifest.json"
+    manifest_status = "ABSENT_RECONSTRUCTED_PROVIDER_PATH_PROVENANCE"
+    if manifest.is_file():
+        manifest_status = "PRESENT"
+        manifest_payload = load_json(manifest)
+        manifest_days = manifest_payload.get("days", [])
+        if (
+            manifest_payload.get("pair") != instrument
+            or manifest_payload.get("side") != side
+            or manifest_payload.get("year") != year
+            or manifest_payload.get("month") != month
+        ):
+            failures.append("MANIFEST_MISMATCH")
+        if int(manifest_payload.get("compacted_rows", -1)) != len(rows):
+            failures.append("MANIFEST_MISMATCH")
+        if len(manifest_days) != calendar.monthrange(year, month)[1]:
+            failures.append("INCOMPLETE_MONTH")
+        for day in manifest_days:
+            status = day.get("status")
+            day_rows = int(day.get("rows", 0))
+            if status == "failed":
+                failures.append("INCOMPLETE_DAY")
+            if status == "complete" and day_rows == 0:
+                failures.append("ZERO_ROWS")
+
+    failures = sorted(set(failures))
+    return (
+        {
+            "instrument": instrument,
+            "side": side,
+            "year": year,
+            "month": month,
+            "path": _relative(path),
+            "file_size": size,
+            "raw_sha256": _sha256(path),
+            "row_count": len(rows),
+            "minimum_timestamp_ms": min(timestamps) if timestamps else None,
+            "maximum_timestamp_ms": max(timestamps) if timestamps else None,
+            "manifest_status": manifest_status,
+            "provider_provenance": "DUKASCOPY_NODE_SCOPED_PATH_AND_SCHEMA",
+            "failures": failures,
+            "status": "PASS" if not failures else "FAIL",
+        },
+        rows,
+    )
+
+
+def _validate_bid_ask_pair(
+    bid_rows: list[dict[str, Any]],
+    ask_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    bid = {int(row["timestamp"]): row for row in bid_rows if "timestamp" in row}
+    ask = {int(row["timestamp"]): row for row in ask_rows if "timestamp" in row}
+    failures: list[str] = []
+    if set(bid) != set(ask):
+        failures.append("BID_ASK_TIMESTAMP_MISMATCH")
+    invalid_spread = 0
+    for timestamp in sorted(set(bid) & set(ask)):
+        bid_row = bid[timestamp]
+        ask_row = ask[timestamp]
+        if any(
+            float(ask_row[field]) <= float(bid_row[field])
+            for field in ("open", "high", "low", "close")
+        ):
+            invalid_spread += 1
+    if invalid_spread:
+        failures.append("INVALID_SPREAD")
+    return {
+        "paired_rows": len(set(bid) & set(ask)),
+        "bid_only_rows": len(set(bid) - set(ask)),
+        "ask_only_rows": len(set(ask) - set(bid)),
+        "invalid_spread_rows": invalid_spread,
+        "failures": failures,
+        "status": "PASS" if not failures else "FAIL",
+    }
+
+
+def build_recertification_results() -> tuple[dict[str, Any], dict[str, Any]]:
+    month_results: list[dict[str, Any]] = []
+    repair_units: list[dict[str, Any]] = []
+    for instrument in sorted(AUTHORIZED_STRATEGY_INSTRUMENTS):
+        for year in range(2015, 2023):
+            for month in range(1, 13):
+                bid_record, bid_rows = _validate_raw_side(instrument, "bid", year, month)
+                ask_record, ask_rows = _validate_raw_side(instrument, "ask", year, month)
+                pair_record = _validate_bid_ask_pair(bid_rows, ask_rows)
+                passed = (
+                    bid_record["status"] == "PASS"
+                    and ask_record["status"] == "PASS"
+                    and pair_record["status"] == "PASS"
+                )
+                month_record = {
+                    "instrument": instrument,
+                    "year": year,
+                    "month": month,
+                    "bid": bid_record,
+                    "ask": ask_record,
+                    "bid_ask_pair": pair_record,
+                    "status": "RECERTIFIED" if passed else "REPAIR_REQUIRED",
+                }
+                month_results.append(month_record)
+                if not passed:
+                    for side_record in (bid_record, ask_record):
+                        repair_units.append(
+                            {
+                                "instrument": instrument,
+                                "year": year,
+                                "month": month,
+                                "side": side_record["side"],
+                                "failures": sorted(
+                                    set(side_record["failures"] + pair_record["failures"])
+                                ),
+                                "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+                            }
+                        )
+    recertified = sum(1 for item in month_results if item["status"] == "RECERTIFIED")
+    result = {
+        "created_at_utc": now_utc(),
+        "protocol_id": RECOVERY_PROTOCOL_ID,
+        "month_results": month_results,
+        "recertified_pair_months": recertified,
+        "repair_required_pair_months": len(month_results) - recertified,
+        "raw_or_canonical_files_modified": False,
+        "provider_requests_sent": False,
+        "status": "PASS",
+    }
+    repair = {
+        "created_at_utc": now_utc(),
+        "repair_units": repair_units,
+        "repair_unit_count": len(repair_units),
+        "status": "REPAIR_REQUIRED" if repair_units else "PASS",
+    }
+    return result, repair
+
+
+def run_recertification() -> None:
+    recertification, repair = build_recertification_results()
+    write_json(RESULT_DIR / "recertification_results.json", recertification)
+    write_json(RESULT_DIR / "repair_inventory.json", repair)
+    print(
+        json.dumps(
+            {
+                "stage": "recertification",
+                "recertified_pair_months": recertification["recertified_pair_months"],
+                "repair_required_pair_months": recertification[
+                    "repair_required_pair_months"
+                ],
+                "repair_units": repair["repair_unit_count"],
+            },
+            indent=2,
+        )
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--stage",
-        choices=["audit", "amendment", "stage2_prep", "all"],
+        choices=["audit", "amendment", "stage2_prep", "recertification", "all"],
         default="all",
     )
     args = parser.parse_args()
@@ -795,6 +1050,8 @@ def main() -> None:
         run_amendment()
     if args.stage in {"stage2_prep", "all"}:
         run_stage2_prep()
+    if args.stage in {"recertification", "all"}:
+        run_recertification()
 
 
 if __name__ == "__main__":

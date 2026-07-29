@@ -1,0 +1,2807 @@
+{
+  "created_at_utc": "2026-07-29T15:54:27.753108+00:00",
+  "repair_unit_count": 270,
+  "repair_units": [
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY",
+        "ZERO_ROWS"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "EURUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "BID_ASK_TIMESTAMP_MISMATCH",
+        "INCOMPLETE_DAY"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 1,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 2,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 3,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 4,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 5,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 5,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 6,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 7,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 7,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 8,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 9,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 10,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 11,
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "action": "ACQUIRE_OR_REPAIR_FROM_FROZEN_PROVIDER",
+      "failures": [
+        "MISSING_FILE"
+      ],
+      "instrument": "GBPUSD",
+      "month": 12,
+      "side": "ask",
+      "year": 2022
+    }
+  ],
+  "status": "REPAIR_REQUIRED"
+}
