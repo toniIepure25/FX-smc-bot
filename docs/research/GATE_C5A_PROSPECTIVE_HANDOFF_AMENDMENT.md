@@ -1,0 +1,97 @@
+# Gate C.5-A Prospective Handoff Amendment
+
+Amendment ID: `C5A_C4B_USDJPY_RELATIVE_RESILIENCE_HANDOFF_AMENDMENT_V1`
+
+Amendment hash: `1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830`
+
+Status: `PROSPECTIVELY_FROZEN_BEFORE_VALIDATION_ACCESS`
+
+The previous C5 attempt stopped because four mandatory operational rules were
+missing or conflicting. Validation and holdout information were not available
+while resolving those rules. The original C4-B hypothesis ID and hash remain
+unchanged; this amendment supplies operational confirmation rules only.
+
+No further rule amendment is permitted after validation unblinding.
+
+```json
+{
+  "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+  "amendment_id": "C5A_C4B_USDJPY_RELATIVE_RESILIENCE_HANDOFF_AMENDMENT_V1",
+  "amendment_scope": "operational confirmation rules only",
+  "created_at_utc": "2026-07-23T20:01:58.280750+00:00",
+  "gate": "C.5-A",
+  "inference_protocol": {
+    "bootstrap_cluster": "UTC trading day",
+    "confidence_level": 0.95,
+    "day_cluster_bootstrap_iterations": 1000,
+    "holm_adjusted_p_value": "raw primary p-value",
+    "holm_family_size": 1,
+    "mandatory_requirements": {
+      "ci95_lower_bound_gt_0": true,
+      "event_minus_control_point_estimate_gt_0": true,
+      "paired_permutation_p_value_lte_0_05": true
+    },
+    "paired_permutation_iterations": 2000,
+    "primary_alpha": 0.05
+  },
+  "matching_protocol": {
+    "covariates": [
+      "spread",
+      "atr",
+      "pre_event_volatility",
+      "pre_event_trend",
+      "range_position"
+    ],
+    "embargo_minutes": 120,
+    "exact_key_relaxations_required": 0,
+    "exact_keys": [
+      "year",
+      "month",
+      "session",
+      "direction"
+    ],
+    "fallback_allowed": false,
+    "matching_coverage_threshold": "diagnostic_only",
+    "matching_type": "1:1 nearest-neighbour matching",
+    "minimum_event_count_applies_after": [
+      "primary non-overlap filtering",
+      "complete 120-minute outcome coverage",
+      "successful exact-key matching"
+    ],
+    "minimum_successfully_matched_events": 40,
+    "random_seed": 4242,
+    "replacement": true,
+    "unmatched_event_policy": "retained in event manifest, reported explicitly, excluded from paired primary estimand"
+  },
+  "no_further_rule_amendment_after_validation_unblinding": true,
+  "not_originally_frozen_claim": true,
+  "original_handoff_remains_immutable": true,
+  "original_hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "original_hypothesis_id": "C4B_USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_V1",
+  "outcome_independent_with_respect_to_validation": true,
+  "placebo_protocol": {
+    "apply_same_primary_non_overlap_policy": true,
+    "construct_controls_with_same_exact_matcher": true,
+    "exclude_if_real_acceptance_event_inside_embargo_minutes": 120,
+    "mandatory_criterion": "placebo_reproduces_relative_resilience = false",
+    "primary_placebo": "+1-day shifted pseudo-event relative-resilience placebo",
+    "reproduces_if_all": {
+      "placebo_ci95_lower_bound_gt_0": true,
+      "placebo_differential_gt_0": true,
+      "placebo_paired_permutation_p_lte_0_05": true
+    },
+    "require_complete_next_bar_entry_and_120m_outcome": true,
+    "require_shift_inside_interval": true,
+    "retain_direction": true,
+    "shift": "+24 hours UTC"
+  },
+  "resolved_ambiguities": [
+    "matching balance threshold",
+    "exact matching and no-match policy",
+    "mandatory CI lower-bound rule",
+    "relative-resilience placebo operation"
+  ],
+  "status": "PROSPECTIVELY_FROZEN_BEFORE_VALIDATION_ACCESS",
+  "validation_or_holdout_information_available_during_resolution": false
+}
+```

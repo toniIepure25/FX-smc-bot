@@ -1,0 +1,211 @@
+{
+  "candidate_eligibility_criteria": [
+    "C5-A-R artifact and reconciliation integrity pass",
+    "development and validation reproduction pass",
+    "cross-period semantic comparability passes",
+    "validation absolute event executable markout > 0",
+    "validation event-minus-control executable differential > 0",
+    "validation absolute-effect inference passes",
+    "validation relative-differential inference passes",
+    "validation placebo does not reproduce either co-primary effect",
+    "relative differential positive in 2020, 2021 and 2022",
+    "validation absolute positivity in at least two of three years",
+    "leave-one-validation-year-out absolute markout remains positive",
+    "leave-one-validation-year-out differential remains positive",
+    "positive absolute effect is not explained solely by transaction costs",
+    "valid transport standardization preserves both co-primary signs",
+    "no subgroup selection is required",
+    "matching support and balance pass in both periods",
+    "holdout remains completely unopened"
+  ],
+  "candidate_status": "validation-informed exploratory; not confirmed",
+  "created_at_utc": "2026-07-24T17:13:54.914535+00:00",
+  "development_sample": {
+    "pair": "USDJPY",
+    "period": "2015-01-01 through 2019-12-31",
+    "source": "frozen development row-level event/control artifacts only"
+  },
+  "diagnostic_questions": [
+    "Does validation show positive absolute executable event markout?",
+    "Does validation preserve positive exact-matched-control differential?",
+    "Is the transition transportable under fixed common protocol?",
+    "Is the positive absolute validation response stable and not cost-only?"
+  ],
+  "final_decision_options": [
+    "ACCEPTANCE_DUAL_POSITIVE_HYPOTHESIS_FROZEN_FOR_HOLDOUT",
+    "VALIDATION_SIGNAL_NONTRANSPORTABLE_RESEARCH_STOP",
+    "BLOCKED_BY_C5AR_RECONCILIATION_INTEGRITY",
+    "BLOCKED_BY_C5AR_ARTIFACT_INTEGRITY",
+    "BLOCKED_BY_MECHANISM_PREREGISTRATION",
+    "BLOCKED_BY_MECHANISM_REPRODUCIBILITY",
+    "BLOCKED_BY_CROSS_PERIOD_COMPARABILITY",
+    "BLOCKED_BY_TRANSPORTABILITY",
+    "BLOCKED_BY_HYPOTHESIS_FREEZE_INTEGRITY",
+    "BLOCKED_BY_HOLDOUT_INTEGRITY"
+  ],
+  "fixed_composition_strata": [
+    "direction",
+    "session",
+    "event subtype",
+    "volatility regime",
+    "spread regime",
+    "pre-event trend regime",
+    "range-position regime",
+    "overlap status"
+  ],
+  "gate": "C5-B-R",
+  "holdout_prohibition": {
+    "access_allowed": false,
+    "holdout_period": "2023-01-01 through 2025-12-31",
+    "prohibited": [
+      "market data loading",
+      "structural inspection",
+      "event counting",
+      "control construction",
+      "outcome computation",
+      "result reporting"
+    ]
+  },
+  "hypothesis_class_under_audit": "DUAL_POSITIVE_ACCEPTANCE_RESPONSE",
+  "inputs_passed_before_preregistration": {
+    "c5ar_artifact_integrity": "PASS",
+    "reconciliation_integrity": "PASS"
+  },
+  "matching_geometry_rules": {
+    "controls_per_event": 1,
+    "exact_keys": [
+      "year",
+      "month",
+      "session",
+      "direction"
+    ],
+    "key_relaxation": "forbidden",
+    "minimum_matched_events": 40,
+    "post_match_abs_smd_max": 0.1,
+    "replacement": true,
+    "seed": 4242
+  },
+  "one_candidate_only_rule": "Exactly DUAL_POSITIVE_ACCEPTANCE_RESPONSE is allowed.",
+  "preregistration_hash": "88235c98f77982c99463df0917d13677249614ea03039fe534a12ed5cf508d0c",
+  "required_statements": [
+    "C5-B diagnostics are validation-informed and exploratory.",
+    "They cannot confirm the new mechanism.",
+    "The untouched holdout is reserved as the sole confirmatory sample."
+  ],
+  "research_stop_conditions": [
+    "Any required candidate criterion fails",
+    "Reconciliation integrity fails",
+    "Mechanism reproduction fails",
+    "Cross-period comparability has material risk",
+    "Holdout integrity fails"
+  ],
+  "source_artifact_paths_and_hashes": {
+    "results/gate_c5ar/control_matching_audit.json": {
+      "canonical_json_sha256": "ec2f3917726f93090364dbd95c58d5f04dfaffc8e12b446ccd247b6af0bf58c0",
+      "exists": true,
+      "file_size_bytes": 1731,
+      "path": "results/gate_c5ar/control_matching_audit.json",
+      "raw_file_sha256": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd"
+    },
+    "results/gate_c5ar/holdout_integrity.json": {
+      "canonical_json_sha256": "5375d77f8e7af5ad5838cfb27e3d451a0748e5503cd71fd43b48597a2de46a78",
+      "exists": true,
+      "file_size_bytes": 265,
+      "path": "results/gate_c5ar/holdout_integrity.json",
+      "raw_file_sha256": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3"
+    },
+    "results/gate_c5ar/post_validation_lock.json": {
+      "canonical_json_sha256": "f8e1f9b2af66c52dab227d7be105102e03bd49d45a4e4e6f6470cc600c122de1",
+      "exists": true,
+      "file_size_bytes": 2825,
+      "path": "results/gate_c5ar/post_validation_lock.json",
+      "raw_file_sha256": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7"
+    },
+    "results/gate_c5ar/scientific_code_integrity.json": {
+      "canonical_json_sha256": "c4f0e6c620cbc8cafe03cae5c575db4dd1b9c9810749b9bbfc70de4fcee76035",
+      "exists": true,
+      "file_size_bytes": 2503,
+      "path": "results/gate_c5ar/scientific_code_integrity.json",
+      "raw_file_sha256": "d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23"
+    },
+    "results/gate_c5ar/validation_criterion_adjudication.json": {
+      "canonical_json_sha256": "82533389578b20e026b9e7cf5bf26019275536329009eede5d83212fae167e7a",
+      "exists": true,
+      "file_size_bytes": 4830,
+      "path": "results/gate_c5ar/validation_criterion_adjudication.json",
+      "raw_file_sha256": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9"
+    },
+    "results/gate_c5ar/validation_inference.json": {
+      "canonical_json_sha256": "4feb4d2dfcf3573664c934edde26c43c3920e065771f8094e6324be61043d64f",
+      "exists": true,
+      "file_size_bytes": 691,
+      "path": "results/gate_c5ar/validation_inference.json",
+      "raw_file_sha256": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2"
+    },
+    "results/gate_c5ar/validation_placebo.json": {
+      "canonical_json_sha256": "50d76f727bd96081d5264596dfc916b03747e79b66acd505c0c6a61dd98843de",
+      "exists": true,
+      "file_size_bytes": 1992,
+      "path": "results/gate_c5ar/validation_placebo.json",
+      "raw_file_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a"
+    },
+    "results/gate_c5ar/validation_primary_estimand.json": {
+      "canonical_json_sha256": "354a795d4aa506ceddfd3347dab5e13ab0c38c57f29795020331e59969bf6e24",
+      "exists": true,
+      "file_size_bytes": 816,
+      "path": "results/gate_c5ar/validation_primary_estimand.json",
+      "raw_file_sha256": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d"
+    },
+    "results/gate_c5ar/validation_stability.json": {
+      "canonical_json_sha256": "e8e60608bff39156a07ba07db03e4ee2a43d390a43ef37bb9caa5db574776c2f",
+      "exists": true,
+      "file_size_bytes": 3884,
+      "path": "results/gate_c5ar/validation_stability.json",
+      "raw_file_sha256": "c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8"
+    },
+    "results/gate_c5arir/artifact_reconciliation_overlay.json": {
+      "canonical_json_sha256": "3ffc4cbe549de15a9531d51d7cc56dcd66b1eaf913ab276a5277a6e32665fc5d",
+      "exists": true,
+      "file_size_bytes": 12736,
+      "path": "results/gate_c5arir/artifact_reconciliation_overlay.json",
+      "raw_file_sha256": "55b3c9282dcbd5777db4fae38cb714a108b35f5255de4b8921a7d8173a79d669"
+    },
+    "results/gate_c5arir/c5b_resumption_handoff.json": {
+      "canonical_json_sha256": "9fd7371f6825bc0457d044db3759c442a617a14771da10981e37c1f07da5ce29",
+      "exists": true,
+      "file_size_bytes": 7589,
+      "path": "results/gate_c5arir/c5b_resumption_handoff.json",
+      "raw_file_sha256": "fae78cd57abfdaa29f3c69e5d0062afeaccd7d3a5010e0e2326921201a0c4b0b"
+    }
+  },
+  "temporal_stability_rules": [
+    "relative differential positive across most development years",
+    "relative differential positive in 2020, 2021 and 2022",
+    "validation absolute event markout positive in at least two of three years",
+    "leave-one-validation-year-out absolute markout remains positive",
+    "leave-one-validation-year-out differential remains positive",
+    "no validation year contributes more than 60% of total weighted absolute effect"
+  ],
+  "transport_standardization_method": {
+    "covariates": [
+      "spread",
+      "ATR",
+      "pre-event volatility",
+      "pre-event trend",
+      "range position",
+      "session",
+      "direction"
+    ],
+    "method": "stabilized propensity-density weighting"
+  },
+  "validation_sample": {
+    "pair": "USDJPY",
+    "period": "2020-01-01 through 2022-12-31",
+    "source": "frozen C5-A-R row-level artifacts only"
+  },
+  "weight_stability_rules": {
+    "effective_sample_size_min_fraction": 0.5,
+    "every_standardized_abs_smd_max": 0.1,
+    "max_normalized_weight_max_median_multiple": 10
+  }
+}

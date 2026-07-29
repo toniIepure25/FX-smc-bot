@@ -1,0 +1,15 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "created_at_utc": "2026-07-25T22:05:46.992370+00:00",
+  "diff_check": "",
+  "head": "f03810e87763bdb519d84fa94347b3c2f2fdd907",
+  "merge_base": "8742c932382ce0eef96655ae972a63d4da4d87e2",
+  "origin_main": "8742c932382ce0eef96655ae972a63d4da4d87e2",
+  "python_version": "Python 3.13.5",
+  "remote_head": "f03810e87763bdb519d84fa94347b3c2f2fdd907",
+  "ruff_version": "ruff 0.15.21",
+  "status_short_branch": [
+    "## research/rigorous-intraday-smc-validation...origin/research/rigorous-intraday-smc-validation",
+    "?? .audit_tmp/"
+  ]
+}

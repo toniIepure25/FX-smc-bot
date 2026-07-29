@@ -1,0 +1,39 @@
+{
+  "all_smd_pass": true,
+  "event_minus_control_identity": {
+    "computed": 27.45302013422817,
+    "pass": true,
+    "recorded": 27.453020134228165
+  },
+  "expected_failed_criterion": "mean_absolute_event_executable_markout",
+  "final_decision": "USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED",
+  "inference_checks": {
+    "ci_lower": 14.784214406740844,
+    "ci_upper": 40.27386831699497,
+    "independent_day_count": 572,
+    "matched_count": 1192,
+    "point_estimate_matches_primary": true,
+    "raw_p_value": 0.004497751124437781
+  },
+  "matching_identities": {
+    "exact_key_relaxations": 0,
+    "pass": true,
+    "primary_eligible_events": 1192,
+    "successfully_matched_events": 1192,
+    "unmatched_events": 0
+  },
+  "placebo_checks": {
+    "pass": true,
+    "placebo_reproduces_relative_resilience": false,
+    "status": "PASS"
+  },
+  "regenerated_criteria_scientific_projection_equal": true,
+  "smd_checks": {
+    "atr": true,
+    "pre_event_trend": true,
+    "pre_event_volatility": true,
+    "range_position": true,
+    "spread": true
+  },
+  "status": "PASS"
+}

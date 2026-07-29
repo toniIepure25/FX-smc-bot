@@ -1,0 +1,86 @@
+{
+  "liquidity_acceptance_fvg_continuation": {
+    "discovery": {
+      "mean_event_markout_points": -2.103185595567882,
+      "mean_event_minus_control_points": 18.22368421052636,
+      "n_events": 1444,
+      "years": [
+        2015,
+        2016,
+        2017
+      ]
+    },
+    "replication": {
+      "mean_event_markout_points": -5.938755020080684,
+      "mean_event_minus_control_points": 7.2751004016060214,
+      "n_events": 996,
+      "years": [
+        2018,
+        2019
+      ]
+    }
+  },
+  "liquidity_sweep_mss_fvg_reversal": {
+    "discovery": {
+      "mean_event_markout_points": -8.822564102564003,
+      "mean_event_minus_control_points": -16.46871794871751,
+      "n_events": 975,
+      "years": [
+        2015,
+        2016,
+        2017
+      ]
+    },
+    "replication": {
+      "mean_event_markout_points": -7.425120772946856,
+      "mean_event_minus_control_points": -6.345410628019312,
+      "n_events": 414,
+      "years": [
+        2018,
+        2019
+      ]
+    }
+  },
+  "opening_range_london": {
+    "discovery": {
+      "mean_event_markout_points": 2.8554216867471656,
+      "mean_event_minus_control_points": 22.173493975903614,
+      "n_events": 415,
+      "years": [
+        2015,
+        2016,
+        2017
+      ]
+    },
+    "replication": {
+      "mean_event_markout_points": -3.7204301075270227,
+      "mean_event_minus_control_points": 4.727598566307897,
+      "n_events": 279,
+      "years": [
+        2018,
+        2019
+      ]
+    }
+  },
+  "opening_range_new_york": {
+    "discovery": {
+      "mean_event_markout_points": -8.744813278008424,
+      "mean_event_minus_control_points": 6.311203319502256,
+      "n_events": 482,
+      "years": [
+        2015,
+        2016,
+        2017
+      ]
+    },
+    "replication": {
+      "mean_event_markout_points": -11.091194968553062,
+      "mean_event_minus_control_points": -9.327044025157035,
+      "n_events": 318,
+      "years": [
+        2018,
+        2019
+      ]
+    }
+  }
+}

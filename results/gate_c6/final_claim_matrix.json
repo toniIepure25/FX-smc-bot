@@ -1,0 +1,94 @@
+{
+  "claims": [
+    {
+      "allowed_wording": "Development evidence supports relative outperformance versus controls.",
+      "claim": "Acceptance events outperformed exact matched controls during 2015-2019.",
+      "claim_id": "A",
+      "counterevidence": "Absolute event markout was negative at -3.66885245901655 points.",
+      "evidence": "Common-protocol development differential +13.668032786885094 points, permutation p=0.006496751624187906, CI [6.277491118674749, 21.844720075312043].",
+      "prohibited_wording": "Development proves standalone alpha.",
+      "status": "SUPPORTED_IN_DEVELOPMENT",
+      "supporting_artifacts": [
+        "results/gate_c5br/common_protocol_development_analysis.json",
+        "results/gate_c5br/development_validation_reproduction.json"
+      ]
+    },
+    {
+      "allowed_wording": "The relative event-minus-control effect replicated in validation.",
+      "claim": "Acceptance relative outperformance replicated during 2020-2022.",
+      "claim_id": "B",
+      "counterevidence": "Replication does not by itself establish transportable dual-positive mechanism validity.",
+      "evidence": "Validation differential +27.453020134228165 points, permutation p=0.004497751124437781, CI [14.784214406740844, 40.27386831699497].",
+      "prohibited_wording": "The validation result confirms a deployable trading edge.",
+      "status": "SUPPORTED_IN_VALIDATION",
+      "supporting_artifacts": [
+        "results/gate_c5ar/validation_primary_estimand.json",
+        "results/gate_c5ar/validation_inference.json"
+      ]
+    },
+    {
+      "allowed_wording": "Validation absolute markout was descriptively positive but not confirmed by the full rule.",
+      "claim": "Acceptance events had positive absolute executable markout in validation.",
+      "claim_id": "C",
+      "counterevidence": "Sign-flip p=0.12843578210894552 failed the preregistered p<=0.05 intersection rule.",
+      "evidence": "Mean absolute event markout +11.33724832214778 points and bootstrap CI lower +0.7861459649301382.",
+      "prohibited_wording": "The absolute validation effect is confirmed.",
+      "status": "DESCRIPTIVELY_SUPPORTED_BUT_NOT_CONFIRMED",
+      "supporting_artifacts": [
+        "results/gate_c5br/candidate_eligibility_trace.json",
+        "results/gate_c6/inference_coherence_audit.json"
+      ]
+    },
+    {
+      "allowed_wording": "The dual-positive candidate was not transportable under the preregistered weight-validity rule.",
+      "claim": "The dual-positive mechanism is transportable enough for holdout confirmation.",
+      "claim_id": "D",
+      "counterevidence": "Maximum weight / median was 10.4 against a threshold of 10.0, so valid transport standardization failed.",
+      "evidence": "Standardized validation event and differential signs stayed positive.",
+      "prohibited_wording": "The candidate is ready for the preserved holdout.",
+      "status": "NOT_SUPPORTED",
+      "supporting_artifacts": [
+        "results/gate_c5br/transport_standardization.json",
+        "results/gate_c6/transport_weight_failure_audit.json"
+      ]
+    },
+    {
+      "allowed_wording": "Standalone trading profitability was not tested and is not claimable.",
+      "claim": "Acceptance is a profitable standalone trading strategy.",
+      "claim_id": "E",
+      "counterevidence": "The program tested event-level executable markouts, not portfolio construction or deployment.",
+      "evidence": "No strategy-level backtest was run in this research closure gate.",
+      "prohibited_wording": "Acceptance is a profitable standalone trading strategy.",
+      "status": "NOT_TESTED_AND_NOT_CLAIMABLE",
+      "supporting_artifacts": [
+        "results/gate_c5br/quality_gate_final.json",
+        "results/gate_c6/final_claim_matrix.json"
+      ]
+    }
+  ],
+  "validation": {
+    "allowed_wording_prohibited_terms": [],
+    "expected_statuses": {
+      "A": "SUPPORTED_IN_DEVELOPMENT",
+      "B": "SUPPORTED_IN_VALIDATION",
+      "C": "DESCRIPTIVELY_SUPPORTED_BUT_NOT_CONFIRMED",
+      "D": "NOT_SUPPORTED",
+      "E": "NOT_TESTED_AND_NOT_CLAIMABLE"
+    },
+    "observed_statuses": {
+      "A": "SUPPORTED_IN_DEVELOPMENT",
+      "B": "SUPPORTED_IN_VALIDATION",
+      "C": "DESCRIPTIVELY_SUPPORTED_BUT_NOT_CONFIRMED",
+      "D": "NOT_SUPPORTED",
+      "E": "NOT_TESTED_AND_NOT_CLAIMABLE"
+    },
+    "status": "PASS",
+    "status_checks": {
+      "A": true,
+      "B": true,
+      "C": true,
+      "D": true,
+      "E": true
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "cluster_bootstrap_ci95_mean_diff_points": [
+    14.784214406740844,
+    40.27386831699497
+  ],
+  "event_outperforms_control_probability": 0.549496644295302,
+  "holm_adjusted_p_value": 0.004497751124437781,
+  "mean_control_executable_markout_points": -16.11577181208039,
+  "mean_event_executable_markout_points": 11.33724832214778,
+  "mean_event_minus_control_points": 27.453020134228165,
+  "median_event_minus_control_points": 26.50000000000574,
+  "n": 1192,
+  "paired_permutation_p_value": 0.004497751124437781,
+  "positive_control_probability": 0.4236577181208054,
+  "positive_event_probability": 0.5058724832214765,
+  "primary_horizon_minutes": 120,
+  "standardized_paired_effect": 0.08880457390703933,
+  "status": "PASS",
+  "trimmed_mean_event_minus_control_points": 25.07442348008378
+}

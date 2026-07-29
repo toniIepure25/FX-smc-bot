@@ -1,0 +1,11 @@
+{
+  "audit_type": "structural_m1_bid_ask_repair_audit",
+  "canonical_month_status_counts": {
+    "PASS": 36
+  },
+  "decision_if_failed": "BLOCKED_BY_VALIDATION_TICK_AUDIT",
+  "event_detection_executed": false,
+  "outcome_inspection": false,
+  "reason": "Protocol does not require external tick-data acquisition; DQR audit verifies repaired M1 bid/ask structural parity and canonical coherence.",
+  "status": "PASS"
+}

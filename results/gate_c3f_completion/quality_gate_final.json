@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-07-20T11:12:53.173695+00:00",
+  "git_diff_check": {
+    "command": "git diff --check",
+    "result": "passed before checkpoint commit"
+  },
+  "holdout_alpha_untouched": true,
+  "mypy_full": {
+    "command": "python -m mypy src",
+    "result": "failed: 20 pre-existing errors in 18 files"
+  },
+  "mypy_modified": {
+    "result": "not applicable: this continuation modified docs/results only; no src modules changed"
+  },
+  "no_profitability_outputs_created": true,
+  "node_test": {
+    "command": "node --test test_acquire.mjs",
+    "result": "2 passed"
+  },
+  "node_test_direct": {
+    "command": "node --test tools/dukascopy-node/test_acquire.mjs",
+    "result": "2 passed"
+  },
+  "node_test_mjs_requested_path": {
+    "command": "node tools/dukascopy-node/test.mjs",
+    "result": "failed: MODULE_NOT_FOUND because tools/dukascopy-node/test.mjs does not exist"
+  },
+  "npm_audit": {
+    "command": "npm --prefix tools/dukascopy-node audit --omit=dev",
+    "result": "NOT_RUN_NPM_UNAVAILABLE"
+  },
+  "npm_test": {
+    "command": "npm --prefix tools/dukascopy-node test",
+    "result": "NOT_RUN_NPM_UNAVAILABLE"
+  },
+  "pytest": {
+    "command": "python -m pytest tests/ -q --basetemp='D:\\ComputaCenter\\FX-smc-bot\\.tmp\\pytest-resume'",
+    "result": "639 passed, 92 warnings"
+  },
+  "ruff_full": {
+    "command": "python -m ruff check src/fx_smc_bot/data scripts --statistics",
+    "result": "failed: 894 pre-existing errors"
+  },
+  "ruff_modified": {
+    "result": "not applicable: this continuation modified docs/results only; no Python modules changed"
+  },
+  "updated_at": "2026-07-20T11:33:06.672883+00:00"
+}

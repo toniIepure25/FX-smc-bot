@@ -1,0 +1,18 @@
+{
+  "actual_os_process_state": "no live acquisition process found",
+  "concurrency_proof": {
+    "assertion": "max_observed_concurrent_tasks >= 2",
+    "bounded_by": 2,
+    "configured_workers": 2,
+    "test": "tests/test_gate_c3f/test_runner_corrected.py::TestRealConcurrency::test_workers_2_runs_concurrent"
+  },
+  "created_at": "2026-07-20T10:41:40.287574+00:00",
+  "defects_confirmed_or_fixed_this_run": [
+    "start_acquisition.ps1 collapsed --pairs into one argv token; fixed",
+    "start_acquisition.ps1 combined --resume with --retry-failed/--repair-missing; fixed",
+    "stop_acquisition.ps1 assigned read-only PowerShell $PID; fixed",
+    "heartbeat lacked git SHA and config hash; fixed for new runs",
+    "CLI allowed --status with --resume; fixed"
+  ],
+  "status_classifier": "STALE_PID_FILE"
+}

@@ -1,0 +1,66 @@
+# Canonical configuration for Strategy C: Opening Range Displacement FVG Retest
+# Pre-registered before holdout evaluation
+# London and New York tested separately
+
+strategy:
+  family: opening_range_displacement_fvg_retest
+  version: "1.0"
+
+opening_range_london:
+  session_name: london
+  tz_name: "Europe/London"
+  range_start_local: "08:00"
+  range_end_local: "08:30"
+  session_cutoff_local: "11:00"
+  min_range_atr: 0.3
+  max_range_atr: 3.0
+  breakout_min_close_distance_atr: 0.2
+  max_retest_bars: 20
+  max_order_bars: 20
+  entry_fvg_pct: 0.5
+  target_r: 2.0
+  k_atr_sl_buffer: 0.3
+  displacement_body_ratio: 1.5
+  displacement_tr_ratio: 1.2
+  displacement_clv: 0.5
+  fvg_min_atr: 0.3
+  median_body_lookback: 20
+
+opening_range_new_york:
+  session_name: new_york
+  tz_name: "America/New_York"
+  range_start_local: "08:00"
+  range_end_local: "08:30"
+  session_cutoff_local: "11:00"
+  min_range_atr: 0.3
+  max_range_atr: 3.0
+  breakout_min_close_distance_atr: 0.2
+  max_retest_bars: 20
+  max_order_bars: 20
+  entry_fvg_pct: 0.5
+  target_r: 2.0
+  k_atr_sl_buffer: 0.3
+  displacement_body_ratio: 1.5
+  displacement_tr_ratio: 1.2
+  displacement_clv: 0.5
+  fvg_min_atr: 0.3
+  median_body_lookback: 20
+
+instruments:
+  primary:
+    - EURUSD
+    - GBPUSD
+  control:
+    - USDJPY
+
+execution:
+  fill_policy: conservative
+  model_spread: true
+  model_slippage: true
+  default_spread_pips: 1.5
+  slippage_pips: 0.3
+  commission_per_lot: 3.5
+
+risk:
+  base_risk_per_trade: 0.005
+  max_concurrent_positions: 3

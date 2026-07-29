@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "c4_prereg_hash_matches": true,
+    "c5_blocked_by_expected_ambiguity": true,
+    "c5_four_ambiguities_recorded": true,
+    "holdout_integrity_pass": true,
+    "hypothesis_hash_unchanged": true,
+    "hypothesis_id_unchanged": true,
+    "original_handoff_immutable_source_present": true,
+    "validation_access_absent": true
+  },
+  "original_handoff_file_sha256": "00dab24acbc1d386a660b2ba3671ed289bf1cf964b69a583b99135fec9ce1f69",
+  "original_hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "original_hypothesis_id": "C4B_USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_V1",
+  "status": "PASS",
+  "validation_or_holdout_accessed": false
+}

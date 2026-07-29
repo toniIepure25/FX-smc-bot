@@ -19,9 +19,15 @@ from fx_smc_bot.utils.math import price_to_pips
 class TradeLedger:
     """Accumulates closed trades and equity snapshots during a backtest."""
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        commission_per_lot: float = 0.0,
+        lot_size: float = 100_000.0,
+    ) -> None:
         self._trades: list[ClosedTrade] = []
         self._equity_curve: list[EquityPoint] = []
+        self._commission_per_lot = commission_per_lot
+        self._lot_size = lot_size
 
     @property
     def trades(self) -> list[ClosedTrade]:
@@ -46,6 +52,10 @@ class TradeLedger:
             pnl = (exit_price - position.entry_price) * position.units
         else:
             pnl = (position.entry_price - exit_price) * position.units
+
+        if self._commission_per_lot > 0 and self._lot_size > 0:
+            lots = position.units / self._lot_size
+            pnl -= lots * self._commission_per_lot
 
         pnl_pips = price_to_pips(
             abs(exit_price - position.entry_price), position.pair,

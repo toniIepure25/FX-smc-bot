@@ -1,0 +1,15 @@
+{
+  "ambiguous_paths": [],
+  "canonical_market_data_committed": false,
+  "changed_path_count": 637,
+  "created_at_utc": "2026-07-26T10:44:50.511760+00:00",
+  "credentials_committed": false,
+  "generated_caches_committed": false,
+  "holdout_payload_committed": false,
+  "merge_base": "8742c932382ce0eef96655ae972a63d4da4d87e2",
+  "prohibited_payload_paths": [],
+  "raw_market_data_committed": false,
+  "reviewed_safe_path_count": 637,
+  "row_level_event_control_data_committed": false,
+  "status": "PASS"
+}

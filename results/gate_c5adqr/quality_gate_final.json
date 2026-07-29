@@ -1,0 +1,29 @@
+{
+  "artifact_hashes": {
+    "canonical_quality_after_repair.json": "7f322d2c0e6f1c440b9824571d84beb04da6d45751aa061de7f3f99943f6e3e8",
+    "canonical_rebuild_manifest.json": "4241a6bafbaff802572486f1f47c7b4d1b7de5d8dbe3e94e6005828ad6593c86",
+    "failed_unit_inventory.json": "98a3083ea77ec0e1a3c26d553af88a7f81f75c97d242f915535c951b7c0310fd",
+    "holdout_integrity.json": "c638a1b6e5387b5ea0b6e5ffb9402ae408bc074ec6acee06021bc9234c84a6f5",
+    "monthly_recompaction.json": "b8b942674d34d71217d2fa2d6352e8f2f8664fd76a2ba48c0cee7f2636b2fd2e",
+    "operational_provider_amendment.json": "c97404fa1c69a097145dcc039ac57d68ab145eef47da6d3566f19f2bcc84051a",
+    "post_unblinding_integrity.json": "d9991f115f7f713a5c1eb5c1cbf9f7ae5fe42f7e2fc1b6a373a7684678185a91",
+    "provider_capability_matrix.json": "eb2b622c91c201a87c6486044ad96b0e14ce6e33314a3eee9aea8572b7421c41",
+    "provider_failure_analysis.json": "c34565777008d5ad0e4db63a1f04d892ef058126bc61d41509cc150d28274495",
+    "provider_failure_matrix.json": "36e0f894a284d1984219c4ee3e80b6e36dd3bd748249cbf6007c2ec2ca192497",
+    "provider_parity_results.json": "b9a701a5cf6b3226e524d8f77c1b6bbcb69a0ca33addb84651615cb4b04b8f1a",
+    "resumption_handoff.json": "a8374ba7245274bf9f64c03a869fd1dd2ec584d4f86dc4dcef57eae1d4f7f223",
+    "targeted_repair_manifest.json": "6b814dab44565d722f04a8746d21e79d9a7261ec4ff2cc713bfcc6673cd00824",
+    "validation_data_quality.json": "a359d450f4d944cf3758475b79dd57f19385ffa13832e7de1e82259e87362271",
+    "validation_dataset_freeze.json": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866",
+    "validation_tick_audit.json": "8664e294de4c4438d6b75fbc4546cb1d0893093a79e038c1cbbea584f71b6432"
+  },
+  "controls_constructed": false,
+  "event_counts_computed": false,
+  "event_detection_executed": false,
+  "final_decision": "VALIDATION_DATA_CERTIFIED_READY_TO_RESUME_FROZEN_C5A",
+  "holdout_accessed": false,
+  "inference_computed": false,
+  "outcomes_computed": false,
+  "placebo_computed": false,
+  "status": "PASS"
+}

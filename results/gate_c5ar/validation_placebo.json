@@ -1,0 +1,59 @@
+{
+  "eligible_shifted_placebo_events": 699,
+  "estimand": {
+    "cluster_bootstrap_ci95_mean_diff_points": [
+      -0.1923192771084638,
+      0.0
+    ],
+    "event_outperforms_control_probability": 0.0,
+    "holm_adjusted_p_value": 1.0,
+    "mean_control_executable_markout_points": -10.882689556509298,
+    "mean_event_executable_markout_points": -10.997138769670975,
+    "mean_event_minus_control_points": -0.1144492131616774,
+    "median_event_minus_control_points": 0.0,
+    "n": 699,
+    "paired_permutation_p_value": 1.0,
+    "positive_control_probability": 0.47782546494992845,
+    "positive_event_probability": 0.47782546494992845,
+    "standardized_paired_effect": -0.03782347372361169,
+    "trimmed_mean_event_minus_control_points": 0.0
+  },
+  "matching": {
+    "balance_pass": true,
+    "candidate_count_max": 1769,
+    "candidate_count_median": 1055.0,
+    "candidate_count_min": 633,
+    "exact_key_relaxations": 0,
+    "exact_keys": [
+      "year",
+      "month",
+      "session",
+      "direction"
+    ],
+    "matching_seed": 4242,
+    "max_abs_post_match_smd": 0.0004017028796181762,
+    "post_match_smd": {
+      "atr": 8.903608743049646e-05,
+      "pre_event_trend": 0.0002456935942187473,
+      "pre_event_volatility": 0.0004017028796181762,
+      "range_position": -8.98835755181728e-05,
+      "spread": 0.0
+    },
+    "pre_match_smd": {
+      "atr": 8.903608743049646e-05,
+      "pre_event_trend": 0.0002456935942187473,
+      "pre_event_volatility": 0.0004017028796181762,
+      "range_position": -8.98835755181728e-05,
+      "spread": 0.0
+    },
+    "primary_eligible_events": 699,
+    "replacement": true,
+    "successfully_matched_events": 699,
+    "unmatched_event_records": [],
+    "unmatched_events": 0
+  },
+  "placebo_reproduces_relative_resilience": false,
+  "placebo_type": "+24-hour shifted pseudo-event relative-resilience placebo",
+  "status": "PASS",
+  "successfully_matched_placebo_events": 699
+}

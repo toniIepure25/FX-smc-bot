@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-07-25T21:05:37.209467+00:00",
+  "local_head": "81146b2c03ba4e622238ddfc2d9624a2e7714ba1",
+  "remote_ahead_left_local_ahead_right": "0\t0",
+  "remote_branch": "origin/research/rigorous-intraday-smc-validation",
+  "remote_contains_c6_start": true,
+  "remote_contains_local_head_at_phase0": true,
+  "remote_head": "81146b2c03ba4e622238ddfc2d9624a2e7714ba1",
+  "remote_lineage_synchronized": true,
+  "remote_log": [
+    "81146b2 (HEAD -> research/rigorous-intraday-smc-validation, origin/research/rigorous-intraday-smc-validation) docs: issue Gate C6-R final decision",
+    "a0dda2b docs: publish Acceptance package review index",
+    "59ff377 research: audit Acceptance package merge readiness",
+    "f83723e test(research): enforce sealed Acceptance lineage",
+    "a429cdf chore(repo): resolve Acceptance package worktree hygiene",
+    "6c0586f docs: issue Gate C6 final decision",
+    "4e7578e research: permanently seal USDJPY Acceptance lineage",
+    "00acce4 docs: publish Acceptance mixed-results research package"
+  ],
+  "status": "PASS"
+}

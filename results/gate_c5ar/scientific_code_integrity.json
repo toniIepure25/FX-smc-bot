@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "acceptance_config": true,
+    "acceptance_detector": true,
+    "control_matching": true,
+    "criterion_adjudication": true,
+    "day_cluster_bootstrap": true,
+    "event_table_construction": true,
+    "executable_markout": true,
+    "overlap_deduplication": true,
+    "permutation_inference": true,
+    "placebo_generation": true
+  },
+  "current_hashes": {
+    "acceptance_config": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+    "acceptance_detector": "831aada49cc661a2a30a2dce030b6e9d4f2fbc01af0b0813d00aae47c4b3efb0",
+    "control_matching": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "criterion_adjudication": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "day_cluster_bootstrap": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "event_table_construction": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "executable_markout": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "overlap_deduplication": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "permutation_inference": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "placebo_generation": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55"
+  },
+  "decision_if_failed": "BLOCKED_BY_SCIENTIFIC_CODE_INTEGRITY",
+  "expected_hashes": {
+    "acceptance_config": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+    "acceptance_detector": "831aada49cc661a2a30a2dce030b6e9d4f2fbc01af0b0813d00aae47c4b3efb0",
+    "control_matching": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "criterion_adjudication": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "day_cluster_bootstrap": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "event_table_construction": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "executable_markout": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "overlap_deduplication": "5f183c7b43e7ddae073b97860d39ad952cbd7af2d672520deb632b252d8d1644",
+    "permutation_inference": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+    "placebo_generation": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55"
+  },
+  "scientific_code_changed_after_unblinding": false,
+  "status": "PASS"
+}

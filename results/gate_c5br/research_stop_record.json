@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-07-25T11:06:01.087884+00:00",
+  "failed_candidate_criteria": [
+    "Validation absolute-effect inference passes",
+    "Valid transport standardization preserves both co-primary signs"
+  ],
+  "final_decision": "VALIDATION_SIGNAL_NONTRANSPORTABLE_RESEARCH_STOP",
+  "holdout_handoff_created": false,
+  "new_hypothesis_created": false,
+  "status": "RESEARCH_STOP"
+}

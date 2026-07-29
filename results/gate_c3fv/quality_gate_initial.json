@@ -1,0 +1,27 @@
+{
+  "mypy": {
+    "command": "python -m mypy src",
+    "status": "FAIL_PRE_EXISTING",
+    "summary": "20 errors in 18 files"
+  },
+  "node": {
+    "bundled_node_version": "v24.14.0",
+    "direct_test_repo_root": "FAIL_CWD_ASSUMPTION",
+    "direct_test_tool_dir": "PASS_2_TESTS",
+    "path_node_version": "NOT_RUN_NODE_UNAVAILABLE_IN_PATH"
+  },
+  "npm": {
+    "status": "NOT_RUN_NPM_UNAVAILABLE"
+  },
+  "pytest": {
+    "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_initial tests/ -q",
+    "status": "PASS",
+    "summary": "641 passed, 91 warnings"
+  },
+  "python_version": "3.13.5",
+  "ruff": {
+    "command": "python -m ruff check src/fx_smc_bot/data scripts",
+    "status": "FAIL_PRE_EXISTING",
+    "summary": "894 existing errors across data/scripts scope"
+  }
+}

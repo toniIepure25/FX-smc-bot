@@ -1,0 +1,10 @@
+{
+  "alpha_features_executed_on_holdout": false,
+  "created_at": "2026-07-23T15:42:04.424433+00:00",
+  "detectors_executed_on_holdout": false,
+  "event_funnels_executed_on_holdout": false,
+  "holdout_event_detection_denied": true,
+  "parameter_selection_executed_on_holdout": false,
+  "profitability_operation_executed_on_holdout": false,
+  "status": "PASS"
+}

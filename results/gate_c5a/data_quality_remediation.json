@@ -1,0 +1,76 @@
+{
+  "final_decision": "BLOCKED_BY_VALIDATION_DATA_QUALITY",
+  "holdout_accessed": false,
+  "raw_validation_market_data_committed": false,
+  "remediation_status": "SOFTWARE_REMEDIATION_APPLIED_PROVIDER_STILL_BLOCKED",
+  "repair_attempt": {
+    "command": "python scripts/run_persistent_acquisition.py --pairs USDJPY --start 2020-01-01 --end 2020-02-29 --workers 4 --raw-dir data/raw/gate_c5a/dukascopy-node --state-dir data/acquisition_state/gate_c5a_repair_janfeb_v2 --log-dir logs/gate_c5a/acquisition_repair_janfeb_v2 --repair-missing",
+    "completed": 0,
+    "failed": 4,
+    "log_file": "logs/gate_c5a/acquisition_repair_janfeb_v2/acq_20260724_083010.log",
+    "max_observed_concurrent_tasks": 4,
+    "skipped": 0,
+    "total_partitions": 4,
+    "total_rows": 0,
+    "workers_configured": 4
+  },
+  "software_fix": {
+    "compaction_requires_nonfailed_complete_month": true,
+    "invalid_compacted_zero_row_months_are_normalized_for_repair": true,
+    "runner_partition_complete_requires_positive_compacted_rows": true,
+    "zero_row_business_days_are_failed_not_complete": true
+  },
+  "validation_or_holdout_outcomes_computed": false,
+  "direct_provider_probes": [
+    {
+      "instrument": "usdjpy",
+      "from": "2020-01-06",
+      "to": "2020-01-07",
+      "side": "bid",
+      "cache": false,
+      "status": "FAIL",
+      "error": "Unknown error"
+    },
+    {
+      "instrument": "usdjpy",
+      "from": "2020-01-06",
+      "to": "2020-01-07",
+      "side": "ask",
+      "cache": false,
+      "status": "FAIL",
+      "error": "Unknown error"
+    },
+    {
+      "instrument": "usdjpy",
+      "from": "2020-03-02",
+      "to": "2020-03-03",
+      "side": "bid",
+      "cache": false,
+      "status": "FAIL",
+      "error": "Unknown error"
+    },
+    {
+      "instrument": "usdjpy",
+      "from": "2020-03-02",
+      "to": "2020-03-03",
+      "side": "bid",
+      "cache": true,
+      "status": "FAIL",
+      "error": "Unknown error"
+    }
+  ],
+  "verification": {
+    "pytest_targeted": {
+      "status": "PASS",
+      "summary": "42 passed"
+    },
+    "pytest_full": {
+      "status": "PASS",
+      "summary": "715 passed, 91 warnings"
+    },
+    "ruff_touched_files": {
+      "status": "PASS",
+      "summary": "All checks passed"
+    }
+  }
+}

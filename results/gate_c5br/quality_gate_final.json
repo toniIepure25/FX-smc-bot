@@ -1,0 +1,11 @@
+{
+  "candidate_passes": false,
+  "created_at_utc": "2026-07-25T11:06:01.088167+00:00",
+  "created_holdout_handoff": false,
+  "created_new_hypothesis": false,
+  "final_decision": "VALIDATION_SIGNAL_NONTRANSPORTABLE_RESEARCH_STOP",
+  "gate": "C5-B-R",
+  "holdout_integrity": "PASS",
+  "no_strategy_metrics": true,
+  "status": "PASS"
+}

@@ -1,0 +1,68 @@
+{
+  "batch_size": 1,
+  "cache_settings": "cache=false for deterministic probes",
+  "classification": {
+    "cache_specific": false,
+    "concurrency_specific": false,
+    "date_specific": false,
+    "provider_network_specific": true,
+    "runtime_specific": true
+  },
+  "dukascopy_node_version": "1.46.4",
+  "ignore_flats": true,
+  "instrument_identifier": "usdjpy",
+  "lowest_level_observable_failure": "Node fetch receives HTTP 429 with body {\"error\": \"Too Many Requests\"}; dukascopy-node then throws generic Unknown error because fetchBuffer does not include HTTP status/body in errorMsg.",
+  "node_executable": "C:\\nvm4w\\nodejs\\node.EXE",
+  "node_version": "v20.9.0",
+  "output_format": "json",
+  "package_lock_hash": "6ef38a60aa32f814a5b1dcd76b12e30d44d670afea6686486b67256e7c56cc71",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "probes": [
+    {
+      "day": "2019-01-07",
+      "label": "known_good_development_2019",
+      "node_elapsed_seconds": 1.604,
+      "node_error": "Unknown error",
+      "node_exit_code": 1,
+      "node_http_body": "{\"error\": \"Too Many Requests\"}",
+      "node_http_status": 429,
+      "node_stack": "Error: Unknown error\n    at BufferFetcher.fetchBuffer (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16666:17)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16569:20\n    at async Promise.all (index 0)\n    at async BufferFetcher.fetch (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16610:20)\n    at async getHistoricalRates (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:17272:25)\n    at async main (file:///D:/ComputaCenter/FX-smc-bot/tools/dukascopy-node/acquire.mjs:69:18)",
+      "node_stderr": "2026-07-24T09:12:35.865Z dukascopy-node:version 1.46.4\n2026-07-24T09:12:35.866Z dukascopy-node:nodejs v20.9.0\n2026-07-24T09:12:35.866Z dukascopy-node:os Windows_NT, 10.0.19045 (win32)\n2026-07-24T09:12:35.873Z dukascopy-node:config {\n  input: {\n    instrument: 'usdjpy',\n    dates: { from: 2019-01-07T00:00:00.000Z, to: 2019-01-08T00:00:00.000Z },\n    timeframe: 'm1',\n    priceType: 'bid',\n    format: 'json',\n    utcOffset: 0,\n    volumes: true,\n    flats: false,\n    batchSize: 1,\n    pauseBetweenBatchesMs: 500,\n    retryCount: 1,\n    pauseBetweenRetriesMs: 1000,\n    useCache: false,\n    cachePath: 'D:\\\\ComputaCenter\\\\FX-smc-bot\\\\data\\\\raw\\\\gate_c5adqr\\\\node-probes\\\\known_good_development_2019\\\\.cache',\n    volumeUnits: 'millions',\n    ignoreFlats: true,\n    cacheFolderPath: '',\n    retryOnEmpty: false,\n    failAfterRetryCount: true\n  },\n  isValid: true,\n  validationErrors: []\n}\n2026-07-24T09:12:35.874Z dukascopy-node:urls Generated 1 urls\n2026-07-24T09:12:35.874Z dukascopy-node:urls [\n  'https://datafeed.dukascopy.com/datafeed/USDJPY/2019/00/07/BID_candles_min_1.bi5'\n]\n",
+      "node_stdout": "{\"type\":\"acquisition_start\",\"instrument\":\"usdjpy\",\"dateFrom\":\"2019-01-07\",\"dateTo\":\"2019-01-08\",\"timeframe\":\"m1\",\"priceType\":\"bid\",\"format\":\"json\",\"batchSize\":1,\"retries\":1,\"pauseBetweenBatchesMs\":500,\"useCache\":false,\"nodeVersion\":\"v20.9.0\",\"packageVersion\":\"1.46.4\",\"timestamp\":\"2026-07-24T09:12:35.857Z\"}\n{\"type\":\"acquisition_error\",\"instrument\":\"usdjpy\",\"priceType\":\"bid\",\"timeframe\":\"m1\",\"dateFrom\":\"2019-01-07\",\"dateTo\":\"2019-01-08\",\"error\":\"Unknown error\",\"stack\":\"Error: Unknown error\\n    at BufferFetcher.fetchBuffer (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16666:17)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\\n    at async D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16569:20\\n    at async Promise.all (index 0)\\n    at async BufferFetcher.fetch (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16610:20)\\n    at async getHistoricalRates (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:17272:25)\\n    at async main (file:///D:/ComputaCenter/FX-smc-bot/tools/dukascopy-node/acquire.mjs:69:18)\",\"code\":\"\",\"timestamp\":\"2026-07-24T09:12:37.210Z\"}\n",
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2019/00/07/BID_candles_min_1.bi5"
+    },
+    {
+      "day": "2021-01-06",
+      "label": "known_good_validation_2021",
+      "node_elapsed_seconds": 1.604,
+      "node_error": "Unknown error",
+      "node_exit_code": 1,
+      "node_http_body": "{\"error\": \"Too Many Requests\"}",
+      "node_http_status": 429,
+      "node_stack": "Error: Unknown error\n    at BufferFetcher.fetchBuffer (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16666:17)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16569:20\n    at async Promise.all (index 0)\n    at async BufferFetcher.fetch (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16610:20)\n    at async getHistoricalRates (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:17272:25)\n    at async main (file:///D:/ComputaCenter/FX-smc-bot/tools/dukascopy-node/acquire.mjs:69:18)",
+      "node_stderr": "2026-07-24T09:12:37.858Z dukascopy-node:version 1.46.4\n2026-07-24T09:12:37.858Z dukascopy-node:nodejs v20.9.0\n2026-07-24T09:12:37.858Z dukascopy-node:os Windows_NT, 10.0.19045 (win32)\n2026-07-24T09:12:37.865Z dukascopy-node:config {\n  input: {\n    instrument: 'usdjpy',\n    dates: { from: 2021-01-06T00:00:00.000Z, to: 2021-01-07T00:00:00.000Z },\n    timeframe: 'm1',\n    priceType: 'bid',\n    format: 'json',\n    utcOffset: 0,\n    volumes: true,\n    flats: false,\n    batchSize: 1,\n    pauseBetweenBatchesMs: 500,\n    retryCount: 1,\n    pauseBetweenRetriesMs: 1000,\n    useCache: false,\n    cachePath: 'D:\\\\ComputaCenter\\\\FX-smc-bot\\\\data\\\\raw\\\\gate_c5adqr\\\\node-probes\\\\known_good_validation_2021\\\\.cache',\n    volumeUnits: 'millions',\n    ignoreFlats: true,\n    cacheFolderPath: '',\n    retryOnEmpty: false,\n    failAfterRetryCount: true\n  },\n  isValid: true,\n  validationErrors: []\n}\n2026-07-24T09:12:37.865Z dukascopy-node:urls Generated 1 urls\n2026-07-24T09:12:37.866Z dukascopy-node:urls [\n  'https://datafeed.dukascopy.com/datafeed/USDJPY/2021/00/06/BID_candles_min_1.bi5'\n]\n",
+      "node_stdout": "{\"type\":\"acquisition_start\",\"instrument\":\"usdjpy\",\"dateFrom\":\"2021-01-06\",\"dateTo\":\"2021-01-07\",\"timeframe\":\"m1\",\"priceType\":\"bid\",\"format\":\"json\",\"batchSize\":1,\"retries\":1,\"pauseBetweenBatchesMs\":500,\"useCache\":false,\"nodeVersion\":\"v20.9.0\",\"packageVersion\":\"1.46.4\",\"timestamp\":\"2026-07-24T09:12:37.854Z\"}\n{\"type\":\"acquisition_error\",\"instrument\":\"usdjpy\",\"priceType\":\"bid\",\"timeframe\":\"m1\",\"dateFrom\":\"2021-01-06\",\"dateTo\":\"2021-01-07\",\"error\":\"Unknown error\",\"stack\":\"Error: Unknown error\\n    at BufferFetcher.fetchBuffer (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16666:17)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\\n    at async D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16569:20\\n    at async Promise.all (index 0)\\n    at async BufferFetcher.fetch (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16610:20)\\n    at async getHistoricalRates (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:17272:25)\\n    at async main (file:///D:/ComputaCenter/FX-smc-bot/tools/dukascopy-node/acquire.mjs:69:18)\",\"code\":\"\",\"timestamp\":\"2026-07-24T09:12:39.242Z\"}\n",
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2021/00/06/BID_candles_min_1.bi5"
+    },
+    {
+      "day": "2020-01-06",
+      "label": "failed_january_2020",
+      "node_elapsed_seconds": 1.596,
+      "node_error": "Unknown error",
+      "node_exit_code": 1,
+      "node_http_body": "{\"error\": \"Too Many Requests\"}",
+      "node_http_status": 429,
+      "node_stack": "Error: Unknown error\n    at BufferFetcher.fetchBuffer (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16666:17)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16569:20\n    at async Promise.all (index 0)\n    at async BufferFetcher.fetch (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:16610:20)\n    at async getHistoricalRates (D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node\\node_modules\\dukascopy-node\\dist\\index.js:17272:25)\n    at async main (file:///D:/ComputaCenter/FX-smc-bot/tools/dukascopy-node/acquire.mjs:69:18)",
+      "node_stderr": "2026-07-24T09:12:40.012Z dukascopy-node:version 1.46.4\n2026-07-24T09:12:40.012Z dukascopy-node:nodejs v20.9.0\n2026-07-24T09:12:40.012Z dukascopy-node:os Windows_NT, 10.0.19045 (win32)\n2026-07-24T09:12:40.018Z dukascopy-node:config {\n  input: {\n    instrument: 'usdjpy',\n    dates: { from: 2020-01-06T00:00:00.000Z, to: 2020-01-07T00:00:00.000Z },\n    timeframe: 'm1',\n    priceType: 'bid',\n    format: 'json',\n    utcOffset: 0,\n    volumes: true,\n    flats: false,\n    batchSize: 1,\n    pauseBetweenBatchesMs: 500,\n    retryCount: 1,\n    pauseBetweenRetriesMs: 1000,\n    useCache: false,\n    cachePath: 'D:\\\\ComputaCenter\\\\FX-smc-bot\\\\data\\\\raw\\\\gate_c5adqr\\\\node-probes\\\\failed_january_2020\\\\.cache',\n    volumeUnits: 'millions',\n    ignoreFlats: true,\n    cacheFolderPath: '',\n    retryOnEmpty: false,\n    failAfterRetryCount: true\n  },\n  isValid: true,\n  validationErrors: []\n}\n2026-07-24T09:12:40.019Z dukascopy-node:urls Generated 1 urls\n2026-07-24T09:12:40.019Z dukascopy-node:urls [\n  'https://datafeed.dukascopy.com/datafeed/USDJPY/2020/00/06/BID_candles_min_1.bi5'\n]\n",
+      "node_stdout": "{\"type\":\"acquisition_start\",\"instrument\":\"usdjpy\",\"dateFrom\":\"2020-01-06\",\"dateTo\":\"2020-01-07\",\"timeframe\":\"m1\",\"priceType\":\"bid\",\"format\":\"json\",\"batchSize\":1,\"retries\":1,\"pauseBetweenBatchesMs\":500,\"useCache\":false,\"nodeVersion\":\"v20.9.0\",\"packageVersion\":\"1.46.4\",\"timestamp\":\"2026-07-24T09:12:40.009Z\"}\n{\"type\":\"acquisition_error\",\"instrument\":\"usdjpy\",\"priceType\":\"bid\",\"timeframe\":\"m1\",\"dateFrom\":\"2020-01-06\",\"dateTo\":\"2020-01-07\",\"error\":\"Unknown error\",\"stack\":\"Error: Unknown error\\n    at BufferFetcher.fetchBuffer (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16666:17)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\\n    at async D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16569:20\\n    at async Promise.all (index 0)\\n    at async BufferFetcher.fetch (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:16610:20)\\n    at async getHistoricalRates (D:\\\\ComputaCenter\\\\FX-smc-bot\\\\tools\\\\dukascopy-node\\\\node_modules\\\\dukascopy-node\\\\dist\\\\index.js:17272:25)\\n    at async main (file:///D:/ComputaCenter/FX-smc-bot/tools/dukascopy-node/acquire.mjs:69:18)\",\"code\":\"\",\"timestamp\":\"2026-07-24T09:12:41.414Z\"}\n",
+      "side": "bid",
+      "url": "https://datafeed.dukascopy.com/datafeed/USDJPY/2020/00/06/BID_candles_min_1.bi5"
+    }
+  ],
+  "status": "COMPLETE",
+  "timeframe": "m1",
+  "utc_semantics": "UTC date boundaries; zero-based Dukascopy month URL",
+  "working_directory": "D:\\ComputaCenter\\FX-smc-bot\\tools\\dukascopy-node"
+}

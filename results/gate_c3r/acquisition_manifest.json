@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-07-14T12:50:25.491653+00:00",
+  "tool": "dukascopy-node 1.46.4",
+  "node": "v20.9.0",
+  "tf": "M1",
+  "total_partitions": 6,
+  "total_rows": 168734,
+  "partitions": [
+    {
+      "pair": "EURUSD",
+      "side": "ask",
+      "year": 2023,
+      "month": 6,
+      "rows": 25732,
+      "status": "complete"
+    },
+    {
+      "pair": "EURUSD",
+      "side": "bid",
+      "year": 2023,
+      "month": 6,
+      "rows": 31282,
+      "status": "complete"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "ask",
+      "year": 2023,
+      "month": 6,
+      "rows": 24219,
+      "status": "complete"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "bid",
+      "year": 2023,
+      "month": 6,
+      "rows": 24751,
+      "status": "complete"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "ask",
+      "year": 2023,
+      "month": 6,
+      "rows": 31375,
+      "status": "complete"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "bid",
+      "year": 2023,
+      "month": 6,
+      "rows": 31375,
+      "status": "complete"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+# Prop trading challenge profiles for Monte Carlo simulation
+
+profiles:
+  - name: "Standard 100K Challenge"
+    starting_balance: 100000
+    phase1_profit_target: 0.08
+    phase2_profit_target: 0.05
+    daily_max_loss: 0.05
+    total_max_loss: 0.10
+    drawdown_type: balance
+    min_trading_days: 5
+    max_trading_days: 0
+    consistency_rule: false
+    leverage: 100
+    commission_per_lot: 3.5
+    spread_pips: 1.5
+    payout_pct: 0.80
+
+  - name: "Aggressive 50K Challenge"
+    starting_balance: 50000
+    phase1_profit_target: 0.10
+    phase2_profit_target: 0.05
+    daily_max_loss: 0.04
+    total_max_loss: 0.08
+    drawdown_type: equity
+    min_trading_days: 5
+    max_trading_days: 30
+    consistency_rule: true
+    best_day_max_pct: 0.30
+    leverage: 100
+    commission_per_lot: 3.5
+    spread_pips: 1.5
+    payout_pct: 0.80
+
+risk_grid:
+  - 0.0010
+  - 0.0015
+  - 0.0020
+  - 0.0025
+  - 0.0035
+  - 0.0050

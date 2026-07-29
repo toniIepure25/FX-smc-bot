@@ -1,0 +1,13 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "diff_check_status": "PASS",
+  "expected_starting_sha": "e39faa5c9df11dc4f44cabd9f6b2b86d710415b0",
+  "gate": "C.5",
+  "head_sha": "e39faa5c9df11dc4f44cabd9f6b2b86d710415b0",
+  "head_status": "EXPECTED_STARTING_SHA",
+  "holdout_access_record_exists": false,
+  "recorded_at_utc": "2026-07-23T17:59:53.4953819Z",
+  "validation_access_record_exists": false,
+  "working_tree_clean_at_phase0": true,
+  "working_tree_short_status_at_phase0": ""
+}

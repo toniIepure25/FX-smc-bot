@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "exact_ruff_delta_zero": true,
+    "holdout_remains_unopened": true,
+    "no_acceptance_holdout_handoff_created": true,
+    "no_new_acceptance_hypothesis_created": true,
+    "scientific_artifacts_preserved": true,
+    "semantic_equivalence_preserved": true,
+    "v1_review_lock_preserved": true,
+    "v2_supersession_recorded": true
+  },
+  "created_at_utc": "2026-07-25T22:23:53.064642+00:00",
+  "final_decision": "ACCEPTANCE_RESEARCH_PACKAGE_APPROVED_FOR_MERGE",
+  "gate": "C6-R-CI",
+  "status": "PASS"
+}

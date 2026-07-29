@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "bid_ask_sides_present": true,
+    "complete_covariates": true,
+    "holdout_timestamp_present": false,
+    "timestamps_inside_validation": true,
+    "valid_120m_exit": true,
+    "valid_next_bar_entry": true,
+    "valid_source_hash": true
+  },
+  "eligible_primary_events": 1192,
+  "status": "PASS",
+  "status_derivation": "all required positive checks true and holdout_timestamp_present is false"
+}

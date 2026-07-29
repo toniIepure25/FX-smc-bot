@@ -1,0 +1,28 @@
+{
+  "commands_executed": [
+    "acquisition status",
+    "raw acquisition audit",
+    "canonical development construction",
+    "structural development quality"
+  ],
+  "holdout_alpha_touched": false,
+  "holdout_policy": {
+    "permitted": [
+      "acquisition",
+      "checksums",
+      "structural validation",
+      "spread statistics",
+      "missing-data diagnosis",
+      "resampling integrity"
+    ],
+    "prohibited": [
+      "detector execution",
+      "event funnels",
+      "alpha features",
+      "parameter analysis",
+      "strategy campaigns",
+      "profitability metrics"
+    ]
+  },
+  "status": "PASS"
+}

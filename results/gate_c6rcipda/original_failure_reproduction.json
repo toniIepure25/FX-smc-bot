@@ -1,0 +1,17 @@
+{
+  "artifact_path": "results\\gate_c6rci\\prohibited_data_audit.json",
+  "canonical_json_sha256": "ccc593c412ccc1fdf0c932684672a3ed328b1801b9a188ec10cdda4ad48a31a4",
+  "changed_paths_count": 601,
+  "created_at_utc": "2026-07-26T10:26:57.200868+00:00",
+  "creation_commit": "e21b1bfc11a2a76edddf3d758f3efce26d52fc4e 2026-07-26T01:20:36+03:00 research: rerun Acceptance package merge certification",
+  "git_blob_sha": "8835fb44ce30d40613e09ac7bf40fa725454d460",
+  "holdout_content_not_enumerated": true,
+  "most_recent_modification_commit": "a4dfdbd9fd8330c3ff9a908bb0d9278756c8c0fa 2026-07-26T01:24:17+03:00 docs: refresh Gate C6-R-CI final certification",
+  "original_status": "FAIL",
+  "prohibited_paths_count": 21,
+  "raw_sha256": "18304a2e65d2e70387bebecb03e2f5c55b733ca8d2c7ba3e010f5aafd937014d",
+  "reproduced_prohibited_paths_count": 21,
+  "reproduced_status": "FAIL",
+  "reproduction_matches_path_set": true,
+  "status": "PASS"
+}

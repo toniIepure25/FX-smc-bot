@@ -1,0 +1,30 @@
+{
+  "source": "yahoo_finance",
+  "price_type": "mid",
+  "spread_source": "none",
+  "certification": "REJECTED",
+  "audit_date": "2026-07-13",
+  "pairs": {
+    "EURUSD": {
+      "M15": {"rows": 5673, "start": "2026-01-19", "end": "2026-04-10", "missing_pct": 27.8, "quality": 0.617, "bid_ask": false},
+      "H1": {"rows": 12354, "start": "2024-04-10", "end": "2026-04-10", "missing_pct": 29.5, "quality": 0.656, "bid_ask": false},
+      "H4": {"rows": 3184, "start": "2024-04-10", "end": "2026-04-10", "missing_pct": 27.3, "quality": 0.681, "bid_ask": false}
+    },
+    "GBPUSD": {
+      "M15": {"rows": 5673, "start": "2026-01-19", "end": "2026-04-10", "missing_pct": 27.8, "quality": 0.677, "bid_ask": false},
+      "H1": {"rows": 12356, "start": "2024-04-10", "end": "2026-04-10", "missing_pct": 29.5, "quality": 0.666, "bid_ask": false},
+      "H4": {"rows": 3184, "start": "2024-04-10", "end": "2026-04-10", "missing_pct": 27.3, "quality": 0.689, "bid_ask": false}
+    },
+    "USDJPY": {
+      "M15": {"rows": 5579, "start": "2026-01-19", "end": "2026-04-10", "missing_pct": 29.0, "quality": 0.680, "bid_ask": false},
+      "H1": {"rows": 12268, "start": "2024-04-10", "end": "2026-04-10", "missing_pct": 30.0, "quality": 0.679, "bid_ask": false},
+      "H4": {"rows": 3177, "start": "2024-04-10", "end": "2026-04-10", "missing_pct": 27.5, "quality": 0.675, "bid_ask": false}
+    }
+  },
+  "blocking_issues": [
+    "No M5 or M1 data available",
+    "No bid/ask spread data",
+    "Insufficient time coverage (3 months M15, 2 years H1 vs 8-10 year target)",
+    "Single source only (Yahoo Finance)"
+  ]
+}

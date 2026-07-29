@@ -1,0 +1,382 @@
+{
+  "created_at_utc": "2026-07-25T22:05:47.090914+00:00",
+  "files": [
+    {
+      "ast_dump_hash": "0d7fe5da3135803cd6ecdf1aa34205227af4b966eb4c59a366001e767365e2e8",
+      "bytecode_disassembly_summary_hash": "33047e4ac48ff36ed5d3ac06388faeb0b5d4ac514286853bdf4e18c79cecdd06",
+      "contributed_to_committed_results": "unknown/pre-existing research utility, not C6 result regeneration",
+      "function_class_signature_inventory": [
+        {
+          "args": "arguments(args=[arg(arg='self')])",
+          "name": "RunResult.summary_dict"
+        },
+        {
+          "args": "arguments(args=[arg(arg='self')])",
+          "name": "CampaignResult.summary"
+        },
+        {
+          "args": "arguments(args=[arg(arg='run_config', annotation=Name(id='StrategyRunConfig', ctx=Load())), arg(arg='data', annotation=Subscript(value=Name(id='dict', ctx=Load()), slice=Tuple(elts=[Name(id='TradingPair', ctx=Load()), Name(id='BarSeries', ctx=Load())], ctx=Load()), ctx=Load())), arg(arg='htf_data', annotation=BinOp(left=Subscript(value=Name(id='dict', ctx=Load()), slice=Tuple(elts=[Name(id='TradingPair', ctx=Load()), Name(id='BarSeries', ctx=Load())], ctx=Load()), ctx=Load()), op=BitOr(), right=Constant(value=None))), arg(arg='app_config', annotation=BinOp(left=Name(id='AppConfig', ctx=Load()), op=BitOr(), right=Constant(value=None)))], defaults=[Constant(value=None), Constant(value=None)])",
+          "name": "run_single"
+        },
+        {
+          "args": "arguments(args=[arg(arg='strategies', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='str', ctx=Load()), ctx=Load())), arg(arg='pairs', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='TradingPair', ctx=Load()), ctx=Load())), arg(arg='sessions', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='str', ctx=Load()), ctx=Load())), arg(arg='data_dir', annotation=Name(id='Path', ctx=Load())), arg(arg='output_dir', annotation=Name(id='Path', ctx=Load())), arg(arg='exec_tf', annotation=Name(id='Timeframe', ctx=Load())), arg(arg='htf_tf', annotation=Name(id='Timeframe', ctx=Load())), arg(arg='ablation', annotation=BinOp(left=Name(id='str', ctx=Load()), op=BitOr(), right=Constant(value=None))), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Attribute(value=Name(id='Timeframe', ctx=Load()), attr='M5', ctx=Load()), Attribute(value=Name(id='Timeframe', ctx=Load()), attr='H1', ctx=Load()), Constant(value=None), Constant(value=42)])",
+          "name": "run_campaign"
+        },
+        {
+          "args": "arguments(args=[arg(arg='campaign', annotation=Name(id='CampaignResult', ctx=Load())), arg(arg='output_dir', annotation=Name(id='Path', ctx=Load()))])",
+          "name": "save_campaign_results"
+        },
+        {
+          "args": "arguments(args=[arg(arg='campaign', annotation=Name(id='CampaignResult', ctx=Load())), arg(arg='n_bootstrap', annotation=Name(id='int', ctx=Load())), arg(arg='block_length', annotation=Name(id='int', ctx=Load())), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=5000), Constant(value=5), Constant(value=42)])",
+          "name": "build_statistical_report"
+        }
+      ],
+      "gate_usage": "pre-C3 research runtime",
+      "import_side_effect_inventory": [
+        "ImportFrom(module='__future__', names=[alias(name='annotations')], level=0)",
+        "Import(names=[alias(name='hashlib')])",
+        "Import(names=[alias(name='json')])",
+        "Import(names=[alias(name='logging')])",
+        "ImportFrom(module='dataclasses', names=[alias(name='asdict'), alias(name='dataclass'), alias(name='field')], level=0)",
+        "ImportFrom(module='datetime', names=[alias(name='datetime'), alias(name='date')], level=0)",
+        "ImportFrom(module='pathlib', names=[alias(name='Path')], level=0)",
+        "ImportFrom(module='typing', names=[alias(name='Any'), alias(name='Literal')], level=0)",
+        "Import(names=[alias(name='numpy', asname='np')])",
+        "ImportFrom(module='fx_smc_bot.config', names=[alias(name='AppConfig'), alias(name='PAIR_PIP_INFO'), alias(name='TIMEFRAME_MINUTES'), alias(name='Timeframe'), alias(name='TradingPair')], level=0)",
+        "ImportFrom(module='fx_smc_bot.data.loader', names=[alias(name='load_htf_data'), alias(name='load_pair_data')], level=0)",
+        "ImportFrom(module='fx_smc_bot.data.models', names=[alias(name='BarSeries')], level=0)",
+        "ImportFrom(module='fx_smc_bot.data.provenance', names=[alias(name='build_provenance')], level=0)",
+        "ImportFrom(module='fx_smc_bot.backtesting.engine', names=[alias(name='BacktestEngine')], level=0)",
+        "ImportFrom(module='fx_smc_bot.backtesting.metrics', names=[alias(name='compute_metrics')], level=0)",
+        "ImportFrom(module='fx_smc_bot.domain', names=[alias(name='BacktestResult'), alias(name='ClosedTrade')], level=0)"
+      ],
+      "lf_normalized_sha256": "1992198147950638d876baf5c13a35e865b553176df19e1d35dc9839a56e0274",
+      "module_constant_inventory": [],
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "public_symbol_inventory": [
+        {
+          "kind": "ClassDef",
+          "name": "StrategyRunConfig"
+        },
+        {
+          "kind": "ClassDef",
+          "name": "RunResult"
+        },
+        {
+          "kind": "ClassDef",
+          "name": "CampaignResult"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "run_single"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "run_campaign"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "save_campaign_results"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "build_statistical_report"
+        }
+      ],
+      "raw_sha256": "eeab2f4e4a93d07c4f40fc7539058ea7b641b7e8112bfed45b95638723714914",
+      "sealed_manifest_references_hash": false,
+      "targeted_test_coverage": [
+        "tests/"
+      ]
+    },
+    {
+      "ast_dump_hash": "d1bf8308675040c65b5b08952bb653ada0325d590fd2c1a31ce469f6bf8019cc",
+      "bytecode_disassembly_summary_hash": "407f9ddfc47578dfa3a782bbf7a22589fa7bc6b0adf0a4d79236952dc019c018",
+      "contributed_to_committed_results": "unknown/pre-existing research utility, not C6 result regeneration",
+      "function_class_signature_inventory": [
+        {
+          "args": "arguments(args=[arg(arg='p_values', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='float', ctx=Load()), ctx=Load())), arg(arg='alpha', annotation=Name(id='float', ctx=Load()))], defaults=[Constant(value=0.05)])",
+          "name": "holm_bonferroni"
+        },
+        {
+          "args": "arguments(args=[arg(arg='p_values', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='float', ctx=Load()), ctx=Load())), arg(arg='alpha', annotation=Name(id='float', ctx=Load()))], defaults=[Constant(value=0.05)])",
+          "name": "benjamini_hochberg"
+        },
+        {
+          "args": "arguments(args=[arg(arg='benchmark_returns', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='strategy_returns_list', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load()), ctx=Load())), arg(arg='n_bootstrap', annotation=Name(id='int', ctx=Load())), arg(arg='block_size', annotation=Name(id='int', ctx=Load())), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=5000), Constant(value=5), Constant(value=42)])",
+          "name": "whites_reality_check"
+        },
+        {
+          "args": "arguments(args=[arg(arg='strategy_returns_matrix', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='n_splits', annotation=Name(id='int', ctx=Load())), arg(arg='performance_fn'), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=16), Constant(value=None), Constant(value=42)])",
+          "name": "cscv_pbo"
+        }
+      ],
+      "gate_usage": "pre-C3 research runtime",
+      "import_side_effect_inventory": [
+        "ImportFrom(module='__future__', names=[alias(name='annotations')], level=0)",
+        "ImportFrom(module='dataclasses', names=[alias(name='dataclass')], level=0)",
+        "Import(names=[alias(name='numpy', asname='np')])",
+        "ImportFrom(module='numpy.typing', names=[alias(name='NDArray')], level=0)",
+        "ImportFrom(module='scipy', names=[alias(name='stats')], level=0)"
+      ],
+      "lf_normalized_sha256": "75603664fc0df0a4f9826de69b57bb169ecac2cf63d585529f361db787c5a806",
+      "module_constant_inventory": [],
+      "path": "src/fx_smc_bot/research/overfitting.py",
+      "public_symbol_inventory": [
+        {
+          "kind": "ClassDef",
+          "name": "CorrectedPValues"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "holm_bonferroni"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "benjamini_hochberg"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "whites_reality_check"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "cscv_pbo"
+        }
+      ],
+      "raw_sha256": "dde135e26704fe51e8f859a8cd6ab1481aae1e220357f4ad562931d8656a8138",
+      "sealed_manifest_references_hash": false,
+      "targeted_test_coverage": [
+        "tests/"
+      ]
+    },
+    {
+      "ast_dump_hash": "de35dddf47e4c37e37071f773410022b175bedcb37ac0fb65a0bb5d814d1d127",
+      "bytecode_disassembly_summary_hash": "b8d20a0a22ab708bb9912133ea71dff3d73b79097e75b01e207c56e58e0d7dc0",
+      "contributed_to_committed_results": "unknown/pre-existing research utility, not C6 result regeneration",
+      "function_class_signature_inventory": [
+        {
+          "args": "arguments(args=[arg(arg='timestamps', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='datetime64', ctx=Load()), ctx=Load())), arg(arg='signal_bars', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='int', ctx=Load()), ctx=Load())), arg(arg='close', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='holding_bars', annotation=Name(id='int', ctx=Load())), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=20), Constant(value=42)])",
+          "name": "random_direction_matched"
+        },
+        {
+          "args": "arguments(args=[arg(arg='close', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='timestamps', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='datetime64', ctx=Load()), ctx=Load())), arg(arg='n_trades', annotation=Name(id='int', ctx=Load())), arg(arg='holding_bars', annotation=Name(id='int', ctx=Load())), arg(arg='session_mask', annotation=BinOp(left=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='bool_', ctx=Load()), ctx=Load()), op=BitOr(), right=Constant(value=None))), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=20), Constant(value=None), Constant(value=42)])",
+          "name": "random_time_matched"
+        },
+        {
+          "args": "arguments(args=[arg(arg='signal_bars', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='int', ctx=Load()), ctx=Load())), arg(arg='signal_directions', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='str', ctx=Load()), ctx=Load())), arg(arg='close', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='timestamps', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='datetime64', ctx=Load()), ctx=Load())), arg(arg='holding_bars', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=20)])",
+          "name": "signal_inversion"
+        },
+        {
+          "args": "arguments(args=[arg(arg='close', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='timestamps', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='datetime64', ctx=Load()), ctx=Load())), arg(arg='lookback', annotation=Name(id='int', ctx=Load())), arg(arg='holding_bars', annotation=Name(id='int', ctx=Load())), arg(arg='session_mask', annotation=BinOp(left=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='bool_', ctx=Load()), ctx=Load()), op=BitOr(), right=Constant(value=None)))], defaults=[Constant(value=20), Constant(value=20), Constant(value=None)])",
+          "name": "simple_momentum_baseline"
+        },
+        {
+          "args": "arguments(args=[arg(arg='strategy_name', annotation=Name(id='str', ctx=Load())), arg(arg='pairs', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='str', ctx=Load()), ctx=Load())), arg(arg='sessions', annotation=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='str', ctx=Load()), ctx=Load())), arg(arg='custom_ablations', annotation=BinOp(left=Subscript(value=Name(id='list', ctx=Load()), slice=Name(id='AblationSpec', ctx=Load()), ctx=Load()), op=BitOr(), right=Constant(value=None)))], defaults=[Constant(value=None)])",
+          "name": "generate_ablation_matrix"
+        }
+      ],
+      "gate_usage": "pre-C3 research runtime",
+      "import_side_effect_inventory": [
+        "ImportFrom(module='__future__', names=[alias(name='annotations')], level=0)",
+        "ImportFrom(module='dataclasses', names=[alias(name='dataclass')], level=0)",
+        "ImportFrom(module='datetime', names=[alias(name='datetime')], level=0)",
+        "ImportFrom(module='typing', names=[alias(name='Literal')], level=0)",
+        "Import(names=[alias(name='numpy', asname='np')])",
+        "ImportFrom(module='numpy.typing', names=[alias(name='NDArray')], level=0)"
+      ],
+      "lf_normalized_sha256": "dd4579b7009ba0de7f8a5c2864b094b91c3b14fcc8a073b8f3175d09523c2d4d",
+      "module_constant_inventory": [],
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "public_symbol_inventory": [
+        {
+          "kind": "ClassDef",
+          "name": "PlaceboTrade"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "random_direction_matched"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "random_time_matched"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "signal_inversion"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "simple_momentum_baseline"
+        },
+        {
+          "kind": "ClassDef",
+          "name": "AblationSpec"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "generate_ablation_matrix"
+        }
+      ],
+      "raw_sha256": "252791304d27fed6326070b28827a44adac7072052f99a75ddf62e5a68a351c1",
+      "sealed_manifest_references_hash": false,
+      "targeted_test_coverage": [
+        "tests/"
+      ]
+    },
+    {
+      "ast_dump_hash": "86968ce1d39c951ef19e553a45c1334118535561cedd2587380f68db7a72f9de",
+      "bytecode_disassembly_summary_hash": "fc538a699fc9bd2b921d8d5e835e4700c2e8f09acb2646c1790b801d3274daed",
+      "contributed_to_committed_results": "unknown/pre-existing research utility, not C6 result regeneration",
+      "function_class_signature_inventory": [
+        {
+          "args": "arguments(args=[arg(arg='daily_pnl_pcts', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='profile', annotation=Name(id='PropAccountProfile', ctx=Load())), arg(arg='n_paths', annotation=Name(id='int', ctx=Load())), arg(arg='risk_per_trade', annotation=Name(id='float', ctx=Load())), arg(arg='block_size', annotation=Name(id='int', ctx=Load())), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=10000), Constant(value=0.005), Constant(value=5), Constant(value=42)])",
+          "name": "simulate_prop_challenge"
+        }
+      ],
+      "gate_usage": "pre-C3 research runtime",
+      "import_side_effect_inventory": [
+        "ImportFrom(module='__future__', names=[alias(name='annotations')], level=0)",
+        "ImportFrom(module='dataclasses', names=[alias(name='dataclass'), alias(name='field')], level=0)",
+        "ImportFrom(module='typing', names=[alias(name='Literal')], level=0)",
+        "Import(names=[alias(name='numpy', asname='np')])",
+        "ImportFrom(module='numpy.typing', names=[alias(name='NDArray')], level=0)",
+        "ImportFrom(module='pydantic', names=[alias(name='BaseModel'), alias(name='Field')], level=0)"
+      ],
+      "lf_normalized_sha256": "ef2f196235100720df127eeb8d040f7b67aea3dc81ee781b3966d8b214452e20",
+      "module_constant_inventory": [],
+      "path": "src/fx_smc_bot/research/prop_simulation.py",
+      "public_symbol_inventory": [
+        {
+          "kind": "ClassDef",
+          "name": "PropAccountProfile"
+        },
+        {
+          "kind": "ClassDef",
+          "name": "SimulationOutcome"
+        },
+        {
+          "kind": "ClassDef",
+          "name": "PropSimulationResult"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "simulate_prop_challenge"
+        }
+      ],
+      "raw_sha256": "93ef1579a75d44d320f95cef44f1f58ac350dfd918730e67e4b2e3c3280ddfcc",
+      "sealed_manifest_references_hash": false,
+      "targeted_test_coverage": [
+        "tests/"
+      ]
+    },
+    {
+      "ast_dump_hash": "e669de9bf8a94fdc999b99a18a64206692673757289ef08993d60961aa537689",
+      "bytecode_disassembly_summary_hash": "b53e057e19b0cbbb7826f17b36b9e49042ec378e5e2ea93bcbf89ab26ca2ba85",
+      "contributed_to_committed_results": "unknown/pre-existing research utility, not C6 result regeneration",
+      "function_class_signature_inventory": [
+        {
+          "args": "arguments(args=[arg(arg='data', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='statistic_fn'), arg(arg='n_bootstrap', annotation=Name(id='int', ctx=Load())), arg(arg='expected_block_length', annotation=Name(id='float', ctx=Load())), arg(arg='confidence', annotation=Name(id='float', ctx=Load())), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=10000), Constant(value=5.0), Constant(value=0.95), Constant(value=42)])",
+          "name": "stationary_bootstrap"
+        },
+        {
+          "args": "arguments(args=[arg(arg='data', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='statistic_fn'), arg(arg='block_size', annotation=Name(id='int', ctx=Load())), arg(arg='n_bootstrap', annotation=Name(id='int', ctx=Load())), arg(arg='confidence', annotation=Name(id='float', ctx=Load())), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=5), Constant(value=10000), Constant(value=0.95), Constant(value=42)])",
+          "name": "block_bootstrap"
+        },
+        {
+          "args": "arguments(args=[arg(arg='returns', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='annual_factor', annotation=Name(id='float', ctx=Load()))], defaults=[Constant(value=252.0)])",
+          "name": "sharpe_ratio"
+        },
+        {
+          "args": "arguments(args=[arg(arg='returns', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='annual_factor', annotation=Name(id='float', ctx=Load()))], defaults=[Constant(value=252.0)])",
+          "name": "sortino_ratio"
+        },
+        {
+          "args": "arguments(args=[arg(arg='observed_sr', annotation=Name(id='float', ctx=Load())), arg(arg='benchmark_sr', annotation=Name(id='float', ctx=Load())), arg(arg='n_observations', annotation=Name(id='int', ctx=Load())), arg(arg='skewness', annotation=Name(id='float', ctx=Load())), arg(arg='kurtosis', annotation=Name(id='float', ctx=Load()))], defaults=[Constant(value=0.0), Constant(value=3.0)])",
+          "name": "probabilistic_sharpe_ratio"
+        },
+        {
+          "args": "arguments(args=[arg(arg='observed_sr', annotation=Name(id='float', ctx=Load())), arg(arg='n_observations', annotation=Name(id='int', ctx=Load())), arg(arg='n_trials', annotation=Name(id='int', ctx=Load())), arg(arg='skewness', annotation=Name(id='float', ctx=Load())), arg(arg='kurtosis', annotation=Name(id='float', ctx=Load())), arg(arg='variance_of_srs', annotation=BinOp(left=Name(id='float', ctx=Load()), op=BitOr(), right=Constant(value=None)))], defaults=[Constant(value=0.0), Constant(value=3.0), Constant(value=None)])",
+          "name": "deflated_sharpe_ratio"
+        },
+        {
+          "args": "arguments(args=[arg(arg='observed_sr', annotation=Name(id='float', ctx=Load())), arg(arg='benchmark_sr', annotation=Name(id='float', ctx=Load())), arg(arg='skewness', annotation=Name(id='float', ctx=Load())), arg(arg='kurtosis', annotation=Name(id='float', ctx=Load())), arg(arg='confidence', annotation=Name(id='float', ctx=Load()))], defaults=[Constant(value=0.0), Constant(value=0.0), Constant(value=3.0), Constant(value=0.95)])",
+          "name": "minimum_track_record_length"
+        },
+        {
+          "args": "arguments(args=[arg(arg='returns', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='alpha', annotation=Name(id='float', ctx=Load()))], defaults=[Constant(value=0.05)])",
+          "name": "var_cvar"
+        },
+        {
+          "args": "arguments(args=[arg(arg='daily_returns', annotation=Subscript(value=Name(id='NDArray', ctx=Load()), slice=Attribute(value=Name(id='np', ctx=Load()), attr='float64', ctx=Load()), ctx=Load())), arg(arg='n_trials', annotation=Name(id='int', ctx=Load())), arg(arg='benchmark_sr', annotation=Name(id='float', ctx=Load())), arg(arg='n_bootstrap', annotation=Name(id='int', ctx=Load())), arg(arg='block_length', annotation=Name(id='float', ctx=Load())), arg(arg='confidence', annotation=Name(id='float', ctx=Load())), arg(arg='seed', annotation=Name(id='int', ctx=Load()))], defaults=[Constant(value=1), Constant(value=0.0), Constant(value=5000), Constant(value=5.0), Constant(value=0.95), Constant(value=42)])",
+          "name": "build_inference_report"
+        }
+      ],
+      "gate_usage": "pre-C3 research runtime",
+      "import_side_effect_inventory": [
+        "ImportFrom(module='__future__', names=[alias(name='annotations')], level=0)",
+        "Import(names=[alias(name='math')])",
+        "ImportFrom(module='dataclasses', names=[alias(name='dataclass'), alias(name='field')], level=0)",
+        "ImportFrom(module='typing', names=[alias(name='Sequence')], level=0)",
+        "Import(names=[alias(name='numpy', asname='np')])",
+        "ImportFrom(module='numpy.typing', names=[alias(name='NDArray')], level=0)",
+        "ImportFrom(module='scipy', names=[alias(name='stats')], level=0)"
+      ],
+      "lf_normalized_sha256": "b0f8f49ffa482e274eb6c7b02574cd9a44919c1c0669345309095aee8daa7d2f",
+      "module_constant_inventory": [],
+      "path": "src/fx_smc_bot/research/statistical_inference.py",
+      "public_symbol_inventory": [
+        {
+          "kind": "ClassDef",
+          "name": "BootstrapCI"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "stationary_bootstrap"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "block_bootstrap"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "sharpe_ratio"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "sortino_ratio"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "probabilistic_sharpe_ratio"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "deflated_sharpe_ratio"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "minimum_track_record_length"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "var_cvar"
+        },
+        {
+          "kind": "ClassDef",
+          "name": "InferenceReport"
+        },
+        {
+          "kind": "FunctionDef",
+          "name": "build_inference_report"
+        }
+      ],
+      "raw_sha256": "76e650b5726f764a4fd0ea27a1c887d4b67be29c41c890267130e917e190c592",
+      "sealed_manifest_references_hash": false,
+      "targeted_test_coverage": [
+        "tests/"
+      ]
+    }
+  ],
+  "status": "PASS"
+}

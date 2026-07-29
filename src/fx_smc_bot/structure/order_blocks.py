@@ -60,7 +60,7 @@ def detect_order_blocks(
         if ob_idx is None:
             continue
 
-        confirmed = not require_disp or dc.bar_index in break_bars or True
+        confirmed = not require_disp or dc.bar_index in break_bars
         ts = timestamps[ob_idx].astype("datetime64[us]").astype(datetime)
         obs.append(OrderBlock(
             high=float(high[ob_idx]),

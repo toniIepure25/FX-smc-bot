@@ -1,0 +1,61 @@
+{
+  "artifact_hashes": {
+    "results/gate_c5b/artifact_integrity.json": "f1f163a0b86456547b3dcd06d67d9dce83a19ca2308cd8a19a1be48b281f08b5",
+    "results/gate_c5b/holdout_integrity.json": "cf2b452899932f1b65d2e5b5b0197a2ea54ff60b9000be901c2df8f9993f7c6d",
+    "results/gate_c5b/repository_state.json": "cd846c7ef43f252cd7dc0735e5bd531996e828e1aa90191cc8c3a71fc4d81694"
+  },
+  "artifact_integrity_status": "FAIL",
+  "blocked_phase": "PHASE_0_VERIFY_REPOSITORY_AND_CLOSED_LINEAGES",
+  "blocking_mismatches": [
+    {
+      "actual_current_hash": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+      "artifact": "results/gate_c5ar/validation_criterion_adjudication.json",
+      "expected_hash_from_c5ar_post_validation_lock": "45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724",
+      "match": false
+    }
+  ],
+  "final_decision": "BLOCKED_BY_C5AR_ARTIFACT_INTEGRITY",
+  "gate": "C.5-B",
+  "git_status_before_commit": "?? docs/research/GATE_C5B_FINAL_DECISION_MEMO.md",
+  "head_sha_before_commit": "abd879cd59381f614e67ffec42e8deeb002036a4",
+  "holdout_accessed": false,
+  "holdout_handoff_created": false,
+  "holdout_integrity": {
+    "holdout_controls_constructed": false,
+    "holdout_event_counts_computed": false,
+    "holdout_events_detected": false,
+    "holdout_market_data_loaded": false,
+    "holdout_outcomes_computed": false,
+    "holdout_results_reported": false,
+    "holdout_structural_data_inspected": false,
+    "status": "PASS"
+  },
+  "mechanism_diagnostics_executed": false,
+  "mechanism_preregistration_created": false,
+  "new_hypothesis_created": false,
+  "quality_gate": {
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "no whitespace errors",
+      "status": "PASS"
+    },
+    "mypy": {
+      "status": "NOT_RUN_BLOCKED_BEFORE_CODE_OR_DIAGNOSTICS"
+    },
+    "node": {
+      "status": "NOT_RUN_BLOCKED_BEFORE_CODE_OR_DIAGNOSTICS"
+    },
+    "npm": {
+      "status": "NOT_RUN_BLOCKED_BEFORE_CODE_OR_DIAGNOSTICS"
+    },
+    "pytest": {
+      "status": "NOT_RUN_BLOCKED_BEFORE_CODE_OR_DIAGNOSTICS"
+    },
+    "ruff": {
+      "status": "NOT_RUN_BLOCKED_BEFORE_CODE_OR_DIAGNOSTICS"
+    }
+  },
+  "recorded_at_utc": "2026-07-24T15:38:19.449228+00:00",
+  "starting_sha": "abd879cd59381f614e67ffec42e8deeb002036a4",
+  "status": "BLOCKED"
+}

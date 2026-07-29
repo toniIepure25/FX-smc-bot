@@ -1,0 +1,13 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "expected_starting_sha": "a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6",
+  "gate": "C.5-A-R",
+  "git_diff_check_status": "PASS",
+  "git_diff_check_stderr": "",
+  "git_diff_check_stdout": "",
+  "head_matches_expected": true,
+  "head_sha": "a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6",
+  "recorded_at_utc": "2026-07-24T10:13:04.803823+00:00",
+  "working_tree_clean": true,
+  "working_tree_short_status": ""
+}

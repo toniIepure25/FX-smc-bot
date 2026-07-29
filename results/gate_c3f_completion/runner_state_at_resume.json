@@ -1,0 +1,52 @@
+{
+  "active_locks": [
+    "EURUSD_ask_2016_03.lock",
+    "EURUSD_bid_2016_04.lock"
+  ],
+  "actual_head": "",
+  "branch": "",
+  "created_at": "2026-07-20T11:29:32.814182+00:00",
+  "runner_log": "logs/acquisition/acq_20260720_110100.log",
+  "runner_preservation": "PRESERVED_EXISTING_RUNNER",
+  "starting_sha_expected": "570a92de0f545268481be61865ddf97c86c9ab5a",
+  "status": {
+    "classifier": "RUNNING_HEALTHY",
+    "heartbeat": {
+      "acquisition_configuration_hash": "7abfe686c94bb4c48761ac16edea86754aa90cc92d06b5edc72f204b23032ef0",
+      "active_tasks": [
+        "EURUSD/ask/2016-03",
+        "EURUSD/bid/2016-04"
+      ],
+      "active_worker_count": 2,
+      "completed": 12,
+      "configured_workers": 2,
+      "failed": 0,
+      "git_sha": "c23a6b2323869761f172e685ac291d76e20ff25e",
+      "last_checkpoint": "EURUSD/bid/2016-03",
+      "last_error": "",
+      "max_observed_concurrent_tasks": 2,
+      "pid": 20532,
+      "ppid": 24396,
+      "process_start_time": "2026-07-20T11:01:00.222017+00:00",
+      "shutdown_requested": false,
+      "skipped": 17,
+      "timestamp": "2026-07-20T11:29:31.241681+00:00",
+      "total_rows": 357455,
+      "workers_configured": 2
+    },
+    "heartbeat_age_seconds": 2.6,
+    "pid": 20532,
+    "progress": {
+      "completed": 0,
+      "failed": 0,
+      "log_file": "logs\\acquisition\\acq_20260716_141736.log",
+      "max_observed_concurrent_tasks": 0,
+      "skipped": 24,
+      "total_partitions": 24,
+      "total_rows": 0,
+      "workers_configured": 1
+    }
+  },
+  "stderr_log": "logs/acquisition/stderr_20260720_140058.log",
+  "stdout_log": "logs/acquisition/stdout_20260720_140058.log"
+}

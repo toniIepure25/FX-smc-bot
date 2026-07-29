@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-07-25T21:05:46.320287+00:00",
+  "head_issue_count": {
+    "mypy_research": 3,
+    "ruff_research": 124
+  },
+  "issues_fixed": {
+    "mypy_research": 1,
+    "ruff_research": 0
+  },
+  "new_issues_introduced": {
+    "c6_c6r_targeted": 0,
+    "mypy_research": 0,
+    "ruff_research": 25
+  },
+  "no_new_broad_static_debt_against_target": false,
+  "shared_issues": {
+    "mypy_research": 3,
+    "ruff_research": 99
+  },
+  "status": "FAIL",
+  "target_branch": "origin/main",
+  "target_branch_issue_count": {
+    "measurement_status": "PASS",
+    "mypy_research": 4,
+    "ruff_research": 99
+  },
+  "targeted_c6_c6r_returncodes": {
+    "mypy": 0,
+    "ruff": 0
+  }
+}

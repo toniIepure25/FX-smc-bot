@@ -1,0 +1,42 @@
+{
+  "commands": {
+    "bundled_node_test": {
+      "command": "node --test test_acquire.mjs",
+      "cwd": "tools/dukascopy-node",
+      "status": "PASS"
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "status": "PASS"
+    },
+    "mypy_src_fx_smc_bot_data": {
+      "command": "python -m mypy src/fx_smc_bot/data",
+      "status": "FAIL_PRE_EXISTING_REPOSITORY_DEBT",
+      "summary": "10 errors: missing pandas stubs plus existing type issues in historical_providers.py and providers/oanda_feed.py"
+    },
+    "node_path_test": {
+      "command": "node --test tools/dukascopy-node/test_acquire.mjs",
+      "status": "NOT_RUN_NODE_NOT_IN_PATH"
+    },
+    "npm_audit": {
+      "command": "npm --prefix tools/dukascopy-node audit --omit=dev",
+      "status": "NOT_RUN_NPM_NOT_IN_PATH"
+    },
+    "npm_test": {
+      "command": "npm --prefix tools/dukascopy-node test",
+      "status": "NOT_RUN_NPM_NOT_IN_PATH"
+    },
+    "pytest_all": {
+      "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_c3fcrsf_final tests/ -q",
+      "status": "PASS",
+      "summary": "673 passed, 91 warnings"
+    },
+    "ruff_required_scope": {
+      "command": "python -m ruff check scripts/run_gate_c3fcrsf*.py src/fx_smc_bot/data tests/test_gate_c3f",
+      "status": "FAIL_PRE_EXISTING_REPOSITORY_DEBT",
+      "summary": "28 findings in pre-existing data modules and older gate tests; new CRSF scope passes targeted Ruff"
+    }
+  },
+  "created_at": "2026-07-23T15:42:05.345533+00:00",
+  "final_decision": "USDJPY_ONLY_CERTIFIED_READY_FOR_EVENT_ALPHA_RESEARCH"
+}

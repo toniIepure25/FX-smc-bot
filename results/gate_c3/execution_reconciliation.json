@@ -1,0 +1,13 @@
+{
+  "gate": "C.3",
+  "bid_ask_fill_engine": "VERIFIED",
+  "long_limit_ask_low": "VERIFIED",
+  "short_limit_bid_high": "VERIFIED",
+  "long_exit_bid": "VERIFIED",
+  "short_exit_ask": "VERIFIED",
+  "no_synthetic_spread_bidask": "VERIFIED",
+  "cost_equation": "net_pnl = gross_pnl - commission + swap",
+  "execution_mode_label": "VERIFIED",
+  "tests_added": 28,
+  "total_tests": 521
+}

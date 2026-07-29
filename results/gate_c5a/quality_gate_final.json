@@ -1,0 +1,57 @@
+{
+  "final_decision": "BLOCKED_BY_VALIDATION_DATA_QUALITY",
+  "git_diff_check": {
+    "status": "PASS",
+    "summary": "no whitespace errors"
+  },
+  "mypy_c5a_pre_unblinding": {
+    "status": "PASS",
+    "summary": "C5-A module passed before validation access"
+  },
+  "mypy_requested_scope": {
+    "status": "FAIL_PRE_EXISTING",
+    "summary": "3 missing stub errors: scipy in statistical_inference.py and overfitting.py, yaml in experiments.py"
+  },
+  "node_acquisition": {
+    "status": "PASS_WITH_DATA_QUALITY_FAILURE",
+    "summary": "Bundled node enabled acquisition; 72/72 partitions completed but 4 zero-row partitions invalid"
+  },
+  "node_root_command": {
+    "status": "FAIL_PATH_ASSUMPTION",
+    "summary": "node --test tools/dukascopy-node/test_acquire.mjs from repo root fails because test reads package.json from cwd"
+  },
+  "node_tool_dir_smoke": {
+    "status": "PASS",
+    "summary": "2 tests passed with bundled node.exe from tools/dukascopy-node"
+  },
+  "npm": {
+    "status": "NOT_RUN_NOT_REQUIRED_AFTER_DATA_QUALITY_BLOCK",
+    "summary": "No package changes; validation stopped before detector/outcomes"
+  },
+  "npm_audit_omit_dev": {
+    "status": "NOT_RUN_NPM_UNAVAILABLE",
+    "summary": "npm command not recognized on PATH"
+  },
+  "npm_test": {
+    "status": "NOT_RUN_NPM_UNAVAILABLE",
+    "summary": "npm command not recognized on PATH"
+  },
+  "pytest_full": {
+    "status": "PASS",
+    "summary": "712 passed, 91 warnings in 203.55s"
+  },
+  "pytest_targeted_pre_unblinding": {
+    "status": "PASS",
+    "summary": "7 passed in tests/test_gate_c5a before validation access"
+  },
+  "ruff_c5a_pre_unblinding": {
+    "status": "PASS",
+    "summary": "C5-A script/module/tests passed before validation access"
+  },
+  "ruff_requested_scope": {
+    "status": "FAIL_PRE_EXISTING_PLUS_MISSING_PATH",
+    "summary": "125 errors: existing src/fx_smc_bot/research Ruff debt plus tests/test_gate_c5 path does not exist"
+  },
+  "status": "COMPLETE_BLOCKED_DATA_QUALITY",
+  "validation_or_holdout_outcomes_computed": false
+}

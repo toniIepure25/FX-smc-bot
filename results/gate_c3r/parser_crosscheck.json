@@ -1,0 +1,31 @@
+{
+  "gate": "C.3R",
+  "description": "Cross-check of dukascopy-node output against expectations",
+  "pairs_tested": ["EURUSD", "USDJPY"],
+  "test_date": "2023-06-15",
+  "results": {
+    "EURUSD": {
+      "node_bid_rows": 1415,
+      "node_ask_rows": 1415,
+      "bid_first_open": 1.08427,
+      "ask_first_open": 1.08430,
+      "spread_first": 0.00003,
+      "price_range_plausible": true,
+      "no_ask_below_bid": true,
+      "utc_timestamps": true,
+      "scaling_correct": true
+    },
+    "USDJPY": {
+      "node_bid_rows": 1439,
+      "bid_first_open": 139.968,
+      "price_range_plausible": true,
+      "jpy_scaling_correct": true,
+      "no_ask_below_bid": true,
+      "utc_timestamps": true
+    }
+  },
+  "weekend_test": {
+    "note": "Weekend days (2023-06-17, 2023-06-24) produce 0 rows as expected"
+  },
+  "verdict": "PASS"
+}

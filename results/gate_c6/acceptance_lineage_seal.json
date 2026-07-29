@@ -1,0 +1,58 @@
+{
+  "closure_statements": [
+    "No further outcome-informed Acceptance hypotheses may be tested against the preserved 2023-2025 holdout.",
+    "The holdout remains unopened and is not authorized for this closed hypothesis family.",
+    "Any future Acceptance research must use a genuinely new external dataset, new prospective data collection, or an independently specified hypothesis before data access."
+  ],
+  "created_at_utc": "2026-07-25T13:38:34.982461+00:00",
+  "final_decision": "ACCEPTANCE_RESEARCH_PROGRAM_CLOSED_WITH_MIXED_NONTRANSPORTABLE_RESULT",
+  "hashes": {
+    "c6_holdout_integrity": {
+      "canonical_json_sha256": "4a8848d7ec9906c55b05ab6da22a837943f049efcbf369901665a17cc646b9b8",
+      "exists": true,
+      "path": "results/gate_c6/holdout_integrity.json",
+      "sha256": "96a9c36e8d2981fcc8cbbef2a6a86f61f7042b208ea3c39ae9c1dd0dfa211783",
+      "size_bytes": 573
+    },
+    "final_c5br_research_stop_record": {
+      "canonical_json_sha256": "fe7f485fd23ee50cb42b1180d82d1154cf728b4b34b485d2ae56cb431a746633",
+      "exists": true,
+      "path": "results/gate_c5br/research_stop_record.json",
+      "sha256": "6186514b65331fb3116e7b7ebef01f6e28d81a118a254db0b1cd84a73bd2bde8",
+      "size_bytes": 401
+    },
+    "final_claim_matrix": {
+      "canonical_json_sha256": "82b1b38b2134bf5f82e0d4cda5fac376eb6eec3a9d6e3f4e895b1ddf76856ef5",
+      "exists": true,
+      "path": "results/gate_c6/final_claim_matrix.json",
+      "sha256": "0734425a9582c7bc45dd3699d09c0739d0c6eee57b0adff976bd0165e2c9e04a",
+      "size_bytes": 4566
+    },
+    "reconciliation_handoff": {
+      "canonical_json_sha256": "9fd7371f6825bc0457d044db3759c442a617a14771da10981e37c1f07da5ce29",
+      "exists": true,
+      "path": "results/gate_c5arir/c5b_resumption_handoff.json",
+      "sha256": "fae78cd57abfdaa29f3c69e5d0062afeaccd7d3a5010e0e2326921201a0c4b0b",
+      "size_bytes": 7589
+    },
+    "reconciliation_overlay": {
+      "canonical_json_sha256": "3ffc4cbe549de15a9531d51d7cc56dcd66b1eaf913ab276a5277a6e32665fc5d",
+      "exists": true,
+      "path": "results/gate_c5arir/artifact_reconciliation_overlay.json",
+      "sha256": "55b3c9282dcbd5777db4fae38cb714a108b35f5255de4b8921a7d8173a79d669",
+      "size_bytes": 12736
+    },
+    "reproducibility_manifest": {
+      "canonical_json_sha256": "850442f0c4d31a413370c7d4f600a1f5b83f48c18b0b306209eb61e8d5fdf5a8",
+      "exists": true,
+      "path": "results/gate_c6/reproducibility_manifest.json",
+      "sha256": "9c2387dc5599a4e984b7d6ebb5082a400e5641035111b54f30bb91f8cfc1b544",
+      "size_bytes": 11266
+    }
+  },
+  "holdout_integrity_status": "PASS",
+  "lineage_seal_hash": "00581da471f6c7c7d06d10d59c2b58fd03fab7a654bf4dac792451a829e4b1e4",
+  "manifest_hash": "9b3d806fec2a5730c30854b82cdf57f1f17b8cf185f6a6826658e3bf394808bb",
+  "seal_id": "USDJPY_ACCEPTANCE_RESEARCH_LINEAGE_V1",
+  "status": "CLOSED_MIXED_NONTRANSPORTABLE_RESULT"
+}

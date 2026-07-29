@@ -1,0 +1,13 @@
+{
+  "development_only": true,
+  "loaded_pair": "USDJPY",
+  "loaded_years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+  ],
+  "validation_or_holdout_event_counts_reported": false,
+  "validation_or_holdout_loaded": false
+}

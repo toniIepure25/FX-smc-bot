@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "canonical_quality_hash_matches": true,
+    "canonical_rebuild_manifest_hash_matches": true,
+    "dqr_freeze_ready": true,
+    "holdout_not_included": true,
+    "interval_exact_2020_2022": true,
+    "no_2023_2025_in_dqr_canonical": true,
+    "no_eurusd_or_gbpusd_in_dqr_canonical": true,
+    "pair_usdjpy": true,
+    "provider_parity_hash_matches": true,
+    "provider_parity_pass": true,
+    "scope_validation_only": true,
+    "tick_audit_pass": true,
+    "validation_certification_hash_matches": true,
+    "validation_quality_pass": true,
+    "validation_tick_audit_hash_matches": true
+  },
+  "decision_if_failed": "BLOCKED_BY_VALIDATION_FREEZE_INTEGRITY",
+  "hashes": {
+    "canonical_quality_hash": "7f322d2c0e6f1c440b9824571d84beb04da6d45751aa061de7f3f99943f6e3e8",
+    "canonical_rebuild_manifest_hash": "4241a6bafbaff802572486f1f47c7b4d1b7de5d8dbe3e94e6005828ad6593c86",
+    "dqr_validation_freeze_hash": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866",
+    "provider_parity_hash": "b9a701a5cf6b3226e524d8f77c1b6bbcb69a0ca33addb84651615cb4b04b8f1a",
+    "validation_data_quality_hash": "a359d450f4d944cf3758475b79dd57f19385ffa13832e7de1e82259e87362271",
+    "validation_tick_audit_hash": "8664e294de4c4438d6b75fbc4546cb1d0893093a79e038c1cbbea584f71b6432"
+  },
+  "status": "PASS"
+}

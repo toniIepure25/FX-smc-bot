@@ -1,0 +1,32 @@
+{
+  "actual_starting_sha": "37a2efdf84f6637693e2dd36e0b2caf588bc425c",
+  "branch": "research/rigorous-intraday-smc-validation",
+  "corrected_at": "2026-07-20T10:45:22.359158+00:00",
+  "created_at": "2026-07-20T10:41:40.287574+00:00",
+  "environment": {
+    "dukascopy_node_pinned": "1.46.4",
+    "node": "v24.14.0",
+    "npm": "UNAVAILABLE_ON_PATH",
+    "pnpm": "11.9.0",
+    "python": "Python 3.13.5"
+  },
+  "process_state": {
+    "heartbeat_age_seconds_observed": 303017.7,
+    "heartbeat_timestamp": "2026-07-16T22:29:29.721487+00:00",
+    "old_runners_action": "preserved_none_stopped_none_replaced_none",
+    "os_process_inspection": "no matching acquisition runner; only inspection command observed",
+    "project_status_classifier": "STALE_PID_FILE",
+    "stale_active_tasks_in_heartbeat": [
+      "EURUSD/ask/2015-09",
+      "EURUSD/bid/2015-10"
+    ]
+  },
+  "requested_expected_starting_sha": "4df9c35",
+  "untracked_preexisting_paths": [
+    "scripts/_benchmark_bulk.py",
+    "scripts/_check_failures.py",
+    "tools/dukascopy-node/_tmp_benchmark/",
+    "tools/dukascopy-node/_tmp_download_4088/",
+    "tools/dukascopy-node/_tmp_download_9012/"
+  ]
+}

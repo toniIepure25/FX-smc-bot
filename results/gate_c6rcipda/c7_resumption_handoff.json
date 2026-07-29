@@ -1,0 +1,20 @@
+{
+  "c7_instruction": "Gate C.7 must validate the original historical FAIL artifact together with the C6RCI_PROHIBITED_DATA_AUDIT_RECONCILIATION_V1 overlay and corrected audit. Gate C.7 must not treat the original FAIL artifact as silently replaced.",
+  "corrected_audit_hash": "62cad6b0a37673c698b01cb867ad298b3c0bb5160a214aa90d937b8560f7c349",
+  "created_at_utc": "2026-07-26T10:45:09.077764+00:00",
+  "final_source_sha": "b2104072d034c9530a05f93c6daa308ad75caf92",
+  "holdout_integrity_hash": "2bf56887e5d2081d2ec545c0eb73fd2821f508a643c0821b92ce0920b760cb8b",
+  "independent_audit_hash": "3b8c06b357d6603ebbc4a86545698eaf3b6fbf60335b3433c35d7e8c581f7d3d",
+  "merge_base": "8742c932382ce0eef96655ae972a63d4da4d87e2",
+  "original_failing_audit_hash": "18304a2e65d2e70387bebecb03e2f5c55b733ca8d2c7ba3e010f5aafd937014d",
+  "package_consistency_hash": "cfacf9280d50fa1335b1091f77fe44732b672e64bbe30bee398085139333fcd4",
+  "reconciliation_overlay_hash": "a8dcd27e0cfb56bcba21f6f50f919cc83ea336df5e07d0ac87a46f133e323022",
+  "remote_source_sha": "a4dfdbd9fd8330c3ff9a908bb0d9278756c8c0fa",
+  "reproducibility_audit_hash": "996311c4fe899bb2eb6297f98ed67044b363122aa6c70b92413779b005270546",
+  "seal_enforcement_hash": "7f7f3b8c0b71bbc8ca76ee990f74901810fcd47c4643ad74f4b6f1ef872f3c43",
+  "source_branch": "research/rigorous-intraday-smc-validation",
+  "static_delta_hash": "d4bec70ab253f60c2d328ef29ccf5c9cee14f15d40b59dc8b0350ccbe070abba",
+  "status": "READY_TO_RESUME_GATE_C7_PR_CREATION",
+  "target_branch": "origin/main",
+  "target_sha": "8742c932382ce0eef96655ae972a63d4da4d87e2"
+}

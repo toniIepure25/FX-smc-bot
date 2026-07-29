@@ -1,0 +1,9 @@
+{
+  "holdout_controls_constructed": false,
+  "holdout_event_counts_computed": false,
+  "holdout_events_detected": false,
+  "holdout_market_data_loaded": false,
+  "holdout_outcomes_computed": false,
+  "holdout_results_reported": false,
+  "status": "PASS"
+}

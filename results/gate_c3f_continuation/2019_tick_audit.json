@@ -1,0 +1,14 @@
+{
+  "gate": "C.3F-R",
+  "preregistered_tolerances": {
+    "eurusd_gbpusd_quantization": "5-decimal raw points",
+    "expected_bars": "exact after common filtering",
+    "high_low": "exact by default",
+    "open_close": "exact after price quantization",
+    "timestamps": "exact",
+    "usdjpy_quantization": "3-decimal raw points"
+  },
+  "reason": "Tick audit requires complete M1 dataset for 2019 before execution",
+  "status": "DEFERRED_PENDING_2019_ACQUISITION",
+  "timestamp": "2026-07-14T15:10:00Z"
+}

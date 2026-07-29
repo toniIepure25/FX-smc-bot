@@ -1,0 +1,5 @@
+{
+  "event_counts_computed": false,
+  "reason": "Validation data quality failed before detector, matching, outcome, inference, or placebo execution.",
+  "status": "NOT_RUN_DATA_QUALITY_FAILED"
+}

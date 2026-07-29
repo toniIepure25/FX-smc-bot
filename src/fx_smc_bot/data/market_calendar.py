@@ -9,11 +9,10 @@ no-trade-window enforcement.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, time, timedelta, timezone
 from enum import Enum
-from typing import Sequence
-
 
 # All internal logic is UTC.  ET offsets are baked in as constants.
 _ET_OFFSET_HOURS = -5  # EST; DST not modeled — conservative
@@ -154,7 +153,10 @@ def is_high_impact_window(
             week = (timestamp.day - 1) // 7 + 1
             if week != ev.week_of_month:
                 continue
-        event_time = timestamp.replace(hour=ev.hour_utc, minute=ev.minute_utc, second=0, microsecond=0)
+        event_time = timestamp.replace(
+            hour=ev.hour_utc, minute=ev.minute_utc,
+            second=0, microsecond=0,
+        )
         window_start = event_time - timedelta(minutes=ev.buffer_minutes_before)
         window_end = event_time + timedelta(minutes=ev.buffer_minutes_after)
         if window_start <= timestamp <= window_end:
@@ -169,3 +171,59 @@ def expected_bar_interval(timeframe_minutes: int) -> timedelta:
 
 def _is_holiday(timestamp: datetime) -> bool:
     return (timestamp.month, timestamp.day) in ANNUAL_HOLIDAYS
+
+
+def classify_gap(gap_start: datetime, gap_end: datetime) -> str:
+    """Classify a data gap as weekend, holiday, or unexplained."""
+    if gap_start.weekday() >= 5 or gap_end.weekday() >= 5:
+        return "weekend"
+    if _is_holiday(gap_start):
+        return "holiday"
+    duration = gap_end - gap_start
+    if duration <= timedelta(minutes=5):
+        return "normal_micro_gap"
+    if duration <= timedelta(hours=1):
+        return "minor_gap"
+    return "unexplained_gap"
+
+
+def compute_session_coverage(
+    timestamps_ms: list[int],
+    start_date: str,
+    end_date: str,
+) -> dict:
+    """Compute coverage metrics separating weekends from session gaps."""
+    start = datetime.strptime(start_date, "%Y-%m-%d").replace(
+        tzinfo=timezone.utc,
+    )
+    end = datetime.strptime(end_date, "%Y-%m-%d").replace(
+        tzinfo=timezone.utc,
+    )
+
+    total_minutes = int((end - start).total_seconds() / 60)
+    expected_session_minutes = 0
+    dt = start
+    while dt < end:
+        if is_market_open(dt):
+            expected_session_minutes += 1
+        dt += timedelta(minutes=1)
+
+    observed_minutes = len(set(timestamps_ms))
+    raw_missing = total_minutes - observed_minutes
+    raw_pct = raw_missing / total_minutes * 100 if total_minutes else 0
+
+    session_missing = expected_session_minutes - min(
+        observed_minutes, expected_session_minutes,
+    )
+    session_pct = (
+        session_missing / expected_session_minutes * 100
+        if expected_session_minutes else 0
+    )
+
+    return {
+        "total_calendar_minutes": total_minutes,
+        "expected_fx_session_minutes": expected_session_minutes,
+        "observed_minutes": observed_minutes,
+        "raw_calendar_missing_pct": round(raw_pct, 4),
+        "expected_fx_session_missing_pct": round(session_pct, 4),
+    }

@@ -1,0 +1,54 @@
+{
+  "created_at_utc": "2026-07-26T10:26:57.200868+00:00",
+  "defects": [
+    {
+      "affected_paths": [
+        "docs/research/GATE_C3_SPLIT_AND_HOLDOUT_POLICY.md",
+        "docs/research/PRE_HOLDOUT_DECISION_MEMO.md",
+        "docs/research/PRE_HOLDOUT_IMPLEMENTATION_AUDIT.md",
+        "docs/research/PRE_HOLDOUT_VALIDATION_REPORT.md",
+        "results/gate_c3fcrsf/holdout_integrity.json",
+        "results/gate_c3fta/holdout_integrity.json",
+        "results/gate_c3ftpr/holdout_integrity.json",
+        "results/gate_c3fv/holdout_integrity.json",
+        "results/gate_c5/holdout_integrity.json",
+        "results/gate_c5a/holdout_integrity.json",
+        "results/gate_c5adqr/holdout_integrity.json",
+        "results/gate_c5ar/holdout_integrity.json",
+        "results/gate_c5arir/holdout_integrity.json",
+        "results/gate_c5b/holdout_integrity.json",
+        "results/gate_c5br/holdout_integrity.json",
+        "results/gate_c6/holdout_integrity.json",
+        "results/gate_c6r/holdout_integrity.json",
+        "results/gate_c6rci/holdout_integrity.json",
+        "results/pre_holdout/data_quality/data_quality.json",
+        "results/pre_holdout/research_freeze.json",
+        "src/fx_smc_bot/data/holdout_access.py"
+      ],
+      "defect": "PATH_TOKEN_FALSE_POSITIVE",
+      "expected_output": "safe/control artifacts classified separately from prohibited payload paths",
+      "function": "build_prohibited_data_audit",
+      "implementation_path": "scripts/run_gate_c6rci.py",
+      "input": "changed_paths containing policy, metadata and source-code paths with token holdout",
+      "line_range": "247-264",
+      "observed_output": "21 safe/control paths placed in prohibited_paths; status FAIL",
+      "root_cause": "literal substring token matching included holdout without content-role classification",
+      "scientific_or_data_safety_affected": "No scientific payload changed; audit status was false failure but safety policy remains enforceable."
+    },
+    {
+      "affected_paths": [
+        "results/gate_c6rci/quality_gate_final.json"
+      ],
+      "defect": "STATUS_DERIVATION_DEFECT",
+      "expected_output": "C7/PDA must require corrected overlay plus preserved historical FAIL",
+      "function": "build_quality_gate_final",
+      "implementation_path": "scripts/run_gate_c6rci.py",
+      "input": "prohibited_data_audit status FAIL",
+      "line_range": "300-319",
+      "observed_output": "quality_gate_final stayed PASS because prohibited-data audit was not a quality check",
+      "root_cause": "quality gate omitted prohibited_data_audit status",
+      "scientific_or_data_safety_affected": "No scientific result affected; integration handoff needed reconciliation."
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "fx-smc-dukascopy-acquisition",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned dukascopy-node wrapper for FX-SMC-Bot research data acquisition",
+  "type": "module",
+  "scripts": {
+    "acquire": "node acquire.mjs",
+    "test": "node --test test_acquire.mjs"
+  },
+  "dependencies": {
+    "dukascopy-node": "1.46.4"
+  }
+}

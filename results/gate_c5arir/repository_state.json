@@ -1,0 +1,132 @@
+{
+  "actual_branch": "research/rigorous-intraday-smc-validation",
+  "actual_head": "1f59fb21258c211429846bff44065c80ef0a7e59",
+  "branch_ok": true,
+  "expected_branch": "research/rigorous-intraday-smc-validation",
+  "expected_starting_sha": "1f59fb21258c211429846bff44065c80ef0a7e59",
+  "git_diff": {
+    "command": "git diff",
+    "name": "diff",
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "git_diff_check": {
+    "command": "git diff --check",
+    "name": "diff_check",
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "git_log_oneline_decorate_30": [
+    "1f59fb2 (HEAD -> research/rigorous-intraday-smc-validation) research: block C5-B on artifact integrity",
+    "abd879c (origin/research/rigorous-intraday-smc-validation) research: reconcile C5-A-R artifact integrity",
+    "4cd388b research: execute frozen USDJPY C5-A validation",
+    "a8b8d4b research(data): certify USDJPY validation dataset",
+    "9845c75 data: freeze C5-A Dukascopy provider fallback protocol",
+    "edd2de7 fix(data): prevent false zero-row acquisition certification",
+    "92e992d docs: issue Gate C5-A final decision",
+    "c11bd40 research: lock post-validation hypothesis lineage",
+    "59084c4 feat(data): acquire and certify USDJPY validation dataset",
+    "78177a7 research: record C5-A pre-unblinding freeze",
+    "0d054c2 research: freeze amended C5 validation execution protocol",
+    "bd6d4d6 research: prospectively amend C5 validation handoff",
+    "771ac92 research: block C5 validation on handoff ambiguity",
+    "e39faa5 docs: issue Gate C4-B final decision",
+    "624561f research: freeze new Acceptance hypothesis lineage",
+    "8e89f82 research: execute Acceptance mechanism decomposition",
+    "865ba3b Add Gate C4-B mechanism decomposition flow",
+    "d420c3a research: preregister Acceptance mechanism decomposition",
+    "d9a9e51 docs: issue Gate C4-A final decision",
+    "5bfba55 research: adjudicate USDJPY Acceptance signal",
+    "deee74a research: audit C4 preregistration compliance",
+    "467e44f test(research): reproduce Gate C4 family decision logic",
+    "df5d446 research: complete USDJPY gate C4 event-alpha analysis",
+    "2089ff1 research: preregister USDJPY development event-alpha study",
+    "8fb676d research(data): certify USDJPY-only CRSF development freeze",
+    "f988510 fix(research): allow certified pair-scoped development freeze",
+    "10ccb2b research(data): certify and freeze C3FTPR development dataset",
+    "6c8312b research(data): execute frozen development tick audit",
+    "9a66239 feat(data): implement deterministic tick-to-M1 audit",
+    "6aa275e research(data): freeze C3FTPR tick-to-M1 protocol"
+  ],
+  "git_status": {
+    "command": "git status",
+    "name": "status",
+    "returncode": 0,
+    "stderr": "warning: unable to access 'C:\\Users\\ComputaCenter/.config/git/ignore': Permission denied\nwarning: unable to access 'C:\\Users\\ComputaCenter/.config/git/ignore': Permission denied\n",
+    "stdout": "On branch research/rigorous-intraday-smc-validation\nYour branch is ahead of 'origin/research/rigorous-intraday-smc-validation' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\t.pytest_tmp_gate_c5arir/\n\tdocs/research/GATE_C5ARIR_ARTIFACT_HISTORY.md\n\tdocs/research/GATE_C5ARIR_C5B_RESUMPTION_HANDOFF.md\n\tdocs/research/GATE_C5ARIR_FINAL_DECISION_MEMO.md\n\tdocs/research/GATE_C5ARIR_LOCK_GENERATION_AUDIT.md\n\tdocs/research/GATE_C5ARIR_RECONCILIATION_REPORT.md\n\tdocs/research/GATE_C5ARIR_SEMANTIC_DIFF.md\n\tscripts/run_gate_c5arir.py\n\tsrc/fx_smc_bot/research/gate_c5arir.py\n\ttests/test_gate_c5arir/\n\nnothing added to commit but untracked files present (use \"git add\" to track)\n"
+  },
+  "head_ok": true,
+  "phase0_paths_read": {
+    "docs/research/GATE_C5AR_CRITERION_ADJUDICATION.md": {
+      "exists": true,
+      "raw_file_sha256": "6694d64dbb06c1649e68c5a01c189643fdfeded8ed64d5c2c14910c18196ba08"
+    },
+    "docs/research/GATE_C5AR_FINAL_DECISION_MEMO.md": {
+      "exists": true,
+      "raw_file_sha256": "277842b231fd64a5209329472c9388eb8a7b2179fac14eef2b43b17519f7fa67"
+    },
+    "docs/research/GATE_C5AR_VALIDATION_RESULTS.md": {
+      "exists": true,
+      "raw_file_sha256": "66c051f950dbf94bb11d6832ff4558c942c6c2b7a7466185db7cf021bbf82982"
+    },
+    "docs/research/GATE_C5B_FINAL_DECISION_MEMO.md": {
+      "exists": true,
+      "raw_file_sha256": "9d3bfa598f332fb40e3dac4670434b73990f4a10ebdb4441b571d615f2364707"
+    },
+    "results/gate_c5ar/control_matching_audit.json": {
+      "exists": true,
+      "raw_file_sha256": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd"
+    },
+    "results/gate_c5ar/holdout_integrity.json": {
+      "exists": true,
+      "raw_file_sha256": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3"
+    },
+    "results/gate_c5ar/post_validation_lock.json": {
+      "exists": true,
+      "raw_file_sha256": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7"
+    },
+    "results/gate_c5ar/quality_gate_final.json": {
+      "exists": true,
+      "raw_file_sha256": "2d5c4ddb5cc7474683c3fcb3e7d83478d22e56362dbad0c64dcbf64fc03f18a5"
+    },
+    "results/gate_c5ar/validation_criterion_adjudication.json": {
+      "exists": true,
+      "raw_file_sha256": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9"
+    },
+    "results/gate_c5ar/validation_event_manifest.json": {
+      "exists": true,
+      "raw_file_sha256": "be45c3a85daf00bfaa053f44dabc84c7252f4b07d7defdbc6bf349c11cab7bf8"
+    },
+    "results/gate_c5ar/validation_inference.json": {
+      "exists": true,
+      "raw_file_sha256": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2"
+    },
+    "results/gate_c5ar/validation_overlap_audit.json": {
+      "exists": true,
+      "raw_file_sha256": "c79c8e3c520d450c7ce9fff495ab0362f197cfab810083ae78d51155bb70f4f0"
+    },
+    "results/gate_c5ar/validation_placebo.json": {
+      "exists": true,
+      "raw_file_sha256": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a"
+    },
+    "results/gate_c5ar/validation_primary_estimand.json": {
+      "exists": true,
+      "raw_file_sha256": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d"
+    },
+    "results/gate_c5b/artifact_integrity.json": {
+      "exists": true,
+      "raw_file_sha256": "f1f163a0b86456547b3dcd06d67d9dce83a19ca2308cd8a19a1be48b281f08b5"
+    },
+    "results/gate_c5b/holdout_integrity.json": {
+      "exists": true,
+      "raw_file_sha256": "cf2b452899932f1b65d2e5b5b0197a2ea54ff60b9000be901c2df8f9993f7c6d"
+    }
+  },
+  "required_commits_exist": {
+    "1f59fb2": true,
+    "4cd388b": true,
+    "abd879c": true
+  }
+}

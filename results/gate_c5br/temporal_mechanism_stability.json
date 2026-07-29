@@ -1,0 +1,129 @@
+{
+  "by_year": {
+    "development": {
+      "2015": {
+        "absolute_control_executable_markout": -33.67161016949152,
+        "absolute_event_executable_markout": -3.512711864406602,
+        "bootstrap_ci": [
+          14.409950396825401,
+          46.60755894060008
+        ],
+        "eligible_events": 472,
+        "event_minus_control_differential": 30.15889830508492,
+        "matched_events": 472
+      },
+      "2016": {
+        "absolute_control_executable_markout": -11.903157894737193,
+        "absolute_event_executable_markout": 10.042105263157943,
+        "bootstrap_ci": [
+          -3.0090742993007713,
+          47.919733848953975
+        ],
+        "eligible_events": 475,
+        "event_minus_control_differential": 21.945263157895138,
+        "matched_events": 475
+      },
+      "2017": {
+        "absolute_control_executable_markout": -15.704225352112516,
+        "absolute_event_executable_markout": -12.372233400402674,
+        "bootstrap_ci": [
+          -13.688910209551974,
+          20.19096178343903
+        ],
+        "eligible_events": 497,
+        "event_minus_control_differential": 3.331991951709846,
+        "matched_events": 497
+      },
+      "2018": {
+        "absolute_control_executable_markout": -14.542592592592397,
+        "absolute_event_executable_markout": -8.214814814815197,
+        "bootstrap_ci": [
+          -4.492523302424957,
+          17.016792314851166
+        ],
+        "eligible_events": 540,
+        "event_minus_control_differential": 6.327777777777202,
+        "matched_events": 540
+      },
+      "2019": {
+        "absolute_control_executable_markout": -11.640350877193121,
+        "absolute_event_executable_markout": -3.24342105263192,
+        "bootstrap_ci": [
+          -3.504753521126942,
+          19.494626340130573
+        ],
+        "eligible_events": 456,
+        "event_minus_control_differential": 8.396929824561203,
+        "matched_events": 456
+      }
+    },
+    "validation": {
+      "2020": {
+        "absolute_control_executable_markout": -25.339195979899877,
+        "absolute_event_executable_markout": 12.979899497487537,
+        "bootstrap_ci": [
+          17.90121291098714,
+          58.77744542259522
+        ],
+        "eligible_events": 398,
+        "event_minus_control_differential": 38.31909547738741,
+        "matched_events": 398
+      },
+      "2021": {
+        "absolute_control_executable_markout": -13.368811881187654,
+        "absolute_event_executable_markout": 2.935643564356629,
+        "bootstrap_ci": [
+          4.694096656406014,
+          29.578429729323833
+        ],
+        "eligible_events": 404,
+        "event_minus_control_differential": 16.30445544554428,
+        "matched_events": 404
+      },
+      "2022": {
+        "absolute_control_executable_markout": -9.548717948717599,
+        "absolute_event_executable_markout": 18.36410256410265,
+        "bootstrap_ci": [
+          -1.6567207366227235,
+          58.58885648250037
+        ],
+        "eligible_events": 390,
+        "event_minus_control_differential": 27.912820512820243,
+        "matched_events": 390
+      }
+    }
+  },
+  "leave_one_validation_year_out": {
+    "2020": {
+      "absolute_event_markout": 10.513853904282257,
+      "absolute_positive": true,
+      "differential": 22.006297229218873,
+      "differential_positive": true,
+      "excluded_year": 2020
+    },
+    "2021": {
+      "absolute_event_markout": 15.644670050761519,
+      "absolute_positive": true,
+      "differential": 33.16878172588843,
+      "differential_positive": true,
+      "excluded_year": 2021
+    },
+    "2022": {
+      "absolute_event_markout": 7.920199501247028,
+      "absolute_positive": true,
+      "differential": 27.229426433915307,
+      "differential_positive": true,
+      "excluded_year": 2022
+    }
+  },
+  "prospective_assessment": {
+    "loo_absolute_positive": true,
+    "loo_differential_positive": true,
+    "max_validation_year_abs_contribution": 0.5299689211188363,
+    "no_validation_year_over_60pct": true,
+    "relative_positive_2020_2021_2022": true,
+    "relative_positive_most_development_years": true,
+    "validation_absolute_positive_at_least_two_years": true
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,12 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "c4a_final_commit": "d9a9e513e6384a625b2c26a49e1a1d6e4e647a90",
+  "expected_starting_sha": "d9a9e513e6384a625b2c26a49e1a1d6e4e647a90",
+  "head_sha": "865ba3bbb136b2ff55583c543dced7f82621ff95",
+  "implementation_commit_at_execution": "865ba3bbb136b2ff55583c543dced7f82621ff95",
+  "mechanism_preregistration_commit": "d420c3a",
+  "mechanism_preregistration_precedes_diagnostics": true,
+  "recorded_at_utc": "2026-07-23T17:30:05.933151+00:00",
+  "working_tree_clean": false,
+  "working_tree_short_status": "M results/gate_c4b/artifact_integrity.json\n M results/gate_c4b/repository_state.json\n M src/fx_smc_bot/research/gate_c4b_mechanism.py\n?? docs/research/GATE_C4B_ABSOLUTE_VS_RELATIVE_EFFECT.md\n?? docs/research/GATE_C4B_CONFIRMATION_LATENCY.md\n?? docs/research/GATE_C4B_FINAL_DECISION_MEMO.md\n?? docs/research/GATE_C4B_NEW_HYPOTHESIS_SPECIFICATION.md\n?? docs/research/GATE_C4B_RELATIVE_RESILIENCE.md\n?? docs/research/GATE_C4B_UNTOUCHED_VALIDATION_HANDOFF.md"
+}

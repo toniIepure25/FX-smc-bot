@@ -1,0 +1,63 @@
+{
+  "canonical_parquet_written": false,
+  "checks": {
+    "all_partitions_complete": true,
+    "bid_ask_sides_present": true,
+    "expected_partition_count_72": true,
+    "holdout_not_acquired": true,
+    "no_zero_row_partitions": false,
+    "usdjpy_only": true,
+    "years_2020_2022_only": true
+  },
+  "event_detection_allowed": false,
+  "failure_reason": "Zero-row validation partitions are not accepted as valid.",
+  "final_decision": "BLOCKED_BY_VALIDATION_DATA_QUALITY",
+  "status": "FAIL",
+  "structural_certification_completed": false,
+  "zero_row_partitions": [
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=ask\\year=2020\\month=01\\manifest.json",
+      "month": 1,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "ask",
+      "status": "complete",
+      "year": 2020
+    },
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=ask\\year=2020\\month=02\\manifest.json",
+      "month": 2,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "ask",
+      "status": "complete",
+      "year": 2020
+    },
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=bid\\year=2020\\month=01\\manifest.json",
+      "month": 1,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "bid",
+      "status": "complete",
+      "year": 2020
+    },
+    {
+      "checksum": "4f53cda18c2baa0c",
+      "data_file_size": 2,
+      "manifest_path": "data\\raw\\gate_c5a\\dukascopy-node\\USDJPY\\price=bid\\year=2020\\month=02\\manifest.json",
+      "month": 2,
+      "pair": "USDJPY",
+      "rows": 0,
+      "side": "bid",
+      "status": "complete",
+      "year": 2020
+    }
+  ]
+}

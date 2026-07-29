@@ -1,0 +1,65 @@
+{
+  "seed": 42,
+  "bars": 500,
+  "pair": "EURUSD",
+  "config_hash": "1ebb58f2772f",
+  "funnels": {
+    "liquidity_sweep_mss_fvg_reversal_london": {
+      "bars_processed": 470,
+      "intents_generated": 0,
+      "orders_accepted": 0,
+      "orders_filled": 0,
+      "orders_cancelled": 0,
+      "orders_expired": 0,
+      "positions_closed": 0,
+      "sl_exits": 0,
+      "tp_exits": 0
+    },
+    "liquidity_acceptance_fvg_continuation_london": {
+      "bars_processed": 470,
+      "intents_generated": 0,
+      "orders_accepted": 0,
+      "orders_filled": 0,
+      "orders_cancelled": 0,
+      "orders_expired": 0,
+      "positions_closed": 0,
+      "sl_exits": 0,
+      "tp_exits": 0
+    },
+    "opening_range_displacement_fvg_retest_london": {
+      "bars_processed": 470,
+      "intents_generated": 0,
+      "orders_accepted": 0,
+      "orders_filled": 0,
+      "orders_cancelled": 0,
+      "orders_expired": 0,
+      "positions_closed": 0,
+      "sl_exits": 0,
+      "tp_exits": 0
+    },
+    "opening_range_displacement_fvg_retest_new_york": {
+      "bars_processed": 470,
+      "intents_generated": 0,
+      "orders_accepted": 0,
+      "orders_filled": 0,
+      "orders_cancelled": 0,
+      "orders_expired": 0,
+      "positions_closed": 0,
+      "sl_exits": 0,
+      "tp_exits": 0
+    }
+  },
+  "reconciliation": {
+    "filled_with_matching_trade": 0,
+    "closed_with_matching_close": 0,
+    "expired_without_fill": 0,
+    "violations": []
+  },
+  "trade_count": 0,
+  "final_equity": 100000.0,
+  "determinism_check": {
+    "run1_hash": "7301ebb9f4434a68",
+    "run2_hash": "7301ebb9f4434a68",
+    "deterministic": true
+  }
+}

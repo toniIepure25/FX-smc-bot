@@ -1,0 +1,139 @@
+{
+  "checks": {
+    "all_commits_present": true,
+    "all_ordering_valid": false,
+    "all_reconciliation_commits_preserved": true,
+    "all_stop_commits_preserved": true,
+    "c6_seal_precedes_c6_final_decision": true
+  },
+  "created_at_utc": "2026-07-25T21:05:39.132855+00:00",
+  "records": [
+    {
+      "chronological_position": 1,
+      "commit_sha": "1eae93f",
+      "commit_subject": "C3 validation-data gates",
+      "expected_predecessor": null,
+      "ordering_valid": true,
+      "parent_sha": "abb583a8c646c8cdad7537d8897c3508b809d2b2",
+      "present": true
+    },
+    {
+      "chronological_position": 2,
+      "commit_sha": "2089ff1",
+      "commit_subject": "C4 preregistration",
+      "expected_predecessor": "1eae93f",
+      "ordering_valid": true,
+      "parent_sha": "8fb676d0f452a29bfbb3414bef50f0cac30a686c",
+      "present": true
+    },
+    {
+      "chronological_position": 3,
+      "commit_sha": "df5d446",
+      "commit_subject": "C4 development execution",
+      "expected_predecessor": "2089ff1",
+      "ordering_valid": true,
+      "parent_sha": "2089ff16f8e7039cb5b07b858cdfd3880cfb1fb9",
+      "present": true
+    },
+    {
+      "chronological_position": 4,
+      "commit_sha": "d9a9e51",
+      "commit_subject": "C4-A decision audit",
+      "expected_predecessor": "df5d446",
+      "ordering_valid": true,
+      "parent_sha": "5bfba55abf465b2b269cff83f1789eaf3bb800d0",
+      "present": true
+    },
+    {
+      "chronological_position": 5,
+      "commit_sha": "e39faa5",
+      "commit_subject": "C4-B mechanism redesign",
+      "expected_predecessor": "d9a9e51",
+      "ordering_valid": true,
+      "parent_sha": "624561f6f818431481ea55ed9946a965b4d3f555",
+      "present": true
+    },
+    {
+      "chronological_position": 6,
+      "commit_sha": "771ac92",
+      "commit_subject": "C5 ambiguity stop",
+      "expected_predecessor": "e39faa5",
+      "ordering_valid": true,
+      "parent_sha": "e39faa5c9df11dc4f44cabd9f6b2b86d710415b0",
+      "present": true
+    },
+    {
+      "chronological_position": 7,
+      "commit_sha": "bd6d4d6",
+      "commit_subject": "C5-A amendment",
+      "expected_predecessor": "771ac92",
+      "ordering_valid": true,
+      "parent_sha": "771ac92773ba9bf5c67afe71b5d3788c73b08304",
+      "present": true
+    },
+    {
+      "chronological_position": 8,
+      "commit_sha": "edd2de7",
+      "commit_subject": "C5-A validation-data block",
+      "expected_predecessor": "bd6d4d6",
+      "ordering_valid": true,
+      "parent_sha": "92e992d7d3a5c67c12ae0f07612132da654c6221",
+      "present": true
+    },
+    {
+      "chronological_position": 9,
+      "commit_sha": "a8b8d4b",
+      "commit_subject": "C5-A-DQR certification",
+      "expected_predecessor": "edd2de7",
+      "ordering_valid": true,
+      "parent_sha": "9845c75daf612010f5ed1a40d3e4f18f87bd0084",
+      "present": true
+    },
+    {
+      "chronological_position": 10,
+      "commit_sha": "92e992d",
+      "commit_subject": "C5-A-R validation",
+      "expected_predecessor": "a8b8d4b",
+      "ordering_valid": false,
+      "parent_sha": "c11bd40de66cb4edd75dae387ff8a3f40271bebb",
+      "present": true
+    },
+    {
+      "chronological_position": 11,
+      "commit_sha": "1b71ea4",
+      "commit_subject": "C5-A-R-IR reconciliation",
+      "expected_predecessor": "92e992d",
+      "ordering_valid": true,
+      "parent_sha": "fc7a704cf630c1f3e44643d399136424556d1e2e",
+      "present": true
+    },
+    {
+      "chronological_position": 12,
+      "commit_sha": "c3a872d",
+      "commit_subject": "C5-B-R research stop",
+      "expected_predecessor": "1b71ea4",
+      "ordering_valid": true,
+      "parent_sha": "08fcff227d8385577d3c5d70c38026cb2359ea3e",
+      "present": true
+    },
+    {
+      "chronological_position": 13,
+      "commit_sha": "4e7578e",
+      "commit_subject": "C6 closure and seal",
+      "expected_predecessor": "c3a872d",
+      "ordering_valid": true,
+      "parent_sha": "00acce466df3757c01bcd59d9a0c4e9f659db7ab",
+      "present": true
+    },
+    {
+      "chronological_position": 14,
+      "commit_sha": "6c0586f",
+      "commit_subject": "C6 final decision",
+      "expected_predecessor": "4e7578e",
+      "ordering_valid": true,
+      "parent_sha": "4e7578e25539872f39426e20c0c8668245d1e684",
+      "present": true
+    }
+  ],
+  "status": "FAIL"
+}

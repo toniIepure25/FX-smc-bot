@@ -1,0 +1,39 @@
+{
+  "matrix": [
+    {
+      "cache_behavior": "optional per-outDir .cache",
+      "flat_bar_behavior": "ignoreFlats=true",
+      "instrument_mapping": "usdjpy -> USDJPY URL path",
+      "no_tick_minute_behavior": "omitted after ignoreFlats",
+      "ohlc_construction": "BI5 minute candle open/high/low/close",
+      "output_schema": "timestamp/open/high/low/close/volume",
+      "precision": "USDJPY decimalFactor=1000",
+      "price_side_support": "bid and ask",
+      "provider": "pinned dukascopy-node",
+      "retry_behavior": "retryCount, but HTTP status hidden on failure",
+      "source": "Dukascopy datafeed BI5",
+      "timestamp_semantics": "UTC day start + BI5 seconds offset"
+    },
+    {
+      "cache_behavior": "explicit raw.bi5 files under DQR native cache",
+      "flat_bar_behavior": "ignoreFlats=true",
+      "instrument_mapping": "USDJPY URL path",
+      "no_tick_minute_behavior": "omitted after ignoreFlats",
+      "ohlc_construction": "BI5 minute candle open/high/low/close",
+      "output_schema": "timestamp/open/high/low/close/volume",
+      "precision": "USDJPY integer scale=1000",
+      "price_side_support": "bid and ask",
+      "provider": "native-bi5-browser-ua",
+      "retry_behavior": "bounded retries with surfaced HTTP status/body",
+      "source": "Dukascopy datafeed BI5",
+      "timestamp_semantics": "UTC day start + BI5 seconds offset"
+    }
+  ],
+  "preferred_fallback_hierarchy": [
+    "repair pinned dukascopy-node transport without changing semantics",
+    "use existing native Python Dukascopy implementation",
+    "minimal direct Dukascopy BI5 transport using existing semantics"
+  ],
+  "selected_fallback_if_needed": "native-bi5-browser-ua",
+  "status": "COMPLETE"
+}

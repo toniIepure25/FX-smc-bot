@@ -1,0 +1,173 @@
+{
+  "comparisons": [
+    {
+      "absolute_difference": 0.0,
+      "expected": -3.66885245901655,
+      "match": true,
+      "name": "development_event_markout",
+      "observed": -3.66885245901655,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -17.33688524590164,
+      "match": true,
+      "name": "development_control_markout",
+      "observed": -17.33688524590164,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 13.668032786885094,
+      "match": true,
+      "name": "development_differential",
+      "observed": 13.668032786885094,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.006496751624187906,
+      "match": true,
+      "name": "development_permutation_p",
+      "observed": 0.006496751624187906,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 6.277491118674749,
+      "match": true,
+      "name": "development_ci_lower",
+      "observed": 6.277491118674749,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 21.844720075312043,
+      "match": true,
+      "name": "development_ci_upper",
+      "observed": 21.844720075312043,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 11.33724832214778,
+      "match": true,
+      "name": "validation_event_markout",
+      "observed": 11.33724832214778,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -16.11577181208039,
+      "match": true,
+      "name": "validation_control_markout",
+      "observed": -16.11577181208039,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 27.453020134228165,
+      "match": true,
+      "name": "validation_differential",
+      "observed": 27.453020134228165,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.004497751124437781,
+      "match": true,
+      "name": "validation_relative_permutation_p",
+      "observed": 0.004497751124437781,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 14.784214406740844,
+      "match": true,
+      "name": "validation_relative_ci_lower",
+      "observed": 14.784214406740844,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 40.27386831699497,
+      "match": true,
+      "name": "validation_relative_ci_upper",
+      "observed": 40.27386831699497,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.12843578210894552,
+      "match": true,
+      "name": "validation_absolute_sign_flip_p",
+      "observed": 0.12843578210894552,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.7861459649301382,
+      "match": true,
+      "name": "validation_absolute_ci_lower",
+      "observed": 0.7861459649301382,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 12.26554243296961,
+      "match": true,
+      "name": "transport_standardized_validation_event",
+      "observed": 12.26554243296961,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 35.53894763198631,
+      "match": true,
+      "name": "transport_standardized_validation_differential",
+      "observed": 35.53894763198631,
+      "tolerance": 1e-09
+    },
+    {
+      "absolute_difference": 1.7763568394002505e-15,
+      "expected": 10.4,
+      "match": true,
+      "name": "transport_max_weight_median_multiple",
+      "observed": 10.399999999999999,
+      "tolerance": 1e-09
+    }
+  ],
+  "created_at_utc": "2026-07-25T13:38:34.686353+00:00",
+  "development": {
+    "ci95": [
+      6.277491118674749,
+      21.844720075312043
+    ],
+    "control_markout": -17.33688524590164,
+    "differential": 13.668032786885094,
+    "event_markout": -3.66885245901655,
+    "permutation_p": 0.006496751624187906
+  },
+  "status": "PASS",
+  "transport": {
+    "maximum_weight_median_multiple": 10.399999999999999,
+    "standardized_validation_differential": 35.53894763198631,
+    "standardized_validation_event": 12.26554243296961
+  },
+  "validation": {
+    "absolute_ci95": [
+      0.7861459649301382,
+      22.05861848144365
+    ],
+    "absolute_sign_flip_p": 0.12843578210894552,
+    "control_markout": -16.11577181208039,
+    "differential": 27.453020134228165,
+    "event_markout": 11.33724832214778,
+    "matched_events": 1192,
+    "relative_ci95": [
+      14.784214406740844,
+      40.27386831699497
+    ],
+    "relative_permutation_p": 0.004497751124437781
+  }
+}

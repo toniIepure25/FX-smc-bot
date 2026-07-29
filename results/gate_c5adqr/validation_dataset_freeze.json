@@ -1,0 +1,21 @@
+{
+  "canonical_quality_hash": "7f322d2c0e6f1c440b9824571d84beb04da6d45751aa061de7f3f99943f6e3e8",
+  "canonical_rebuild_manifest_hash": "4241a6bafbaff802572486f1f47c7b4d1b7de5d8dbe3e94e6005828ad6593c86",
+  "holdout_included": false,
+  "holdout_integrity": {
+    "holdout_controls_constructed": false,
+    "holdout_event_counts_computed": false,
+    "holdout_events_detected": false,
+    "holdout_market_data_loaded": false,
+    "holdout_outcomes_computed": false,
+    "holdout_results_reported": false,
+    "status": "PASS"
+  },
+  "pair": "USDJPY",
+  "period": "2020-01-01 through 2022-12-31",
+  "post_unblinding_integrity_hash": "d9991f115f7f713a5c1eb5c1cbf9f7ae5fe42f7e2fc1b6a373a7684678185a91",
+  "scope": "VALIDATION_ONLY",
+  "status": "READY",
+  "validation_data_quality_hash": "a359d450f4d944cf3758475b79dd57f19385ffa13832e7de1e82259e87362271",
+  "validation_tick_audit_hash": "8664e294de4c4438d6b75fbc4546cb1d0893093a79e038c1cbbea584f71b6432"
+}

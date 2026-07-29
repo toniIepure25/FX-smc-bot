@@ -1,0 +1,11 @@
+{
+  "artifact": "results/gate_c5ar/validation_criterion_adjudication.json",
+  "c5b_recorded_current_hash": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+  "c5b_recorded_current_hash_mode": "raw_file_sha256",
+  "current_canonical_json_sha256": "82533389578b20e026b9e7cf5bf26019275536329009eede5d83212fae167e7a",
+  "current_crlf_normalized_sha256": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+  "current_lf_normalized_sha256": "9e3920b607de3d3fb1e4a2a0d316d28d65941e8920b27737b3fcea2c187b5dd4",
+  "current_raw_file_sha256": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+  "expected_hash_from_post_validation_lock": "45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724",
+  "match": false
+}

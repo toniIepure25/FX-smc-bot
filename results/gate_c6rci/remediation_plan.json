@@ -1,0 +1,206 @@
+{
+  "created_at_utc": "2026-07-25T22:05:47.101722+00:00",
+  "findings": [
+    {
+      "line": 7,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "sort imports without changing imported names",
+      "risk": "IMPORT_ORDER_ONLY",
+      "rule_code": "I001"
+    },
+    {
+      "line": 9,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 12,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 15,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 21,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 22,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 31,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 79,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 215,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 304,
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 48,
+      "path": "src/fx_smc_bot/research/overfitting.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "rename unused loop variable or remove unused enumerate output",
+      "risk": "STYLE_REWRITE",
+      "rule_code": "B007"
+    },
+    {
+      "line": 12,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 60,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 108,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 129,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "add strict=False to preserve truncating zip behavior",
+      "risk": "STYLE_REWRITE",
+      "rule_code": "B905"
+    },
+    {
+      "line": 142,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 200,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 203,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 205,
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    },
+    {
+      "line": 9,
+      "path": "src/fx_smc_bot/research/prop_simulation.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "sort imports without changing imported names",
+      "risk": "IMPORT_ORDER_ONLY",
+      "rule_code": "I001"
+    },
+    {
+      "line": 158,
+      "path": "src/fx_smc_bot/research/prop_simulation.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "rename unused loop variable or remove unused enumerate output",
+      "risk": "STYLE_REWRITE",
+      "rule_code": "B007"
+    },
+    {
+      "line": 11,
+      "path": "src/fx_smc_bot/research/statistical_inference.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 12,
+      "path": "src/fx_smc_bot/research/statistical_inference.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "remove unused typing import or move to collections.abc if still needed",
+      "risk": "TYPE_ONLY_IMPORT",
+      "rule_code": "UP035"
+    },
+    {
+      "line": 12,
+      "path": "src/fx_smc_bot/research/statistical_inference.py",
+      "policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "risk": "UNUSED_IMPORT",
+      "rule_code": "F401"
+    },
+    {
+      "line": 308,
+      "path": "src/fx_smc_bot/research/statistical_inference.py",
+      "policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "risk": "FORMAT_ONLY",
+      "rule_code": "E501"
+    }
+  ],
+  "status": "PASS"
+}

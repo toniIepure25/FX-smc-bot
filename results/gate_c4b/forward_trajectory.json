@@ -1,0 +1,60 @@
+{
+  "horizons": {
+    "120": {
+      "confidence_interval": [
+        6.798095384417963,
+        20.80758065249811
+      ],
+      "discovery_effect": 18.22368421052636,
+      "matched_control_differential_points": 13.754508196721174,
+      "mean_executable_markout_points": -3.66885245901655,
+      "mean_mid_return_points": 0.2961065573769135,
+      "replication_effect": 7.2751004016060214
+    },
+    "15": {
+      "confidence_interval": [
+        4.430299257277369,
+        11.136776290428507
+      ],
+      "discovery_effect": 6.379501385041662,
+      "matched_control_differential_points": 8.025000000000006,
+      "mean_executable_markout_points": -3.7967213114753324,
+      "mean_mid_return_points": 0.2161885245901425,
+      "replication_effect": 10.410642570280983
+    },
+    "240": {
+      "confidence_interval": [
+        0.3154611032294422,
+        23.414186525553063
+      ],
+      "discovery_effect": 15.186980609418338,
+      "matched_control_differential_points": 10.870901639344115,
+      "mean_executable_markout_points": -1.6516393442624304,
+      "mean_mid_return_points": 2.325409836065477,
+      "replication_effect": 4.613453815260601
+    },
+    "30": {
+      "confidence_interval": [
+        8.186616873804663,
+        16.70858339104465
+      ],
+      "discovery_effect": 13.042936288088743,
+      "matched_control_differential_points": 12.420901639344065,
+      "mean_executable_markout_points": -2.631557377049241,
+      "mean_mid_return_points": 1.346516393442582,
+      "replication_effect": 11.519076305220254
+    },
+    "60": {
+      "confidence_interval": [
+        9.69958449042487,
+        21.45733383381233
+      ],
+      "discovery_effect": 19.66204986149618,
+      "matched_control_differential_points": 15.882377049180358,
+      "mean_executable_markout_points": -3.1807377049180543,
+      "mean_mid_return_points": 0.7760245901637199,
+      "replication_effect": 10.402610441766658
+    }
+  },
+  "trajectory_classification": "gradual_relative_resilience"
+}

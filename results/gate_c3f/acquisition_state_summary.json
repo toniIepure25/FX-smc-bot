@@ -1,0 +1,41 @@
+{
+  "gate": "C.3F",
+  "generated_at": "2026-07-14T16:42:00Z",
+  "acquisition_system": {
+    "checkpoint_granularity": "day",
+    "failure_categories": 11,
+    "concurrent_workers": 2,
+    "max_workers": 4,
+    "rate_limit_seconds": 1.0,
+    "persistent_runner": true,
+    "repair_mode": true
+  },
+  "priority_1_event_smoke": {
+    "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+    "range": "2019-01-01 to 2019-12-31",
+    "total_partitions": 72,
+    "status": "acquisition_in_progress"
+  },
+  "priority_2_development": {
+    "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+    "range": "2015-01-01 to 2019-12-31",
+    "total_partitions": 360,
+    "status": "pending_priority_1_completion"
+  },
+  "priority_3_validation": {
+    "range": "2020-01-01 to 2022-12-31",
+    "status": "deferred"
+  },
+  "priority_4_holdout": {
+    "range": "2023-01-01 to 2025-12-31",
+    "status": "partial_june_2023_only",
+    "note": "structural inspection only, no alpha access"
+  },
+  "existing_data": {
+    "holdout_june_2023": {
+      "EURUSD": {"bid_rows": 31282, "ask_rows": 25732, "unpaired": 5550},
+      "GBPUSD": {"bid_rows": 24751, "ask_rows": 24219, "unpaired": 13840},
+      "USDJPY": {"bid_rows": 31375, "ask_rows": 31375, "unpaired": 0}
+    }
+  }
+}

@@ -1,0 +1,30 @@
+# Gate C.4-B Absolute Versus Relative Effect
+
+```json
+{
+  "identity_check": {
+    "absolute_difference": 0.0,
+    "event_control_difference": 13.754508196721174,
+    "mean_event_markout_minus_mean_control_markout": 13.754508196721174,
+    "passed": true
+  },
+  "interpretation": "B_EVENT_NEGATIVE_CONTROL_SUBSTANTIALLY_MORE_NEGATIVE",
+  "sample": "acceptance_primary_non_overlap",
+  "summary": {
+    "ci95_event_minus_control_points": [
+      6.798095384417963,
+      20.80758065249811
+    ],
+    "event_outperforms_control_probability": 0.5315573770491804,
+    "mean_control_executable_markout_points": -17.423360655737724,
+    "mean_control_mid_return_points": -13.478073770491832,
+    "mean_event_executable_markout_points": -3.66885245901655,
+    "mean_event_mid_return_points": 0.2961065573769135,
+    "mean_event_minus_control_points": 13.754508196721174,
+    "n": 2440,
+    "paired_permutation_p_value": 0.005497251374312844,
+    "positive_control_probability": 0.430327868852459,
+    "positive_event_probability": 0.46352459016393444
+  }
+}
+```

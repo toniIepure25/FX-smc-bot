@@ -1,0 +1,14 @@
+{
+  "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+  "analysis_code_hash": "074044a67c78c2708626679b72cf195b50e43e4916afed4c2988612bcaa94b55",
+  "git_sha": "78177a7db4989592d313e776286a9ef32d5d0d72",
+  "holdout_integrity_hash": "5375d77f8e7af5ad5838cfb27e3d451a0748e5503cd71fd43b48597a2de46a78",
+  "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+  "statement": "No validation-informed modification is permitted for this hypothesis lineage.",
+  "validation_access_ledger_hash": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216",
+  "validation_acquisition_manifest_hash": "c0f0a227ccbf707adfb45a1b0201c912f7aa221091baa1a9ffaf4023a041fefa",
+  "validation_data_quality_hash": "1466d7ae748be3442744a090135545b5553b8d70e69929c4471f378f0ebed415",
+  "validation_dataset_freeze_hash": "e2789334666047b1d7706cf39b8067756bc6eae7b49003b0cf7b053c3206e382",
+  "validation_decision": "BLOCKED_BY_VALIDATION_DATA_QUALITY"
+}

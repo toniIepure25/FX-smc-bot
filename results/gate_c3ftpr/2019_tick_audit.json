@@ -1,0 +1,873 @@
+{
+  "audits": [
+    {
+      "canonical_m1_bars": 7019,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7019,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7019,
+      "pair": "EURUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-03-18T00:00:00.202000+00:00",
+        "last_tick": "2019-03-22T20:59:35.742000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 621266
+      },
+      "request_parameters": {
+        "end": "2019-03-23T00:00:00+00:00",
+        "pair": "EURUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-03-18T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 1,
+        "session": "new_york",
+        "week_end": "2019-03-23",
+        "week_start": "2019-03-18",
+        "year": 2019
+      },
+      "window_index": 16,
+      "window_key": "2019-Q1-2019-03-18-2019-03-23-new_york"
+    },
+    {
+      "canonical_m1_bars": 5580,
+      "canonical_missing_partitions": [],
+      "classification": "FAIL_INCOMPLETE_WINDOW",
+      "comparison": {
+        "compared_bars": 5580,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [
+          "2019-03-20 00:00:00+00:00",
+          "2019-03-20 00:01:00+00:00",
+          "2019-03-20 00:02:00+00:00",
+          "2019-03-20 00:03:00+00:00",
+          "2019-03-20 00:04:00+00:00",
+          "2019-03-20 00:05:00+00:00",
+          "2019-03-20 00:06:00+00:00",
+          "2019-03-20 00:07:00+00:00",
+          "2019-03-20 00:08:00+00:00",
+          "2019-03-20 00:09:00+00:00",
+          "2019-03-20 00:10:00+00:00",
+          "2019-03-20 00:11:00+00:00",
+          "2019-03-20 00:12:00+00:00",
+          "2019-03-20 00:13:00+00:00",
+          "2019-03-20 00:14:00+00:00",
+          "2019-03-20 00:15:00+00:00",
+          "2019-03-20 00:16:00+00:00",
+          "2019-03-20 00:17:00+00:00",
+          "2019-03-20 00:18:00+00:00",
+          "2019-03-20 00:19:00+00:00",
+          "2019-03-20 00:20:00+00:00",
+          "2019-03-20 00:21:00+00:00",
+          "2019-03-20 00:22:00+00:00",
+          "2019-03-20 00:23:00+00:00",
+          "2019-03-20 00:24:00+00:00",
+          "2019-03-20 00:25:00+00:00",
+          "2019-03-20 00:26:00+00:00",
+          "2019-03-20 00:27:00+00:00",
+          "2019-03-20 00:28:00+00:00",
+          "2019-03-20 00:29:00+00:00",
+          "2019-03-20 00:30:00+00:00",
+          "2019-03-20 00:31:00+00:00",
+          "2019-03-20 00:32:00+00:00",
+          "2019-03-20 00:33:00+00:00",
+          "2019-03-20 00:34:00+00:00",
+          "2019-03-20 00:35:00+00:00",
+          "2019-03-20 00:36:00+00:00",
+          "2019-03-20 00:37:00+00:00",
+          "2019-03-20 00:38:00+00:00",
+          "2019-03-20 00:39:00+00:00",
+          "2019-03-20 00:40:00+00:00",
+          "2019-03-20 00:41:00+00:00",
+          "2019-03-20 00:42:00+00:00",
+          "2019-03-20 00:43:00+00:00",
+          "2019-03-20 00:44:00+00:00",
+          "2019-03-20 00:45:00+00:00",
+          "2019-03-20 00:46:00+00:00",
+          "2019-03-20 00:47:00+00:00",
+          "2019-03-20 00:48:00+00:00",
+          "2019-03-20 00:49:00+00:00"
+        ],
+        "missing_in_canonical_count": 1440,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": false
+      },
+      "generated_m1_bars": 7020,
+      "pair": "GBPUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-03-18T00:00:00.098000+00:00",
+        "last_tick": "2019-03-22T20:59:54.146000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 829304
+      },
+      "request_parameters": {
+        "end": "2019-03-23T00:00:00+00:00",
+        "pair": "GBPUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-03-18T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 1,
+        "session": "new_york",
+        "week_end": "2019-03-23",
+        "week_start": "2019-03-18",
+        "year": 2019
+      },
+      "window_index": 16,
+      "window_key": "2019-Q1-2019-03-18-2019-03-23-new_york"
+    },
+    {
+      "canonical_m1_bars": 7015,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7015,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7015,
+      "pair": "USDJPY",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-03-18T00:00:00.200000+00:00",
+        "last_tick": "2019-03-22T20:59:21.145000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 364671
+      },
+      "request_parameters": {
+        "end": "2019-03-23T00:00:00+00:00",
+        "pair": "USDJPY",
+        "provider": "dukascopy",
+        "scale": 1000,
+        "start": "2019-03-18T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 1,
+        "session": "new_york",
+        "week_end": "2019-03-23",
+        "week_start": "2019-03-18",
+        "year": 2019
+      },
+      "window_index": 16,
+      "window_key": "2019-Q1-2019-03-18-2019-03-23-new_york"
+    },
+    {
+      "canonical_m1_bars": 7018,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7018,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7018,
+      "pair": "EURUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-06-03T00:00:00.136000+00:00",
+        "last_tick": "2019-06-07T20:59:51.618000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 660168
+      },
+      "request_parameters": {
+        "end": "2019-06-08T00:00:00+00:00",
+        "pair": "EURUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-06-03T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 2,
+        "session": "new_york",
+        "week_end": "2019-06-08",
+        "week_start": "2019-06-03",
+        "year": 2019
+      },
+      "window_index": 17,
+      "window_key": "2019-Q2-2019-06-03-2019-06-08-new_york"
+    },
+    {
+      "canonical_m1_bars": 7017,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7017,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7017,
+      "pair": "GBPUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-06-03T00:00:00.991000+00:00",
+        "last_tick": "2019-06-07T20:59:34.477000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 488735
+      },
+      "request_parameters": {
+        "end": "2019-06-08T00:00:00+00:00",
+        "pair": "GBPUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-06-03T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 2,
+        "session": "new_york",
+        "week_end": "2019-06-08",
+        "week_start": "2019-06-03",
+        "year": 2019
+      },
+      "window_index": 17,
+      "window_key": "2019-Q2-2019-06-03-2019-06-08-new_york"
+    },
+    {
+      "canonical_m1_bars": 7012,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7012,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7012,
+      "pair": "USDJPY",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-06-03T00:00:00.081000+00:00",
+        "last_tick": "2019-06-07T20:59:56.128000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 476706
+      },
+      "request_parameters": {
+        "end": "2019-06-08T00:00:00+00:00",
+        "pair": "USDJPY",
+        "provider": "dukascopy",
+        "scale": 1000,
+        "start": "2019-06-03T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 2,
+        "session": "new_york",
+        "week_end": "2019-06-08",
+        "week_start": "2019-06-03",
+        "year": 2019
+      },
+      "window_index": 17,
+      "window_key": "2019-Q2-2019-06-03-2019-06-08-new_york"
+    },
+    {
+      "canonical_m1_bars": 7020,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7020,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7020,
+      "pair": "EURUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-07-15T00:00:00.140000+00:00",
+        "last_tick": "2019-07-19T20:59:56.445000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 479524
+      },
+      "request_parameters": {
+        "end": "2019-07-20T00:00:00+00:00",
+        "pair": "EURUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-07-15T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 3,
+        "session": "london",
+        "week_end": "2019-07-20",
+        "week_start": "2019-07-15",
+        "year": 2019
+      },
+      "window_index": 18,
+      "window_key": "2019-Q3-2019-07-15-2019-07-20-london"
+    },
+    {
+      "canonical_m1_bars": 7019,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7019,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7019,
+      "pair": "GBPUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-07-15T00:00:00.240000+00:00",
+        "last_tick": "2019-07-19T20:59:56.040000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 423344
+      },
+      "request_parameters": {
+        "end": "2019-07-20T00:00:00+00:00",
+        "pair": "GBPUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-07-15T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 3,
+        "session": "london",
+        "week_end": "2019-07-20",
+        "week_start": "2019-07-15",
+        "year": 2019
+      },
+      "window_index": 18,
+      "window_key": "2019-Q3-2019-07-15-2019-07-20-london"
+    },
+    {
+      "canonical_m1_bars": 7011,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7011,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7011,
+      "pair": "USDJPY",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 117,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 117,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 3,
+        "first_tick": "2019-07-15T00:00:03.133000+00:00",
+        "last_tick": "2019-07-19T20:59:56.132000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 327774
+      },
+      "request_parameters": {
+        "end": "2019-07-20T00:00:00+00:00",
+        "pair": "USDJPY",
+        "provider": "dukascopy",
+        "scale": 1000,
+        "start": "2019-07-15T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 3,
+        "session": "london",
+        "week_end": "2019-07-20",
+        "week_start": "2019-07-15",
+        "year": 2019
+      },
+      "window_index": 18,
+      "window_key": "2019-Q3-2019-07-15-2019-07-20-london"
+    },
+    {
+      "canonical_m1_bars": 7073,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7073,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7073,
+      "pair": "EURUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 118,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 118,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 2,
+        "first_tick": "2019-11-04T00:00:00.195000+00:00",
+        "last_tick": "2019-11-08T21:59:56.261000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 413029
+      },
+      "request_parameters": {
+        "end": "2019-11-09T00:00:00+00:00",
+        "pair": "EURUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-11-04T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 4,
+        "session": "london",
+        "week_end": "2019-11-09",
+        "week_start": "2019-11-04",
+        "year": 2019
+      },
+      "window_index": 19,
+      "window_key": "2019-Q4-2019-11-04-2019-11-09-london"
+    },
+    {
+      "canonical_m1_bars": 7071,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7071,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7071,
+      "pair": "GBPUSD",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 118,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 118,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 2,
+        "first_tick": "2019-11-04T00:00:00.456000+00:00",
+        "last_tick": "2019-11-08T21:59:56.312000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 454587
+      },
+      "request_parameters": {
+        "end": "2019-11-09T00:00:00+00:00",
+        "pair": "GBPUSD",
+        "provider": "dukascopy",
+        "scale": 100000,
+        "start": "2019-11-04T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 4,
+        "session": "london",
+        "week_end": "2019-11-09",
+        "week_start": "2019-11-04",
+        "year": 2019
+      },
+      "window_index": 19,
+      "window_key": "2019-Q4-2019-11-04-2019-11-09-london"
+    },
+    {
+      "canonical_m1_bars": 7072,
+      "canonical_missing_partitions": [],
+      "classification": "PASS_EXACT",
+      "comparison": {
+        "compared_bars": 7072,
+        "exact_ohlc_agreement": true,
+        "max_abs_raw_point_diff": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "mismatch_counts": {
+          "ask_close": 0,
+          "ask_high": 0,
+          "ask_low": 0,
+          "ask_open": 0,
+          "bid_close": 0,
+          "bid_high": 0,
+          "bid_low": 0,
+          "bid_open": 0
+        },
+        "missing_in_canonical": [],
+        "missing_in_canonical_count": 0,
+        "missing_in_tick": [],
+        "missing_in_tick_count": 0,
+        "timestamp_agreement": true
+      },
+      "generated_m1_bars": 7072,
+      "pair": "USDJPY",
+      "partial_boundary_bars": [],
+      "raw_validation": {
+        "ask_below_bid_violations": 0,
+        "cache_hit_hour_count": 118,
+        "download_error_count": 0,
+        "download_errors": [],
+        "downloaded_hour_count": 118,
+        "duplicate_timestamps": 0,
+        "empty_hour_count": 2,
+        "first_tick": "2019-11-04T00:00:00.205000+00:00",
+        "last_tick": "2019-11-08T21:59:56.262000+00:00",
+        "out_of_order_ticks": 0,
+        "tick_count": 332647
+      },
+      "request_parameters": {
+        "end": "2019-11-09T00:00:00+00:00",
+        "pair": "USDJPY",
+        "provider": "dukascopy",
+        "scale": 1000,
+        "start": "2019-11-04T00:00:00+00:00",
+        "workers": 12
+      },
+      "window": {
+        "quarter": 4,
+        "session": "london",
+        "week_end": "2019-11-09",
+        "week_start": "2019-11-04",
+        "year": 2019
+      },
+      "window_index": 19,
+      "window_key": "2019-Q4-2019-11-04-2019-11-09-london"
+    }
+  ],
+  "created_at": "2026-07-23T12:52:54.881049+00:00",
+  "scope": "all amended frozen windows belonging to 2019, all canonical pairs",
+  "summary": {
+    "all_passed": false,
+    "any_data_access_failure": false,
+    "any_incomplete_window": true,
+    "any_ohlc_disagreement": false,
+    "any_timestamp_alignment_failure": false,
+    "classification_counts": {
+      "FAIL_INCOMPLETE_WINDOW": 1,
+      "PASS_EXACT": 11
+    },
+    "window_pair_count": 12
+  }
+}

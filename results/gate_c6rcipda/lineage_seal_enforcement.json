@@ -1,0 +1,10 @@
+{
+  "checks": {
+    "holdout_closed": true,
+    "seal_hash": true,
+    "seal_id": true,
+    "seal_status": true
+  },
+  "created_at_utc": "2026-07-26T10:44:53.630002+00:00",
+  "status": "PASS"
+}

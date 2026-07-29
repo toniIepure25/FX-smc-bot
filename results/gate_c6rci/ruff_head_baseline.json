@@ -1,0 +1,2537 @@
+{
+  "count": 124,
+  "findings": [
+    {
+      "end_location": {
+        "column": 12,
+        "row": 9
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/ablation.py|F401|`copy` imported but unused|37effa9caacd97bad7e2ded872a87a97b8975fca47afea9c20251191e2a288dd",
+      "location": {
+        "column": 8,
+        "row": 9
+      },
+      "message": "`copy` imported but unused",
+      "normalized_message": "`copy` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/ablation.py",
+      "rule_code": "F401",
+      "source_line": "import copy",
+      "source_line_fingerprint": "37effa9caacd97bad7e2ded872a87a97b8975fca47afea9c20251191e2a288dd"
+    },
+    {
+      "end_location": {
+        "column": 79,
+        "row": 15
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/ablation.py|F401|`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused|2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7",
+      "location": {
+        "column": 64,
+        "row": 15
+      },
+      "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "normalized_message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/ablation.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics",
+      "source_line_fingerprint": "2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7"
+    },
+    {
+      "end_location": {
+        "column": 42,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/ablation.py|F401|`fx_smc_bot.config.AlphaConfig` imported but unused|9854a6b4d76c2eaeb44217bfe0dfb0d05b984d031cd82a9d41f911ee30571849",
+      "location": {
+        "column": 31,
+        "row": 16
+      },
+      "message": "`fx_smc_bot.config.AlphaConfig` imported but unused",
+      "normalized_message": "`fx_smc_bot.config.AlphaConfig` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/ablation.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.config import AlphaConfig, AppConfig, TradingPair",
+      "source_line_fingerprint": "9854a6b4d76c2eaeb44217bfe0dfb0d05b984d031cd82a9d41f911ee30571849"
+    },
+    {
+      "end_location": {
+        "column": 45,
+        "row": 18
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/ablation.py|F401|`fx_smc_bot.domain.BacktestResult` imported but unused|6e54ee81ec82ef1ed53e55bd1e03f2e9e77b59411b1cf4bdcf7e4577a41b8090",
+      "location": {
+        "column": 31,
+        "row": 18
+      },
+      "message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+      "normalized_message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/ablation.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.domain import BacktestResult",
+      "source_line_fingerprint": "6e54ee81ec82ef1ed53e55bd1e03f2e9e77b59411b1cf4bdcf7e4577a41b8090"
+    },
+    {
+      "end_location": {
+        "column": 38,
+        "row": 14
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaign_aggregator.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "location": {
+        "column": 1,
+        "row": 7
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "relative_path": "src/fx_smc_bot/research/campaign_aggregator.py",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "end_location": {
+        "column": 102,
+        "row": 73
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/campaign_aggregator.py|E501|Line too long (101 > 100)|72b4455571cde51f4c134d7309408aa2076a7142a7b2e5a1facaeb67d223ac44",
+      "location": {
+        "column": 101,
+        "row": 73
+      },
+      "message": "Line too long (101 > 100)",
+      "normalized_message": "Line too long (101 > 100)",
+      "relative_path": "src/fx_smc_bot/research/campaign_aggregator.py",
+      "rule_code": "E501",
+      "source_line": "def format_leaderboard(entries: list[LeaderboardEntry], title: str = \"Candidate Leaderboard\") -> str:",
+      "source_line_fingerprint": "72b4455571cde51f4c134d7309408aa2076a7142a7b2e5a1facaeb67d223ac44"
+    },
+    {
+      "end_location": {
+        "column": 122,
+        "row": 78
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/campaign_aggregator.py|E501|Line too long (121 > 100)|1b14927ad54d2cfdfbe14baacae5fdbb7bfe09667a904da1d52d996867f1715a",
+      "location": {
+        "column": 101,
+        "row": 78
+      },
+      "message": "Line too long (121 > 100)",
+      "normalized_message": "Line too long (121 > 100)",
+      "relative_path": "src/fx_smc_bot/research/campaign_aggregator.py",
+      "rule_code": "E501",
+      "source_line": "\"| Rank | Label | Composite | Sharpe | Stressed | Fragility | PnL | Trades | Families | Gate | Recommendation |\",",
+      "source_line_fingerprint": "1b14927ad54d2cfdfbe14baacae5fdbb7bfe09667a904da1d52d996867f1715a"
+    },
+    {
+      "end_location": {
+        "column": 12,
+        "row": 7
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`copy` imported but unused|37effa9caacd97bad7e2ded872a87a97b8975fca47afea9c20251191e2a288dd",
+      "location": {
+        "column": 8,
+        "row": 7
+      },
+      "message": "`copy` imported but unused",
+      "normalized_message": "`copy` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "import copy",
+      "source_line_fingerprint": "37effa9caacd97bad7e2ded872a87a97b8975fca47afea9c20251191e2a288dd"
+    },
+    {
+      "end_location": {
+        "column": 62,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`fx_smc_bot.backtesting.metrics.PerformanceSummary` imported but unused|2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7",
+      "location": {
+        "column": 44,
+        "row": 16
+      },
+      "message": "`fx_smc_bot.backtesting.metrics.PerformanceSummary` imported but unused",
+      "normalized_message": "`fx_smc_bot.backtesting.metrics.PerformanceSummary` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics",
+      "source_line_fingerprint": "2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7"
+    },
+    {
+      "end_location": {
+        "column": 79,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused|2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7",
+      "location": {
+        "column": 64,
+        "row": 16
+      },
+      "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "normalized_message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics",
+      "source_line_fingerprint": "2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7"
+    },
+    {
+      "end_location": {
+        "column": 45,
+        "row": 19
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`fx_smc_bot.domain.BacktestResult` imported but unused|6e54ee81ec82ef1ed53e55bd1e03f2e9e77b59411b1cf4bdcf7e4577a41b8090",
+      "location": {
+        "column": 31,
+        "row": 19
+      },
+      "message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+      "normalized_message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.domain import BacktestResult",
+      "source_line_fingerprint": "6e54ee81ec82ef1ed53e55bd1e03f2e9e77b59411b1cf4bdcf7e4577a41b8090"
+    },
+    {
+      "end_location": {
+        "column": 19,
+        "row": 21
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`fx_smc_bot.research.ablation.AblationResult` imported but unused|fe1fa1fe54edb8f00fc3b7051cc377612a998dcfa7730f8030ffecaa692a4fa6",
+      "location": {
+        "column": 5,
+        "row": 21
+      },
+      "message": "`fx_smc_bot.research.ablation.AblationResult` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.ablation.AblationResult` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "AblationResult,",
+      "source_line_fingerprint": "fe1fa1fe54edb8f00fc3b7051cc377612a998dcfa7730f8030ffecaa692a4fa6"
+    },
+    {
+      "end_location": {
+        "column": 24,
+        "row": 22
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`fx_smc_bot.research.ablation.run_family_ablation` imported but unused|b29a616d274eeaace5b168a7b1c8adf06d5c11b3cd386dda7048e26ca974c0ff",
+      "location": {
+        "column": 5,
+        "row": 22
+      },
+      "message": "`fx_smc_bot.research.ablation.run_family_ablation` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.ablation.run_family_ablation` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "run_family_ablation,",
+      "source_line_fingerprint": "b29a616d274eeaace5b168a7b1c8adf06d5c11b3cd386dda7048e26ca974c0ff"
+    },
+    {
+      "end_location": {
+        "column": 24,
+        "row": 23
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`fx_smc_bot.research.ablation.run_filter_ablation` imported but unused|b4a32ae321eb4c63523bf1cb19a1023fd46814559c4b2d70e3ac77003986b95a",
+      "location": {
+        "column": 5,
+        "row": 23
+      },
+      "message": "`fx_smc_bot.research.ablation.run_filter_ablation` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.ablation.run_filter_ablation` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "run_filter_ablation,",
+      "source_line_fingerprint": "b4a32ae321eb4c63523bf1cb19a1023fd46814559c4b2d70e3ac77003986b95a"
+    },
+    {
+      "end_location": {
+        "column": 25,
+        "row": 24
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/campaigns.py|F401|`fx_smc_bot.research.ablation.run_scoring_ablation` imported but unused|d6f8a21f078853c84c66a1649a38dfd7c288dc0d9a8e75a9297b7fbece4ab555",
+      "location": {
+        "column": 5,
+        "row": 24
+      },
+      "message": "`fx_smc_bot.research.ablation.run_scoring_ablation` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.ablation.run_scoring_ablation` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "F401",
+      "source_line": "run_scoring_ablation,",
+      "source_line_fingerprint": "d6f8a21f078853c84c66a1649a38dfd7c288dc0d9a8e75a9297b7fbece4ab555"
+    },
+    {
+      "end_location": {
+        "column": 105,
+        "row": 48
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/campaigns.py|E501|Line too long (104 > 100)|a4caadc40532ab41d86b1cc0c7fd4a82db8a7805c7db477b5e38fd11b2d29b51",
+      "location": {
+        "column": 101,
+        "row": 48
+      },
+      "message": "Line too long (104 > 100)",
+      "normalized_message": "Line too long (104 > 100)",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "E501",
+      "source_line": "f\"{'Name':<35s}  {'Trades':>7s}  {'Sharpe':>8s}  {'PF':>7s}  {'WinRate':>8s}  {'PnL':>12s}\",",
+      "source_line_fingerprint": "a4caadc40532ab41d86b1cc0c7fd4a82db8a7805c7db477b5e38fd11b2d29b51"
+    },
+    {
+      "end_location": {
+        "column": 105,
+        "row": 142
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/campaigns.py|E501|Line too long (104 > 100)|c3bc811ee058bf063a3d4efd236cb8697b900f044ac50b0485a4c99c35ad6367",
+      "location": {
+        "column": 101,
+        "row": 142
+      },
+      "message": "Line too long (104 > 100)",
+      "normalized_message": "Line too long (104 > 100)",
+      "relative_path": "src/fx_smc_bot/research/campaigns.py",
+      "rule_code": "E501",
+      "source_line": "(\"full_smc\", {\"alpha.enabled_families\": [\"sweep_reversal\", \"bos_continuation\", \"fvg_retrace\"]}),",
+      "source_line_fingerprint": "c3bc811ee058bf063a3d4efd236cb8697b900f044ac50b0485a4c99c35ad6367"
+    },
+    {
+      "end_location": {
+        "column": 51,
+        "row": 14
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/candidate_selection.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "location": {
+        "column": 1,
+        "row": 9
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "relative_path": "src/fx_smc_bot/research/candidate_selection.py",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "end_location": {
+        "column": 41,
+        "row": 11
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/candidate_selection.py|F401|`dataclasses.field` imported but unused|e98b1ef8c905ca7881ab778fdd7ac7001d0bb818527b22a1bc7321b3198135da",
+      "location": {
+        "column": 36,
+        "row": 11
+      },
+      "message": "`dataclasses.field` imported but unused",
+      "normalized_message": "`dataclasses.field` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/candidate_selection.py",
+      "rule_code": "F401",
+      "source_line": "from dataclasses import dataclass, field",
+      "source_line_fingerprint": "e98b1ef8c905ca7881ab778fdd7ac7001d0bb818527b22a1bc7321b3198135da"
+    },
+    {
+      "end_location": {
+        "column": 51,
+        "row": 14
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/candidate_selection.py|F401|`fx_smc_bot.research.gating.GateVerdict` imported but unused|561d129fda95c0f2cb97a4e437292bfa11b29f684a3bad5effa8ae1bc5f65e43",
+      "location": {
+        "column": 40,
+        "row": 14
+      },
+      "message": "`fx_smc_bot.research.gating.GateVerdict` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.gating.GateVerdict` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/candidate_selection.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.research.gating import GateVerdict",
+      "source_line_fingerprint": "561d129fda95c0f2cb97a4e437292bfa11b29f684a3bad5effa8ae1bc5f65e43"
+    },
+    {
+      "end_location": {
+        "column": 103,
+        "row": 87
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/candidate_selection.py|E501|Line too long (102 > 100)|42becd31b1e35513ca958850c3300e967c59f4ff1c18f5220a80c73282084003",
+      "location": {
+        "column": 101,
+        "row": 87
+      },
+      "message": "Line too long (102 > 100)",
+      "normalized_message": "Line too long (102 > 100)",
+      "relative_path": "src/fx_smc_bot/research/candidate_selection.py",
+      "rule_code": "E501",
+      "source_line": "conservative = [r for r in run.stress_report.results if r.scenario_name == \"conservative\"]",
+      "source_line_fingerprint": "42becd31b1e35513ca958850c3300e967c59f4ff1c18f5220a80c73282084003"
+    },
+    {
+      "end_location": {
+        "column": 123,
+        "row": 88
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/candidate_selection.py|E501|Line too long (122 > 100)|f723329e94e7ec5f0540d9a6feedd4faf040a3f764667545e087bfec7b6e48e0",
+      "location": {
+        "column": 101,
+        "row": 88
+      },
+      "message": "Line too long (122 > 100)",
+      "normalized_message": "Line too long (122 > 100)",
+      "relative_path": "src/fx_smc_bot/research/candidate_selection.py",
+      "rule_code": "E501",
+      "source_line": "stressed_sharpe = conservative[0].sharpe_ratio if conservative else run.stress_report.results[-1].sharpe_ratio",
+      "source_line_fingerprint": "f723329e94e7ec5f0540d9a6feedd4faf040a3f764667545e087bfec7b6e48e0"
+    },
+    {
+      "end_location": {
+        "column": 115,
+        "row": 177
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/candidate_selection.py|E501|Line too long (114 > 100)|dddfb1166f91f4143eaa28e792b7f6f9556bb5c5fc84ac30d308c9e643c61831",
+      "location": {
+        "column": 101,
+        "row": 177
+      },
+      "message": "Line too long (114 > 100)",
+      "normalized_message": "Line too long (114 > 100)",
+      "relative_path": "src/fx_smc_bot/research/candidate_selection.py",
+      "rule_code": "E501",
+      "source_line": "\"| Rank | Label | Composite | Sharpe | Stressed | Simplicity | OOS | Fragility | Gate | Recommendation |\",",
+      "source_line_fingerprint": "dddfb1166f91f4143eaa28e792b7f6f9556bb5c5fc84ac30d308c9e643c61831"
+    },
+    {
+      "end_location": {
+        "column": 104,
+        "row": 201
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/candidate_selection.py|E501|Line too long (103 > 100)|aed8c3152dd1c3e486c3ecf2efdc2a616687cdfe3abfbf763a5c58abd47134f0",
+      "location": {
+        "column": 101,
+        "row": 201
+      },
+      "message": "Line too long (103 > 100)",
+      "normalized_message": "Line too long (103 > 100)",
+      "relative_path": "src/fx_smc_bot/research/candidate_selection.py",
+      "rule_code": "E501",
+      "source_line": "lines.append(f\"- Sharpe: {champion.raw_sharpe:.3f} (stressed: {champion.stressed_sharpe:.3f})\")",
+      "source_line_fingerprint": "aed8c3152dd1c3e486c3ecf2efdc2a616687cdfe3abfbf763a5c58abd47134f0"
+    },
+    {
+      "end_location": {
+        "column": 38,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "location": {
+        "column": 1,
+        "row": 8
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "end_location": {
+        "column": 50,
+        "row": 23
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|F401|`fx_smc_bot.research.gating.GateResult` imported but unused|33883f6e8e09f77083603b8ddc5bc80f4ede4a2132f79847cc3932adf4d56594",
+      "location": {
+        "column": 40,
+        "row": 23
+      },
+      "message": "`fx_smc_bot.research.gating.GateResult` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.gating.GateResult` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.research.gating import GateResult",
+      "source_line_fingerprint": "33883f6e8e09f77083603b8ddc5bc80f4ede4a2132f79847cc3932adf4d56594"
+    },
+    {
+      "end_location": {
+        "column": 24,
+        "row": 101
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|UP037|Remove quotes from type annotation|d8bcd169590b2bf5ac248270e3e538d51922792a73966e0962eb21fa24545b1a",
+      "location": {
+        "column": 10,
+        "row": 101
+      },
+      "message": "Remove quotes from type annotation",
+      "normalized_message": "Remove quotes from type annotation",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "UP037",
+      "source_line": "run: \"CandidateRun\",",
+      "source_line_fingerprint": "d8bcd169590b2bf5ac248270e3e538d51922792a73966e0962eb21fa24545b1a"
+    },
+    {
+      "end_location": {
+        "column": 125,
+        "row": 182
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|E501|Line too long (124 > 100)|9dd0faf802663ff2af1e2af1ff239566f3e321a854a1c33a175983952ca2df7d",
+      "location": {
+        "column": 101,
+        "row": 182
+      },
+      "message": "Line too long (124 > 100)",
+      "normalized_message": "Line too long (124 > 100)",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "E501",
+      "source_line": "inval = InvalidationCriteria(**bundle.invalidation_criteria) if bundle.invalidation_criteria else InvalidationCriteria()",
+      "source_line_fingerprint": "9dd0faf802663ff2af1e2af1ff239566f3e321a854a1c33a175983952ca2df7d"
+    },
+    {
+      "end_location": {
+        "column": 103,
+        "row": 186
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|E501|Line too long (102 > 100)|5715c064f25b0b0fac42ff374c6c9b9fb5cee37e13aee99f4f075b4a6c98ad97",
+      "location": {
+        "column": 101,
+        "row": 186
+      },
+      "message": "Line too long (102 > 100)",
+      "normalized_message": "Line too long (102 > 100)",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "E501",
+      "source_line": "issues.append(f\"Holdout Sharpe {current_sharpe:.3f} below minimum {inval.min_holdout_sharpe}\")",
+      "source_line_fingerprint": "5715c064f25b0b0fac42ff374c6c9b9fb5cee37e13aee99f4f075b4a6c98ad97"
+    },
+    {
+      "end_location": {
+        "column": 115,
+        "row": 189
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|E501|Line too long (114 > 100)|698dd89641cc9493b6ba61baa2efa00198823c26d6b38a3e53f944095d294d46",
+      "location": {
+        "column": 101,
+        "row": 189
+      },
+      "message": "Line too long (114 > 100)",
+      "normalized_message": "Line too long (114 > 100)",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "E501",
+      "source_line": "issues.append(f\"Drawdown {current_drawdown_pct:.2%} exceeds maximum {inval.max_holdout_drawdown_pct:.2%}\")",
+      "source_line_fingerprint": "698dd89641cc9493b6ba61baa2efa00198823c26d6b38a3e53f944095d294d46"
+    },
+    {
+      "end_location": {
+        "column": 102,
+        "row": 191
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|E501|Line too long (101 > 100)|326c2d8ce155592f6f0aa5aecfaa600036141f658bdc90c14c96df5d70304c88",
+      "location": {
+        "column": 101,
+        "row": 191
+      },
+      "message": "Line too long (101 > 100)",
+      "normalized_message": "Line too long (101 > 100)",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "E501",
+      "source_line": "if paper_discrepancy_pct is not None and paper_discrepancy_pct > inval.max_paper_discrepancy_pct:",
+      "source_line_fingerprint": "326c2d8ce155592f6f0aa5aecfaa600036141f658bdc90c14c96df5d70304c88"
+    },
+    {
+      "end_location": {
+        "column": 116,
+        "row": 192
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|E501|Line too long (115 > 100)|a8e9ece44fc31844b4dcb7f0e00325cd776545846ec48abf66b86531038dae3e",
+      "location": {
+        "column": 101,
+        "row": 192
+      },
+      "message": "Line too long (115 > 100)",
+      "normalized_message": "Line too long (115 > 100)",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "E501",
+      "source_line": "issues.append(f\"Paper discrepancy {paper_discrepancy_pct:.1f}% exceeds {inval.max_paper_discrepancy_pct}%\")",
+      "source_line_fingerprint": "a8e9ece44fc31844b4dcb7f0e00325cd776545846ec48abf66b86531038dae3e"
+    },
+    {
+      "end_location": {
+        "column": 111,
+        "row": 210
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/champion_bundle.py|E501|Line too long (110 > 100)|447ec588127f08a703f9d5b520df7f63910b740751953058f9fd3bb8b8c4f74d",
+      "location": {
+        "column": 101,
+        "row": 210
+      },
+      "message": "Line too long (110 > 100)",
+      "normalized_message": "Line too long (110 > 100)",
+      "relative_path": "src/fx_smc_bot/research/champion_bundle.py",
+      "rule_code": "E501",
+      "source_line": "improvement = (challenger_scorecard.composite_score - champ_composite) / max(champ_composite, 0.001) * 100",
+      "source_line_fingerprint": "447ec588127f08a703f9d5b520df7f63910b740751953058f9fd3bb8b8c4f74d"
+    },
+    {
+      "end_location": {
+        "column": 85,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/decision_memo.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "location": {
+        "column": 1,
+        "row": 8
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "relative_path": "src/fx_smc_bot/research/decision_memo.py",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "end_location": {
+        "column": 8,
+        "row": 69
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/decision_memo.py|F841|Local variable `cfg` is assigned to but never used|5d539ba315a825897871aca9fd127747571d8945a5b528cd603a5e7019c60a76",
+      "location": {
+        "column": 5,
+        "row": 69
+      },
+      "message": "Local variable `cfg` is assigned to but never used",
+      "normalized_message": "Local variable `cfg` is assigned to but never used",
+      "relative_path": "src/fx_smc_bot/research/decision_memo.py",
+      "rule_code": "F841",
+      "source_line": "cfg = gate_config or DeploymentGateConfig()",
+      "source_line_fingerprint": "5d539ba315a825897871aca9fd127747571d8945a5b528cd603a5e7019c60a76"
+    },
+    {
+      "end_location": {
+        "column": 11,
+        "row": 124
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/decision_memo.py|F841|Local variable `n_pass` is assigned to but never used|22c0d5941ba4154e412a1d8c99d1df7b473203339f059a193f57d843a7ded81f",
+      "location": {
+        "column": 5,
+        "row": 124
+      },
+      "message": "Local variable `n_pass` is assigned to but never used",
+      "normalized_message": "Local variable `n_pass` is assigned to but never used",
+      "relative_path": "src/fx_smc_bot/research/decision_memo.py",
+      "rule_code": "F841",
+      "source_line": "n_pass = len(passing)",
+      "source_line_fingerprint": "22c0d5941ba4154e412a1d8c99d1df7b473203339f059a193f57d843a7ded81f"
+    },
+    {
+      "end_location": {
+        "column": 118,
+        "row": 128
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/decision_memo.py|E501|Line too long (117 > 100)|d754e57ea05a181b0e9a445ec74e2cbffed3d16fad1415238ee7b931bfeeacec",
+      "location": {
+        "column": 101,
+        "row": 128
+      },
+      "message": "Line too long (117 > 100)",
+      "normalized_message": "Line too long (117 > 100)",
+      "relative_path": "src/fx_smc_bot/research/decision_memo.py",
+      "rule_code": "E501",
+      "source_line": "decision_type = DecisionType.REJECT if champion.fragility_penalty > 0.5 else DecisionType.CONDITIONAL_PROMOTE",
+      "source_line_fingerprint": "d754e57ea05a181b0e9a445ec74e2cbffed3d16fad1415238ee7b931bfeeacec"
+    },
+    {
+      "end_location": {
+        "column": 117,
+        "row": 138
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/decision_memo.py|E501|Line too long (116 > 100)|24f8cbbd75dc4c3eefa85d4fda0ba5d48e7b91297f3c208fb1e6670b00e35b73",
+      "location": {
+        "column": 101,
+        "row": 138
+      },
+      "message": "Line too long (116 > 100)",
+      "normalized_message": "Line too long (116 > 100)",
+      "relative_path": "src/fx_smc_bot/research/decision_memo.py",
+      "rule_code": "E501",
+      "source_line": "reasons.append(f\"Champion {champion.label} passes all gates with composite {champion.composite_score:.3f}.\")",
+      "source_line_fingerprint": "24f8cbbd75dc4c3eefa85d4fda0ba5d48e7b91297f3c208fb1e6670b00e35b73"
+    },
+    {
+      "end_location": {
+        "column": 75,
+        "row": 143
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/decision_memo.py|F541|f-string without any placeholders|65c3ba0770fde2c8f08c1864a72c9ec3a52e82da5ac1ea9f0e7dab7de6a58684",
+      "location": {
+        "column": 24,
+        "row": 143
+      },
+      "message": "f-string without any placeholders",
+      "normalized_message": "f-string without any placeholders",
+      "relative_path": "src/fx_smc_bot/research/decision_memo.py",
+      "rule_code": "F541",
+      "source_line": "reasons.append(f\"Champion passes blocking gates but has warnings.\")",
+      "source_line_fingerprint": "65c3ba0770fde2c8f08c1864a72c9ec3a52e82da5ac1ea9f0e7dab7de6a58684"
+    },
+    {
+      "end_location": {
+        "column": 36,
+        "row": 9
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/evaluation.py|F401|`collections.defaultdict` imported but unused|82a112f4afc7cf62b55f2d1ee77a48cf2b5cfa3eea42ed35bd9c7ddba2741437",
+      "location": {
+        "column": 25,
+        "row": 9
+      },
+      "message": "`collections.defaultdict` imported but unused",
+      "normalized_message": "`collections.defaultdict` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/evaluation.py",
+      "rule_code": "F401",
+      "source_line": "from collections import defaultdict",
+      "source_line_fingerprint": "82a112f4afc7cf62b55f2d1ee77a48cf2b5cfa3eea42ed35bd9c7ddba2741437"
+    },
+    {
+      "end_location": {
+        "column": 23,
+        "row": 11
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/evaluation.py|F401|`typing.Any` imported but unused|063e3d97fbe5c7382df417aae2453be61a01861561f37741b5ce484cfd6551d0",
+      "location": {
+        "column": 20,
+        "row": 11
+      },
+      "message": "`typing.Any` imported but unused",
+      "normalized_message": "`typing.Any` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/evaluation.py",
+      "rule_code": "F401",
+      "source_line": "from typing import Any",
+      "source_line_fingerprint": "063e3d97fbe5c7382df417aae2453be61a01861561f37741b5ce484cfd6551d0"
+    },
+    {
+      "end_location": {
+        "column": 63,
+        "row": 51
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/evaluation.py|E731|Do not assign a `lambda` expression, use a `def`|25195bf2cf2ca72fcbf40163d105a89b608b4cc4991ebe9cecec1f7e691fb39a",
+      "location": {
+        "column": 5,
+        "row": 51
+      },
+      "message": "Do not assign a `lambda` expression, use a `def`",
+      "normalized_message": "Do not assign a `lambda` expression, use a `def`",
+      "relative_path": "src/fx_smc_bot/research/evaluation.py",
+      "rule_code": "E731",
+      "source_line": "regime_key = lambda t: t.regime if t.regime else \"unknown\"",
+      "source_line_fingerprint": "25195bf2cf2ca72fcbf40163d105a89b608b4cc4991ebe9cecec1f7e691fb39a"
+    },
+    {
+      "end_location": {
+        "column": 15,
+        "row": 10
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/experiments.py|F401|`hashlib` imported but unused|ada1d9e0a360cda0fd1c8757d297aa74a4fc8d7193a69d3c28b43afc6950e9f9",
+      "location": {
+        "column": 8,
+        "row": 10
+      },
+      "message": "`hashlib` imported but unused",
+      "normalized_message": "`hashlib` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/experiments.py",
+      "rule_code": "F401",
+      "source_line": "import hashlib",
+      "source_line_fingerprint": "ada1d9e0a360cda0fd1c8757d297aa74a4fc8d7193a69d3c28b43afc6950e9f9"
+    },
+    {
+      "end_location": {
+        "column": 12,
+        "row": 11
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/experiments.py|F401|`json` imported but unused|ff3e4d4dcf7250cae8d622d77c9a6d69aefcf4ab04ef9920218fafe93c0f1991",
+      "location": {
+        "column": 8,
+        "row": 11
+      },
+      "message": "`json` imported but unused",
+      "normalized_message": "`json` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/experiments.py",
+      "rule_code": "F401",
+      "source_line": "import json",
+      "source_line_fingerprint": "ff3e4d4dcf7250cae8d622d77c9a6d69aefcf4ab04ef9920218fafe93c0f1991"
+    },
+    {
+      "end_location": {
+        "column": 30,
+        "row": 14
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/experiments.py|F401|`datetime.datetime` imported but unused|1c80ee441a56d69acae99266605441b0bb38a078dd24cafe32771d718f2b86a4",
+      "location": {
+        "column": 22,
+        "row": 14
+      },
+      "message": "`datetime.datetime` imported but unused",
+      "normalized_message": "`datetime.datetime` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/experiments.py",
+      "rule_code": "F401",
+      "source_line": "from datetime import datetime",
+      "source_line_fingerprint": "1c80ee441a56d69acae99266605441b0bb38a078dd24cafe32771d718f2b86a4"
+    },
+    {
+      "end_location": {
+        "column": 79,
+        "row": 21
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/experiments.py|F401|`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused|2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7",
+      "location": {
+        "column": 64,
+        "row": 21
+      },
+      "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "normalized_message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/experiments.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics",
+      "source_line_fingerprint": "2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7"
+    },
+    {
+      "end_location": {
+        "column": 38,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/final_package.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "location": {
+        "column": 1,
+        "row": 8
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "relative_path": "src/fx_smc_bot/research/final_package.py",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "end_location": {
+        "column": 60,
+        "row": 19
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/final_package.py|F401|`fx_smc_bot.research.validation.CandidateRun` imported but unused|d9d2037682e3bda34ccb2099c676812ca6c54218a72dff4f47a79736bdde232e",
+      "location": {
+        "column": 48,
+        "row": 19
+      },
+      "message": "`fx_smc_bot.research.validation.CandidateRun` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.validation.CandidateRun` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/final_package.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.research.validation import CandidateRun",
+      "source_line_fingerprint": "d9d2037682e3bda34ccb2099c676812ca6c54218a72dff4f47a79736bdde232e"
+    },
+    {
+      "end_location": {
+        "column": 107,
+        "row": 109
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/final_package.py|E501|Line too long (106 > 100)|0f3c4c58fa7a9a74e18938336359b6f51979d83b7d5e8a99b03da6008af4e8c4",
+      "location": {
+        "column": 101,
+        "row": 109
+      },
+      "message": "Line too long (106 > 100)",
+      "normalized_message": "Line too long (106 > 100)",
+      "relative_path": "src/fx_smc_bot/research/final_package.py",
+      "rule_code": "E501",
+      "source_line": "rec.next_actions.append(f\"Promote {simplification.reduced_candidate_label} as new candidate.\")",
+      "source_line_fingerprint": "0f3c4c58fa7a9a74e18938336359b6f51979d83b7d5e8a99b03da6008af4e8c4"
+    },
+    {
+      "end_location": {
+        "column": 114,
+        "row": 138
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/final_package.py|E501|Line too long (113 > 100)|228e03ea2fc3eae7da917768daaa32fafee787f695dc4b350310d95d74408367",
+      "location": {
+        "column": 101,
+        "row": 138
+      },
+      "message": "Line too long (113 > 100)",
+      "normalized_message": "Line too long (113 > 100)",
+      "relative_path": "src/fx_smc_bot/research/final_package.py",
+      "rule_code": "E501",
+      "source_line": "rec.confidence = \"medium\" if champion_scorecard and champion_scorecard.fragility_penalty < 0.3 else \"low\"",
+      "source_line_fingerprint": "228e03ea2fc3eae7da917768daaa32fafee787f695dc4b350310d95d74408367"
+    },
+    {
+      "end_location": {
+        "column": 102,
+        "row": 106
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/frozen_config.py|E501|Line too long (101 > 100)|4512ade57554a49d04a89153d7618b278e3991297f8040893e59bb7d85960042",
+      "location": {
+        "column": 101,
+        "row": 106
+      },
+      "message": "Line too long (101 > 100)",
+      "normalized_message": "Line too long (101 > 100)",
+      "relative_path": "src/fx_smc_bot/research/frozen_config.py",
+      "rule_code": "E501",
+      "source_line": ") -> tuple[dict[TradingPair, BarSeries], dict[TradingPair, BarSeries], dict[TradingPair, BarSeries]]:",
+      "source_line_fingerprint": "4512ade57554a49d04a89153d7618b278e3991297f8040893e59bb7d85960042"
+    },
+    {
+      "end_location": {
+        "column": 104,
+        "row": 79
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (103 > 100)|2ba1b8d29f0a213c4316d9d7f8f63b35db32730dcbd63d5ff115a054fd73a16a",
+      "location": {
+        "column": 101,
+        "row": 79
+      },
+      "message": "Line too long (103 > 100)",
+      "normalized_message": "Line too long (103 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "max_cost_degradation_pct: float = Field(default=0.50, description=\"Max PnL loss under cost stress\")",
+      "source_line_fingerprint": "2ba1b8d29f0a213c4316d9d7f8f63b35db32730dcbd63d5ff115a054fd73a16a"
+    },
+    {
+      "end_location": {
+        "column": 102,
+        "row": 83
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (101 > 100)|0929746ce1ff6c40a8084de7e3cfc8f937dfc0dbe00386ed9e0eb01ff7d46b10",
+      "location": {
+        "column": 101,
+        "row": 83
+      },
+      "message": "Line too long (101 > 100)",
+      "normalized_message": "Line too long (101 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "min_diversification: float = Field(default=0.2, description=\"Minimum pair diversification (0-1)\")",
+      "source_line_fingerprint": "0929746ce1ff6c40a8084de7e3cfc8f937dfc0dbe00386ed9e0eb01ff7d46b10"
+    },
+    {
+      "end_location": {
+        "column": 110,
+        "row": 103
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (109 > 100)|c030173fb0d3c0632824c79fe8f8f84bc0b3058ec09ab5e5de25bafed05eaf26",
+      "location": {
+        "column": 101,
+        "row": 103
+      },
+      "message": "Line too long (109 > 100)",
+      "normalized_message": "Line too long (109 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "_add(\"max_drawdown_pct\", metrics.get(\"max_drawdown_pct\", 1.0), cfg.max_drawdown_pct, higher_better=False)",
+      "source_line_fingerprint": "c030173fb0d3c0632824c79fe8f8f84bc0b3058ec09ab5e5de25bafed05eaf26"
+    },
+    {
+      "end_location": {
+        "column": 115,
+        "row": 116
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (114 > 100)|f5b335e946a94559ea18dd3f9a903e81fab406bb8a13a5da68320ec3b03ecd5e",
+      "location": {
+        "column": 101,
+        "row": 116
+      },
+      "message": "Line too long (114 > 100)",
+      "normalized_message": "Line too long (114 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "_add(\"oos_consistency\", scores[\"oos_consistency\"], cfg.min_oos_consistency, severity=GateSeverity.WARNING)",
+      "source_line_fingerprint": "f5b335e946a94559ea18dd3f9a903e81fab406bb8a13a5da68320ec3b03ecd5e"
+    },
+    {
+      "end_location": {
+        "column": 115,
+        "row": 118
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (114 > 100)|208dd137fddcb35ba6d33e20cf7d6ea69a189e3efc5e2dcdfa6d4059ea566ee5",
+      "location": {
+        "column": 101,
+        "row": 118
+      },
+      "message": "Line too long (114 > 100)",
+      "normalized_message": "Line too long (114 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "_add(\"diversification\", scores[\"diversification\"], cfg.min_diversification, severity=GateSeverity.WARNING)",
+      "source_line_fingerprint": "208dd137fddcb35ba6d33e20cf7d6ea69a189e3efc5e2dcdfa6d4059ea566ee5"
+    },
+    {
+      "end_location": {
+        "column": 113,
+        "row": 128
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (112 > 100)|a3d5e780d0ed6cff0a49edae0553d098cf7f29a70291159bba7c578f95056fb3",
+      "location": {
+        "column": 101,
+        "row": 128
+      },
+      "message": "Line too long (112 > 100)",
+      "normalized_message": "Line too long (112 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "rec = f\"CONDITIONAL: passes blocking gates but warnings on {', '.join(warns)}. Review before promoting.\"",
+      "source_line_fingerprint": "a3d5e780d0ed6cff0a49edae0553d098cf7f29a70291159bba7c578f95056fb3"
+    },
+    {
+      "end_location": {
+        "column": 111,
+        "row": 155
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (110 > 100)|dfb72ace959ce14420d23feb3d191c55a495b9d8e7f4365386711e98da9fdd27",
+      "location": {
+        "column": 101,
+        "row": 155
+      },
+      "message": "Line too long (110 > 100)",
+      "normalized_message": "Line too long (110 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "PromotionState.CANDIDATE: {PromotionState.PAPER_TESTING, PromotionState.REJECTED, PromotionState.RETIRED},",
+      "source_line_fingerprint": "dfb72ace959ce14420d23feb3d191c55a495b9d8e7f4365386711e98da9fdd27"
+    },
+    {
+      "end_location": {
+        "column": 110,
+        "row": 156
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/gating.py|E501|Line too long (109 > 100)|5a71ac662fb6a3a7245326e32b7fa7dd9f5a32453f95f5eee68ff8e9e9a722a7",
+      "location": {
+        "column": 101,
+        "row": 156
+      },
+      "message": "Line too long (109 > 100)",
+      "normalized_message": "Line too long (109 > 100)",
+      "relative_path": "src/fx_smc_bot/research/gating.py",
+      "rule_code": "E501",
+      "source_line": "PromotionState.PAPER_TESTING: {PromotionState.APPROVED, PromotionState.REJECTED, PromotionState.RETIRED},",
+      "source_line_fingerprint": "5a71ac662fb6a3a7245326e32b7fa7dd9f5a32453f95f5eee68ff8e9e9a722a7"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 58,
+        "row": 31
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 1,
+        "row": 7
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "proposed_remediation": "sort imports without changing imported names",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "IMPORT_ORDER_ONLY",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 15,
+        "row": 9
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`hashlib` imported but unused|ada1d9e0a360cda0fd1c8757d297aa74a4fc8d7193a69d3c28b43afc6950e9f9",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 8,
+        "row": 9
+      },
+      "message": "`hashlib` imported but unused",
+      "normalized_message": "`hashlib` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "import hashlib",
+      "source_line_fingerprint": "ada1d9e0a360cda0fd1c8757d297aa74a4fc8d7193a69d3c28b43afc6950e9f9"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 31,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`dataclasses.asdict` imported but unused|8d17440119cc8b2cd4ef37fef6fddb4c1715e232db9fe6cdb36eabfe95c8cfe6",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 25,
+        "row": 12
+      },
+      "message": "`dataclasses.asdict` imported but unused",
+      "normalized_message": "`dataclasses.asdict` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from dataclasses import asdict, dataclass, field",
+      "source_line_fingerprint": "8d17440119cc8b2cd4ef37fef6fddb4c1715e232db9fe6cdb36eabfe95c8cfe6"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 32,
+        "row": 15
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`typing.Literal` imported but unused|d617ea780138bae78c96ca5b97e998ad4a1abaccd5401dbaeedf3c665840ad27",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 25,
+        "row": 15
+      },
+      "message": "`typing.Literal` imported but unused",
+      "normalized_message": "`typing.Literal` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from typing import Any, Literal",
+      "source_line_fingerprint": "d617ea780138bae78c96ca5b97e998ad4a1abaccd5401dbaeedf3c665840ad27"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 18,
+        "row": 21
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`fx_smc_bot.config.PAIR_PIP_INFO` imported but unused|7c56cf5581fc0ba47ba83188449aea235a4c288a45b728cde320a27b8427ec3e",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 5,
+        "row": 21
+      },
+      "message": "`fx_smc_bot.config.PAIR_PIP_INFO` imported but unused",
+      "normalized_message": "`fx_smc_bot.config.PAIR_PIP_INFO` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "PAIR_PIP_INFO,",
+      "source_line_fingerprint": "7c56cf5581fc0ba47ba83188449aea235a4c288a45b728cde320a27b8427ec3e"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 22,
+        "row": 22
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`fx_smc_bot.config.TIMEFRAME_MINUTES` imported but unused|98b8e0d7fc95923b3de668f86c173bfb06a765a87f1497d8d19e21a72239d194",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 5,
+        "row": 22
+      },
+      "message": "`fx_smc_bot.config.TIMEFRAME_MINUTES` imported but unused",
+      "normalized_message": "`fx_smc_bot.config.TIMEFRAME_MINUTES` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "TIMEFRAME_MINUTES,",
+      "source_line_fingerprint": "98b8e0d7fc95923b3de668f86c173bfb06a765a87f1497d8d19e21a72239d194"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 58,
+        "row": 31
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|F401|`fx_smc_bot.domain.ClosedTrade` imported but unused|ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 47,
+        "row": 31
+      },
+      "message": "`fx_smc_bot.domain.ClosedTrade` imported but unused",
+      "normalized_message": "`fx_smc_bot.domain.ClosedTrade` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.domain import BacktestResult, ClosedTrade",
+      "source_line_fingerprint": "ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 103,
+        "row": 79
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|E501|Line too long (102 > 100)|9b0960ff203874a2656915dbb258a539271eb1b5c721cd69f5cc08a5a19fbf6d",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 79
+      },
+      "message": "Line too long (102 > 100)",
+      "normalized_message": "Line too long (102 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "\"profit_factor\": round(self.profit_factor, 4) if self.profit_factor is not None else None,",
+      "source_line_fingerprint": "9b0960ff203874a2656915dbb258a539271eb1b5c721cd69f5cc08a5a19fbf6d"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 103,
+        "row": 215
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|E501|Line too long (102 > 100)|231fa0624e9b1dbdbbfdf28e5524b0dffbc30883a8b8bb6479b450a2a1774d57",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 215
+      },
+      "message": "Line too long (102 > 100)",
+      "normalized_message": "Line too long (102 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "logger.info(\"Loading data from %s (exec_tf=%s, htf_tf=%s)\", data_dir, exec_tf.value, htf_tf.value)",
+      "source_line_fingerprint": "231fa0624e9b1dbdbbfdf28e5524b0dffbc30883a8b8bb6479b450a2a1774d57"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 104,
+        "row": 304
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/intraday_campaign.py|E501|Line too long (103 > 100)|aaa538d3b64aa63d140b5eb1a3ecf2b99c1aa4080168ec1e83aa918bc25aa01a",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 304
+      },
+      "message": "Line too long (103 > 100)",
+      "normalized_message": "Line too long (103 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "report[\"strategies\"][run.config.label] = {\"error\": \"insufficient data (<10 daily returns)\"}",
+      "source_line_fingerprint": "aaa538d3b64aa63d140b5eb1a3ecf2b99c1aa4080168ec1e83aa918bc25aa01a"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 13,
+        "row": 48
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/overfitting.py|B007|Loop control variable `rank` not used within loop body|ca02827888df9dd29cb32ff0511ed90a1ca21c63ab110efa22500955632af913",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 9,
+        "row": 48
+      },
+      "message": "Loop control variable `rank` not used within loop body",
+      "normalized_message": "Loop control variable `rank` not used within loop body",
+      "proposed_remediation": "rename unused loop variable or remove unused enumerate output",
+      "relative_path": "src/fx_smc_bot/research/overfitting.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "STYLE_REWRITE",
+      "rule_code": "B007",
+      "source_line": "for rank, (orig_idx, _) in enumerate(indexed):",
+      "source_line_fingerprint": "ca02827888df9dd29cb32ff0511ed90a1ca21c63ab110efa22500955632af913"
+    },
+    {
+      "end_location": {
+        "column": 30,
+        "row": 13
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/paper_campaign.py|F401|`datetime.datetime` imported but unused|1c80ee441a56d69acae99266605441b0bb38a078dd24cafe32771d718f2b86a4",
+      "location": {
+        "column": 22,
+        "row": 13
+      },
+      "message": "`datetime.datetime` imported but unused",
+      "normalized_message": "`datetime.datetime` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/paper_campaign.py",
+      "rule_code": "F401",
+      "source_line": "from datetime import datetime",
+      "source_line_fingerprint": "1c80ee441a56d69acae99266605441b0bb38a078dd24cafe32771d718f2b86a4"
+    },
+    {
+      "end_location": {
+        "column": 40,
+        "row": 18
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/paper_campaign.py|F401|`fx_smc_bot.config.AppConfig` imported but unused|d26f497e4abc0d718ea9fa78debbc4a249ef1e0d7051d60690c0532577636d49",
+      "location": {
+        "column": 31,
+        "row": 18
+      },
+      "message": "`fx_smc_bot.config.AppConfig` imported but unused",
+      "normalized_message": "`fx_smc_bot.config.AppConfig` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/paper_campaign.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.config import AppConfig, TradingPair",
+      "source_line_fingerprint": "d26f497e4abc0d718ea9fa78debbc4a249ef1e0d7051d60690c0532577636d49"
+    },
+    {
+      "end_location": {
+        "column": 41,
+        "row": 184
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/paper_campaign.py|F541|f-string without any placeholders|d38d0f770304062bcc40ad7ab9f69d9a800bd57d3ab8ad412294e55b68aab82f",
+      "location": {
+        "column": 22,
+        "row": 184
+      },
+      "message": "f-string without any placeholders",
+      "normalized_message": "f-string without any placeholders",
+      "relative_path": "src/fx_smc_bot/research/paper_campaign.py",
+      "rule_code": "F541",
+      "source_line": "lines.append(f\"| Day | Events |\")",
+      "source_line_fingerprint": "d38d0f770304062bcc40ad7ab9f69d9a800bd57d3ab8ad412294e55b68aab82f"
+    },
+    {
+      "end_location": {
+        "column": 12,
+        "row": 8
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/paper_review.py|F401|`json` imported but unused|ff3e4d4dcf7250cae8d622d77c9a6d69aefcf4ab04ef9920218fafe93c0f1991",
+      "location": {
+        "column": 8,
+        "row": 8
+      },
+      "message": "`json` imported but unused",
+      "normalized_message": "`json` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/paper_review.py",
+      "rule_code": "F401",
+      "source_line": "import json",
+      "source_line_fingerprint": "ff3e4d4dcf7250cae8d622d77c9a6d69aefcf4ab04ef9920218fafe93c0f1991"
+    },
+    {
+      "end_location": {
+        "column": 25,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/paper_review.py|F401|`pathlib.Path` imported but unused|6d69f2ac09017b8a49d050ab336e953b8fa02ae08c24396916ea7ea42418e627",
+      "location": {
+        "column": 21,
+        "row": 12
+      },
+      "message": "`pathlib.Path` imported but unused",
+      "normalized_message": "`pathlib.Path` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/paper_review.py",
+      "rule_code": "F401",
+      "source_line": "from pathlib import Path",
+      "source_line_fingerprint": "6d69f2ac09017b8a49d050ab336e953b8fa02ae08c24396916ea7ea42418e627"
+    },
+    {
+      "end_location": {
+        "column": 107,
+        "row": 302
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/paper_review.py|E501|Line too long (106 > 100)|9589223ffcff41f025810e832634033b533cb05fa2dfcb2af2fbc6809112a5a1",
+      "location": {
+        "column": 101,
+        "row": 302
+      },
+      "message": "Line too long (106 > 100)",
+      "normalized_message": "Line too long (106 > 100)",
+      "relative_path": "src/fx_smc_bot/research/paper_review.py",
+      "rule_code": "E501",
+      "source_line": "rec.recommendation = f\"CONDITIONAL: minor issues ({', '.join(failures)}), review before promoting\"",
+      "source_line_fingerprint": "9589223ffcff41f025810e832634033b533cb05fa2dfcb2af2fbc6809112a5a1"
+    },
+    {
+      "end_location": {
+        "column": 47,
+        "row": 332
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/paper_review.py|E731|Do not assign a `lambda` expression, use a `def`|53831d9bda5ed45cd262fda21b2ef49a6b286126c5d42c4d4696f2c9e02496ec",
+      "location": {
+        "column": 5,
+        "row": 332
+      },
+      "message": "Do not assign a `lambda` expression, use a `def`",
+      "normalized_message": "Do not assign a `lambda` expression, use a `def`",
+      "relative_path": "src/fx_smc_bot/research/paper_review.py",
+      "rule_code": "E731",
+      "source_line": "_check = lambda v: \"PASS\" if v else \"FAIL\"",
+      "source_line_fingerprint": "53831d9bda5ed45cd262fda21b2ef49a6b286126c5d42c4d4696f2c9e02496ec"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 27,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/placebos.py|F401|`typing.Literal` imported but unused|7020312c57cf927ec1e3bd64dd00e291f72a1410d6d54754defafb2a6f501e59",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 20,
+        "row": 12
+      },
+      "message": "`typing.Literal` imported but unused",
+      "normalized_message": "`typing.Literal` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from typing import Literal",
+      "source_line_fingerprint": "7020312c57cf927ec1e3bd64dd00e291f72a1410d6d54754defafb2a6f501e59"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 114,
+        "row": 60
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (113 > 100)|d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 60
+      },
+      "message": "Line too long (113 > 100)",
+      "normalized_message": "Line too long (113 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "ts = timestamps[bar_idx].astype(\"datetime64[us]\").astype(datetime) if bar_idx < len(timestamps) else None",
+      "source_line_fingerprint": "d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 114,
+        "row": 108
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (113 > 100)|d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 108
+      },
+      "message": "Line too long (113 > 100)",
+      "normalized_message": "Line too long (113 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "ts = timestamps[bar_idx].astype(\"datetime64[us]\").astype(datetime) if bar_idx < len(timestamps) else None",
+      "source_line_fingerprint": "d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 65,
+        "row": 129
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/placebos.py|B905|`zip()` without an explicit `strict=` parameter|7654125e43b9614a1a1ac26b61ed8a0c3ce8294ded51ee598d951b2215cffe71",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 30,
+        "row": 129
+      },
+      "message": "`zip()` without an explicit `strict=` parameter",
+      "normalized_message": "`zip()` without an explicit `strict=` parameter",
+      "proposed_remediation": "add strict=False to preserve truncating zip behavior",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "STYLE_REWRITE",
+      "rule_code": "B905",
+      "source_line": "for bar_idx, orig_dir in zip(signal_bars, signal_directions):",
+      "source_line_fingerprint": "7654125e43b9614a1a1ac26b61ed8a0c3ce8294ded51ee598d951b2215cffe71"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 114,
+        "row": 142
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (113 > 100)|d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 142
+      },
+      "message": "Line too long (113 > 100)",
+      "normalized_message": "Line too long (113 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "ts = timestamps[bar_idx].astype(\"datetime64[us]\").astype(datetime) if bar_idx < len(timestamps) else None",
+      "source_line_fingerprint": "d8496342bc70d0352b8e306691af8c8801edb05d4584327e6e87a81a96d922df"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 137,
+        "row": 200
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (136 > 100)|d2daf1a4263d42466376179fdf557db46a6dceb4c0509bb41b4bfa73d98668e2",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 200
+      },
+      "message": "Line too long (136 > 100)",
+      "normalized_message": "Line too long (136 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "AblationSpec(\"no_displacement\", \"Without displacement requirement\", {\"displacement_body_ratio\": 0.0, \"displacement_tr_ratio\": 0.0}),",
+      "source_line_fingerprint": "d2daf1a4263d42466376179fdf557db46a6dceb4c0509bb41b4bfa73d98668e2"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 132,
+        "row": 203
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (131 > 100)|e71e73d7a1b348df5e0a7c0d457e62164f5799c9c8630292d71be3ebe2bed49a",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 203
+      },
+      "message": "Line too long (131 > 100)",
+      "normalized_message": "Line too long (131 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "AblationSpec(\"no_liquidity_type\", \"Without liquidity classification\", {\"eligible_level_types\": [\"equal_highs\", \"equal_lows\"]}),",
+      "source_line_fingerprint": "e71e73d7a1b348df5e0a7c0d457e62164f5799c9c8630292d71be3ebe2bed49a"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 112,
+        "row": 205
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/placebos.py|E501|Line too long (111 > 100)|4b869b87679e0521452729992f9a6580ba212912485579fbe986539a3e24a231",
+      "introducing_commit": "708e38594e85",
+      "introducing_commit_subject": "feat(research): add placebo and multiple-testing framework",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 205
+      },
+      "message": "Line too long (111 > 100)",
+      "normalized_message": "Line too long (111 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/placebos.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "AblationSpec(\"opposing_liq_target\", \"Target at opposing liquidity\", {\"target_mode\": \"opposing_liquidity\"}),",
+      "source_line_fingerprint": "4b869b87679e0521452729992f9a6580ba212912485579fbe986539a3e24a231"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 38,
+        "row": 17
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/prop_simulation.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "introducing_commit": "12f45b03dd48",
+      "introducing_commit_subject": "feat(research): add configurable prop challenge simulation",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 1,
+        "row": 9
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "proposed_remediation": "sort imports without changing imported names",
+      "relative_path": "src/fx_smc_bot/research/prop_simulation.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "IMPORT_ORDER_ONLY",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 10,
+        "row": 158
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/prop_simulation.py|B007|Loop control variable `i` not used within loop body|1697dbaf82ed45d9164e6d8c1d163437161bbb0be571d38c62e43e960a8085c3",
+      "introducing_commit": "12f45b03dd48",
+      "introducing_commit_subject": "feat(research): add configurable prop challenge simulation",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 9,
+        "row": 158
+      },
+      "message": "Loop control variable `i` not used within loop body",
+      "normalized_message": "Loop control variable `i` not used within loop body",
+      "proposed_remediation": "rename unused loop variable or remove unused enumerate output",
+      "relative_path": "src/fx_smc_bot/research/prop_simulation.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "STYLE_REWRITE",
+      "rule_code": "B007",
+      "source_line": "for i, pnl_pct in enumerate(daily_pnls):",
+      "source_line_fingerprint": "1697dbaf82ed45d9164e6d8c1d163437161bbb0be571d38c62e43e960a8085c3"
+    },
+    {
+      "end_location": {
+        "column": 12,
+        "row": 9
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/reconciliation.py|F401|`json` imported but unused|ff3e4d4dcf7250cae8d622d77c9a6d69aefcf4ab04ef9920218fafe93c0f1991",
+      "location": {
+        "column": 8,
+        "row": 9
+      },
+      "message": "`json` imported but unused",
+      "normalized_message": "`json` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/reconciliation.py",
+      "rule_code": "F401",
+      "source_line": "import json",
+      "source_line_fingerprint": "ff3e4d4dcf7250cae8d622d77c9a6d69aefcf4ab04ef9920218fafe93c0f1991"
+    },
+    {
+      "end_location": {
+        "column": 58,
+        "row": 14
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/reconciliation.py|F401|`fx_smc_bot.domain.ClosedTrade` imported but unused|ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a",
+      "location": {
+        "column": 47,
+        "row": 14
+      },
+      "message": "`fx_smc_bot.domain.ClosedTrade` imported but unused",
+      "normalized_message": "`fx_smc_bot.domain.ClosedTrade` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/reconciliation.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.domain import BacktestResult, ClosedTrade",
+      "source_line_fingerprint": "ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a"
+    },
+    {
+      "end_location": {
+        "column": 49,
+        "row": 15
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/reconciliation.py|F401|`fx_smc_bot.live.journal.EventJournal` imported but unused|0a99ce9402ee263641936aae11cc8ba0763162f973fcd2b7aa8c40845c653869",
+      "location": {
+        "column": 37,
+        "row": 15
+      },
+      "message": "`fx_smc_bot.live.journal.EventJournal` imported but unused",
+      "normalized_message": "`fx_smc_bot.live.journal.EventJournal` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/reconciliation.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.live.journal import EventJournal, JournalEvent",
+      "source_line_fingerprint": "0a99ce9402ee263641936aae11cc8ba0763162f973fcd2b7aa8c40845c653869"
+    },
+    {
+      "end_location": {
+        "column": 110,
+        "row": 110
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/reconciliation.py|E501|Line too long (109 > 100)|149bab4a27e2b5a6b996019d18322f003ce4f7524335b5d75f6e795412b559df",
+      "location": {
+        "column": 101,
+        "row": 110
+      },
+      "message": "Line too long (109 > 100)",
+      "normalized_message": "Line too long (109 > 100)",
+      "relative_path": "src/fx_smc_bot/research/reconciliation.py",
+      "rule_code": "E501",
+      "source_line": "f\"Trade count mismatch: backtest={report.backtest_trade_count}, paper={report.paper_trade_count}\"",
+      "source_line_fingerprint": "149bab4a27e2b5a6b996019d18322f003ce4f7524335b5d75f6e795412b559df"
+    },
+    {
+      "end_location": {
+        "column": 112,
+        "row": 125
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/reconciliation.py|E501|Line too long (111 > 100)|21a3970db9f2ed9d54dc712ece7176c41cc342953db6e09ff8c66af5b1b359c5",
+      "location": {
+        "column": 101,
+        "row": 125
+      },
+      "message": "Line too long (111 > 100)",
+      "normalized_message": "Line too long (111 > 100)",
+      "relative_path": "src/fx_smc_bot/research/reconciliation.py",
+      "rule_code": "E501",
+      "source_line": "f\"| Trades | {report.backtest_trade_count} | {report.paper_trade_count} | {report.trade_count_diff} |\",",
+      "source_line_fingerprint": "21a3970db9f2ed9d54dc712ece7176c41cc342953db6e09ff8c66af5b1b359c5"
+    },
+    {
+      "end_location": {
+        "column": 130,
+        "row": 126
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/reconciliation.py|E501|Line too long (129 > 100)|73a078682fe22764e175c438c5d8bae70c27adb022f756d1a08cc23831e9b41c",
+      "location": {
+        "column": 101,
+        "row": 126
+      },
+      "message": "Line too long (129 > 100)",
+      "normalized_message": "Line too long (129 > 100)",
+      "relative_path": "src/fx_smc_bot/research/reconciliation.py",
+      "rule_code": "E501",
+      "source_line": "f\"| PnL | {report.backtest_pnl:,.2f} | {report.paper_pnl:,.2f} | {report.pnl_diff:,.2f} ({report.pnl_diff_pct:+.1f}%) |\",",
+      "source_line_fingerprint": "73a078682fe22764e175c438c5d8bae70c27adb022f756d1a08cc23831e9b41c"
+    },
+    {
+      "end_location": {
+        "column": 118,
+        "row": 127
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/reconciliation.py|E501|Line too long (117 > 100)|146a24e77fb7b7588915af40986cf015a44c3068b25900c8712b12d9d17a1cce",
+      "location": {
+        "column": 101,
+        "row": 127
+      },
+      "message": "Line too long (117 > 100)",
+      "normalized_message": "Line too long (117 > 100)",
+      "relative_path": "src/fx_smc_bot/research/reconciliation.py",
+      "rule_code": "E501",
+      "source_line": "f\"| Final Equity | {report.backtest_equity:,.2f} | {report.paper_equity:,.2f} | {report.equity_diff:,.2f} |\",",
+      "source_line_fingerprint": "146a24e77fb7b7588915af40986cf015a44c3068b25900c8712b12d9d17a1cce"
+    },
+    {
+      "end_location": {
+        "column": 31,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/reporting.py|F401|`dataclasses.asdict` imported but unused|2eb7e513e1c9e457f3b1eea3eafa1dfec3c304c0361b429c8fb761d7c32e1dcc",
+      "location": {
+        "column": 25,
+        "row": 12
+      },
+      "message": "`dataclasses.asdict` imported but unused",
+      "normalized_message": "`dataclasses.asdict` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/reporting.py",
+      "rule_code": "F401",
+      "source_line": "from dataclasses import asdict",
+      "source_line_fingerprint": "2eb7e513e1c9e457f3b1eea3eafa1dfec3c304c0361b429c8fb761d7c32e1dcc"
+    },
+    {
+      "end_location": {
+        "column": 13,
+        "row": 21
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/reporting.py|F401|`fx_smc_bot.backtesting.attribution.by_month` imported but unused|b4a263732740063d83d6db8c2a9c10082b6974b11219fc7b34fda3dd7c4ec640",
+      "location": {
+        "column": 5,
+        "row": 21
+      },
+      "message": "`fx_smc_bot.backtesting.attribution.by_month` imported but unused",
+      "normalized_message": "`fx_smc_bot.backtesting.attribution.by_month` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/reporting.py",
+      "rule_code": "F401",
+      "source_line": "by_month,",
+      "source_line_fingerprint": "b4a263732740063d83d6db8c2a9c10082b6974b11219fc7b34fda3dd7c4ec640"
+    },
+    {
+      "end_location": {
+        "column": 119,
+        "row": 212
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/reporting.py|E501|Line too long (118 > 100)|6c90035fc2dfbe3cee4ac8f352bee365ea95828c37f666cb9580fc06085ece61",
+      "location": {
+        "column": 101,
+        "row": 212
+      },
+      "message": "Line too long (118 > 100)",
+      "normalized_message": "Line too long (118 > 100)",
+      "relative_path": "src/fx_smc_bot/research/reporting.py",
+      "rule_code": "E501",
+      "source_line": "flags.append(f\"LOW_TRADE_COUNT: only {metrics.total_trades} trades (minimum 30 for statistical significance)\")",
+      "source_line_fingerprint": "6c90035fc2dfbe3cee4ac8f352bee365ea95828c37f666cb9580fc06085ece61"
+    },
+    {
+      "end_location": {
+        "column": 106,
+        "row": 214
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/reporting.py|E501|Line too long (105 > 100)|cb4c478945e7520f96ddfc065eea2197113354570aaf114856d78dd46894fe80",
+      "location": {
+        "column": 101,
+        "row": 214
+      },
+      "message": "Line too long (105 > 100)",
+      "normalized_message": "Line too long (105 > 100)",
+      "relative_path": "src/fx_smc_bot/research/reporting.py",
+      "rule_code": "E501",
+      "source_line": "flags.append(f\"HIGH_DRAWDOWN: {metrics.max_drawdown_pct:.1%} max drawdown exceeds 25% threshold\")",
+      "source_line_fingerprint": "cb4c478945e7520f96ddfc065eea2197113354570aaf114856d78dd46894fe80"
+    },
+    {
+      "end_location": {
+        "column": 110,
+        "row": 218
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/reporting.py|E501|Line too long (109 > 100)|1e9365018578950b0aa69a4532523880a735cb7e89f9eaddff7361bc3cc7db48",
+      "location": {
+        "column": 101,
+        "row": 218
+      },
+      "message": "Line too long (109 > 100)",
+      "normalized_message": "Line too long (109 > 100)",
+      "relative_path": "src/fx_smc_bot/research/reporting.py",
+      "rule_code": "E501",
+      "source_line": "flags.append(f\"NEGATIVE_EDGE: profit factor {metrics.profit_factor:.2f} < 1.0 (net losing strategy)\")",
+      "source_line_fingerprint": "1e9365018578950b0aa69a4532523880a735cb7e89f9eaddff7361bc3cc7db48"
+    },
+    {
+      "end_location": {
+        "column": 33,
+        "row": 10
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/robustness.py|UP035|Import from `collections.abc` instead: `Callable`|7840d4914026396611bdb589d622086fc4cdd2edf2ba1484a48f3d3a8dd0df20",
+      "location": {
+        "column": 1,
+        "row": 10
+      },
+      "message": "Import from `collections.abc` instead: `Callable`",
+      "normalized_message": "Import from `collections.abc` instead: `Callable`",
+      "relative_path": "src/fx_smc_bot/research/robustness.py",
+      "rule_code": "UP035",
+      "source_line": "from typing import Any, Callable",
+      "source_line_fingerprint": "7840d4914026396611bdb589d622086fc4cdd2edf2ba1484a48f3d3a8dd0df20"
+    },
+    {
+      "end_location": {
+        "column": 45,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/scores.py|F401|`fx_smc_bot.domain.BacktestResult` imported but unused|ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a",
+      "location": {
+        "column": 31,
+        "row": 16
+      },
+      "message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+      "normalized_message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/scores.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.domain import BacktestResult, ClosedTrade",
+      "source_line_fingerprint": "ddcfe82be4dec97dbaa41f1eafb5f65a44142bddb62554f3874debe5f3c8464a"
+    },
+    {
+      "end_location": {
+        "column": 57,
+        "row": 17
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/scores.py|F401|`fx_smc_bot.research.campaigns.CampaignReport` imported but unused|fe763fab08f210aa945157e54ace164bdfac289ccd39582fb01f4b22994ea182",
+      "location": {
+        "column": 43,
+        "row": 17
+      },
+      "message": "`fx_smc_bot.research.campaigns.CampaignReport` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.campaigns.CampaignReport` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/scores.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.research.campaigns import CampaignReport",
+      "source_line_fingerprint": "fe763fab08f210aa945157e54ace164bdfac289ccd39582fb01f4b22994ea182"
+    },
+    {
+      "end_location": {
+        "column": 19,
+        "row": 107
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/scores.py|F841|Local variable `marginal_value` is assigned to but never used|12f2b4080b0e9ec7d39d4ec6b04971ae79daf4e6c582972969187158abe52d76",
+      "location": {
+        "column": 5,
+        "row": 107
+      },
+      "message": "Local variable `marginal_value` is assigned to but never used",
+      "normalized_message": "Local variable `marginal_value` is assigned to but never used",
+      "relative_path": "src/fx_smc_bot/research/scores.py",
+      "rule_code": "F841",
+      "source_line": "marginal_value = improvement / (component_count - 1)",
+      "source_line_fingerprint": "12f2b4080b0e9ec7d39d4ec6b04971ae79daf4e6c582972969187158abe52d76"
+    },
+    {
+      "end_location": {
+        "column": 103,
+        "row": 173
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/scores.py|E501|Line too long (102 > 100)|f419aafcc8c3dec815c1afafce0b58e1eb66f6821d92b14610ee23a9ac1830ad",
+      "location": {
+        "column": 101,
+        "row": 173
+      },
+      "message": "Line too long (102 > 100)",
+      "normalized_message": "Line too long (102 > 100)",
+      "relative_path": "src/fx_smc_bot/research/scores.py",
+      "rule_code": "E501",
+      "source_line": "oos = oos_consistency_score(is_sharpe or metrics.sharpe_ratio, oos_sharpe or metrics.sharpe_ratio)",
+      "source_line_fingerprint": "f419aafcc8c3dec815c1afafce0b58e1eb66f6821d92b14610ee23a9ac1830ad"
+    },
+    {
+      "end_location": {
+        "column": 106,
+        "row": 182
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/scores.py|E501|Line too long (105 > 100)|2c98be173486965bd22ae932d22f1aef894e6b5cd1edcc94c857fd80ef9ca7dc",
+      "location": {
+        "column": 101,
+        "row": 182
+      },
+      "message": "Line too long (105 > 100)",
+      "normalized_message": "Line too long (105 > 100)",
+      "relative_path": "src/fx_smc_bot/research/scores.py",
+      "rule_code": "E501",
+      "source_line": "\"stab_inputs\": {\"yearly_sharpes\": yearly_sharpes, \"monthly_pnls_count\": len(monthly_pnls or [])},",
+      "source_line_fingerprint": "2c98be173486965bd22ae932d22f1aef894e6b5cd1edcc94c857fd80ef9ca7dc"
+    },
+    {
+      "end_location": {
+        "column": 38,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/simplification.py|I001|Import block is un-sorted or un-formatted|a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00",
+      "location": {
+        "column": 1,
+        "row": 7
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "normalized_message": "Import block is un-sorted or un-formatted",
+      "relative_path": "src/fx_smc_bot/research/simplification.py",
+      "rule_code": "I001",
+      "source_line": "from __future__ import annotations",
+      "source_line_fingerprint": "a6284e6d3d43bdfbf0da732945adb2b4f31147c92bea47aee100d7f556c22d00"
+    },
+    {
+      "end_location": {
+        "column": 30,
+        "row": 83
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/simplification.py|UP037|Remove quotes from type annotation|da5d23753df6daf4555561a890065aec0b53d77a6432e45618d3b25bc02158fd",
+      "location": {
+        "column": 16,
+        "row": 83
+      },
+      "message": "Remove quotes from type annotation",
+      "normalized_message": "Remove quotes from type annotation",
+      "relative_path": "src/fx_smc_bot/research/simplification.py",
+      "rule_code": "UP037",
+      "source_line": "runs: list[\"CandidateRun\"] | None = None,",
+      "source_line_fingerprint": "da5d23753df6daf4555561a890065aec0b53d77a6432e45618d3b25bc02158fd"
+    },
+    {
+      "end_location": {
+        "column": 11,
+        "row": 93
+      },
+      "fix_available": true,
+      "fix_safety": "unsafe",
+      "identity": "src/fx_smc_bot/research/simplification.py|F841|Local variable `sc_map` is assigned to but never used|d38393d12e955ab72d62901e092768b9e181445f304fedd9802978c8d63a628b",
+      "location": {
+        "column": 5,
+        "row": 93
+      },
+      "message": "Local variable `sc_map` is assigned to but never used",
+      "normalized_message": "Local variable `sc_map` is assigned to but never used",
+      "relative_path": "src/fx_smc_bot/research/simplification.py",
+      "rule_code": "F841",
+      "source_line": "sc_map = {sc.label: sc for sc in scorecards}",
+      "source_line_fingerprint": "d38393d12e955ab72d62901e092768b9e181445f304fedd9802978c8d63a628b"
+    },
+    {
+      "end_location": {
+        "column": 106,
+        "row": 121
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/simplification.py|E501|Line too long (105 > 100)|5560c9ceb75efa46ca018fb015ed1eba16317acea05730884d4d1237bcbac6a9",
+      "location": {
+        "column": 101,
+        "row": 121
+      },
+      "message": "Line too long (105 > 100)",
+      "normalized_message": "Line too long (105 > 100)",
+      "relative_path": "src/fx_smc_bot/research/simplification.py",
+      "rule_code": "E501",
+      "source_line": "# (convention: a reduced variant missing this family would have n_families = full.n_families - 1)",
+      "source_line_fingerprint": "5560c9ceb75efa46ca018fb015ed1eba16317acea05730884d4d1237bcbac6a9"
+    },
+    {
+      "end_location": {
+        "column": 105,
+        "row": 138
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/simplification.py|E501|Line too long (104 > 100)|3138d9ffd2ae5d7e191d9391379af218d0e8d418340a1cc505f84a64f13d95f7",
+      "location": {
+        "column": 101,
+        "row": 138
+      },
+      "message": "Line too long (104 > 100)",
+      "normalized_message": "Line too long (104 > 100)",
+      "relative_path": "src/fx_smc_bot/research/simplification.py",
+      "rule_code": "E501",
+      "source_line": "ca.reasons.append(f\"Strong standalone ({ca.solo_sharpe:.3f} vs full {full.raw_sharpe:.3f})\")",
+      "source_line_fingerprint": "3138d9ffd2ae5d7e191d9391379af218d0e8d418340a1cc505f84a64f13d95f7"
+    },
+    {
+      "end_location": {
+        "column": 111,
+        "row": 206
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/simplification.py|E501|Line too long (110 > 100)|447e195019152aa6ea22247893ea7b3835b40b2b20a13107780bb964e206dfb6",
+      "location": {
+        "column": 101,
+        "row": 206
+      },
+      "message": "Line too long (110 > 100)",
+      "normalized_message": "Line too long (110 > 100)",
+      "relative_path": "src/fx_smc_bot/research/simplification.py",
+      "rule_code": "E501",
+      "source_line": "f\"**Full strategy Sharpe**: {report.full_strategy_sharpe:.3f} ({report.full_strategy_trades} trades)\",",
+      "source_line_fingerprint": "447e195019152aa6ea22247893ea7b3835b40b2b20a13107780bb964e206dfb6"
+    },
+    {
+      "end_location": {
+        "column": 111,
+        "row": 207
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/simplification.py|E501|Line too long (110 > 100)|731707fd73cae73436241b09e2b78e039921bc19b40ed62ab29082ad7f34f9a4",
+      "location": {
+        "column": 101,
+        "row": 207
+      },
+      "message": "Line too long (110 > 100)",
+      "normalized_message": "Line too long (110 > 100)",
+      "relative_path": "src/fx_smc_bot/research/simplification.py",
+      "rule_code": "E501",
+      "source_line": "f\"**Simplification score**: {report.simplification_score:.2f} (0=no action, 1=simplify aggressively)\",",
+      "source_line_fingerprint": "731707fd73cae73436241b09e2b78e039921bc19b40ed62ab29082ad7f34f9a4"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 41,
+        "row": 11
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|F401|`dataclasses.field` imported but unused|e98b1ef8c905ca7881ab778fdd7ac7001d0bb818527b22a1bc7321b3198135da",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 36,
+        "row": 11
+      },
+      "message": "`dataclasses.field` imported but unused",
+      "normalized_message": "`dataclasses.field` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from dataclasses import dataclass, field",
+      "source_line_fingerprint": "e98b1ef8c905ca7881ab778fdd7ac7001d0bb818527b22a1bc7321b3198135da"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 28,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|UP035|Import from `collections.abc` instead: `Sequence`|8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 1,
+        "row": 12
+      },
+      "message": "Import from `collections.abc` instead: `Sequence`",
+      "normalized_message": "Import from `collections.abc` instead: `Sequence`",
+      "proposed_remediation": "remove unused typing import or move to collections.abc if still needed",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "TYPE_ONLY_IMPORT",
+      "rule_code": "UP035",
+      "source_line": "from typing import Sequence",
+      "source_line_fingerprint": "8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 28,
+        "row": 12
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|F401|`typing.Sequence` imported but unused|8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872",
+      "introducing_commit": "2112d7b584a2",
+      "introducing_commit_subject": "feat(research): add dependence-aware statistical inference",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 20,
+        "row": 12
+      },
+      "message": "`typing.Sequence` imported but unused",
+      "normalized_message": "`typing.Sequence` imported but unused",
+      "proposed_remediation": "remove unused import only after tests confirm behavior",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "ELIGIBLE_WITH_DEDICATED_BEHAVIORAL_TESTS",
+      "remediation_risk": "UNUSED_IMPORT",
+      "rule_code": "F401",
+      "source_line": "from typing import Sequence",
+      "source_line_fingerprint": "8545602e456e8b13615625de266534951342dfa07277fae8dbb2e87c221ff872"
+    },
+    {
+      "classification": "NEW_ON_BRANCH",
+      "end_location": {
+        "column": 123,
+        "row": 308
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/statistical_inference.py|E501|Line too long (122 > 100)|e0a01bb8d23b9467013582d208511e83b287f2907e43f43d3672a890af65ba86",
+      "introducing_commit": "13a57db1f950",
+      "introducing_commit_subject": "fix: close pre-holdout correctness gaps",
+      "introducing_gate": "pre-C3 research runtime",
+      "location": {
+        "column": 101,
+        "row": 308
+      },
+      "message": "Line too long (122 > 100)",
+      "normalized_message": "Line too long (122 > 100)",
+      "proposed_remediation": "wrap expression without changing evaluation order",
+      "relative_path": "src/fx_smc_bot/research/statistical_inference.py",
+      "remediation_policy": "AUTOMATICALLY_ELIGIBLE_AFTER_REVIEW",
+      "remediation_risk": "FORMAT_ONLY",
+      "rule_code": "E501",
+      "source_line": "daily_sr = float(np.mean(daily_returns) / np.std(daily_returns, ddof=1)) if np.std(daily_returns, ddof=1) > 0 else 0.0",
+      "source_line_fingerprint": "e0a01bb8d23b9467013582d208511e83b287f2907e43f43d3672a890af65ba86"
+    },
+    {
+      "end_location": {
+        "column": 79,
+        "row": 22
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/validation.py|F401|`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused|2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7",
+      "location": {
+        "column": 64,
+        "row": 22
+      },
+      "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "normalized_message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/validation.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics",
+      "source_line_fingerprint": "2ef832f107931d3f7f50e8763e0f5eed00aa660a251e1834ed76de1f71f4eed7"
+    },
+    {
+      "end_location": {
+        "column": 40,
+        "row": 23
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/validation.py|F401|`fx_smc_bot.config.AppConfig` imported but unused|d26f497e4abc0d718ea9fa78debbc4a249ef1e0d7051d60690c0532577636d49",
+      "location": {
+        "column": 31,
+        "row": 23
+      },
+      "message": "`fx_smc_bot.config.AppConfig` imported but unused",
+      "normalized_message": "`fx_smc_bot.config.AppConfig` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/validation.py",
+      "rule_code": "F401",
+      "source_line": "from fx_smc_bot.config import AppConfig, TradingPair",
+      "source_line_fingerprint": "d26f497e4abc0d718ea9fa78debbc4a249ef1e0d7051d60690c0532577636d49"
+    },
+    {
+      "end_location": {
+        "column": 16,
+        "row": 36
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/validation.py|F401|`fx_smc_bot.research.gating.GateVerdict` imported but unused|9fcee07945944abffc68d7ae3b42b6fb39d6b39775bf0575baa3cde33b90ac79",
+      "location": {
+        "column": 5,
+        "row": 36
+      },
+      "message": "`fx_smc_bot.research.gating.GateVerdict` imported but unused",
+      "normalized_message": "`fx_smc_bot.research.gating.GateVerdict` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/validation.py",
+      "rule_code": "F401",
+      "source_line": "GateVerdict,",
+      "source_line_fingerprint": "9fcee07945944abffc68d7ae3b42b6fb39d6b39775bf0575baa3cde33b90ac79"
+    },
+    {
+      "end_location": {
+        "column": 111,
+        "row": 146
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/validation.py|E501|Line too long (110 > 100)|42becd31b1e35513ca958850c3300e967c59f4ff1c18f5220a80c73282084003",
+      "location": {
+        "column": 101,
+        "row": 146
+      },
+      "message": "Line too long (110 > 100)",
+      "normalized_message": "Line too long (110 > 100)",
+      "relative_path": "src/fx_smc_bot/research/validation.py",
+      "rule_code": "E501",
+      "source_line": "conservative = [r for r in run.stress_report.results if r.scenario_name == \"conservative\"]",
+      "source_line_fingerprint": "42becd31b1e35513ca958850c3300e967c59f4ff1c18f5220a80c73282084003"
+    },
+    {
+      "end_location": {
+        "column": 102,
+        "row": 186
+      },
+      "fix_available": false,
+      "fix_safety": null,
+      "identity": "src/fx_smc_bot/research/validation.py|E501|Line too long (101 > 100)|e38161bad88e6e7703eabd7f0157d18376e3b04850be376b31c68f2c0b24634b",
+      "location": {
+        "column": 101,
+        "row": 186
+      },
+      "message": "Line too long (101 > 100)",
+      "normalized_message": "Line too long (101 > 100)",
+      "relative_path": "src/fx_smc_bot/research/validation.py",
+      "rule_code": "E501",
+      "source_line": "logger.warning(\"Config hash mismatch for %s in holdout -- skipping\", candidate.label)",
+      "source_line_fingerprint": "e38161bad88e6e7703eabd7f0157d18376e3b04850be376b31c68f2c0b24634b"
+    },
+    {
+      "end_location": {
+        "column": 30,
+        "row": 13
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/walk_forward.py|F401|`datetime.datetime` imported but unused|1c80ee441a56d69acae99266605441b0bb38a078dd24cafe32771d718f2b86a4",
+      "location": {
+        "column": 22,
+        "row": 13
+      },
+      "message": "`datetime.datetime` imported but unused",
+      "normalized_message": "`datetime.datetime` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/walk_forward.py",
+      "rule_code": "F401",
+      "source_line": "from datetime import datetime",
+      "source_line_fingerprint": "1c80ee441a56d69acae99266605441b0bb38a078dd24cafe32771d718f2b86a4"
+    },
+    {
+      "end_location": {
+        "column": 19,
+        "row": 15
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/walk_forward.py|F401|`numpy` imported but unused|6f11581db2b4487aaaf6eb8704a9acbe89cddd1ccde4652211c1a838bc70efde",
+      "location": {
+        "column": 17,
+        "row": 15
+      },
+      "message": "`numpy` imported but unused",
+      "normalized_message": "`numpy` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/walk_forward.py",
+      "rule_code": "F401",
+      "source_line": "import numpy as np",
+      "source_line_fingerprint": "6f11581db2b4487aaaf6eb8704a9acbe89cddd1ccde4652211c1a838bc70efde"
+    },
+    {
+      "end_location": {
+        "column": 33,
+        "row": 16
+      },
+      "fix_available": true,
+      "fix_safety": "safe",
+      "identity": "src/fx_smc_bot/research/walk_forward.py|F401|`numpy.typing.NDArray` imported but unused|b63b6e92f81d4f4e0e137694b1d6cb1442676dcb7bd3535c2ebbf09195b3e3d7",
+      "location": {
+        "column": 26,
+        "row": 16
+      },
+      "message": "`numpy.typing.NDArray` imported but unused",
+      "normalized_message": "`numpy.typing.NDArray` imported but unused",
+      "relative_path": "src/fx_smc_bot/research/walk_forward.py",
+      "rule_code": "F401",
+      "source_line": "from numpy.typing import NDArray",
+      "source_line_fingerprint": "b63b6e92f81d4f4e0e137694b1d6cb1442676dcb7bd3535c2ebbf09195b3e3d7"
+    }
+  ],
+  "status": "PASS"
+}

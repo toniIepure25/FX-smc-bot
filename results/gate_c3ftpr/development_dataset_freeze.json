@@ -1,0 +1,19 @@
+{
+  "amended_plan_file_hash": "4dbf5a0d6c2d06ed4f32eeda925b7b7599e0aa3c449262c26a59672e3f77a7d8",
+  "amended_plan_hash": "bbcebd0b6cc0",
+  "amendment_record_hash": "390fbb3694502677a0cf1bd0f3f59efbdd5c8fe6155475b2fe139143a737dcbc",
+  "blockers": [
+    "BLOCKED_BY_TICK_AUDIT"
+  ],
+  "created_at": "2026-07-23T13:08:42.951585+00:00",
+  "development_certification_hash": "c611b5a080438ad2de240a6df976c3af87f2b0a85c4e3f0143c4fca264134e79",
+  "development_tick_audit_hash": "cab42dbba3619dadb616057fef65760d30e0719e5034c119bfd30edf362de98c",
+  "final_decision": "DEVELOPMENT_DATA_EXPLORATORY_ONLY",
+  "holdout_integrity_hash": "7ef57029edcd7fe6e87b891a652654818d4b5e302dbb8e18da0b3772a3104945",
+  "pair_year_certification_hash": "d62ebb8aedba6cd4af58c9df60b64cc4d3f59032c1f2f855cfe445993e6b240c",
+  "protocol_hash": "2fbffeead35214ad78ab462115347f28186654b91fa5ba1e8e37025562252d5e",
+  "selected_research_universe": [
+    "USDJPY"
+  ],
+  "status": "BLOCKED"
+}

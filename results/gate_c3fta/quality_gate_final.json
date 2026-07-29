@@ -1,0 +1,71 @@
+{
+  "final_checks": {
+    "git_diff_check": {
+      "command": "git diff --check",
+      "status": "PASS",
+      "summary": "No whitespace or conflict-marker issues detected."
+    },
+    "git_status": {
+      "command": "git status --short --ignored",
+      "status": "PASS_WITH_EXPECTED_UNTRACKED_AND_IGNORED",
+      "summary": "New C3F-TA docs/code/tests plus ignored results/gate_c3fta are present; raw/canonical/log/cache artifacts remain ignored."
+    },
+    "mypy_data_research": {
+      "command": "python -m mypy src/fx_smc_bot/data src/fx_smc_bot/research",
+      "status": "FAIL_PRE_EXISTING",
+      "summary": "13 errors in 13 files, primarily missing pandas/scipy/yaml stubs plus existing type incompatibilities."
+    },
+    "node_exact_requested": {
+      "command": "node --test tools/dukascopy-node/test_acquire.mjs",
+      "status": "NOT_RUN_NODE_UNAVAILABLE_ON_PATH",
+      "summary": "node is not available in PATH in this environment."
+    },
+    "node_bundled_smoke": {
+      "command": "bundled node --test test_acquire.mjs from tools/dukascopy-node",
+      "status": "PASS",
+      "summary": "2 pass, 0 fail."
+    },
+    "npm_audit": {
+      "command": "npm --prefix tools/dukascopy-node audit --omit=dev",
+      "status": "NOT_RUN_NPM_UNAVAILABLE",
+      "summary": "npm is not available in PATH in this environment."
+    },
+    "npm_test": {
+      "command": "npm --prefix tools/dukascopy-node test",
+      "status": "NOT_RUN_NPM_UNAVAILABLE",
+      "summary": "npm is not available in PATH in this environment."
+    },
+    "pytest_full_local_basetemp": {
+      "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_final tests/ -q",
+      "status": "PASS",
+      "summary": "653 passed, 91 warnings."
+    },
+    "pytest_gate_c3fta_scope": {
+      "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_c3fta tests/test_gate_c3f/test_c3fta_blocker_analysis.py tests/test_gate_c3f/test_c3fv_validation.py -q",
+      "status": "PASS",
+      "summary": "12 passed."
+    },
+    "ruff_full_scope": {
+      "command": "python -m ruff check src/fx_smc_bot/data src/fx_smc_bot/research scripts --output-format concise",
+      "status": "FAIL_PRE_EXISTING",
+      "summary": "1018 existing lint errors across pre-existing files; new C3F-TA files pass targeted lint."
+    },
+    "ruff_new_files": {
+      "command": "python -m ruff check scripts/run_gate_c3fta_blocker_analysis.py tests/test_gate_c3f/test_c3fta_blocker_analysis.py",
+      "status": "PASS",
+      "summary": "All checks passed."
+    }
+  },
+  "reproduction": {
+    "git_branch": "research/rigorous-intraday-smc-validation",
+    "git_diff_check": "PASS",
+    "git_rev_parse_head": "9490bab45366f96c244b6bd13b14f8ae357ac8b6",
+    "git_status": "PASS_CLEAN_WITH_GLOBAL_IGNORE_WARNING",
+    "pytest_exact_requested": {
+      "command": "python -m pytest tests/test_gate_c3f/test_c3fv_validation.py -q",
+      "status": "FAIL_ENVIRONMENT_TEMP_PERMISSION",
+      "summary": "5 passed, 3 setup errors; pytest could not scan C:/Users/ComputaCenter/AppData/Local/Temp/pytest-of-ComputaCenter"
+    }
+  },
+  "status": "COMPLETE_WITH_PRE_EXISTING_QUALITY_DEBT_AND_PATH_TOOLING_LIMITS"
+}

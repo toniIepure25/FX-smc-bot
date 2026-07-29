@@ -1,0 +1,22 @@
+{
+  "liquidity_acceptance_fvg_continuation": {
+    "mde80_two_sided_alpha05_points": 14.061585121967383,
+    "n_events": 2440,
+    "sd_pair_diff_points": 248.0682380680274
+  },
+  "liquidity_sweep_mss_fvg_reversal": {
+    "mde80_two_sided_alpha05_points": 16.264893632834536,
+    "n_events": 1389,
+    "sd_pair_diff_points": 216.49322950618784
+  },
+  "opening_range_london": {
+    "mde80_two_sided_alpha05_points": 16.604405422991615,
+    "n_events": 694,
+    "sd_pair_diff_points": 156.2230213194723
+  },
+  "opening_range_new_york": {
+    "mde80_two_sided_alpha05_points": 19.60973061961117,
+    "n_events": 800,
+    "sd_pair_diff_points": 198.08819283383625
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "gate": "C.3F-R",
+  "status": "INCOMPLETE",
+  "reason": "Dataset freeze requires complete development acquisition and certification",
+  "development_boundaries": "2015-01-01 through 2019-12-31",
+  "validation_boundaries": "2020-01-01 through 2022-12-31",
+  "holdout_boundaries": "2023-01-01 through 2025-12-31",
+  "holdout_access_policy": "download, checksum, structural quality, spread stats only; no events, strategies, PnL",
+  "timestamp": "2026-07-14T15:10:00Z"
+}

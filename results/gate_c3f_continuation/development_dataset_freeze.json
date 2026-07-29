@@ -1,0 +1,31 @@
+{
+  "artifact_hash": "d4110941237eacafcbeceb0c81bed26e7fb3809c50b2743a82f5921a09414f29",
+  "corrected_at": "2026-07-20T10:45:22.359158+00:00",
+  "created_at": "2026-07-20T10:41:40.287574+00:00",
+  "current_git_sha": "NOT_APPLICABLE_FREEZE_NOT_CREATED",
+  "development_boundaries": [
+    "2015-01-01",
+    "2019-12-31"
+  ],
+  "dukascopy_node_version": "1.46.4",
+  "freeze_status": "NOT_CREATED",
+  "holdout_boundaries": [
+    "2023-01-01",
+    "2025-12-31"
+  ],
+  "last_verified_repo_sha_before_continuation_commit": "37a2efdf84f6637693e2dd36e0b2caf588bc425c",
+  "node_version": "v24.14.0",
+  "npm_version": "UNAVAILABLE_ON_PATH",
+  "package_lock_hash": "6ef38a60aa32f814a5b1dcd76b12e30d44d670afea6686486b67256e7c56cc71",
+  "pair_dataset_decisions": {
+    "EURUSD": "DATASET_EXPLORATORY_ONLY",
+    "GBPUSD": "DATASET_REJECTED",
+    "USDJPY": "DATASET_REJECTED"
+  },
+  "python_version": "Python 3.13.5",
+  "reason": "Cannot freeze development dataset until 2015-2019 acquisition, tick audit, and certification complete.",
+  "validation_boundaries": [
+    "2020-01-01",
+    "2022-12-31"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "created_at": "2026-07-23T15:42:04.405684+00:00",
+  "pair_years": {
+    "EURUSD": {
+      "2015": {
+        "certification": "PAIR_YEAR_REJECTED",
+        "tick_audit_result": "TICK_AUDIT_FAIL"
+      },
+      "2016": {
+        "certification": "PAIR_YEAR_REJECTED",
+        "tick_audit_result": "TICK_AUDIT_FAIL"
+      },
+      "2017": {
+        "certification": "PAIR_YEAR_REJECTED",
+        "tick_audit_result": "TICK_AUDIT_FAIL"
+      },
+      "2018": {
+        "certification": "PAIR_YEAR_REJECTED",
+        "tick_audit_result": "TICK_AUDIT_FAIL"
+      },
+      "2019": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      }
+    },
+    "GBPUSD": {
+      "2015": {
+        "certification": "PAIR_YEAR_REJECTED",
+        "tick_audit_result": "TICK_AUDIT_FAIL"
+      },
+      "2016": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      },
+      "2017": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      },
+      "2018": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      },
+      "2019": {
+        "certification": "PAIR_YEAR_REJECTED",
+        "tick_audit_result": "TICK_AUDIT_FAIL"
+      }
+    },
+    "USDJPY": {
+      "2015": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      },
+      "2016": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      },
+      "2017": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      },
+      "2018": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      },
+      "2019": {
+        "certification": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+        "tick_audit_result": "TICK_AUDIT_PASS"
+      }
+    }
+  }
+}

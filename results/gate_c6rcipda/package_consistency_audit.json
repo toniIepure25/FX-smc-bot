@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "c6_decision": true,
+    "c6rci_decision": true,
+    "claim_statuses": true,
+    "manifest_hash": true,
+    "seal_hash": true,
+    "seal_identity": true
+  },
+  "created_at_utc": "2026-07-26T10:44:53.567531+00:00",
+  "status": "PASS"
+}

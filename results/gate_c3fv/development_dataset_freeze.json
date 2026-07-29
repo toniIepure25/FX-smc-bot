@@ -1,0 +1,44 @@
+{
+  "2019_tick_audit_hash": "11f178ba1e06df246b02022d003636e33f956a5005a4bc692e826090bb73a4cb",
+  "acquisition_configuration_hash": "591aec5fe7114c94b5583e54c26ba8199779aecbbd9747f488ae1b39bea80332",
+  "blockers": [
+    "BLOCKED_BY_TICK_AUDIT"
+  ],
+  "branch": "research/rigorous-intraday-smc-validation",
+  "canonical_checksum_set_hash": "64bb4442650d5a772130b6e19dc9ca79f1d5479b7159a57388f4ee1b6892719c",
+  "complete_partition_manifest_hash": "412b96644a50f22e6f8bbc28f8d6ad991f62def70e62f34c3603d7cde9f5dd3c",
+  "created_at": "2026-07-21T17:09:56.676998+00:00",
+  "development_boundaries": [
+    "2015-01-01",
+    "2019-12-31"
+  ],
+  "development_certification_hash": "9cb4d70272d297fcd7db92d586fabaf0c8a2fd49b33c1fcc3a03c12f26d8ebdb",
+  "development_tick_audit_hash": "ab51467ea3a6aaae6e777a6a61763a16e71f012f74290f4a88143e1d22cfdb4d",
+  "dukascopy_node_version": "1.46.4",
+  "event_smoke_artifact_hash": "5f40be061973dfd2a8e6f03604f44bdb8e9e14c24bb896e0d6a91d1e1a522bd0",
+  "git_sha": "3163bc495757be5d25d1ada47deac347e19029b1",
+  "holdout_boundaries": [
+    "2023-01-01",
+    "2025-12-31"
+  ],
+  "holdout_policy_hash": "5aa3467d7b90e24243e5d1a079c32159561b4f88258f39a770451388c4d608c6",
+  "known_exclusions": [
+    "tick audit not executable"
+  ],
+  "monthly_quality_manifest_hash": "a13a49baf6540210c66c5dff276efa2987f14be6abe49a4207e2ed9824a93b2e",
+  "node_version": "v24.14.0",
+  "npm_package_manager_status": "NOT_RUN_NPM_UNAVAILABLE",
+  "package_lock_hash": "6ef38a60aa32f814a5b1dcd76b12e30d44d670afea6686486b67256e7c56cc71",
+  "pair_year_certification_hash": "49cdef31d6c039ddd5b6819d47b00d849a408e25469df0cf2402bda4f10d4628",
+  "python_version": "3.13.5",
+  "raw_acquisition_audit_hash": "412b96644a50f22e6f8bbc28f8d6ad991f62def70e62f34c3603d7cde9f5dd3c",
+  "raw_checksums_hash": "412b96644a50f22e6f8bbc28f8d6ad991f62def70e62f34c3603d7cde9f5dd3c",
+  "resampling_implementation_hash": "37bbc6fabf9acaa2a10efbc6794c8a9f15d3f891f8fe1f4249b87a8f61bc6489",
+  "selected_research_universe": [],
+  "status": "BLOCKED",
+  "tick_audit_plan_hash": "c9fc33d4b3cffcd43380895832a6a72bd6037b3984147aa93671e26d1a98a252",
+  "validation_boundaries": [
+    "2020-01-01",
+    "2022-12-31"
+  ]
+}

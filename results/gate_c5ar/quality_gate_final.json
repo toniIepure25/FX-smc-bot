@@ -1,0 +1,89 @@
+{
+  "artifact_hashes": {
+    "results/gate_c5ar/control_matching_audit.json": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd",
+    "results/gate_c5ar/execution_start_record.json": "6b7baba6c19de29dc875fd2615995b9501f711fe48e896f5c6606e0efffb3c6e",
+    "results/gate_c5ar/holdout_integrity.json": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3",
+    "results/gate_c5ar/outcome_coverage_audit.json": "59bf1f946ddb2493a0fe3fd7e3f9825280b4b6b09a9c5046c6bdf12271c54dad",
+    "results/gate_c5ar/post_validation_lock.json": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7",
+    "results/gate_c5ar/repository_state.json": "e9f8b57fa8a9294ffec34206324a63e48a5b10fdde34ee03a4828215bf245b14",
+    "results/gate_c5ar/resumption_integrity.json": "2b5e0490027eea87462cc925490128d759528b4626346de7a7797aa4a78c3083",
+    "results/gate_c5ar/scientific_code_integrity.json": "d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23",
+    "results/gate_c5ar/validation_criterion_adjudication.json": "af085060058dbfc3b25c6df6d84ab99898ef9002f19c733b5a5188f7496055b9",
+    "results/gate_c5ar/validation_event_manifest.json": "be45c3a85daf00bfaa053f44dabc84c7252f4b07d7defdbc6bf349c11cab7bf8",
+    "results/gate_c5ar/validation_freeze_integrity.json": "28eeee017226c36968364b266350679513da2fe886b07dfe0fcacd6043a376c2",
+    "results/gate_c5ar/validation_inference.json": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+    "results/gate_c5ar/validation_overlap_audit.json": "c79c8e3c520d450c7ce9fff495ab0362f197cfab810083ae78d51155bb70f4f0",
+    "results/gate_c5ar/validation_placebo.json": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+    "results/gate_c5ar/validation_primary_estimand.json": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+    "results/gate_c5ar/validation_stability.json": "c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8"
+  },
+  "artifact_integrity_reconciliation": {
+    "outcome_coverage_audit_hash": "59bf1f946ddb2493a0fe3fd7e3f9825280b4b6b09a9c5046c6bdf12271c54dad",
+    "reason": "outcome_coverage_audit status derived from unchanged individual checks; no scientific result recomputed or modified",
+    "status": "PASS"
+  },
+  "controls_constructed": true,
+  "docs_hashes": {
+    "docs/research/GATE_C5AR_CONTROL_MATCHING.md": "aac83649e36e72be4e7f9653dea8c44a8e742251ea49127c7a721dd7f0fb00f7",
+    "docs/research/GATE_C5AR_CRITERION_ADJUDICATION.md": "6694d64dbb06c1649e68c5a01c189643fdfeded8ed64d5c2c14910c18196ba08",
+    "docs/research/GATE_C5AR_FINAL_DECISION_MEMO.md": "277842b231fd64a5209329472c9388eb8a7b2179fac14eef2b43b17519f7fa67",
+    "docs/research/GATE_C5AR_VALIDATION_RESULTS.md": "66c051f950dbf94bb11d6832ff4558c942c6c2b7a7466185db7cf021bbf82982"
+  },
+  "ending_sha_before_commit": "a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6",
+  "event_counts_computed": true,
+  "event_detection_executed": true,
+  "execution_sha": "a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6",
+  "final_decision": "USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED",
+  "holdout_accessed": false,
+  "inference_computed": true,
+  "outcomes_computed": true,
+  "placebo_computed": true,
+  "quality_gate": {
+    "bundled_node_smoke": {
+      "command": "bundled node.exe --test test_acquire.mjs from tools/dukascopy-node",
+      "result": "2 passed, 0 failed",
+      "status": "PASS"
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "no whitespace errors",
+      "status": "PASS"
+    },
+    "git_status_before_commit": {
+      "short_status": "?? docs/research/GATE_C5AR_CONTROL_MATCHING.md\n?? docs/research/GATE_C5AR_CRITERION_ADJUDICATION.md\n?? docs/research/GATE_C5AR_FINAL_DECISION_MEMO.md\n?? docs/research/GATE_C5AR_VALIDATION_RESULTS.md",
+      "status": "DIRTY_EXPECTED_RESULTS_DOCS_ONLY"
+    },
+    "mypy": {
+      "command": "python -m mypy src/fx_smc_bot/research",
+      "result": "3 missing-library-stub import-untyped errors: scipy in statistical_inference.py and overfitting.py; yaml in experiments.py",
+      "status": "FAIL_PRE_EXISTING_REPOSITORY_DEBT"
+    },
+    "node_path": {
+      "command": "node --test tools/dukascopy-node/test_acquire.mjs",
+      "result": "node command not recognized on PATH",
+      "status": "NOT_ON_PATH"
+    },
+    "npm_audit": {
+      "command": "npm --prefix tools/dukascopy-node audit --omit=dev",
+      "result": "npm command not recognized on PATH; bundled runtime exposes node.exe only",
+      "status": "NOT_RUN_NPM_UNAVAILABLE"
+    },
+    "npm_test": {
+      "command": "npm --prefix tools/dukascopy-node test",
+      "result": "npm command not recognized on PATH; bundled runtime exposes node.exe only",
+      "status": "NOT_RUN_NPM_UNAVAILABLE"
+    },
+    "pytest": {
+      "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_gate_c5ar tests/ -q",
+      "result": "728 passed, 91 warnings in 245.26s",
+      "status": "PASS"
+    },
+    "ruff": {
+      "command": "python -m ruff check scripts/run_gate_c5*.py src/fx_smc_bot/research src/fx_smc_bot/data tests/test_gate_c5a tests/test_gate_c5adqr",
+      "result": "148 errors reported across existing src/fx_smc_bot/research and src/fx_smc_bot/data files; no C5-A-R scientific code or tests were modified",
+      "status": "FAIL_PRE_EXISTING_REPOSITORY_DEBT"
+    }
+  },
+  "starting_sha": "a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6",
+  "status": "PASS"
+}

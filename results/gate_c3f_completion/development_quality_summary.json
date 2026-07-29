@@ -1,0 +1,172 @@
+{
+  "coverage_by_pair_year": {
+    "EURUSD": {
+      "2015": {
+        "active_units": [],
+        "ask_rows": 357121,
+        "bid_rows": 362280,
+        "complete_monthly_side_units": 24,
+        "complete_pair_months": 12,
+        "pending_monthly_side_units": 0
+      },
+      "2016": {
+        "active_units": [
+          "ask/03",
+          "bid/04"
+        ],
+        "ask_rows": 57706,
+        "bid_rows": 86354,
+        "complete_monthly_side_units": 5,
+        "complete_pair_months": 2,
+        "pending_monthly_side_units": 19
+      },
+      "2017": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2018": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2019": {
+        "active_units": [],
+        "ask_rows": 329052,
+        "bid_rows": 334565,
+        "complete_monthly_side_units": 24,
+        "complete_pair_months": 12,
+        "pending_monthly_side_units": 0
+      }
+    },
+    "GBPUSD": {
+      "2015": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2016": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2017": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2018": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2019": {
+        "active_units": [],
+        "ask_rows": 361899,
+        "bid_rows": 354231,
+        "complete_monthly_side_units": 24,
+        "complete_pair_months": 12,
+        "pending_monthly_side_units": 0
+      }
+    },
+    "USDJPY": {
+      "2015": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2016": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2017": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2018": {
+        "active_units": [],
+        "ask_rows": 0,
+        "bid_rows": 0,
+        "complete_monthly_side_units": 0,
+        "complete_pair_months": 0,
+        "pending_monthly_side_units": 24
+      },
+      "2019": {
+        "active_units": [],
+        "ask_rows": 368742,
+        "bid_rows": 365045,
+        "complete_monthly_side_units": 24,
+        "complete_pair_months": 12,
+        "pending_monthly_side_units": 0
+      }
+    }
+  },
+  "created_at": "2026-07-20T11:29:32.814182+00:00",
+  "pair_level_certifications": {
+    "EURUSD": "PENDING",
+    "GBPUSD": "PENDING",
+    "USDJPY": "PENDING"
+  },
+  "pair_year_certifications": {
+    "2019": {
+      "EURUSD": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+      "GBPUSD": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT",
+      "USDJPY": "PAIR_YEAR_CERTIFIED_FOR_DEVELOPMENT"
+    }
+  },
+  "reason": "Development acquisition, retry/repair, canonical generation, and development tick audit are incomplete.",
+  "research_universe": [],
+  "status": "NOT_CERTIFIED_FIRST_PASS_ACTIVE",
+  "totals": {
+    "ask_only_intervals_complete_pair_months": 51424,
+    "bid_only_intervals_complete_pair_months": 50732,
+    "canonical_bytes": 42064046,
+    "complete_daily_units": 2535,
+    "complete_monthly_side_units": 101,
+    "complete_pair_months": 50,
+    "corrupt_monthly_side_units": 0,
+    "market_closed_units": 432,
+    "missing_daily_units": 7832,
+    "negative_spread_rows_complete_pair_months": 0,
+    "pending_monthly_side_units": 259,
+    "pending_pair_months": 130,
+    "planned_daily_units": 10956,
+    "planned_monthly_side_units": 360,
+    "planned_pair_months": 180,
+    "raw_bytes": 755733501,
+    "raw_checksum_mismatches": 0,
+    "retryable_failed_monthly_side_units": 34,
+    "retryable_failure_days": 90,
+    "terminal_failed_monthly_side_units": 36,
+    "terminal_failure_days": 67
+  }
+}

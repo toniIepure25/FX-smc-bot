@@ -1,0 +1,93 @@
+{
+  "core": {
+    "allowed_pair": "USDJPY",
+    "control_matching": {
+      "covariates": [
+        "spread",
+        "atr",
+        "pre_event_volatility",
+        "pre_event_trend",
+        "range_position"
+      ],
+      "embargo_minutes": 120,
+      "exact_keys": [
+        "year",
+        "month",
+        "session",
+        "direction"
+      ],
+      "random_seed": 4242,
+      "replacement": true
+    },
+    "decision_rules": {
+      "confirmed": "adequate event count, positive event and matched-control primary effect, Holm p<=0.05, positive replication effect, and placebo checks not reproducing the primary effect",
+      "insufficient": "event count below preregistered minimums",
+      "mixed": "directionally positive or heterogeneous but not confirmed",
+      "null": "adequate event count without a positive primary effect"
+    },
+    "development_years": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "discovery_years": [
+      2015,
+      2016,
+      2017
+    ],
+    "event_definition_config_hash": "736428ec62cfb04efa5b5de6dc759f50c97b71bfa585f57c6b03a451c169b8f1",
+    "event_definition_file_hashes": {
+      "acceptance_config": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+      "acceptance_source": "831aada49cc661a2a30a2dce030b6e9d4f2fbc01af0b0813d00aae47c4b3efb0",
+      "opening_range_config": "0a9a05b4137d83968cedc944e41dfbb583f74780274db848da0d1f5236e3ac77",
+      "opening_range_source": "851ca8a9eec8a4f7e58984261f100ce1652665a8e564f57d1efce7e1b818d192",
+      "sweep_config": "342def379cd60590b69b1072468e7a0014657382cb8b2dfd4dffd24a1ce8bc7b",
+      "sweep_source": "171cea6f92bf492ada5cdd5e5e05681a5fc84404f8b44ea557a8de68dc16b22a"
+    },
+    "freeze_scope_hash": "c0ef7c5897b61dabfebda0ed1b8cf5cccaf61fbfac83003c6d97c792aa837912",
+    "gate": "C.4",
+    "inference": {
+      "cluster_bootstrap_iterations": 1000,
+      "minimum_replication_events": 10,
+      "minimum_total_events": 40,
+      "multiple_testing": "Holm across primary family tests",
+      "paired_permutation_iterations": 2000
+    },
+    "primary_horizons_minutes": {
+      "liquidity_acceptance_fvg_continuation": 120,
+      "liquidity_sweep_mss_fvg_reversal": 60,
+      "opening_range_london": 60,
+      "opening_range_new_york": 60
+    },
+    "prohibited_metrics": [
+      "equity_curve",
+      "kelly",
+      "max_drawdown",
+      "pnl",
+      "portfolio_allocation",
+      "position_size",
+      "profit_factor",
+      "prop_challenge_probability",
+      "sharpe",
+      "sortino"
+    ],
+    "replication_years": [
+      2018,
+      2019
+    ],
+    "secondary_horizons_minutes": [
+      15,
+      30,
+      60,
+      120,
+      240
+    ],
+    "starting_sha_expected": "8fb676d0f452a29bfbb3414bef50f0cac30a686c",
+    "study": "USDJPY Event-Alpha Discovery and Internal Temporal Replication"
+  },
+  "created_at_utc": "2026-07-23T16:16:30.950105+00:00",
+  "preregistration_hash": "508ad3540b0f8f82b710775a50781f3f936695c2978284edc13942658624a349",
+  "repository_head_sha_at_preregistration": "8fb676d0f452a29bfbb3414bef50f0cac30a686c"
+}

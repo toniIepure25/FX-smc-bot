@@ -1,0 +1,50 @@
+{
+  "adjudication": "The positive mean and bootstrap lower bound are descriptive evidence. The preregistered intersection rule also required sign-flip p <= 0.05, so the absolute-effect criterion remains failed.",
+  "created_at_utc": "2026-07-25T13:38:34.733199+00:00",
+  "not_software_contradiction": true,
+  "permitted_diagnostics": {
+    "absolute_markout_distribution": {
+      "maximum": 2529.999999999987,
+      "mean": 11.33724832214778,
+      "median": 2.4999999999977263,
+      "minimum": -2311.0000000000073,
+      "p05": -298.8999999999933,
+      "p95": 324.9000000000025,
+      "positive_fraction": 0.5058724832214765
+    },
+    "events_per_day": {
+      "max": 8,
+      "mean": 2.0839160839160837,
+      "median": 2.0,
+      "min": 1,
+      "p95": 4.0
+    },
+    "independent_day_count": 572,
+    "matched_event_count": 1192
+  },
+  "potential_inferential_method_sensitivity": true,
+  "preregistered_decision_rule_remains_authoritative": true,
+  "procedure_comparison": {
+    "day_cluster_bootstrap": {
+      "day_weighting": "days are sampled as clusters; event counts per sampled day carry through",
+      "null_or_target": "uncertainty interval for the mean under day-resampled clusters",
+      "resampling_unit": "utc day",
+      "sensitivity": "can give a positive interval when day-level means are mostly positive"
+    },
+    "sign_flip_permutation": {
+      "monte_carlo_iterations": 2000,
+      "null_or_target": "symmetry or exchangeability of signs around zero",
+      "resampling_unit": "event signs with fixed magnitudes in the frozen implementation",
+      "seed": 4242,
+      "sensitivity": "skew, heavy tails, and within-day dependence can raise p-values"
+    }
+  },
+  "status": "PASS",
+  "validation_absolute_effect": {
+    "bootstrap_ci_lower": 0.7861459649301382,
+    "bootstrap_ci_upper": 22.05861848144365,
+    "formal_pass": false,
+    "mean": 11.33724832214778,
+    "sign_flip_permutation_p": 0.12843578210894552
+  }
+}

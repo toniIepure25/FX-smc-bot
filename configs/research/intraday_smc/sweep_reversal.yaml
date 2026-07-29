@@ -1,0 +1,57 @@
+# Canonical configuration for Strategy A: Liquidity Sweep MSS FVG Reversal
+# Pre-registered before holdout evaluation
+
+strategy:
+  family: liquidity_sweep_mss_fvg_reversal
+  version: "1.0"
+
+sweep_reversal:
+  k_atr_excursion: 0.5
+  k_spread_excursion: 2.0
+  min_pips_excursion: 3.0
+  max_reclaim_bars: 6
+  max_mss_bars: 10
+  max_displacement_bars: 5
+  max_fvg_bars: 5
+  max_order_bars: 20
+  entry_fvg_pct: 0.5
+  target_r: 2.0
+  k_atr_sl_buffer: 0.3
+  k_spread_sl_buffer: 1.5
+  min_sl_buffer_pips: 2.0
+  displacement_body_ratio: 2.0
+  displacement_tr_ratio: 1.5
+  displacement_clv: 0.6
+  fvg_min_atr: 0.3
+  swing_lookback: 5
+  median_body_lookback: 20
+  eligible_level_types:
+    - equal_highs
+    - equal_lows
+    - session_high
+    - session_low
+    - prior_day_high
+    - prior_day_low
+
+instruments:
+  primary:
+    - EURUSD
+    - GBPUSD
+  control:
+    - USDJPY
+
+sessions:
+  - london
+  - new_york
+
+execution:
+  fill_policy: conservative
+  model_spread: true
+  model_slippage: true
+  default_spread_pips: 1.5
+  slippage_pips: 0.3
+  commission_per_lot: 3.5
+
+risk:
+  base_risk_per_trade: 0.005
+  max_concurrent_positions: 3

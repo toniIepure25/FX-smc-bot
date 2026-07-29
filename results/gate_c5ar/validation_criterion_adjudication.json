@@ -1,0 +1,134 @@
+{
+  "all_mandatory_criteria_passed": false,
+  "criteria": [
+    {
+      "criterion": "artifact_integrity",
+      "criterion_number": 1,
+      "mandatory": true,
+      "observed_value": "PASS",
+      "operator": "equals",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/post_validation_lock.json",
+      "source_hash": "114bb5f490be1bfcd8256ca4cb4e2882775f42536c48fb0248d8cd3a6b520db7",
+      "threshold": "PASS"
+    },
+    {
+      "criterion": "validation_data_quality",
+      "criterion_number": 2,
+      "mandatory": true,
+      "observed_value": "PASS",
+      "operator": "equals",
+      "passed": true,
+      "source_artifact": "results/gate_c5adqr/validation_data_quality.json",
+      "source_hash": "a359d450f4d944cf3758475b79dd57f19385ffa13832e7de1e82259e87362271",
+      "threshold": "PASS"
+    },
+    {
+      "criterion": "successfully_matched_primary_events",
+      "criterion_number": 3,
+      "mandatory": true,
+      "observed_value": 1192,
+      "operator": ">=",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/control_matching_audit.json",
+      "source_hash": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd",
+      "threshold": 40
+    },
+    {
+      "criterion": "exact_key_relaxations",
+      "criterion_number": 4,
+      "mandatory": true,
+      "observed_value": 0,
+      "operator": "equals",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/control_matching_audit.json",
+      "source_hash": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd",
+      "threshold": 0
+    },
+    {
+      "criterion": "every_post_match_abs_SMD",
+      "criterion_number": 5,
+      "mandatory": true,
+      "observed_value": {
+        "atr": 0.031762838550213744,
+        "pre_event_trend": 0.00041490711061651676,
+        "pre_event_volatility": 0.05813439292604498,
+        "range_position": -0.010403247286512483,
+        "spread": 0.02026055574499356
+      },
+      "operator": "every_abs<=",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/control_matching_audit.json",
+      "source_hash": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd",
+      "threshold": 0.1
+    },
+    {
+      "criterion": "mean_event_minus_control_executable_differential",
+      "criterion_number": 6,
+      "mandatory": true,
+      "observed_value": 27.453020134228165,
+      "operator": ">",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/validation_primary_estimand.json",
+      "source_hash": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+      "threshold": 0
+    },
+    {
+      "criterion": "paired_permutation_p_value",
+      "criterion_number": 7,
+      "mandatory": true,
+      "observed_value": 0.004497751124437781,
+      "operator": "<=",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/validation_inference.json",
+      "source_hash": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+      "threshold": 0.05
+    },
+    {
+      "criterion": "95pct_day_cluster_bootstrap_CI_lower_bound",
+      "criterion_number": 8,
+      "mandatory": true,
+      "observed_value": 14.784214406740844,
+      "operator": ">",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/validation_inference.json",
+      "source_hash": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+      "threshold": 0
+    },
+    {
+      "criterion": "mean_absolute_event_executable_markout",
+      "criterion_number": 9,
+      "mandatory": true,
+      "observed_value": 11.33724832214778,
+      "operator": "<=",
+      "passed": false,
+      "source_artifact": "results/gate_c5ar/validation_primary_estimand.json",
+      "source_hash": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+      "threshold": 0
+    },
+    {
+      "criterion": "plus_24h_placebo_reproduces_relative_resilience",
+      "criterion_number": 10,
+      "mandatory": true,
+      "observed_value": false,
+      "operator": "equals",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/validation_placebo.json",
+      "source_hash": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+      "threshold": false
+    },
+    {
+      "criterion": "holdout_integrity",
+      "criterion_number": 11,
+      "mandatory": true,
+      "observed_value": "PASS",
+      "operator": "equals",
+      "passed": true,
+      "source_artifact": "results/gate_c5ar/holdout_integrity.json",
+      "source_hash": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3",
+      "threshold": "PASS"
+    }
+  ],
+  "final_decision": "USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED",
+  "status": "PASS"
+}

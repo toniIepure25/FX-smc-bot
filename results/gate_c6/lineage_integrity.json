@@ -1,0 +1,132 @@
+{
+  "checks": {
+    "all_reconciliation_overlays_valid": true,
+    "all_research_stop_decisions_preserved": true,
+    "expected_commits_present": true,
+    "holdout_unopened": true,
+    "ledger_complete": true,
+    "no_non_c6_worktree_changes": true,
+    "preregistration_before_outcome": true,
+    "working_tree_clean_at_gate_start": true
+  },
+  "created_at_utc": "2026-07-25T13:38:34.685286+00:00",
+  "ledger_validation": {
+    "complete": true,
+    "observed_gate_ids": [
+      "C3FV",
+      "C3F-TPR",
+      "C3F-CRSF",
+      "C4",
+      "C4-A",
+      "C4-B",
+      "C5",
+      "C5-A",
+      "C5-A-DQB",
+      "C5-A-DQR",
+      "C5-A-R",
+      "C5-A-R-IR",
+      "C5-B-R",
+      "C6"
+    ],
+    "ordered": true,
+    "preregistration_before_outcome": true,
+    "preregistration_checks": [
+      {
+        "gate_id": "C3FV",
+        "outcome_sha": "1eae93f",
+        "passed": true,
+        "preregistration_sha": "1eae93f"
+      },
+      {
+        "gate_id": "C3F-TPR",
+        "outcome_sha": "10ccb2b",
+        "passed": true,
+        "preregistration_sha": "6aa275e"
+      },
+      {
+        "gate_id": "C3F-CRSF",
+        "outcome_sha": "8fb676d",
+        "passed": true,
+        "preregistration_sha": "f988510"
+      },
+      {
+        "gate_id": "C4",
+        "outcome_sha": "df5d446",
+        "passed": true,
+        "preregistration_sha": "2089ff1"
+      },
+      {
+        "gate_id": "C4-A",
+        "outcome_sha": "d9a9e51",
+        "passed": true,
+        "preregistration_sha": "2089ff1"
+      },
+      {
+        "gate_id": "C4-B",
+        "outcome_sha": "e39faa5",
+        "passed": true,
+        "preregistration_sha": "d420c3a"
+      },
+      {
+        "gate_id": "C5-A",
+        "outcome_sha": "78177a7",
+        "passed": true,
+        "preregistration_sha": "bd6d4d6"
+      },
+      {
+        "gate_id": "C5-A-DQB",
+        "outcome_sha": "edd2de7",
+        "passed": true,
+        "preregistration_sha": "78177a7"
+      },
+      {
+        "gate_id": "C5-A-DQR",
+        "outcome_sha": "a8b8d4b",
+        "passed": true,
+        "preregistration_sha": "9845c75"
+      },
+      {
+        "gate_id": "C5-A-R",
+        "outcome_sha": "92e992d",
+        "passed": true,
+        "preregistration_sha": "0d054c2"
+      },
+      {
+        "gate_id": "C5-A-R-IR",
+        "outcome_sha": "1b71ea4",
+        "passed": true,
+        "preregistration_sha": "abd879c"
+      },
+      {
+        "gate_id": "C5-B-R",
+        "outcome_sha": "c3a872d",
+        "passed": true,
+        "preregistration_sha": "61aa358"
+      }
+    ],
+    "required_gate_ids": [
+      "C3FV",
+      "C3F-TPR",
+      "C3F-CRSF",
+      "C4",
+      "C4-A",
+      "C4-B",
+      "C5",
+      "C5-A",
+      "C5-A-DQB",
+      "C5-A-DQR",
+      "C5-A-R",
+      "C5-A-R-IR",
+      "C5-B-R",
+      "C6"
+    ],
+    "status": "PASS"
+  },
+  "missing_expected_commits": [],
+  "reconciliation_overlay": {
+    "handoff_hash": "05b11d2ce5b59ed66b556fc3596f733f93ffac0ca61a2d7f828f774ae6bad2ad",
+    "overlay_hash": "64c00bb924b5f6db96a876ab476e53741da6377060150546df2a1b16ed10be06",
+    "overlay_id": "C5AR_ARTIFACT_RECONCILIATION_V1"
+  },
+  "status": "PASS"
+}

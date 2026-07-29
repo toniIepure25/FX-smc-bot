@@ -1,0 +1,9 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "head_sha": "8fb676d0f452a29bfbb3414bef50f0cac30a686c",
+  "recorded_at_utc": "2026-07-23T16:16:30.929538+00:00",
+  "starting_sha_expected": "8fb676d0f452a29bfbb3414bef50f0cac30a686c",
+  "starting_sha_matches": true,
+  "working_tree_clean": false,
+  "working_tree_short_status": "?? scripts/run_gate_c4_event_alpha.py\n?? src/fx_smc_bot/research/gate_c4_event_alpha.py\n?? tests/test_gate_c4/"
+}

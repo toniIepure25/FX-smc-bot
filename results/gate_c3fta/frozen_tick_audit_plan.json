@@ -1,0 +1,370 @@
+{
+  "creation_timestamp": "2026-07-14T16:54:00+03:00",
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "do_not_execute_generated_candidate": true,
+  "documented_plan_hash": "bbcebd0b6cc0",
+  "expected_window_count": 44,
+  "flat_tick_policy": "NOT_PROVEN",
+  "frozen_tolerances": {
+    "bar_count": "exact_after_common_filtering",
+    "floating_point_equality": "NOT_USED",
+    "high_low": "exact",
+    "open_close": "exact_after_price_quantization",
+    "timestamps": "exact"
+  },
+  "generated_candidate_hash_for_verification_only": "bbcebd0b6cc0",
+  "generated_candidate_windows_for_mismatch_diagnosis_only": [
+    {
+      "quarter": 1,
+      "session": "london",
+      "week_end": "2015-01-24",
+      "week_start": "2015-01-19",
+      "year": 2015
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2015-04-11",
+      "week_start": "2015-04-06",
+      "year": 2015
+    },
+    {
+      "quarter": 3,
+      "session": "london",
+      "week_end": "2015-09-12",
+      "week_start": "2015-09-07",
+      "year": 2015
+    },
+    {
+      "quarter": 4,
+      "session": "london",
+      "week_end": "2015-12-19",
+      "week_start": "2015-12-14",
+      "year": 2015
+    },
+    {
+      "quarter": 1,
+      "session": "london",
+      "week_end": "2016-01-09",
+      "week_start": "2016-01-04",
+      "year": 2016
+    },
+    {
+      "quarter": 2,
+      "session": "london",
+      "week_end": "2016-04-23",
+      "week_start": "2016-04-18",
+      "year": 2016
+    },
+    {
+      "quarter": 3,
+      "session": "london",
+      "week_end": "2016-09-10",
+      "week_start": "2016-09-05",
+      "year": 2016
+    },
+    {
+      "quarter": 4,
+      "session": "new_york",
+      "week_end": "2016-10-15",
+      "week_start": "2016-10-10",
+      "year": 2016
+    },
+    {
+      "quarter": 1,
+      "session": "new_york",
+      "week_end": "2017-01-07",
+      "week_start": "2017-01-02",
+      "year": 2017
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2017-05-13",
+      "week_start": "2017-05-08",
+      "year": 2017
+    },
+    {
+      "quarter": 3,
+      "session": "london",
+      "week_end": "2017-07-15",
+      "week_start": "2017-07-10",
+      "year": 2017
+    },
+    {
+      "quarter": 4,
+      "session": "london",
+      "week_end": "2017-10-14",
+      "week_start": "2017-10-09",
+      "year": 2017
+    },
+    {
+      "quarter": 1,
+      "session": "london",
+      "week_end": "2018-02-17",
+      "week_start": "2018-02-12",
+      "year": 2018
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2018-04-21",
+      "week_start": "2018-04-16",
+      "year": 2018
+    },
+    {
+      "quarter": 3,
+      "session": "new_york",
+      "week_end": "2018-09-08",
+      "week_start": "2018-09-03",
+      "year": 2018
+    },
+    {
+      "quarter": 4,
+      "session": "new_york",
+      "week_end": "2018-10-20",
+      "week_start": "2018-10-15",
+      "year": 2018
+    },
+    {
+      "quarter": 1,
+      "session": "new_york",
+      "week_end": "2019-03-23",
+      "week_start": "2019-03-18",
+      "year": 2019
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2019-06-08",
+      "week_start": "2019-06-03",
+      "year": 2019
+    },
+    {
+      "quarter": 3,
+      "session": "london",
+      "week_end": "2019-07-20",
+      "week_start": "2019-07-15",
+      "year": 2019
+    },
+    {
+      "quarter": 4,
+      "session": "london",
+      "week_end": "2019-11-09",
+      "week_start": "2019-11-04",
+      "year": 2019
+    },
+    {
+      "quarter": 1,
+      "session": "london",
+      "week_end": "2020-01-18",
+      "week_start": "2020-01-13",
+      "year": 2020
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2020-05-23",
+      "week_start": "2020-05-18",
+      "year": 2020
+    },
+    {
+      "quarter": 3,
+      "session": "new_york",
+      "week_end": "2020-07-18",
+      "week_start": "2020-07-13",
+      "year": 2020
+    },
+    {
+      "quarter": 4,
+      "session": "new_york",
+      "week_end": "2020-10-24",
+      "week_start": "2020-10-19",
+      "year": 2020
+    },
+    {
+      "quarter": 1,
+      "session": "new_york",
+      "week_end": "2021-03-20",
+      "week_start": "2021-03-15",
+      "year": 2021
+    },
+    {
+      "quarter": 2,
+      "session": "london",
+      "week_end": "2021-06-26",
+      "week_start": "2021-06-21",
+      "year": 2021
+    },
+    {
+      "quarter": 3,
+      "session": "london",
+      "week_end": "2021-09-25",
+      "week_start": "2021-09-20",
+      "year": 2021
+    },
+    {
+      "quarter": 4,
+      "session": "london",
+      "week_end": "2021-10-16",
+      "week_start": "2021-10-11",
+      "year": 2021
+    },
+    {
+      "quarter": 1,
+      "session": "new_york",
+      "week_end": "2022-02-26",
+      "week_start": "2022-02-21",
+      "year": 2022
+    },
+    {
+      "quarter": 2,
+      "session": "london",
+      "week_end": "2022-06-18",
+      "week_start": "2022-06-13",
+      "year": 2022
+    },
+    {
+      "quarter": 3,
+      "session": "london",
+      "week_end": "2022-07-09",
+      "week_start": "2022-07-04",
+      "year": 2022
+    },
+    {
+      "quarter": 4,
+      "session": "new_york",
+      "week_end": "2022-11-19",
+      "week_start": "2022-11-14",
+      "year": 2022
+    },
+    {
+      "quarter": 1,
+      "session": "london",
+      "week_end": "2023-01-21",
+      "week_start": "2023-01-16",
+      "year": 2023
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2023-04-22",
+      "week_start": "2023-04-17",
+      "year": 2023
+    },
+    {
+      "quarter": 3,
+      "session": "new_york",
+      "week_end": "2023-08-26",
+      "week_start": "2023-08-21",
+      "year": 2023
+    },
+    {
+      "quarter": 4,
+      "session": "new_york",
+      "week_end": "2023-10-14",
+      "week_start": "2023-10-09",
+      "year": 2023
+    },
+    {
+      "quarter": 1,
+      "session": "london",
+      "week_end": "2024-01-20",
+      "week_start": "2024-01-15",
+      "year": 2024
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2024-06-22",
+      "week_start": "2024-06-17",
+      "year": 2024
+    },
+    {
+      "quarter": 3,
+      "session": "new_york",
+      "week_end": "2024-09-14",
+      "week_start": "2024-09-09",
+      "year": 2024
+    },
+    {
+      "quarter": 4,
+      "session": "new_york",
+      "week_end": "2024-10-12",
+      "week_start": "2024-10-07",
+      "year": 2024
+    },
+    {
+      "quarter": 1,
+      "session": "new_york",
+      "week_end": "2025-01-11",
+      "week_start": "2025-01-06",
+      "year": 2025
+    },
+    {
+      "quarter": 2,
+      "session": "london",
+      "week_end": "2025-04-26",
+      "week_start": "2025-04-21",
+      "year": 2025
+    },
+    {
+      "quarter": 3,
+      "session": "london",
+      "week_end": "2025-09-13",
+      "week_start": "2025-09-08",
+      "year": 2025
+    },
+    {
+      "quarter": 4,
+      "session": "london",
+      "week_end": "2025-11-15",
+      "week_start": "2025-11-10",
+      "year": 2025
+    }
+  ],
+  "materialized_window_count": 4,
+  "minute_boundary_policy": "NOT_PROVEN",
+  "original_path": "results\\gate_c3f\\2019_tick_audit.json",
+  "pair_distribution": {
+    "EURUSD": 0,
+    "GBPUSD": 0,
+    "USDJPY": 0
+  },
+  "placeholder_file_hash": "c9fc33d4b3cffcd43380895832a6a72bd6037b3984147aa93671e26d1a98a252",
+  "placeholder_plan_hash": "c9fc33d4b3cffcd43380895832a6a72bd6037b3984147aa93671e26d1a98a252",
+  "price_precision": {
+    "EURUSD": 100000,
+    "GBPUSD": 100000,
+    "USDJPY": 1000
+  },
+  "quarter_distribution": {
+    "1": 11,
+    "2": 11,
+    "3": 11,
+    "4": 11
+  },
+  "reason": "The only materialized C3F tick-audit artifact contains 4 2019 windows that do not match the deterministic 44-window plan documented in C3R and generated by the committed plan function.",
+  "seed": 42,
+  "session_distribution": {
+    "london": 22,
+    "new_york": 22
+  },
+  "status": "FROZEN_PLAN_NOT_PROVEN",
+  "tick_filtering": "NOT_PROVEN",
+  "timezone": "UTC required by protocol; not proven by placeholder artifact",
+  "windows": [],
+  "year_distribution": {
+    "2015": 4,
+    "2016": 4,
+    "2017": 4,
+    "2018": 4,
+    "2019": 4,
+    "2020": 4,
+    "2021": 4,
+    "2022": 4,
+    "2023": 4,
+    "2024": 4,
+    "2025": 4
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "liquidity_acceptance_fvg_continuation": {
+    "all_events_mean_diff_points": 11.189338697510573,
+    "exclude_top_spread_decile_mean_diff_points": 12.807681976900271,
+    "mid_markout_mean_diff_points": 11.239753583102772,
+    "non_overlap_mean_diff_points": 13.754508196721174,
+    "session_mean_diff_points": {
+      "asia": 8.616093880972349,
+      "london": 18.278749999999793,
+      "new_york": 6.99302788844592,
+      "other": 12.833673469387753
+    },
+    "year_by_year_mean_diff_points": {
+      "2015": 33.86175710594296,
+      "2016": 10.652230971128764,
+      "2017": 1.4125615763544412,
+      "2018": 11.959044368600555,
+      "2019": -1.980000000000151
+    }
+  },
+  "liquidity_sweep_mss_fvg_reversal": {
+    "all_events_mean_diff_points": -7.319052987598358,
+    "exclude_top_spread_decile_mean_diff_points": -5.4488286066581635,
+    "mid_markout_mean_diff_points": -7.30806087936861,
+    "non_overlap_mean_diff_points": -13.451403887688675,
+    "session_mean_diff_points": {
+      "asia": -9.15973741794253,
+      "london": -8.518292682927036,
+      "new_york": -10.133884297519913,
+      "other": 0.3307291666663206
+    },
+    "year_by_year_mean_diff_points": {
+      "2015": -27.493074792243444,
+      "2016": -0.8486707566459359,
+      "2017": 2.4738095238102407,
+      "2018": 2.0159744408943427,
+      "2019": -22.586387434554787
+    }
+  },
+  "opening_range_london": {
+    "all_events_mean_diff_points": 15.15994236311225,
+    "exclude_top_spread_decile_mean_diff_points": 17.855999999999906,
+    "mid_markout_mean_diff_points": 15.197406340057757,
+    "non_overlap_mean_diff_points": 15.15994236311225,
+    "session_mean_diff_points": {
+      "london": 15.15994236311225
+    },
+    "year_by_year_mean_diff_points": {
+      "2015": 3.856060606061685,
+      "2016": 15.583941605838314,
+      "2017": 44.917808219178134,
+      "2018": 4.687943262410954,
+      "2019": 4.768115942028686
+    }
+  },
+  "opening_range_new_york": {
+    "all_events_mean_diff_points": 0.0950000000001873,
+    "exclude_top_spread_decile_mean_diff_points": -2.136111111110929,
+    "mid_markout_mean_diff_points": -0.08562499999999972,
+    "non_overlap_mean_diff_points": 0.0950000000001873,
+    "session_mean_diff_points": {
+      "new_york": 0.0950000000001873
+    },
+    "year_by_year_mean_diff_points": {
+      "2015": 11.618750000001299,
+      "2016": 8.43749999999952,
+      "2017": -1.0308641975311392,
+      "2018": 0.32544378698254184,
+      "2019": -20.275167785234807
+    }
+  }
+}

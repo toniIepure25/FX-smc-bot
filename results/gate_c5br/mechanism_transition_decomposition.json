@@ -1,0 +1,21 @@
+{
+  "change_in_control_markout": 1.2211134338212517,
+  "change_in_differential": 13.78498734734307,
+  "change_in_event_markout": 15.00610078116433,
+  "identity_check": {
+    "absolute_difference": 7.105427357601002e-15,
+    "change_event_minus_change_control": 13.784987347343078,
+    "passed": true
+  },
+  "principal_associations": {
+    "control_baseline_change": true,
+    "data_lineage_difference": false,
+    "event_response_improvement": true,
+    "event_subtype_composition": "fixed Acceptance Continuation",
+    "matching_support_change": "audited separately",
+    "sample_composition_change": "audited separately",
+    "session_direction_composition": "audited separately",
+    "transaction_cost_change": "audited separately"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,20 @@
+{
+  "gate": "C.3F",
+  "status": "DEFERRED_PENDING_2019_ACQUISITION",
+  "plan": "Execute 2019 windows from the 44-window deterministic audit plan (seed=42) after M1 bid/ask acquisition completes for all three pairs.",
+  "tolerances_preregistered": {
+    "timestamps": "exact",
+    "bar_count": "exact_after_common_filtering",
+    "open_close": "exact_after_price_quantization",
+    "high_low": "exact",
+    "eurusd_gbpusd_quantization": "5_decimal_raw_points_0.00001",
+    "usdjpy_quantization": "3_decimal_raw_points_0.001",
+    "floating_point_equality": "NOT_USED"
+  },
+  "2019_windows_from_plan": [
+    {"year": 2019, "quarter": 1, "week_start": "2019-02-11", "week_end": "2019-02-16", "session": "london"},
+    {"year": 2019, "quarter": 2, "week_start": "2019-06-17", "week_end": "2019-06-22", "session": "new_york"},
+    {"year": 2019, "quarter": 3, "week_start": "2019-08-12", "week_end": "2019-08-17", "session": "new_york"},
+    {"year": 2019, "quarter": 4, "week_start": "2019-10-21", "week_end": "2019-10-26", "session": "london"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "expected_starting_sha": "771ac92773ba9bf5c67afe71b5d3788c73b08304",
+  "gate": "C.5-A",
+  "head_matches_expected": true,
+  "head_sha": "771ac92773ba9bf5c67afe71b5d3788c73b08304",
+  "phase0_git_diff_check_passed_before_edits": true,
+  "phase0_verified_clean_before_c5a_edits": true,
+  "recorded_at_utc": "2026-07-23T20:01:58.265483+00:00",
+  "validation_access_checks": {
+    "c5_validation_access_ledger_absent": true,
+    "c5a_holdout_access_ledger_absent": true,
+    "c5a_validation_access_ledger_absent": true,
+    "c5a_validation_event_manifest_absent": true,
+    "c5a_validation_primary_estimand_absent": true
+  },
+  "working_tree_clean": false,
+  "working_tree_short_status": "?? scripts/run_gate_c5a_amendment.py\n?? src/fx_smc_bot/research/gate_c5a_amendment.py\n?? tests/test_gate_c5a/"
+}

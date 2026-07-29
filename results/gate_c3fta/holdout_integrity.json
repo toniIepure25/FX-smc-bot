@@ -1,0 +1,12 @@
+{
+  "commands_using_holdout_for_alpha": [],
+  "decision": "BLOCKED_BY_TICK_AUDIT_IMPLEMENTATION",
+  "holdout_alpha_touched": false,
+  "holdout_event_funnels_run": false,
+  "holdout_period": [
+    "2023-01-01",
+    "2025-12-31"
+  ],
+  "status": "PASS",
+  "verification": "C3F-TA stopped before tick execution and event runtime."
+}

@@ -1,0 +1,69 @@
+{
+  "families": {
+    "liquidity_acceptance_fvg_continuation": {
+      "cluster_bootstrap_ci95_mean_diff_points": [
+        6.3252850111418315,
+        21.790929169814817
+      ],
+      "holm_adjusted_p_value": 0.021989005497251374,
+      "mean_event_markout_points": -3.66885245901655,
+      "mean_event_minus_control_points": 13.754508196721174,
+      "mean_matched_control_markout_points": -17.423360655737724,
+      "median_event_markout_points": -10.99999999999568,
+      "median_event_minus_control_points": 10.99999999999568,
+      "n_events": 2440,
+      "paired_permutation_p_value": 0.005497251374312844,
+      "positive_forward_return_probability": 0.46352459016393444,
+      "trimmed_mean_event_markout_points": -5.79713114754117
+    },
+    "liquidity_sweep_mss_fvg_reversal": {
+      "cluster_bootstrap_ci95_mean_diff_points": [
+        -21.65365587176299,
+        -4.74573832156042
+      ],
+      "holm_adjusted_p_value": 0.03798100949525238,
+      "mean_event_markout_points": -8.406047516198633,
+      "mean_event_minus_control_points": -13.451403887688675,
+      "mean_matched_control_markout_points": 5.045356371490041,
+      "median_event_markout_points": -9.999999999990905,
+      "median_event_minus_control_points": -12.000000000000455,
+      "n_events": 1389,
+      "paired_permutation_p_value": 0.01899050474762619,
+      "positive_forward_return_probability": 0.468682505399568,
+      "trimmed_mean_event_markout_points": -7.6648697214734165
+    },
+    "opening_range_london": {
+      "cluster_bootstrap_ci95_mean_diff_points": [
+        6.015287649989427,
+        23.54029143475591
+      ],
+      "holm_adjusted_p_value": 0.03748125937031484,
+      "mean_event_markout_points": 0.21181556195970366,
+      "mean_event_minus_control_points": 15.15994236311225,
+      "mean_matched_control_markout_points": -14.948126801152547,
+      "median_event_markout_points": -4.5000000000001705,
+      "median_event_minus_control_points": 15.000000000007674,
+      "n_events": 694,
+      "paired_permutation_p_value": 0.01249375312343828,
+      "positive_forward_return_probability": 0.4654178674351585,
+      "trimmed_mean_event_markout_points": -2.165467625899192
+    },
+    "opening_range_new_york": {
+      "cluster_bootstrap_ci95_mean_diff_points": [
+        -9.925967601652154,
+        11.230362524851277
+      ],
+      "holm_adjusted_p_value": 0.9885057471264368,
+      "mean_event_markout_points": -9.677499999999919,
+      "mean_event_minus_control_points": 0.0950000000001873,
+      "mean_matched_control_markout_points": -9.772500000000104,
+      "median_event_markout_points": -9.000000000000341,
+      "median_event_minus_control_points": 6.000000000000227,
+      "n_events": 800,
+      "paired_permutation_p_value": 0.9885057471264368,
+      "positive_forward_return_probability": 0.4675,
+      "trimmed_mean_event_markout_points": -10.199999999999989
+    }
+  },
+  "multiple_testing": "Holm correction across primary non-overlap family tests"
+}

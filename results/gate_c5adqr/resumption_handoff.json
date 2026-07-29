@@ -1,0 +1,12 @@
+{
+  "controls_constructed": false,
+  "event_counts_computed": false,
+  "events_detected": false,
+  "holdout_accessed": false,
+  "inference_computed": false,
+  "outcomes_computed": false,
+  "placebo_computed": false,
+  "resume_from": "frozen C5-A validation event detection",
+  "status": "READY_TO_RESUME_FROZEN_C5A_FROM_EVENT_DETECTION",
+  "validation_dataset_freeze_hash": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866"
+}

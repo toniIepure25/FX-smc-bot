@@ -1,0 +1,13 @@
+{
+  "eligible_primary_events": 1192,
+  "embargo_minutes": 120,
+  "exact_duplicates": 0,
+  "excluded_incomplete_outcome_events": 0,
+  "independent_liquidity_episodes": 1192,
+  "independent_utc_trading_days": 572,
+  "overlapping_events": 743,
+  "policy": "frozen primary non-overlap sample; 120-minute embargo",
+  "primary_non_overlap_events": 1192,
+  "status": "PASS",
+  "total_detected_events": 1935
+}

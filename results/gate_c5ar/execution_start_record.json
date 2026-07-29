@@ -1,0 +1,15 @@
+{
+  "amendment_hash": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+  "dqr_freeze_hash": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866",
+  "dqr_resumption_handoff_hash": "a8374ba7245274bf9f64c03a869fd1dd2ec584d4f86dc4dcef57eae1d4f7f223",
+  "exact_command": "python C:/Users/ComputaCenter/.codex/visualizations/2026/07/20/019f7f14-35d7-71c2-851b-9295daf99892/gate_c5ar_runner.py",
+  "git_sha": "a8b8d4be605127f93cedccbfdbbdce31e1b5e7b6",
+  "holdout_unblinded": false,
+  "hypothesis_hash": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+  "protocol_hash": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+  "scientific_code_aggregate_hash": "0eafca073eaf2ee26390c5d99c63f5b6e5461b4496afbb6a172c1806e7263b01",
+  "status": "FROZEN_EXECUTION_STARTED",
+  "timestamp_utc": "2026-07-24T10:13:04.823350+00:00",
+  "validation_access_ledger_hash": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216",
+  "working_tree_status_before_outputs": ""
+}

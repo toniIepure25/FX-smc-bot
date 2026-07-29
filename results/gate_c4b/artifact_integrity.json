@@ -1,0 +1,19 @@
+{
+  "acceptance_control_rows": 3977,
+  "acceptance_event_rows": 3977,
+  "acceptance_structural_hash": "5d5c87170772ff9eb8f795bd119981f953bb74dd788b95d048e2ce9ba07c4af7",
+  "checks": {
+    "acceptance_controls_nonempty": true,
+    "acceptance_row_hash_nonempty": true,
+    "c4a_artifact_integrity_pass": true,
+    "c4a_research_stop_status_stop": true,
+    "event_table_manifest_hash": true,
+    "holdout_unopened": true,
+    "mechanism_preregistration_hash": true,
+    "validation_unopened": true
+  },
+  "control_table_parquet_sha256": "e5a7a97dbc0abce9ae8d3d8cbc81eb7648ece8d44ca931c86473fb5ec9f347ef",
+  "event_table_parquet_sha256": "a9f6cd1627f4ae13f738888f6f5fb5d82b02c3b01184c6e4748f5b596ac9d62c",
+  "mechanism_preregistration_hash": "7d53f169ef3df460e04cc9d0d883f05c91a423b999dad4862e0baeef59d699c9",
+  "status": "PASS"
+}

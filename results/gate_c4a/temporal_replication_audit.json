@@ -1,0 +1,121 @@
+{
+  "families": {
+    "liquidity_acceptance_fvg_continuation": {
+      "discovery_confidence_interval": null,
+      "discovery_effect": 18.22368421052636,
+      "discovery_event_count": 1444,
+      "discovery_interval": [
+        2015,
+        2016,
+        2017
+      ],
+      "event_definitions_identical": true,
+      "matching_rules_identical": true,
+      "no_discovery_events_leak_into_replication": true,
+      "preregistered_replication_pass_status": true,
+      "primary_effect_ci": [
+        6.3252850111418315,
+        21.790929169814817
+      ],
+      "primary_horizon_minutes": 120,
+      "replication_confidence_interval": null,
+      "replication_confidence_interval_preregistered": false,
+      "replication_effect": 7.2751004016060214,
+      "replication_event_count": 996,
+      "replication_interval": [
+        2018,
+        2019
+      ],
+      "replication_uses_frozen_primary_sample": true,
+      "same_direction_status": true
+    },
+    "liquidity_sweep_mss_fvg_reversal": {
+      "discovery_confidence_interval": null,
+      "discovery_effect": -16.46871794871751,
+      "discovery_event_count": 975,
+      "discovery_interval": [
+        2015,
+        2016,
+        2017
+      ],
+      "event_definitions_identical": true,
+      "matching_rules_identical": true,
+      "no_discovery_events_leak_into_replication": true,
+      "preregistered_replication_pass_status": false,
+      "primary_effect_ci": [
+        -21.65365587176299,
+        -4.74573832156042
+      ],
+      "primary_horizon_minutes": 60,
+      "replication_confidence_interval": null,
+      "replication_confidence_interval_preregistered": false,
+      "replication_effect": -6.345410628019312,
+      "replication_event_count": 414,
+      "replication_interval": [
+        2018,
+        2019
+      ],
+      "replication_uses_frozen_primary_sample": true,
+      "same_direction_status": false
+    },
+    "opening_range_london": {
+      "discovery_confidence_interval": null,
+      "discovery_effect": 22.173493975903614,
+      "discovery_event_count": 415,
+      "discovery_interval": [
+        2015,
+        2016,
+        2017
+      ],
+      "event_definitions_identical": true,
+      "matching_rules_identical": true,
+      "no_discovery_events_leak_into_replication": true,
+      "preregistered_replication_pass_status": true,
+      "primary_effect_ci": [
+        6.015287649989427,
+        23.54029143475591
+      ],
+      "primary_horizon_minutes": 60,
+      "replication_confidence_interval": null,
+      "replication_confidence_interval_preregistered": false,
+      "replication_effect": 4.727598566307897,
+      "replication_event_count": 279,
+      "replication_interval": [
+        2018,
+        2019
+      ],
+      "replication_uses_frozen_primary_sample": true,
+      "same_direction_status": true
+    },
+    "opening_range_new_york": {
+      "discovery_confidence_interval": null,
+      "discovery_effect": 6.311203319502256,
+      "discovery_event_count": 482,
+      "discovery_interval": [
+        2015,
+        2016,
+        2017
+      ],
+      "event_definitions_identical": true,
+      "matching_rules_identical": true,
+      "no_discovery_events_leak_into_replication": true,
+      "preregistered_replication_pass_status": false,
+      "primary_effect_ci": [
+        -9.925967601652154,
+        11.230362524851277
+      ],
+      "primary_horizon_minutes": 60,
+      "replication_confidence_interval": null,
+      "replication_confidence_interval_preregistered": false,
+      "replication_effect": -9.327044025157035,
+      "replication_event_count": 318,
+      "replication_interval": [
+        2018,
+        2019
+      ],
+      "replication_uses_frozen_primary_sample": true,
+      "same_direction_status": false
+    }
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-07-20T11:29:32.814182+00:00",
+  "frozen_windows_preserved": [
+    {
+      "quarter": 1,
+      "session": "london",
+      "week_end": "2019-02-16",
+      "week_start": "2019-02-11",
+      "year": 2019
+    },
+    {
+      "quarter": 2,
+      "session": "new_york",
+      "week_end": "2019-06-22",
+      "week_start": "2019-06-17",
+      "year": 2019
+    },
+    {
+      "quarter": 3,
+      "session": "new_york",
+      "week_end": "2019-08-17",
+      "week_start": "2019-08-12",
+      "year": 2019
+    },
+    {
+      "quarter": 4,
+      "session": "london",
+      "week_end": "2019-10-26",
+      "week_start": "2019-10-21",
+      "year": 2019
+    }
+  ],
+  "reason": "Frozen 2019 audit is deferred while the detached 2015-2018 M1 acquisition is actively using the CDN.",
+  "status": "NOT_RUN_FIRST_PASS_ACTIVE",
+  "tolerances_preregistered": {
+    "bar_count": "exact_after_common_filtering",
+    "eurusd_gbpusd_quantization": "5_decimal_raw_points_0.00001",
+    "floating_point_equality": "NOT_USED",
+    "high_low": "exact",
+    "open_close": "exact_after_price_quantization",
+    "timestamps": "exact",
+    "usdjpy_quantization": "3_decimal_raw_points_0.001"
+  }
+}

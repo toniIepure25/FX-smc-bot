@@ -1,0 +1,17 @@
+{
+  "authoritative_artifact": "results/gate_c5ar/validation_criterion_adjudication.json",
+  "classification": [
+    "AUTHORITATIVE_CURRENT_ARTIFACT",
+    "LOCK_EXPECTATION_STALE",
+    "LOCK_EXPECTATION_WRONG_HASH_MODE"
+  ],
+  "precedence": [
+    "frozen protocol and decision matrix",
+    "immutable compact primary source artifacts",
+    "deterministic adjudication regeneration",
+    "committed historical artifact",
+    "post-validation lock reference"
+  ],
+  "reason": "Current adjudication is semantically identical to 4cd388b, byte-identical to deterministic compact-source regeneration using the current recorded source references, and preserves the C5-A-R scientific decision. The lock reference is lower precedence after its CRLF/stale expectation defect is proven.",
+  "status": "PASS"
+}

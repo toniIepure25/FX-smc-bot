@@ -1,0 +1,16 @@
+{
+  "amendment_commit_recorded_at": "2026-07-23T11:39:24.109556+00:00",
+  "amendment_commit_sha": "1eae93f3cbebea5fa9637d40e07eb1d527097f08",
+  "conditions": {
+    "amendment_written_before_tick_acquisition": true,
+    "deterministic_generator_reproduces_documented_hash": true,
+    "no_tick_derived_comparison_results_inspected": true,
+    "no_tick_windows_downloaded": true,
+    "no_tolerance_or_window_modified_using_outcomes": true,
+    "original_complete_plan_missing": true,
+    "seed_window_count_hash_documented_before_tick_execution": true
+  },
+  "decision_if_not_valid": "BLOCKED_BY_PLAN_PROVENANCE",
+  "scientifically_valid": true,
+  "status": "PROSPECTIVELY_FROZEN"
+}

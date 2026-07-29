@@ -1,0 +1,47 @@
+{
+  "candidate_transport_preserved": false,
+  "method": "exact-cell stabilized covariate weighting over preregistered bins",
+  "results": {
+    "development_standardized_to_validation": {
+      "raw": {
+        "control": -17.423360655737724,
+        "differential": 13.754508196721174,
+        "event": -3.66885245901655
+      },
+      "standardized": {
+        "control": -13.407163853168358,
+        "differential": -0.962389884100321,
+        "event": -14.369553737268678
+      },
+      "weight_diagnostics": {
+        "effective_sample_size": 1207.7486157013159,
+        "max_weight_median_multiple": 14.5,
+        "maximum_weight": 10.234899328859061,
+        "p99_weight": 4.093959731543624,
+        "weight_coefficient_of_variation": 1.010093050543947
+      },
+      "weight_rules_pass": false
+    },
+    "validation_standardized_to_development": {
+      "raw": {
+        "control": -16.11577181208039,
+        "differential": 27.453020134228165,
+        "event": 11.33724832214778
+      },
+      "standardized": {
+        "control": -23.273405199016704,
+        "differential": 35.53894763198631,
+        "event": 12.26554243296961
+      },
+      "weight_diagnostics": {
+        "effective_sample_size": 648.8235812754006,
+        "max_weight_median_multiple": 10.399999999999999,
+        "maximum_weight": 6.350819672131148,
+        "p99_weight": 3.6859180327868653,
+        "weight_coefficient_of_variation": 0.9149706028103928
+      },
+      "weight_rules_pass": false
+    }
+  },
+  "status": "PASS"
+}

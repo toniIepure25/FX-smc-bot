@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "mypy_no_new_delta": true,
+    "ruff_exact_zero_new_delta": true
+  },
+  "created_at_utc": "2026-07-25T22:23:52.972186+00:00",
+  "expected_counts": {
+    "mypy_head": 3,
+    "mypy_target": 4,
+    "ruff_post": 99,
+    "ruff_post_new_on_branch": 0,
+    "ruff_pre": 124,
+    "ruff_pre_new_on_branch": 25,
+    "ruff_target": 99
+  },
+  "mypy": {
+    "fixed_on_branch_count": 1,
+    "head_count": 3,
+    "new_on_branch_count": 0,
+    "target_count": 4
+  },
+  "ruff": {
+    "ambiguous_identities": [],
+    "fixed_on_branch": [],
+    "fixed_on_branch_count": 0,
+    "head_count": 99,
+    "new_on_branch": [],
+    "new_on_branch_count": 0,
+    "status": "PASS",
+    "target_count": 99
+  },
+  "status": "PASS",
+  "target_branch": "origin/main"
+}

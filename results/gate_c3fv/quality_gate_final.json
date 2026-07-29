@@ -1,0 +1,47 @@
+{
+  "git_diff_check": {
+    "command": "git diff --check",
+    "status": "PASS",
+    "summary": "No whitespace or conflict-marker issues detected after safe.directory approval for this repo."
+  },
+  "mypy_data_research": {
+    "command": "python -m mypy src/fx_smc_bot/data src/fx_smc_bot/research",
+    "status": "FAIL_PRE_EXISTING",
+    "summary": "13 errors in 13 files, primarily missing pandas/scipy/yaml stubs plus existing type incompatibilities."
+  },
+  "mypy_new_helper": {
+    "command": "python -m mypy src/fx_smc_bot/data/development_freeze.py",
+    "status": "PASS",
+    "summary": "Success: no issues found in 1 source file."
+  },
+  "node": {
+    "command": "node --test test_acquire.mjs",
+    "status": "PASS",
+    "summary": "tools/dukascopy-node smoke tests passed: 2 pass, 0 fail."
+  },
+  "npm": {
+    "command": "npm --version",
+    "status": "NOT_RUN_NPM_UNAVAILABLE",
+    "summary": "npm is not available in PATH in this environment."
+  },
+  "pytest": {
+    "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_final tests/ -q",
+    "status": "PASS",
+    "summary": "649 passed, 91 warnings."
+  },
+  "pytest_gate_c3fv_scope": {
+    "command": "python -m pytest -p no:cacheprovider --basetemp .pytest_tmp_c3fv tests/test_gate_c3f/test_c3fv_validation.py tests/test_gate_c3f/test_runner_corrected.py tests/test_gate_c3f/test_daily_checkpoint.py -q",
+    "status": "PASS",
+    "summary": "40 passed."
+  },
+  "ruff_full_scope": {
+    "command": "python -m ruff check src/fx_smc_bot/data src/fx_smc_bot/research scripts --output-format concise",
+    "status": "FAIL_PRE_EXISTING",
+    "summary": "1018 existing lint errors across pre-existing files; new Gate C3FV files pass targeted lint."
+  },
+  "ruff_new_files": {
+    "command": "python -m ruff check scripts/run_gate_c3fv_validation.py src/fx_smc_bot/data/development_freeze.py tests/test_gate_c3f/test_c3fv_validation.py",
+    "status": "PASS",
+    "summary": "All checks passed."
+  }
+}

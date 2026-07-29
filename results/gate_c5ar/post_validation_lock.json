@@ -1,0 +1,30 @@
+{
+  "final_decision": "USDJPY_ACCEPTANCE_RELATIVE_RESILIENCE_NOT_VALIDATED",
+  "hashes": {
+    "amendment": "1d1302fcc01fec3d0be00875026854e8b9e47eee38dd74fa654e824fdab44830",
+    "dqr_resumption_handoff": "a8374ba7245274bf9f64c03a869fd1dd2ec584d4f86dc4dcef57eae1d4f7f223",
+    "dqr_validation_freeze": "8c16f88352d9ada9f853c4b38cba31c07095a8f5e8febbff2775ec7bfe3bc866",
+    "hypothesis": "e8b726734a3b5118709edc7642caa1d4e10bad2509aa9fd0949a0cca2b05290d",
+    "protocol": "25455b31140d47b559c9fb5bd2d5d6c195742ad536dd7132dfb325026562be30",
+    "results/gate_c5ar/control_matching_audit.json": "1c78b222ccdd1913a282d3f265b960ccc673015bf31caafa9ed10c5880eba1fd",
+    "results/gate_c5ar/execution_start_record.json": "6b7baba6c19de29dc875fd2615995b9501f711fe48e896f5c6606e0efffb3c6e",
+    "results/gate_c5ar/holdout_integrity.json": "7a4363fafc0e803dd4fe47a7d167afeb1477fe0787dba7ad5c57bbf3437407b3",
+    "results/gate_c5ar/outcome_coverage_audit.json": "59bf1f946ddb2493a0fe3fd7e3f9825280b4b6b09a9c5046c6bdf12271c54dad",
+    "results/gate_c5ar/quality_gate_final.json": "1884eebb47183ac191130c10352c67243d97a82a8841798b42ac248c4cdee011",
+    "results/gate_c5ar/repository_state.json": "e9f8b57fa8a9294ffec34206324a63e48a5b10fdde34ee03a4828215bf245b14",
+    "results/gate_c5ar/resumption_integrity.json": "2b5e0490027eea87462cc925490128d759528b4626346de7a7797aa4a78c3083",
+    "results/gate_c5ar/scientific_code_integrity.json": "d16f1061fc0904f53ad22a10fe3c79cbb486a1b7dd9af2952fb6315d228d4b23",
+    "results/gate_c5ar/validation_criterion_adjudication.json": "45c49292af241ba3b8b6bc5a68e8ebc6af7249235b8632aeca70bc98a3b7a724",
+    "results/gate_c5ar/validation_event_manifest.json": "be45c3a85daf00bfaa053f44dabc84c7252f4b07d7defdbc6bf349c11cab7bf8",
+    "results/gate_c5ar/validation_freeze_integrity.json": "28eeee017226c36968364b266350679513da2fe886b07dfe0fcacd6043a376c2",
+    "results/gate_c5ar/validation_inference.json": "f50ae371f7aed245976d6aed896c3d137839200406fd7ec38144cbd5b04854d2",
+    "results/gate_c5ar/validation_overlap_audit.json": "c79c8e3c520d450c7ce9fff495ab0362f197cfab810083ae78d51155bb70f4f0",
+    "results/gate_c5ar/validation_placebo.json": "e590c291139695532698d190e45d759353a6e8fc7fda90f9587cd10dc37d2f5a",
+    "results/gate_c5ar/validation_primary_estimand.json": "68f27ff93497897e435ab00bb5bc35749d688c46fd7ab7edb8f3f5f0e583f45d",
+    "results/gate_c5ar/validation_stability.json": "c261194c8f0975b36a05c09e40eebdb4e96ce12434ee2b933c63cea4c91d7ad8",
+    "scientific_code": "0eafca073eaf2ee26390c5d99c63f5b6e5461b4496afbb6a172c1806e7263b01",
+    "validation_access_ledger": "0edd24f28a9b31f9eeffbb48149b8f3c1ddee19f9c772746d402c967880d3216"
+  },
+  "statement": "No validation-informed modification is permitted for this hypothesis lineage.",
+  "status": "LOCKED"
+}

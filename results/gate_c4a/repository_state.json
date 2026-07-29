@@ -1,0 +1,12 @@
+{
+  "branch": "research/rigorous-intraday-smc-validation",
+  "expected_starting_sha": "df5d44672cd6ce1a0f929397529627c608cc37d2",
+  "head_matches_expected_starting_sha": false,
+  "head_sha": "467e44fbd80d9705e91b9d307241bdf3a00b50a1",
+  "outcome_commit": "df5d44672cd6ce1a0f929397529627c608cc37d2",
+  "preregistration_commit": "2089ff16f8e7039cb5b07b858cdfd3880cfb1fb9",
+  "preregistration_precedes_outcome": true,
+  "recorded_at_utc": "2026-07-23T16:50:53.606512+00:00",
+  "working_tree_clean": true,
+  "working_tree_short_status": ""
+}

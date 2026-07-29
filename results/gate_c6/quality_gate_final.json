@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "claims_accurately_bounded": true,
+    "complete_lineage_integrity": true,
+    "final_numbers_reproduce": true,
+    "holdout_remains_unopened": true,
+    "inference_coherence_audit_complete": true,
+    "lineage_seal_exists": true,
+    "no_acceptance_holdout_handoff_created": true,
+    "no_new_acceptance_hypothesis_created": true,
+    "no_prohibited_strategy_metrics_in_publication_docs": true,
+    "reproducibility_manifest_complete": true,
+    "transport_weight_audit_complete": true
+  },
+  "created_at_utc": "2026-07-25T13:38:35.004857+00:00",
+  "final_decision": "ACCEPTANCE_RESEARCH_PROGRAM_CLOSED_WITH_MIXED_NONTRANSPORTABLE_RESULT",
+  "gate": "C6",
+  "no_acceptance_holdout_handoff": {
+    "blocked_paths": [],
+    "status": "PASS"
+  },
+  "publication_doc_prohibited_strategy_terms": [],
+  "status": "PASS"
+}

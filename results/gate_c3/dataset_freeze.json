@@ -1,0 +1,26 @@
+{
+  "gate": "C.3",
+  "timestamp": "2026-07-14T08:17:26.132043+00:00",
+  "status": "PENDING_DATA_ACQUISITION",
+  "proposed_splits": {
+    "development": {
+      "start": "2015-01-01",
+      "end": "2019-12-31"
+    },
+    "validation": {
+      "start": "2020-01-01",
+      "end": "2022-12-31"
+    },
+    "holdout": {
+      "start": "2023-01-01",
+      "end": "2025-12-31"
+    }
+  },
+  "holdout_accessed": false,
+  "execution_mode": "BID_ASK_NATIVE",
+  "provider_bugs_fixed": [
+    "dukascopy_universal_scaling",
+    "oanda_from_to_count",
+    "mt5_timezone_ignored"
+  ]
+}

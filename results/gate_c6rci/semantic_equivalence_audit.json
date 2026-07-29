@@ -1,0 +1,68 @@
+{
+  "created_at_utc": "2026-07-25T22:23:47.373627+00:00",
+  "files": [
+    {
+      "checks": {
+        "exception_behavior_preserved": true,
+        "module_constants_preserved": true,
+        "not_c6_sealed_manifest_source": true,
+        "public_signatures_preserved": true,
+        "public_symbols_preserved": true
+      },
+      "path": "src/fx_smc_bot/research/intraday_campaign.py",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "exception_behavior_preserved": true,
+        "module_constants_preserved": true,
+        "not_c6_sealed_manifest_source": true,
+        "public_signatures_preserved": true,
+        "public_symbols_preserved": true
+      },
+      "path": "src/fx_smc_bot/research/overfitting.py",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "exception_behavior_preserved": true,
+        "module_constants_preserved": true,
+        "not_c6_sealed_manifest_source": true,
+        "public_signatures_preserved": true,
+        "public_symbols_preserved": true
+      },
+      "path": "src/fx_smc_bot/research/placebos.py",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "exception_behavior_preserved": true,
+        "module_constants_preserved": true,
+        "not_c6_sealed_manifest_source": true,
+        "public_signatures_preserved": true,
+        "public_symbols_preserved": true
+      },
+      "path": "src/fx_smc_bot/research/prop_simulation.py",
+      "status": "PASS"
+    },
+    {
+      "checks": {
+        "exception_behavior_preserved": true,
+        "module_constants_preserved": true,
+        "not_c6_sealed_manifest_source": true,
+        "public_signatures_preserved": true,
+        "public_symbols_preserved": true
+      },
+      "path": "src/fx_smc_bot/research/statistical_inference.py",
+      "status": "PASS"
+    }
+  ],
+  "ruff_suppression_findings": {
+    "src/fx_smc_bot/research/intraday_campaign.py": [],
+    "src/fx_smc_bot/research/overfitting.py": [],
+    "src/fx_smc_bot/research/placebos.py": [],
+    "src/fx_smc_bot/research/prop_simulation.py": [],
+    "src/fx_smc_bot/research/statistical_inference.py": []
+  },
+  "status": "PASS"
+}

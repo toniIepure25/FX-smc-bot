@@ -1,0 +1,31 @@
+{
+  "checks": {
+    "absolute_effect_uncertainty": true,
+    "all_referenced_artifacts_present": true,
+    "consistent_terminology": true,
+    "development_validation_distinction": true,
+    "executable_bid_ask_markout": true,
+    "exploratory_confirmatory_distinction": true,
+    "matched_control_differential": true,
+    "no_hidden_holdout_implication": true,
+    "no_misleading_phrases": true,
+    "transportability_failure": true
+  },
+  "created_at_utc": "2026-07-25T21:05:39.462846+00:00",
+  "documents": [
+    "ACCEPTANCE_RESEARCH_GATE_LEDGER.md",
+    "GATE_C6_INFERENCE_COHERENCE_AUDIT.md",
+    "GATE_C6_TRANSPORT_WEIGHT_FAILURE.md",
+    "ACCEPTANCE_FINAL_CLAIM_MATRIX.md",
+    "ACCEPTANCE_RESEARCH_METHODS.md",
+    "ACCEPTANCE_RESEARCH_RESULTS.md",
+    "ACCEPTANCE_RESEARCH_ABSTRACT.md",
+    "ACCEPTANCE_LIMITATIONS.md",
+    "ACCEPTANCE_REPRODUCIBILITY.md",
+    "ACCEPTANCE_LINEAGE_SEAL.md",
+    "ACCEPTANCE_RESEARCH_LESSONS.md",
+    "GATE_C6_FINAL_DECISION_MEMO.md"
+  ],
+  "misleading_phrase_findings": [],
+  "status": "PASS"
+}

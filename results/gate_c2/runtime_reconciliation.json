@@ -1,0 +1,9 @@
+{
+  "gate": "C.2",
+  "synthetic_control": {
+    "deterministic": true,
+    "trade_count": 0,
+    "violations": [],
+    "note": "Zero trades expected on random walks (no SMC event sequences)"
+  }
+}

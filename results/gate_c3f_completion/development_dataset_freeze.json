@@ -1,0 +1,29 @@
+{
+  "acquisition_configuration_hash": "7abfe686c94bb4c48761ac16edea86754aa90cc92d06b5edc72f204b23032ef0",
+  "created_at": "2026-07-20T11:29:32.814182+00:00",
+  "dukascopy_node_version": "1.46.4",
+  "freeze_hash": "",
+  "full_manifest_hash": "",
+  "git_sha_at_snapshot": "",
+  "node_version": "v24.14.0",
+  "npm_version": "NOT_RUN_NPM_UNAVAILABLE",
+  "package_lock_hash": "6ef38a60aa32f814a5b1dcd76b12e30d44d670afea6686486b67256e7c56cc71",
+  "python_version": "Python 3.13.5",
+  "reason": "Cannot create READY freeze while first-pass acquisition is active and certification is incomplete.",
+  "research_universe": [],
+  "split_boundaries": {
+    "development": [
+      "2015-01-01",
+      "2019-12-31"
+    ],
+    "holdout": [
+      "2023-01-01",
+      "2025-12-31"
+    ],
+    "validation": [
+      "2020-01-01",
+      "2022-12-31"
+    ]
+  },
+  "status": "NOT_CREATED"
+}

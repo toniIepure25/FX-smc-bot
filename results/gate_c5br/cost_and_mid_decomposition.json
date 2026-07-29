@@ -1,0 +1,25 @@
+{
+  "development": {
+    "event_minus_control_executable_differential": 13.668032786885094,
+    "event_minus_control_mid_differential": 13.774180327868745,
+    "mean_control_executable_markout": -17.33688524590164,
+    "mean_control_mid_return": -13.478073770491832,
+    "mean_control_spread_drag": 3.8588114754098086,
+    "mean_event_executable_markout": -3.66885245901655,
+    "mean_event_mid_return": 0.2961065573769135,
+    "mean_event_spread_drag": 3.9649590163934634
+  },
+  "positive_absolute_markout_explained_solely_by_lower_spread_cost": false,
+  "status": "PASS",
+  "validation": {
+    "event_minus_control_executable_differential": 27.453020134228165,
+    "event_minus_control_mid_differential": 27.486577181207956,
+    "mean_control_executable_markout": -16.11577181208039,
+    "mean_control_mid_return": -11.206375838925988,
+    "mean_control_spread_drag": 4.9093959731544015,
+    "mean_event_executable_markout": 11.33724832214778,
+    "mean_event_mid_return": 16.280201342281966,
+    "mean_event_spread_drag": 4.942953020134187
+  },
+  "validation_absolute_positivity_explanation": "underlying_price_response"
+}

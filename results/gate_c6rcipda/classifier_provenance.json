@@ -1,0 +1,23 @@
+{
+  "blocked_patterns": [
+    "data/raw/",
+    "data/canonical/",
+    ".parquet",
+    ".bi5",
+    "holdout"
+  ],
+  "changed_paths_reused_as_violation_source": true,
+  "classification_inputs": [
+    "changed path strings from git diff --name-only origin/main...HEAD",
+    "literal blocked_patterns list"
+  ],
+  "control_artifacts_treated_as_payload_when_path_contains_holdout": true,
+  "created_at_utc": "2026-07-26T10:26:57.200868+00:00",
+  "documentation_treated_as_payload_when_path_contains_holdout": true,
+  "generator_function": "build_prohibited_data_audit",
+  "generator_path": "scripts/run_gate_c6rci.py",
+  "quality_gate_ignored_prohibited_data_status": true,
+  "status": "PASS",
+  "status_function": "same function: status PASS iff prohibited list empty",
+  "uses_content_schema_or_size": false
+}

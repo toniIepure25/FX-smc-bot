@@ -37,6 +37,8 @@ env/
 
 # --- Test / coverage / typecheck caches ---
 .pytest_cache/
+.pytest_tmp_*/
+.audit_tmp/
 .mypy_cache/
 .ruff_cache/
 .coverage
@@ -65,13 +67,27 @@ results/
 forward_runs/
 paper_validation_program/sessions/
 
-# --- Local data dumps (if you keep CSVs outside repo policy) ---
-# Uncomment if you do NOT want raw market CSVs in git:
-# data/real/
-# data/**/
+# --- Market data (never commit) ---
+data/real/raw/
+data/real/EURUSD/
+data/real/GBPUSD/
+data/real/USDJPY/
+data/canonical/
+data/raw/
+data/acquisition_state/
 
 # --- Logs & misc ---
 *.log
 logs/
 *.tmp
 *.bak
+/data/synthetic_control/
+*.bi5
+/tools/dukascopy-node/node_modules/
+/tools/dukascopy-node/.cache/
+/tools/dukascopy-node/_tmp_download/
+/tools/dukascopy-node/_tmp_test/
+/tools/dukascopy-node/smoke_test/
+/tools/dukascopy-node/test_out/
+/tools/dukascopy-node/output/
+/tools/dukascopy-node/_tmp_*
