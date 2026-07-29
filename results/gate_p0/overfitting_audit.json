@@ -1,0 +1,35 @@
+{
+  "created_at_utc": "2026-07-29T13:53:22.415792+00:00",
+  "deflated_sharpe": {
+    "SMC_A_SWEEP_REVERSAL_V1": 0.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 0.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 0.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 0.0
+  },
+  "fdr_sensitivity": {
+    "SMC_A_SWEEP_REVERSAL_V1": 1.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 1.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 1.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 1.0
+  },
+  "holm_adjusted_p_values": {
+    "SMC_A_SWEEP_REVERSAL_V1": 1.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 1.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 1.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 1.0
+  },
+  "probability_of_backtest_overfitting": 1.0,
+  "selection_adjusted_performance_estimate": {
+    "SMC_A_SWEEP_REVERSAL_V1": 0.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 0.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 0.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 0.0
+  },
+  "status": "PASS",
+  "unadjusted_p_values": {
+    "SMC_A_SWEEP_REVERSAL_V1": 1.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 1.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 1.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 1.0
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "created_at_utc": "2026-07-29T13:53:22.415811+00:00",
+  "matched_benchmark_alpha": {
+    "SMC_A_SWEEP_REVERSAL_V1": 0.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 0.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 0.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 0.0
+  },
+  "status": "PASS"
+}
