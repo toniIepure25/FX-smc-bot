@@ -1,0 +1,731 @@
+{
+  "created_at_utc": "2026-07-29T15:50:31.353676+00:00",
+  "download_required_month_count": 72,
+  "legacy_tracked_csv_classification": "LEGACY_TRACKED_NOT_AUTHORIZED_FOR_STRATEGY_ALPHA_V1",
+  "legacy_tracked_csvs_used": false,
+  "reusable_or_recertifiable_month_count": 120,
+  "reusable_or_recertifiable_months": [
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 1,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 2,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 3,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 4,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 5,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 6,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 7,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 8,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 9,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 10,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 11,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 12,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 1,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 2,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 3,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 4,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 5,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 6,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 7,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 8,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 9,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 10,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 11,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 12,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 1,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 2,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 3,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 4,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 5,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 6,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 7,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 8,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 9,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 10,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 11,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 12,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 1,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 2,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 3,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 4,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 5,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 6,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 7,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 8,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 9,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 10,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 11,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "EURUSD",
+      "month": 12,
+      "year": 2018
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 1,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 2,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 3,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 4,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 5,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 6,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 7,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 8,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 9,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 10,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 11,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "EURUSD",
+      "month": 12,
+      "year": 2019
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 1,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 2,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 3,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 4,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 5,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 6,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 7,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 8,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 9,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 10,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 11,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 12,
+      "year": 2015
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 1,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 2,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 3,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 4,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 5,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 6,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 7,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 8,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 9,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 10,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 11,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 12,
+      "year": 2016
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 1,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 2,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 3,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 4,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 5,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 6,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 7,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 8,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 9,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 10,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 11,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 12,
+      "year": 2017
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 1,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 2,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 3,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 4,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 5,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 6,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 7,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 8,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 9,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 10,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 11,
+      "year": 2018
+    },
+    {
+      "classification": "RAW_PRESENT_CANONICAL_MISSING",
+      "instrument": "GBPUSD",
+      "month": 12,
+      "year": 2018
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 1,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 2,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 3,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 4,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 5,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 6,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 7,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 8,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 9,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 10,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 11,
+      "year": 2019
+    },
+    {
+      "classification": "PRESENT_REQUIRES_RECERTIFICATION",
+      "instrument": "GBPUSD",
+      "month": 12,
+      "year": 2019
+    }
+  ],
+  "reuse_before_download": true,
+  "status": "PASS"
+}

@@ -1,0 +1,3126 @@
+{
+  "amendment_id": "P0RDCR_DATA_REQUIREMENT_AMENDMENT_V1",
+  "amendment_pre_data_access_sha": "3c10bba09f7536b3dd7417f4328bda12a3f59541",
+  "atomic_promotion": true,
+  "canonical_hierarchy": [
+    "UTC_M1_BID_ASK_OHLC",
+    "M5_BID_ASK_OHLC"
+  ],
+  "certification": {
+    "all_failed_month_compaction_permitted": false,
+    "m1_and_m5_deterministic_runs_required": 3,
+    "positive_finite_spread_required": true,
+    "zero_byte_permitted": false,
+    "zero_row_permitted": false
+  },
+  "checkpoint_interval": "each day-side unit and month manifest",
+  "concurrency": 4,
+  "created_at_utc": "2026-07-29T15:50:31.355857+00:00",
+  "end": "2022-12-31",
+  "fallback_provider": "native Dukascopy BI5 parity-certified transport",
+  "guards": {
+    "authorized_instrument_required": true,
+    "planned_partition_required": true,
+    "requested_end_lt": "2023-01-01",
+    "requested_end_lte": "2022-12-31",
+    "requested_start_gte": "2015-01-01",
+    "validate_before_filesystem_or_provider_access": true
+  },
+  "hash_algorithm": "SHA-256",
+  "instruments": [
+    "EURUSD",
+    "GBPUSD"
+  ],
+  "inventory_hash": "3ab3a0949e9f19646af2fb36367c143511e01b36882624f0749841cca75b0f0b",
+  "planned_partitions": [
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2015-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2015-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2015-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2015-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2015-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2015-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2015-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2015-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2015-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2015-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2015-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2015-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2015-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2015-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2015-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2015-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2015-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2015-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2015-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2015-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2015-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2015-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2015-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2015-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2016-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2016-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2016-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2016-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2016-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2016-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2016-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2016-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2016-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2016-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2016-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2016-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2016-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2016-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2016-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2016-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2016-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2016-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2016-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2016-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2016-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2016-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2016-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2016-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2017-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2017-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2017-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2017-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2017-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2017-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2017-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2017-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2017-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2017-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2017-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2017-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2017-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2017-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2017-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2017-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2017-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2017-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2017-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2017-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2017-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2017-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2017-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2017-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2018-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2018-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2018-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2018-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2018-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2018-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2018-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2018-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2018-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2018-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2018-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2018-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2018-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2018-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2018-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2018-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2018-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2018-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2018-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2018-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2018-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2018-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2018-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2018-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2019-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2019-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2019-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2019-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2019-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2019-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2019-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2019-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2019-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2019-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2019-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2019-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2019-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2019-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2019-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2019-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2019-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2019-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2019-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2019-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2019-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2019-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2019-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2019-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2020-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2020-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2020-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2020-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2020-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2020-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2020-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2020-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2020-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2020-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2020-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2020-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2020-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2020-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2020-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2020-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2020-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2020-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2020-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2020-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2020-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2020-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2020-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2020-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2021-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2021-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2021-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2021-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2021-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2021-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2021-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2021-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2021-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2021-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2021-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2021-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2021-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2021-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2021-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2021-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2021-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2021-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2021-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2021-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2021-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2021-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2021-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2021-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2022-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 1,
+      "partition_id": "EURUSD:2022-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2022-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 2,
+      "partition_id": "EURUSD:2022-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2022-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 3,
+      "partition_id": "EURUSD:2022-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2022-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 4,
+      "partition_id": "EURUSD:2022-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2022-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 5,
+      "partition_id": "EURUSD:2022-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2022-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 6,
+      "partition_id": "EURUSD:2022-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2022-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 7,
+      "partition_id": "EURUSD:2022-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2022-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 8,
+      "partition_id": "EURUSD:2022-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2022-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 9,
+      "partition_id": "EURUSD:2022-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2022-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 10,
+      "partition_id": "EURUSD:2022-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2022-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 11,
+      "partition_id": "EURUSD:2022-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2022-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "EURUSD",
+      "month": 12,
+      "partition_id": "EURUSD:2022-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2015-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2015-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2015-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2015-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2015-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2015-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2015-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2015-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2015-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2015-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2015-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2015-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2015-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2015-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2015-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2015-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2015-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2015-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2015-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2015-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2015-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2015-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2015-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2015-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2016-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2016-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2016-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2016-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2016-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2016-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2016-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2016-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2016-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2016-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2016-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2016-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2016-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2016-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2016-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2016-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2016-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2016-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2016-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2016-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2016-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2016-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2016-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2016-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2017-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2017-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2017-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2017-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2017-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2017-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2017-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2017-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2017-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2017-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2017-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2017-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2017-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2017-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2017-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2017-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2017-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2017-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2017-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2017-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2017-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2017-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2017-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2017-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2018-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2018-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2018-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2018-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2018-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2018-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2018-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2018-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2018-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2018-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2018-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2018-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2018-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2018-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2018-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2018-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2018-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2018-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2018-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2018-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2018-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2018-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2018-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2018-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2018
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2019-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2019-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2019-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2019-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2019-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2019-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2019-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2019-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2019-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2019-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2019-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2019-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2019-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2019-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2019-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2019-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2019-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2019-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2019-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2019-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2019-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2019-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2019-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2019-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2019
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2020-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2020-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2020-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2020-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2020-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2020-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2020-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2020-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2020-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2020-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2020-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2020-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2020-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2020-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2020-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2020-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2020-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2020-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2020-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2020-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2020-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2020-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2020-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2020-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2020
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2021-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2021-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2021-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2021-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2021-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2021-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2021-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2021-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2021-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2021-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2021-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2021-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2021-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2021-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2021-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2021-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2021-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2021-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2021-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2021-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2021-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2021-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2021-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2021-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2021
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2022-01:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 1,
+      "partition_id": "GBPUSD:2022-01:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2022-02:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 2,
+      "partition_id": "GBPUSD:2022-02:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2022-03:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 3,
+      "partition_id": "GBPUSD:2022-03:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2022-04:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 4,
+      "partition_id": "GBPUSD:2022-04:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2022-05:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 5,
+      "partition_id": "GBPUSD:2022-05:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2022-06:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 6,
+      "partition_id": "GBPUSD:2022-06:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2022-07:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 7,
+      "partition_id": "GBPUSD:2022-07:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2022-08:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 8,
+      "partition_id": "GBPUSD:2022-08:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2022-09:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 9,
+      "partition_id": "GBPUSD:2022-09:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2022-10:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 10,
+      "partition_id": "GBPUSD:2022-10:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2022-11:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 11,
+      "partition_id": "GBPUSD:2022-11:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2022-12:BID:M1",
+      "resolution": "M1",
+      "side": "bid",
+      "year": 2022
+    },
+    {
+      "instrument": "GBPUSD",
+      "month": 12,
+      "partition_id": "GBPUSD:2022-12:ASK:M1",
+      "resolution": "M1",
+      "side": "ask",
+      "year": 2022
+    }
+  ],
+  "primary_provider": "dukascopy-node@1.46.4",
+  "protocol_hash": "c249fe88bd2c50497de2942a5415a909bfbb485707134a2791231beead5e21a1",
+  "protocol_id": "P0RDCRA1A_PERMITTED_DATA_RECOVERY_PROTOCOL_V1",
+  "raw_source": "DUKASCOPY_TICK_BI5_BID_ASK",
+  "retry_policy": {
+    "backoff": "exponential bounded",
+    "http_429": "honor Retry-After before retry",
+    "maximum_attempts_per_unit": 5
+  },
+  "start": "2015-01-01",
+  "status": "FROZEN_BEFORE_PROVIDER_ACCESS",
+  "storage_paths": {
+    "canonical": "data/canonical/p0rdcra1a",
+    "logs": "logs/p0rdcra1a",
+    "raw": "data/raw/p0rdcra1a/dukascopy-node",
+    "state": "data/acquisition_state/p0rdcra1a"
+  }
+}

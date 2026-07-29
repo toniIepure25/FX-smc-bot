@@ -1,0 +1,17 @@
+{
+  "certification_scratch_bytes": 503316480,
+  "created_at_utc": "2026-07-29T15:50:31.354058+00:00",
+  "current_free_bytes": 56978972672,
+  "estimated_m1_canonical_bytes": 805306368,
+  "estimated_m5_canonical_bytes": 201326592,
+  "estimated_missing_raw_bytes": 1207959552,
+  "estimated_primary_month_side_requests": 384,
+  "estimated_remaining_after_peak_bytes": 54261063680,
+  "estimated_runtime": "3-12 hours depending on provider throughput and retries",
+  "estimated_temporary_peak_bytes": 2717908992,
+  "filesystem_total_bytes": 197535985664,
+  "maximum_daily_fallback_requests": 11688,
+  "required_safety_margin_bytes": 10737418240,
+  "reusable_raw_bytes": 864738675,
+  "status": "PASS"
+}

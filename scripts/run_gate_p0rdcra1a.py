@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -22,7 +24,10 @@ from fx_smc_bot.research.strategy_alpha import (  # noqa: E402
 )
 from fx_smc_bot.research.strategy_alpha_data import (  # noqa: E402
     AMENDMENT_ID,
+    AUTHORIZED_STRATEGY_INSTRUMENTS,
+    RecoveryPartition,
     amended_requirement_contract,
+    recovery_partition_record,
 )
 
 RESULT_DIR = REPO / "results" / "gate_p0rdcra1a"
@@ -30,6 +35,17 @@ DOC_DIR = REPO / "docs" / "research" / "strategy_alpha"
 SOURCE_BRANCH = "research/strategy-alpha-prospective-v1"
 EXPECTED_START_SHA = "6ed045dd3cf79345ffc567f7b981106281489586"
 ORIGIN_MAIN_AT_START = "ada8177c738b08f9a119d28a3e8b1fdeea7ef0b2"
+AMENDMENT_PRE_DATA_ACCESS_SHA = "3c10bba09f7536b3dd7417f4328bda12a3f59541"
+RECOVERY_PROTOCOL_ID = "P0RDCRA1A_PERMITTED_DATA_RECOVERY_PROTOCOL_V1"
+RAW_ROOTS = (
+    REPO / "data" / "real" / "raw" / "dukascopy-node",
+    REPO / "data" / "raw" / "dukascopy-node",
+    REPO / "data" / "raw" / "p0rdcra1a" / "dukascopy-node",
+)
+CANONICAL_ROOTS = (
+    REPO / "data" / "canonical" / "dukascopy",
+    REPO / "data" / "canonical" / "p0rdcra1a",
+)
 
 INTEGRITY_PATHS = [
     "configs/research/strategy_alpha_v1.yaml",
@@ -452,14 +468,333 @@ def run_amendment() -> None:
     )
 
 
+def planned_partitions() -> list[RecoveryPartition]:
+    return [
+        RecoveryPartition(instrument, year, month, side)
+        for instrument in sorted(AUTHORIZED_STRATEGY_INSTRUMENTS)
+        for year in range(2015, 2023)
+        for month in range(1, 13)
+        for side in ("bid", "ask")
+    ]
+
+
+def _relative(path: Path) -> str:
+    return path.relative_to(REPO).as_posix()
+
+
+def _file_record(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {"path": _relative(path), "exists": False, "size_bytes": 0}
+    stat = path.stat()
+    return {
+        "path": _relative(path),
+        "exists": True,
+        "size_bytes": stat.st_size,
+        "last_modified_utc": datetime.fromtimestamp(
+            stat.st_mtime,
+            tz=UTC,
+        ).isoformat(),
+    }
+
+
+def _partition_inventory(instrument: str, year: int, month: int) -> dict[str, Any]:
+    raw_files: list[dict[str, Any]] = []
+    manifest_files: list[dict[str, Any]] = []
+    for root in RAW_ROOTS:
+        for side in ("bid", "ask"):
+            month_dir = (
+                root
+                / instrument
+                / f"price={side}"
+                / f"year={year}"
+                / f"month={month:02d}"
+            )
+            raw_files.append(_file_record(month_dir / "data.json"))
+            manifest_files.append(_file_record(month_dir / "manifest.json"))
+
+    canonical_files: list[dict[str, Any]] = []
+    for root in CANONICAL_ROOTS:
+        for timeframe in ("M1", "M5"):
+            path = (
+                root
+                / instrument
+                / f"timeframe={timeframe}"
+                / f"year={year}"
+                / f"month={month:02d}"
+                / "part.parquet"
+            )
+            canonical_files.append(_file_record(path))
+
+    raw_present = any(item["exists"] for item in raw_files)
+    manifest_present = any(item["exists"] for item in manifest_files)
+    m1_present = any(
+        item["exists"] and "timeframe=M1" in item["path"] for item in canonical_files
+    )
+    m5_present = any(
+        item["exists"] and "timeframe=M5" in item["path"] for item in canonical_files
+    )
+    if raw_present and manifest_present and m1_present and m5_present:
+        classification = "PRESENT_REQUIRES_RECERTIFICATION"
+    elif raw_present and not m1_present:
+        classification = "RAW_PRESENT_CANONICAL_MISSING"
+    elif (m1_present or m5_present) and not raw_present:
+        classification = "CANONICAL_PRESENT_PROVENANCE_MISSING"
+    elif raw_present or m1_present or m5_present:
+        classification = "PRESENT_REQUIRES_RECERTIFICATION"
+    else:
+        classification = "MISSING"
+    return {
+        "instrument": instrument,
+        "year": year,
+        "month": month,
+        "classification": classification,
+        "raw_files": raw_files,
+        "manifest_files": manifest_files,
+        "canonical_files": canonical_files,
+    }
+
+
+def build_local_data_inventory() -> dict[str, Any]:
+    amendment_tree = git(
+        [
+            "ls-tree",
+            "-r",
+            AMENDMENT_PRE_DATA_ACCESS_SHA,
+            "--",
+            "results/gate_p0rdcra1a/data_requirement_amendment.json",
+        ]
+    )
+    if not amendment_tree:
+        raise RuntimeError("Amendment commit must exist before inventory")
+    records = [
+        _partition_inventory(instrument, year, month)
+        for instrument in sorted(AUTHORIZED_STRATEGY_INSTRUMENTS)
+        for year in range(2015, 2023)
+        for month in range(1, 13)
+    ]
+    counts = {
+        classification: sum(
+            1 for record in records if record["classification"] == classification
+        )
+        for classification in (
+            "PRESENT_AND_CERTIFIED",
+            "PRESENT_REQUIRES_RECERTIFICATION",
+            "RAW_PRESENT_CANONICAL_MISSING",
+            "CANONICAL_PRESENT_PROVENANCE_MISSING",
+            "CORRUPT",
+            "MISSING",
+        )
+    }
+    return {
+        "created_at_utc": now_utc(),
+        "amendment_pre_data_access_sha": AMENDMENT_PRE_DATA_ACCESS_SHA,
+        "authorized_instruments": sorted(AUTHORIZED_STRATEGY_INSTRUMENTS),
+        "authorized_start": "2015-01-01",
+        "authorized_end": "2022-12-31",
+        "explicit_raw_roots": [_relative(path) for path in RAW_ROOTS],
+        "explicit_canonical_roots": [_relative(path) for path in CANONICAL_ROOTS],
+        "parent_directories_enumerated": False,
+        "legacy_tracked_csvs_read": False,
+        "sealed_holdout_paths_tested_or_enumerated": False,
+        "partition_month_records": records,
+        "classification_counts": counts,
+        "status": "PASS",
+    }
+
+
+def build_data_reuse_plan(inventory: dict[str, Any]) -> dict[str, Any]:
+    reusable = [
+        {
+            "instrument": item["instrument"],
+            "year": item["year"],
+            "month": item["month"],
+            "classification": item["classification"],
+        }
+        for item in inventory["partition_month_records"]
+        if item["classification"] != "MISSING"
+    ]
+    return {
+        "created_at_utc": now_utc(),
+        "reuse_before_download": True,
+        "reusable_or_recertifiable_months": reusable,
+        "reusable_or_recertifiable_month_count": len(reusable),
+        "download_required_month_count": (
+            len(inventory["partition_month_records"]) - len(reusable)
+        ),
+        "legacy_tracked_csv_classification": (
+            "LEGACY_TRACKED_NOT_AUTHORIZED_FOR_STRATEGY_ALPHA_V1"
+        ),
+        "legacy_tracked_csvs_used": False,
+        "status": "PASS",
+    }
+
+
+def build_storage_budget(inventory: dict[str, Any]) -> dict[str, Any]:
+    usage = shutil.disk_usage(REPO)
+    raw_present_bytes = sum(
+        int(file["size_bytes"])
+        for record in inventory["partition_month_records"]
+        for file in record["raw_files"]
+        if file["exists"]
+    )
+    missing_side_months = inventory["classification_counts"]["MISSING"] * 2
+    estimated_missing_raw = missing_side_months * 8 * 1024 * 1024
+    pair_months = len(inventory["partition_month_records"])
+    estimated_m1 = pair_months * 4 * 1024 * 1024
+    estimated_m5 = pair_months * 1 * 1024 * 1024
+    scratch = (estimated_m1 + estimated_m5) // 2
+    temporary_peak = estimated_missing_raw + estimated_m1 + estimated_m5 + scratch
+    remaining = usage.free - temporary_peak
+    required_margin = min(10 * 1024**3, int(usage.total * 0.20))
+    status = "PASS" if remaining >= required_margin else "FAIL"
+    return {
+        "created_at_utc": now_utc(),
+        "filesystem_total_bytes": usage.total,
+        "current_free_bytes": usage.free,
+        "reusable_raw_bytes": raw_present_bytes,
+        "estimated_missing_raw_bytes": estimated_missing_raw,
+        "estimated_m1_canonical_bytes": estimated_m1,
+        "estimated_m5_canonical_bytes": estimated_m5,
+        "certification_scratch_bytes": scratch,
+        "estimated_temporary_peak_bytes": temporary_peak,
+        "estimated_remaining_after_peak_bytes": remaining,
+        "required_safety_margin_bytes": required_margin,
+        "estimated_primary_month_side_requests": len(planned_partitions()),
+        "maximum_daily_fallback_requests": (
+            (date(2022, 12, 31) - date(2015, 1, 1)).days + 1
+        )
+        * len(AUTHORIZED_STRATEGY_INSTRUMENTS)
+        * 2,
+        "estimated_runtime": "3-12 hours depending on provider throughput and retries",
+        "status": status,
+    }
+
+
+def build_recovery_protocol(inventory: dict[str, Any]) -> dict[str, Any]:
+    partitions = [recovery_partition_record(item) for item in planned_partitions()]
+    payload: dict[str, Any] = {
+        "created_at_utc": now_utc(),
+        "protocol_id": RECOVERY_PROTOCOL_ID,
+        "amendment_id": AMENDMENT_ID,
+        "amendment_pre_data_access_sha": AMENDMENT_PRE_DATA_ACCESS_SHA,
+        "instruments": sorted(AUTHORIZED_STRATEGY_INSTRUMENTS),
+        "start": "2015-01-01",
+        "end": "2022-12-31",
+        "primary_provider": "dukascopy-node@1.46.4",
+        "fallback_provider": "native Dukascopy BI5 parity-certified transport",
+        "raw_source": "DUKASCOPY_TICK_BI5_BID_ASK",
+        "canonical_hierarchy": ["UTC_M1_BID_ASK_OHLC", "M5_BID_ASK_OHLC"],
+        "retry_policy": {
+            "maximum_attempts_per_unit": 5,
+            "backoff": "exponential bounded",
+            "http_429": "honor Retry-After before retry",
+        },
+        "checkpoint_interval": "each day-side unit and month manifest",
+        "concurrency": 4,
+        "atomic_promotion": True,
+        "hash_algorithm": "SHA-256",
+        "certification": {
+            "zero_byte_permitted": False,
+            "zero_row_permitted": False,
+            "all_failed_month_compaction_permitted": False,
+            "positive_finite_spread_required": True,
+            "m1_and_m5_deterministic_runs_required": 3,
+        },
+        "guards": {
+            "requested_start_gte": "2015-01-01",
+            "requested_end_lte": "2022-12-31",
+            "requested_end_lt": "2023-01-01",
+            "planned_partition_required": True,
+            "authorized_instrument_required": True,
+            "validate_before_filesystem_or_provider_access": True,
+        },
+        "storage_paths": {
+            "raw": "data/raw/p0rdcra1a/dukascopy-node",
+            "canonical": "data/canonical/p0rdcra1a",
+            "state": "data/acquisition_state/p0rdcra1a",
+            "logs": "logs/p0rdcra1a",
+        },
+        "planned_partitions": partitions,
+        "inventory_hash": canonical_json_sha256(inventory),
+        "status": "FROZEN_BEFORE_PROVIDER_ACCESS",
+    }
+    hash_payload = {key: value for key, value in payload.items() if key != "created_at_utc"}
+    payload["protocol_hash"] = canonical_json_sha256(hash_payload)
+    return payload
+
+
+def write_stage2_prep_docs(inventory: dict[str, Any], protocol: dict[str, Any]) -> None:
+    counts = inventory["classification_counts"]
+    write_doc(
+        DOC_DIR / "P0RDCRA1A_LOCAL_DATA_INVENTORY.md",
+        [
+            "# P0-R-DCR-A1A Local Data Inventory",
+            "",
+            "Only explicit EURUSD/GBPUSD 2015-2022 monthly paths were tested.",
+            "",
+            f"Missing pair-months: `{counts['MISSING']}`.",
+            f"Recertification candidates: `{counts['PRESENT_REQUIRES_RECERTIFICATION']}`.",
+            f"Raw present/canonical missing: `{counts['RAW_PRESENT_CANONICAL_MISSING']}`.",
+            f"Canonical provenance missing: `{counts['CANONICAL_PRESENT_PROVENANCE_MISSING']}`.",
+            "",
+            "Inherited 15m/1h/4h CSV files are classified "
+            "`LEGACY_TRACKED_NOT_AUTHORIZED_FOR_STRATEGY_ALPHA_V1` and were not read.",
+        ],
+    )
+    write_doc(
+        DOC_DIR / "P0RDCRA1A_DATA_RECOVERY_PROTOCOL.md",
+        [
+            "# P0-R-DCR-A1A Data Recovery Protocol",
+            "",
+            f"Protocol: `{protocol['protocol_id']}`",
+            "",
+            f"Hash: `{protocol['protocol_hash']}`",
+            "",
+            "Scope is EURUSD/GBPUSD from 2015-01-01 through 2022-12-31, Dukascopy "
+            "BI5 bid/ask to canonical M1 and deterministic M5, with four bounded workers.",
+            "",
+            "No provider access occurred before this protocol freeze.",
+        ],
+    )
+
+
+def run_stage2_prep() -> None:
+    inventory = build_local_data_inventory()
+    reuse = build_data_reuse_plan(inventory)
+    budget = build_storage_budget(inventory)
+    protocol = build_recovery_protocol(inventory)
+    write_json(RESULT_DIR / "local_data_inventory.json", inventory)
+    write_json(RESULT_DIR / "data_reuse_plan.json", reuse)
+    write_json(RESULT_DIR / "storage_budget.json", budget)
+    write_json(RESULT_DIR / "data_recovery_protocol.json", protocol)
+    write_stage2_prep_docs(inventory, protocol)
+    print(
+        json.dumps(
+            {
+                "stage": "stage2_prep",
+                "inventory": inventory["classification_counts"],
+                "storage_budget": budget["status"],
+                "protocol_hash": protocol["protocol_hash"],
+            },
+            indent=2,
+        )
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", choices=["audit", "amendment", "all"], default="all")
+    parser.add_argument(
+        "--stage",
+        choices=["audit", "amendment", "stage2_prep", "all"],
+        default="all",
+    )
     args = parser.parse_args()
     if args.stage in {"audit", "all"}:
         run_audit()
     if args.stage in {"amendment", "all"}:
         run_amendment()
+    if args.stage in {"stage2_prep", "all"}:
+        run_stage2_prep()
 
 
 if __name__ == "__main__":
