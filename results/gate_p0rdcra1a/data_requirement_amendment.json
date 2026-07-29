@@ -1,0 +1,123 @@
+{
+  "amendment_hash": "e6b93c1ef826ce0f2338b965ecc37b547b4be5da10e835748b7b2667747f9c25",
+  "amendment_id": "P0RDCR_DATA_REQUIREMENT_AMENDMENT_V1",
+  "compatibility": {
+    "benchmarks_changed": false,
+    "candidate_parameters_changed": false,
+    "economic_estimands_changed": false,
+    "resolves_only_previously_missing_implementation_requirements": true,
+    "semantic_conflicts": [],
+    "sl_tp_order_expiry_or_signal_rules_changed": false,
+    "strategy_instruments_changed": false,
+    "tier_rules_changed": false
+  },
+  "created_at_utc": "2026-07-29T15:47:19.043476+00:00",
+  "decisions_following_explicit_source_evidence": [
+    "M5 bid/ask strategy execution bars",
+    "Dukascopy provider lineage",
+    "opening-range 11:00 local cutoff",
+    "20-bar frozen order expiry",
+    "adverse-first primary intrabar execution",
+    "candidate-instrument benchmark matching"
+  ],
+  "economic_outcome_accessed": false,
+  "evidence_artifacts": [
+    "results/gate_p0rdcra1a/pre_amendment_outcome_blindness.json",
+    "results/gate_p0rdcra1a/requirement_provenance_audit.json",
+    "results/gate_p0rdcr/data_requirement_matrix.json",
+    "results/gate_p0r/implementation_clarification_overlay.json",
+    "results/gate_p0/benchmark_freeze.json"
+  ],
+  "holdout_prohibition": {
+    "holdout_inventory_permitted": false,
+    "holdout_outcomes_permitted": false,
+    "request_or_path_on_or_after_2023_01_01_permitted": false
+  },
+  "legacy_lineage_id": "USDJPY_ACCEPTANCE_RESEARCH_LINEAGE_V1",
+  "legacy_status": "CLOSED_MIXED_NONTRANSPORTABLE_RESULT",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "market_data_path_enumerated": false,
+  "outcome_blindness_status": "PASS",
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "prospective_design_amendments": [
+    "Dukascopy BI5 -> M1 -> M5 canonical hierarchy",
+    "500 M5-bar shared warm-up",
+    "forced exit at originating session or FX-week cutoff",
+    "08:00-11:00 local IANA session calendar for named sessions",
+    "USDJPY optional-diagnostic role"
+  ],
+  "provider_request_sent": false,
+  "requirements": {
+    "amendment_id": "P0RDCR_DATA_REQUIREMENT_AMENDMENT_V1",
+    "exit_horizon": {
+      "friday_safety_exit": "FINAL_EXECUTABLE_QUOTE_BEFORE_17:00_AMERICA_NEW_YORK",
+      "missing_cutoff_bar": "FINAL_EXECUTABLE_QUOTE_BEFORE_CUTOFF",
+      "missing_executable_quote": "EXECUTION_DATA_MISSING_EXCLUDE_FROM_ACCEPTED_SAMPLE",
+      "opening_range_cutoff": "11:00_LOCAL_SESSION_TIMEZONE",
+      "order_expiry_changed": false,
+      "overnight_carry": false,
+      "priority": [
+        "STOP_LOSS",
+        "TAKE_PROFIT",
+        "ORIGINATING_SESSION_CUTOFF",
+        "FX_WEEK_SAFETY_CLOSE",
+        "FINAL_AVAILABLE_CERTIFIED_BAR"
+      ],
+      "rollover_carry": false,
+      "sweep_and_acceptance_cutoff": "END_OF_ORIGINATING_FROZEN_SESSION",
+      "weekend_carry": false
+    },
+    "instrument_roles": {
+      "EURUSD": "STRATEGY_REQUIRED",
+      "GBPUSD": "STRATEGY_REQUIRED",
+      "USDJPY": "OPTIONAL_DIAGNOSTIC"
+    },
+    "session_calendar": {
+      "bank_holiday_synthetic_closure": false,
+      "dst_resolution": "IANA_TIMEZONE_AWARE_UTC_CONVERSION_ONLY",
+      "duplicate_utc_timestamp": "FAIL_UNLESS_DETERMINISTICALLY_IDENTICAL",
+      "fx_week_close": "FRIDAY_17:00_AMERICA_NEW_YORK",
+      "fx_week_open": "SUNDAY_17:00_AMERICA_NEW_YORK",
+      "missing_session": "NO_INTERPOLATION",
+      "provider_closed_holiday_intervals": "MISSING_OR_MARKET_CLOSED_METADATA",
+      "sessions": {
+        "london": {
+          "end_local": "11:00",
+          "start_local": "08:00",
+          "timezone": "Europe/London"
+        },
+        "new_york": {
+          "end_local": "11:00",
+          "start_local": "08:00",
+          "timezone": "America/New_York"
+        }
+      },
+      "weekends": "EXCLUDED"
+    },
+    "source_resolution": {
+      "canonical_intermediate": "UTC_M1_BID_ASK_OHLC",
+      "execution_bars": "DETERMINISTIC_M5_BID_ASK_OHLC_FROM_M1",
+      "favorable_tick_ordering_used": false,
+      "primary_intrabar_execution": "M5_ADVERSE_FIRST",
+      "provider": "Dukascopy",
+      "raw_source": "DUKASCOPY_TICK_BI5_BID_ASK",
+      "reuse_requires_same_source_provenance_and_exact_canonical_parity": true
+    },
+    "usdjpy_required_for_candidate_certification": false,
+    "usdjpy_required_for_candidate_execution": false,
+    "usdjpy_required_for_frozen_benchmarks": false,
+    "usdjpy_required_for_tier_or_ranking": false,
+    "warm_up": {
+      "atr_dependency_m5_bars": 14,
+      "formula": "max(500, 46 + 288)",
+      "mandatory_htf_dependency_m5_bars": 0,
+      "maximum_explicit_candidate_indicator_lookback_m5_bars": 20,
+      "maximum_state_machine_lookback_m5_bars": 46,
+      "prior_day_dependency_m5_bars": 288,
+      "provider_request_before_2015_permitted": false,
+      "trades_before_warmup_completion_permitted": false,
+      "warmup_m5_bars": 500
+    }
+  },
+  "status": "FROZEN_BEFORE_DATA_ACCESS"
+}

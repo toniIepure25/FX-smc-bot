@@ -20,6 +20,10 @@ from fx_smc_bot.research.strategy_alpha import (  # noqa: E402
     now_utc,
     raw_sha256,
 )
+from fx_smc_bot.research.strategy_alpha_data import (  # noqa: E402
+    AMENDMENT_ID,
+    amended_requirement_contract,
+)
 
 RESULT_DIR = REPO / "results" / "gate_p0rdcra1a"
 DOC_DIR = REPO / "docs" / "research" / "strategy_alpha"
@@ -321,6 +325,100 @@ def write_audit_docs(outcome: dict[str, Any], provenance: dict[str, Any]) -> Non
     write_doc(DOC_DIR / "P0RDCRA1A_REQUIREMENT_PROVENANCE.md", lines)
 
 
+def build_data_requirement_amendment() -> dict[str, Any]:
+    outcome = load_json(RESULT_DIR / "pre_amendment_outcome_blindness.json")
+    provenance = load_json(RESULT_DIR / "requirement_provenance_audit.json")
+    contract = amended_requirement_contract()
+    payload: dict[str, Any] = {
+        "created_at_utc": now_utc(),
+        "program_id": PROGRAM_ID,
+        "lineage_id": LINEAGE_ID,
+        "legacy_lineage_id": LEGACY_LINEAGE_ID,
+        "legacy_status": "CLOSED_MIXED_NONTRANSPORTABLE_RESULT",
+        "amendment_id": AMENDMENT_ID,
+        "status": "FROZEN_BEFORE_DATA_ACCESS",
+        "outcome_blindness_status": outcome["status"],
+        "economic_outcome_accessed": False,
+        "market_data_path_enumerated": False,
+        "provider_request_sent": False,
+        "requirements": contract,
+        "decisions_following_explicit_source_evidence": [
+            "M5 bid/ask strategy execution bars",
+            "Dukascopy provider lineage",
+            "opening-range 11:00 local cutoff",
+            "20-bar frozen order expiry",
+            "adverse-first primary intrabar execution",
+            "candidate-instrument benchmark matching",
+        ],
+        "prospective_design_amendments": [
+            "Dukascopy BI5 -> M1 -> M5 canonical hierarchy",
+            "500 M5-bar shared warm-up",
+            "forced exit at originating session or FX-week cutoff",
+            "08:00-11:00 local IANA session calendar for named sessions",
+            "USDJPY optional-diagnostic role",
+        ],
+        "compatibility": {
+            "candidate_parameters_changed": False,
+            "strategy_instruments_changed": False,
+            "sl_tp_order_expiry_or_signal_rules_changed": False,
+            "economic_estimands_changed": False,
+            "benchmarks_changed": False,
+            "tier_rules_changed": False,
+            "resolves_only_previously_missing_implementation_requirements": True,
+            "semantic_conflicts": provenance["semantic_conflicts_with_explicit_p0_freezes"],
+        },
+        "holdout_prohibition": {
+            "request_or_path_on_or_after_2023_01_01_permitted": False,
+            "holdout_inventory_permitted": False,
+            "holdout_outcomes_permitted": False,
+        },
+        "evidence_artifacts": [
+            "results/gate_p0rdcra1a/pre_amendment_outcome_blindness.json",
+            "results/gate_p0rdcra1a/requirement_provenance_audit.json",
+            "results/gate_p0rdcr/data_requirement_matrix.json",
+            "results/gate_p0r/implementation_clarification_overlay.json",
+            "results/gate_p0/benchmark_freeze.json",
+        ],
+    }
+    hash_payload = {key: value for key, value in payload.items() if key != "created_at_utc"}
+    payload["amendment_hash"] = canonical_json_sha256(hash_payload)
+    return payload
+
+
+def write_amendment_doc(amendment: dict[str, Any]) -> None:
+    req = amendment["requirements"]
+    write_doc(
+        DOC_DIR / "P0RDCRA1A_DATA_REQUIREMENT_AMENDMENT.md",
+        [
+            "# P0-R-DCR-A1A Data Requirement Amendment",
+            "",
+            f"Amendment: `{amendment['amendment_id']}`",
+            "",
+            f"Status: `{amendment['status']}`",
+            "",
+            f"Hash: `{amendment['amendment_hash']}`",
+            "",
+            "This amendment was frozen before market-data path enumeration or economic outcomes.",
+            "",
+            "## Exact Contract",
+            "",
+            "- Source: Dukascopy tick/BI5 bid and ask.",
+            "- Canonical intermediate: UTC M1 bid/ask OHLC.",
+            "- Execution: deterministic M5 bid/ask OHLC, adverse-first.",
+            f"- Warm-up: {req['warm_up']['warmup_m5_bars']} M5 bars "
+            f"using `{req['warm_up']['formula']}`.",
+            "- Exit: earliest SL, TP, originating-session cutoff, FX-week close, or final bar.",
+            "- Sessions: 08:00 inclusive to 11:00 exclusive in the named IANA timezone.",
+            "- FX week: Sunday 17:00 to Friday 17:00 America/New_York.",
+            "- EURUSD and GBPUSD: strategy required.",
+            "- USDJPY: optional diagnostic; not required for execution, benchmarks, or tiers.",
+            "",
+            "No candidate parameter, signal, SL, TP, order expiry, estimand, benchmark, or Tier "
+            "criterion is changed.",
+        ],
+    )
+
+
 def run_audit() -> None:
     repository = build_repository_state()
     integrity = build_pre_amendment_integrity()
@@ -334,11 +432,34 @@ def run_audit() -> None:
     print(json.dumps({"stage": "audit", "status": outcome["status"]}, indent=2))
 
 
+def run_amendment() -> None:
+    amendment = build_data_requirement_amendment()
+    if amendment["outcome_blindness_status"] != "PASS":
+        raise RuntimeError("Outcome-blindness proof must pass before amendment")
+    if amendment["compatibility"]["semantic_conflicts"]:
+        raise RuntimeError("Amendment conflicts with an explicit frozen requirement")
+    write_json(RESULT_DIR / "data_requirement_amendment.json", amendment)
+    write_amendment_doc(amendment)
+    print(
+        json.dumps(
+            {
+                "stage": "amendment",
+                "status": amendment["status"],
+                "amendment_hash": amendment["amendment_hash"],
+            },
+            indent=2,
+        )
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", choices=["audit"], default="audit")
-    parser.parse_args()
-    run_audit()
+    parser.add_argument("--stage", choices=["audit", "amendment", "all"], default="all")
+    args = parser.parse_args()
+    if args.stage in {"audit", "all"}:
+        run_audit()
+    if args.stage in {"amendment", "all"}:
+        run_amendment()
 
 
 if __name__ == "__main__":
