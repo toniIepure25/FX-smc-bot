@@ -1,0 +1,40 @@
+{
+  "candidate_count": 5,
+  "candidate_family_hash": "fd4f0a73b1277edf55160a3c844b6b5ab9b6e72622fcaed4aa8bd2aa8c1960e3",
+  "candidate_hashes": {
+    "Q0_INV_ACCEPTANCE_V1": "c9eb008d8707fe9192f7fbe6c6d1f263ea0f5bc46eddb4011c8a28372ac397df",
+    "Q0_INV_LONDON_OR_V1": "9cd5bb917625d16d236ea763e448754c4689c90097301e771a2144b4f01d9663",
+    "Q0_INV_NEWYORK_OR_V1": "db2cf979f9de1bc723d4afb1d81f6614af8b44a177f5fa543fa3a62b3ab3c68e",
+    "Q0_INV_SWEEP_V1": "d02ab97d2cec898e92cc289a3f3acc9b5cf05d22738bbf3758f48152ad074fef",
+    "Q0_META_POLARITY_ELASTIC_NET_V1": "23f905624a6179eb519111eb446280c95c23d89123dae5a97330765151db5e49"
+  },
+  "candidates": [
+    {
+      "candidate_id": "Q0_INV_SWEEP_V1",
+      "source_policy": "SMC_A_SWEEP_REVERSAL_V1",
+      "transformation": "REVERSE_TRADE_DIRECTION_ONLY"
+    },
+    {
+      "candidate_id": "Q0_INV_ACCEPTANCE_V1",
+      "source_policy": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "transformation": "REVERSE_TRADE_DIRECTION_ONLY"
+    },
+    {
+      "candidate_id": "Q0_INV_LONDON_OR_V1",
+      "source_policy": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "transformation": "REVERSE_TRADE_DIRECTION_ONLY"
+    },
+    {
+      "candidate_id": "Q0_INV_NEWYORK_OR_V1",
+      "source_policy": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "transformation": "REVERSE_TRADE_DIRECTION_ONLY"
+    },
+    {
+      "candidate_id": "Q0_META_POLARITY_ELASTIC_NET_V1",
+      "source_policy": "FOUR_FROZEN_SOURCE_POLICIES",
+      "transformation": "CHOOSE_ORIGINAL_INVERSE_OR_ABSTAIN"
+    }
+  ],
+  "new_entry_stop_target_or_exit_permitted": false,
+  "status": "PASS"
+}

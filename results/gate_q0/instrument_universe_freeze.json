@@ -1,0 +1,27 @@
+{
+  "complete_frozen_universe": [
+    "AUDUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY"
+  ],
+  "development_instruments": [
+    "AUDUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF"
+  ],
+  "excluded_old_instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "replication_contributes_to_development_selection": false,
+  "replication_instruments": [
+    "EURJPY",
+    "GBPJPY"
+  ],
+  "status": "PASS"
+}
