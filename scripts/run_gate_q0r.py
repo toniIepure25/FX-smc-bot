@@ -176,6 +176,34 @@ def run_development_evaluation() -> None:
     print(json.dumps(adjudication, indent=2, sort_keys=True))
 
 
+def freeze_replication_shortlist() -> None:
+    from fx_smc_bot.research.quant_polarity import canonical_json_sha256
+
+    candidates = _read_json(RESULTS / "development_candidate_results.json")
+    adjudication = _read_json(RESULTS / "development_candidate_adjudication.json")
+    selected = list(adjudication["selected_candidates"])
+    if len(selected) > 2:
+        raise RuntimeError("Development adjudication exceeds the frozen shortlist maximum")
+    payload: dict[str, Any] = {
+        "shortlist_status": "FROZEN_BEFORE_REPLICATION_DATA_ACCESS",
+        "shortlist_freeze_predecessor_sha": _git("rev-parse", "HEAD"),
+        "selected_candidates": selected,
+        "selected_count": len(selected),
+        "maximum_selected": 2,
+        "candidate_family_hash": "fd4f0a73b1277edf55160a3c844b6b5ab9b6e72622fcaed4aa8bd2aa8c1960e3",
+        "model_hash": candidates["model"]["final_model_hash"],
+        "selected_hyperparameters": candidates["model"]["selected_hyperparameters"],
+        "development_rules_applied_mechanically": True,
+        "manual_override": False,
+        "replication_data_accessed": False,
+        "replication_provider_request_sent": False,
+        "status": "PASS",
+    }
+    payload["shortlist_hash"] = canonical_json_sha256(payload)
+    _write_json(RESULTS / "replication_shortlist_freeze.json", payload)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -186,6 +214,7 @@ def main() -> int:
             "execution-certification",
             "development-execution",
             "development-evaluation",
+            "replication-shortlist",
         ),
         required=True,
     )
@@ -201,6 +230,8 @@ def main() -> int:
         run_development_execution(args.workers)
     if args.group == "development-evaluation":
         run_development_evaluation()
+    if args.group == "replication-shortlist":
+        freeze_replication_shortlist()
     return 0
 
 
