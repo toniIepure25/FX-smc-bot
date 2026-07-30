@@ -1,0 +1,19 @@
+{
+  "assessed_head": "e61fa8029f077a8496491f188c2abbac93507ef9",
+  "branch_changed_paths": 183,
+  "commits_ahead": 33,
+  "commits_behind": 0,
+  "conflicts": [],
+  "created_at_utc": "2026-07-30T08:52:38.7647711Z",
+  "git_diff_check": "PASS",
+  "merge_base": "ada8177c738b08f9a119d28a3e8b1fdeea7ef0b2",
+  "merge_tree_anchored_conflict_markers": 0,
+  "merge_tree_mode": "git merge-tree <base> <target> <head>",
+  "overlapping_paths": [],
+  "static_analysis_baseline_compatible": true,
+  "status": "PASS",
+  "target_drift": false,
+  "target_sha": "ada8177c738b08f9a119d28a3e8b1fdeea7ef0b2",
+  "target_changed_paths_since_merge_base": 0,
+  "target_is_merge_base": true
+}
