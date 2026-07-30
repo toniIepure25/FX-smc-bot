@@ -3,13 +3,19 @@
   "closure_hash": "a1903cc32c59026db93479e4f9ef1de2628870fea4c3444b8d695cd76e6fd877",
   "closure_id": "FX_SMC_STRATEGY_ALPHA_CLOSURE_V1",
   "created_at_utc": "2026-07-30T08:52:38.7647711Z",
+  "decision": "P1_STRATEGY_ALPHA_PROGRAM_CLOSED_PR_CREATED_READY_FOR_REVIEW",
   "decision_upon_ready_pr_creation": "P1_STRATEGY_ALPHA_PROGRAM_CLOSED_PR_CREATED_READY_FOR_REVIEW",
   "forward_protocol_created": false,
   "lineage_seal_id": "FX_SMC_STRATEGY_ALPHA_LINEAGE_V1",
   "live_or_paper_handoff_created": false,
   "merge_authorized_automatically": false,
+  "pr_draft": false,
+  "pr_head_sha_at_creation": "8c989185cff27cf9704ddd233b6b7f7b6c8eec69",
+  "pr_merged": false,
+  "pr_number": 2,
   "pr_creation_ready": true,
-  "pr_recorded": false,
+  "pr_recorded": true,
+  "pr_url": "https://github.com/toniIepure25/FX-smc-bot/pull/2",
   "reproducibility_manifest_hash": "032b2c6072c7c1e8ea194f37cc3377db76544c86c415f7fe190634e38da68cb2",
-  "status": "PASS_READY_FOR_PR_CREATION"
+  "status": "PASS_PR_CREATED_READY_FOR_REVIEW"
 }
