@@ -591,10 +591,10 @@ def run_seal() -> None:
         f"""
 # Strategy-Alpha Lineage Seal
 
-Seal ID: `{SEAL_ID}`  
-Program: `{PROGRAM_ID}`  
-Lineage: `{LINEAGE_ID}`  
-Status: `{SEAL_STATUS}`  
+Seal ID: `{SEAL_ID}`
+Program: `{PROGRAM_ID}`
+Lineage: `{LINEAGE_ID}`
+Status: `{SEAL_STATUS}`
 Hash: `{seal['lineage_seal_hash']}`
 
 The current four candidates and their 2015-2022 outcomes are permanently

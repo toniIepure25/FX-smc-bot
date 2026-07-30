@@ -1,0 +1,122 @@
+{
+  "all_candidates_tier_c": true,
+  "concentration": {
+    "SMC_A_SWEEP_REVERSAL_V1": {
+      "best_5_trade_share": 0.19916464513225066,
+      "best_year_share": 0.1861266430271619
+    },
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+      "best_5_trade_share": 0.009982680798931255,
+      "best_year_share": 0.16778028319107283
+    },
+    "SMC_C_LONDON_OPENING_RANGE_V1": {
+      "best_5_trade_share": 0.1348250316540383,
+      "best_year_share": 0.20301223874663218
+    },
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+      "best_5_trade_share": 0.046642099082473513,
+      "best_year_share": 0.16394933456215693
+    }
+  },
+  "cost_escalation": {
+    "SMC_A_SWEEP_REVERSAL_V1": {
+      "1_5x": -0.006564049948166264,
+      "2_0x": -0.02373247791534012,
+      "base": 0.010604378019007616
+    },
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+      "1_5x": -0.20314689819740306,
+      "2_0x": -0.24819375774200184,
+      "base": -0.15810003865280425
+    },
+    "SMC_C_LONDON_OPENING_RANGE_V1": {
+      "1_5x": -0.10633442653072471,
+      "2_0x": -0.13156043743471238,
+      "base": -0.08110841562673701
+    },
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+      "1_5x": -0.05448396380805454,
+      "2_0x": -0.0775713251671216,
+      "base": -0.03139660244898749
+    }
+  },
+  "created_at_utc": "2026-07-30T08:42:50.632496+00:00",
+  "direction_flip": {
+    "adjudication": "HYPOTHESIS_GENERATING_ONLY",
+    "inverted_strategy_created": false,
+    "results": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "count": 202,
+        "mean_net_r": 0.07210731746151579
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "count": 2676,
+        "mean_net_r": 0.34785747316703836
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "count": 360,
+        "mean_net_r": 0.10847376078534016
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "count": 753,
+        "mean_net_r": 0.10506579900441491
+      }
+    }
+  },
+  "holm_adjusted_p_values": {
+    "SMC_A_SWEEP_REVERSAL_V1": 1.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 1.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 1.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 1.0
+  },
+  "leave_one_year_out": {
+    "SMC_A_SWEEP_REVERSAL_V1": false,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": false,
+    "SMC_C_LONDON_OPENING_RANGE_V1": false,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": false
+  },
+  "one_bar_delay": {
+    "adjudication": "EXECUTION_TIMING_FRAGILITY",
+    "results": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "count": 26,
+        "mean_net_r": -0.5423957792858911
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "count": 1442,
+        "mean_net_r": -0.24957286389210015
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "count": 64,
+        "mean_net_r": -0.5243604216715763
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "count": 153,
+        "mean_net_r": -0.326483638883033
+      }
+    }
+  },
+  "pbo": 0.86,
+  "status": "PASS",
+  "two_bar_delay": {
+    "adjudication": "EXECUTION_TIMING_FRAGILITY",
+    "results": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "count": 24,
+        "mean_net_r": -0.47028291769187
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "count": 1364,
+        "mean_net_r": -0.20509519834384332
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "count": 62,
+        "mean_net_r": -0.3977282741680863
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "count": 133,
+        "mean_net_r": -0.302835120308366
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "claims": [
+    {
+      "claim": "The repository contains a certified deterministic bid/ask strategy-level execution and economic-evaluation pipeline for the permitted 2015-2022 data.",
+      "claim_id": "A",
+      "status": "SUPPORTED"
+    },
+    {
+      "claim": "Sweep reversal generated positive historical mean net expectancy.",
+      "claim_id": "B",
+      "evidence": [
+        "mean net R was 0.010604378019007616",
+        "day-cluster confidence interval included zero",
+        "matched-random alpha was negative",
+        "1.5x and 2.0x cost means were negative",
+        "leave-one-year-out positivity failed"
+      ],
+      "status": "DESCRIPTIVELY_SUPPORTED_BUT_NOT_ROBUST"
+    },
+    {
+      "claim": "Acceptance continuation was historically profitable as a standalone strategy.",
+      "claim_id": "C",
+      "evidence": [
+        "mean net R was -0.15810003865280425",
+        "day-cluster confidence interval was entirely negative",
+        "profit factor was 0.697540583282163",
+        "Sharpe was -3.101238396768342",
+        "cost escalation worsened the result"
+      ],
+      "status": "REJECTED_IN_FROZEN_HISTORICAL_FEASIBILITY"
+    },
+    {
+      "claim": "London opening-range continuation was historically profitable.",
+      "claim_id": "D",
+      "status": "REJECTED_IN_FROZEN_HISTORICAL_FEASIBILITY"
+    },
+    {
+      "claim": "New York opening-range continuation was historically profitable.",
+      "claim_id": "E",
+      "evidence": [
+        "mean net R was negative",
+        "day-cluster confidence interval included zero",
+        "profit factor was below one",
+        "benchmark-relative alpha was not statistically supported"
+      ],
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "claim": "Any frozen candidate demonstrated benchmark-relative alpha.",
+      "claim_id": "F",
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "claim": "Any frozen candidate justified prospective paper trading.",
+      "claim_id": "G",
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "boundary": "A polarity hypothesis requires a separate lineage, preregistration, and untouched instruments or genuinely future data; it cannot be confirmed on 2015-2022.",
+      "claim": "Positive direction-flip controls establish that inverted versions are profitable strategies.",
+      "claim_id": "H",
+      "status": "EXPLORATORY_OUTCOME_INFORMED_ONLY"
+    },
+    {
+      "claim": "The current results authorize live-capital deployment.",
+      "claim_id": "I",
+      "status": "NOT_TESTED_AND_NOT_AUTHORIZED"
+    }
+  ],
+  "created_at_utc": "2026-07-30T08:42:50.628437+00:00",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "status": "PASS",
+  "validation": {
+    "checks": {
+      "A": true,
+      "B": true,
+      "C": true,
+      "D": true,
+      "E": true,
+      "F": true,
+      "G": true,
+      "H": true,
+      "I": true
+    },
+    "expected_statuses": {
+      "A": "SUPPORTED",
+      "B": "DESCRIPTIVELY_SUPPORTED_BUT_NOT_ROBUST",
+      "C": "REJECTED_IN_FROZEN_HISTORICAL_FEASIBILITY",
+      "D": "REJECTED_IN_FROZEN_HISTORICAL_FEASIBILITY",
+      "E": "NOT_SUPPORTED",
+      "F": "NOT_SUPPORTED",
+      "G": "NOT_SUPPORTED",
+      "H": "EXPLORATORY_OUTCOME_INFORMED_ONLY",
+      "I": "NOT_TESTED_AND_NOT_AUTHORIZED"
+    },
+    "observed_statuses": {
+      "A": "SUPPORTED",
+      "B": "DESCRIPTIVELY_SUPPORTED_BUT_NOT_ROBUST",
+      "C": "REJECTED_IN_FROZEN_HISTORICAL_FEASIBILITY",
+      "D": "REJECTED_IN_FROZEN_HISTORICAL_FEASIBILITY",
+      "E": "NOT_SUPPORTED",
+      "F": "NOT_SUPPORTED",
+      "G": "NOT_SUPPORTED",
+      "H": "EXPLORATORY_OUTCOME_INFORMED_ONLY",
+      "I": "NOT_TESTED_AND_NOT_AUTHORIZED"
+    },
+    "status": "PASS"
+  }
+}
