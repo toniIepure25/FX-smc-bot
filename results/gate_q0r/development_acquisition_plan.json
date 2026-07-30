@@ -1,0 +1,47 @@
+{
+  "canonical": {
+    "execution": "deterministic M5 bid/ask OHLC",
+    "intermediate": "UTC M1 bid/ask OHLC"
+  },
+  "clean_room_started_empty": true,
+  "concurrency": {
+    "adaptive_rate_limit_backoff": true,
+    "maximum_workers": 8,
+    "worker_unit": "instrument-side-month"
+  },
+  "development": {
+    "end": "2019-12-31",
+    "instruments": ["AUDUSD", "NZDUSD", "USDCAD", "USDCHF"],
+    "pair_months": 240,
+    "planned_provider_requests": 480,
+    "side_months": 480,
+    "start": "2015-01-01"
+  },
+  "estimated_runtime": {
+    "conditional_replication_minutes": [60, 240],
+    "development_minutes": [60, 240]
+  },
+  "fallback": "previously parity-certified native Dukascopy BI5",
+  "partition_scheme": "instrument/price=side/year=YYYY/month=MM",
+  "primary_provider": "dukascopy-node@1.46.4",
+  "protocol_id": "Q0R_CLEAN_ROOM_DATA_RECOVERY_PROTOCOL_V1",
+  "provider_controls": {
+    "atomic_temporary_payload": true,
+    "exponential_backoff": true,
+    "hash_before_promotion": true,
+    "http_429_classification": true,
+    "maximum_attempts": 5,
+    "retry_after_support": true
+  },
+  "raw_source": "Dukascopy BI5 bid/ask",
+  "replication_conditional": {
+    "end": "2022-12-31",
+    "instruments": ["AUDUSD", "NZDUSD", "USDCAD", "USDCHF", "EURJPY", "GBPJPY"],
+    "pair_months": 216,
+    "planned_provider_requests": 432,
+    "side_months": 432,
+    "start": "2020-01-01"
+  },
+  "reuse_of_q0_partitions": false,
+  "status": "FROZEN_BEFORE_PROVIDER_ACCESS"
+}

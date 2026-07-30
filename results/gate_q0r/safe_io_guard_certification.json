@@ -16,7 +16,7 @@
   "mypy": "PASS",
   "path_generation": "FROZEN_PLAN_ONLY",
   "pytest": {
-    "passed": 15,
+    "passed": 16,
     "status": "PASS"
   },
   "rejections_certified": [
@@ -30,6 +30,7 @@
     "recursive_wildcard",
     "multicomponent_leaf",
     "unplanned_partition",
+    "unauthorized_delete_operation",
     "symlink_or_junction_escape"
   ],
   "ruff": "PASS",

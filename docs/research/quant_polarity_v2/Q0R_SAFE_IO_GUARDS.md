@@ -14,5 +14,5 @@ Provider authorization is separate from read, write, and stat capabilities.
 Atomic writes hash the temporary payload before promotion. No API in the module
 performs recursive market-data discovery.
 
-Certification: 15 focused tests passed; targeted Ruff and mypy passed; the real
+Certification: 16 focused tests passed; targeted Ruff and mypy passed; the real
 new clean root passed external, empty, and reparse-point validation.

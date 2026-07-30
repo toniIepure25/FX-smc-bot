@@ -15,7 +15,7 @@
  */
 import { getHistoricalRates } from 'dukascopy-node';
 import { writeFileSync, mkdirSync } from 'fs';
-import { join } from 'path';
+import { basename, join } from 'path';
 
 function parseArgs(argv) {
   const args = {};
@@ -46,6 +46,10 @@ async function main() {
   const retries = parseInt(args.retries || '5', 10);
   const pauseBetweenBatchesMs = parseInt(args.pauseBetweenBatchesMs || '200', 10);
   const useCache = args.cache !== 'false';
+  const outFileName = args.outFileName || `${instrument}_${priceType}_${timeframe}_${dateFrom}_${dateTo}.${format === 'csv' ? 'csv' : 'json'}`;
+  if (basename(outFileName) !== outFileName || !/^[A-Za-z0-9][A-Za-z0-9_.-]*$/.test(outFileName)) {
+    throw new Error('outFileName must be one safe path component');
+  }
 
   const statusRecord = {
     type: 'acquisition_start',
@@ -87,7 +91,7 @@ async function main() {
     });
 
     mkdirSync(outDir, { recursive: true });
-    const outFile = join(outDir, `${instrument}_${priceType}_${timeframe}_${dateFrom}_${dateTo}.${format === 'csv' ? 'csv' : 'json'}`);
+    const outFile = join(outDir, outFileName);
 
     if (format === 'csv') {
       if (data.length === 0) {

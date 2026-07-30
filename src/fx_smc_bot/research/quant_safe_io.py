@@ -30,6 +30,7 @@ class OperationType(str, Enum):
     READ = "READ"
     WRITE = "WRITE"
     STAT = "STAT"
+    DELETE = "DELETE"
     PROVIDER_REQUEST = "PROVIDER_REQUEST"
 
 
@@ -294,3 +295,24 @@ def safe_atomic_write(
         raise SafeIOViolationError("Atomic-write hash verification failed")
     os.replace(temporary, path)
     return digest
+
+
+def safe_prepare_partition_directory(
+    authorization: MarketIOAuthorization,
+    partition: MarketPartition,
+) -> Path:
+    _require_operation(authorization, OperationType.WRITE)
+    probe = partition_path(authorization, partition, "directory-guard")
+    probe.parent.mkdir(parents=True, exist_ok=True)
+    _guard_existing_components(authorization.authorized_root, probe)
+    return probe.parent
+
+
+def safe_unlink(
+    authorization: MarketIOAuthorization,
+    partition: MarketPartition,
+    leaf_name: str,
+) -> None:
+    _require_operation(authorization, OperationType.DELETE)
+    path = partition_path(authorization, partition, leaf_name)
+    path.unlink(missing_ok=True)

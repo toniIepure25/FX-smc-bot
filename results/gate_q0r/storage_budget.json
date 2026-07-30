@@ -1,0 +1,19 @@
+{
+  "certification_scratch_bytes": 1195376640,
+  "conditional_replication_estimate": {
+    "m1_bytes": 905969664,
+    "m5_bytes": 226492416,
+    "raw_bytes": 3623878656
+  },
+  "development_estimate": {
+    "m1_bytes": 1006632960,
+    "m5_bytes": 251658240,
+    "raw_bytes": 4026531840
+  },
+  "estimated_remaining_after_peak_bytes": 42089103360,
+  "free_disk_bytes": 53325643776,
+  "required_safety_margin_bytes": 10737418240,
+  "root_inventory_used_for_estimate": false,
+  "status": "PASS",
+  "temporary_peak_bytes": 11236540416
+}

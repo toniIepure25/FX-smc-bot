@@ -14,6 +14,7 @@ from fx_smc_bot.research.quant_safe_io import (
     authorize_date,
     create_authorization,
     partition_path,
+    safe_unlink,
     validate_clean_root,
 )
 
@@ -129,3 +130,11 @@ def test_market_io_module_contains_no_recursive_discovery_api() -> None:
         if isinstance(node, ast.Attribute) and node.attr in forbidden_attributes
     }
     assert used == set()
+
+
+def test_delete_requires_an_explicit_delete_capability(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    authorization, partition = _authorization(tmp_path, monkeypatch)
+    with pytest.raises(SafeIOViolationError, match="DELETE"):
+        safe_unlink(authorization, partition, "provider-payload.json")
