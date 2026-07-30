@@ -1,0 +1,29 @@
+{
+  "checks": [
+    "instrument_and_side_identity",
+    "date_containment",
+    "container_integrity",
+    "nonzero_payload",
+    "deterministic_parsing",
+    "utc_normalization",
+    "monotonicity",
+    "duplicate_consistency",
+    "positive_finite_prices",
+    "bid_ask_spread_validity",
+    "m1_deterministic_canonicalization",
+    "m5_deterministic_aggregation",
+    "dst_session_basis",
+    "manifest_consistency",
+    "three_run_canonical_parity"
+  ],
+  "elapsed_seconds": 262.473,
+  "failed": 0,
+  "failures": [],
+  "missing": 0,
+  "pair_months_certified": 240,
+  "pair_months_planned": 240,
+  "status": "PASS",
+  "successful_zero_row": 0,
+  "total_m1_rows": 7455419,
+  "total_m5_rows": 1494623
+}

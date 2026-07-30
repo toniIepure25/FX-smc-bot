@@ -15,6 +15,9 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+import pandas as pd  # type: ignore[import-untyped]
+
 from fx_smc_bot.research.quant_safe_io import (
     MarketIOAuthorization,
     MarketPartition,
@@ -38,6 +41,9 @@ MAXIMUM_WORKERS = 8
 PROVIDER_PAYLOAD = "provider-payload.json"
 RAW_PAYLOAD = "data.json"
 MANIFEST = "manifest.json"
+M1_CANONICAL = "m1.parquet"
+M5_CANONICAL = "m5.parquet"
+CANONICAL_MANIFEST = "canonical-manifest.json"
 
 
 @dataclass(frozen=True)
@@ -353,3 +359,309 @@ def acquire_plan(
         "failure_summaries": failures,
         "status": "COMPLETE_PENDING_CERTIFICATION" if not failures else "INCOMPLETE",
     }
+
+
+def _sha256(payload: bytes) -> str:
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _parse_side_payload(
+    payload: bytes, partition: MarketPartition
+) -> tuple[pd.DataFrame, dict[str, Any]]:
+    rows = json.loads(payload)
+    if not isinstance(rows, list) or not rows:
+        raise ValueError("Raw container is not a nonempty JSON row array")
+    required = ("timestamp", "open", "high", "low", "close")
+    if any(
+        not isinstance(row, dict) or any(field not in row for field in required)
+        for row in rows
+    ):
+        raise ValueError("Raw row schema mismatch")
+    timestamps = pd.to_datetime(
+        [int(row["timestamp"]) for row in rows], unit="ms", utc=True
+    )
+    if not timestamps.is_monotonic_increasing:
+        raise ValueError("Raw timestamps are not monotonic")
+    if timestamps.has_duplicates:
+        raise ValueError("Raw timestamps contain duplicates")
+    if timestamps[0].date() < partition.first_day or timestamps[-1].date() > partition.last_day:
+        raise ValueError("Raw timestamps escape the planned pair-month")
+    if any(timestamp.second != 0 or timestamp.microsecond != 0 for timestamp in timestamps):
+        raise ValueError("Raw timestamps are not normalized to UTC minute boundaries")
+    data = {
+        field: np.asarray([float(row[field]) for row in rows], dtype=np.float64)
+        for field in ("open", "high", "low", "close")
+    }
+    for values in data.values():
+        if not bool(np.isfinite(values).all()) or bool((values <= 0.0).any()):
+            raise ValueError("Raw payload contains non-positive or non-finite prices")
+    if bool((data["high"] < np.maximum(data["open"], data["close"])).any()):
+        raise ValueError("Raw high violates OHLC invariants")
+    if bool((data["low"] > np.minimum(data["open"], data["close"])).any()):
+        raise ValueError("Raw low violates OHLC invariants")
+    frame = pd.DataFrame(data, index=timestamps)
+    frame.index.name = "timestamp"
+    return frame, {
+        "rows": len(frame),
+        "first_timestamp": timestamps[0].isoformat(),
+        "last_timestamp": timestamps[-1].isoformat(),
+        "utc_normalized": str(timestamps.tz) == "UTC",
+    }
+
+
+def _combine_bid_ask(bid: pd.DataFrame, ask: pd.DataFrame) -> pd.DataFrame:
+    if not bid.index.equals(ask.index):
+        raise ValueError("Raw bid/ask timestamps do not match exactly")
+    combined = pd.concat((bid.add_prefix("bid_"), ask.add_prefix("ask_")), axis=1)
+    for field in ("open", "high", "low", "close"):
+        if bool((combined[f"ask_{field}"] <= combined[f"bid_{field}"]).any()):
+            raise ValueError("Bid/ask spread is not strictly positive")
+    return combined
+
+
+def _aggregate_m5(m1: pd.DataFrame) -> pd.DataFrame:
+    aggregations = {
+        **{f"{side}_open": "first" for side in SIDES},
+        **{f"{side}_high": "max" for side in SIDES},
+        **{f"{side}_low": "min" for side in SIDES},
+        **{f"{side}_close": "last" for side in SIDES},
+    }
+    m5 = m1.resample("5min", label="left", closed="left").agg(aggregations).dropna()
+    if m5.empty:
+        raise ValueError("M5 canonicalization produced zero rows")
+    return m5
+
+
+def _frame_semantic_sha256(frame: pd.DataFrame) -> str:
+    digest = hashlib.sha256()
+    digest.update(np.asarray(frame.index.view("i8"), dtype="<i8").tobytes())
+    for column in frame.columns:
+        digest.update(column.encode("ascii"))
+        digest.update(np.asarray(frame[column], dtype="<f8").tobytes())
+    return digest.hexdigest()
+
+
+def _frame_to_parquet(frame: pd.DataFrame) -> bytes:
+    import pyarrow as pa  # type: ignore[import-untyped]
+    import pyarrow.parquet as pq  # type: ignore[import-untyped]
+
+    output = frame.reset_index()
+    table = pa.Table.from_pandas(output, preserve_index=False)
+    sink = pa.BufferOutputStream()
+    pq.write_table(table, sink, compression="zstd")
+    return sink.getvalue().to_pybytes()
+
+
+def _raw_manifest(
+    authorizations: AuthorizationBundle, partition: MarketPartition, payload: bytes
+) -> dict[str, Any]:
+    manifest = json.loads(safe_read_bytes(authorizations.read, partition, MANIFEST))
+    if manifest.get("instrument") != partition.instrument or manifest.get("side") != partition.side:
+        raise ValueError("Raw manifest instrument or side mismatch")
+    if manifest.get("year") != partition.year or manifest.get("month") != partition.month:
+        raise ValueError("Raw manifest date mismatch")
+    if manifest.get("sha256") != _sha256(payload):
+        raise ValueError("Raw manifest checksum mismatch")
+    if int(manifest.get("rows", 0)) <= 0:
+        raise ValueError("Raw manifest certifies zero rows")
+    return manifest
+
+
+def _existing_canonical(
+    authorizations: AuthorizationBundle,
+    partition: MarketPartition,
+    source_hashes: dict[str, str],
+) -> dict[str, Any] | None:
+    if safe_stat(authorizations.stat, partition, CANONICAL_MANIFEST) is None:
+        return None
+    manifest = json.loads(
+        safe_read_bytes(authorizations.read, partition, CANONICAL_MANIFEST)
+    )
+    if manifest.get("source_sha256") != source_hashes:
+        return None
+    m1_payload = safe_read_bytes(authorizations.read, partition, M1_CANONICAL)
+    m5_payload = safe_read_bytes(authorizations.read, partition, M5_CANONICAL)
+    if manifest.get("m1_file_sha256") != _sha256(m1_payload):
+        return None
+    if manifest.get("m5_file_sha256") != _sha256(m5_payload):
+        return None
+    return manifest
+
+
+def certify_pair_month(
+    authorizations: AuthorizationBundle,
+    instrument: str,
+    year: int,
+    month: int,
+) -> dict[str, Any]:
+    bid_partition = MarketPartition(instrument, "bid", year, month)
+    ask_partition = MarketPartition(instrument, "ask", year, month)
+    bid_payload = safe_read_bytes(authorizations.read, bid_partition, RAW_PAYLOAD)
+    ask_payload = safe_read_bytes(authorizations.read, ask_partition, RAW_PAYLOAD)
+    bid_manifest = _raw_manifest(authorizations, bid_partition, bid_payload)
+    ask_manifest = _raw_manifest(authorizations, ask_partition, ask_payload)
+    source_hashes = {"ask": _sha256(ask_payload), "bid": _sha256(bid_payload)}
+    existing = _existing_canonical(authorizations, bid_partition, source_hashes)
+    if existing is not None:
+        return {**existing, "status": "CERTIFIED"}
+
+    run_hashes: list[dict[str, str]] = []
+    first_m1: pd.DataFrame | None = None
+    first_m5: pd.DataFrame | None = None
+    side_metadata: dict[str, dict[str, Any]] = {}
+    for _ in range(3):
+        bid, bid_metadata = _parse_side_payload(bid_payload, bid_partition)
+        ask, ask_metadata = _parse_side_payload(ask_payload, ask_partition)
+        m1 = _combine_bid_ask(bid, ask)
+        m5 = _aggregate_m5(m1)
+        run_hashes.append(
+            {"m1": _frame_semantic_sha256(m1), "m5": _frame_semantic_sha256(m5)}
+        )
+        if first_m1 is None:
+            first_m1, first_m5 = m1, m5
+            side_metadata = {"ask": ask_metadata, "bid": bid_metadata}
+    if len({(run["m1"], run["m5"]) for run in run_hashes}) != 1:
+        raise ValueError("Three-run canonical semantic parity failed")
+    assert first_m1 is not None and first_m5 is not None
+    m1_payload = _frame_to_parquet(first_m1)
+    m5_payload = _frame_to_parquet(first_m5)
+    m1_file_hash = safe_atomic_write(
+        authorizations.write, bid_partition, M1_CANONICAL, m1_payload
+    )
+    m5_file_hash = safe_atomic_write(
+        authorizations.write, bid_partition, M5_CANONICAL, m5_payload
+    )
+    manifest = {
+        "instrument": instrument,
+        "year": year,
+        "month": month,
+        "source_rows": {"ask": int(ask_manifest["rows"]), "bid": int(bid_manifest["rows"])},
+        "source_sha256": source_hashes,
+        "m1_rows": len(first_m1),
+        "m5_rows": len(first_m5),
+        "m1_semantic_sha256": run_hashes[0]["m1"],
+        "m5_semantic_sha256": run_hashes[0]["m5"],
+        "m1_file_sha256": m1_file_hash,
+        "m5_file_sha256": m5_file_hash,
+        "side_metadata": side_metadata,
+        "three_run_semantic_parity": True,
+        "utc_session_basis": "UTC_WITH_IANA_SESSION_CONVERSION_AT_SIGNAL_TIME",
+        "status": "CERTIFIED",
+    }
+    safe_atomic_write(
+        authorizations.write,
+        bid_partition,
+        CANONICAL_MANIFEST,
+        json.dumps(manifest, allow_nan=False, sort_keys=True).encode("utf-8"),
+    )
+    return manifest
+
+
+def certify_development_plan(
+    authorizations: AuthorizationBundle, *, workers: int
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    if not 1 <= workers <= MAXIMUM_WORKERS:
+        raise ValueError("Certification worker count outside frozen bound")
+    pair_months = tuple(
+        (instrument, year, month)
+        for instrument in sorted(DEVELOPMENT_INSTRUMENTS)
+        for year in range(2015, 2020)
+        for month in range(1, 13)
+    )
+    started = time.monotonic()
+    records: list[dict[str, Any]] = []
+    failures: list[dict[str, str]] = []
+    with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="q0r-certify") as pool:
+        futures = {
+            pool.submit(certify_pair_month, authorizations, *pair_month): pair_month
+            for pair_month in pair_months
+        }
+        for future in as_completed(futures):
+            instrument, year, month = futures[future]
+            try:
+                record = future.result()
+                records.append(record)
+            except Exception as exc:
+                failures.append(
+                    {
+                        "pair_month": f"{instrument}:{year:04d}-{month:02d}",
+                        "error": f"{type(exc).__name__}: {str(exc)[:300]}",
+                    }
+                )
+            completed = len(records) + len(failures)
+            if completed % 10 == 0 or failures:
+                print(
+                    json.dumps(
+                        {
+                            "certified": len(records),
+                            "checked": completed,
+                            "failed": len(failures),
+                            "total": len(pair_months),
+                        }
+                    ),
+                    flush=True,
+                )
+    records.sort(key=lambda row: (str(row["instrument"]), int(row["year"]), int(row["month"])))
+    zero_rows = sum(
+        int(record["m1_rows"]) == 0 or int(record["m5_rows"]) == 0 for record in records
+    )
+    certified = len(records)
+    status = "PASS" if certified == len(pair_months) and not failures and zero_rows == 0 else "FAIL"
+    certification = {
+        "pair_months_planned": len(pair_months),
+        "pair_months_certified": certified,
+        "missing": len(pair_months) - certified,
+        "failed": len(failures),
+        "successful_zero_row": zero_rows,
+        "total_m1_rows": sum(int(record["m1_rows"]) for record in records),
+        "total_m5_rows": sum(int(record["m5_rows"]) for record in records),
+        "checks": [
+            "instrument_and_side_identity",
+            "date_containment",
+            "container_integrity",
+            "nonzero_payload",
+            "deterministic_parsing",
+            "utc_normalization",
+            "monotonicity",
+            "duplicate_consistency",
+            "positive_finite_prices",
+            "bid_ask_spread_validity",
+            "m1_deterministic_canonicalization",
+            "m5_deterministic_aggregation",
+            "dst_session_basis",
+            "manifest_consistency",
+            "three_run_canonical_parity",
+        ],
+        "failures": failures,
+        "elapsed_seconds": round(time.monotonic() - started, 3),
+        "status": status,
+    }
+    freeze_payload = [
+        {
+            "instrument": record["instrument"],
+            "year": record["year"],
+            "month": record["month"],
+            "source_sha256": record["source_sha256"],
+            "m1_semantic_sha256": record["m1_semantic_sha256"],
+            "m5_semantic_sha256": record["m5_semantic_sha256"],
+            "m1_rows": record["m1_rows"],
+            "m5_rows": record["m5_rows"],
+        }
+        for record in records
+    ]
+    freeze = {
+        "dataset_freeze_id": "FX_QUANT_POLARITY_DEVELOPMENT_2015_2019_V2",
+        "pair_month_count": len(freeze_payload),
+        "dataset_manifest_sha256": _sha256(
+            json.dumps(
+                freeze_payload,
+                allow_nan=False,
+                separators=(",", ":"),
+                sort_keys=True,
+            ).encode()
+        ),
+        "raw_or_canonical_committed": False,
+        "three_run_canonical_parity": status == "PASS",
+        "status": status,
+    }
+    return certification, freeze

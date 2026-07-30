@@ -1,0 +1,15 @@
+{
+  "completed_partitions": 480,
+  "elapsed_seconds": 175.517,
+  "failed_partitions": 0,
+  "failure_summaries": [],
+  "planned_partitions": 480,
+  "program_id": "FX_QUANT_POLARITY_META_V2",
+  "protocol_id": "Q0R_CLEAN_ROOM_DATA_RECOVERY_PROTOCOL_V1",
+  "provider_request_latest_permitted_date": "2019-12-31",
+  "quarantined_interval_provider_requests_sent": false,
+  "replication_provider_requests_sent": false,
+  "status": "COMPLETE_PENDING_CERTIFICATION",
+  "total_rows": 14910838,
+  "workers": 1
+}

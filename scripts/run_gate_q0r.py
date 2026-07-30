@@ -10,6 +10,7 @@ from typing import Any
 
 from fx_smc_bot.research.quant_polarity_q0r_data import (
     acquire_plan,
+    certify_development_plan,
     development_authorizations,
 )
 from fx_smc_bot.research.quant_safe_io import configured_q0r_root
@@ -83,13 +84,31 @@ def run_development_acquisition(workers: int) -> None:
     print(json.dumps(result, indent=2, sort_keys=True))
 
 
+def run_development_certification(workers: int) -> None:
+    progress = _read_json(RESULTS / "development_acquisition_progress.json")
+    if progress.get("status") != "COMPLETE_PENDING_CERTIFICATION":
+        raise RuntimeError("Development acquisition is not complete")
+    data_root = configured_q0r_root(ROOT)
+    authorizations = development_authorizations(data_root, ROOT)
+    certification, freeze = certify_development_plan(authorizations, workers=workers)
+    _write_json(RESULTS / "development_data_certification.json", certification)
+    _write_json(RESULTS / "development_dataset_freeze.json", freeze)
+    print(json.dumps(certification, indent=2, sort_keys=True))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--group", choices=("development-acquisition",), required=True)
+    parser.add_argument(
+        "--group",
+        choices=("development-acquisition", "development-certification"),
+        required=True,
+    )
     parser.add_argument("--workers", type=int, default=8)
     args = parser.parse_args()
     if args.group == "development-acquisition":
         run_development_acquisition(args.workers)
+    if args.group == "development-certification":
+        run_development_certification(args.workers)
     return 0
 
 
