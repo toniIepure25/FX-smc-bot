@@ -261,7 +261,7 @@ def acquire_partition(
 ) -> dict[str, Any]:
     existing = _existing_partition(authorizations, partition)
     if existing is not None:
-        return {"partition_id": partition.partition_id, "status": "COMPLETE", **existing}
+        return {**existing, "partition_id": partition.partition_id, "status": "COMPLETE"}
     started = time.monotonic()
     failures: list[dict[str, Any]] = []
     for attempt in range(1, 6):
@@ -289,9 +289,9 @@ def acquire_partition(
                 json.dumps(manifest, sort_keys=True).encode("utf-8"),
             )
             return {
+                **manifest,
                 "partition_id": partition.partition_id,
                 "status": "COMPLETE",
-                **manifest,
                 "attempts": attempt,
                 "elapsed_seconds": round(time.monotonic() - started, 3),
                 "failures": failures,

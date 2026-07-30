@@ -10,6 +10,7 @@ from fx_smc_bot.research.quant_polarity_q0r_data import (
     _provider_dates,
     _retry_after_seconds,
     _validate_rows,
+    acquire_partition,
     planned_partitions,
 )
 from fx_smc_bot.research.quant_safe_io import MarketPartition
@@ -52,3 +53,18 @@ def test_payload_outside_partition_is_rejected() -> None:
 
 def test_date_type_remains_calendar_based() -> None:
     assert MarketPartition("AUDUSD", "bid", 2019, 2).last_day == date(2019, 2, 28)
+
+
+def test_resumed_manifest_is_counted_complete(monkeypatch: pytest.MonkeyPatch) -> None:
+    manifest = {"rows": 123, "status": "COMPLETE_PENDING_CERTIFICATION"}
+    monkeypatch.setattr(
+        "fx_smc_bot.research.quant_polarity_q0r_data._existing_partition",
+        lambda _authorizations, _partition: manifest,
+    )
+    result = acquire_partition(
+        None,  # type: ignore[arg-type]
+        None,  # type: ignore[arg-type]
+        MarketPartition("AUDUSD", "bid", 2019, 1),
+    )
+    assert result["status"] == "COMPLETE"
+    assert result["rows"] == 123
