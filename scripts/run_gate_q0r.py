@@ -132,6 +132,50 @@ def run_development_execution(workers: int) -> None:
     print(json.dumps(result, indent=2, sort_keys=True))
 
 
+def run_development_evaluation() -> None:
+    from fx_smc_bot.research.quant_polarity_development import (
+        adjudicate_development,
+        run_development_analysis,
+    )
+
+    execution = _read_json(RESULTS / "development_execution_manifest.json")
+    if execution.get("status") != "PASS":
+        raise RuntimeError("Development evaluation requires complete execution")
+    _enable_q0r_execution()
+    results = run_development_analysis(ROOT, execution)
+    adjudication = adjudicate_development(results)
+    _write_json(
+        RESULTS / "development_candidate_results.json",
+        {
+            "results": results["candidate_results"],
+            "model": results["model"],
+            "integrity": results["integrity"],
+            "status": "PASS",
+        },
+    )
+    _write_json(
+        RESULTS / "development_benchmark_results.json",
+        {"results": results["benchmark_results"], "status": "PASS"},
+    )
+    _write_json(
+        RESULTS / "development_factor_alpha.json",
+        {
+            "results": {
+                candidate_id: payload["factor_adjusted_hac"]
+                for candidate_id, payload in results["inference"].items()
+            },
+            "status": "PASS",
+        },
+    )
+    _write_json(
+        RESULTS / "development_inference.json",
+        {"results": results["inference"], "status": "PASS"},
+    )
+    _write_json(RESULTS / "development_overfitting_audit.json", results["overfitting"])
+    _write_json(RESULTS / "development_candidate_adjudication.json", adjudication)
+    print(json.dumps(adjudication, indent=2, sort_keys=True))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -141,6 +185,7 @@ def main() -> int:
             "development-certification",
             "execution-certification",
             "development-execution",
+            "development-evaluation",
         ),
         required=True,
     )
@@ -154,6 +199,8 @@ def main() -> int:
         run_execution_certification()
     if args.group == "development-execution":
         run_development_execution(args.workers)
+    if args.group == "development-evaluation":
+        run_development_evaluation()
     return 0
 
 
