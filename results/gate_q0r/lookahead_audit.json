@@ -1,0 +1,12 @@
+{
+  "feature_arrays_slice_through_bar_idx_only": true,
+  "features_stop_at_signal_bar": true,
+  "future_bar_perturbation_action_selection_unchanged": true,
+  "future_bar_perturbation_labels_available_at_decision_unchanged": true,
+  "future_bar_perturbation_model_input_unchanged": true,
+  "future_bar_perturbation_order_intent_unchanged": true,
+  "future_bar_perturbation_prediction_unchanged": true,
+  "future_bar_perturbation_test": "PASS",
+  "instrument_identity_predictive_feature": false,
+  "status": "PASS"
+}

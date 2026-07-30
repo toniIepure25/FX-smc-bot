@@ -1,0 +1,206 @@
+{
+  "all_three_equal": true,
+  "replay_hashes": [
+    "d317d4182b777e8cba94ecaa330a8427e212c7e0e64d75b3d1d9552378f3418d",
+    "d317d4182b777e8cba94ecaa330a8427e212c7e0e64d75b3d1d9552378f3418d",
+    "d317d4182b777e8cba94ecaa330a8427e212c7e0e64d75b3d1d9552378f3418d"
+  ],
+  "replays": [
+    {
+      "candidates": [
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+          "feature_hash": "e79879f76e8fa91d102ffcc06cb86fd9cab0b44b27de2430574aa1e9b1013a55",
+          "inverse_closed_positions": 4,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 4,
+          "original_closed_positions": 3,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "557d48f56daedd7ccd661573115a2471d7032ecd5c9112b176a774b72730c09c",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 4
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+          "feature_hash": "458f966ec1c30ae27a6cf53ac61ff4f24b7991374b639680ab269b640e19c67f",
+          "inverse_closed_positions": 63,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 88,
+          "original_closed_positions": 30,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "7a604c8aebdfd7a3b91f4811802c0ced4c981bdc034e4d2d12ed1ea254e4fb98",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 88
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+          "feature_hash": "aba45834d37a6f7da34cc92cc2e5c85e437d4ef0c3b95d404dc72213dd8eb618",
+          "inverse_closed_positions": 9,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 10,
+          "original_closed_positions": 5,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "79c9913b601d90a4997ffd35b0ddf3799fd8ae4c0c7400bd842f921a8ebb1bcc",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 10
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+          "feature_hash": "569152dc36280253404ecc9b36dace913403e62ea310294dded7d05279ecdcd8",
+          "inverse_closed_positions": 16,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 17,
+          "original_closed_positions": 12,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "3d2c6fff9fd2a77a57ed14fe7f50b9f7cfabbab0b53ddbe8bc3d1289c4131f67",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 17
+        }
+      ],
+      "replay": 1
+    },
+    {
+      "candidates": [
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+          "feature_hash": "e79879f76e8fa91d102ffcc06cb86fd9cab0b44b27de2430574aa1e9b1013a55",
+          "inverse_closed_positions": 4,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 4,
+          "original_closed_positions": 3,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "557d48f56daedd7ccd661573115a2471d7032ecd5c9112b176a774b72730c09c",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 4
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+          "feature_hash": "458f966ec1c30ae27a6cf53ac61ff4f24b7991374b639680ab269b640e19c67f",
+          "inverse_closed_positions": 63,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 88,
+          "original_closed_positions": 30,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "7a604c8aebdfd7a3b91f4811802c0ced4c981bdc034e4d2d12ed1ea254e4fb98",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 88
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+          "feature_hash": "aba45834d37a6f7da34cc92cc2e5c85e437d4ef0c3b95d404dc72213dd8eb618",
+          "inverse_closed_positions": 9,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 10,
+          "original_closed_positions": 5,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "79c9913b601d90a4997ffd35b0ddf3799fd8ae4c0c7400bd842f921a8ebb1bcc",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 10
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+          "feature_hash": "569152dc36280253404ecc9b36dace913403e62ea310294dded7d05279ecdcd8",
+          "inverse_closed_positions": 16,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 17,
+          "original_closed_positions": 12,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "3d2c6fff9fd2a77a57ed14fe7f50b9f7cfabbab0b53ddbe8bc3d1289c4131f67",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 17
+        }
+      ],
+      "replay": 2
+    },
+    {
+      "candidates": [
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+          "feature_hash": "e79879f76e8fa91d102ffcc06cb86fd9cab0b44b27de2430574aa1e9b1013a55",
+          "inverse_closed_positions": 4,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 4,
+          "original_closed_positions": 3,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "557d48f56daedd7ccd661573115a2471d7032ecd5c9112b176a774b72730c09c",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 4
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+          "feature_hash": "458f966ec1c30ae27a6cf53ac61ff4f24b7991374b639680ab269b640e19c67f",
+          "inverse_closed_positions": 63,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 88,
+          "original_closed_positions": 30,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "7a604c8aebdfd7a3b91f4811802c0ced4c981bdc034e4d2d12ed1ea254e4fb98",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 88
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+          "feature_hash": "aba45834d37a6f7da34cc92cc2e5c85e437d4ef0c3b95d404dc72213dd8eb618",
+          "inverse_closed_positions": 9,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 10,
+          "original_closed_positions": 5,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "79c9913b601d90a4997ffd35b0ddf3799fd8ae4c0c7400bd842f921a8ebb1bcc",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 10
+        },
+        {
+          "bars": 12672,
+          "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+          "feature_hash": "569152dc36280253404ecc9b36dace913403e62ea310294dded7d05279ecdcd8",
+          "inverse_closed_positions": 16,
+          "inverse_errors": [],
+          "inverse_reconciliation": [],
+          "inverse_signals": 17,
+          "original_closed_positions": 12,
+          "original_errors": [],
+          "original_reconciliation": [],
+          "signal_schedule_hash": "3d2c6fff9fd2a77a57ed14fe7f50b9f7cfabbab0b53ddbe8bc3d1289c4131f67",
+          "source_inverse_timestamps_identical": true,
+          "source_signals": 17
+        }
+      ],
+      "replay": 3
+    }
+  ],
+  "status": "PASS"
+}

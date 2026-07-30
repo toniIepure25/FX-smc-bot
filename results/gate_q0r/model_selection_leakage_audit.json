@@ -1,0 +1,11 @@
+{
+  "embargo_fx_trading_days": 5,
+  "label_end_before_purge_cutoff_required": true,
+  "outer_test_enters_fitting": false,
+  "future_prospective_data_available_to_gate": false,
+  "purge_definition": "500 M5 warmup plus maximum session position horizon",
+  "purge_dependency_minutes": 2680,
+  "replication_loader_available_in_development_mode": false,
+  "quarantined_date_queries_rejected_before_path_resolution": true,
+  "status": "PASS"
+}
