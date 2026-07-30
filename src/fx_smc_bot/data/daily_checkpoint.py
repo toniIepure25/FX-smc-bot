@@ -472,10 +472,28 @@ def acquire_month_bulk(
             save_month_manifest(raw_dir, manifest)
             return manifest
 
-    bulk_data, err = _download_month_bulk(
-        instrument, year, month, side, timeframe,
-        batch_size, retries, pause_between_batches_ms,
-    )
+    bulk_data: list[dict] = []
+    err = ""
+    for bulk_attempt in range(3):
+        bulk_data, err = _download_month_bulk(
+            instrument, year, month, side, timeframe,
+            batch_size, retries, pause_between_batches_ms,
+        )
+        if not err:
+            break
+        if bulk_attempt < 2:
+            backoff_seconds = 2 * (bulk_attempt + 1)
+            logger.warning(
+                "%s/%s/%04d-%02d monthly attempt %d failed: %s; retrying in %ds",
+                pair,
+                side,
+                year,
+                month,
+                bulk_attempt + 1,
+                err,
+                backoff_seconds,
+            )
+            time.sleep(backoff_seconds)
 
     manifest = existing or MonthManifest(
         pair=pair, side=side, year=year, month=month,
