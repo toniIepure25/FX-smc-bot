@@ -1,0 +1,136 @@
+{
+  "artifacts": [
+    {
+      "canonical_json_sha256": "976295bafd68a686ff069aa188cc7b8d0cdb90d9399e746840202d977fcf36e1",
+      "exists": true,
+      "path": "results/gate_p0/candidate_universe_freeze.json",
+      "raw_sha256": "a84a0f05fab3e7db8e44d1daf14215f8914a830aedf2ed8f513b30746da04c28"
+    },
+    {
+      "canonical_json_sha256": "af1a78b0559f51cc82a1532ebb5e03c325386b8a5ec99b107e8c3289f8176f4b",
+      "exists": true,
+      "path": "results/gate_p0/data_boundary_freeze.json",
+      "raw_sha256": "498c4fb90227b81c76b898eaec491fac9673b6c24da11e38700649c35bf7e84f"
+    },
+    {
+      "canonical_json_sha256": "ae1394072a7137f5ec6afbf4bfd09c277371fd819aac7cab3c218fa1579d02ff",
+      "exists": true,
+      "path": "results/gate_p0/execution_model_freeze.json",
+      "raw_sha256": "f366b1cd75149e1213526361450058809499dbc7fc1138fc703fad7d38edcb28"
+    },
+    {
+      "canonical_json_sha256": "79f29b41a2948d406a83d5c89e9da65d845799b0ea18318a138f1f6fe885b400",
+      "exists": true,
+      "path": "results/gate_p0/estimand_and_metric_freeze.json",
+      "raw_sha256": "26aae3ed45610b4c2be4dc842bb82537c31afb4c94f1b855cbb5337c35a4770b"
+    },
+    {
+      "canonical_json_sha256": "c1bb1f625b8c98120f484917cf3fce43f2e48fd8a2a7d3d2c48e530797b90b59",
+      "exists": true,
+      "path": "results/gate_p0/benchmark_freeze.json",
+      "raw_sha256": "1458bee4e38dd0acbedc142d092f368ab2de192eed160b5612114f5bbe96710e"
+    },
+    {
+      "canonical_json_sha256": "ea5405f1bb41547a3b7908be222e26b25f05c42a0438b5d7f54a83cef68ce3a2",
+      "exists": true,
+      "path": "results/gate_p0/historical_eligibility_freeze.json",
+      "raw_sha256": "0406b8e30ac3f8cea9e64c998734f3c810c291c7a0bfea1534d7a3e80ccbab47"
+    },
+    {
+      "canonical_json_sha256": "e17c4be95ba85f5d2d3609ecc8cfba028e274be5aa2ead88f606f59833aa73d7",
+      "exists": true,
+      "path": "results/gate_p0/final_decision.json",
+      "raw_sha256": "b6eeb0c912c5986da95814d38a357f3823ad7e3ef8ffb6d2d9fcad84698cbac2"
+    },
+    {
+      "canonical_json_sha256": "4faeae848168a045445e2188bbbdbd55ddcdbb1bc8ba84e2686b55eca5de0235",
+      "exists": true,
+      "path": "results/gate_p0r/implementation_clarification_overlay.json",
+      "raw_sha256": "722ae69536fa203cb9d1d5f2a3af4f0f86b58b0dc4b65bfbcfcc230d8c32d6ad"
+    },
+    {
+      "canonical_json_sha256": "ba183df5e7291dcbbf36eb41227865b605dc0417c4ef2e3f022f8c8be6c099b0",
+      "exists": true,
+      "path": "results/gate_p0rdcr/data_requirement_matrix.json",
+      "raw_sha256": "b0c1c8e4f67979577f27cbae58954157a295d33de6245e80b426df1e552c2cab"
+    },
+    {
+      "canonical_json_sha256": "0f1dc3bbe32dd57374e81aa68b24f05809aa25f4cffb292a6d734c629cdf5d6b",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/data_requirement_amendment.json",
+      "raw_sha256": "27bfde78b7cfada06a2e06f8e431043c8ef3dd0fd680ae229457ad8f6cc86bb6"
+    },
+    {
+      "canonical_json_sha256": "fbb2d6c004344a25b70f6f645f6d3052e34b41bfa1c13da772810defdfbc48bf",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/data_recovery_protocol.json",
+      "raw_sha256": "f49072c9b60a62e9eb3f6f778c214cf2a2b6ba62c97debf6d5eba5d9f40ffb47"
+    },
+    {
+      "canonical_json_sha256": "55cf21ad3c224a6196ae53e580173500af4980e0bfa95bbeec724dc0b41c00b9",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/permitted_dataset_freeze.json",
+      "raw_sha256": "7543818e5b3348afc3c6a1330380fb1063591cc6ad5cef6a0b3c68e064c5a48b"
+    },
+    {
+      "canonical_json_sha256": "10aee443d982ec38c79b186c3a1b32492e02912aadfd79bee62c82dff43d9acc",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/runtime_integration_audit.json",
+      "raw_sha256": "6bb177d8a9e5e154d83314f4b4af5677625800a31f340ca02700f8b5f7c301e8"
+    },
+    {
+      "canonical_json_sha256": "a48c023606093d67f69688e996e58faf14dc717822d9f60d8d995640063fbf8e",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/execution_sample_manifest.json",
+      "raw_sha256": "579d177ccf5e53fd06f402a5563d80161785caf0b7c98d9b6378c7cc3a2a8eb9"
+    },
+    {
+      "canonical_json_sha256": "270a15fe4073a832846fbc3c4fd22a32494741aefb09d4d15c5b152250918157",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/candidate_results.json",
+      "raw_sha256": "605054ce7b76a00b2e5baf8e3eaf519e896b7406a8e686732fcd5d9fca2be14b"
+    },
+    {
+      "canonical_json_sha256": "cb92a563f89de45f76a35f66a1d88c0f12989d4beed6502290b7cae9ff01d5ed",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/benchmark_alpha_results.json",
+      "raw_sha256": "74dd2fcafe1f095afaec00f62402baaf8938e85ac933e369f049b717ced12297"
+    },
+    {
+      "canonical_json_sha256": "004b197489bcbb9c6ad0f98a0ee9a973fcdacb30ac9ff94560043cddfcd7321c",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/negative_controls.json",
+      "raw_sha256": "fe4c54b8e35e61182520a46c4680a6fb86b84fcd2a8c3220969e5f9357bdea8e"
+    },
+    {
+      "canonical_json_sha256": "fc4aa53293a06c3a3032f79fd3e0fe95c84b568e715c6ce3ba32b84dd48052aa",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/overfitting_audit.json",
+      "raw_sha256": "e8330b91deaa1f47f331bf53ec783b3a0817829f3e7cdc0610599641cd33119f"
+    },
+    {
+      "canonical_json_sha256": "dceb9faadf3632b8ca3fb5dde1783312c5b3ce9783495c00d75b3f7bc9d0d021",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/candidate_eligibility_adjudication.json",
+      "raw_sha256": "bcc48473962c7ebab7ab332bb51cd64dd874309631f5adc8b80045640b4de2b5"
+    },
+    {
+      "canonical_json_sha256": "3fcce3a3b4ebd0d29c1e5df2273420231c8f45e833232ba5ab8c9356d4e40eda",
+      "exists": true,
+      "path": "results/gate_p0rdcra1a/final_decision.json",
+      "raw_sha256": "230572ff5e394000853045cc9182a1243ed45df95c828207c1e78ba894847e76"
+    }
+  ],
+  "checks": {
+    "a1a_final_decision_preserved": true,
+    "all_inputs_present": true,
+    "origin_main_matches_initial_target": true
+  },
+  "created_at_utc": "2026-07-30T08:42:50.623983+00:00",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "market_data_accessed": false,
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "row_level_ledgers_accessed": false,
+  "source_scope": "COMMITTED_COMPACT_ARTIFACTS_ONLY",
+  "status": "PASS"
+}
