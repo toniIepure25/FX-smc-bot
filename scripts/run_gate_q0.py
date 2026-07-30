@@ -38,6 +38,7 @@ from fx_smc_bot.research.quant_polarity import (
     validate_feature_contract,
     validate_previous_lineage,
 )
+from fx_smc_bot.research.quant_polarity_data import development_recovery_protocol
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results" / "gate_q0"
@@ -386,10 +387,37 @@ def generate_preregistration() -> None:
     )
 
 
+def generate_recovery_protocol() -> None:
+    protocol = development_recovery_protocol(ROOT, _git("rev-parse", "HEAD"))
+    _write_json("development_data_recovery_protocol.json", protocol)
+    budget = protocol["storage_budget"]
+    inventory = protocol["inventory"]
+    _write_doc(
+        "Q0_DEVELOPMENT_DATA_RECOVERY_PROTOCOL.md",
+        "Q.0 Development Data Recovery Protocol",
+        [
+            "Only explicit monthly development paths for the four frozen instruments were "
+            "tested. No parent directory, replication path, or holdout path was enumerated.",
+            "Provider requests remain disabled until this protocol is committed.",
+        ],
+        {
+            "scope": "AUDUSD, NZDUSD, USDCAD, USDCHF; 2015-01-01 through 2019-12-31",
+            "pair_months": protocol["pair_month_count"],
+            "side_months": protocol["side_month_count"],
+            "missing_pair_months": inventory["classification_counts"]["MISSING"],
+            "temporary_peak_bytes": budget["estimated_temporary_peak_bytes"],
+            "free_bytes_before_recovery": budget["current_free_bytes"],
+            "protocol_hash": protocol["protocol_hash"],
+        },
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--group", choices=("identity", "family", "preregistration", "all"), default="all"
+        "--group",
+        choices=("identity", "family", "preregistration", "recovery-protocol", "all"),
+        default="all",
     )
     args = parser.parse_args()
     if args.group in {"identity", "all"}:
@@ -398,6 +426,8 @@ def main() -> int:
         generate_family()
     if args.group in {"preregistration", "all"}:
         generate_preregistration()
+    if args.group in {"recovery-protocol", "all"}:
+        generate_recovery_protocol()
     return 0
 
 
