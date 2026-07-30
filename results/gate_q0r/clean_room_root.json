@@ -1,0 +1,11 @@
+{
+  "configured_by": "FX_Q0R_DATA_ROOT_OR_PRESCRIBED_SIBLING_DEFAULT",
+  "contains_committed_local_absolute_path": false,
+  "old_data_root_inspected": false,
+  "resolved_data_root_outside_repository": true,
+  "root_began_empty": true,
+  "root_existed_before_q0r": false,
+  "root_role": "Q0R_V2_PHYSICALLY_ISOLATED_MARKET_DATA_ROOT",
+  "root_symlink_or_junction": false,
+  "status": "PASS"
+}

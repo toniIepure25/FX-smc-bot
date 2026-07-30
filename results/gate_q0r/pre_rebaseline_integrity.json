@@ -1,0 +1,9 @@
+{
+  "branch_created_directly_from_blocked_q0_tip": true,
+  "blocked_q0_decision": "BLOCKED_BY_HOLDOUT_INTEGRITY",
+  "blocked_q0_tip": "62ca0b35de561350ef55fb211bb72ceb5ce9513a",
+  "old_q0_artifacts_modified": false,
+  "old_q0_data_root_inspected": false,
+  "old_q0_market_files_reused": false,
+  "status": "PASS"
+}

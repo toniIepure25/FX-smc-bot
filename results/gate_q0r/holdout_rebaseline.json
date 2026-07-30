@@ -1,0 +1,16 @@
+{
+  "historical_disqualified_interval": {
+    "end": "2025-12-31",
+    "start": "2023-01-01",
+    "status": "QUARANTINED_FROM_CONFIRMATORY_USE_DUE_TO_Q0_STORAGE_ENUMERATION"
+  },
+  "new_prospective_interval": {
+    "collection_during_q0r": false,
+    "minimum_accepted_primary_candidate_trades": 100,
+    "minimum_calendar_days": 90,
+    "start": "FIRST_COMPLETE_FX_TRADING_DAY_STRICTLY_AFTER_FINAL_CANDIDATE_FREEZE_COMMIT",
+    "status": "NOT_YET_GENERATED_OR_ACCESSED"
+  },
+  "rebaseline_id": "Q0R_FUTURE_PROSPECTIVE_HOLDOUT_BASELINE_V1",
+  "status": "PASS"
+}

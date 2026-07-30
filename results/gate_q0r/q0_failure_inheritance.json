@@ -1,0 +1,21 @@
+{
+  "artifact_sha256": {
+    "development_acquisition_status": "4d5e060f832936dcce9d54a611f552b633b6364a55a2c8b97ba82a8067654606",
+    "final_decision": "8ec6f29691f0243daf8a86e2db85c02904706572117832529b3ba191c62b3fea",
+    "final_decision_memo": "011ecd8161ec54110276d5f3d2509ac5655689063dee5e3ea0d1bc3ecad60c44",
+    "holdout_integrity": "8e1a679571229bb23f8c063d3211d39dcc0270ae619451bbed2c1b3a06447ea",
+    "prohibited_data_audit": "5ed17358876a58111bfeec3690fa05cf8eafdae0fb036f53cf7b9f04d2414332",
+    "reproducibility_manifest": "6f376191c89703dc3252369b4f8eeac62838170f53c7fc0082ae71d65d1306d0"
+  },
+  "development_outcomes_generated": false,
+  "holdout_content_loaded": false,
+  "holdout_outcomes_inspected": false,
+  "holdout_provider_request_sent": false,
+  "holdout_storage_enumerated": true,
+  "holdout_structure_inspected": true,
+  "inheritance_status": "Q0_FAILURE_PRESERVED_NOT_REVERSED",
+  "predecessor_decision": "BLOCKED_BY_HOLDOUT_INTEGRITY",
+  "predecessor_program": "FX_QUANT_POLARITY_META_V1",
+  "replication_access_started": false,
+  "status": "PASS"
+}
