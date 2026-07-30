@@ -1,0 +1,64 @@
+{
+  "development_ranking": [
+    "highest lower day-cluster CI bound",
+    "highest 1.5x cost mean",
+    "lowest maximum drawdown",
+    "lowest PBO"
+  ],
+  "development_shortlist_criteria": {
+    "completed_trades_gte": 150,
+    "day_cluster_ci_lower_gte": -0.03,
+    "development_years": 5,
+    "matched_random_alpha_gt": 0.0,
+    "mean_net_r_gt": 0.0,
+    "pbo_lt": 0.5,
+    "positive_leave_one_year_out_gte": 4,
+    "positive_years_gte": 3,
+    "profit_factor_gt": 1.03,
+    "stress_1_5x_mean_net_r_gte": 0.0
+  },
+  "maximum_confirmatory_candidates": 1,
+  "maximum_shortlist_candidates": 2,
+  "replication_tuning_permitted": false,
+  "status": "PASS",
+  "tier_a_criteria": {
+    "all_leave_one_year_out_positive": true,
+    "best_five_trade_share_lt": 0.3,
+    "day_cluster_ci_lower_gt": 0.0,
+    "dsr_probability_gt": 0.9,
+    "factor_hac_alpha_gt": 0.0,
+    "factor_hac_p_lt": 0.05,
+    "hansen_spa_p_lt": 0.05,
+    "holm_permutation_p_lt": 0.05,
+    "matched_random_alpha_gt": 0.0,
+    "maximum_drawdown_lte_r": 20.0,
+    "mean_net_r_gt": 0.0,
+    "pbo_lt": 0.25,
+    "positive_years_required": [
+      2020,
+      2021,
+      2022
+    ],
+    "profit_factor_gt": 1.05,
+    "psr_gt": 0.95,
+    "replication_trades_gte": 150,
+    "stress_1_5x_mean_net_r_gt": 0.0,
+    "stress_2_0x_mean_net_r_gte": 0.0
+  },
+  "tier_b_criteria": {
+    "day_cluster_ci_lower_gte": -0.02,
+    "dsr_probability_gt": 0.75,
+    "hansen_spa_p_lt": 0.1,
+    "holm_p_lt": 0.1,
+    "matched_random_alpha_gt": 0.0,
+    "maximum_drawdown_lte_r": 25.0,
+    "mean_net_r_gt": 0.0,
+    "pbo_lt": 0.4,
+    "positive_years_gte": 2,
+    "profit_factor_gt": 1.03,
+    "psr_gt": 0.9,
+    "replication_trades_gte": 150,
+    "replication_years": 3,
+    "stress_1_5x_mean_net_r_gte": 0.0
+  }
+}

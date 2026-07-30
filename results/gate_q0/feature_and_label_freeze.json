@@ -1,0 +1,51 @@
+{
+  "decision_thresholds": {
+    "INVERSE": 0.55,
+    "ORIGINAL": 0.55
+  },
+  "feature_count": 18,
+  "feature_order_hash": "1800c83a2afa7691a4d0d141b1791975eaa1dcbc5c59110c737723c6b6d3c126",
+  "features": [
+    "source_policy_family",
+    "source_signal_direction",
+    "session",
+    "minute_of_session_sine",
+    "minute_of_session_cosine",
+    "return_12_m5_div_atr",
+    "return_48_m5_div_atr",
+    "return_288_m5_div_atr",
+    "realized_volatility_20",
+    "realized_volatility_100",
+    "volatility_ratio_20_100",
+    "spread_div_trailing_median_spread",
+    "atr_14",
+    "distance_prior_day_high_div_atr",
+    "distance_prior_day_low_div_atr",
+    "current_session_range_div_atr",
+    "source_policy_event_quality_scalars",
+    "missing_indicator_per_optional_event_quality_scalar"
+  ],
+  "instrument_identity_primary_feature": false,
+  "prohibited_features": [
+    "instrument_identity",
+    "future_returns",
+    "future_spread",
+    "trade_outcome",
+    "year_identifier",
+    "target_hit",
+    "stop_hit",
+    "post_signal_extrema",
+    "instrument_specific_fitted_constant"
+  ],
+  "status": "PASS",
+  "target_rule": {
+    "ABSTAIN": "otherwise",
+    "INVERSE": "inverse_net_r > 0 and inverse_net_r > original_net_r",
+    "ORIGINAL": "original_net_r > 0 and original_net_r > inverse_net_r"
+  },
+  "validation": {
+    "exact_order": true,
+    "prohibited_features": [],
+    "status": "PASS"
+  }
+}
