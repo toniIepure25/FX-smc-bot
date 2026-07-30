@@ -1,0 +1,59 @@
+{
+  "allowed_changes": [
+    "new_clean_data_root",
+    "safe_io_architecture",
+    "permanent_historical_interval_quarantine",
+    "future_prospective_holdout_replacement"
+  ],
+  "candidate_family_hash": "fd4f0a73b1277edf55160a3c844b6b5ab9b6e72622fcaed4aa8bd2aa8c1960e3",
+  "candidates": [
+    "Q0_INV_SWEEP_V1",
+    "Q0_INV_ACCEPTANCE_V1",
+    "Q0_INV_LONDON_OR_V1",
+    "Q0_INV_NEWYORK_OR_V1",
+    "Q0_META_POLARITY_ELASTIC_NET_V1"
+  ],
+  "clean_room_pre_data_access_sha": "9b586597241259640d85341d1662799f186ebd25",
+  "decision_thresholds": {
+    "ABSTAIN": "otherwise",
+    "INVERSE": 0.55,
+    "ORIGINAL": 0.55
+  },
+  "embargo_fx_trading_days": 5,
+  "feature_count": 18,
+  "feature_order_hash": "1800c83a2afa7691a4d0d141b1791975eaa1dcbc5c59110c737723c6b6d3c126",
+  "hyperparameter_grid": {
+    "C": [0.01, 0.1, 1.0],
+    "combination_count": 9,
+    "l1_ratio": [0.0, 0.5, 1.0]
+  },
+  "lock_id": "Q0R_Q0_PROTOCOL_INHERITANCE_V1",
+  "model_family": "multinomial elastic-net logistic regression",
+  "predecessor_protocol_hash": "ae91b1ce04784d76bf58f1c232b07e41a4e782fcce3b0c4f97488c4b35700435",
+  "purge_minutes": 2680,
+  "selection_metric": "cross-validated multinomial log loss",
+  "source_artifact_sha256": {
+    "candidate_family_freeze": "aed2fce7ba9b58e079c51b8f79ab59a3326d06aab9546ab39dac5423ae647e0f",
+    "data_execution_contract": "0bddb6a7b286463e2f12ecfb2355732282c5996ceeff0c4698c8aab68f3fc603",
+    "estimand_and_inference_freeze": "93cd4bbae0a1d7daf98679ba59864f782543184b1c0857e0cee8af62e64e19b5",
+    "feature_and_label_freeze": "e8a2ec11dfc15abc58794ae04fde8ee7eca90a41bcda2259c11fec3da0e957eb",
+    "model_selection_freeze": "5d1adc8b2f46bded345dcdce719ffb0c148a7a3bffb732af9a86de4058394132",
+    "selection_and_replication_freeze": "d455a6f55a3053a9005c4edfce9f99f44ee4d68deeefe88c3030c3d81267e49d"
+  },
+  "unchanged_contracts": [
+    "candidate_configuration",
+    "feature_order",
+    "label_construction",
+    "model_family",
+    "hyperparameter_grid",
+    "probability_thresholds",
+    "purge",
+    "embargo",
+    "estimands",
+    "benchmarks",
+    "development_eligibility",
+    "replication_tier_a_b_rules",
+    "replication_ranking"
+  ],
+  "status": "PASS"
+}
