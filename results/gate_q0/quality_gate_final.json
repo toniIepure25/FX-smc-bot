@@ -1,0 +1,26 @@
+{
+  "full_pytest": {
+    "reason": "Gate stopped before the final quality phase; broad historical tests were not run after the holdout-integrity event.",
+    "status": "NOT_RUN"
+  },
+  "git_diff_check": "PASS",
+  "node": {
+    "failed": 0,
+    "passed": 2,
+    "status": "PASS"
+  },
+  "q0_pytest": {
+    "failed": 0,
+    "passed": 36,
+    "status": "PASS"
+  },
+  "status": "BLOCKED_BY_HOLDOUT_INTEGRITY",
+  "targeted_mypy": {
+    "issues": 0,
+    "status": "PASS"
+  },
+  "targeted_ruff": {
+    "issues": 0,
+    "status": "PASS"
+  }
+}

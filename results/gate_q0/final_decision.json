@@ -1,0 +1,13 @@
+{
+  "candidate_frozen_for_confirmatory_holdout": false,
+  "decision": "BLOCKED_BY_HOLDOUT_INTEGRITY",
+  "development_data_certified": false,
+  "development_outcomes_generated": false,
+  "holdout_content_loaded": false,
+  "holdout_path_enumeration_detected": true,
+  "holdout_provider_requests_sent": false,
+  "paper_or_live_handoff_created": false,
+  "quality_gate_status": "PARTIAL_BLOCKED_BY_HOLDOUT_INTEGRITY",
+  "replication_access_started": false,
+  "status": "FINAL"
+}

@@ -1,0 +1,23 @@
+{
+  "breach": {
+    "command_scope": "broad repository tool-file enumeration",
+    "content_loaded": false,
+    "description": "A local temporary market-data filename containing a holdout year was exposed in command output.",
+    "outcomes_inspected": false,
+    "provider_request_sent": false
+  },
+  "flags": {
+    "holdout_file_counts_computed": false,
+    "holdout_market_data_loaded": false,
+    "holdout_pnl_computed": false,
+    "holdout_predictions_generated": false,
+    "holdout_provider_requests_sent": false,
+    "holdout_results_reported": false,
+    "holdout_signals_generated": false,
+    "holdout_storage_enumerated": true,
+    "holdout_structure_inspected": true,
+    "holdout_trade_counts_computed": false
+  },
+  "required_all_flags_false": false,
+  "status": "FAIL"
+}
