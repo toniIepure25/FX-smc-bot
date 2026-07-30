@@ -3,22 +3,27 @@ from __future__ import annotations
 import json
 from datetime import date, datetime, timezone
 
+import pandas as pd  # type: ignore[import-untyped]
 import pytest
 
 from fx_smc_bot.research.quant_polarity_q0r_data import (
     DEVELOPMENT_INSTRUMENTS,
+    M5_CANONICAL,
     REPLICATION_INSTRUMENTS,
     _aggregate_m5,
     _combine_bid_ask,
     _frame_semantic_sha256,
+    _frame_to_parquet,
     _parse_side_payload,
     _provider_dates,
     _retry_after_seconds,
     _validate_rows,
     acquire_partition,
+    development_authorizations,
+    load_q0r_development_m5_window,
     planned_partitions,
 )
-from fx_smc_bot.research.quant_safe_io import MarketPartition
+from fx_smc_bot.research.quant_safe_io import MarketPartition, safe_atomic_write
 
 
 def test_frozen_partition_counts_are_exact() -> None:
@@ -110,3 +115,39 @@ def test_nonpositive_spread_is_rejected() -> None:
     )
     with pytest.raises(ValueError, match="spread"):
         _combine_bid_ask(bid, ask)
+
+
+def test_q0r_loader_reads_only_authorized_canonical_payload(
+    tmp_path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repository = tmp_path / "repository"
+    repository.mkdir()
+    root = tmp_path / "clean"
+    root.mkdir()
+    monkeypatch.setenv("FX_Q0R_DATA_ROOT", str(root))
+    authorization = development_authorizations(root, repository)
+    timestamps = pd.date_range("2015-01-02", periods=2, freq="5min", tz="UTC")
+    frame = pd.DataFrame(
+        {
+            "timestamp": timestamps,
+            "bid_open": [1.0, 1.0],
+            "bid_high": [1.1, 1.1],
+            "bid_low": [0.9, 0.9],
+            "bid_close": [1.0, 1.0],
+            "ask_open": [1.01, 1.01],
+            "ask_high": [1.11, 1.11],
+            "ask_low": [0.91, 0.91],
+            "ask_close": [1.01, 1.01],
+        }
+    ).set_index("timestamp")
+    safe_atomic_write(
+        authorization.write,
+        MarketPartition("AUDUSD", "bid", 2015, 1),
+        M5_CANONICAL,
+        _frame_to_parquet(frame),
+    )
+    series = load_q0r_development_m5_window(
+        repository, "AUDUSD", date(2015, 1, 2), date(2015, 1, 2)
+    )
+    assert len(series) == 2
+    assert series.pair.value == "AUDUSD"

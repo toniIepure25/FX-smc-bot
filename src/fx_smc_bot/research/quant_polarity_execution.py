@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 from collections.abc import Sequence
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import dataclass, replace
@@ -312,6 +313,12 @@ def load_development_m5_window(
     start: date,
     end: date,
 ) -> BidAskBarSeries:
+    if os.environ.get("FX_Q0R_EXECUTION") == "1":
+        from fx_smc_bot.research.quant_polarity_q0r_data import (
+            load_q0r_development_m5_window,
+        )
+
+        return load_q0r_development_m5_window(root, instrument, start, end)
     if instrument not in DEVELOPMENT_INSTRUMENTS:
         raise ValueError("Instrument is outside the development universe")
     if start < DEVELOPMENT_START or end > DEVELOPMENT_END or end < start:
@@ -377,6 +384,8 @@ def _implementation_hash(root: Path) -> str:
         root / "src/fx_smc_bot/research/quant_polarity_model.py",
         root / "src/fx_smc_bot/research/quant_polarity_inference.py",
         root / "src/fx_smc_bot/research/quant_polarity_development.py",
+        root / "src/fx_smc_bot/research/quant_polarity_q0r_data.py",
+        root / "src/fx_smc_bot/research/quant_safe_io.py",
         root / "configs/research/quant_polarity_v1.yaml",
         root / "docs/research/quant_polarity/Q0_ANALYSIS_IMPLEMENTATION.md",
     )
@@ -472,7 +481,12 @@ def _signal_id(candidate_id: str, captured: CapturedSignal) -> str:
 
 
 def _development_ledger_paths(root: Path, candidate_id: str, year: int) -> tuple[Path, Path]:
-    directory = root / "data" / "acquisition_state" / "gate_q0" / "development_ledgers"
+    if os.environ.get("FX_Q0R_EXECUTION") == "1":
+        from fx_smc_bot.research.quant_polarity_q0r_data import q0r_derived_root
+
+        directory = q0r_derived_root(root) / "gate_q0r" / "development_ledgers"
+    else:
+        directory = root / "data" / "acquisition_state" / "gate_q0" / "development_ledgers"
     stem = f"{candidate_id}__{year}"
     return directory / f"{stem}.parquet", directory / f"{stem}.json"
 

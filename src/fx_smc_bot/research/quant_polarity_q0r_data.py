@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import os
 import re
@@ -665,3 +666,69 @@ def certify_development_plan(
         "status": status,
     }
     return certification, freeze
+
+
+def q0r_derived_root(repository_root: Path) -> Path:
+    from fx_smc_bot.research.quant_safe_io import configured_q0r_root
+
+    return configured_q0r_root(repository_root) / "derived"
+
+
+def load_q0r_development_m5_window(
+    repository_root: Path,
+    instrument: str,
+    start: date,
+    end: date,
+) -> Any:
+    from fx_smc_bot.config import Timeframe, TradingPair
+    from fx_smc_bot.data.bidask import BidAskBarSeries
+    from fx_smc_bot.research.quant_safe_io import configured_q0r_root
+
+    if instrument not in DEVELOPMENT_INSTRUMENTS:
+        raise ValueError("Instrument is outside the Q.0-R development universe")
+    if start < date(2015, 1, 1) or end > date(2019, 12, 31) or end < start:
+        raise ValueError("M5 window is outside Q.0-R development dates")
+    authorizations = development_authorizations(
+        configured_q0r_root(repository_root), repository_root
+    )
+    fields = (
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close",
+    )
+    timestamps: list[np.ndarray] = []
+    values: dict[str, list[np.ndarray]] = {field: [] for field in fields}
+    start_ns = np.datetime64(start.isoformat(), "ns")
+    end_ns = np.datetime64((end + pd.Timedelta(days=1)).isoformat(), "ns")
+    year, month = start.year, start.month
+    while (year, month) <= (end.year, end.month):
+        partition = MarketPartition(instrument, "bid", year, month)
+        payload = safe_read_bytes(authorizations.read, partition, M5_CANONICAL)
+        frame = pd.read_parquet(io.BytesIO(payload), columns=["timestamp", *fields])
+        stamp = pd.to_datetime(frame["timestamp"], utc=True).to_numpy(dtype="datetime64[ns]")
+        mask = (stamp >= start_ns) & (stamp < end_ns)
+        if bool(np.any(mask)):
+            timestamps.append(stamp[mask])
+            for field in fields:
+                values[field].append(frame[field].to_numpy(dtype=np.float64)[mask])
+        year, month = (year + 1, 1) if month == 12 else (year, month + 1)
+    if not timestamps:
+        raise ValueError("Zero-row Q.0-R development execution window")
+    joined = np.concatenate(timestamps)
+    if bool(np.any(joined[1:] <= joined[:-1])):
+        raise ValueError("Q.0-R M5 timestamps are not strictly increasing")
+    series = BidAskBarSeries(
+        pair=TradingPair(instrument),
+        timeframe=Timeframe.M5,
+        timestamps=joined,
+        **{field: np.concatenate(parts) for field, parts in values.items()},
+    )
+    violations = series.validate_invariants()
+    if violations:
+        raise ValueError(f"Q.0-R M5 invariant failure: {violations}")
+    return series

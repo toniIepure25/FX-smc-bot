@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -96,11 +97,51 @@ def run_development_certification(workers: int) -> None:
     print(json.dumps(certification, indent=2, sort_keys=True))
 
 
+def _enable_q0r_execution() -> None:
+    os.environ["FX_Q0R_EXECUTION"] = "1"
+
+
+def run_execution_certification() -> None:
+    from fx_smc_bot.research.quant_polarity_execution import certify_execution_integrity
+
+    certification = _read_json(RESULTS / "development_data_certification.json")
+    if certification.get("status") != "PASS":
+        raise RuntimeError("Execution certification requires certified development data")
+    _enable_q0r_execution()
+    audits = certify_execution_integrity(ROOT)
+    for name, payload in audits.items():
+        _write_json(RESULTS / f"{name}.json", payload)
+    if any(payload.get("status") != "PASS" for payload in audits.values()):
+        raise RuntimeError("Q.0-R execution certification failed")
+    print(json.dumps({name: payload["status"] for name, payload in audits.items()}))
+
+
+def run_development_execution(workers: int) -> None:
+    from fx_smc_bot.research.quant_polarity_execution import execute_development_program
+
+    certification = _read_json(RESULTS / "development_data_certification.json")
+    if certification.get("status") != "PASS":
+        raise RuntimeError("Development execution requires certified data")
+    _enable_q0r_execution()
+    predecessor = _git("rev-parse", "HEAD")
+    result = execute_development_program(ROOT, workers=workers)
+    result["development_outcome_predecessor_sha"] = predecessor
+    result["derived_root_outside_repository"] = True
+    result["row_level_ledgers_committed"] = False
+    _write_json(RESULTS / "development_execution_manifest.json", result)
+    print(json.dumps(result, indent=2, sort_keys=True))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--group",
-        choices=("development-acquisition", "development-certification"),
+        choices=(
+            "development-acquisition",
+            "development-certification",
+            "execution-certification",
+            "development-execution",
+        ),
         required=True,
     )
     parser.add_argument("--workers", type=int, default=8)
@@ -109,6 +150,10 @@ def main() -> int:
         run_development_acquisition(args.workers)
     if args.group == "development-certification":
         run_development_certification(args.workers)
+    if args.group == "execution-certification":
+        run_execution_certification()
+    if args.group == "development-execution":
+        run_development_execution(args.workers)
     return 0
 
 

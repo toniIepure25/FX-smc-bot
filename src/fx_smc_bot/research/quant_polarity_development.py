@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from dataclasses import asdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -98,14 +99,24 @@ def _load_signal_ledgers(root: Path, execution_manifest: dict[str, Any]) -> pd.D
     for unit in execution_manifest["units"]:
         candidate_id = str(unit["candidate_id"])
         year = int(unit["year"])
-        path = (
-            root
-            / "data"
-            / "acquisition_state"
-            / "gate_q0"
-            / "development_ledgers"
-            / f"{candidate_id}__{year}.parquet"
-        )
+        if os.environ.get("FX_Q0R_EXECUTION") == "1":
+            from fx_smc_bot.research.quant_polarity_q0r_data import q0r_derived_root
+
+            path = (
+                q0r_derived_root(root)
+                / "gate_q0r"
+                / "development_ledgers"
+                / f"{candidate_id}__{year}.parquet"
+            )
+        else:
+            path = (
+                root
+                / "data"
+                / "acquisition_state"
+                / "gate_q0"
+                / "development_ledgers"
+                / f"{candidate_id}__{year}.parquet"
+            )
         if _sha256(path) != unit["ledger_sha256"]:
             raise ValueError(f"Development signal ledger hash mismatch: {candidate_id}/{year}")
         frames.append(pd.read_parquet(path))
@@ -394,7 +405,12 @@ def run_development_analysis(
         for prediction in predictions
     ]
     prediction_frame = pd.DataFrame(prediction_rows)
-    local_root = root / "data" / "acquisition_state" / "gate_q0"
+    if os.environ.get("FX_Q0R_EXECUTION") == "1":
+        from fx_smc_bot.research.quant_polarity_q0r_data import q0r_derived_root
+
+        local_root = q0r_derived_root(root) / "gate_q0r"
+    else:
+        local_root = root / "data" / "acquisition_state" / "gate_q0"
     local_root.mkdir(parents=True, exist_ok=True)
     prediction_path = local_root / "development_oof_predictions.parquet"
     prediction_frame.to_parquet(prediction_path, index=False, engine="pyarrow")
