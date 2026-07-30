@@ -1,0 +1,22 @@
+{
+  "automated_guards": [
+    "provider_request_authorization",
+    "explicit_market_path_authorization",
+    "training_source_authorization"
+  ],
+  "excluded_old_instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "holdout_access_permitted_in_q0": false,
+  "lineage_id": "FX_QUANT_EDGE_DISCOVERY_LINEAGE_V1",
+  "old_candidate_results_permitted_as_labels": false,
+  "old_lineage_reopened": false,
+  "old_row_ledgers_permitted": false,
+  "program_id": "FX_QUANT_POLARITY_META_V1",
+  "qualitative_motivation_only": true,
+  "relationship_to_previous_lineage": "NEW_INDEPENDENT_LINEAGE",
+  "source_hypothesis": "FX_SMC_STRATEGY_ALPHA_POSTHOC_QUARANTINE_V1",
+  "status": "PASS"
+}

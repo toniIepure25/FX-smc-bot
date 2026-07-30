@@ -1,0 +1,11 @@
+{
+  "branch": "research/quant-polarity-meta-v1",
+  "branch_starting_sha": "1df74d0dbf185fad78851036f13fcf4d3166ea0a",
+  "current_head_at_freeze": "1df74d0dbf185fad78851036f13fcf4d3166ea0a",
+  "main_sha_at_branch_creation": "1df74d0dbf185fad78851036f13fcf4d3166ea0a",
+  "merge_commit": "1df74d0dbf185fad78851036f13fcf4d3166ea0a",
+  "merge_commit_parent_count": 2,
+  "pr_number": 2,
+  "pr_source_sha": "cd2e44d15fee2775f42433577a2fe742334a24f7",
+  "status": "PASS"
+}
