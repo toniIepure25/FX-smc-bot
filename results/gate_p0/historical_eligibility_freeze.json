@@ -1,0 +1,34 @@
+{
+  "created_at_utc": "2026-07-29T13:52:04.726731+00:00",
+  "minimum_sample": {
+    "completed_historical_trades": 100,
+    "years_with_20_or_more_trades": 3
+  },
+  "ranking": "highest lower 95% CI bound of net R",
+  "selection_limit": {
+    "secondary": 1,
+    "tier_a_primary": 1
+  },
+  "status": "PASS",
+  "tier_a": {
+    "base_and_1_5x_cost_positive": true,
+    "best_5_trades_lt_35pct": true,
+    "best_year_lt_50pct": true,
+    "day_cluster_ci_lower_gt_0": true,
+    "holm_alpha_p_lt_0_05": true,
+    "leave_one_year_out_positive": true,
+    "max_drawdown_lte_20r": true,
+    "mean_net_r_gt_0": true,
+    "profit_factor_gt_1_05": true
+  },
+  "tier_b": {
+    "base_positive_1_5x_nonnegative": true,
+    "benchmark_alpha_mean_gt_0": true,
+    "best_year_lt_60pct": true,
+    "day_cluster_ci_lower_gte_minus_0_05": true,
+    "max_drawdown_lte_25r": true,
+    "mean_net_r_gt_0": true,
+    "positive_2_of_3_windows": true,
+    "profit_factor_gt_1_00": true
+  }
+}

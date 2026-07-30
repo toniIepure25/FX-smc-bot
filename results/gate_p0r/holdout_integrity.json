@@ -1,0 +1,13 @@
+{
+  "created_at_utc": "2026-07-29T14:18:01.568069+00:00",
+  "sealed_holdout_file_counts_computed": false,
+  "sealed_holdout_market_data_loaded": false,
+  "sealed_holdout_pnl_computed": false,
+  "sealed_holdout_results_reported": false,
+  "sealed_holdout_signals_generated": false,
+  "sealed_holdout_storage_enumerated": false,
+  "sealed_holdout_structure_inspected": false,
+  "sealed_holdout_trade_counts_computed": false,
+  "sealed_holdout_trades_generated": false,
+  "status": "PASS"
+}

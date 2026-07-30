@@ -1,0 +1,22 @@
+{
+  "best_5_trade_share": {
+    "SMC_A_SWEEP_REVERSAL_V1": 0.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 0.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 0.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 0.0
+  },
+  "best_trade_share": {
+    "SMC_A_SWEEP_REVERSAL_V1": 0.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 0.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 0.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 0.0
+  },
+  "best_year_share": {
+    "SMC_A_SWEEP_REVERSAL_V1": 0.0,
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": 0.0,
+    "SMC_C_LONDON_OPENING_RANGE_V1": 0.0,
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": 0.0
+  },
+  "created_at_utc": "2026-07-29T13:53:22.415835+00:00",
+  "status": "PASS"
+}

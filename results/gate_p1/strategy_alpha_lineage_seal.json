@@ -1,0 +1,44 @@
+{
+  "candidate_count": 4,
+  "candidate_tiers": [
+    "TIER_C",
+    "TIER_C",
+    "TIER_C",
+    "TIER_C"
+  ],
+  "created_at_utc": "2026-07-30T08:42:50.640113+00:00",
+  "dataset_freeze_hash": "3065b7f507afac9759ae5b319a7550842e24df6e25fd258f2f02c25839dd301a",
+  "forward_test_authorized": false,
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "lineage_seal_hash": "4879da718c42e030232b9c7cad32e14b97263ead5c6a4e464c53406f2f02303e",
+  "live_capital_authorized": false,
+  "permitted_future_work_requires": [
+    "a new lineage ID",
+    "a frozen new hypothesis",
+    "an independent instrument universe or genuinely future data",
+    "a new preregistration before outcome access"
+  ],
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "prohibitions": [
+    "additional parameter tuning on the existing four candidates using 2015-2022",
+    "post-hoc inversion claims using 2015-2022",
+    "retroactive Tier-rule modification",
+    "relabelling historical results as confirmation",
+    "creation of a forward handoff from this closed lineage",
+    "access to the sealed 2023-2025 holdout under this lineage"
+  ],
+  "seal_id": "FX_SMC_STRATEGY_ALPHA_LINEAGE_V1",
+  "status": "CLOSED_ALL_CANDIDATES_TIER_C_NO_FORWARD_TEST",
+  "validation": {
+    "checks": {
+      "future_conditions": true,
+      "hash": true,
+      "lineage_id": true,
+      "program_id": true,
+      "prohibitions": true,
+      "seal_id": true,
+      "status": true
+    },
+    "status": "PASS"
+  }
+}

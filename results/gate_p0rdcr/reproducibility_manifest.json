@@ -1,0 +1,78 @@
+{
+  "artifacts": [
+    {
+      "canonical_json_sha256": "ba183df5e7291dcbbf36eb41227865b605dc0417c4ef2e3f022f8c8be6c099b0",
+      "path": "results/gate_p0rdcr/data_requirement_matrix.json",
+      "raw_sha256": "b0c1c8e4f67979577f27cbae58954157a295d33de6245e80b426df1e552c2cab"
+    },
+    {
+      "canonical_json_sha256": "0749630277346348aeec1a8c87a626a17130f3973916b358c8f8343b2464d347",
+      "path": "results/gate_p0rdcr/final_decision.json",
+      "raw_sha256": "269caf6fdb2585c142a77ede4f85546f414b84ca0e7621caf12f96d0307ff9ef"
+    },
+    {
+      "canonical_json_sha256": "80c027dc2484b4c373406499f7d0a13d3370fb111b8e9d9804cb02f2d96d7e73",
+      "path": "results/gate_p0rdcr/holdout_integrity.json",
+      "raw_sha256": "5c739d6163ad1cd07408d94101c00be748c98c433e9d47b0338a4c7506b81856"
+    },
+    {
+      "canonical_json_sha256": "0df86c733468b2e352b1bba1bbb0fece9f8ac5e4cdee01f04940239e13e8009d",
+      "path": "results/gate_p0rdcr/pre_data_integrity.json",
+      "raw_sha256": "686acfdde9aa90ade55d85969869f95f67bfcf6ac7b7e42b2241b2420d70bf44"
+    },
+    {
+      "canonical_json_sha256": "8874c4d445265ff91bb436c8603728aef3c3c005e58eb0987466d222e77822b0",
+      "path": "results/gate_p0rdcr/prohibited_data_audit.json",
+      "raw_sha256": "9388bc39cd250c1243430992e2bf47d936384936dd830ed38ac41848252d1a51"
+    },
+    {
+      "canonical_json_sha256": "e5c965211641b83607bb2121c0b41c75eadbc4e745ec127f1b49bcc4ff90a140",
+      "path": "results/gate_p0rdcr/quality_gate_final.json",
+      "raw_sha256": "57b9524e2198ef72f384ab5870acbdfd7b36b3d36d3fd6cc76d9f590b9940836"
+    },
+    {
+      "canonical_json_sha256": "cfef1cb2692b634275f5aee8c44e68f3394f6a2a4d531c25ba23104b32257687",
+      "path": "results/gate_p0rdcr/repository_state.json",
+      "raw_sha256": "5500c00ee01bfe28659cd87d9ba5b401b052bd65f9912bf8c4f6dd83f7d1cf63"
+    },
+    {
+      "canonical_json_sha256": "85528fdb24c7c895077af29e9c266f6a8eb364c3c3538a7ca71d8fad5996ab88",
+      "path": "results/gate_p0rdcr/static_analysis_delta.json",
+      "raw_sha256": "bd61d5162d05c598b89f9cbf23a53070d2da07fed3afccec7574be763b7d7680"
+    },
+    {
+      "path": "docs/research/strategy_alpha/P0RDCR_DATA_REQUIREMENTS.md",
+      "raw_sha256": "9181275318f52ba8a691c2ab44afad210a265b688333b15ebc9c43028146b98f"
+    },
+    {
+      "path": "docs/research/strategy_alpha/P0RDCR_FINAL_DECISION_MEMO.md",
+      "raw_sha256": "aca1fbb27b25fa96587d03a590fb5d133ccb48b9563f3a5b5f1ebbd6c3eaea10"
+    },
+    {
+      "path": "scripts/run_gate_p0rdcr.py",
+      "raw_sha256": "3c6c080923937eabe6325369a45107c5dc63589bad0119885e7881164b492413"
+    },
+    {
+      "path": "src/fx_smc_bot/research/strategy_alpha_data.py",
+      "raw_sha256": "de6deeacd9a436d70bf6e730bb888aedec25a3acd8ee2aa980918dcf37246324"
+    },
+    {
+      "path": "tests/test_gate_p0rdcr/test_p0rdcr_data_guards.py",
+      "raw_sha256": "9e03d0e88ff857b92db9a9aea8fdd53c8df5111386e430804be90aabedf356b8"
+    }
+  ],
+  "created_at_utc": "2026-07-29T14:51:12.467334+00:00",
+  "decision": "BLOCKED_BY_DATA_REQUIREMENT_PROVENANCE",
+  "excluded": [
+    "raw market data",
+    "canonical market data",
+    "row-level signals, orders, and trades",
+    "provider payloads",
+    "sealed holdout storage"
+  ],
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "manifest_hash": "3033fcef461454993565482b00fe0048b30d34a50ff15e804e1466cbc2600e20",
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "source_sha": "045d2ebcd47e6eb14b4f0c6c9e2f769e68d0e581",
+  "starting_sha": "21f3b2b83ac9f71e2cf01f26ae8483b8f04a6a3e"
+}

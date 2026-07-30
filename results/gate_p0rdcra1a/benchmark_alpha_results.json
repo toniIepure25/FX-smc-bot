@@ -1,0 +1,107 @@
+{
+  "benchmark_ledger_hash": "1677c46a4d6dae1b95423e64ebbabd548e8378305f59440786a68f08c011d9f8",
+  "benchmark_ledger_rows": 3991,
+  "created_at_utc": "2026-07-29T23:12:28.392737+00:00",
+  "economic_audit_code_sha": "a53699dab97f41d105f809d71e57200569bbd677",
+  "matching": [
+    "instrument",
+    "direction",
+    "session",
+    "weekday",
+    "volatility_bin",
+    "spread_bin",
+    "holding_time_opportunity"
+  ],
+  "results": [
+    {
+      "benchmark_family_means": {
+        "exposure_matched_passive_r": -0.17784705220744226,
+        "matched_random_entry_r": 0.015713118895881603,
+        "simple_mean_reversion_r": -0.06990124598397093,
+        "simple_momentum_r": -0.03583848876195552,
+        "time_shift_placebo_r": -0.004925329612796338
+      },
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "day_cluster_alpha_ci": [
+        -0.1206610226639073,
+        0.10892432387125174
+      ],
+      "fdr_adjusted_p_value": 0.8908218356328734,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": -0.005108740876873998,
+      "matched_random_mean_net_r": 0.015713118895881603,
+      "strategy_mean_net_r": 0.010604378019007616,
+      "trade_count": 202,
+      "unadjusted_p_value": 0.5518896220755849
+    },
+    {
+      "benchmark_family_means": {
+        "exposure_matched_passive_r": -0.633621063070292,
+        "matched_random_entry_r": -0.12012253986461503,
+        "simple_mean_reversion_r": -0.20442500855873047,
+        "simple_momentum_r": -0.08133858134452313,
+        "time_shift_placebo_r": -0.1132744364853087
+      },
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "day_cluster_alpha_ci": [
+        -0.10489579320176655,
+        0.02791607271573073
+      ],
+      "fdr_adjusted_p_value": 0.8908218356328734,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": -0.037977498788189235,
+      "matched_random_mean_net_r": -0.12012253986461503,
+      "strategy_mean_net_r": -0.15810003865280425,
+      "trade_count": 2676,
+      "unadjusted_p_value": 0.8658268346330734
+    },
+    {
+      "benchmark_family_means": {
+        "exposure_matched_passive_r": -0.2740319299777139,
+        "matched_random_entry_r": -0.01810975684467497,
+        "simple_mean_reversion_r": -0.15697349471081828,
+        "simple_momentum_r": -0.00858467448155545,
+        "time_shift_placebo_r": -0.07302475865080907
+      },
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "day_cluster_alpha_ci": [
+        -0.1645645868807575,
+        0.036617265734772045
+      ],
+      "fdr_adjusted_p_value": 0.8908218356328734,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": -0.06299865878206207,
+      "matched_random_mean_net_r": -0.01810975684467497,
+      "strategy_mean_net_r": -0.08110841562673701,
+      "trade_count": 360,
+      "unadjusted_p_value": 0.8908218356328734
+    },
+    {
+      "benchmark_family_means": {
+        "exposure_matched_passive_r": -0.24473391720480647,
+        "matched_random_entry_r": -0.050672025413919186,
+        "simple_mean_reversion_r": -0.08306986541552326,
+        "simple_momentum_r": -0.056598252784868276,
+        "time_shift_placebo_r": -0.0055397741104801805
+      },
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "day_cluster_alpha_ci": [
+        -0.07438615876793203,
+        0.11197507733524914
+      ],
+      "fdr_adjusted_p_value": 0.8908218356328734,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": 0.019275422964931718,
+      "matched_random_mean_net_r": -0.050672025413919186,
+      "strategy_mean_net_r": -0.03139660244898749,
+      "trade_count": 753,
+      "unadjusted_p_value": 0.34313137372525493
+    }
+  ],
+  "row_level_ledger_committed": false,
+  "seed": 1729,
+  "source_execution_code_sha": "b1447a4fbd870ac749914300882cd1de9e950896",
+  "spread_bins": "ANNUAL_MARKET_ONLY_NATIVE_SPREAD_QUARTILES",
+  "status": "PASS",
+  "volatility_bins": "ANNUAL_MARKET_ONLY_ATR_QUARTILES"
+}

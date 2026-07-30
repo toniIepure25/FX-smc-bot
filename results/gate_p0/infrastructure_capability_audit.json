@@ -1,0 +1,107 @@
+{
+  "capability_matrix": {
+    "benchmark_generation": {
+      "evidence": "P0 must freeze benchmarks before alpha claims.",
+      "status": "MISSING"
+    },
+    "bid_ask_execution": {
+      "evidence": "BidAskFillEngine uses ask for long entry and bid for short entry.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "block_bootstrap_inference": {
+      "evidence": "Research inference utilities exist; strategy-level inference is P0 scoped.",
+      "status": "PARTIAL"
+    },
+    "commission": {
+      "evidence": "TradeLedger has commission_per_lot.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "deterministic_replay": {
+      "evidence": "Seeded components exist; P0 adds deterministic aggregate replay audit.",
+      "status": "PARTIAL"
+    },
+    "drawdown": {
+      "evidence": "Performance metrics compute max drawdown.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "dst_handling": {
+      "evidence": "Timezone/session utilities exist.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "entry_timing": {
+      "evidence": "Pending orders are processed on subsequent bars in the engine loop.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "equity_curve": {
+      "evidence": "BacktestResult and metrics consume equity curve.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "market_and_limit_orders": {
+      "evidence": "FillEngine and BidAskFillEngine implement MARKET/LIMIT/STOP.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "maximum_exposure": {
+      "evidence": "Configs define max_concurrent_positions.",
+      "status": "PARTIAL"
+    },
+    "missing_bars": {
+      "evidence": "Provenance records missing intervals; P0 freezes no interpolation.",
+      "status": "PARTIAL"
+    },
+    "order_expiry": {
+      "evidence": "Orders expire via expires_at.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "overlapping_positions": {
+      "evidence": "Portfolio state exists; candidate-level overlap guard required.",
+      "status": "PARTIAL"
+    },
+    "partial_fills": {
+      "evidence": "Order model fills all units.",
+      "status": "MISSING"
+    },
+    "position_sizing": {
+      "evidence": "Portfolio state exists; 1R normalized P0 layer required.",
+      "status": "PARTIAL"
+    },
+    "random_seed_control": {
+      "evidence": "Campaign and fill engines accept seeds.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "same_bar_ambiguity": {
+      "evidence": "Conservative fill policy resolves SL before TP.",
+      "status": "CERTIFIED"
+    },
+    "session_cutoffs": {
+      "evidence": "Session classification exists; hard cutoff enforcement varies by runtime.",
+      "status": "PARTIAL"
+    },
+    "signal_timestamping": {
+      "evidence": "CausalBarContext carries bar_idx and timestamp.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "slippage": {
+      "evidence": "Fixed and native bid/ask slippage models exist.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "spread": {
+      "evidence": "Native bid/ask embeds actual spread; fallback fixed spread exists.",
+      "status": "PARTIAL"
+    },
+    "swap": {
+      "evidence": "SwapCalculator exists for overnight positions.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "trade_ledger": {
+      "evidence": "TradeLedger exists; P0 commits aggregate-only outputs.",
+      "status": "IMPLEMENTED_NOT_CERTIFIED"
+    },
+    "weekend_handling": {
+      "evidence": "Data-quality handling exists; P0 no-trade policy freezes missing periods.",
+      "status": "PARTIAL"
+    }
+  },
+  "created_at_utc": "2026-07-29T13:50:18.214312+00:00",
+  "status": "PASS",
+  "unsafe_capabilities": []
+}

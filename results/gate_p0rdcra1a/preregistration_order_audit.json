@@ -1,0 +1,18 @@
+{
+  "amendment_hash": "e6b93c1ef826ce0f2338b965ecc37b547b4be5da10e835748b7b2667747f9c25",
+  "amendment_id": "P0RDCR_DATA_REQUIREMENT_AMENDMENT_V1",
+  "candidate_bars_loaded_before_dataset_freeze": false,
+  "dataset_freeze_hash": "3065b7f507afac9759ae5b319a7550842e24df6e25fd258f2f02c25839dd301a",
+  "dataset_freeze_id": "FX_SMC_STRATEGY_ALPHA_PERMITTED_2015_2022_V2",
+  "economic_outcome_accessed_before_dataset_freeze": false,
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "orders_generated_before_dataset_freeze": false,
+  "outcome_access_predecessor_sha": "e4e73ed76c58a23b35a6c469b236ae2c73c895a8",
+  "pnl_calculated_before_dataset_freeze": false,
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "provider_protocol_hash": "c249fe88bd2c50497de2942a5415a909bfbb485707134a2791231beead5e21a1",
+  "provider_protocol_id": "P0RDCRA1A_PERMITTED_DATA_RECOVERY_PROTOCOL_V1",
+  "signals_generated_before_dataset_freeze": false,
+  "status": "PASS",
+  "trades_generated_before_dataset_freeze": false
+}

@@ -1,0 +1,7 @@
+{
+  "all_partitions_needed_for_a_candidate_certified": false,
+  "certified_candidates": [],
+  "created_at_utc": "2026-07-29T14:15:14.412353+00:00",
+  "status": "FAIL",
+  "zero_row_certified_partitions": 0
+}

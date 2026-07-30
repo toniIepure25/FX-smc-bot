@@ -1,0 +1,59 @@
+{
+  "created_at_utc": "2026-07-30T08:42:50.633754+00:00",
+  "current_sample_confirmation_permitted": false,
+  "future_entry_requirements": [
+    "new lineage ID",
+    "frozen hypothesis before outcome access",
+    "new independent dataset"
+  ],
+  "hypotheses": [
+    {
+      "hypothesis": "invert every signal",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "reverse only Acceptance",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "reverse only opening-range signals",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "select Sweep at base costs",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "select New York based on positive matched-random differential",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "optimize delay",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "optimize session cutoff",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "optimize stop or target",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "select favorable years",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    },
+    {
+      "hypothesis": "select favorable instruments",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_ON_2015_2022"
+    }
+  ],
+  "quarantine_id": "FX_SMC_STRATEGY_ALPHA_POSTHOC_QUARANTINE_V1",
+  "status": "ACTIVE",
+  "validation": {
+    "complete": true,
+    "current_sample_blocked": true,
+    "status": "PASS",
+    "statuses_fixed": true
+  }
+}

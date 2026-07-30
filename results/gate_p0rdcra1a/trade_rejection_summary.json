@@ -1,0 +1,47 @@
+{
+  "candidates": {
+    "SMC_A_SWEEP_REVERSAL_V1": {
+      "expired_order": 38,
+      "invalid_signal": 1,
+      "missing_data": 0,
+      "missing_exit": 0,
+      "position_overlap": 61,
+      "runtime_error": 0,
+      "session_horizon": 16,
+      "unreachable_limit_or_cutoff_cancel": 162
+    },
+    "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+      "expired_order": 857,
+      "invalid_signal": 82,
+      "missing_data": 0,
+      "missing_exit": 0,
+      "position_overlap": 2067,
+      "runtime_error": 0,
+      "session_horizon": 269,
+      "unreachable_limit_or_cutoff_cancel": 2446
+    },
+    "SMC_C_LONDON_OPENING_RANGE_V1": {
+      "expired_order": 52,
+      "invalid_signal": 9,
+      "missing_data": 0,
+      "missing_exit": 0,
+      "position_overlap": 0,
+      "runtime_error": 0,
+      "session_horizon": 17,
+      "unreachable_limit_or_cutoff_cancel": 191
+    },
+    "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+      "expired_order": 125,
+      "invalid_signal": 38,
+      "missing_data": 0,
+      "missing_exit": 0,
+      "position_overlap": 0,
+      "runtime_error": 0,
+      "session_horizon": 24,
+      "unreachable_limit_or_cutoff_cancel": 299
+    }
+  },
+  "created_at_utc": "2026-07-29T23:12:28.405351+00:00",
+  "economic_audit_code_sha": "a53699dab97f41d105f809d71e57200569bbd677",
+  "status": "PASS"
+}

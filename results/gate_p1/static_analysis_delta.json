@@ -1,0 +1,18 @@
+{
+  "comparison_target": "origin/main",
+  "created_at_utc": "2026-07-30T08:52:38.7647711Z",
+  "head_issue_count": {
+    "mypy_research": 3,
+    "ruff_research": 99
+  },
+  "new_issues_introduced": {
+    "mypy_research": 0,
+    "ruff_research": 0
+  },
+  "origin_main_sha": "ada8177c738b08f9a119d28a3e8b1fdeea7ef0b2",
+  "status": "PASS",
+  "target_issue_count": {
+    "mypy_research": 10,
+    "ruff_research": 99
+  }
+}

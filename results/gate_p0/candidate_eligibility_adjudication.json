@@ -1,0 +1,160 @@
+{
+  "adjudications": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "failed_criteria": [
+        "minimum_sample",
+        "mean_net_r_positive",
+        "ci_lower_positive",
+        "profit_factor",
+        "loo_positive",
+        "benchmark_alpha",
+        "window_stability"
+      ],
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "holm_adjusted_p": 1.0,
+      "sample_eligibility": false,
+      "tier_a_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_positive": false,
+        "concentration": true,
+        "cost_stress": false,
+        "drawdown": true,
+        "loo_positive": false,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false
+      },
+      "tier_b_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_not_worse_than_minus_0_05": true,
+        "concentration": true,
+        "cost_stress": true,
+        "drawdown": true,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false,
+        "window_stability": false
+      }
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "failed_criteria": [
+        "minimum_sample",
+        "mean_net_r_positive",
+        "ci_lower_positive",
+        "profit_factor",
+        "loo_positive",
+        "benchmark_alpha",
+        "window_stability"
+      ],
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "holm_adjusted_p": 1.0,
+      "sample_eligibility": false,
+      "tier_a_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_positive": false,
+        "concentration": true,
+        "cost_stress": false,
+        "drawdown": true,
+        "loo_positive": false,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false
+      },
+      "tier_b_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_not_worse_than_minus_0_05": true,
+        "concentration": true,
+        "cost_stress": true,
+        "drawdown": true,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false,
+        "window_stability": false
+      }
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "failed_criteria": [
+        "minimum_sample",
+        "mean_net_r_positive",
+        "ci_lower_positive",
+        "profit_factor",
+        "loo_positive",
+        "benchmark_alpha",
+        "window_stability"
+      ],
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "holm_adjusted_p": 1.0,
+      "sample_eligibility": false,
+      "tier_a_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_positive": false,
+        "concentration": true,
+        "cost_stress": false,
+        "drawdown": true,
+        "loo_positive": false,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false
+      },
+      "tier_b_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_not_worse_than_minus_0_05": true,
+        "concentration": true,
+        "cost_stress": true,
+        "drawdown": true,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false,
+        "window_stability": false
+      }
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "failed_criteria": [
+        "minimum_sample",
+        "mean_net_r_positive",
+        "ci_lower_positive",
+        "profit_factor",
+        "loo_positive",
+        "benchmark_alpha",
+        "window_stability"
+      ],
+      "final_tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "forward_test_eligibility": false,
+      "holm_adjusted_p": 1.0,
+      "sample_eligibility": false,
+      "tier_a_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_positive": false,
+        "concentration": true,
+        "cost_stress": false,
+        "drawdown": true,
+        "loo_positive": false,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false
+      },
+      "tier_b_criteria": {
+        "benchmark_alpha": false,
+        "ci_lower_not_worse_than_minus_0_05": true,
+        "concentration": true,
+        "cost_stress": true,
+        "drawdown": true,
+        "mean_net_r_positive": false,
+        "minimum_sample": false,
+        "profit_factor": false,
+        "window_stability": false
+      }
+    }
+  ],
+  "created_at_utc": "2026-07-29T13:53:22.415750+00:00",
+  "primary_candidate": null,
+  "secondary_candidate": null,
+  "status": "PASS"
+}

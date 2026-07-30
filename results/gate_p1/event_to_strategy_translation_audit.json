@@ -1,0 +1,9 @@
+{
+  "created_at_utc": "2026-07-30T08:42:50.629443+00:00",
+  "event_estimand": "post-event markout relative to matched controls",
+  "event_level_result": "RELATIVE_RESILIENCE_VERSUS_MATCHED_CONTROLS",
+  "interpretation": "Event-level relative resilience did not translate into standalone strategy profitability; the estimands differ and the findings are not contradictory.",
+  "status": "PASS",
+  "strategy_estimand": "net executable R from a fully specified trading policy",
+  "strategy_level_result": "STRONGLY_NEGATIVE_NET_EXPECTANCY"
+}

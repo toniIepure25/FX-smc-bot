@@ -1,0 +1,10 @@
+{
+  "completed_units": 270,
+  "created_at_utc": "2026-07-29T15:58:17.579266+00:00",
+  "elapsed_seconds": 0.039,
+  "failed_or_incomplete_units": 0,
+  "planned_units": 270,
+  "protocol_id": "P0RDCRA1A_PERMITTED_DATA_RECOVERY_PROTOCOL_V1",
+  "status": "COMPLETE",
+  "successful_pending_recertification": 270
+}

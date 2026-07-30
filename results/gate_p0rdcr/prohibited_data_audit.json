@@ -1,0 +1,30 @@
+{
+  "baseline_sha": "21f3b2b83ac9f71e2cf01f26ae8483b8f04a6a3e",
+  "checks": {
+    "credentials_absent_from_p0rdcr_artifacts": true,
+    "new_canonical_market_files_absent": true,
+    "new_provider_response_bodies_absent": true,
+    "new_raw_market_files_absent": true,
+    "new_row_level_signals_orders_trades_absent": true,
+    "new_temporary_acquisition_files_absent": true
+  },
+  "created_at_utc": "2026-07-29T14:51:11.234931+00:00",
+  "introduced_prohibited_tracked_paths": [],
+  "preexisting_prohibited_tracked_paths": [
+    "data/EURUSD/15m.csv",
+    "data/GBPUSD/15m.csv",
+    "data/USDJPY/15m.csv",
+    "data/real/EURUSD/15m.csv",
+    "data/real/EURUSD/1h.csv",
+    "data/real/EURUSD/4h.csv",
+    "data/real/GBPUSD/15m.csv",
+    "data/real/GBPUSD/1h.csv",
+    "data/real/GBPUSD/4h.csv",
+    "data/real/USDJPY/15m.csv",
+    "data/real/USDJPY/1h.csv",
+    "data/real/USDJPY/4h.csv"
+  ],
+  "preexisting_repository_exception": "The starting commit already tracks market-like CSV files. P0-R-DCR did not create, modify, inspect for outcomes, or remove them.",
+  "scope": "P0-R-DCR tracked-path delta; market storage was not enumerated",
+  "status": "PASS"
+}

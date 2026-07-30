@@ -1,0 +1,367 @@
+{
+  "candidate_count": 4,
+  "candidates": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "config_path": "configs/research/intraday_smc/sweep_reversal.yaml",
+      "instrument_requirements": [
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "EURUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "GBPUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "OPTIONAL_DIAGNOSTIC",
+          "instrument": "USDJPY",
+          "provenance_conflict": "The source YAML labels this instrument as control, while the P0 candidate freeze flattens primary and control instruments into one list. The benchmark freeze does not resolve whether control data are mandatory.",
+          "provenance_status": "UNRESOLVED"
+        }
+      ],
+      "provenance_status": "UNRESOLVED",
+      "required_bar_resolution": "M5",
+      "required_bid_ask_fields": [
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close"
+      ],
+      "required_end_date": "2022-12-31",
+      "required_exit_horizon": null,
+      "required_session_calendar_coverage": null,
+      "required_sessions": [
+        "london",
+        "new_york"
+      ],
+      "required_source_resolution": null,
+      "required_spread_fields": [
+        "ask_open_minus_bid_open",
+        "ask_high_minus_bid_high",
+        "ask_low_minus_bid_low",
+        "ask_close_minus_bid_close"
+      ],
+      "required_start_date": "2015-01-01",
+      "required_timezone_fields": {
+        "london": null,
+        "new_york": null
+      },
+      "required_warm_up_duration": null,
+      "source_resolution_evidence": [
+        "M5 execution bars derived from M1/tick bid/ask"
+      ]
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "config_path": "configs/research/intraday_smc/acceptance_continuation.yaml",
+      "instrument_requirements": [
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "EURUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "GBPUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "OPTIONAL_DIAGNOSTIC",
+          "instrument": "USDJPY",
+          "provenance_conflict": "The source YAML labels this instrument as control, while the P0 candidate freeze flattens primary and control instruments into one list. The benchmark freeze does not resolve whether control data are mandatory.",
+          "provenance_status": "UNRESOLVED"
+        }
+      ],
+      "provenance_status": "UNRESOLVED",
+      "required_bar_resolution": "M5",
+      "required_bid_ask_fields": [
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close"
+      ],
+      "required_end_date": "2022-12-31",
+      "required_exit_horizon": null,
+      "required_session_calendar_coverage": null,
+      "required_sessions": [
+        "london",
+        "new_york"
+      ],
+      "required_source_resolution": null,
+      "required_spread_fields": [
+        "ask_open_minus_bid_open",
+        "ask_high_minus_bid_high",
+        "ask_low_minus_bid_low",
+        "ask_close_minus_bid_close"
+      ],
+      "required_start_date": "2015-01-01",
+      "required_timezone_fields": {
+        "london": null,
+        "new_york": null
+      },
+      "required_warm_up_duration": null,
+      "source_resolution_evidence": [
+        "M5 execution bars derived from M1/tick bid/ask"
+      ]
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "config_path": "configs/research/intraday_smc/opening_range.yaml",
+      "instrument_requirements": [
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "EURUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "GBPUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "OPTIONAL_DIAGNOSTIC",
+          "instrument": "USDJPY",
+          "provenance_conflict": "The source YAML labels this instrument as control, while the P0 candidate freeze flattens primary and control instruments into one list. The benchmark freeze does not resolve whether control data are mandatory.",
+          "provenance_status": "UNRESOLVED"
+        }
+      ],
+      "provenance_status": "UNRESOLVED",
+      "required_bar_resolution": "M5",
+      "required_bid_ask_fields": [
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close"
+      ],
+      "required_end_date": "2022-12-31",
+      "required_exit_horizon": null,
+      "required_session_calendar_coverage": null,
+      "required_sessions": [
+        "london"
+      ],
+      "required_source_resolution": null,
+      "required_spread_fields": [
+        "ask_open_minus_bid_open",
+        "ask_high_minus_bid_high",
+        "ask_low_minus_bid_low",
+        "ask_close_minus_bid_close"
+      ],
+      "required_start_date": "2015-01-01",
+      "required_timezone_fields": {
+        "london": "Europe/London"
+      },
+      "required_warm_up_duration": null,
+      "source_resolution_evidence": [
+        "M5 execution bars derived from M1/tick bid/ask"
+      ]
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "config_path": "configs/research/intraday_smc/opening_range.yaml",
+      "instrument_requirements": [
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "EURUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "STRATEGY_REQUIRED",
+          "instrument": "GBPUSD",
+          "provenance_conflict": null,
+          "provenance_status": "RESOLVED"
+        },
+        {
+          "classification": "OPTIONAL_DIAGNOSTIC",
+          "instrument": "USDJPY",
+          "provenance_conflict": "The source YAML labels this instrument as control, while the P0 candidate freeze flattens primary and control instruments into one list. The benchmark freeze does not resolve whether control data are mandatory.",
+          "provenance_status": "UNRESOLVED"
+        }
+      ],
+      "provenance_status": "UNRESOLVED",
+      "required_bar_resolution": "M5",
+      "required_bid_ask_fields": [
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close"
+      ],
+      "required_end_date": "2022-12-31",
+      "required_exit_horizon": null,
+      "required_session_calendar_coverage": null,
+      "required_sessions": [
+        "new_york"
+      ],
+      "required_source_resolution": null,
+      "required_spread_fields": [
+        "ask_open_minus_bid_open",
+        "ask_high_minus_bid_high",
+        "ask_low_minus_bid_low",
+        "ask_close_minus_bid_close"
+      ],
+      "required_start_date": "2015-01-01",
+      "required_timezone_fields": {
+        "new_york": "America/New_York"
+      },
+      "required_warm_up_duration": null,
+      "source_resolution_evidence": [
+        "M5 execution bars derived from M1/tick bid/ask"
+      ]
+    }
+  ],
+  "created_at_utc": "2026-07-29T14:45:28.317700+00:00",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "overlay_hash": "fb70ade4212c0343c86d9ba0e0b17661dd6823204e7d459928ac735ca9d772e2",
+  "overlay_id": "P0R_IMPLEMENTATION_CLARIFICATION_V1",
+  "part_a_permitted_to_continue": false,
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "status": "FAIL",
+  "terminal_decision_if_unresolved": "BLOCKED_BY_DATA_REQUIREMENT_PROVENANCE",
+  "unresolved_requirements": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "field": "instrument_role.USDJPY",
+      "reason": "P0 does not freeze whether the YAML control instrument is required."
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "field": "timezone.london",
+      "reason": "No timezone identifier is frozen for this session."
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "field": "timezone.new_york",
+      "reason": "No timezone identifier is frozen for this session."
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "field": "source_resolution",
+      "reason": "P0-R records M1/tick as alternatives and does not select one exact source."
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "field": "warm_up_duration",
+      "reason": "No exact duration is frozen; detector and ATR history needs are not quantified."
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "field": "exit_horizon",
+      "reason": "P0 explicitly records maximum holding/session cutoff implementation as PARTIAL."
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "field": "session_calendar_coverage",
+      "reason": "No complete holiday, weekend, and DST calendar contract is frozen."
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "field": "instrument_role.USDJPY",
+      "reason": "P0 does not freeze whether the YAML control instrument is required."
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "field": "timezone.london",
+      "reason": "No timezone identifier is frozen for this session."
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "field": "timezone.new_york",
+      "reason": "No timezone identifier is frozen for this session."
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "field": "source_resolution",
+      "reason": "P0-R records M1/tick as alternatives and does not select one exact source."
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "field": "warm_up_duration",
+      "reason": "No exact duration is frozen; detector and ATR history needs are not quantified."
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "field": "exit_horizon",
+      "reason": "P0 explicitly records maximum holding/session cutoff implementation as PARTIAL."
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "field": "session_calendar_coverage",
+      "reason": "No complete holiday, weekend, and DST calendar contract is frozen."
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "field": "instrument_role.USDJPY",
+      "reason": "P0 does not freeze whether the YAML control instrument is required."
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "field": "source_resolution",
+      "reason": "P0-R records M1/tick as alternatives and does not select one exact source."
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "field": "warm_up_duration",
+      "reason": "No exact duration is frozen; detector and ATR history needs are not quantified."
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "field": "exit_horizon",
+      "reason": "P0 explicitly records maximum holding/session cutoff implementation as PARTIAL."
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "field": "session_calendar_coverage",
+      "reason": "No complete holiday, weekend, and DST calendar contract is frozen."
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "field": "instrument_role.USDJPY",
+      "reason": "P0 does not freeze whether the YAML control instrument is required."
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "field": "source_resolution",
+      "reason": "P0-R records M1/tick as alternatives and does not select one exact source."
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "field": "warm_up_duration",
+      "reason": "No exact duration is frozen; detector and ATR history needs are not quantified."
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "field": "exit_horizon",
+      "reason": "P0 explicitly records maximum holding/session cutoff implementation as PARTIAL."
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "field": "session_calendar_coverage",
+      "reason": "No complete holiday, weekend, and DST calendar contract is frozen."
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "controls": {
+    "direction_flip_placebo": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    },
+    "entry_delay_one_bar": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    },
+    "entry_delay_two_bars": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    },
+    "label_permutation": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    },
+    "random_entry_matched_benchmark": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    },
+    "session_permuted_placebo": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    },
+    "time_shift_placebo": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    },
+    "trade_order_bootstrap": {
+      "SMC_A_SWEEP_REVERSAL_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_LONDON_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      },
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": {
+        "net_r": 0.0,
+        "p": 1.0
+      }
+    }
+  },
+  "created_at_utc": "2026-07-29T13:53:22.415773+00:00",
+  "status": "PASS"
+}

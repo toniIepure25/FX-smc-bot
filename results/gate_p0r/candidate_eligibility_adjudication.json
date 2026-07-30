@@ -1,0 +1,72 @@
+{
+  "adjudications": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "final_tier": "NOT_ADJUDICATED_INCOMPLETE_PERMITTED_DATA_COVERAGE",
+      "forward_test_eligibility": false,
+      "sample_eligibility": {
+        "observed_value": 0,
+        "status": "FAIL",
+        "threshold": 100
+      },
+      "tier_a": {
+        "minimum_sample": "FAIL"
+      },
+      "tier_b": {
+        "minimum_sample": "FAIL"
+      }
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "final_tier": "NOT_ADJUDICATED_INCOMPLETE_PERMITTED_DATA_COVERAGE",
+      "forward_test_eligibility": false,
+      "sample_eligibility": {
+        "observed_value": 0,
+        "status": "FAIL",
+        "threshold": 100
+      },
+      "tier_a": {
+        "minimum_sample": "FAIL"
+      },
+      "tier_b": {
+        "minimum_sample": "FAIL"
+      }
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "final_tier": "NOT_ADJUDICATED_INCOMPLETE_PERMITTED_DATA_COVERAGE",
+      "forward_test_eligibility": false,
+      "sample_eligibility": {
+        "observed_value": 0,
+        "status": "FAIL",
+        "threshold": 100
+      },
+      "tier_a": {
+        "minimum_sample": "FAIL"
+      },
+      "tier_b": {
+        "minimum_sample": "FAIL"
+      }
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "final_tier": "NOT_ADJUDICATED_INCOMPLETE_PERMITTED_DATA_COVERAGE",
+      "forward_test_eligibility": false,
+      "sample_eligibility": {
+        "observed_value": 0,
+        "status": "FAIL",
+        "threshold": 100
+      },
+      "tier_a": {
+        "minimum_sample": "FAIL"
+      },
+      "tier_b": {
+        "minimum_sample": "FAIL"
+      }
+    }
+  ],
+  "created_at_utc": "2026-07-29T14:16:45.860941+00:00",
+  "primary_candidate": null,
+  "secondary_candidate": null,
+  "status": "BLOCKED_BY_PERMITTED_DATA_COVERAGE"
+}

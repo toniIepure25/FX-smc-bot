@@ -1,0 +1,23 @@
+{
+  "changed_paths_assessed": 25,
+  "checks": {
+    "credentials_introduced": false,
+    "new_canonical_market_data_introduced": false,
+    "new_provider_payloads_introduced": false,
+    "new_raw_market_data_introduced": false,
+    "new_row_level_benchmarks_introduced": false,
+    "new_row_level_orders_introduced": false,
+    "new_row_level_signals_introduced": false,
+    "new_row_level_trades_introduced": false,
+    "temporary_acquisition_data_introduced": false
+  },
+  "comparison_base": "4ec7b793655472689eab13005b4f9382d9288219",
+  "created_at_utc": "2026-07-30T08:52:38.7647711Z",
+  "introduced_prohibited_paths": [],
+  "legacy_classification": "LEGACY_TRACKED_NOT_AUTHORIZED_FOR_STRATEGY_ALPHA_V1",
+  "legacy_tracked_path_count": 12,
+  "legacy_tracked_paths_read_for_outcomes": false,
+  "market_or_row_level_payload_committed_by_p1": false,
+  "scope": "Tracked Gate P.1 delta only; no market or sealed-holdout storage enumeration",
+  "status": "PASS"
+}

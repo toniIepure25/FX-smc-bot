@@ -322,7 +322,7 @@ def resolve_runtime_config(
     config: dict[str, Any] = {}
     if yaml_path and yaml_path.exists():
         raw = load_strategy_config(yaml_path)
-        family_key = _family_config_key(family)
+        family_key = _family_config_key(family, session)
         if family_key and family_key in raw:
             config = raw[family_key]
         elif session in raw:
@@ -346,10 +346,10 @@ def resolve_runtime_config(
     )
 
 
-def _family_config_key(family: str) -> str | None:
+def _family_config_key(family: str, session: str = "") -> str | None:
     mapping = {
         "liquidity_sweep_mss_fvg_reversal": "sweep_reversal",
         "liquidity_acceptance_fvg_continuation": "acceptance_continuation",
-        "opening_range_displacement_fvg_retest": None,
+        "opening_range_displacement_fvg_retest": f"opening_range_{session}",
     }
     return mapping.get(family)

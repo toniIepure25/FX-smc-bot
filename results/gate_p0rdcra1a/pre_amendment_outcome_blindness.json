@@ -1,0 +1,20 @@
+{
+  "amendment_scientifically_permissible": true,
+  "benchmarks_calculated": false,
+  "candidate_bars_loaded": false,
+  "created_at_utc": "2026-07-29T15:42:57.381396+00:00",
+  "economic_outcome_accessed": false,
+  "evidence_checks": {
+    "no_holdout_provider_request": true,
+    "p0r_acquisition_not_attempted": true,
+    "p0rdcr_part_b_not_executed": true,
+    "p0rdcr_stopped_at_a1": true
+  },
+  "market_data_inventory_executed": false,
+  "orders_generated": false,
+  "pnl_calculated": false,
+  "provider_request_sent": false,
+  "signals_generated": false,
+  "status": "PASS",
+  "trades_generated": false
+}

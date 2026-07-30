@@ -1,0 +1,7 @@
+{
+  "aggregate_hashes_identical": true,
+  "complete_historical_replay_runs": 0,
+  "created_at_utc": "2026-07-29T14:16:02.029361+00:00",
+  "reason": "No replay executed after coverage block; deterministic blocked artifacts generated.",
+  "status": "PASS"
+}

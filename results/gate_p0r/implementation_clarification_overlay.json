@@ -1,0 +1,24 @@
+{
+  "clarifications": {
+    "commission_to_r": "commission is divided by initial risk cash value per trade",
+    "missing_final_bar_exit": "force exit at last executable side when coverage is complete",
+    "order_expiry": "expiry is exclusive at bar_time >= expires_at",
+    "same_timestamp_priority": "deterministic candidate_id, instrument, session order",
+    "swap_to_r": "swap is divided by initial risk cash value when rollover occurs"
+  },
+  "created_at_utc": "2026-07-29T14:16:02.004536+00:00",
+  "does_not_change": [
+    "strategy parameters",
+    "candidate universe",
+    "instruments",
+    "sessions",
+    "cost scenarios",
+    "estimands",
+    "benchmarks",
+    "Tier A/B/C rules"
+  ],
+  "outcome_blind": true,
+  "overlay_hash": "fb70ade4212c0343c86d9ba0e0b17661dd6823204e7d459928ac735ca9d772e2",
+  "overlay_id": "P0R_IMPLEMENTATION_CLARIFICATION_V1",
+  "status": "PASS"
+}

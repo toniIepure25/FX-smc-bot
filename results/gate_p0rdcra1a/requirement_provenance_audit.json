@@ -1,0 +1,105 @@
+{
+  "created_at_utc": "2026-07-29T15:42:57.381413+00:00",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "outcome_sources_read": false,
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "requirements": [
+    {
+      "conflicting_evidence": [
+        "P0-R leaves M1 and tick as alternatives rather than a hierarchy."
+      ],
+      "explicit_evidence": [
+        "P0-R requires M5 execution bars derived from M1/tick bid/ask.",
+        "The repository pins dukascopy-node 1.46.4 and contains native Dukascopy BI5 parity code."
+      ],
+      "implicit_implementation_evidence": [
+        "Bid/ask resampling supports deterministic M1-to-M5 aggregation.",
+        "Native BI5 parsing preserves Dukascopy side and UTC timestamp semantics."
+      ],
+      "missing_evidence": [
+        "No prior freeze selects one raw source resolution."
+      ],
+      "operational_consequence": "Recovery cannot know which local partitions are reusable.",
+      "prospective_resolution": "Dukascopy tick/BI5 -> canonical M1 bid/ask -> M5 bid/ask.",
+      "requirement": "source_resolution",
+      "scientific_consequence": "Mixing undocumented M1 with tick-derived M1 can change bars and fills."
+    },
+    {
+      "conflicting_evidence": [],
+      "explicit_evidence": [
+        "Maximum explicit indicator lookback is 20 M5 bars.",
+        "ATR period is 14 bars and prior-day levels require one complete M5 day."
+      ],
+      "implicit_implementation_evidence": [
+        "Sweep lifecycle can span 46 bars; acceptance 41; opening range 40.",
+        "Sweep htf_bias is optional and no mandatory HTF resolution is frozen."
+      ],
+      "missing_evidence": [
+        "No previous artifact freezes a shared warm-up integer."
+      ],
+      "operational_consequence": "The first eligible signal cannot be determined reproducibly.",
+      "prospective_resolution": "max(500, 46 + 288) = 500 M5 bars.",
+      "requirement": "warm_up",
+      "scientific_consequence": "Candidates could begin with unequal state history."
+    },
+    {
+      "conflicting_evidence": [],
+      "explicit_evidence": [
+        "Opening-range configurations freeze an 11:00 local cutoff.",
+        "Order expiry remains 20 bars and P0-R freezes a final executable-bar exit."
+      ],
+      "implicit_implementation_evidence": [
+        "OpeningRangeDetector cancels active setup state at its configured cutoff.",
+        "Execution code supports adverse-first SL/TP semantics."
+      ],
+      "missing_evidence": [
+        "Sweep and acceptance lack a position time-exit implementation."
+      ],
+      "operational_consequence": "A deterministic forced-exit event is required.",
+      "prospective_resolution": "Earliest SL, TP, session cutoff, FX-week close, or final bar; no carry.",
+      "requirement": "exit_horizon",
+      "scientific_consequence": "Unbounded holds alter costs, risk, and the estimand."
+    },
+    {
+      "conflicting_evidence": [
+        "Fixed UTC generic sessions are not DST-equivalent to local IANA sessions."
+      ],
+      "explicit_evidence": [
+        "Opening range freezes Europe/London and America/New_York with 08:00-11:00 local windows.",
+        "The timezone helper uses IANA ZoneInfo conversion."
+      ],
+      "implicit_implementation_evidence": [
+        "Generic SessionConfig has wider fixed UTC labels that are not candidate-specific cutoffs.",
+        "Existing market-calendar code documents 17:00 ET but does not model DST."
+      ],
+      "missing_evidence": [
+        "No complete candidate session and FX-week contract was frozen."
+      ],
+      "operational_consequence": "Certification needs one timezone-aware calendar contract.",
+      "prospective_resolution": "08:00-11:00 local IANA sessions; Sunday/Friday 17:00 New York FX week.",
+      "requirement": "session_calendar",
+      "scientific_consequence": "DST weeks can shift eligible bars and forced exits."
+    },
+    {
+      "conflicting_evidence": [
+        "The flattened P0 artifact obscures the primary/control distinction."
+      ],
+      "explicit_evidence": [
+        "Candidate YAML files label EURUSD/GBPUSD primary and USDJPY control.",
+        "Frozen benchmarks match on the candidate instrument and name no cross-instrument input."
+      ],
+      "implicit_implementation_evidence": [
+        "P0 candidate construction flattened primary and control lists into instruments."
+      ],
+      "missing_evidence": [
+        "No benchmark freeze requires USDJPY for candidate inference."
+      ],
+      "operational_consequence": "USDJPY must not block primary candidate certification.",
+      "prospective_resolution": "EURUSD/GBPUSD strategy required; USDJPY optional diagnostic only.",
+      "requirement": "usdjpy_role",
+      "scientific_consequence": "Requiring USDJPY would expand data coverage without benchmark necessity."
+    }
+  ],
+  "semantic_conflicts_with_explicit_p0_freezes": [],
+  "status": "PASS"
+}

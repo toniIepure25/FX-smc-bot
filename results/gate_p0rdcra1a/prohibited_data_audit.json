@@ -1,0 +1,37 @@
+{
+  "checks": {
+    "credentials_absent_from_gate_artifacts": true,
+    "legacy_tracked_csvs_used_for_outcomes": false,
+    "new_canonical_market_files_tracked": false,
+    "new_provider_response_bodies_tracked": false,
+    "new_raw_market_files_tracked": false,
+    "new_row_level_ledgers_tracked": false,
+    "sealed_holdout_accessed_or_enumerated": false
+  },
+  "created_at_utc": "2026-07-29T23:36:14.7589077Z",
+  "legacy_classification": "LEGACY_TRACKED_NOT_AUTHORIZED_FOR_STRATEGY_ALPHA_V1",
+  "legacy_tracked_paths": [
+    "data/EURUSD/15m.csv",
+    "data/GBPUSD/15m.csv",
+    "data/USDJPY/15m.csv",
+    "data/real/EURUSD/15m.csv",
+    "data/real/EURUSD/1h.csv",
+    "data/real/EURUSD/4h.csv",
+    "data/real/GBPUSD/15m.csv",
+    "data/real/GBPUSD/1h.csv",
+    "data/real/GBPUSD/4h.csv",
+    "data/real/USDJPY/15m.csv",
+    "data/real/USDJPY/1h.csv",
+    "data/real/USDJPY/4h.csv"
+  ],
+  "legacy_tracked_paths_count": 12,
+  "local_ignored_market_and_ledger_roots_checked_for_tracking": [
+    "data/canonical/p0rdcra1a",
+    "data/raw/p0rdcra1a/dukascopy-node",
+    "data/canonical/p0rdcra1a/_local_ledgers"
+  ],
+  "local_ignored_market_and_ledger_tracked_file_count": 0,
+  "raw_canonical_or_row_level_payload_committed": false,
+  "scope": "Exact tracked-path checks only; sealed holdout storage was not inspected",
+  "status": "PASS"
+}

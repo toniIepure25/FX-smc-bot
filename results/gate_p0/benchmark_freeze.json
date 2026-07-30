@@ -1,0 +1,36 @@
+{
+  "benchmarks": {
+    "exposure_matched_passive": {
+      "match_on": [
+        "instrument",
+        "direction",
+        "entry_time",
+        "holding_duration"
+      ]
+    },
+    "matched_random_entry": {
+      "match_on": [
+        "instrument",
+        "direction",
+        "session",
+        "weekday",
+        "volatility_bin",
+        "spread_bin",
+        "holding_time_opportunity"
+      ],
+      "seed": 1729
+    },
+    "simple_mean_reversion": {
+      "definition": "fixed non-optimized prior bar reversal"
+    },
+    "simple_momentum": {
+      "definition": "fixed non-optimized prior bar direction continuation"
+    },
+    "time_shift_placebo": {
+      "shift": "next eligible non-causal session slot"
+    }
+  },
+  "chosen_after_results": false,
+  "created_at_utc": "2026-07-29T13:52:04.726726+00:00",
+  "status": "PASS"
+}

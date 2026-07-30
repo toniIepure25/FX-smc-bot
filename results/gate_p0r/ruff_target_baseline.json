@@ -1,0 +1,2779 @@
+[
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 12,
+      "row": 9
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\ablation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Remove unused import: `copy`"
+    },
+    "location": {
+      "column": 8,
+      "row": 9
+    },
+    "message": "`copy` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 79,
+      "row": 15
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\ablation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.backtesting.metrics import PerformanceSummary",
+          "end_location": {
+            "column": 79,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 15
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.backtesting.metrics.compute_metrics`"
+    },
+    "location": {
+      "column": 64,
+      "row": 15
+    },
+    "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 15,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 42,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\ablation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.config import AppConfig, TradingPair",
+          "end_location": {
+            "column": 66,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.config.AlphaConfig`"
+    },
+    "location": {
+      "column": 31,
+      "row": 16
+    },
+    "message": "`fx_smc_bot.config.AlphaConfig` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 16,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 45,
+      "row": 18
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\ablation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 19
+          },
+          "location": {
+            "column": 1,
+            "row": 18
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.domain.BacktestResult`"
+    },
+    "location": {
+      "column": 31,
+      "row": 18
+    },
+    "message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 18,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 38,
+      "row": 14
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport json\r\nimport logging\r\nfrom dataclasses import dataclass, field\r\nfrom datetime import datetime\r\nfrom pathlib import Path\r\nfrom typing import TYPE_CHECKING, Any\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 7,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 102,
+      "row": 73
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 73
+    },
+    "message": "Line too long (101 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 73,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 122,
+      "row": 78
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaign_aggregator.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 78
+    },
+    "message": "Line too long (121 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 78,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 12,
+      "row": 7
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Remove unused import: `copy`"
+    },
+    "location": {
+      "column": 8,
+      "row": 7
+    },
+    "message": "`copy` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 7,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 62,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused import"
+    },
+    "location": {
+      "column": 44,
+      "row": 16
+    },
+    "message": "`fx_smc_bot.backtesting.metrics.PerformanceSummary` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 16,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 79,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused import"
+    },
+    "location": {
+      "column": 64,
+      "row": 16
+    },
+    "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 16,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 45,
+      "row": 19
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 20
+          },
+          "location": {
+            "column": 1,
+            "row": 19
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.domain.BacktestResult`"
+    },
+    "location": {
+      "column": 31,
+      "row": 19
+    },
+    "message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 19,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 19,
+      "row": 21
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 26
+          },
+          "location": {
+            "column": 1,
+            "row": 20
+          }
+        }
+      ],
+      "message": "Remove unused import"
+    },
+    "location": {
+      "column": 5,
+      "row": 21
+    },
+    "message": "`fx_smc_bot.research.ablation.AblationResult` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 21,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 24,
+      "row": 22
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 26
+          },
+          "location": {
+            "column": 1,
+            "row": 20
+          }
+        }
+      ],
+      "message": "Remove unused import"
+    },
+    "location": {
+      "column": 5,
+      "row": 22
+    },
+    "message": "`fx_smc_bot.research.ablation.run_family_ablation` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 22,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 24,
+      "row": 23
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 26
+          },
+          "location": {
+            "column": 1,
+            "row": 20
+          }
+        }
+      ],
+      "message": "Remove unused import"
+    },
+    "location": {
+      "column": 5,
+      "row": 23
+    },
+    "message": "`fx_smc_bot.research.ablation.run_filter_ablation` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 23,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 25,
+      "row": 24
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 26
+          },
+          "location": {
+            "column": 1,
+            "row": 20
+          }
+        }
+      ],
+      "message": "Remove unused import"
+    },
+    "location": {
+      "column": 5,
+      "row": 24
+    },
+    "message": "`fx_smc_bot.research.ablation.run_scoring_ablation` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 24,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 105,
+      "row": 48
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 48
+    },
+    "message": "Line too long (104 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 48,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 105,
+      "row": 142
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\campaigns.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 142
+    },
+    "message": "Line too long (104 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 142,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 51,
+      "row": 14
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nfrom dataclasses import dataclass, field\r\nfrom typing import TYPE_CHECKING, Any\r\n\r\nfrom fx_smc_bot.research.gating import GateVerdict\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 9
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 41,
+      "row": 11
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from dataclasses import dataclass",
+          "end_location": {
+            "column": 41,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Remove unused import: `dataclasses.field`"
+    },
+    "location": {
+      "column": 36,
+      "row": 11
+    },
+    "message": "`dataclasses.field` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 11,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 51,
+      "row": 14
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 14
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.research.gating.GateVerdict`"
+    },
+    "location": {
+      "column": 40,
+      "row": 14
+    },
+    "message": "`fx_smc_bot.research.gating.GateVerdict` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 14,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 103,
+      "row": 87
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 87
+    },
+    "message": "Line too long (102 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 87,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 123,
+      "row": 88
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 88
+    },
+    "message": "Line too long (122 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 88,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 115,
+      "row": 177
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 177
+    },
+    "message": "Line too long (114 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 177,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 104,
+      "row": 201
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\candidate_selection.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 201
+    },
+    "message": "Line too long (103 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 201,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 38,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport hashlib\r\nimport json\r\nimport logging\r\nfrom dataclasses import dataclass, field\r\nfrom datetime import datetime\r\nfrom pathlib import Path\r\nfrom typing import TYPE_CHECKING, Any\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 18
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 8
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 8,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 50,
+      "row": 23
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 24
+          },
+          "location": {
+            "column": 1,
+            "row": 23
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.research.gating.GateResult`"
+    },
+    "location": {
+      "column": 40,
+      "row": 23
+    },
+    "message": "`fx_smc_bot.research.gating.GateResult` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 23,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "UP037",
+    "end_location": {
+      "column": 24,
+      "row": 101
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "CandidateRun",
+          "end_location": {
+            "column": 24,
+            "row": 101
+          },
+          "location": {
+            "column": 10,
+            "row": 101
+          }
+        }
+      ],
+      "message": "Remove quotes"
+    },
+    "location": {
+      "column": 10,
+      "row": 101
+    },
+    "message": "Remove quotes from type annotation",
+    "name": "quoted-annotation",
+    "noqa_row": 101,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/quoted-annotation"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 125,
+      "row": 182
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 182
+    },
+    "message": "Line too long (124 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 182,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 103,
+      "row": 186
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 186
+    },
+    "message": "Line too long (102 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 186,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 115,
+      "row": 189
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 189
+    },
+    "message": "Line too long (114 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 189,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 102,
+      "row": 191
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 191
+    },
+    "message": "Line too long (101 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 191,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 116,
+      "row": 192
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 192
+    },
+    "message": "Line too long (115 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 192,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 210
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\champion_bundle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 210
+    },
+    "message": "Line too long (110 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 210,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 85,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nfrom dataclasses import dataclass, field\r\nfrom datetime import datetime\r\nfrom enum import Enum\r\nfrom typing import TYPE_CHECKING, Any\r\n\r\nfrom fx_smc_bot.research.candidate_selection import CandidateScorecard\r\nfrom fx_smc_bot.research.gating import DeploymentGateConfig, GateResult, GateVerdict\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 18
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 8
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 8,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F841",
+    "end_location": {
+      "column": 8,
+      "row": 69
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 11,
+            "row": 69
+          },
+          "location": {
+            "column": 5,
+            "row": 69
+          }
+        }
+      ],
+      "message": "Remove assignment to unused variable `cfg`"
+    },
+    "location": {
+      "column": 5,
+      "row": 69
+    },
+    "message": "Local variable `cfg` is assigned to but never used",
+    "name": "unused-variable",
+    "noqa_row": 69,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-variable"
+  },
+  {
+    "cell": null,
+    "code": "F841",
+    "end_location": {
+      "column": 11,
+      "row": 124
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 14,
+            "row": 124
+          },
+          "location": {
+            "column": 5,
+            "row": 124
+          }
+        }
+      ],
+      "message": "Remove assignment to unused variable `n_pass`"
+    },
+    "location": {
+      "column": 5,
+      "row": 124
+    },
+    "message": "Local variable `n_pass` is assigned to but never used",
+    "name": "unused-variable",
+    "noqa_row": 124,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-variable"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 118,
+      "row": 128
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 128
+    },
+    "message": "Line too long (117 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 128,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 117,
+      "row": 138
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 138
+    },
+    "message": "Line too long (116 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 138,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "F541",
+    "end_location": {
+      "column": 75,
+      "row": 143
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\decision_memo.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "\"Champion passes blocking gates but has warnings.\"",
+          "end_location": {
+            "column": 75,
+            "row": 143
+          },
+          "location": {
+            "column": 24,
+            "row": 143
+          }
+        }
+      ],
+      "message": "Remove extraneous `f` prefix"
+    },
+    "location": {
+      "column": 24,
+      "row": 143
+    },
+    "message": "f-string without any placeholders",
+    "name": "f-string-missing-placeholders",
+    "noqa_row": 143,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/f-string-missing-placeholders"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 36,
+      "row": 9
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\evaluation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Remove unused import: `collections.defaultdict`"
+    },
+    "location": {
+      "column": 25,
+      "row": 9
+    },
+    "message": "`collections.defaultdict` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 23,
+      "row": 11
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\evaluation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Remove unused import: `typing.Any`"
+    },
+    "location": {
+      "column": 20,
+      "row": 11
+    },
+    "message": "`typing.Any` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 11,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E731",
+    "end_location": {
+      "column": 63,
+      "row": 51
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\evaluation.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "def regime_key(t):\r\n        return t.regime if t.regime else \"unknown\"",
+          "end_location": {
+            "column": 63,
+            "row": 51
+          },
+          "location": {
+            "column": 5,
+            "row": 51
+          }
+        }
+      ],
+      "message": "Rewrite `regime_key` as a `def`"
+    },
+    "location": {
+      "column": 5,
+      "row": 51
+    },
+    "message": "Do not assign a `lambda` expression, use a `def`",
+    "name": "lambda-assignment",
+    "noqa_row": 51,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/lambda-assignment"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 15,
+      "row": 10
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\experiments.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Remove unused import: `hashlib`"
+    },
+    "location": {
+      "column": 8,
+      "row": 10
+    },
+    "message": "`hashlib` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 12,
+      "row": 11
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\experiments.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Remove unused import: `json`"
+    },
+    "location": {
+      "column": 8,
+      "row": 11
+    },
+    "message": "`json` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 11,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 30,
+      "row": 14
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\experiments.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 14
+          }
+        }
+      ],
+      "message": "Remove unused import: `datetime.datetime`"
+    },
+    "location": {
+      "column": 22,
+      "row": 14
+    },
+    "message": "`datetime.datetime` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 14,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 79,
+      "row": 21
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\experiments.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.backtesting.metrics import PerformanceSummary",
+          "end_location": {
+            "column": 79,
+            "row": 21
+          },
+          "location": {
+            "column": 1,
+            "row": 21
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.backtesting.metrics.compute_metrics`"
+    },
+    "location": {
+      "column": 64,
+      "row": 21
+    },
+    "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 21,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 38,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\final_package.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport json\r\nimport logging\r\nfrom dataclasses import dataclass, field\r\nfrom datetime import datetime\r\nfrom enum import Enum\r\nfrom pathlib import Path\r\nfrom typing import TYPE_CHECKING, Any\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 18
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 8
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 8,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 60,
+      "row": 19
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\final_package.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "pass",
+          "end_location": {
+            "column": 60,
+            "row": 19
+          },
+          "location": {
+            "column": 5,
+            "row": 19
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.research.validation.CandidateRun`"
+    },
+    "location": {
+      "column": 48,
+      "row": 19
+    },
+    "message": "`fx_smc_bot.research.validation.CandidateRun` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 19,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 107,
+      "row": 109
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\final_package.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 109
+    },
+    "message": "Line too long (106 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 109,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 114,
+      "row": 138
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\final_package.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 138
+    },
+    "message": "Line too long (113 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 138,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 102,
+      "row": 106
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\frozen_config.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 106
+    },
+    "message": "Line too long (101 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 106,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 104,
+      "row": 79
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 79
+    },
+    "message": "Line too long (103 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 79,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 102,
+      "row": 83
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 83
+    },
+    "message": "Line too long (101 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 83,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 110,
+      "row": 103
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 103
+    },
+    "message": "Line too long (109 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 103,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 115,
+      "row": 116
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 116
+    },
+    "message": "Line too long (114 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 116,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 115,
+      "row": 118
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 118
+    },
+    "message": "Line too long (114 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 118,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 113,
+      "row": 128
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 128
+    },
+    "message": "Line too long (112 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 128,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 155
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 155
+    },
+    "message": "Line too long (110 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 155,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 110,
+      "row": 156
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\gating.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 156
+    },
+    "message": "Line too long (109 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 156,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 30,
+      "row": 13
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\paper_campaign.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 13
+          }
+        }
+      ],
+      "message": "Remove unused import: `datetime.datetime`"
+    },
+    "location": {
+      "column": 22,
+      "row": 13
+    },
+    "message": "`datetime.datetime` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 13,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 40,
+      "row": 18
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\paper_campaign.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.config import TradingPair",
+          "end_location": {
+            "column": 53,
+            "row": 18
+          },
+          "location": {
+            "column": 1,
+            "row": 18
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.config.AppConfig`"
+    },
+    "location": {
+      "column": 31,
+      "row": 18
+    },
+    "message": "`fx_smc_bot.config.AppConfig` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 18,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F541",
+    "end_location": {
+      "column": 41,
+      "row": 184
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\paper_campaign.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "\"| Day | Events |\"",
+          "end_location": {
+            "column": 41,
+            "row": 184
+          },
+          "location": {
+            "column": 22,
+            "row": 184
+          }
+        }
+      ],
+      "message": "Remove extraneous `f` prefix"
+    },
+    "location": {
+      "column": 22,
+      "row": 184
+    },
+    "message": "f-string without any placeholders",
+    "name": "f-string-missing-placeholders",
+    "noqa_row": 184,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/f-string-missing-placeholders"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 12,
+      "row": 8
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\paper_review.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Remove unused import: `json`"
+    },
+    "location": {
+      "column": 8,
+      "row": 8
+    },
+    "message": "`json` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 8,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 25,
+      "row": 12
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\paper_review.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 12
+          }
+        }
+      ],
+      "message": "Remove unused import: `pathlib.Path`"
+    },
+    "location": {
+      "column": 21,
+      "row": 12
+    },
+    "message": "`pathlib.Path` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 12,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 107,
+      "row": 302
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\paper_review.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 302
+    },
+    "message": "Line too long (106 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 302,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E731",
+    "end_location": {
+      "column": 47,
+      "row": 332
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\paper_review.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "def _check(v):\r\n        return \"PASS\" if v else \"FAIL\"",
+          "end_location": {
+            "column": 47,
+            "row": 332
+          },
+          "location": {
+            "column": 5,
+            "row": 332
+          }
+        }
+      ],
+      "message": "Rewrite `_check` as a `def`"
+    },
+    "location": {
+      "column": 5,
+      "row": 332
+    },
+    "message": "Do not assign a `lambda` expression, use a `def`",
+    "name": "lambda-assignment",
+    "noqa_row": 332,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/lambda-assignment"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 12,
+      "row": 9
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Remove unused import: `json`"
+    },
+    "location": {
+      "column": 8,
+      "row": 9
+    },
+    "message": "`json` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 58,
+      "row": 14
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.domain import BacktestResult",
+          "end_location": {
+            "column": 58,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 14
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.domain.ClosedTrade`"
+    },
+    "location": {
+      "column": 47,
+      "row": 14
+    },
+    "message": "`fx_smc_bot.domain.ClosedTrade` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 14,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 49,
+      "row": 15
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.live.journal import JournalEvent",
+          "end_location": {
+            "column": 63,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 15
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.live.journal.EventJournal`"
+    },
+    "location": {
+      "column": 37,
+      "row": 15
+    },
+    "message": "`fx_smc_bot.live.journal.EventJournal` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 15,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 110,
+      "row": 110
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 110
+    },
+    "message": "Line too long (109 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 110,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 112,
+      "row": 125
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 125
+    },
+    "message": "Line too long (111 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 125,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 130,
+      "row": 126
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 126
+    },
+    "message": "Line too long (129 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 126,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 118,
+      "row": 127
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reconciliation.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 127
+    },
+    "message": "Line too long (117 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 127,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 31,
+      "row": 12
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reporting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 12
+          }
+        }
+      ],
+      "message": "Remove unused import: `dataclasses.asdict`"
+    },
+    "location": {
+      "column": 25,
+      "row": 12
+    },
+    "message": "`dataclasses.asdict` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 12,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 13,
+      "row": 21
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reporting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.backtesting.attribution import (\r\n    AttributionSlice,\r\n    by_direction,\r\n    by_family,\r\n    by_pair,\r\n    by_session,\r\n    by_year,\r\n)",
+          "end_location": {
+            "column": 2,
+            "row": 25
+          },
+          "location": {
+            "column": 1,
+            "row": 17
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.backtesting.attribution.by_month`"
+    },
+    "location": {
+      "column": 5,
+      "row": 21
+    },
+    "message": "`fx_smc_bot.backtesting.attribution.by_month` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 21,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 119,
+      "row": 212
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reporting.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 212
+    },
+    "message": "Line too long (118 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 212,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 214
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reporting.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 214
+    },
+    "message": "Line too long (105 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 214,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 110,
+      "row": 218
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\reporting.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 218
+    },
+    "message": "Line too long (109 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 218,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "UP035",
+    "end_location": {
+      "column": 33,
+      "row": 10
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\robustness.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from typing import Any\r\nfrom collections.abc import Callable",
+          "end_location": {
+            "column": 33,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Import from `collections.abc`"
+    },
+    "location": {
+      "column": 1,
+      "row": 10
+    },
+    "message": "Import from `collections.abc` instead: `Callable`",
+    "name": "deprecated-import",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/deprecated-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 45,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\scores.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.domain import ClosedTrade",
+          "end_location": {
+            "column": 58,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.domain.BacktestResult`"
+    },
+    "location": {
+      "column": 31,
+      "row": 16
+    },
+    "message": "`fx_smc_bot.domain.BacktestResult` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 16,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 57,
+      "row": 17
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\scores.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 18
+          },
+          "location": {
+            "column": 1,
+            "row": 17
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.research.campaigns.CampaignReport`"
+    },
+    "location": {
+      "column": 43,
+      "row": 17
+    },
+    "message": "`fx_smc_bot.research.campaigns.CampaignReport` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 17,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F841",
+    "end_location": {
+      "column": 19,
+      "row": 107
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\scores.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 22,
+            "row": 107
+          },
+          "location": {
+            "column": 5,
+            "row": 107
+          }
+        }
+      ],
+      "message": "Remove assignment to unused variable `marginal_value`"
+    },
+    "location": {
+      "column": 5,
+      "row": 107
+    },
+    "message": "Local variable `marginal_value` is assigned to but never used",
+    "name": "unused-variable",
+    "noqa_row": 107,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-variable"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 103,
+      "row": 173
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\scores.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 173
+    },
+    "message": "Line too long (102 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 173,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 182
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\scores.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 182
+    },
+    "message": "Line too long (105 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 182,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 38,
+      "row": 12
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\simplification.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport logging\r\nfrom dataclasses import dataclass, field\r\nfrom enum import Enum\r\nfrom typing import TYPE_CHECKING, Any\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 7,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "UP037",
+    "end_location": {
+      "column": 30,
+      "row": 83
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\simplification.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "CandidateRun",
+          "end_location": {
+            "column": 30,
+            "row": 83
+          },
+          "location": {
+            "column": 16,
+            "row": 83
+          }
+        }
+      ],
+      "message": "Remove quotes"
+    },
+    "location": {
+      "column": 16,
+      "row": 83
+    },
+    "message": "Remove quotes from type annotation",
+    "name": "quoted-annotation",
+    "noqa_row": 83,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/quoted-annotation"
+  },
+  {
+    "cell": null,
+    "code": "F841",
+    "end_location": {
+      "column": 11,
+      "row": 93
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\simplification.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 14,
+            "row": 93
+          },
+          "location": {
+            "column": 5,
+            "row": 93
+          }
+        }
+      ],
+      "message": "Remove assignment to unused variable `sc_map`"
+    },
+    "location": {
+      "column": 5,
+      "row": 93
+    },
+    "message": "Local variable `sc_map` is assigned to but never used",
+    "name": "unused-variable",
+    "noqa_row": 93,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-variable"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 121
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\simplification.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 121
+    },
+    "message": "Line too long (105 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 121,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 105,
+      "row": 138
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\simplification.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 138
+    },
+    "message": "Line too long (104 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 138,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 206
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\simplification.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 206
+    },
+    "message": "Line too long (110 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 206,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 207
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\simplification.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 207
+    },
+    "message": "Line too long (110 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 207,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 79,
+      "row": 22
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\validation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.backtesting.metrics import PerformanceSummary",
+          "end_location": {
+            "column": 79,
+            "row": 22
+          },
+          "location": {
+            "column": 1,
+            "row": 22
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.backtesting.metrics.compute_metrics`"
+    },
+    "location": {
+      "column": 64,
+      "row": 22
+    },
+    "message": "`fx_smc_bot.backtesting.metrics.compute_metrics` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 22,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 40,
+      "row": 23
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\validation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.config import TradingPair",
+          "end_location": {
+            "column": 53,
+            "row": 23
+          },
+          "location": {
+            "column": 1,
+            "row": 23
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.config.AppConfig`"
+    },
+    "location": {
+      "column": 31,
+      "row": 23
+    },
+    "message": "`fx_smc_bot.config.AppConfig` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 23,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 16,
+      "row": 36
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\validation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from fx_smc_bot.research.gating import (\r\n    DeploymentGateConfig,\r\n    GateResult,\r\n    evaluate_deployment_gate,\r\n)",
+          "end_location": {
+            "column": 2,
+            "row": 38
+          },
+          "location": {
+            "column": 1,
+            "row": 33
+          }
+        }
+      ],
+      "message": "Remove unused import: `fx_smc_bot.research.gating.GateVerdict`"
+    },
+    "location": {
+      "column": 5,
+      "row": 36
+    },
+    "message": "`fx_smc_bot.research.gating.GateVerdict` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 36,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 146
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\validation.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 146
+    },
+    "message": "Line too long (110 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 146,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 102,
+      "row": 186
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\validation.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 186
+    },
+    "message": "Line too long (101 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 186,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 30,
+      "row": 13
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\walk_forward.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 13
+          }
+        }
+      ],
+      "message": "Remove unused import: `datetime.datetime`"
+    },
+    "location": {
+      "column": 22,
+      "row": 13
+    },
+    "message": "`datetime.datetime` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 13,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 19,
+      "row": 15
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\walk_forward.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 15
+          }
+        }
+      ],
+      "message": "Remove unused import: `numpy`"
+    },
+    "location": {
+      "column": 17,
+      "row": 15
+    },
+    "message": "`numpy` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 15,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 33,
+      "row": 16
+    },
+    "filename": "D:\\ComputaCenter\\FX-smc-bot\\.audit_tmp\\gate_p0r_origin_main_ky031il1\\src\\fx_smc_bot\\research\\walk_forward.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused import: `numpy.typing.NDArray`"
+    },
+    "location": {
+      "column": 26,
+      "row": 16
+    },
+    "message": "`numpy.typing.NDArray` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 16,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  }
+]

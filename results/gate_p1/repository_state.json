@@ -1,0 +1,9 @@
+{
+  "branch": "research/strategy-alpha-prospective-v1",
+  "created_at_utc": "2026-07-30T08:42:50.545125+00:00",
+  "origin_main_sha": "ada8177c738b08f9a119d28a3e8b1fdeea7ef0b2",
+  "starting_remote_sha": "4ec7b793655472689eab13005b4f9382d9288219",
+  "starting_sha": "4ec7b793655472689eab13005b4f9382d9288219",
+  "status": "PASS",
+  "worktree_clean_before_gate": true
+}

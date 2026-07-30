@@ -1,0 +1,26 @@
+{
+  "canonical_m1_rows": 5969252,
+  "canonical_m5_rows": 1196691,
+  "certified_pair_months": 192,
+  "created_at_utc": "2026-07-29T18:47:23.978971+00:00",
+  "failed_pair_months": 0,
+  "forward_fill_used": false,
+  "holdout_accessed": false,
+  "interpolation_used": false,
+  "parquet_roundtrip_passed": true,
+  "provider_closed_classification_rule": "same date and named session absent for both EURUSD and GBPUSD",
+  "provider_closed_cross_instrument_session_records": 36,
+  "provider_closed_observed_session_days": 36,
+  "runtime_versions": {
+    "pandas": "2.3.3",
+    "pyarrow": "25.0.0",
+    "python": "3.13.5"
+  },
+  "session_missing_days": 0,
+  "session_partial_days": 2,
+  "source_resolution": "DUKASCOPY_TICK_BI5_BID_ASK_TO_UTC_M1_TO_M5",
+  "status": "PASS",
+  "synthetic_bank_holiday_calendar_used": false,
+  "three_run_determinism_passed": true,
+  "three_run_determinism_required": 3
+}

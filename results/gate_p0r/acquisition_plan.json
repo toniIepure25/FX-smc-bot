@@ -1,0 +1,488 @@
+{
+  "created_at_utc": "2026-07-29T14:15:14.412346+00:00",
+  "holdout_requests_rejected_before_provider_access": true,
+  "missing_permitted_partitions": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "EURUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "GBPUSD",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "window": "engineering"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "window": "historical_replay"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2020-01-01",
+        "2022-12-31"
+      ],
+      "window": "historical_stress"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "guard": "requested date must be < 2023-01-01",
+      "instrument": "USDJPY",
+      "required_date_range": [
+        "2015-01-01",
+        "2022-12-31"
+      ],
+      "window": "combined"
+    }
+  ],
+  "raw_or_canonical_data_committed": false,
+  "status": "PLAN_ONLY_NOT_EXECUTED"
+}

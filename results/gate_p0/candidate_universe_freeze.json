@@ -1,0 +1,144 @@
+{
+  "candidate_count": 4,
+  "candidates": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "config_canonical_hash": "b8dfd15cf012a8ceba5b4031694726361a0055ee82f1d6dfc5ab1acaa1aab168",
+      "config_path": "configs/research/intraday_smc/sweep_reversal.yaml",
+      "config_raw_hash": "342def379cd60590b69b1072468e7a0014657382cb8b2dfd4dffd24a1ce8bc7b",
+      "cost_assumptions": {
+        "commission_per_lot": 3.5,
+        "slippage_pips": 0.3,
+        "spread": "actual bid/ask when certified, conservative fallback otherwise",
+        "swap": "default conservative swap table for overnight holds"
+      },
+      "entry_rule": "limit order at FVG retracement after sweep, reclaim, MSS and displacement are final",
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "invalid_data_behavior": "NO_TRADE_WITH_RECORDED_REASON",
+      "maximum_concurrent_exposure": 3,
+      "maximum_holding_time": "bounded by strategy runtime/session cutoff; audited as PARTIAL",
+      "order_expiry": "20 bars",
+      "order_type": "LIMIT",
+      "overlap_rule": "max one active same-instrument position per candidate",
+      "risk_normalization": "1R equals initial stop-loss distance including entry costs",
+      "sessions": [
+        "london",
+        "new_york"
+      ],
+      "signal_timestamp": "bar-close after all required signal-bar values are final",
+      "stop_loss_rule": "configured ATR/spread/pip buffer beyond invalidation level",
+      "strategy_family": "liquidity_sweep_mss_fvg_reversal",
+      "take_profit_rule": "configured target_r multiple of initial risk",
+      "time_exit": "session cutoff or maximum holding/order bars where implemented"
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "config_canonical_hash": "18c1492f8bd5ef2241b9ead7fb2f1d41d5c05cc42e0ae59cd1ac775559e196c8",
+      "config_path": "configs/research/intraday_smc/acceptance_continuation.yaml",
+      "config_raw_hash": "f668b91ab7f275b438b4079d160d81e755e514e7c7d0e4571626a19ff6c9c875",
+      "cost_assumptions": {
+        "commission_per_lot": 3.5,
+        "slippage_pips": 0.3,
+        "spread": "actual bid/ask when certified, conservative fallback otherwise",
+        "swap": "default conservative swap table for overnight holds"
+      },
+      "entry_rule": "limit order at FVG retracement after acceptance and displacement bars are final",
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "invalid_data_behavior": "NO_TRADE_WITH_RECORDED_REASON",
+      "maximum_concurrent_exposure": 3,
+      "maximum_holding_time": "bounded by strategy runtime/session cutoff; audited as PARTIAL",
+      "order_expiry": "20 bars",
+      "order_type": "LIMIT",
+      "overlap_rule": "max one active same-instrument position per candidate",
+      "risk_normalization": "1R equals initial stop-loss distance including entry costs",
+      "sessions": [
+        "london",
+        "new_york"
+      ],
+      "signal_timestamp": "bar-close after all required signal-bar values are final",
+      "stop_loss_rule": "configured ATR/spread/pip buffer beyond invalidation level",
+      "strategy_family": "liquidity_acceptance_fvg_continuation",
+      "take_profit_rule": "configured target_r multiple of initial risk",
+      "time_exit": "session cutoff or maximum holding/order bars where implemented"
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "config_canonical_hash": "87c63a17e4d0c7c0f5a13bc591c21af29180bb5c652a2b79d927e66155f9bef0",
+      "config_path": "configs/research/intraday_smc/opening_range.yaml",
+      "config_raw_hash": "0a9a05b4137d83968cedc944e41dfbb583f74780274db848da0d1f5236e3ac77",
+      "cost_assumptions": {
+        "commission_per_lot": 3.5,
+        "slippage_pips": 0.3,
+        "spread": "actual bid/ask when certified, conservative fallback otherwise",
+        "swap": "default conservative swap table for overnight holds"
+      },
+      "entry_rule": "limit order at FVG retracement after London opening-range breakout is final",
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "invalid_data_behavior": "NO_TRADE_WITH_RECORDED_REASON",
+      "maximum_concurrent_exposure": 3,
+      "maximum_holding_time": "bounded by strategy runtime/session cutoff; audited as PARTIAL",
+      "order_expiry": "20 bars",
+      "order_type": "LIMIT",
+      "overlap_rule": "max one active same-instrument position per candidate",
+      "risk_normalization": "1R equals initial stop-loss distance including entry costs",
+      "sessions": [
+        "london"
+      ],
+      "signal_timestamp": "bar-close after all required signal-bar values are final",
+      "stop_loss_rule": "configured ATR/spread/pip buffer beyond invalidation level",
+      "strategy_family": "opening_range_displacement_fvg_retest",
+      "take_profit_rule": "configured target_r multiple of initial risk",
+      "time_exit": "session cutoff or maximum holding/order bars where implemented"
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "config_canonical_hash": "87c63a17e4d0c7c0f5a13bc591c21af29180bb5c652a2b79d927e66155f9bef0",
+      "config_path": "configs/research/intraday_smc/opening_range.yaml",
+      "config_raw_hash": "0a9a05b4137d83968cedc944e41dfbb583f74780274db848da0d1f5236e3ac77",
+      "cost_assumptions": {
+        "commission_per_lot": 3.5,
+        "slippage_pips": 0.3,
+        "spread": "actual bid/ask when certified, conservative fallback otherwise",
+        "swap": "default conservative swap table for overnight holds"
+      },
+      "entry_rule": "limit order at FVG retracement after New York opening-range breakout is final",
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "invalid_data_behavior": "NO_TRADE_WITH_RECORDED_REASON",
+      "maximum_concurrent_exposure": 3,
+      "maximum_holding_time": "bounded by strategy runtime/session cutoff; audited as PARTIAL",
+      "order_expiry": "20 bars",
+      "order_type": "LIMIT",
+      "overlap_rule": "max one active same-instrument position per candidate",
+      "risk_normalization": "1R equals initial stop-loss distance including entry costs",
+      "sessions": [
+        "new_york"
+      ],
+      "signal_timestamp": "bar-close after all required signal-bar values are final",
+      "stop_loss_rule": "configured ATR/spread/pip buffer beyond invalidation level",
+      "strategy_family": "opening_range_displacement_fvg_retest",
+      "take_profit_rule": "configured target_r multiple of initial risk",
+      "time_exit": "session cutoff or maximum holding/order bars where implemented"
+    }
+  ],
+  "created_at_utc": "2026-07-29T13:51:24.092253+00:00",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "parameter_search_permitted": false,
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "status": "PASS"
+}

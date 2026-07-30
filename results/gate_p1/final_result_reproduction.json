@@ -1,0 +1,503 @@
+{
+  "agreement_with_a1a_memo": true,
+  "candidate_results": [
+    {
+      "candidate_id": "SMC_A_SWEEP_REVERSAL_V1",
+      "day_cluster_ci": [
+        -0.07471524624636247,
+        0.09950101604164403
+      ],
+      "forward_test_eligibility": false,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": -0.005108740876873998,
+      "mean_net_r": 0.010604378019007616,
+      "mean_stress_1_5x_net_r": -0.006564049948166264,
+      "mean_stress_2_0x_net_r": -0.02373247791534012,
+      "profit_factor": 1.0484759129467567,
+      "sharpe": 0.2803239944743469,
+      "tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "trade_count": 202,
+      "weighted_window_mean_net_r": 0.01060437801900761,
+      "window_trade_count_sum": 202
+    },
+    {
+      "candidate_id": "SMC_B_ACCEPTANCE_CONTINUATION_V1",
+      "day_cluster_ci": [
+        -0.19886181889211968,
+        -0.11909809286987667
+      ],
+      "forward_test_eligibility": false,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": -0.037977498788189235,
+      "mean_net_r": -0.15810003865280425,
+      "mean_stress_1_5x_net_r": -0.20314689819740306,
+      "mean_stress_2_0x_net_r": -0.24819375774200184,
+      "profit_factor": 0.697540583282163,
+      "sharpe": -3.101238396768342,
+      "tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "trade_count": 2676,
+      "weighted_window_mean_net_r": -0.15810003865280425,
+      "window_trade_count_sum": 2676
+    },
+    {
+      "candidate_id": "SMC_C_LONDON_OPENING_RANGE_V1",
+      "day_cluster_ci": [
+        -0.14648950392805243,
+        -0.013442191814960099
+      ],
+      "forward_test_eligibility": false,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": -0.06299865878206207,
+      "mean_net_r": -0.08110841562673701,
+      "mean_stress_1_5x_net_r": -0.10633442653072471,
+      "mean_stress_2_0x_net_r": -0.13156043743471238,
+      "profit_factor": 0.7075700414540482,
+      "sharpe": -2.061177052930276,
+      "tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "trade_count": 360,
+      "weighted_window_mean_net_r": -0.08110841562673701,
+      "window_trade_count_sum": 360
+    },
+    {
+      "candidate_id": "SMC_C_NEWYORK_OPENING_RANGE_V1",
+      "day_cluster_ci": [
+        -0.08720909862743417,
+        0.023270907560085843
+      ],
+      "forward_test_eligibility": false,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha_mean_r": 0.019275422964931718,
+      "mean_net_r": -0.03139660244898749,
+      "mean_stress_1_5x_net_r": -0.05448396380805454,
+      "mean_stress_2_0x_net_r": -0.0775713251671216,
+      "profit_factor": 0.897514439013547,
+      "sharpe": -0.6831083289957264,
+      "tier": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "trade_count": 753,
+      "weighted_window_mean_net_r": -0.03139660244898749,
+      "window_trade_count_sum": 753
+    }
+  ],
+  "checks": [
+    {
+      "expected": 202,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.trade_count",
+      "observed": 202
+    },
+    {
+      "expected": 202,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.window_trade_count_sum",
+      "observed": 202
+    },
+    {
+      "absolute_difference": 5.204170427930421e-18,
+      "expected": 0.010604378019007616,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.weighted_window_mean_net_r",
+      "observed": 0.01060437801900761,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.010604378019007616,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.mean_net_r",
+      "observed": 0.010604378019007616,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 1.0484759129467567,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.profit_factor",
+      "observed": 1.0484759129467567,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.2803239944743469,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.sharpe",
+      "observed": 0.2803239944743469,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.006564049948166264,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.mean_stress_1_5x_net_r",
+      "observed": -0.006564049948166264,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.02373247791534012,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.mean_stress_2_0x_net_r",
+      "observed": -0.02373247791534012,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.005108740876873998,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.matched_random_alpha_mean_r",
+      "observed": -0.005108740876873998,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 1.0,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.holm_adjusted_p_value",
+      "observed": 1.0,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.07471524624636247,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.day_cluster_ci[0]",
+      "observed": -0.07471524624636247,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.09950101604164403,
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.day_cluster_ci[1]",
+      "observed": 0.09950101604164403,
+      "tolerance": 1e-12
+    },
+    {
+      "expected": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "match": true,
+      "name": "SMC_A_SWEEP_REVERSAL_V1.tier",
+      "observed": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST"
+    },
+    {
+      "expected": 2676,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.trade_count",
+      "observed": 2676
+    },
+    {
+      "expected": 2676,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.window_trade_count_sum",
+      "observed": 2676
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.15810003865280425,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.weighted_window_mean_net_r",
+      "observed": -0.15810003865280425,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.15810003865280425,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.mean_net_r",
+      "observed": -0.15810003865280425,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.697540583282163,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.profit_factor",
+      "observed": 0.697540583282163,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -3.101238396768342,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.sharpe",
+      "observed": -3.101238396768342,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.20314689819740306,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.mean_stress_1_5x_net_r",
+      "observed": -0.20314689819740306,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.24819375774200184,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.mean_stress_2_0x_net_r",
+      "observed": -0.24819375774200184,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.037977498788189235,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.matched_random_alpha_mean_r",
+      "observed": -0.037977498788189235,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 1.0,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.holm_adjusted_p_value",
+      "observed": 1.0,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.19886181889211968,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.day_cluster_ci[0]",
+      "observed": -0.19886181889211968,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.11909809286987667,
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.day_cluster_ci[1]",
+      "observed": -0.11909809286987667,
+      "tolerance": 1e-12
+    },
+    {
+      "expected": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "match": true,
+      "name": "SMC_B_ACCEPTANCE_CONTINUATION_V1.tier",
+      "observed": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST"
+    },
+    {
+      "expected": 360,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.trade_count",
+      "observed": 360
+    },
+    {
+      "expected": 360,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.window_trade_count_sum",
+      "observed": 360
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.08110841562673701,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.weighted_window_mean_net_r",
+      "observed": -0.08110841562673701,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.08110841562673701,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.mean_net_r",
+      "observed": -0.08110841562673701,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.7075700414540482,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.profit_factor",
+      "observed": 0.7075700414540482,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -2.061177052930276,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.sharpe",
+      "observed": -2.061177052930276,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.10633442653072471,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.mean_stress_1_5x_net_r",
+      "observed": -0.10633442653072471,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.13156043743471238,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.mean_stress_2_0x_net_r",
+      "observed": -0.13156043743471238,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.06299865878206207,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.matched_random_alpha_mean_r",
+      "observed": -0.06299865878206207,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 1.0,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.holm_adjusted_p_value",
+      "observed": 1.0,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.14648950392805243,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.day_cluster_ci[0]",
+      "observed": -0.14648950392805243,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.013442191814960099,
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.day_cluster_ci[1]",
+      "observed": -0.013442191814960099,
+      "tolerance": 1e-12
+    },
+    {
+      "expected": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "match": true,
+      "name": "SMC_C_LONDON_OPENING_RANGE_V1.tier",
+      "observed": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST"
+    },
+    {
+      "expected": 753,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.trade_count",
+      "observed": 753
+    },
+    {
+      "expected": 753,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.window_trade_count_sum",
+      "observed": 753
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.03139660244898749,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.weighted_window_mean_net_r",
+      "observed": -0.03139660244898749,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.03139660244898749,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.mean_net_r",
+      "observed": -0.03139660244898749,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.897514439013547,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.profit_factor",
+      "observed": 0.897514439013547,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.6831083289957264,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.sharpe",
+      "observed": -0.6831083289957264,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.05448396380805454,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.mean_stress_1_5x_net_r",
+      "observed": -0.05448396380805454,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.0775713251671216,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.mean_stress_2_0x_net_r",
+      "observed": -0.0775713251671216,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.019275422964931718,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.matched_random_alpha_mean_r",
+      "observed": 0.019275422964931718,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 1.0,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.holm_adjusted_p_value",
+      "observed": 1.0,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": -0.08720909862743417,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.day_cluster_ci[0]",
+      "observed": -0.08720909862743417,
+      "tolerance": 1e-12
+    },
+    {
+      "absolute_difference": 0.0,
+      "expected": 0.023270907560085843,
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.day_cluster_ci[1]",
+      "observed": 0.023270907560085843,
+      "tolerance": 1e-12
+    },
+    {
+      "expected": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST",
+      "match": true,
+      "name": "SMC_C_NEWYORK_OPENING_RANGE_V1.tier",
+      "observed": "TIER_C_NOT_ELIGIBLE_FOR_PROSPECTIVE_FORWARD_TEST"
+    },
+    {
+      "expected": 3991,
+      "match": true,
+      "name": "execution_manifest.trade_count",
+      "observed": 3991
+    },
+    {
+      "expected": null,
+      "match": true,
+      "name": "primary_candidate",
+      "observed": null
+    },
+    {
+      "expected": null,
+      "match": true,
+      "name": "secondary_candidate",
+      "observed": null
+    }
+  ],
+  "created_at_utc": "2026-07-30T08:42:50.625965+00:00",
+  "lineage_id": "FX_SMC_STRATEGY_ALPHA_PROSPECTIVE_LINEAGE_V1",
+  "market_data_loaded": false,
+  "primary_candidate": null,
+  "program_id": "FX_SMC_STRATEGY_ALPHA_V1",
+  "row_level_ledgers_loaded": false,
+  "secondary_candidate": null,
+  "source_scope": "COMMITTED_AGGREGATE_ARTIFACTS_ONLY",
+  "status": "PASS",
+  "trade_count": 3991
+}
