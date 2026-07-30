@@ -38,7 +38,19 @@ from fx_smc_bot.research.quant_polarity import (
     validate_feature_contract,
     validate_previous_lineage,
 )
-from fx_smc_bot.research.quant_polarity_data import development_recovery_protocol
+from fx_smc_bot.research.quant_polarity_data import (
+    acquire_development_data,
+    certify_development_data,
+    development_recovery_protocol,
+)
+from fx_smc_bot.research.quant_polarity_development import (
+    adjudicate_development,
+    run_development_analysis,
+)
+from fx_smc_bot.research.quant_polarity_execution import (
+    certify_execution_integrity,
+    execute_development_program,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results" / "gate_q0"
@@ -70,7 +82,10 @@ def _raw_sha256(relative_path: str) -> str:
 def _write_json(name: str, payload: dict[str, Any]) -> None:
     RESULTS.mkdir(parents=True, exist_ok=True)
     target = RESULTS / name
-    target.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    target.write_text(
+        json.dumps(payload, allow_nan=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 def _write_doc(name: str, title: str, paragraphs: list[str], facts: dict[str, Any]) -> None:
@@ -412,13 +427,144 @@ def generate_recovery_protocol() -> None:
     )
 
 
+def run_development_acquisition(workers: int) -> None:
+    protocol = _read_json("results/gate_q0/development_data_recovery_protocol.json")
+    tracked = _git("ls-files", "results/gate_q0/development_data_recovery_protocol.json")
+    if not tracked:
+        raise RuntimeError("Recovery protocol must be committed before provider access")
+    result = acquire_development_data(ROOT, protocol, workers=workers)
+    _write_json("development_acquisition_status.json", result)
+    print(json.dumps(result, indent=2, sort_keys=True))
+
+
+def run_development_certification(workers: int) -> None:
+    protocol = _read_json("results/gate_q0/development_data_recovery_protocol.json")
+    certification, freeze = certify_development_data(ROOT, protocol, workers=workers)
+    _write_json("development_data_certification.json", certification)
+    _write_json("development_dataset_freeze.json", freeze)
+    print(json.dumps(certification, indent=2, sort_keys=True))
+
+
+def run_development_execution(workers: int) -> None:
+    certification = _read_json("results/gate_q0/development_data_certification.json")
+    if certification.get("status") != "PASS":
+        raise RuntimeError("Development execution requires certified data")
+    result = execute_development_program(ROOT, workers=workers)
+    _write_json("development_execution_manifest.json", result)
+    print(json.dumps(result, indent=2, sort_keys=True))
+
+
+def run_execution_certification() -> None:
+    certification = _read_json("results/gate_q0/development_data_certification.json")
+    if certification.get("status") != "PASS":
+        raise RuntimeError("Execution certification requires certified development data")
+    audits = certify_execution_integrity(ROOT)
+    for name, payload in audits.items():
+        _write_json(f"{name}.json", payload)
+    if any(payload.get("status") != "PASS" for payload in audits.values()):
+        raise RuntimeError("Gate Q.0 execution or leakage certification failed")
+    print(json.dumps({name: payload["status"] for name, payload in audits.items()}))
+
+
+def run_development_evaluation() -> None:
+    execution = _read_json("results/gate_q0/development_execution_manifest.json")
+    if execution.get("status") != "PASS":
+        raise RuntimeError("Development evaluation requires complete execution")
+    results = run_development_analysis(ROOT, execution)
+    adjudication = adjudicate_development(results)
+    _write_json("development_candidate_results.json", {
+        "results": results["candidate_results"],
+        "model": results["model"],
+        "integrity": results["integrity"],
+        "status": "PASS",
+    })
+    _write_json("development_benchmark_results.json", {
+        "results": results["benchmark_results"],
+        "status": "PASS",
+    })
+    _write_json("development_inference.json", {
+        "results": results["inference"],
+        "status": "PASS",
+    })
+    _write_json("development_overfitting_audit.json", results["overfitting"])
+    _write_json("development_candidate_adjudication.json", adjudication)
+    print(json.dumps(adjudication, indent=2, sort_keys=True))
+
+
+def freeze_replication_shortlist() -> None:
+    results = _read_json("results/gate_q0/development_candidate_results.json")
+    adjudication = _read_json("results/gate_q0/development_candidate_adjudication.json")
+    family = _read_json("results/gate_q0/candidate_family_freeze.json")
+    selected = list(adjudication["selected_candidates"])
+    selected_evidence = {
+        candidate_id: results["results"][candidate_id] for candidate_id in selected
+    }
+    failed = [
+        {
+            "candidate_id": row["candidate_id"],
+            "failed_checks": [name for name, passed in row["checks"].items() if not passed],
+        }
+        for row in adjudication["candidates"]
+        if row["candidate_id"] not in selected
+    ]
+    payload = {
+        "shortlist_status": "FROZEN_BEFORE_REPLICATION_OUTCOME_ACCESS",
+        "selected_candidates": selected,
+        "selected_count": len(selected),
+        "maximum_selected": 2,
+        "candidate_family_hash": family["candidate_family_hash"],
+        "model_hash": results["model"]["final_model_hash"],
+        "selected_hyperparameters": results["model"]["selected_hyperparameters"],
+        "development_evidence": selected_evidence,
+        "failed_candidates": failed,
+        "ranking": [
+            "highest lower day-cluster CI bound",
+            "highest 1.5x cost mean",
+            "lowest maximum drawdown",
+            "lowest PBO",
+        ],
+        "replication_outcome_accessed": False,
+        "holdout_accessed": False,
+        "status": "PASS",
+    }
+    payload["shortlist_hash"] = canonical_json_sha256(payload)
+    _write_json("replication_shortlist_freeze.json", payload)
+    _write_doc(
+        "Q0_REPLICATION_SHORTLIST.md",
+        "Q.0 Replication Shortlist",
+        [
+            "The shortlist was selected mechanically from frozen development criteria.",
+            "No 2020-2022 or replication-instrument outcome was accessed before this freeze.",
+        ],
+        {
+            "selected_candidates": ", ".join(selected) if selected else "none",
+            "shortlist_hash": payload["shortlist_hash"],
+            "model_hash": payload["model_hash"],
+            "status": payload["shortlist_status"],
+        },
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--group",
-        choices=("identity", "family", "preregistration", "recovery-protocol", "all"),
+        choices=(
+            "identity",
+            "family",
+            "preregistration",
+            "recovery-protocol",
+            "development-acquisition",
+            "development-certification",
+            "development-execution",
+            "execution-certification",
+            "development-evaluation",
+            "replication-shortlist",
+            "all",
+        ),
         default="all",
     )
+    parser.add_argument("--workers", type=int, default=8)
     args = parser.parse_args()
     if args.group in {"identity", "all"}:
         generate_identity()
@@ -428,6 +574,18 @@ def main() -> int:
         generate_preregistration()
     if args.group in {"recovery-protocol", "all"}:
         generate_recovery_protocol()
+    if args.group == "development-acquisition":
+        run_development_acquisition(args.workers)
+    if args.group == "development-certification":
+        run_development_certification(args.workers)
+    if args.group == "development-execution":
+        run_development_execution(args.workers)
+    if args.group == "execution-certification":
+        run_execution_certification()
+    if args.group == "development-evaluation":
+        run_development_evaluation()
+    if args.group == "replication-shortlist":
+        freeze_replication_shortlist()
     return 0
 
 
