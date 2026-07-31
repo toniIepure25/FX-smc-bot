@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_CLEAN_ROOM_ROOT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS",
+  "frozen_specification": {
+    "root_role": "FX_F0_DATA_ROOT",
+    "absolute_path_recorded": false,
+    "outside_repository": true,
+    "not_equal_to_any_prior_data_root": true,
+    "not_parent_or_child_of_any_prior_data_root": true,
+    "did_not_exist_before_f0": true,
+    "initially_empty": true,
+    "created_exact_root_only": true,
+    "old_roots_inspected_to_establish_boundary": false,
+    "symlink_or_junction_escape": false,
+    "capability_restricted_authorization_required_for_all_market_and_rate_io": true,
+    "market_or_rate_data_accessed_during_preregistration": false
+  }
+}

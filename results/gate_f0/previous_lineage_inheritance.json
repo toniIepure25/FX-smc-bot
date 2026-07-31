@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_PREVIOUS_LINEAGE_INHERITANCE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "relationship_to_previous_programs": "NEW_FINANCIALLY_MOTIVATED_LINEAGE",
+  "status": "PASS",
+  "preserved_closed_lineages": [
+    "FX_SMC_STRATEGY_ALPHA_LINEAGE_V1",
+    "FX_QUANT_POLARITY_META_V2_LINEAGE_SEAL_V1"
+  ],
+  "inherited_artifact_digests": [
+    {
+      "role": "STRATEGY_ALPHA_LINEAGE_SEAL",
+      "repository_relative_path": "results/gate_p1/strategy_alpha_lineage_seal.json",
+      "sha256": "19d55e26e827b23f71b4165c11d3a6a1cd57e1e646b680ea02b2d1588b2cae0a",
+      "seal_id": "FX_SMC_STRATEGY_ALPHA_LINEAGE_V1",
+      "seal_status": "CLOSED_ALL_CANDIDATES_TIER_C_NO_FORWARD_TEST"
+    },
+    {
+      "role": "QUANT_POLARITY_LINEAGE_SEAL",
+      "repository_relative_path": "results/gate_q1/quant_polarity_lineage_seal.json",
+      "sha256": "c0a724ddca6953ed924f4ae6d504e5517193249e56fa732305ccc9f7b70a9eb4",
+      "seal_id": "FX_QUANT_POLARITY_META_V2_LINEAGE_SEAL_V1",
+      "seal_status": "CLOSED_NO_DEVELOPMENT_CANDIDATE_NO_REPLICATION"
+    },
+    {
+      "role": "QUANT_POLARITY_CLOSURE_LOCK",
+      "repository_relative_path": "results/gate_q1/closure_lock.json",
+      "sha256": "fb8ef24df48b1d1d524588ed1b5ea35fd840c2c7e6a7d123db1d91067c31a3f0"
+    },
+    {
+      "role": "POSTHOC_HYPOTHESIS_QUARANTINE",
+      "repository_relative_path": "results/gate_q1/posthoc_hypothesis_quarantine.json",
+      "sha256": "9cbf192957e4ae46672643cac5bd2662d3b6e050d309bb9f6c667f89b51ec9bf"
+    },
+    {
+      "role": "FINAL_CLAIM_MATRIX",
+      "repository_relative_path": "results/gate_q1/final_claim_matrix.json",
+      "sha256": "8de81c0c468467257bb4ad6d9711e622e6bb840499786bb814d53989240490ab"
+    }
+  ],
+  "inheritance_rules": {
+    "prior_results_used_as_predictive_inputs": false,
+    "prior_candidates_reopened": false,
+    "prior_seals_modified": false,
+    "only_closure_state_and_digests_inherited": true
+  }
+}

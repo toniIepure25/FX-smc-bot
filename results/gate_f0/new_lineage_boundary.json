@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_NEW_LINEAGE_BOUNDARY_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "relationship_to_previous_programs": "NEW_FINANCIALLY_MOTIVATED_LINEAGE",
+  "status": "PASS",
+  "frozen_specification": {
+    "permitted_research_family": [
+      "TIME_SERIES_MOMENTUM",
+      "SHORT_TERM_REVERSAL",
+      "DUAL_HORIZON_TREND",
+      "PRICE_CHANNEL_BREAKOUT",
+      "INTEREST_RATE_DIFFERENTIAL_CARRY",
+      "FIXED_DIVERSIFIED_MULTI_FACTOR_PORTFOLIO"
+    ],
+    "rejected_input_classes": [
+      "OLD_SMC_OUTCOMES",
+      "OLD_POLARITY_OUTCOMES",
+      "OLD_FEATURE_MATRICES",
+      "OLD_MODEL_PREDICTIONS",
+      "OLD_ROW_LEVEL_LEDGERS",
+      "OLD_CLEAN_ROOM_MARKET_FILES",
+      "QUARANTINED_INTERVAL_DATA"
+    ],
+    "prohibited_transformations": [
+      "SMC_RESCUE",
+      "ACCEPTANCE_RESCUE",
+      "OPENING_RANGE_RESCUE",
+      "SIMPLE_SIGNAL_INVERSION",
+      "POLARITY_META_LABELING"
+    ],
+    "old_data_roots_inspected": false,
+    "old_acquisition_checkpoints_reused": false,
+    "old_raw_payloads_reused": false,
+    "prior_candidate_outcomes_used_as_features": false,
+    "sealed_lineages_reopened_or_altered": false,
+    "machine_learning_allowed": false
+  }
+}

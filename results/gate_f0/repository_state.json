@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_REPOSITORY_STATE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS",
+  "frozen_specification": {
+    "pull_request": {
+      "number": 3,
+      "state": "MERGED",
+      "base_ref": "main",
+      "head_ref": "research/quant-polarity-meta-v2-prospective",
+      "head_sha": "8679cc6625c2ca6acca12ad3e244b88f72e703b9",
+      "merge_commit": "e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+      "merge_strategy_verified": "MERGE_COMMIT",
+      "merged_at_utc": "2026-07-31T08:55:14Z"
+    },
+    "origin_main_sha_at_branch_creation": "e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+    "branch": "research/classical-fx-risk-premia-v1",
+    "branch_starting_sha": "e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+    "worktree_clean_before_f0_preregistration": true,
+    "commit_performed_for_this_preregistration_task": false
+  }
+}
