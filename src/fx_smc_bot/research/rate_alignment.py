@@ -114,7 +114,7 @@ class AlignedRatePanel:
 
 def strategy_timestamp(trading_day: date) -> datetime:
     """Construct the frozen execution timestamp with the correct NY DST offset."""
-    if not isinstance(trading_day, date):
+    if type(trading_day) is not date:
         raise TypeError("Trading day must be a date")
     return datetime.combine(trading_day, EXECUTION_LOCAL_TIME, _NY_ZONE)
 
@@ -130,6 +130,8 @@ def align_rate_for_day(
     """Select the latest certified version available at the frozen timestamp."""
     _validate_freeze_id(dataset_freeze_id)
     source_calendar = calendar_for_currency(currency)
+    if not calendar_definition(FX_TRADING_DAY).is_open(trading_day):
+        raise ValueError(f"Date is not an explicit FX trading day: {trading_day.isoformat()}")
     timestamp = strategy_timestamp(trading_day)
     timestamp_utc = timestamp.astimezone(UTC)
     currency_versions = tuple(version for version in versions if version.currency == currency)
@@ -142,7 +144,7 @@ def align_rate_for_day(
     eligible = tuple(
         version
         for version in certified
-        if _aware_utc(version.strategy_availability_timestamp) <= timestamp_utc
+        if _validated_availability(version) <= timestamp_utc
         and version.observation_date <= trading_day
     )
     if not eligible:
@@ -322,6 +324,15 @@ def _aware_utc(value: datetime) -> datetime:
     if value.tzinfo is None or value.utcoffset() is None:
         raise ValueError("Rate timestamp must be timezone-aware")
     return value.astimezone(UTC)
+
+
+def _validated_availability(version: RateVersionLike) -> datetime:
+    publication = _aware_utc(version.publication_timestamp)
+    effective = _aware_utc(version.effective_timestamp)
+    availability = _aware_utc(version.strategy_availability_timestamp)
+    if availability != max(publication, effective):
+        raise ValueError("Rate availability must equal max(publication, effective)")
+    return availability
 
 
 def _format_timestamp(value: datetime) -> str:

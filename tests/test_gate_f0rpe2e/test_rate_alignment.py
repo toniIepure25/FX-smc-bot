@@ -76,6 +76,18 @@ def test_future_publication_is_missing_and_never_backfilled() -> None:
     assert after.value == future.value
 
 
+def test_inconsistent_availability_metadata_fails_closed() -> None:
+    inconsistent = _replace(
+        SyntheticVersion(),
+        publication_timestamp=datetime(2012, 1, 6, 23, tzinfo=UTC),
+        strategy_availability_timestamp=datetime(2012, 1, 6, 14, tzinfo=UTC),
+    )
+    with pytest.raises(ValueError, match=r"max\(publication, effective\)"):
+        alignment.align_rate_for_day(
+            [inconsistent], "USD", date(2012, 1, 6), "synthetic-freeze"
+        )
+
+
 def test_revision_does_not_leak_backward_and_wins_after_availability() -> None:
     initial = SyntheticVersion()
     revision = _replace(
@@ -193,3 +205,7 @@ def test_panel_requires_explicit_freeze_unique_inputs_and_fx_days() -> None:
         )
     with pytest.raises(ValueError, match="not an explicit FX trading day"):
         alignment.align_rate_panel([], [date(2012, 1, 7)], "freeze", currencies=("USD",))
+    with pytest.raises(ValueError, match="not an explicit FX trading day"):
+        alignment.align_rate_for_day([], "USD", date(2012, 1, 7), "freeze")
+    with pytest.raises(TypeError, match="must be a date"):
+        alignment.strategy_timestamp(datetime(2012, 1, 6, tzinfo=UTC))  # type: ignore[arg-type]

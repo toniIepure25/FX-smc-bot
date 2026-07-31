@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
 
 import pytest
 
@@ -103,3 +103,7 @@ def test_unknown_calendar_and_currency_fail_closed() -> None:
         calendars.calendar_definition("SYNTHETIC_UNKNOWN")
     with pytest.raises(ValueError, match="outside"):
         calendars.calendar_for_currency("XYZ")
+    with pytest.raises(TypeError, match="must be a date"):
+        calendars.calendar_definition(calendars.TARGET2).is_open(  # type: ignore[arg-type]
+            datetime(2012, 1, 3)
+        )

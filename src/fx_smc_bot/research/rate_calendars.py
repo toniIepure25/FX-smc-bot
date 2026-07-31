@@ -44,7 +44,7 @@ class CalendarDefinition:
         additional_closures: frozenset[date] = frozenset(),
     ) -> bool:
         """Return calendar membership using only explicit rules and inputs."""
-        if not isinstance(day, date):
+        if type(day) is not date:
             raise TypeError("Calendar day must be a date")
         if self.requires_explicit_event_dates:
             return day in event_dates and day not in additional_closures
