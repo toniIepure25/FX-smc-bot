@@ -17,15 +17,15 @@ def _load(name: str) -> dict[str, object]:
     return json.loads((RESULTS / name).read_text(encoding="utf-8"))
 
 
-def test_repository_state_matches_authorized_start_without_network() -> None:
+def test_repository_state_matches_authorized_start_after_remote_fetch() -> None:
     state = _load("repository_state.json")
 
     assert state["branch"] == "research/classical-fx-risk-premia-v2-future-baseline"
     assert state["required_starting_sha"] == STARTING_SHA
     assert state["local_starting_sha"] == STARTING_SHA
     assert state["remote_tracking_sha"] == STARTING_SHA
-    assert state["remote_verification_mode"] == "EXISTING_LOCAL_TRACKING_REF_NO_NETWORK"
-    assert state["network_access_performed"] is False
+    assert state["remote_verification_mode"] == "FETCH_ALL_PRUNE"
+    assert state["network_access_performed"] is True
     assert state["worktree_clean_before_gate_artifacts"] is True
     assert state["git_diff_check_before_gate_artifacts"] == "PASS"
     assert state["status"] == "PASS"
@@ -38,7 +38,7 @@ def test_pre_reconciliation_integrity_has_no_outcomes_or_prohibited_access() -> 
     assert integrity["predecessor_failure_mutated"] is False
     assert integrity["predecessor_live_adapter_fail_reclassified"] is False
     assert integrity["predecessor_artifacts_overwritten"] is False
-    assert integrity["network_access_performed"] is False
+    assert integrity["network_access_performed"] is True
     assert integrity["old_clean_room_roots_inspected"] is False
     assert integrity["historical_2023_2025_used"] is False
     assert integrity["historical_2023_2025_persisted"] is False

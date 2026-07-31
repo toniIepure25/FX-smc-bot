@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_REPRODUCIBILITY_MANIFEST_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "starting_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
+  "implementation_sha_before_final_artifacts": "0dffe0aa1fb6799b7e7637339e202c8aab8e8044",
+  "usd_reconciliation_commit": "0dffe0aa1fb6799b7e7637339e202c8aab8e8044",
+  "origin_main_sha_at_final_quality_gate": "e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+  "hash_mode": "SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS",
+  "artifact_sha256": {
+    "results/gate_f0rpe2erusdsr/clean_room_root.json": "6a59a5f0585353c7fe7e6a9564edc9aec45c927e5005a156c5934e1c11c396f3",
+    "results/gate_f0rpe2erusdsr/final_decision.json": "cf1f45026fbcd4a4b10271a1981ebc37a03645930b2e13841db7c31872d1ea9a",
+    "results/gate_f0rpe2erusdsr/integrity_audit.json": "ad58b931faededd000c7944cfcbd67d6c3b51d5ea0a51ad55cb4b12b64f73940",
+    "results/gate_f0rpe2erusdsr/pre_reconciliation_integrity.json": "5bf8c3a2c882022ec49b922a23e4e2977955ddfff8ebc68a0dacff80a19ed04a",
+    "results/gate_f0rpe2erusdsr/predecessor_failure_inheritance.json": "85ad03762cc5cce953272299288cc72eb0acadb2f5e17ca654d877dde3a350e3",
+    "results/gate_f0rpe2erusdsr/prohibited_data_audit.json": "221c5610248d61e4aac8181508c5c59a3efeab3e6166c060628c3a90513beb6e",
+    "results/gate_f0rpe2erusdsr/protocol_inheritance_lock.json": "f890e5de75ba1545ca34cce3b6d3a758123d6cb61e4fe19df743394148eb6757",
+    "results/gate_f0rpe2erusdsr/quality_gate_final.json": "b683da928db038bc4b3d83c734a1eb5dc74cf66dff559a618dd0b1760b1b29f8",
+    "results/gate_f0rpe2erusdsr/repository_state.json": "42ec8aed2c82f6c13aaa0c1b8515c9599dcd7e3a91df80ad63d2f8ed0d8576b1",
+    "results/gate_f0rpe2erusdsr/static_analysis_delta.json": "a10df34888df07db2ab6efe69ae76878d48c92f00198eb275aed3562ae609cb3",
+    "results/gate_f0rpe2erusdsr/usd_legacy_schema_descriptor.json": "ffac5789fefeb84af5e2c956c525aad441c75e2361e3bfd040ab80d38f96fc46",
+    "results/gate_f0rpe2erusdsr/usd_modern_schema_descriptor.json": "225636b22dbd6d85d15219fd398ba587a051df4f41dcd4ccab517c26e61d1e38",
+    "results/gate_f0rpe2erusdsr/usd_publication_revision_availability.json": "edd27f773852c45d2d466537f795fd1ba00d6a780007b23201b05dda312714f6",
+    "results/gate_f0rpe2erusdsr/usd_schema_difference.json": "ad066c10db43f45eda0142f8631275e76bbd4a45a967bf32a6f1d429e8a22d94",
+    "results/gate_f0rpe2erusdsr/usd_schema_reconciliation.json": "a8c3a944f6dcbd5b2950aff981b49fbb6d5b9c6101f86ff6dfdb4bdb91b62bca"
+  },
+  "documentation_sha256": {
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSR_CLEAN_ROOM.md": "714894925a9dd1a0337592106f4598643ec9459a5cfe5c17f0589b85e7bcb21b",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSR_FINAL_DECISION_MEMO.md": "47cab0bcd806605a7e2630060e28ed1eaca9bbacfe4281cdfca28173c827ec97",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSR_PREDECESSOR_INHERITANCE.md": "ace4ee8bf477875f60f67cc1864260a1e3e2a899d42dd048407ea125d013e25a",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSR_USD_SCHEMA_DISCOVERY.md": "4474c779898e64cbcd510a5815a77edce85b7a1b6c017091f94de91c2adcffea",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSR_USD_SCHEMA_RECONCILIATION.md": "9f8a6a4dda42e9f0de0de7ce1b1e7ee77be24840426ba1a4e2903f043946003f"
+  },
+  "source_sha256": {
+    "scripts/run_gate_f0rpe2erusdsr.py": "bd22098bf29b2d224cb1a4ae2539e0dff95fab4829899c8edaf7565d62fbe110",
+    "src/fx_smc_bot/research/official_response_shape.py": "2f0c6cefa56c443d9d7aedda6f1a8a70c3b9b604867cd0a3378e101c63742a2f"
+  },
+  "test_sha256": {
+    "tests/test_gate_f0rpe2erusdsr/test_final_blocker.py": "966d3666c0a130ec0f5bdebf14161b6117eb64075d8457dc9a01b4ed2e0edcd2",
+    "tests/test_gate_f0rpe2erusdsr/test_official_response_shape.py": "a0d50945cb5d9c87514bcff70613700ff9409881f4796ed048909437443f2ead",
+    "tests/test_gate_f0rpe2erusdsr/test_predecessor_and_protocol.py": "1d53c6109701a466f334d4494873d0738f32616cead9ad7dce550d6acd45abbb",
+    "tests/test_gate_f0rpe2erusdsr/test_usd_schema_reconciliation.py": "1317f6906fbefbba532f94e605ff2f682b52430d27dd6078bdd6a6c18b184479",
+    "tests/test_gate_f0rpe2erusdsr/test_usdsr_runner.py": "ad81c43d67c5d08c086de7399d3ee7b82aec94800f3dce5a914bb205e41ad759"
+  },
+  "official_rate_requests": 2,
+  "source_snapshots_persisted_locally": 2,
+  "source_payloads_committed": 0,
+  "numerical_rows_exposed_to_parser": 0,
+  "market_requests": 0,
+  "economic_outcomes_included": false,
+  "final_decision": "BLOCKED_BY_USD_PUBLICATION_AVAILABILITY",
+  "status": "PASS"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_STATIC_ANALYSIS_DELTA_V1",
+  "comparison_target": "origin/main",
+  "scope": "src/fx_smc_bot/research",
+  "ruff": {
+    "target_findings": 1,
+    "head_findings": 1,
+    "new_findings": 0,
+    "fixed_findings": 0
+  },
+  "mypy": {
+    "target_findings": 12,
+    "head_findings": 3,
+    "new_findings": 0,
+    "fixed_findings": 9
+  },
+  "targeted_ruff": "PASS",
+  "targeted_mypy": "PASS",
+  "status": "PASS"
+}

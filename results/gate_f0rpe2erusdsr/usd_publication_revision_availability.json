@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_USD_PUBLICATION_REVISION_AVAILABILITY_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "reconciliation_id": "NY_FED_EFFR_SCHEMA_RECONCILIATION_V1",
+  "frozen_provenance_source": "F0_RATE_PROVENANCE_AMENDMENT_V1",
+  "portfolio_execution_timestamp": "17:05 America/New_York",
+  "global_point_in_time_rule": "MAX_OF_ORIGINAL_PUBLICATION_TIMESTAMP_AND_EFFECTIVE_TIMESTAMP",
+  "legacy_regime": {
+    "observation_date": "OFFICIAL_EFFECTIVE_DATE",
+    "publication_day": "NEXT_AUTHORIZED_NEW_YORK_FED_PUBLICATION_BUSINESS_DAY",
+    "conservative_initial_release_availability": "APPROXIMATELY_09:00_AMERICA_NEW_YORK_ON_PUBLICATION_DAY",
+    "conservative_revision_complete_availability": "END_OF_PUBLICATION_DAY_WITH_NO_EXACT_FROZEN_CLOCK_INSTANT",
+    "selected_final_as_of_availability": "UNRESOLVED_EXACT_TIMESTAMP",
+    "eligible_at_17_05_on_publication_day": false,
+    "first_eligible_execution_orderable_without_exact_rate_version_timestamp": true,
+    "exact_rate_version_timestamp_constructible": false,
+    "status": "FAIL_EXACT_AVAILABILITY_INSTANT_NOT_FROZEN"
+  },
+  "modern_regime": {
+    "observation_date": "OFFICIAL_EFFECTIVE_DATE",
+    "publication_day": "NEXT_AUTHORIZED_NEW_YORK_FED_PUBLICATION_BUSINESS_DAY",
+    "conservative_initial_release_availability": "APPROXIMATELY_09:00_AMERICA_NEW_YORK_ON_PUBLICATION_DAY",
+    "conservative_revision_complete_availability": "14:30_AMERICA_NEW_YORK_ON_PUBLICATION_DAY",
+    "selected_final_as_of_availability": "14:30_AMERICA_NEW_YORK_ON_PUBLICATION_DAY",
+    "eligible_at_17_05_on_publication_day": true,
+    "exact_rate_version_timestamp_constructible": true,
+    "status": "PASS"
+  },
+  "official_history_representation": "FINAL_DAILY_VALUE_WITH_REVISION_INDICATOR_FIELD",
+  "revision_identifier_constructed": false,
+  "publication_timestamp_inferred_from_fetch_time": false,
+  "publication_timestamp_inferred_from_file_metadata": false,
+  "publication_timestamp_inferred_from_observation_value": false,
+  "fabricated_clock_instant_used": false,
+  "rate_versions_emitted": 0,
+  "rate_versions_persisted": 0,
+  "stop_phase": 6,
+  "blocking_decision": "BLOCKED_BY_USD_PUBLICATION_AVAILABILITY",
+  "status": "FAIL"
+}

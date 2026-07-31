@@ -10,8 +10,8 @@
   "local_starting_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
   "remote_tracking_ref": "origin/research/classical-fx-risk-premia-v2-future-baseline",
   "remote_tracking_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
-  "remote_verification_mode": "EXISTING_LOCAL_TRACKING_REF_NO_NETWORK",
-  "network_access_performed": false,
+  "remote_verification_mode": "FETCH_ALL_PRUNE",
+  "network_access_performed": true,
   "worktree_clean_before_gate_artifacts": true,
   "git_diff_check_before_gate_artifacts": "PASS",
   "status": "PASS"

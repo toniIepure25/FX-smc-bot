@@ -12,7 +12,7 @@
   "predecessor_failure_mutated": false,
   "predecessor_live_adapter_fail_reclassified": false,
   "predecessor_artifacts_overwritten": false,
-  "network_access_performed": false,
+  "network_access_performed": true,
   "old_clean_room_roots_inspected": false,
   "historical_2023_2025_used": false,
   "historical_2023_2025_persisted": false,

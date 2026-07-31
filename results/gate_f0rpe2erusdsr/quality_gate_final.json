@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_QUALITY_GATE_FINAL_V1",
+  "full_pytest_status": "PASS",
+  "full_pytest_passed": 1370,
+  "full_pytest_warnings": 91,
+  "targeted_ruff_status": "PASS",
+  "targeted_mypy_status": "PASS",
+  "broad_ruff_target_findings": 1,
+  "broad_ruff_head_findings": 1,
+  "new_broad_ruff_findings": 0,
+  "broad_mypy_target_findings": 12,
+  "broad_mypy_head_findings": 3,
+  "new_broad_mypy_findings": 0,
+  "node_status": "PASS",
+  "node_tests_passed": 2,
+  "node_runtime": "CODEX_BUNDLED_NODE_EXPLICIT_PATH",
+  "git_diff_check": "PASS",
+  "status": "PASS"
+}
