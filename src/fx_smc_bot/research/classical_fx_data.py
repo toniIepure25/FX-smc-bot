@@ -24,7 +24,6 @@ from typing import Any, Final, Protocol, TypeVar
 from zoneinfo import ZoneInfo
 
 from fx_smc_bot.research.classical_factor_safe_io import (
-    FROZEN_CURRENCIES,
     FROZEN_INSTRUMENTS,
     DataProvider,
     IOAuthorization,
@@ -134,8 +133,37 @@ def validate_development_interval(start: date, end: date) -> None:
         raise ValueError("Gate F.0 development commands require exactly 2010-01-01..2016-12-31")
 
 
-def development_partitions() -> tuple[MarketPartition, ...]:
-    """Return the immutable 1,680 instrument-side-month task plan."""
+def _validate_development_instruments(instruments: Sequence[str]) -> tuple[str, ...]:
+    resolved = tuple(instruments)
+    if not resolved:
+        raise ValueError("Development instrument universe must not be empty")
+    if len(resolved) != len(set(resolved)):
+        raise ValueError("Development instrument universe contains duplicates")
+    unauthorized = set(resolved).difference(FROZEN_INSTRUMENTS)
+    if unauthorized:
+        raise ValueError("Development instrument universe is outside the frozen F0 universe")
+    return resolved
+
+
+def _currencies_for_instruments(instruments: Sequence[str]) -> frozenset[str]:
+    return frozenset(
+        currency for instrument in instruments for currency in (instrument[:3], instrument[3:])
+    )
+
+
+def _expected_partition_tasks(instruments: Sequence[str]) -> int:
+    return len(instruments) * len(SIDES) * len(DEVELOPMENT_YEARS) * len(MONTHS)
+
+
+def _expected_pair_months(instruments: Sequence[str]) -> int:
+    return len(instruments) * len(DEVELOPMENT_YEARS) * len(MONTHS)
+
+
+def development_partitions(
+    instruments: Sequence[str] = INSTRUMENT_ORDER,
+) -> tuple[MarketPartition, ...]:
+    """Return the immutable development task plan for an authorized F0 subset."""
+    instrument_order = _validate_development_instruments(instruments)
     partitions = tuple(
         MarketPartition(
             instrument=instrument,
@@ -143,13 +171,14 @@ def development_partitions() -> tuple[MarketPartition, ...]:
             start=date(year, month, 1),
             end=_month_end(year, month),
         )
-        for instrument in INSTRUMENT_ORDER
+        for instrument in instrument_order
         for side in SIDES
         for year in DEVELOPMENT_YEARS
         for month in MONTHS
     )
-    if len(partitions) != EXPECTED_PARTITION_TASKS or len(set(partitions)) != len(partitions):
-        raise AssertionError("Gate F.0 development plan is not exactly 1,680 unique tasks")
+    expected = _expected_partition_tasks(instrument_order)
+    if len(partitions) != expected or len(set(partitions)) != len(partitions):
+        raise AssertionError("Gate F.0 development plan does not contain the expected unique tasks")
     return partitions
 
 
@@ -168,9 +197,13 @@ def canonical_sha256(value: Any) -> str:
 
 
 def development_plan(
-    *, start: date = DEVELOPMENT_START, end: date = DEVELOPMENT_END
+    *,
+    start: date = DEVELOPMENT_START,
+    end: date = DEVELOPMENT_END,
+    instruments: Sequence[str] = INSTRUMENT_ORDER,
 ) -> dict[str, Any]:
     validate_development_interval(start, end)
+    instrument_order = _validate_development_instruments(instruments)
     tasks = [
         {
             "end": partition.end.isoformat(),
@@ -179,16 +212,16 @@ def development_plan(
             "side": partition.side,
             "start": partition.start.isoformat(),
         }
-        for partition in development_partitions()
+        for partition in development_partitions(instrument_order)
     ]
     plan: dict[str, Any] = {
         "program_id": PROGRAM_ID,
         "lineage_id": LINEAGE_ID,
         "stage": "DEVELOPMENT_MARKET_DATA",
         "interval": {"start": start.isoformat(), "end": end.isoformat()},
-        "instruments": list(INSTRUMENT_ORDER),
+        "instruments": list(instrument_order),
         "sides": list(SIDES),
-        "pair_months": EXPECTED_PAIR_MONTHS,
+        "pair_months": _expected_pair_months(instrument_order),
         "partition_tasks": len(tasks),
         "maximum_workers": MAXIMUM_WORKERS,
         "provider": {
@@ -230,12 +263,16 @@ def verify_development_plan(plan: Mapping[str, Any]) -> None:
     digest = payload.pop("plan_sha256", None)
     if digest != canonical_sha256(payload):
         raise ValueError("Gate F.0 development plan hash mismatch")
-    if payload.get("partition_tasks") != EXPECTED_PARTITION_TASKS:
-        raise ValueError("Gate F.0 development plan must contain exactly 1,680 tasks")
+    instruments = _validate_development_instruments(payload.get("instruments", ()))
+    expected_tasks = _expected_partition_tasks(instruments)
+    if payload.get("partition_tasks") != expected_tasks:
+        raise ValueError("Gate F.0 development plan task count does not match its universe")
+    if payload.get("pair_months") != _expected_pair_months(instruments):
+        raise ValueError("Gate F.0 development pair-month count does not match its universe")
     if payload.get("interval") != {"start": "2010-01-01", "end": "2016-12-31"}:
         raise ValueError("Gate F.0 development plan interval mismatch")
     task_ids = [str(task["partition_id"]) for task in payload.get("tasks", [])]
-    if len(task_ids) != EXPECTED_PARTITION_TASKS or len(set(task_ids)) != len(task_ids):
+    if len(task_ids) != expected_tasks or len(set(task_ids)) != len(task_ids):
         raise ValueError("Gate F.0 development task IDs are incomplete or duplicated")
 
 
@@ -258,13 +295,19 @@ def require_storage_reserve(
     }
 
 
-def development_authorizations(root: Path, repository_root: Path) -> AuthorizationBundle:
-    partitions = frozenset(development_partitions())
+def development_authorizations(
+    root: Path,
+    repository_root: Path,
+    *,
+    instruments: Sequence[str] = INSTRUMENT_ORDER,
+) -> AuthorizationBundle:
+    instrument_order = _validate_development_instruments(instruments)
+    partitions = frozenset(development_partitions(instrument_order))
     common: dict[str, Any] = {
         "root": root,
         "repository_root": repository_root,
-        "instruments": frozenset(INSTRUMENT_ORDER),
-        "currencies": FROZEN_CURRENCIES,
+        "instruments": frozenset(instrument_order),
+        "currencies": _currencies_for_instruments(instrument_order),
         "start": DEVELOPMENT_START,
         "end": DEVELOPMENT_END,
         "partitions": partitions,
@@ -723,24 +766,27 @@ def acquire_development_market(
     execute_provider: bool = False,
     runner: SubprocessRunner = subprocess.run,
     usage_probe: DiskUsageProbe = _disk_usage,
+    instruments: Sequence[str] = INSTRUMENT_ORDER,
 ) -> dict[str, Any]:
     """Plan by default; provider execution requires ``execute_provider=True``."""
     _validate_workers(workers)
-    plan = development_plan()
+    instrument_order = _validate_development_instruments(instruments)
+    expected_partitions = _expected_partition_tasks(instrument_order)
+    plan = development_plan(instruments=instrument_order)
     if not execute_provider:
         return {
             "program_id": PROGRAM_ID,
             "stage": "acquire-development-market",
             "dry_run": True,
             "provider_requests_sent": 0,
-            "planned_partitions": EXPECTED_PARTITION_TASKS,
+            "planned_partitions": expected_partitions,
             "workers": workers,
             "plan_sha256": plan["plan_sha256"],
             "status": "DRY_RUN_NO_PROVIDER_ACCESS",
         }
-    authorizations = development_authorizations(root, repository_root)
+    authorizations = development_authorizations(root, repository_root, instruments=instrument_order)
     require_storage_reserve(authorizations.provider.clean_room_root, usage_probe)
-    partitions = development_partitions()
+    partitions = development_partitions(instrument_order)
     pool = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="f0-market")
     try:
         futures = {
@@ -763,13 +809,11 @@ def acquire_development_market(
         "stage": "acquire-development-market",
         "dry_run": False,
         "provider_execution_authorized": True,
-        "planned_partitions": EXPECTED_PARTITION_TASKS,
+        "planned_partitions": expected_partitions,
         "completed_partitions": completed,
         "workers": workers,
         "plan_sha256": plan["plan_sha256"],
-        "status": "F0_RAW_COMPLETE"
-        if completed == EXPECTED_PARTITION_TASKS
-        else "F0_RAW_INCOMPLETE",
+        "status": "F0_RAW_COMPLETE" if completed == expected_partitions else "F0_RAW_INCOMPLETE",
     }
 
 
@@ -925,23 +969,26 @@ def certify_development_market(
     workers: int = MAXIMUM_WORKERS,
     execute_local: bool = False,
     usage_probe: DiskUsageProbe = _disk_usage,
+    instruments: Sequence[str] = INSTRUMENT_ORDER,
 ) -> dict[str, Any]:
     """Certify only explicit F0 files; default mode performs no local I/O."""
     _validate_workers(workers)
+    instrument_order = _validate_development_instruments(instruments)
+    expected_pair_months = _expected_pair_months(instrument_order)
     if not execute_local:
         return {
             "program_id": PROGRAM_ID,
             "stage": "certify-development-market",
             "dry_run": True,
-            "planned_pair_months": EXPECTED_PAIR_MONTHS,
+            "planned_pair_months": expected_pair_months,
             "workers": workers,
             "status": "DRY_RUN_NO_LOCAL_IO",
         }
-    authorizations = development_authorizations(root, repository_root)
+    authorizations = development_authorizations(root, repository_root, instruments=instrument_order)
     require_storage_reserve(authorizations.read.clean_room_root, usage_probe)
     pair_months = tuple(
         (instrument, year, month)
-        for instrument in INSTRUMENT_ORDER
+        for instrument in instrument_order
         for year in DEVELOPMENT_YEARS
         for month in MONTHS
     )
@@ -966,20 +1013,20 @@ def certify_development_market(
     )
     daily_results = [
         _assemble_instrument_daily(authorizations, instrument, usage_probe)
-        for instrument in INSTRUMENT_ORDER
+        for instrument in instrument_order
     ]
     return {
         "program_id": PROGRAM_ID,
         "stage": "certify-development-market",
         "dry_run": False,
-        "planned_pair_months": EXPECTED_PAIR_MONTHS,
+        "planned_pair_months": expected_pair_months,
         "certified_pair_months": certified,
         "cross_month_daily_instruments": len(daily_results),
         "incomplete_daily_days": sum(len(item["incomplete_days"]) for item in daily_results),
         "workers": workers,
         "status": (
             "F0_DEVELOPMENT_MARKET_CERTIFIED"
-            if certified == EXPECTED_PAIR_MONTHS
+            if certified == expected_pair_months
             else "F0_DEVELOPMENT_MARKET_INCOMPLETE"
         ),
     }

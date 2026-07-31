@@ -57,6 +57,42 @@ class AccountingReconciliationError(RuntimeError):
     """Raised on any non-zero accounting or position residual."""
 
 
+@dataclass(frozen=True, slots=True)
+class PortfolioUniverse:
+    """Ordered F0 instrument subset and its exact currency legs."""
+
+    instruments: tuple[str, ...] = INSTRUMENTS
+    currencies: tuple[str, ...] = CURRENCIES
+
+    def __post_init__(self) -> None:
+        if not self.instruments or not self.currencies:
+            raise PortfolioInputError("Portfolio universe must not be empty")
+        if len(self.instruments) != len(set(self.instruments)):
+            raise PortfolioInputError("Portfolio instrument universe contains duplicates")
+        if len(self.currencies) != len(set(self.currencies)):
+            raise PortfolioInputError("Portfolio currency universe contains duplicates")
+        if not set(self.instruments).issubset(INSTRUMENTS):
+            raise PortfolioInputError("Instrument is outside the frozen universe")
+        if not set(self.currencies).issubset(CURRENCIES):
+            raise PortfolioInputError("Currency is outside the frozen universe")
+        required_currencies = {
+            currency
+            for instrument in self.instruments
+            for currency in (instrument[:3], instrument[3:])
+        }
+        if set(self.currencies) != required_currencies:
+            raise PortfolioInputError(
+                "Portfolio currencies must exactly match the selected instrument legs"
+            )
+
+
+LEGACY_PORTFOLIO_UNIVERSE = PortfolioUniverse()
+
+
+def _resolve_universe(universe: PortfolioUniverse | None) -> PortfolioUniverse:
+    return universe or LEGACY_PORTFOLIO_UNIVERSE
+
+
 class CostScenario(str, Enum):
     """Frozen Gate F.0 executable-cost scenarios."""
 
@@ -373,34 +409,50 @@ def estimate_lagged_risk(
     )
 
 
-def split_instrument(instrument: str) -> tuple[str, str]:
-    if instrument not in INSTRUMENTS:
+def split_instrument(
+    instrument: str,
+    universe: PortfolioUniverse | None = None,
+) -> tuple[str, str]:
+    resolved = _resolve_universe(universe)
+    if instrument not in resolved.instruments:
         raise PortfolioInputError(f"Instrument is outside the frozen universe: {instrument}")
     return instrument[:3], instrument[3:]
 
 
-def compute_currency_exposures(positions: Mapping[str, float]) -> dict[str, float]:
+def compute_currency_exposures(
+    positions: Mapping[str, float],
+    *,
+    universe: PortfolioUniverse | None = None,
+) -> dict[str, float]:
     """Translate signed pair notionals into positive base and negative quote legs."""
 
-    exposures = dict.fromkeys(CURRENCIES, 0.0)
+    resolved = _resolve_universe(universe)
+    exposures = dict.fromkeys(resolved.currencies, 0.0)
     for instrument, value in positions.items():
         if not _finite(value):
             raise PortfolioInputError(f"Non-finite position for {instrument}")
-        base, quote = split_instrument(instrument)
+        base, quote = split_instrument(instrument, resolved)
         notional = float(value)
         exposures[base] += notional
         exposures[quote] -= notional
     return exposures
 
 
-def _validate_complete_mapping(values: Mapping[str, float], name: str) -> np.ndarray:
-    missing = [instrument for instrument in INSTRUMENTS if instrument not in values]
+def _validate_complete_mapping(
+    values: Mapping[str, float],
+    name: str,
+    universe: PortfolioUniverse | None = None,
+) -> np.ndarray:
+    resolved = _resolve_universe(universe)
+    missing = [instrument for instrument in resolved.instruments if instrument not in values]
     if missing:
         raise PortfolioInputError(f"{name} is incomplete: {', '.join(missing)}")
-    extras = set(values).difference(INSTRUMENTS)
+    extras = set(values).difference(resolved.instruments)
     if extras:
         raise PortfolioInputError(f"{name} contains instruments outside the universe")
-    array = np.asarray([float(values[instrument]) for instrument in INSTRUMENTS], dtype=float)
+    array = np.asarray(
+        [float(values[instrument]) for instrument in resolved.instruments], dtype=float
+    )
     if not bool(np.isfinite(array).all()):
         raise PortfolioInputError(f"{name} contains non-finite values")
     return array
@@ -410,18 +462,22 @@ def construct_target_weights(
     signals: Mapping[str, float],
     risk: RiskEstimate,
     config: PortfolioConfig | None = None,
+    *,
+    universe: PortfolioUniverse | None = None,
 ) -> dict[str, float]:
     """Apply instrument targeting, portfolio targeting, then all frozen caps."""
 
     config = config or PortfolioConfig()
-    signal_array = _validate_complete_mapping(signals, "Signals")
+    resolved = _resolve_universe(universe)
+    instruments = resolved.instruments
+    signal_array = _validate_complete_mapping(signals, "Signals", resolved)
     if bool(np.any(np.abs(signal_array) > 1.0)):
         raise PortfolioInputError("Signal strengths must be in [-1, 1]")
     try:
-        volatility = risk.annualized_instrument_volatility.loc[list(INSTRUMENTS)].to_numpy(
+        volatility = risk.annualized_instrument_volatility.loc[list(instruments)].to_numpy(
             dtype=float
         )
-        covariance = risk.daily_covariance.loc[list(INSTRUMENTS), list(INSTRUMENTS)].to_numpy(
+        covariance = risk.daily_covariance.loc[list(instruments), list(instruments)].to_numpy(
             dtype=float
         )
     except KeyError as exc:
@@ -440,12 +496,12 @@ def construct_target_weights(
     if variance < -1e-15:
         raise PortfolioInputError("Covariance matrix produces negative portfolio variance")
     if variance <= 0.0 or not bool(np.any(instrument_scaled)):
-        return dict.fromkeys(INSTRUMENTS, 0.0)
+        return dict.fromkeys(instruments, 0.0)
     annualized_volatility = math.sqrt(max(0.0, variance) * config.annualization_days)
     target = instrument_scaled * (config.portfolio_volatility_target / annualized_volatility)
 
-    provisional = dict(zip(INSTRUMENTS, target, strict=True))
-    currency = compute_currency_exposures(provisional)
+    provisional = dict(zip(instruments, target, strict=True))
+    currency = compute_currency_exposures(provisional, universe=resolved)
     gross = float(np.abs(target).sum())
     maximum_instrument = float(np.abs(target).max(initial=0.0))
     maximum_currency = max((abs(value) for value in currency.values()), default=0.0)
@@ -465,7 +521,7 @@ def construct_target_weights(
     )
     return {
         instrument: float(value * constraint_scale)
-        for instrument, value in zip(INSTRUMENTS, target, strict=True)
+        for instrument, value in zip(instruments, target, strict=True)
     }
 
 
@@ -473,16 +529,19 @@ def apply_no_trade_band(
     current_positions: Mapping[str, float],
     desired_positions: Mapping[str, float],
     threshold: float = 0.05,
+    *,
+    universe: PortfolioUniverse | None = None,
 ) -> tuple[dict[str, float], tuple[str, ...]]:
     """Keep a position when its required change is strictly inside the frozen band."""
 
-    current = _validate_complete_mapping(current_positions, "Current positions")
-    desired = _validate_complete_mapping(desired_positions, "Desired positions")
+    resolved = _resolve_universe(universe)
+    current = _validate_complete_mapping(current_positions, "Current positions", resolved)
+    desired = _validate_complete_mapping(desired_positions, "Desired positions", resolved)
     if not 0.0 <= threshold < 1.0:
         raise PortfolioInputError("No-trade threshold must be in [0, 1)")
     result: dict[str, float] = {}
     held: list[str] = []
-    for index, instrument in enumerate(INSTRUMENTS):
+    for index, instrument in enumerate(resolved.instruments):
         change = abs(desired[index] - current[index])
         band = threshold * abs(current[index])
         at_boundary = math.isclose(change, band, rel_tol=1e-12, abs_tol=1e-15)
@@ -508,13 +567,16 @@ def is_friday_flatten_due(timestamp: datetime | pd.Timestamp) -> bool:
 def friday_flatten_targets(
     desired_positions: Mapping[str, float],
     timestamp: datetime | pd.Timestamp,
+    *,
+    universe: PortfolioUniverse | None = None,
 ) -> dict[str, float]:
     """Force every desired pair notional to zero once the Friday deadline is due."""
 
-    desired = _validate_complete_mapping(desired_positions, "Desired positions")
+    resolved = _resolve_universe(universe)
+    desired = _validate_complete_mapping(desired_positions, "Desired positions", resolved)
     if is_friday_flatten_due(timestamp):
-        return dict.fromkeys(INSTRUMENTS, 0.0)
-    return dict(zip(INSTRUMENTS, desired, strict=True))
+        return dict.fromkeys(resolved.instruments, 0.0)
+    return dict(zip(resolved.instruments, desired, strict=True))
 
 
 def _missing_rebalance_inputs(
@@ -523,9 +585,11 @@ def _missing_rebalance_inputs(
     quotes: Mapping[str, MarketQuote],
     rates: Mapping[str, float],
     risk: RiskEstimate,
+    universe: PortfolioUniverse | None = None,
 ) -> tuple[str, ...]:
+    resolved = _resolve_universe(universe)
     reasons: list[str] = []
-    for instrument in INSTRUMENTS:
+    for instrument in resolved.instruments:
         if instrument not in signals or not _finite(signals.get(instrument)):
             reasons.append(f"MISSING_SIGNAL:{instrument}")
         if instrument not in current_positions or not _finite(current_positions.get(instrument)):
@@ -533,12 +597,14 @@ def _missing_rebalance_inputs(
         quote = quotes.get(instrument)
         if quote is None or not quote.is_valid():
             reasons.append(f"MISSING_OR_INVALID_BID_ASK:{instrument}")
-    for currency in CURRENCIES:
+    for currency in resolved.currencies:
         if currency not in rates or not _finite(rates.get(currency)):
             reasons.append(f"MISSING_RATE:{currency}")
     try:
-        volatility = risk.annualized_instrument_volatility.loc[list(INSTRUMENTS)]
-        covariance = risk.daily_covariance.loc[list(INSTRUMENTS), list(INSTRUMENTS)]
+        volatility = risk.annualized_instrument_volatility.loc[list(resolved.instruments)]
+        covariance = risk.daily_covariance.loc[
+            list(resolved.instruments), list(resolved.instruments)
+        ]
         if not bool(np.isfinite(volatility.to_numpy(dtype=float)).all()):
             reasons.append("MISSING_VOLATILITY")
         if not bool(np.isfinite(covariance.to_numpy(dtype=float)).all()):
@@ -554,14 +620,17 @@ def execute_rebalance(
     quotes: Mapping[str, MarketQuote],
     scenario: CostScenario,
     costs: ExecutionCostConfig,
+    *,
+    universe: PortfolioUniverse | None = None,
 ) -> tuple[tuple[TradeExecution, ...], CostBreakdown]:
     """Execute pair-notional changes at side-correct stressed bid/ask prices."""
 
-    current = _validate_complete_mapping(current_positions, "Current positions")
-    desired = _validate_complete_mapping(desired_positions, "Desired positions")
+    resolved = _resolve_universe(universe)
+    current = _validate_complete_mapping(current_positions, "Current positions", resolved)
+    desired = _validate_complete_mapping(desired_positions, "Desired positions", resolved)
     parameters = SCENARIO_PARAMETERS[scenario]
     rows: list[TradeExecution] = []
-    for index, instrument in enumerate(INSTRUMENTS):
+    for index, instrument in enumerate(resolved.instruments):
         change = float(desired[index] - current[index])
         if change == 0.0:
             continue
@@ -605,10 +674,12 @@ def calculate_financing(
     held_from: datetime | pd.Timestamp,
     held_until: datetime | pd.Timestamp,
     scenario: CostScenario = CostScenario.BASE,
+    *,
+    universe: PortfolioUniverse | None = None,
 ) -> FinancingResult:
     """Calculate carry on each currency leg using its frozen day-count basis."""
 
-    base_currency, quote_currency = split_instrument(instrument)
+    base_currency, quote_currency = split_instrument(instrument, universe)
     values = (signed_notional, base_annual_rate, quote_annual_rate)
     if any(not _finite(value) for value in values):
         raise PortfolioInputError("Financing inputs must be finite")
@@ -710,8 +781,10 @@ class ClassicalFxPortfolioEngine:
         self,
         config: PortfolioConfig | None = None,
         execution_costs: ExecutionCostConfig | None = None,
+        universe: PortfolioUniverse | None = None,
     ) -> None:
         self.config = config or PortfolioConfig()
+        self.universe = _resolve_universe(universe)
         self.execution_costs = execution_costs or ExecutionCostConfig(
             commission_rate=0.00002,
             slippage_rate=0.00001,
@@ -739,15 +812,17 @@ class ClassicalFxPortfolioEngine:
         """Construct and execute one daily rebalance, failing closed on missing input."""
 
         reasons = _missing_rebalance_inputs(
-            signals, current_positions, quotes, published_rates, risk
+            signals, current_positions, quotes, published_rates, risk, self.universe
         )
         if reasons:
             try:
-                unchanged_array = _validate_complete_mapping(current_positions, "Current positions")
+                unchanged_array = _validate_complete_mapping(
+                    current_positions, "Current positions", self.universe
+                )
             except PortfolioInputError:
-                unchanged_array = np.zeros(len(INSTRUMENTS), dtype=float)
-            unchanged = dict(zip(INSTRUMENTS, unchanged_array, strict=True))
-            currency = compute_currency_exposures(unchanged)
+                unchanged_array = np.zeros(len(self.universe.instruments), dtype=float)
+            unchanged = dict(zip(self.universe.instruments, unchanged_array, strict=True))
+            currency = compute_currency_exposures(unchanged, universe=self.universe)
             return RebalanceResult(
                 positions_before=MappingProxyType(unchanged.copy()),
                 desired_positions=MappingProxyType(unchanged.copy()),
@@ -761,28 +836,41 @@ class ClassicalFxPortfolioEngine:
                 reasons=reasons,
             )
 
-        current_array = _validate_complete_mapping(current_positions, "Current positions")
-        before = dict(zip(INSTRUMENTS, current_array, strict=True))
-        desired = construct_target_weights(signals, risk, self.config)
-        desired = friday_flatten_targets(desired, decision_time)
-        after, inside_band = apply_no_trade_band(before, desired, self.config.no_trade_band)
+        current_array = _validate_complete_mapping(
+            current_positions, "Current positions", self.universe
+        )
+        before = dict(zip(self.universe.instruments, current_array, strict=True))
+        desired = construct_target_weights(signals, risk, self.config, universe=self.universe)
+        desired = friday_flatten_targets(desired, decision_time, universe=self.universe)
+        after, inside_band = apply_no_trade_band(
+            before, desired, self.config.no_trade_band, universe=self.universe
+        )
         # The Friday rule has priority over the ordinary no-trade band.
         if is_friday_flatten_due(decision_time):
-            after = dict.fromkeys(INSTRUMENTS, 0.0)
+            after = dict.fromkeys(self.universe.instruments, 0.0)
             inside_band = ()
         executions, execution_costs = execute_rebalance(
-            before, after, quotes, scenario, self.execution_costs
+            before,
+            after,
+            quotes,
+            scenario,
+            self.execution_costs,
+            universe=self.universe,
         )
         reconstructed = before.copy()
         for row in executions:
             reconstructed[row.instrument] += row.notional_change
         position_residual = max(
-            (abs(reconstructed[name] - after[name]) for name in INSTRUMENTS), default=0.0
+            (abs(reconstructed[name] - after[name]) for name in self.universe.instruments),
+            default=0.0,
         )
-        currency = compute_currency_exposures(after)
-        reconstructed_currency = compute_currency_exposures(reconstructed)
+        currency = compute_currency_exposures(after, universe=self.universe)
+        reconstructed_currency = compute_currency_exposures(reconstructed, universe=self.universe)
         currency_residual = max(
-            (abs(reconstructed_currency[name] - currency[name]) for name in CURRENCIES),
+            (
+                abs(reconstructed_currency[name] - currency[name])
+                for name in self.universe.currencies
+            ),
             default=0.0,
         )
         if position_residual != 0.0 or currency_residual != 0.0:
