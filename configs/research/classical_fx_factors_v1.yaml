@@ -123,6 +123,7 @@ candidates:
     return_lookbacks: [21, 63, 126, 252]
     signal: MEAN_OF_RETURN_SIGNS
     signal_values: [-1.0, -0.5, 0.0, 0.5, 1.0]
+    exact_zero_horizon_return_rule: SIGNAL_UNAVAILABLE_WITH_RECORDED_REASON
   - candidate_id: F0_SHORT_TERM_REVERSAL_V1
     information_lag_trading_days: 1
     return_lookback: 5

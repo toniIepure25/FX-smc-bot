@@ -5,7 +5,7 @@ six candidates. It contains no SMC, Acceptance, opening-range, inversion,
 polarity, or machine-learning transformation. Prior lineage seals remain closed.
 
 Let `C_t` denote the certified daily research close. A decision executed on day
-`t` uses data through `t-1`. `clip(x,-1,1)` is inclusive, and `sign(0)=0`.
+`t` uses data through `t-1`. `clip(x,-1,1)` is inclusive.
 
 ## 1. `F0_TSMOM_COMPOSITE_V1`
 
@@ -17,6 +17,10 @@ mean(sign(r_21), sign(r_63), sign(r_126), sign(r_252))
 ```
 
 Its possible values are `-1.0, -0.5, 0.0, 0.5, 1.0`.
+If any horizon return is exactly zero, the composite is unavailable for that
+decision and records `ZERO_HORIZON_RETURN_SIGN_AMBIGUITY`. This conservative
+tie rule preserves the frozen five-value domain without assigning an arbitrary
+direction or changing the stated mean-of-signs formula.
 
 ## 2. `F0_SHORT_TERM_REVERSAL_V1`
 

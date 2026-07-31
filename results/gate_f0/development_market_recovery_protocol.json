@@ -38,7 +38,7 @@
     "retry_count_per_partition": 5,
     "pause_between_batches_ms": 200,
     "pause_between_retries_ms": 1000,
-    "provider_cache": "ENABLED_INSIDE_CAPABILITY_AUTHORIZED_ROOT",
+    "provider_cache": "DISABLED_TO_PREVENT_ANY_CROSS_REQUEST_OR_CROSS_LINEAGE_REUSE",
     "raw_intermediate_format": "COMPACT_JSON_LOCAL_ONLY",
     "canonical_intermediate": "UTC_M1_BID_ASK_OHLC",
     "execution_bars": "DETERMINISTIC_M5_BID_ASK_OHLC",

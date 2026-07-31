@@ -24,7 +24,7 @@
         ],
         "return_definition": "CLOSE_TO_CLOSE_SIMPLE_RETURN_OVER_LOOKBACK",
         "signal_formula": "mean(sign(r_21), sign(r_63), sign(r_126), sign(r_252))",
-        "sign_zero_rule": "sign(0)=0",
+        "exact_zero_horizon_return_rule": "SIGNAL_UNAVAILABLE_WITH_RECORDED_REASON",
         "signal_domain": [
           -1.0,
           -0.5,

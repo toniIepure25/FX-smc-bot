@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_FACTOR_DEFINITION_CLARIFICATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS",
+  "clarification": {
+    "candidate_id": "F0_TSMOM_COMPOSITE_V1",
+    "ambiguity": "MEAN_OF_FOUR_STANDARD_SIGNS_CAN_PRODUCE_QUARTER_STEPS_WHEN_A_HORIZON_RETURN_IS_EXACTLY_ZERO",
+    "frozen_resolution": "ANY_EXACT_ZERO_HORIZON_RETURN_MAKES_THE_COMPOSITE_SIGNAL_UNAVAILABLE",
+    "recorded_reason": "ZERO_HORIZON_RETURN_SIGN_AMBIGUITY",
+    "arbitrary_direction_assigned": false,
+    "rounding_or_quantization_added": false,
+    "mean_of_nonzero_return_signs_formula_changed": false,
+    "five_value_signal_domain_preserved": true
+  },
+  "timing": {
+    "market_data_accessed_before_clarification": false,
+    "rate_data_accessed_before_clarification": false,
+    "candidate_outcomes_seen_before_clarification": false
+  }
+}
