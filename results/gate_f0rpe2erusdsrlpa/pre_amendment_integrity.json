@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSRLPA_PRE_AMENDMENT_INTEGRITY_V1",
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "captured_at_sha": "c35c17aacb20afc682c14a096de1432120bec35c",
+  "predecessor_decision": "BLOCKED_BY_USD_PUBLICATION_AVAILABILITY",
+  "predecessor_decision_mutated": false,
+  "predecessor_block_reclassified_as_false_alarm": false,
+  "legacy_actual_publication_clock_known": false,
+  "fabricated_timestamp_used": false,
+  "ny_fed_effr_v3_implemented": false,
+  "usd_rate_versions": 0,
+  "economic_outcomes": 0,
+  "historical_2023_2025_used": false,
+  "historical_2023_2025_persisted": false,
+  "historical_2023_2025_untouched_claim": false,
+  "nzd_accessed": false,
+  "nzdusd_accessed": false,
+  "status": "PASS"
+}

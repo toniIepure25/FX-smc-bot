@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSRLPA_PREDECESSOR_INHERITANCE_V1",
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "predecessor_tip_sha": "c35c17aacb20afc682c14a096de1432120bec35c",
+  "predecessor_decision": "BLOCKED_BY_USD_PUBLICATION_AVAILABILITY",
+  "legacy_actual_clock_time_known": false,
+  "fabricated_timestamp_used": false,
+  "ny_fed_effr_v3_implemented": false,
+  "usd_rate_versions": 0,
+  "economic_outcomes": 0,
+  "predecessor_artifact_sha256": {
+    "results/gate_f0rpe2erusdsr/final_decision.json": "cf1f45026fbcd4a4b10271a1981ebc37a03645930b2e13841db7c31872d1ea9a",
+    "results/gate_f0rpe2erusdsr/usd_legacy_schema_descriptor.json": "ffac5789fefeb84af5e2c956c525aad441c75e2361e3bfd040ab80d38f96fc46",
+    "results/gate_f0rpe2erusdsr/usd_modern_schema_descriptor.json": "225636b22dbd6d85d15219fd398ba587a051df4f41dcd4ccab517c26e61d1e38",
+    "results/gate_f0rpe2erusdsr/usd_schema_difference.json": "ad066c10db43f45eda0142f8631275e76bbd4a45a967bf32a6f1d429e8a22d94",
+    "results/gate_f0rpe2erusdsr/usd_schema_reconciliation.json": "a8c3a944f6dcbd5b2950aff981b49fbb6d5b9c6101f86ff6dfdb4bdb91b62bca",
+    "results/gate_f0rpe2erusdsr/usd_publication_revision_availability.json": "edd27f773852c45d2d466537f795fd1ba00d6a780007b23201b05dda312714f6",
+    "results/gate_f0rpe2erusdsr/integrity_audit.json": "ad58b931faededd000c7944cfcbd67d6c3b51d5ea0a51ad55cb4b12b64f73940",
+    "results/gate_f0rpe2erusdsr/prohibited_data_audit.json": "221c5610248d61e4aac8181508c5c59a3efeab3e6166c060628c3a90513beb6e",
+    "results/gate_f0rpe2erusdsr/reproducibility_manifest.json": "f7f506b8281bc98bedd1f8f2ed7b1c6099234304ed494309e97867a83b3f3ce1",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSR_FINAL_DECISION_MEMO.md": "47cab0bcd806605a7e2630060e28ed1eaca9bbacfe4281cdfca28173c827ec97"
+  },
+  "status": "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED"
+}
