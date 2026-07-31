@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_DAY_PROVENANCE_V1",
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "evidence_scope": "OFFICIAL_NEW_YORK_FED_PUBLICATION_METADATA_NO_NUMERICAL_RATE_ROWS",
+  "observation_date": "KNOWN_AS_PRIOR_DAY_FEDERAL_FUNDS_MARKET_ACTIVITY_DATE",
+  "publication_business_day": "CERTIFIABLE_AS_NEXT_AUTHORIZED_NEW_YORK_FED_BUSINESS_DAY",
+  "actual_publication_clock_instant": "NOT_CERTIFIABLE_FOR_LEGACY_REGIME",
+  "publication_day_upper_boundary": "CERTIFIABLE_AS_EXCLUSIVE_END_OF_PUBLICATION_DAY_IN_AMERICA_NEW_YORK",
+  "official_evidence": [
+    {
+      "source_id": "NY_FED_OPERATING_POLICY_2015_02_02",
+      "url": "https://www.newyorkfed.org/markets/opolicy/operating_policy_150202.html",
+      "supports": [
+        "LEGACY_FEDERAL_FUNDS_EFFECTIVE_RATE_PUBLISHED_DAILY",
+        "RATE_CALCULATED_FROM_FEDERAL_FUNDS_TRANSACTIONS_ON_PREVIOUS_DAY"
+      ]
+    },
+    {
+      "source_id": "NY_FED_OPERATING_POLICY_2016_01_06",
+      "url": "https://www.newyorkfed.org/markets/opolicy/operating_policy_160106",
+      "supports": [
+        "EFFR_PUBLISHED_DAILY",
+        "LEGACY_PRE_TRANSITION_BROKER_AGGREGATE_VOLUME_WEIGHTED_AVERAGE_REGIME"
+      ]
+    },
+    {
+      "source_id": "NY_FED_EFFR_OBFR_TRANSITION_NOTICE_2016",
+      "url": "https://www.newyorkfed.org/markets/effr-obfr-data",
+      "supports": [
+        "PRIOR_BUSINESS_DAY_RATE_LABELING",
+        "MARCH_1_2016_RATE_SCHEDULED_FOR_PUBLICATION_ON_MARCH_2_2016"
+      ]
+    },
+    {
+      "source_id": "NY_FED_REFERENCE_RATE_PUBLICATION_INFORMATION",
+      "url": "https://www.newyorkfed.org/markets/reference-rates/additional-information-about-reference-rates",
+      "supports": [
+        "NEW_YORK_FED_HOLIDAY_SCHEDULE_GOVERNS_EFFR_PUBLICATION",
+        "ACTIVITY_PRECEDING_HOLIDAY_PUBLISHED_ON_SUBSEQUENT_BUSINESS_DAY"
+      ]
+    }
+  ],
+  "conservative_day_relation": "OBSERVATION_DAY_D_TO_NEXT_AUTHORIZED_NEW_YORK_FED_PUBLICATION_BUSINESS_DAY_P",
+  "exact_clock_claimed": false,
+  "numerical_rate_rows_accessed": 0,
+  "rate_provider_requests_sent": 0,
+  "status": "PASS_DAY_LEVEL_PUBLICATION_RULE"
+}

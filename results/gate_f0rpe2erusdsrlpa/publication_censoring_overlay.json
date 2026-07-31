@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1",
+  "overlay_id": "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1",
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "status": "FROZEN_BEFORE_NUMERICAL_RATE_PARSING",
+  "publication_evidence_kinds": [
+    "EXACT_TIMESTAMP",
+    "BOUNDED_TIME_ENVELOPE",
+    "PUBLICATION_DAY_ENVELOPE"
+  ],
+  "publication_evidence_schema": {
+    "actual_publication_timestamp": "NULLABLE_TIMEZONE_AWARE_DATETIME",
+    "publication_lower_bound": "REQUIRED_TIMEZONE_AWARE_DATETIME",
+    "publication_upper_bound": "REQUIRED_TIMEZONE_AWARE_DATETIME",
+    "publication_upper_bound_exclusive": "REQUIRED_BOOLEAN",
+    "publication_evidence_kind": "REQUIRED_ENUM",
+    "publication_evidence_source": "REQUIRED_OFFICIAL_SOURCE_IDENTITY",
+    "effective_timestamp": "REQUIRED_TIMEZONE_AWARE_OFFICIALLY_DERIVED_DATETIME",
+    "strategy_availability_timestamp": "REQUIRED_EXACT_DETERMINISTIC_DATETIME"
+  },
+  "invariants": [
+    "PUBLICATION_LOWER_BOUND_LE_PUBLICATION_UPPER_BOUND",
+    "STRATEGY_AVAILABILITY_TIMESTAMP_GE_PUBLICATION_UPPER_BOUND",
+    "STRATEGY_AVAILABILITY_TIMESTAMP_GE_EFFECTIVE_TIMESTAMP",
+    "CENSORED_EVIDENCE_REQUIRES_NULL_ACTUAL_PUBLICATION_TIMESTAMP",
+    "PUBLICATION_UPPER_BOUND_IS_NOT_ACTUAL_PUBLICATION_TIMESTAMP"
+  ],
+  "legacy_effr": {
+    "observation_interval_end": "2016-02-29",
+    "publication_day": "NEXT_AUTHORIZED_NEW_YORK_FED_BUSINESS_DAY_AFTER_OBSERVATION_DATE",
+    "publication_lower_bound": "00:00:00_AMERICA_NEW_YORK_ON_PUBLICATION_DAY",
+    "publication_upper_bound": "00:00:00_AMERICA_NEW_YORK_ON_CALENDAR_DAY_AFTER_PUBLICATION_DAY",
+    "publication_upper_bound_exclusive": true,
+    "actual_publication_timestamp": null,
+    "publication_evidence_kind": "PUBLICATION_DAY_ENVELOPE",
+    "effective_timestamp_derivation": "CONSERVATIVE_PUBLICATION_UPPER_BOUND_NOT_ACTUAL_PUBLICATION_TIME",
+    "strategy_availability": "FIRST_FROZEN_17:05_AMERICA_NEW_YORK_FX_EXECUTION_STRICTLY_AFTER_PUBLICATION_UPPER_BOUND",
+    "intentional_conservative_delay": true
+  },
+  "modern_effr": {
+    "observation_interval_start": "2016-03-01",
+    "publication_day": "NEXT_AUTHORIZED_NEW_YORK_FED_BUSINESS_DAY_AFTER_OBSERVATION_DATE",
+    "official_initial_publication_description": "APPROXIMATELY_09:00_AMERICA_NEW_YORK",
+    "publication_lower_bound": "00:00:00_AMERICA_NEW_YORK_ON_PUBLICATION_DAY_CONSERVATIVE_BECAUSE_09:00_IS_APPROXIMATE",
+    "publication_upper_bound": "14:30:00_AMERICA_NEW_YORK_ON_PUBLICATION_DAY",
+    "publication_upper_bound_exclusive": false,
+    "actual_publication_timestamp": null,
+    "publication_evidence_kind": "BOUNDED_TIME_ENVELOPE",
+    "effective_timestamp_derivation": "FROZEN_REVISION_COMPLETE_UPPER_BOUND_NOT_ACTUAL_ROW_REVISION_TIME",
+    "strategy_availability": "17:05_AMERICA_NEW_YORK_ON_PUBLICATION_DAY_WHEN_IT_IS_AN_FX_TRADING_DAY"
+  },
+  "revision_contract": {
+    "revision_identifier": "NULLABLE_OFFICIAL_FIELD_ONLY",
+    "allowed_revision_statuses": [
+      "ORIGINAL_EXPLICIT",
+      "REVISED_EXPLICIT",
+      "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID",
+      "UNKNOWN_REJECTED"
+    ],
+    "final_history_without_identifier": {
+      "revision_identifier": null,
+      "revision_status": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID"
+    },
+    "internal_storage_key_fields": [
+      "observation_identity",
+      "schema_fingerprint",
+      "snapshot_sha256",
+      "source_row_ordinal",
+      "parser_version"
+    ],
+    "internal_storage_key_is_official_revision_identifier": false,
+    "conflicting_final_history_rows": "REJECT"
+  },
+  "storage_migration_specification": {
+    "new_schema_id": "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4",
+    "in_place_upgrade_of_empirical_database_allowed": false,
+    "new_clean_database_required": true,
+    "append_only_versions_required": true,
+    "dataset_freeze_pinning_required": true,
+    "explicit_as_of_queries_required": true
+  },
+  "tests_written_before_numerical_parsing": true,
+  "numerical_rate_rows_parsed": 0,
+  "economic_outcomes_generated": 0
+}
