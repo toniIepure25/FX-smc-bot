@@ -1,0 +1,38 @@
+{
+  "full_pytest": {
+    "failed": 0,
+    "passed": 948,
+    "status": "PASS",
+    "warnings": 91
+  },
+  "git_diff_check": {
+    "status": "PASS"
+  },
+  "new_broad_mypy": {
+    "findings": 0,
+    "status": "PASS"
+  },
+  "new_broad_ruff": {
+    "findings": 0,
+    "status": "PASS"
+  },
+  "node": {
+    "failed": 0,
+    "passed": 2,
+    "status": "PASS"
+  },
+  "q1_pytest": {
+    "failed": 0,
+    "passed": 13,
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "targeted_mypy": {
+    "findings": 0,
+    "status": "PASS"
+  },
+  "targeted_ruff": {
+    "findings": 0,
+    "status": "PASS"
+  }
+}

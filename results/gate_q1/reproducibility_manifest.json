@@ -1,0 +1,224 @@
+{
+  "all_declared_artifacts_present": true,
+  "all_declared_hashes_present": true,
+  "artifact_groups": {
+    "q0_and_q0r_sources": [
+      {
+        "exists": true,
+        "path": "results/gate_q0/final_decision.json",
+        "raw_sha256": "8ec6f29691f0243daf8a86e2db85c02904706572117832529b3ba191c62b3fea"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0/holdout_integrity.json",
+        "raw_sha256": "8e1a679571229bb23f8c063d3211d39dcc0270ae619451bbebd2c1b3a06447ea"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0/prohibited_data_audit.json",
+        "raw_sha256": "5ed17358876a58111bfeec3690fa05cf8eafdae0fb036f53cf7b9f04d2414332"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0/development_acquisition_status.json",
+        "raw_sha256": "4d5e060f832936dcce9d54a611f552b633b6364a55a2c8b97ba82a8067654606"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0/reproducibility_manifest.json",
+        "raw_sha256": "6f376191c89703dc3252369b4f8eeac62838170f53c7fc0082ae71d65d1306d0"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity/Q0_FINAL_DECISION_MEMO.md",
+        "raw_sha256": "011ecd8161ec54110276d5f3d2509ac5655689063dee5e3ea0d1bc3ecad60c44"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/holdout_rebaseline.json",
+        "raw_sha256": "4edd2f19ee18a0f7b599761954710798c8c51820050504c3fe8bf292aab7e24a"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/clean_room_root.json",
+        "raw_sha256": "318ad9f92546d6c54a0789942f2671a1995c1a25a87b6018789b995ef35ceb7b"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/safe_io_guard_certification.json",
+        "raw_sha256": "0aa9400f4995fafa2716e3d6e5856952284cd3264824c3cbef1f0fffd29e257d"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/protocol_inheritance_lock.json",
+        "raw_sha256": "b25a6493aa42658878bcfc208aa9b49b2a6c17cb9d8236eaf7e6fee8f44fb4cc"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0/model_selection_freeze.json",
+        "raw_sha256": "5d1adc8b2f46bded345dcdce719ffb0c148a7a3bffb732af9a86de4058394132"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_dataset_freeze.json",
+        "raw_sha256": "def34ff33482cc2c3877258f99e561dc866d4533df259a053de308011f06fb57"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/execution_certification.json",
+        "raw_sha256": "820f4224dc0a40fc7451b39ef53bac01ef26b02ae554dbcbc1fa8a85c214eec9"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/lookahead_audit.json",
+        "raw_sha256": "172d0c776ac42ab02f7db7c77b7e5a6af9b1a6fdc2121436865266d5db99ab69"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/model_selection_leakage_audit.json",
+        "raw_sha256": "ac9cf8e931fba75f54948579766f7291b5f6721cfd3d31be5eda36e4b73d5ae0"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/determinism_audit.json",
+        "raw_sha256": "7191359eaf34119f43f9013ed662f1996fbdf891c99dda198fbd7274bbb2d7e5"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_candidate_results.json",
+        "raw_sha256": "648ba0bc96d19a2330791dae029070fc85db0f05d086e039ae3a7b86eea10fcb"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_benchmark_results.json",
+        "raw_sha256": "b10f299afbff263dec81fa78239df29b3d32ca8c55a734464bd5fc29ac1c6306"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_factor_alpha.json",
+        "raw_sha256": "3a1a7948ab6d00f267ef85f9c0b63612870d6abd26297b77e957c3c1aaf8a606"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_inference.json",
+        "raw_sha256": "0619d13d53c476e3a2618a6d8166ea816c9be91b84c54e5d4b117f37488c386a"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_overfitting_audit.json",
+        "raw_sha256": "bbe25f5716a33ba08cae78c3a23e90e710ed7d0eabf77c1fd6371f7ab61f360f"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_stability_and_concentration.json",
+        "raw_sha256": "165fa86fd4397f6f5b39290e021ba151688b5e9ca2e732d631c25b361e4f2b8b"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/development_candidate_adjudication.json",
+        "raw_sha256": "40d9c6ee37342dd22f9d1269fc229845d9c3810271ad94644879c218c8c2245d"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/replication_shortlist_freeze.json",
+        "raw_sha256": "b1cdb47c22c248f1adb8eb1ef554c173c91b760ef7ed5e118ff057c86aaf8bfd"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q0r/final_decision.json",
+        "raw_sha256": "542d0694e2837a867b42b1eb25febb619e3383087fb16c076d55be6d85c2a783"
+      }
+    ],
+    "q1_closure_package": [
+      {
+        "exists": true,
+        "path": "results/gate_q1/final_result_reproduction.json",
+        "raw_sha256": "63e270643372a53931e3ceadbdece5b2ab724d5c71ecb4aeb16bf460c9b3064e"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q1/final_claim_matrix.json",
+        "raw_sha256": "8de81c0c468467257bb4ad6d9711e622e6bb840499786bb814d53989240490ab"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q1/statistical_failure_interpretation.json",
+        "raw_sha256": "f7dbee8bee9bb185a8370a41935b5522abe163c881981417bdd585ae1e80da84"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q1/posthoc_hypothesis_quarantine.json",
+        "raw_sha256": "9cbf192957e4ae46672643cac5bd2662d3b6e050d309bb9f6c667f89b51ec9bf"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q1/failure_mechanism_audit.json",
+        "raw_sha256": "fe9766dfbaf26a0cc499628c28f703500593e9f03ffefd5d85a399ad4ebf4750"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q1/quant_polarity_lineage_seal.json",
+        "raw_sha256": "c0a724ddca6953ed924f4ae6d504e5517193249e56fa732305ccc9f7b70a9eb4"
+      },
+      {
+        "exists": true,
+        "path": "results/gate_q1/closure_lock.json",
+        "raw_sha256": "fb8ef24df48b1d1d524588ed1b5ea35fd840c2c7e6a7d123db1d91067c31a3f0"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_ABSTRACT.md",
+        "raw_sha256": "aadbc9e1867db6ab85ab8d166446ff2f673aeeac6a6ea83978c45ffbd4866bbb"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_METHODS.md",
+        "raw_sha256": "7133c994f777de69e28d9706c95f5a2db3bd417d6b7b10041a65964e12fe04c4"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_RESULTS.md",
+        "raw_sha256": "9cdc4410d5986f931ccb9fb213e97a1e136dc3decbdb6ba3d07b6f57dccaa062"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_STATISTICAL_APPENDIX.md",
+        "raw_sha256": "826fcf95b3550a8266ac1901deec2e8fe3679cad7600879f8d34d5700869db3d"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_LIMITATIONS.md",
+        "raw_sha256": "20fc1bee9969e0d6be08cb13aee4f04437822d76f34b29fb97fde3e205fb127b"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_REPRODUCIBILITY.md",
+        "raw_sha256": "535f43f3b8cbdfc7b2536a9e36799c6f81b27a25f53a7e66431986e4b532be43"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_RESEARCH_LEDGER.md",
+        "raw_sha256": "0b476fe8a8c8386cf5dd72df30e612964566694fe3f6f909cca0bd5691c7d1e5"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_RESEARCH_LESSONS.md",
+        "raw_sha256": "99c0ef4210652062f2f1e4e5124c52b95e6c04fc8125d14f606f3c1778494700"
+      },
+      {
+        "exists": true,
+        "path": "docs/research/quant_polarity_v2/QUANT_POLARITY_PACKAGE_INDEX.md",
+        "raw_sha256": "05f106db02ad0a34e2c2f81094c9f41b5a15a792ed095d0291906a67ff07a13b"
+      }
+    ]
+  },
+  "clean_room_market_data_loaded": false,
+  "created_at_utc": "2026-07-31T08:13:10Z",
+  "lineage_id": "FX_QUANT_EDGE_DISCOVERY_LINEAGE_V2",
+  "manifest_hash": "df3f1a3f9f3471caf0e6123bc62e9bbdbd89256629525de6c4a62ebfba042d5a",
+  "program_id": "FX_QUANT_POLARITY_META_V2",
+  "raw_canonical_or_row_level_data_included": false,
+  "replication_data_accessed": false,
+  "source_sha": "1ae0abe19ad138e166f83b4a1d3fd48af34b8a3e",
+  "status": "PASS"
+}
