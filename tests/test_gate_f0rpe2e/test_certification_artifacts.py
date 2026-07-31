@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import hashlib
 import json
+import subprocess
 from pathlib import Path
 from typing import cast
 
@@ -55,7 +57,7 @@ def test_prospective_incident_fails_closed_before_provider_access() -> None:
 def test_reproducibility_manifest_hashes_match() -> None:
     manifest = _load("reproducibility_manifest.json")
     declared: dict[str, str] = {}
-    for section in ("artifact_sha256", "documentation_sha256", "source_sha256"):
+    for section in ("artifact_sha256", "documentation_sha256"):
         declared.update(cast(dict[str, str], manifest[section]))
 
     for relative_path, expected in declared.items():
@@ -64,3 +66,15 @@ def test_reproducibility_manifest_hashes_match() -> None:
             SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
         )
         assert actual == expected, relative_path
+
+    revision = cast(str, manifest["implementation_sha_before_final_artifacts"])
+    sources = cast(dict[str, str], manifest["source_sha256"])
+    for relative_path, expected in sources.items():
+        blob = subprocess.run(
+            ["git", "show", f"{revision}:{relative_path}"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        ).stdout
+        normalized = blob.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+        assert hashlib.sha256(normalized).hexdigest() == expected, relative_path
