@@ -1,0 +1,28 @@
+{
+  "all_five_candidates_development_ineligible": true,
+  "closure_hash": "3a9d6e19f7a470c09eef93fc722521f5d19933ac1bcca6c21e40160f132cecae",
+  "closure_id": "FX_QUANT_POLARITY_META_V2_CLOSURE_V1",
+  "decision": "Q1_QUANT_POLARITY_PROGRAM_CLOSED_PR_CREATED_READY_FOR_REVIEW",
+  "future_candidate_created": false,
+  "lineage_id": "FX_QUANT_EDGE_DISCOVERY_LINEAGE_V2",
+  "manifest_hash": "df3f1a3f9f3471caf0e6123bc62e9bbdbd89256629525de6c4a62ebfba042d5a",
+  "merge_conflicts": 0,
+  "paper_or_live_handoff_created": false,
+  "program_id": "FX_QUANT_POLARITY_META_V2",
+  "prospective_protocol_created": false,
+  "pull_request": {
+    "is_draft": false,
+    "merged": false,
+    "number": 3,
+    "url": "https://github.com/toniIepure25/FX-smc-bot/pull/3"
+  },
+  "q0_failure_preserved": true,
+  "q0r_decision": "Q0R_NO_CANDIDATE_SURVIVED_INDEPENDENT_REPLICATION",
+  "q0r_final_sha": "1ae0abe19ad138e166f83b4a1d3fd48af34b8a3e",
+  "quality_status": "PASS",
+  "replication_data_accessed": false,
+  "replication_outcomes_generated": false,
+  "seal_hash": "6a5c4c631dbdb0ced12878ce1bd92cfdb7808d928ac7cb1db0d7a08df946173e",
+  "seal_id": "FX_QUANT_POLARITY_META_V2_LINEAGE_SEAL_V1",
+  "status": "FINAL"
+}
