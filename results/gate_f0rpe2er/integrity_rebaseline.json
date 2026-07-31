@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_INTEGRITY_REBASELINE_V1",
+  "rebaseline_id": "F0RPE2ER_FUTURE_ONLY_CONFIRMATORY_BASELINE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "relationship": "SCIENTIFIC_PROTOCOL_INHERITANCE_WITH_NEW_FUTURE_ONLY_INTEGRITY_BASELINE",
+  "historical_2023_2025_status": "QUARANTINED_FROM_ALL_SELECTION_REPLICATION_AND_CONFIRMATORY_USE",
+  "historical_2023_2025_untouched_claim": false,
+  "historical_quarantine_start": "2023-01-01",
+  "historical_quarantine_end": "2025-12-31",
+  "historical_quarantined_data_used": false,
+  "historical_quarantined_data_persisted": false,
+  "future_confirmatory_start": "FIRST_COMPLETE_FX_TRADING_DAY_AFTER_FINAL_PORTFOLIO_FREEZE",
+  "future_confirmatory_status": "NOT_YET_GENERATED_OR_ACCESSED",
+  "future_confirmatory_minimum_eligible_trading_days": 252,
+  "future_confirmatory_minimum_calendar_months": 12,
+  "both_future_conditions_required": true,
+  "backfill_permitted": false,
+  "status": "PASS"
+}

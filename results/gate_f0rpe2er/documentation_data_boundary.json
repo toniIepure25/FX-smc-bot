@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_DOCUMENTATION_DATA_BOUNDARY_V1",
+  "boundary_id": "F0RPE2ER_DOCUMENTATION_DATA_BOUNDARY_V1",
+  "metadata_documentation_class": {
+    "class": "A",
+    "permitted_purposes": ["METHODOLOGY", "API_SCHEMA", "PUBLICATION_SCHEDULE", "REVISION_POLICY", "CALENDAR_DEFINITIONS", "SERIES_IDENTITY"],
+    "numerical_observations_permitted": false,
+    "search_result_snippets_with_numerical_rows_permitted": false,
+    "live_dashboard_tables_permitted": false,
+    "generic_latest_data_files_permitted": false,
+    "unbounded_exports_permitted": false,
+    "observation_webpage_tables_permitted": false
+  },
+  "numerical_data_class": {
+    "class": "B",
+    "official_machine_readable_allowlist_required": true,
+    "server_side_date_bounds_required": true,
+    "authorized_minimum_date": "2010-01-01",
+    "authorized_maximum_date": "2022-12-31",
+    "explicit_series_required": true,
+    "explicit_currency_required": true,
+    "explicit_response_format_required": true,
+    "complete_current_history_response_permitted": false,
+    "mixed_requested_and_latest_rows_permitted": false,
+    "response_date_firewall_required": true
+  },
+  "network_numerical_access_started": false,
+  "status": "PASS_FROZEN_BEFORE_NETWORK_DATA_ACCESS"
+}

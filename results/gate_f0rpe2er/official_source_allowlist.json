@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_OFFICIAL_SOURCE_ALLOWLIST_V1",
+  "allowlist_id": "F0RPE2ER_OFFICIAL_SOURCE_ALLOWLIST_V1",
+  "authorized_minimum_date": "2010-01-01",
+  "authorized_maximum_date": "2022-12-31",
+  "records": [
+    {
+      "currency": "USD", "series": "EFFR", "publisher": "Federal Reserve Bank of New York", "adapter": "NY_FED_EFFR_V2",
+      "metadata_urls": ["https://www.newyorkfed.org/markets/reference-rates/effr", "https://www.newyorkfed.org/markets/reference-rates/additional-information-about-reference-rates"],
+      "numerical_endpoint": "https://markets.newyorkfed.org/api/rates/all/search.json", "server_side_date_parameters": ["startDate", "endDate"], "series_parameter": "eventCodes", "format": "JSON", "maximum_authorized_date": "2022-12-31", "expected_schema": "NY_FED_RATES_SEARCH_JSON_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    },
+    {
+      "currency": "EUR", "series": "EONIA", "publisher": "European Central Bank", "adapter": "ECB_EONIA_ESTR_V2",
+      "metadata_urls": ["https://data.ecb.europa.eu/data/datasets/EON/data-information"],
+      "numerical_endpoint": "https://data-api.ecb.europa.eu/service/data/EON/B.EU000A2X2A25.WT", "server_side_date_parameters": ["startPeriod", "endPeriod"], "series_parameter": "PATH_SERIES_KEY", "format": "JSONDATA", "maximum_authorized_date": "2019-09-30", "expected_schema": "ECB_SDMX_JSONDATA_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    },
+    {
+      "currency": "EUR", "series": "ESTR", "publisher": "European Central Bank", "adapter": "ECB_EONIA_ESTR_V2",
+      "metadata_urls": ["https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_short-term_rate/html/eurostr_overview.en.html"],
+      "numerical_endpoint": "https://data-api.ecb.europa.eu/service/data/EST/B.EU000A2X2A25.WT", "server_side_date_parameters": ["startPeriod", "endPeriod"], "series_parameter": "PATH_SERIES_KEY", "format": "JSONDATA", "maximum_authorized_date": "2022-12-31", "expected_schema": "ECB_SDMX_JSONDATA_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    },
+    {
+      "currency": "GBP", "series": "IUDSOIA", "publisher": "Bank of England", "adapter": "BOE_SONIA_V2",
+      "metadata_urls": ["https://www.bankofengland.co.uk/boeapps/database/Help.asp", "https://www.bankofengland.co.uk/markets/sonia-benchmark/sonia-key-features-and-policies"],
+      "numerical_endpoint": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp", "server_side_date_parameters": ["Datefrom", "Dateto"], "series_parameter": "SeriesCodes", "format": "CSV_COLUMNAR", "maximum_authorized_date": "2022-12-31", "expected_schema": "BOE_IADB_COLUMNAR_CSV_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    },
+    {
+      "currency": "AUD", "series": "RBA_CASH_RATE", "publisher": "Reserve Bank of Australia", "adapter": "RBA_CASH_RATE_V2",
+      "metadata_urls": ["https://www.rba.gov.au/mkt-operations/resources/cash-rate-methodology/overview.html"],
+      "numerical_endpoint": "https://www.rba.gov.au/statistics/cash-rate/cash-rate.json", "server_side_date_parameters": ["start-date", "end-date"], "series_parameter": "FIXED_ENDPOINT_SERIES", "format": "JSON", "maximum_authorized_date": "2022-12-31", "expected_schema": "RBA_CASH_RATE_JSON_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    },
+    {
+      "currency": "JPY", "series": "FM01'STRDCLUCON", "publisher": "Bank of Japan", "adapter": "BOJ_FINAL_UO_CALL_V2",
+      "metadata_urls": ["https://www.stat-search.boj.or.jp/index_en.html", "https://www.boj.or.jp/en/statistics/market/short/mutan/index.htm"],
+      "numerical_endpoint": "https://www.stat-search.boj.or.jp/ssi/cgi-bin/famecgi2", "server_side_date_parameters": ["startDate", "endDate"], "series_parameter": "code", "format": "JSON_FINAL_ONLY", "maximum_authorized_date": "2022-12-31", "expected_schema": "BOJ_FAME_FINAL_JSON_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    },
+    {
+      "currency": "CAD", "series": "V39079", "publisher": "Bank of Canada", "adapter": "BOC_V39079_EVENTS_V2",
+      "metadata_urls": ["https://www.bankofcanada.ca/valet-api-how-to/", "https://www.bankofcanada.ca/rates/indicators/key-variables/policy-instrument/"],
+      "numerical_endpoint": "https://www.bankofcanada.ca/valet/observations/V39079/json", "server_side_date_parameters": ["start_date", "end_date"], "series_parameter": "PATH_SERIES_KEY", "format": "JSON", "maximum_authorized_date": "2022-12-31", "expected_schema": "BOC_VALET_JSON_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    },
+    {
+      "currency": "CHF", "series": "SRFXON3", "publisher": "Swiss National Bank / SIX Index AG", "adapter": "SIX_SARON_1800_V2",
+      "metadata_urls": ["https://data.snb.ch/en", "https://www.six-group.com/en/market-data/indices/switzerland/saron.html"],
+      "numerical_endpoint": "https://data.snb.ch/api/cube/zimoma/data/json/en", "server_side_date_parameters": ["fromDate", "toDate"], "series_parameter": "dimSel", "format": "JSON", "maximum_authorized_date": "2022-12-31", "expected_schema": "SNB_CUBE_JSON_V2", "response_date_enforcement": "ATOMIC_FIREWALL", "eligibility_status": "PENDING_LIVE_CERTIFICATION"
+    }
+  ],
+  "record_count": 8,
+  "adapter_count": 7,
+  "nzd_allowlisted": false,
+  "nzdusd_allowlisted": false,
+  "network_access_started": false,
+  "status": "FROZEN_PENDING_LIVE_CERTIFICATION"
+}
