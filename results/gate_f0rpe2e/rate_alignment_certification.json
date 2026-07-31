@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_RATE_ALIGNMENT_CERTIFICATION_V1",
+  "calendar_version": "F0RPE2E_RATE_CALENDARS_V2",
+  "strategy_timestamp": "17:05 America/New_York",
+  "explicit_named_calendars": 8,
+  "no_interpolation": "PASS",
+  "no_backward_fill": "PASS",
+  "certified_available_carry_only": "PASS",
+  "freeze_membership_enforced": "PASS",
+  "eonia_estr_transition_enforced": "PASS",
+  "historical_exception_calendar_tests": "PASS",
+  "official_daily_panel": "NOT_RUN",
+  "official_panel_rows": 0,
+  "status": "PASS_SYNTHETIC_CERTIFICATION"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_RATE_VINTAGE_STORE_CERTIFICATION_V1",
+  "store_schema_version": "F0RPE2E_RATE_VINTAGE_STORE_V2",
+  "append_only": "PASS",
+  "snapshot_request_binding": "PASS",
+  "freeze_version_membership": "PASS",
+  "freeze_certification_pinning": "PASS",
+  "explicit_as_of_required": "PASS",
+  "future_observation_rejection": "PASS",
+  "revision_no_backward_leakage": "PASS",
+  "duplicate_and_replay_integrity": "PASS",
+  "focused_test_status": "PASS",
+  "official_rows_persisted": 0,
+  "status": "PASS_SYNTHETIC_CERTIFICATION"
+}

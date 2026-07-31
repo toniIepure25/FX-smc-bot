@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_EONIA_ESTR_TRANSITION_AUDIT_V1",
+  "transition_rule": "EONIA_THROUGH_2019-09-30_ESTR_FROM_2019-10-01",
+  "overlap_permitted": false,
+  "gap_permitted": false,
+  "pre_estr_informational_series_permitted": false,
+  "synthetic_transition_tests": "PASS",
+  "official_transition_window": "NOT_RUN",
+  "official_observations_accessed": false,
+  "status": "SYNTHETIC_PASS_OFFICIAL_NOT_RUN"
+}

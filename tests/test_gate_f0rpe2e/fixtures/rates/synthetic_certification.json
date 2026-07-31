@@ -1,0 +1,110 @@
+{
+  "schema": "F0RPE2E_SYNTHETIC_METADATA_SCHEMA_V1",
+  "adapters": [
+    {
+      "currency": "USD",
+      "checks": {
+        "official_source_identity": "PASS",
+        "schema": "PASS",
+        "parser": "PASS",
+        "timezone": "PASS",
+        "publication_rule": "PASS",
+        "effective_rule": "PASS",
+        "revision_rule": "PASS",
+        "calendar": "PASS",
+        "point_in_time_as_of_query": "PASS",
+        "three_run_deterministic_parsing": "PASS"
+      }
+    },
+    {
+      "currency": "EUR",
+      "checks": {
+        "official_source_identity": "PASS",
+        "schema": "PASS",
+        "parser": "PASS",
+        "timezone": "PASS",
+        "publication_rule": "PASS",
+        "effective_rule": "PASS",
+        "revision_rule": "PASS",
+        "calendar": "PASS",
+        "point_in_time_as_of_query": "PASS",
+        "three_run_deterministic_parsing": "PASS"
+      }
+    },
+    {
+      "currency": "GBP",
+      "checks": {
+        "official_source_identity": "PASS",
+        "schema": "PASS",
+        "parser": "PASS",
+        "timezone": "PASS",
+        "publication_rule": "PASS",
+        "effective_rule": "PASS",
+        "revision_rule": "PASS",
+        "calendar": "PASS",
+        "point_in_time_as_of_query": "PASS",
+        "three_run_deterministic_parsing": "PASS"
+      }
+    },
+    {
+      "currency": "AUD",
+      "checks": {
+        "official_source_identity": "PASS",
+        "schema": "PASS",
+        "parser": "PASS",
+        "timezone": "PASS",
+        "publication_rule": "PASS",
+        "effective_rule": "PASS",
+        "revision_rule": "PASS",
+        "calendar": "PASS",
+        "point_in_time_as_of_query": "PASS",
+        "three_run_deterministic_parsing": "PASS"
+      }
+    },
+    {
+      "currency": "JPY",
+      "checks": {
+        "official_source_identity": "PASS",
+        "schema": "PASS",
+        "parser": "PASS",
+        "timezone": "PASS",
+        "publication_rule": "PASS",
+        "effective_rule": "PASS",
+        "revision_rule": "PASS",
+        "calendar": "PASS",
+        "point_in_time_as_of_query": "PASS",
+        "three_run_deterministic_parsing": "PASS"
+      }
+    },
+    {
+      "currency": "CAD",
+      "checks": {
+        "official_source_identity": "PASS",
+        "schema": "PASS",
+        "parser": "PASS",
+        "timezone": "PASS",
+        "publication_rule": "PASS",
+        "effective_rule": "PASS",
+        "revision_rule": "PASS",
+        "calendar": "PASS",
+        "point_in_time_as_of_query": "PASS",
+        "three_run_deterministic_parsing": "PASS"
+      }
+    },
+    {
+      "currency": "CHF",
+      "checks": {
+        "official_source_identity": "PASS",
+        "schema": "PASS",
+        "parser": "PASS",
+        "timezone": "PASS",
+        "publication_rule": "PASS",
+        "effective_rule": "PASS",
+        "revision_rule": "PASS",
+        "calendar": "PASS",
+        "point_in_time_as_of_query": "PASS",
+        "three_run_deterministic_parsing": "PASS"
+      }
+    }
+  ]
+}

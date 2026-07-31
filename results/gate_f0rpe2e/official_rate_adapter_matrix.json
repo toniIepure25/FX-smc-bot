@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_OFFICIAL_RATE_ADAPTER_MATRIX_V1",
+  "gate_id": "F0_RP_E2E_OFFICIAL_RATE_AND_EMPIRICAL_ORCHESTRATION_V1",
+  "synthetic_fixture_sha256": "04e4a3a81124f5e71bee37d45fc1bcc0dd6474f76fab8c683e1ba837e96c7e73",
+  "adapters": {
+    "USD": {"adapter_id": "NY_FED_EFFR_V1", "series_id": "EFFR", "parser_version": "NY_FED_EFFR_JSON_V1", "synthetic_status": "PASS", "official_endpoint_status": "NOT_RUN"},
+    "EUR": {"adapter_id": "ECB_EONIA_ESTR_V1", "series_id": "EONIA_TO_ESTR", "parser_version": "ECB_EONIA_ESTR_JSON_V1", "synthetic_status": "PASS", "official_endpoint_status": "NOT_RUN"},
+    "GBP": {"adapter_id": "BOE_SONIA_V1", "series_id": "IUDSOIA", "parser_version": "BOE_IUDSOIA_JSON_V1", "synthetic_status": "PASS", "official_endpoint_status": "NOT_RUN"},
+    "AUD": {"adapter_id": "RBA_CASH_RATE_V1", "series_id": "RBA_CASH_RATE", "parser_version": "RBA_CASH_RATE_JSON_V1", "synthetic_status": "PASS", "official_endpoint_status": "NOT_RUN"},
+    "JPY": {"adapter_id": "BOJ_FINAL_UO_CALL_V1", "series_id": "FM01'STRDCLUCON", "parser_version": "BOJ_FINAL_UO_CALL_JSON_V1", "synthetic_status": "PASS", "official_endpoint_status": "NOT_RUN"},
+    "CAD": {"adapter_id": "BOC_V39079_EVENTS_V1", "series_id": "V39079", "parser_version": "BOC_V39079_EVENT_JSON_V1", "synthetic_status": "PASS", "official_endpoint_status": "NOT_RUN"},
+    "CHF": {"adapter_id": "SIX_SARON_1800_V1", "series_id": "SRFXON3", "parser_version": "SIX_SARON_1800_JSON_V1", "synthetic_status": "PASS", "official_endpoint_status": "NOT_RUN"}
+  },
+  "official_endpoint_certification_promoted": false,
+  "status": "SYNTHETIC_SCHEMA_CERTIFIED_OFFICIAL_ENDPOINT_NOT_RUN"
+}

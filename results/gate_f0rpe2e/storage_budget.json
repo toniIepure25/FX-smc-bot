@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_STORAGE_BUDGET_V1",
+  "phase_reached": false,
+  "free_bytes": null,
+  "rate_snapshot_estimate": null,
+  "rate_database_estimate": null,
+  "development_bi5_estimate": null,
+  "development_m1_estimate": null,
+  "development_m5_estimate": null,
+  "temporary_acquisition_peak": null,
+  "certification_scratch": null,
+  "validation_conditional_estimate": null,
+  "replication_conditional_estimate": null,
+  "required_reserve": null,
+  "safe_development_peak": "NOT_RUN",
+  "reason": "PROSPECTIVE_INTEGRITY_STOP_BEFORE_STORAGE_BUDGET_PHASE",
+  "status": "NOT_RUN"
+}

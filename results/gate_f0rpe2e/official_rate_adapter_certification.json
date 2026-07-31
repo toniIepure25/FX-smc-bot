@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_OFFICIAL_RATE_ADAPTER_CERTIFICATION_V1",
+  "gate_id": "F0_RP_E2E_OFFICIAL_RATE_AND_EMPIRICAL_ORCHESTRATION_V1",
+  "synthetic_certification": "PASS",
+  "synthetic_fixture_sha256": "04e4a3a81124f5e71bee37d45fc1bcc0dd6474f76fab8c683e1ba837e96c7e73",
+  "synthetic_three_run_parsing": "PASS",
+  "official_endpoint_certification": "NOT_RUN",
+  "official_rate_provider_requests_sent": 0,
+  "source_snapshots_persisted": 0,
+  "rate_observation_identities_persisted": 0,
+  "rate_versions_persisted": 0,
+  "revisions_persisted": 0,
+  "reason": "PROSPECTIVE_INTEGRITY_STOP_BEFORE_OFFICIAL_ENDPOINT_CERTIFICATION",
+  "promotes_rate_adapters_certified_stage": false,
+  "status": "NOT_RUN"
+}
