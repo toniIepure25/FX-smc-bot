@@ -1,0 +1,18 @@
+{
+  "audit_basis": {
+    "future_absence_claim": "temporal nonexistence at freeze time, not a storage search",
+    "historical_interval_storage_search_performed_by_q0r": false,
+    "q0_historical_artifact_diff_empty": true
+  },
+  "future_prospective_data_loaded": false,
+  "future_prospective_pnl_computed": false,
+  "future_prospective_predictions_generated": false,
+  "future_prospective_provider_request_sent": false,
+  "future_prospective_results_reported": false,
+  "future_prospective_storage_enumerated": false,
+  "old_2023_2025_interval_accessed": false,
+  "old_2023_2025_interval_enumerated_by_q0r": false,
+  "old_2023_2025_provider_request_sent": false,
+  "old_q0_failure_preserved": true,
+  "status": "PASS"
+}

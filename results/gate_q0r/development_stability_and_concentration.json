@@ -1,0 +1,104 @@
+{
+  "candidates": {
+    "Q0_INV_ACCEPTANCE_V1": {
+      "instrument_count": 4,
+      "instrument_mean_net_r": {
+        "AUDUSD": -0.7448924260690183,
+        "NZDUSD": -0.7615224947041647,
+        "USDCAD": -0.7595064574279153,
+        "USDCHF": -0.7826866455867014
+      },
+      "instrument_trade_counts": {
+        "AUDUSD": 1579,
+        "NZDUSD": 1728,
+        "USDCAD": 1901,
+        "USDCHF": 1724
+      },
+      "maximum_instrument_trade_share": 0.27423542989036354,
+      "positive_instrument_count": 0,
+      "trade_count": 6932
+    },
+    "Q0_INV_LONDON_OR_V1": {
+      "instrument_count": 4,
+      "instrument_mean_net_r": {
+        "AUDUSD": -0.3915589372345394,
+        "NZDUSD": -0.36914280326601834,
+        "USDCAD": -0.3689471661918671,
+        "USDCHF": -0.5369867279396482
+      },
+      "instrument_trade_counts": {
+        "AUDUSD": 242,
+        "NZDUSD": 256,
+        "USDCAD": 236,
+        "USDCHF": 196
+      },
+      "maximum_instrument_trade_share": 0.2752688172043011,
+      "positive_instrument_count": 0,
+      "trade_count": 930
+    },
+    "Q0_INV_NEWYORK_OR_V1": {
+      "instrument_count": 4,
+      "instrument_mean_net_r": {
+        "AUDUSD": -0.42420217756169154,
+        "NZDUSD": -0.42350718700026024,
+        "USDCAD": -0.39447594125531943,
+        "USDCHF": -0.4415282690175725
+      },
+      "instrument_trade_counts": {
+        "AUDUSD": 380,
+        "NZDUSD": 384,
+        "USDCAD": 359,
+        "USDCHF": 365
+      },
+      "maximum_instrument_trade_share": 0.25806451612903225,
+      "positive_instrument_count": 0,
+      "trade_count": 1488
+    },
+    "Q0_INV_SWEEP_V1": {
+      "instrument_count": 4,
+      "instrument_mean_net_r": {
+        "AUDUSD": -0.1887407066073917,
+        "NZDUSD": -0.39358939512164137,
+        "USDCAD": -0.32277530391769854,
+        "USDCHF": -0.36840846896240587
+      },
+      "instrument_trade_counts": {
+        "AUDUSD": 76,
+        "NZDUSD": 77,
+        "USDCAD": 115,
+        "USDCHF": 96
+      },
+      "maximum_instrument_trade_share": 0.3159340659340659,
+      "positive_instrument_count": 0,
+      "trade_count": 364
+    },
+    "Q0_META_POLARITY_ELASTIC_NET_V1": {
+      "instrument_count": 4,
+      "instrument_mean_net_r": {
+        "AUDUSD": -0.1478060046189283,
+        "NZDUSD": -0.2658180550847219,
+        "USDCAD": -0.05664447004316324,
+        "USDCHF": 0.06152661040596825
+      },
+      "instrument_trade_counts": {
+        "AUDUSD": 1,
+        "NZDUSD": 2,
+        "USDCAD": 2,
+        "USDCHF": 1
+      },
+      "maximum_instrument_trade_share": 0.3333333333333333,
+      "positive_instrument_count": 1,
+      "trade_count": 6
+    }
+  },
+  "method": {
+    "aggregation": "candidate and instrument over the frozen derived development trade ledger",
+    "development_interval_only": true,
+    "instrument_stability_positive_rule": "instrument mean net R greater than zero",
+    "row_level_committed": false,
+    "selection_or_adjudication_changed": false,
+    "source_role": "Q0R_DERIVED_DEVELOPMENT_TRADE_LEDGER"
+  },
+  "status": "PASS",
+  "year_stability_source": "development_candidate_results.json"
+}
