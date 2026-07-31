@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_REPOSITORY_STATE_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "captured_on": "2026-07-31",
+  "branch": "research/classical-fx-risk-premia-v2-future-baseline",
+  "required_starting_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
+  "local_starting_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
+  "remote_tracking_ref": "origin/research/classical-fx-risk-premia-v2-future-baseline",
+  "remote_tracking_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
+  "remote_verification_mode": "EXISTING_LOCAL_TRACKING_REF_NO_NETWORK",
+  "network_access_performed": false,
+  "worktree_clean_before_gate_artifacts": true,
+  "git_diff_check_before_gate_artifacts": "PASS",
+  "status": "PASS"
+}

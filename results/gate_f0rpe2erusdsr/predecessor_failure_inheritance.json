@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_PREDECESSOR_FAILURE_INHERITANCE_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "predecessor_gate": "F0_RP_E2E_R_DOCUMENTATION_EXPOSURE_REBASELINE_V1",
+  "predecessor_tip_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
+  "predecessor_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "blocking_adapter": "NY_FED_EFFR_V2",
+  "blocking_failure": "SOURCE_RESPONSE_SCHEMA_VIOLATION",
+  "failure_stage": "RESPONSE_FIREWALL",
+  "request_window": {
+    "currency": "USD",
+    "series": "EFFR",
+    "start": "2016-01-04",
+    "end": "2016-01-08"
+  },
+  "http_200_response_reached_firewall": true,
+  "response_rejected_atomically": true,
+  "source_snapshots_persisted": 0,
+  "numerical_rows_exposed_to_parser": 0,
+  "rate_observation_identities_persisted": 0,
+  "rate_versions_persisted": 0,
+  "market_requests": 0,
+  "economic_outcomes": 0,
+  "predecessor_artifact_sha256": {
+    "results/gate_f0rpe2er/final_decision.json": "151ac250b86ebb8646fa17b6bdf63d2e345326d4fe14d94d28c3a61a722e2fbf",
+    "results/gate_f0rpe2er/live_adapter_matrix.json": "03bd22768f78eafb91a69652d1206e7b9d4f0e8b8921a2d71046ed768805b884",
+    "results/gate_f0rpe2er/live_adapter_certification.json": "2f0c4b0543291cb45c8ac3468214ac4ac498afd6abe970d154b3bde7d3658bea",
+    "results/gate_f0rpe2er/integrity_audit.json": "eec0875a21de9818d964caf6bfd36db49ba202d0ac793643e5d88cbbc335bb34",
+    "results/gate_f0rpe2er/prohibited_data_audit.json": "313ffdea5acb0d5754e49e8a5c76a234f96bb478666b4cb590acb6b117acb0b7",
+    "results/gate_f0rpe2er/reproducibility_manifest.json": "f7b798a3c248be69ec36bb659619c1bd0b0138655e07a9c4f6abd6383312fbbd",
+    "docs/research/classical_fx_factors_v2/F0RPE2ER_FINAL_DECISION_MEMO.md": "8568670405291d52f2899caba698270f775286e20bfca88554526493c16b99ce"
+  },
+  "hash_mode": "SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS",
+  "status": "PREDECESSOR_FAILURE_PRESERVED_NOT_REVERSED"
+}

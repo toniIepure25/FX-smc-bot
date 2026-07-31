@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_CLEAN_ROOM_ROOT_V1",
+  "configured_path_template": "<repository-parent>/FX-smc-bot-local-data/f0rpe2erusdsr_v1",
+  "absolute_path_committed": false,
+  "path_identity_sha256": "9926f7260eef1aef82d0652eada49f562f17afc68ba82f53dec57f9889b5e10a",
+  "outside_repository": true,
+  "existed_before_gate": false,
+  "created_directly": true,
+  "initially_empty": true,
+  "symlink_or_junction_escape": false,
+  "old_roots_inspected": false,
+  "status": "PASS"
+}

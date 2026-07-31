@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_PROTOCOL_INHERITANCE_LOCK_V1",
+  "lock_id": "F0RPE2ERUSDSR_PROTOCOL_INHERITANCE_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "starting_sha": "f460fe6a2f5c83fee8e06dd0168d983f9bfa70f3",
+  "hash_mode": "SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS",
+  "locked_artifact_sha256": {
+    "configs/research/classical_fx_factors_v1.yaml": "e951832ec1f521381d9d4b609b8cb62a87c5a58771a9dd9cd74dea64d7f3c22e",
+    "results/gate_f0/factor_family_freeze.json": "a395c00621238c6cf4aaf127e5f48696c7bf4b54b5250b201e48d87cb31b9371",
+    "results/gate_f0/portfolio_construction_freeze.json": "1cc22d2b5072f90ae9469fc2e735f8f69f7e89d2d9d25c5d7b87a0fdc20db04b",
+    "results/gate_f0/cost_and_accounting_freeze.json": "5b7b2785f235619f5510f2c7f15b4dd2718d21fb7442ef4967dc610fd6618a24",
+    "results/gate_f0/benchmark_freeze.json": "fefdd8b4b0216d66637a4213bc61f41d660497dfb746c2f11f7de94c8ab3ea60",
+    "results/gate_f0/estimand_and_inference_freeze.json": "69675f0592c53783266a7fed49a9a6ddcc1ce3c9cbbc1bf59817373685de9175",
+    "results/gate_f0/selection_and_replication_freeze.json": "66ed176b787dc1fb0c108c12a9763496c46ed363d49391f330ab7e2af5c9607e",
+    "results/gate_f0rp/rate_provenance_amendment.json": "d04d2414a8601556b8cd30c7166bbf812c54fcd433874e287d1b57304b079f4b",
+    "results/gate_f0rpe2er/protocol_inheritance_lock.json": "a215afbc06c41a3a4173f6841a4cb0b8f68072c4a5c919a5e14afd831ae07c79"
+  },
+  "preserved_contract_ids": [
+    "F0_RATE_PROVENANCE_AMENDMENT_V1",
+    "F0RPE2ER_SCIENTIFIC_PROTOCOL_INHERITANCE_V1",
+    "F0RPE2ER_FUTURE_ONLY_CONFIRMATORY_BASELINE_V1"
+  ],
+  "scientific_protocol_changed": false,
+  "permitted_implementation_changes": [
+    "PARSER",
+    "SCHEMA_NORMALIZATION",
+    "ADAPTER",
+    "RESPONSE_FIREWALL",
+    "PERSISTENCE",
+    "ORCHESTRATION"
+  ],
+  "status": "PASS"
+}
