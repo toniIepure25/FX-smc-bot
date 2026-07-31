@@ -11,6 +11,7 @@ from urllib.parse import urlparse
 
 import pytest
 
+from fx_smc_bot.research.historical_response_firewall import HistoricalResponseFirewall
 from fx_smc_bot.research.rate_sources import (
     OFFICIAL_RATE_ADAPTERS,
     OFFICIAL_RATE_ADAPTERS_V2,
@@ -229,6 +230,22 @@ def test_requests_carry_bounds_series_format_and_allowlist_identity(
         assert request.request_headers == (("Accept", declaration.accept_media_type),)
         declaration.validate_request(request)
         assert request.request_identity
+
+
+@pytest.mark.parametrize("adapter_type", OFFICIAL_RATE_ADAPTERS_V2)
+def test_firewall_preflight_understands_each_exact_endpoint_binding(
+    adapter_type: type[OfficialRateAdapter],
+) -> None:
+    adapter = adapter_type()
+    start = date(2016, 1, 4)
+    end = date(2016, 1, 8)
+    requests = adapter.build_requests(start, end, _authorization(adapter, start, end))
+
+    for request in requests:
+        declaration = request.endpoint_declaration
+        assert declaration is not None
+        firewall = HistoricalResponseFirewall.from_endpoint_declaration(declaration)
+        firewall.validate_request(request)
 
 
 def test_boe_is_columnar_csv_end_to_end_contract() -> None:

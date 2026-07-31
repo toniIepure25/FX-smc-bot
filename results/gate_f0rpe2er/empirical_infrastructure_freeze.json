@@ -2,7 +2,7 @@
   "schema_version": 1,
   "artifact_id": "F0RPE2ER_EMPIRICAL_INFRASTRUCTURE_FREEZE_V1",
   "freeze_id": "F0RPE2ER_EMPIRICAL_INFRASTRUCTURE_V1",
-  "freeze_predecessor_sha": "ebb210a8e92303d0c4a26e7cec846450c7baf1a1",
+  "freeze_predecessor_sha": "79ef0a2381284ef6dcf97ec3e61adb01f5c86906",
   "integrity_boundary_pre_network_sha": "313349aecc6694c1e852f1d0b2b2f6170ed81514",
   "hash_mode": "SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS",
   "component_sha256": {
@@ -14,7 +14,7 @@
     "src/fx_smc_bot/research/rate_sources/bank_of_canada.py": "824fb5590be98bf213a2273d8f1fb6eaad3c0ef0c079c2c3a1a11582f6ff01a9",
     "src/fx_smc_bot/research/rate_sources/saron.py": "ee1fd0966df4df3e820e8e39dc111c4bdd1d56f996364e558e64f73e7814c07d",
     "results/gate_f0rpe2er/official_source_allowlist.json": "3a8511fddacd9505cdf25c1868025b4412826f05eb62956a484e7ca696870bac",
-    "src/fx_smc_bot/research/historical_response_firewall.py": "8f653a677d7b70768f959d294cddaa5fef3f01c3a552aebdad672de4a62f558b",
+    "src/fx_smc_bot/research/historical_response_firewall.py": "bd8d66844afcafc04d22c5d9c3b086b094dc2e3fd345bf0ed7fce59db1989775",
     "src/fx_smc_bot/research/rate_vintage_store.py": "18317a37a8afb7b8445dfb8a267683732afb53c5549329b30973562e262a89aa",
     "src/fx_smc_bot/research/rate_calendars.py": "b06394aea4316ceb12061fa289e0efb1192682b389bc655e29e6bd88b2bfeddf",
     "src/fx_smc_bot/research/rate_alignment.py": "8117777efc8523f61d70833f563570b2d1680d0dc8bc4878c560a6729a3151e4",
@@ -26,7 +26,7 @@
     "src/fx_smc_bot/research/classical_fx_inference.py": "6a6b3bf67063ebed221ca2348e60ec9e4df1f5cab0d9b20927971325cf947ee4",
     "results/gate_f0rpe2er/protocol_inheritance_lock.json": "a215afbc06c41a3a4173f6841a4cb0b8f68072c4a5c919a5e14afd831ae07c79"
   },
-  "local_certification_tests_passed": 103,
+  "local_certification_tests_passed": 113,
   "live_adapter_certification": "PENDING",
   "full_observation_acquisition_authorized": false,
   "official_numerical_requests_before_freeze": 0,

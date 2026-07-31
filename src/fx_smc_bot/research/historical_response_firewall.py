@@ -19,6 +19,7 @@ from datetime import date
 from typing import Final, NoReturn, Protocol, TypeVar, cast
 
 from fx_smc_bot.research.rate_sources.base import (
+    OfficialNumericalEndpoint,
     OfficialRateRequest,
     RateSourceError,
     SourceSnapshot,
@@ -204,6 +205,36 @@ class HistoricalResponseFirewall:
         self._transport_approvals: dict[str, ApprovedHistoricalRequest] = {}
         self._certified_snapshot_sha256s: set[str] = set()
 
+    @classmethod
+    def from_endpoint_declaration(
+        cls,
+        declaration: OfficialNumericalEndpoint,
+        *,
+        audit_sink: FirewallAuditSink | None = None,
+    ) -> HistoricalResponseFirewall:
+        """Bind the firewall to one frozen official endpoint declaration."""
+
+        return cls(
+            HistoricalResponseContract(
+                adapter_id=declaration.adapter_id,
+                currency=declaration.currency,
+                series_ids=frozenset({declaration.series_id}),
+                schema_id=declaration.schema_id,
+                required_row_fields=frozenset(declaration.required_fields),
+                allowlist_identity=declaration.allowlist_identity,
+                endpoint_url=declaration.url,
+                minimum_authorized_date=AUTHORIZED_MINIMUM_DATE,
+                maximum_authorized_date=AUTHORIZED_MAXIMUM_DATE,
+                response_format=declaration.response_format,
+                start_parameter=declaration.start_parameter,
+                end_parameter=declaration.end_parameter,
+                series_parameter=declaration.series_parameter,
+                currency_parameter="DECLARED_REQUEST_CURRENCY",
+                format_parameter=declaration.format_parameter or "DECLARED_ACCEPT_FORMAT",
+            ),
+            audit_sink=audit_sink,
+        )
+
     @property
     def violations(self) -> tuple[FirewallViolationRecord, ...]:
         return tuple(self._violations)
@@ -252,7 +283,7 @@ class HistoricalResponseFirewall:
             self._reject("REQUEST_ADAPTER_NOT_AUTHORIZED", "REQUEST_PREFLIGHT", request)
         if request.url != self.contract.endpoint_url:
             self._reject("REQUEST_ENDPOINT_NOT_ALLOWLISTED", "REQUEST_PREFLIGHT", request)
-        declaration = getattr(request, "endpoint_declaration", None)
+        declaration = request.endpoint_declaration
         if declaration is not None and (
             getattr(declaration, "allowlist_identity", None) != self.contract.allowlist_identity
         ):
@@ -271,27 +302,37 @@ class HistoricalResponseFirewall:
         ):
             self._reject("REQUEST_HISTORICAL_SCOPE_VIOLATION", "REQUEST_PREFLIGHT", request)
 
-        parameters = dict(request.query_parameters)
-        expected = {
-            self.contract.start_parameter: request.start.isoformat(),
-            self.contract.end_parameter: request.end.isoformat(),
-            self.contract.series_parameter: request.series_id,
-            self.contract.currency_parameter: request.currency,
-            self.contract.format_parameter: self.contract.response_format,
-        }
-        if (
-            self.contract.start_parameter not in parameters
-            or self.contract.end_parameter not in parameters
-        ):
-            self._reject("REQUEST_SERVER_DATE_BOUNDS_REQUIRED", "REQUEST_PREFLIGHT", request)
-        for name, value in expected.items():
-            if parameters.get(name) != value:
+        if declaration is not None:
+            try:
+                declaration.validate_request(request)
+            except RateSourceError:
                 self._reject(
                     "REQUEST_EXPLICIT_DECLARATION_MISMATCH",
                     "REQUEST_PREFLIGHT",
                     request,
-                    field_names=(name,),
                 )
+        else:
+            parameters = dict(request.query_parameters)
+            expected = {
+                self.contract.start_parameter: request.start.isoformat(),
+                self.contract.end_parameter: request.end.isoformat(),
+                self.contract.series_parameter: request.series_id,
+                self.contract.currency_parameter: request.currency,
+                self.contract.format_parameter: self.contract.response_format,
+            }
+            if (
+                self.contract.start_parameter not in parameters
+                or self.contract.end_parameter not in parameters
+            ):
+                self._reject("REQUEST_SERVER_DATE_BOUNDS_REQUIRED", "REQUEST_PREFLIGHT", request)
+            for name, value in expected.items():
+                if parameters.get(name) != value:
+                    self._reject(
+                        "REQUEST_EXPLICIT_DECLARATION_MISMATCH",
+                        "REQUEST_PREFLIGHT",
+                        request,
+                        field_names=(name,),
+                    )
         return ApprovedHistoricalRequest(request, self.contract.fingerprint, instrument_scope)
 
     def execute_after_preflight(
