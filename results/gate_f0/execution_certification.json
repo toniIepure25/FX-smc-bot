@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_EXECUTION_CERTIFICATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS_SYNTHETIC_ENGINE_ONLY",
+  "gate_f0_tests_passed": 171,
+  "certified_invariants": [
+    "T_MINUS_1_SIGNAL_INPUTS",
+    "LAGGED_VOLATILITY_AND_COVARIANCE",
+    "SIDE_CORRECT_BID_ASK_EXECUTION",
+    "CURRENCY_EXPOSURE_CAPS",
+    "FINANCING_SIGN_AND_DAY_COUNT",
+    "MULTI_DAY_ROLLOVER",
+    "DETERMINISTIC_COST_STRESS",
+    "NO_FUTURE_OR_UNPLANNED_PARTITION_ACCESS"
+  ],
+  "certified_on_real_data": false,
+  "reason_real_data_not_run": "BLOCKED_BY_RATE_DATA_PROVENANCE"
+}

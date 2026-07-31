@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_DEVELOPMENT_MARKET_CERTIFICATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "NOT_RUN_DUE_TO_RATE_DATA_PROVENANCE_BLOCK",
+  "planned_partition_tasks": 1680,
+  "provider_requests_sent": 0,
+  "certified_pair_months": 0,
+  "market_observations_accessed": false,
+  "reason": "PHASE_6_RATE_PROVENANCE_PRECONDITION_FAILED_BEFORE_MARKET_ACQUISITION"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_PORTFOLIO_ACCOUNTING_AUDIT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS_SYNTHETIC_ENGINE_ONLY",
+  "zero_tolerance_reconciliation_tests": "PASS",
+  "daily_nav": "PASS_SYNTHETIC",
+  "positions": "PASS_SYNTHETIC",
+  "cash": "PASS_SYNTHETIC",
+  "currency_legs": "PASS_SYNTHETIC",
+  "costs": "PASS_SYNTHETIC",
+  "gross_to_net": "PASS_SYNTHETIC",
+  "unexplained_pnl_tolerance": 0.0,
+  "empirical_accounting_rows_generated": false
+}

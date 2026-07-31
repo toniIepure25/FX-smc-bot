@@ -3,9 +3,18 @@
   "artifact_id": "F0_RATE_SERIES_REGISTRY_V1",
   "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
   "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
-  "status": "FROZEN_PENDING_DATA_CERTIFICATION",
+  "status": "BLOCKED_BY_RATE_DATA_PROVENANCE",
   "data_access_status": "NO_RATE_OBSERVATIONS_ACCESSED",
-  "provenance_result_status": "NOT_YET_ADJUDICATED",
+  "provenance_result_status": "BLOCKED_BY_RATE_DATA_PROVENANCE",
+  "provenance_adjudication": {
+    "complete_point_in_time_provenance_established": false,
+    "blocking_currency": "NZD",
+    "blocking_series_identifier": "B2_OVERNIGHT_INTERBANK_CASH_RATE",
+    "reason": "THE_OFFICIAL_HISTORICAL_FILE_DOES_NOT_PRESERVE_AN_ORIGINAL_PUBLICATION_TIMESTAMP_FOR_EACH_OBSERVATION_AND_THE_PUBLISHER_DESCRIBES_ONLY_AN_APPROXIMATE_UPDATE_WINDOW_WITH_POSSIBLE_ONE_DAY_LAG",
+    "unofficial_or_inferred_timestamp_substituted": false,
+    "rate_observations_accessed": false,
+    "source": "https://www.rbnz.govt.nz/statistics/series/exchange-and-interest-rates/wholesale-interest-rates"
+  },
   "frozen_specification": {
     "required_currencies": [
       "USD",

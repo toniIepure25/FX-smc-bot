@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_PROSPECTIVE_INTEGRITY_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS",
+  "future_prospective_data_accessed": false,
+  "future_prospective_storage_enumerated": false,
+  "future_portfolio_returns_generated": false,
+  "future_candidate_created": false,
+  "future_collection_handoff_created": false,
+  "paper_or_live_capital_handoff_created": false,
+  "first_permissible_future_date": null
+}

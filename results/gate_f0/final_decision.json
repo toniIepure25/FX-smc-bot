@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_FINAL_DECISION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FINAL",
+  "decision": "BLOCKED_BY_RATE_DATA_PROVENANCE",
+  "blocking_phase": 6,
+  "blocking_currency": "NZD",
+  "blocking_series_identifier": "B2_OVERNIGHT_INTERBANK_CASH_RATE",
+  "development_market_accessed": false,
+  "development_rate_observations_accessed": false,
+  "development_results_generated": false,
+  "validation_accessed": false,
+  "replication_accessed": false,
+  "selected_portfolio": null,
+  "future_protocol_created": false,
+  "live_capital_authorized": false
+}

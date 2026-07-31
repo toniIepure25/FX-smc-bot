@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_DEVELOPMENT_DATASET_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "NOT_CREATED_DUE_TO_RATE_DATA_PROVENANCE_BLOCK",
+  "market_dataset_frozen": false,
+  "rate_dataset_frozen": false,
+  "development_outcomes_authorized": false,
+  "local_row_level_dataset_created": false
+}

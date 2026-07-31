@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_QUALITY_GATE_FINAL_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FAIL_BASELINE_Q1_RAW_HASH_LINE_ENDING_MISMATCH",
+  "gate_f0_pytest": {
+    "status": "PASS",
+    "passed": 171,
+    "failed": 0
+  },
+  "full_pytest": {
+    "status": "FAIL",
+    "passed": 1118,
+    "failed": 1,
+    "failure": "tests/test_gate_q1/test_quant_polarity_closure.py::test_reproducibility_manifest_hashes_every_declared_artifact",
+    "classification": "PRE_EXISTING_SEALED_Q1_WORKTREE_CRLF_VERSUS_MANIFEST_LF_RAW_HASH_MISMATCH",
+    "gate_f0_regression": false
+  },
+  "targeted_ruff": "PASS",
+  "targeted_mypy": "PASS",
+  "new_broad_ruff": 0,
+  "new_broad_mypy": 0,
+  "node": {
+    "status": "PASS",
+    "passed": 2,
+    "failed": 0,
+    "runtime": "BUNDLED_WORKSPACE_NODE"
+  },
+  "git_diff_check": "PASS"
+}

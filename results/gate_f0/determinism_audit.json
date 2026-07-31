@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_DETERMINISM_AUDIT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS_SYNTHETIC_ENGINE_ONLY",
+  "factor_replays": "PASS",
+  "portfolio_replays": "PASS",
+  "inference_seed_replays": "PASS",
+  "market_canonicalization_three_run_contract": "PASS_SYNTHETIC",
+  "rate_normalization_three_run_contract": "PASS_SYNTHETIC",
+  "empirical_three_run_replay_completed": false
+}

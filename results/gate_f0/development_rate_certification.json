@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_DEVELOPMENT_RATE_CERTIFICATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "BLOCKED_BY_RATE_DATA_PROVENANCE",
+  "planned_partitions": 56,
+  "requested_partitions": 0,
+  "certified_partitions": 0,
+  "row_level_rate_observations_accessed": false,
+  "point_in_time_availability_certified": false,
+  "blocking_currency": "NZD",
+  "blocking_series_identifier": "B2_OVERNIGHT_INTERBANK_CASH_RATE",
+  "blocking_reason": "ORIGINAL_PER_OBSERVATION_PUBLICATION_TIMESTAMPS_NOT_PRESERVED_BY_THE_OFFICIAL_HISTORICAL_DOWNLOAD",
+  "fallback_or_reconstructed_series_used": false,
+  "decision": "BLOCKED_BY_RATE_DATA_PROVENANCE"
+}

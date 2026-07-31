@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_PROHIBITED_DATA_AUDIT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS",
+  "git_contains_raw_bi5": false,
+  "git_contains_canonical_m1_or_m5": false,
+  "git_contains_row_level_official_rates": false,
+  "git_contains_factor_position_transaction_or_daily_return_rows": false,
+  "git_contains_provider_payloads_or_credentials": false,
+  "git_contains_absolute_f0_clean_room_path": false,
+  "quarantined_interval_accessed": false,
+  "quarantined_interval_enumerated": false,
+  "market_provider_requests_sent": 0,
+  "rate_provider_requests_sent": 0
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_LOOKAHEAD_AUDIT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS_SYNTHETIC_ENGINE_ONLY",
+  "future_price_perturbation_tests": "PASS",
+  "future_rate_availability_tests": "PASS",
+  "covariance_lag_tests": "PASS",
+  "volatility_lag_tests": "PASS",
+  "replication_loader_in_development_mode": false,
+  "empirical_dataset_tested": false
+}
