@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_FAILED_GATE_INHERITANCE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "inheritance_status": "FAILED_GATE_PRESERVED_NOT_REVERSED",
+  "predecessor_decision": "BLOCKED_BY_PROSPECTIVE_INTEGRITY",
+  "sonia_2025_documentation_rows_exposed": true,
+  "rows_persisted": false,
+  "market_requests": 0,
+  "rate_requests": 0,
+  "source_snapshots": 0,
+  "market_observations": 0,
+  "rate_observations_persisted": 0,
+  "candidate_outcomes": 0,
+  "candidate_ranking": false,
+  "hash_mode": "SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS",
+  "failed_gate_sha256": {
+    "results/gate_f0rpe2e/final_decision.json": "1e7e67021b597ab647b490eb7537538ac953fb532bbb8566b31d6f1c0a8f6839",
+    "results/gate_f0rpe2e/prospective_integrity.json": "d68c36101bff7e93435bd6b2a7f6ac1b4558f5d62b126f26ac27e92f1ca04203",
+    "results/gate_f0rpe2e/prohibited_data_audit.json": "0da0a090d233ca73aef7ba8968fb3b1b95ffb716be0574b669d09ae313ff7421",
+    "results/gate_f0rpe2e/official_rate_adapter_matrix.json": "87e465f7eb4d23f7505b51028c925a84b9ae6f9189db815c5a586a7ab33e0aff",
+    "results/gate_f0rpe2e/official_rate_adapter_certification.json": "748c1cd22091f1af78dc771f2000da54a8c02bdfd2ab491682b94701f9d568eb",
+    "results/gate_f0rpe2e/rate_vintage_store_certification.json": "88b783ef60cf4b57259ced089d13bff5b1b52b91789f0e867dbe788abc6c10b2",
+    "results/gate_f0rpe2e/rate_alignment_certification.json": "ffb7c9da15588d144766436edea2782e952377dcae36b8404d110f4fc5d050ea",
+    "results/gate_f0rpe2e/reproducibility_manifest.json": "247d03323293bccce2ec43bc621a0cc1ac8b507321d2d25e2be25a836c0eeaea",
+    "docs/research/classical_fx_factors/F0RPE2E_FINAL_DECISION_MEMO.md": "6a8461a319414b7bd2b2ddbb290ff721b0faec82627942490c3a2c3af7967d1d"
+  },
+  "historical_artifact_mutation": false,
+  "status": "PASS"
+}

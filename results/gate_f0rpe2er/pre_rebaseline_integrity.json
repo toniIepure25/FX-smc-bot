@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_PRE_REBASELINE_INTEGRITY_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "predecessor_program": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "predecessor_gate": "F0_RP_E2E_OFFICIAL_RATE_AND_EMPIRICAL_ORCHESTRATION_V1",
+  "predecessor_decision": "BLOCKED_BY_PROSPECTIVE_INTEGRITY",
+  "relationship": "SCIENTIFIC_PROTOCOL_INHERITANCE_WITH_NEW_FUTURE_ONLY_INTEGRITY_BASELINE",
+  "captured_at_sha": "2a2a42fd9be080ca36cc7c5f9ae5e574c4b1a2a2",
+  "market_provider_requests_sent": 0,
+  "rate_provider_requests_sent": 0,
+  "source_snapshots_persisted": 0,
+  "market_observations_accessed": false,
+  "rate_observations_persisted": false,
+  "candidate_outcomes_generated": false,
+  "candidate_ranking_performed": false,
+  "failed_gate_mutated": false,
+  "status": "PASS"
+}
