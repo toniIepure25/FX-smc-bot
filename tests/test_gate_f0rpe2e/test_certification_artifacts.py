@@ -2,6 +2,12 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import cast
+
+from fx_smc_bot.research.manifest_hashing import (
+    SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+    manifest_file_sha256,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 RESULTS = ROOT / "results" / "gate_f0rpe2e"
@@ -44,3 +50,17 @@ def test_prospective_incident_fails_closed_before_provider_access() -> None:
     assert integrity["market_provider_requests_sent"] == 0
     assert integrity["source_snapshots_persisted"] == 0
     assert integrity["row_level_observations_persisted"] == 0
+
+
+def test_reproducibility_manifest_hashes_match() -> None:
+    manifest = _load("reproducibility_manifest.json")
+    declared: dict[str, str] = {}
+    for section in ("artifact_sha256", "documentation_sha256", "source_sha256"):
+        declared.update(cast(dict[str, str], manifest[section]))
+
+    for relative_path, expected in declared.items():
+        actual = manifest_file_sha256(
+            ROOT / relative_path,
+            SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+        )
+        assert actual == expected, relative_path

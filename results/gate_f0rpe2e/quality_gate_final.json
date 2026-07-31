@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_QUALITY_GATE_FINAL_V1",
+  "status": "PASS",
+  "full_pytest": {
+    "status": "PASS",
+    "passed": 1248,
+    "failed": 0,
+    "warnings": 91,
+    "duration_seconds": 204.29
+  },
+  "gate_f0rpe2e_targeted": {
+    "status": "PASS",
+    "passed": 106,
+    "failed": 0
+  },
+  "targeted_ruff": "PASS",
+  "targeted_mypy": "PASS",
+  "new_broad_ruff": 0,
+  "new_broad_mypy": 0,
+  "node": {
+    "status": "PASS",
+    "passed": 2,
+    "failed": 0,
+    "runtime": "BUNDLED_WORKSPACE_NODE"
+  },
+  "git_diff_check": "PASS",
+  "quality_pass_does_not_imply_official_endpoint_or_empirical_execution": true
+}

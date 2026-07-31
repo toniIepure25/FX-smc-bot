@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_PROHIBITED_DATA_AUDIT_V1",
+  "audit_scope": "FILES_CHANGED_FROM_GATE_STARTING_SHA",
+  "starting_sha": "08b72a232a9fd305b525e6417c2f05b17688e548",
+  "changed_files_scanned": 46,
+  "raw_official_source_payloads_committed": 0,
+  "raw_bi5_committed": 0,
+  "canonical_m1_committed": 0,
+  "canonical_m5_committed": 0,
+  "row_level_rate_versions_committed": 0,
+  "row_level_rate_panels_committed": 0,
+  "daily_factor_signals_committed": 0,
+  "daily_positions_committed": 0,
+  "transactions_committed": 0,
+  "daily_portfolio_returns_committed": 0,
+  "individual_benchmark_rows_committed": 0,
+  "provider_credentials_committed": 0,
+  "absolute_local_clean_room_paths_committed": 0,
+  "prohibited_filename_matches": 0,
+  "sensitive_content_matches": 0,
+  "status": "PASS"
+}
