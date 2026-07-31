@@ -1,0 +1,69 @@
+{
+  "candidate_family_hash": "fd4f0a73b1277edf55160a3c844b6b5ab9b6e72622fcaed4aa8bd2aa8c1960e3",
+  "clean_room_certification_sha256": "318ad9f92546d6c54a0789942f2671a1995c1a25a87b6018789b995ef35ceb7b",
+  "created_at_utc": "2026-07-31T08:11:50Z",
+  "development_dataset_freeze_sha256": "def34ff33482cc2c3877258f99e561dc866d4533df259a053de308011f06fb57",
+  "development_result_sha256": {
+    "development_benchmark_results.json": "b10f299afbff263dec81fa78239df29b3d32ca8c55a734464bd5fc29ac1c6306",
+    "development_candidate_adjudication.json": "40d9c6ee37342dd22f9d1269fc229845d9c3810271ad94644879c218c8c2245d",
+    "development_candidate_results.json": "648ba0bc96d19a2330791dae029070fc85db0f05d086e039ae3a7b86eea10fcb",
+    "development_factor_alpha.json": "3a1a7948ab6d00f267ef85f9c0b63612870d6abd26297b77e957c3c1aaf8a606",
+    "development_inference.json": "0619d13d53c476e3a2618a6d8166ea816c9be91b84c54e5d4b117f37488c386a",
+    "development_overfitting_audit.json": "bbe25f5716a33ba08cae78c3a23e90e710ed7d0eabf77c1fd6371f7ab61f360f",
+    "development_stability_and_concentration.json": "165fa86fd4397f6f5b39290e021ba151688b5e9ca2e732d631c25b361e4f2b8b"
+  },
+  "empty_shortlist_hash": "be1c82325d03b26256935d3621759d6535ac58dddf36261986a92c3a59580234",
+  "feature_order_hash": "1800c83a2afa7691a4d0d141b1791975eaa1dcbc5c59110c737723c6b6d3c126",
+  "future_candidate_created": false,
+  "historical_quarantine": "QUARANTINED_FROM_CONFIRMATORY_USE_DUE_TO_Q0_STORAGE_ENUMERATION",
+  "lineage_id": "FX_QUANT_EDGE_DISCOVERY_LINEAGE_V2",
+  "lineage_seal_hash": "6a5c4c631dbdb0ced12878ce1bd92cfdb7808d928ac7cb1db0d7a08df946173e",
+  "paper_or_live_handoff_created": false,
+  "permitted_future_work_requires": [
+    "new lineage ID",
+    "new financially motivated hypothesis",
+    "new candidate family",
+    "new preregistration",
+    "new multiple-testing family",
+    "independent data partition"
+  ],
+  "program_id": "FX_QUANT_POLARITY_META_V2",
+  "prohibitions": [
+    "further tuning on the current 2015-2019 development sample",
+    "lowering eligibility criteria",
+    "accessing replication data under this lineage",
+    "creating a future candidate from this lineage",
+    "creating a paper or live handoff",
+    "using the quarantined historical interval as confirmation",
+    "relabeling negative performance as alpha"
+  ],
+  "protocol_hash": "ae91b1ce04784d76bf58f1c232b07e41a4e782fcce3b0c4f97488c4b35700435",
+  "protocol_inheritance_artifact_sha256": "b25a6493aa42658878bcfc208aa9b49b2a6c17cb9d8236eaf7e6fee8f44fb4cc",
+  "q0_failure_artifact_sha256": {
+    "development_acquisition_status": "4d5e060f832936dcce9d54a611f552b633b6364a55a2c8b97ba82a8067654606",
+    "final_decision": "8ec6f29691f0243daf8a86e2db85c02904706572117832529b3ba191c62b3fea",
+    "final_decision_memo": "011ecd8161ec54110276d5f3d2509ac5655689063dee5e3ea0d1bc3ecad60c44",
+    "holdout_integrity": "8e1a679571229bb23f8c063d3211d39dcc0270ae619451bbed2c1b3a06447ea",
+    "prohibited_data_audit": "5ed17358876a58111bfeec3690fa05cf8eafdae0fb036f53cf7b9f04d2414332",
+    "reproducibility_manifest": "6f376191c89703dc3252369b4f8eeac62838170f53c7fc0082ae71d65d1306d0"
+  },
+  "q0r_final_sha": "1ae0abe19ad138e166f83b4a1d3fd48af34b8a3e",
+  "q0r_integrity_audit_sha256": "0fa0bd5d7f89005d1473b759149ccbb7f2c62436ae11630c88bc1c9e8954d41f",
+  "replication_accessed": false,
+  "seal_id": "FX_QUANT_POLARITY_META_V2_LINEAGE_SEAL_V1",
+  "status": "CLOSED_NO_DEVELOPMENT_CANDIDATE_NO_REPLICATION",
+  "validation": {
+    "checks": {
+      "future_candidate_created": true,
+      "future_conditions": true,
+      "hash": true,
+      "lineage_id": true,
+      "program_id": true,
+      "prohibitions": true,
+      "replication_accessed": true,
+      "seal_id": true,
+      "status": true
+    },
+    "status": "PASS"
+  }
+}
