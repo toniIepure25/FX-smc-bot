@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_PRE_AMENDMENT_OUTCOME_BLINDNESS_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "gate_id": "F0-RP",
+  "audited_through_sha": "a0b10c1c4e0be8bc0b50505661d6bf7aca123483",
+  "evidence": [
+    "results/gate_f0/final_decision.json",
+    "results/gate_f0/development_market_certification.json",
+    "results/gate_f0/development_rate_certification.json",
+    "results/gate_f0/prohibited_data_audit.json",
+    "results/gate_f0/prospective_integrity.json",
+    "git history e46b91a through a0b10c1"
+  ],
+  "market_path_inventory_executed": false,
+  "market_provider_request_sent": false,
+  "rate_provider_request_sent": false,
+  "market_rows_loaded": false,
+  "rate_rows_loaded": false,
+  "factor_signals_generated": false,
+  "portfolio_positions_generated": false,
+  "portfolio_returns_generated": false,
+  "benchmarks_generated": false,
+  "candidate_ranking_performed": false,
+  "development_outcomes_available": false,
+  "validation_outcomes_available": false,
+  "replication_outcomes_available": false,
+  "nzd_remediation_can_be_selected_without_outcome_information": true,
+  "status": "PASS"
+}

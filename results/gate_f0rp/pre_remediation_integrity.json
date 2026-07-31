@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_PRE_REMEDIATION_INTEGRITY_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "gate_id": "F0-RP",
+  "captured_at_sha": "a0b10c1c4e0be8bc0b50505661d6bf7aca123483",
+  "original_f0_artifact_sha256_raw_bytes": {
+    "results/gate_f0/final_decision.json": "540b0459e1de411c00b35b6d83794567458e580e8f10531b66ae9eca28fa00c2",
+    "results/gate_f0/rate_series_registry.json": "ac50db484a53d4357f495149cab3b3279ec17f823edc0abc5990fbfede949b73",
+    "results/gate_f0/development_rate_certification.json": "14f91f2286fc831d6cbd86a3858dd8cc0b125026e340babd8830a527a62f9097",
+    "results/gate_f0/development_market_certification.json": "be5e2479cf4a6fb0ccd356b96b47ea1df29713491ef6ebdea19fed90b4f7899d",
+    "results/gate_f0/quality_gate_final.json": "554915ab469ca576a2d7a201f7d4438b317d34e7501e259d8a8098900a04ee4a",
+    "results/gate_f0/prohibited_data_audit.json": "b3499110105268bcb10b91284c5987340e34bf995565b7cc1a0d6b208e780a18",
+    "results/gate_f0/prospective_integrity.json": "92f4e06622fce22261b99c751ed978a52828e7671e70b4b28bb7f2d843c120dd",
+    "results/gate_f0/reproducibility_manifest.json": "19f6de2be114293a8ca2fb44bd0449b23bab34f23c02a60434f425c3ea8919",
+    "docs/research/classical_fx_factors/F0_FINAL_DECISION_MEMO.md": "111a9a2afb0fb5676d856153a4856566f76d12e27db132864fcf2fb8d35d6077"
+  },
+  "scientific_freeze_sha256_lf_normalized": {
+    "factor_family": "a395c00621238c6cf4aaf127e5f48696c7bf4b54b5250b201e48d87cb31b9371",
+    "factor_config": "e951832ec1f521381d9d4b609b8cb62a87c5a58771a9dd9cd74dea64d7f3c22e",
+    "portfolio_construction": "1cc22d2b5072f90ae9469fc2e735f8f69f7e89d2d9d25c5d7b87a0fdc20db04b",
+    "benchmark": "fefdd8b4b0216d66637a4213bc61f41d660497dfb746c2f11f7de94c8ab3ea60",
+    "estimand": "69675f0592c53783266a7fed49a9a6ddcc1ce3c9cbbc1bf59817373685de9175"
+  },
+  "protocol_pre_data_access_sha": "054fb0562d6df8fa08cac03204b6b08d42ae0bd8",
+  "original_f0_artifacts_modified": false,
+  "status": "PASS"
+}

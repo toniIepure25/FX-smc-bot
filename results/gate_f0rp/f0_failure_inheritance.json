@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_F0_FAILURE_INHERITANCE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "gate_id": "F0-RP",
+  "inheritance_status": "F0_BLOCK_PRESERVED_NOT_REVERSED",
+  "original_decision": "BLOCKED_BY_RATE_DATA_PROVENANCE",
+  "blocking_currency": "NZD",
+  "blocking_series": "B2_OVERNIGHT_INTERBANK_CASH_RATE",
+  "blocking_defect": "ORIGINAL_PER_OBSERVATION_PUBLICATION_TIMESTAMPS_NOT_PRESERVED_BY_THE_OFFICIAL_HISTORICAL_DOWNLOAD",
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false,
+  "development_outcomes_generated": false,
+  "validation_accessed": false,
+  "replication_accessed": false,
+  "original_f0_artifact_hashes_match": true,
+  "original_f0_decision_reclassified": false,
+  "status": "PASS"
+}

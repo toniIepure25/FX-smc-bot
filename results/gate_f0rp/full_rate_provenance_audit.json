@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_FULL_RATE_PROVENANCE_AUDIT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "gate_id": "F0-RP",
+  "audit_scope": "OFFICIAL_METADATA_AND_METHODOLOGY_ONLY_NO_NUMERICAL_OBSERVATION_FILES",
+  "observation_files_accessed": false,
+  "rate_provider_requests_sent": 0,
+  "global_point_in_time_rule": "MAX_OF_ORIGINAL_PUBLICATION_TIMESTAMP_AND_EFFECTIVE_TIMESTAMP",
+  "series": [
+    {
+      "currency": "USD",
+      "series_identifier": "EFFR",
+      "publisher": "FEDERAL_RESERVE_BANK_OF_NEW_YORK",
+      "economic_meaning": "VOLUME_WEIGHTED_MEDIAN_UNSECURED_OVERNIGHT_FEDERAL_FUNDS_RATE",
+      "observation_date": "US_BUSINESS_DAY_OF_THE_UNDERLYING_OVERNIGHT_TRANSACTIONS",
+      "original_publication_rule": "APPROXIMATELY_09:00_AMERICA_NEW_YORK_ON_THE_FOLLOWING_NEW_YORK_FED_BUSINESS_DAY",
+      "effective_date": "ORIGINAL_PUBLICATION_TIMESTAMP",
+      "revision_rule": "QUALIFYING_REVISIONS_AROUND_14:30_AMERICA_NEW_YORK_ON_THE_PUBLICATION_DAY",
+      "publication_timezone": "America/New_York",
+      "calendar": "NEW_YORK_FED_BUSINESS_DAYS",
+      "day_count_convention": "ACT_360",
+      "predecessor_successor_transition": "2016-03-01_METHOD_CHANGE_FROM_BROKER_VOLUME_WEIGHTED_MEAN_TO_FR2420_VOLUME_WEIGHTED_MEDIAN",
+      "point_in_time_availability_rule": "USE_14:30_PUBLICATION_DAY_ENVELOPE_POST_TRANSITION_AND_END_OF_PUBLICATION_DAY_FOR_EARLIER_REGIME",
+      "missing_observation_policy": "USE_ONLY_OFFICIAL_CONTINGENCY_VALUE; OTHERWISE_TREAT_AS_MISSING; NO_INTERPOLATION",
+      "classification": "CERTIFIABLE_WITH_CONSERVATIVE_OFFICIAL_AVAILABILITY_ENVELOPE",
+      "official_evidence_urls": [
+        "https://www.newyorkfed.org/markets/reference-rates/effr",
+        "https://www.newyorkfed.org/markets/reference-rates/additional-information-about-reference-rates",
+        "https://www.newyorkfed.org/markets/opolicy/operating_policy_160106"
+      ]
+    },
+    {
+      "currency": "EUR",
+      "series_identifier": "EONIA_TO_ESTR",
+      "publisher": "EUROPEAN_MONEY_MARKETS_INSTITUTE_THEN_EUROPEAN_CENTRAL_BANK",
+      "economic_meaning": "UNSECURED_EURO_OVERNIGHT_INTERBANK_LENDING_THEN_WHOLESALE_BANK_BORROWING",
+      "observation_date": "TARGET2_BUSINESS_DAY_TO_WHICH_THE_OVERNIGHT_RATE_PERTAINS",
+      "original_publication_rule": "EONIA_BY_19:00_CET_ON_T_THROUGH_2019-09-30; ESTR_AT_08:00_CET_ON_T_PLUS_1_TARGET2_DAY",
+      "effective_date": "ORIGINAL_PUBLICATION_TIMESTAMP",
+      "revision_rule": "ESTR_QUALIFYING_REVISION_AT_09:00_CET_ON_THE_SAME_PUBLICATION_DAY",
+      "publication_timezone": "Europe/Brussels",
+      "calendar": "TARGET2_BUSINESS_DAYS",
+      "day_count_convention": "ACT_360",
+      "predecessor_successor_transition": "ESTR_FIRST_OBSERVATION_2019-10-01; EONIA_RECALIBRATED_TO_ESTR_PLUS_8_5_BP_FROM_2019-10-02_AND_CEASED_2022-01-03; GATE_USES_ESTR_DIRECTLY_AFTER_TRANSITION",
+      "point_in_time_availability_rule": "USE_EONIA_ONLY_AFTER_19:00_CET_ON_T_AND_ESTR_ONLY_AFTER_09:00_CET_ON_T_PLUS_1",
+      "missing_observation_policy": "HONOR_OFFICIAL_ESTR_CONTINGENCY; TARGET2_CLOSURES_ARE_NOT_INTERPOLATED",
+      "classification": "POINT_IN_TIME_CERTIFIABLE",
+      "official_evidence_urls": [
+        "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_short-term_rate/html/eurostr_overview.en.html",
+        "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro-short-term-rate/html/eurostr_qa.en.html",
+        "https://data.ecb.europa.eu/data/datasets/EON/data-information"
+      ]
+    },
+    {
+      "currency": "GBP",
+      "series_identifier": "IUDSOIA",
+      "publisher": "WHOLESALE_MARKETS_BROKERS_ASSOCIATION_THEN_BANK_OF_ENGLAND",
+      "economic_meaning": "STERLING_OVERNIGHT_INDEX_AVERAGE_FOR_UNSECURED_OVERNIGHT_STERLING_FUNDING",
+      "observation_date": "LONDON_BUSINESS_DAY_TO_WHICH_SONIA_PERTAINS",
+      "original_publication_rule": "LEGACY_SONIA_AROUND_18:00_EUROPE_LONDON_ON_T; REFORMED_SONIA_AT_09:00_ON_T_PLUS_1_LONDON_BUSINESS_DAY",
+      "effective_date": "ORIGINAL_PUBLICATION_TIMESTAMP",
+      "revision_rule": "REFORMED_SONIA_MAY_BE_REPUBLISHED_BY_12:00_IF_CHANGE_IS_AT_LEAST_2_BP; NO_CHANGE_AFTER_DEADLINE",
+      "publication_timezone": "Europe/London",
+      "calendar": "LONDON_BUSINESS_DAYS",
+      "day_count_convention": "ACT_365_FIXED",
+      "predecessor_successor_transition": "SERIES_CODE_CONTINUES; REFORMED_METHODOLOGY_FIRST_OBSERVATION_2018-04-23",
+      "point_in_time_availability_rule": "USE_T_PLUS_1_AT_12:00_EUROPE_LONDON_AS_CONSERVATIVE_ARCHIVAL_ENVELOPE",
+      "missing_observation_policy": "HONOR_OFFICIAL_BANK_RATE_PLUS_TRIMMED_FIVE_DAY_SPREAD_CONTINGENCY; NO_INTERPOLATION",
+      "classification": "CERTIFIABLE_WITH_CONSERVATIVE_OFFICIAL_AVAILABILITY_ENVELOPE",
+      "official_evidence_urls": [
+        "https://www.bankofengland.co.uk/boeapps/database/FromShowColumns.asp?searchText=IUDSOIA",
+        "https://www.bankofengland.co.uk/markets/sonia-benchmark/sonia-key-features-and-policies",
+        "https://www.bankofengland.co.uk/news/2018/april/sonia-interest-rate-benchmark-reform"
+      ]
+    },
+    {
+      "currency": "AUD",
+      "series_identifier": "RBA_CASH_RATE",
+      "publisher": "RESERVE_BANK_OF_AUSTRALIA",
+      "economic_meaning": "WEIGHTED_AVERAGE_UNSECURED_OVERNIGHT_AUD_INTERBANK_CASH_RATE",
+      "observation_date": "RITS_REPORTING_BUSINESS_DAY",
+      "original_publication_rule": "BEFORE_09:20_AUSTRALIA_SYDNEY_ON_THE_FOLLOWING_RITS_BUSINESS_DAY",
+      "effective_date": "ORIGINAL_PUBLICATION_TIMESTAMP",
+      "revision_rule": "SAME_PUBLICATION_DAY_REPUBLICATION_POSSIBLE_UNTIL_16:00_AUSTRALIA_SYDNEY",
+      "publication_timezone": "Australia/Sydney",
+      "calendar": "RITS_BUSINESS_DAYS",
+      "day_count_convention": "ACT_365_FIXED",
+      "predecessor_successor_transition": "MAY_2016_INPUT_CHANGE_FROM_BANK_SURVEY_TO_IDENTIFIED_RITS_TRANSACTIONS",
+      "point_in_time_availability_rule": "USE_16:00_AUSTRALIA_SYDNEY_ON_THE_PUBLICATION_DAY",
+      "missing_observation_policy": "USE_ONLY_OFFICIAL_PRECEDING_RATE_NEW_TARGET_OR_FLAGGED_EXPERT_JUDGMENT_FALLBACK; NO_INTERPOLATION",
+      "classification": "CERTIFIABLE_WITH_CONSERVATIVE_OFFICIAL_AVAILABILITY_ENVELOPE",
+      "official_evidence_urls": [
+        "https://www.rba.gov.au/mkt-operations/resources/cash-rate-methodology/overview.html",
+        "https://www.rba.gov.au/mkt-operations/resources/cash-rate-methodology/cash-rate-procedures-manual.html",
+        "https://www.rba.gov.au/publications/bulletin/2016/dec/4.html"
+      ]
+    },
+    {
+      "currency": "NZD",
+      "series_identifier": "B2_OVERNIGHT_INTERBANK_CASH_RATE",
+      "publisher": "RESERVE_BANK_OF_NEW_ZEALAND",
+      "economic_meaning": "WEIGHTED_AVERAGE_SECURED_AND_UNSECURED_OVERNIGHT_INTERBANK_MARKET_QUOTES",
+      "observation_date": "NEW_ZEALAND_BUSINESS_DAY_IDENTIFIED_BY_THE_B2_SERIES",
+      "original_publication_rule": "ONE_BUSINESS_DAY_LAG_WITH_WEBSITE_UPDATE_ONLY_APPROXIMATELY_15:00_PACIFIC_AUCKLAND",
+      "effective_date": "NOT_PRESERVED_PER_OBSERVATION_IN_THE_HISTORICAL_DOWNLOAD",
+      "revision_rule": "ORIGINAL_REVISION_PUBLICATION_TIMESTAMPS_NOT_PRESERVED_IN_THE_HISTORICAL_DOWNLOAD",
+      "publication_timezone": "Pacific/Auckland",
+      "calendar": "NEW_ZEALAND_BUSINESS_DAYS",
+      "day_count_convention": "ACT_365_FIXED",
+      "predecessor_successor_transition": "NO_TRANSITION_WITHIN_THE_FROZEN_INTERVAL",
+      "point_in_time_availability_rule": "NO_CERTIFIED_RULE; NEVER_INFER_B2_TIMESTAMP_OR_LAG",
+      "missing_observation_policy": "TREAT_AS_MISSING; NO_INTERPOLATION_OR_INFERRED_LAG",
+      "classification": "NOT_POINT_IN_TIME_CERTIFIABLE",
+      "official_evidence_urls": [
+        "https://www.rbnz.govt.nz/statistics/series/exchange-and-interest-rates/wholesale-interest-rates"
+      ]
+    },
+    {
+      "currency": "JPY",
+      "series_identifier": "FM01'STRDCLUCON",
+      "publisher": "BANK_OF_JAPAN",
+      "economic_meaning": "FINAL_WEIGHTED_AVERAGE_UNCOLLATERALIZED_OVERNIGHT_CALL_RATE",
+      "observation_date": "JAPANESE_BUSINESS_DAY_OF_THE_UNDERLYING_TRANSACTIONS",
+      "original_publication_rule": "FINAL_RESULT_AROUND_10:00_ASIA_TOKYO_ON_T_PLUS_1_BUSINESS_DAY",
+      "effective_date": "FINAL_PUBLICATION_TIMESTAMP",
+      "revision_rule": "CORRECTIONS_ARE_COMMUNICATED_THROUGH_OFFICIAL_NOTICES; PROVISIONAL_RESULT_IS_NOT_USED",
+      "publication_timezone": "Asia/Tokyo",
+      "calendar": "BANK_OF_JAPAN_BUSINESS_DAYS",
+      "day_count_convention": "ACT_365_FIXED",
+      "predecessor_successor_transition": "NONE_WITHIN_THE_FROZEN_INTERVAL",
+      "point_in_time_availability_rule": "USE_ONLY_FINAL_RESULT_AT_END_OF_PUBLICATION_DAY_AS_CONSERVATIVE_ENVELOPE",
+      "missing_observation_policy": "NON_BUSINESS_DAY_NA_IS_NOT_INTERPOLATED; CARRY_ONLY_A_PREVIOUSLY_FINAL_PUBLISHED_VALUE",
+      "classification": "CERTIFIABLE_WITH_CONSERVATIVE_OFFICIAL_AVAILABILITY_ENVELOPE",
+      "official_evidence_urls": [
+        "https://www.stat-search.boj.or.jp/info/nme_Mdframe_en.html",
+        "https://www.boj.or.jp/en/statistics/market/short/mutan/index.htm",
+        "https://www.boj.or.jp/en/statistics/outline/notice_2002/ntjd02.htm/"
+      ]
+    },
+    {
+      "currency": "CAD",
+      "series_identifier": "V39079",
+      "publisher": "BANK_OF_CANADA",
+      "economic_meaning": "BANK_OF_CANADA_POLICY_TARGET_FOR_THE_OVERNIGHT_RATE",
+      "observation_date": "POLICY_DECISION_DATE_AND_SUBSEQUENT_BUSINESS_DAYS_WHILE_THE_TARGET_IS_EFFECTIVE",
+      "original_publication_rule": "09:00_AMERICA_TORONTO_THROUGH_2012; 10:00_FROM_2013-01-23_THROUGH_THE_AUTHORIZED_INTERVAL",
+      "effective_date": "IMMEDIATE_THROUGH_2020; FOLLOWING_BUSINESS_DAY_FROM_2021",
+      "revision_rule": "POLICY_STATE_CHANGES_ONLY_BY_OFFICIAL_ANNOUNCEMENT",
+      "publication_timezone": "America/Toronto",
+      "calendar": "BANK_OF_CANADA_BUSINESS_DAYS",
+      "day_count_convention": "ACT_365_FIXED",
+      "predecessor_successor_transition": "2013_PUBLICATION_TIME_CHANGE_AND_2021_EFFECTIVE_DATE_CHANGE",
+      "point_in_time_availability_rule": "USE_NEW_TARGET_ONLY_AFTER_MAX_OF_OFFICIAL_ANNOUNCEMENT_AND_EFFECTIVE_TIMESTAMP",
+      "missing_observation_policy": "CARRY_THE_LAST_EFFECTIVE_OFFICIAL_TARGET; NO_INTERPOLATION",
+      "classification": "POINT_IN_TIME_CERTIFIABLE",
+      "official_evidence_urls": [
+        "https://www.bankofcanada.ca/rates/indicators/key-variables/policy-instrument/",
+        "https://www.bankofcanada.ca/2009/07/bank-canada-releases-2010-schedule-dates/",
+        "https://www.bankofcanada.ca/2012/12/bank-canada-announces-new-publication-time-2013-fad-mpr/",
+        "https://www.bankofcanada.ca/2020/07/2021-schedule-policy-interest-rate-announcements/"
+      ]
+    },
+    {
+      "currency": "CHF",
+      "series_identifier": "SRFXON3",
+      "publisher": "SIX_INDEX_AG",
+      "economic_meaning": "18:00_SARON_FIXING_FOR_THE_SECURED_CHF_REPO_MARKET",
+      "observation_date": "CHF_TRADING_DAY_OF_THE_FIXING",
+      "original_publication_rule": "18:00_EUROPE_ZURICH_ON_THE_OBSERVATION_TRADING_DAY",
+      "effective_date": "FIXING_PUBLICATION_TIMESTAMP",
+      "revision_rule": "ERRORS_OVER_2_BP_IDENTIFIED_BY_20:00_MAY_BE_CORRECTED_DURING_20:00_TO_22:00",
+      "publication_timezone": "Europe/Zurich",
+      "calendar": "CHF_TRADING_DAYS",
+      "day_count_convention": "ACT_360",
+      "predecessor_successor_transition": "NONE_WITHIN_THE_FROZEN_INTERVAL",
+      "point_in_time_availability_rule": "FOR_OFFICIAL_PUBLIC_REDISTRIBUTION_USE_T_PLUS_1_AT_18:00_EUROPE_ZURICH",
+      "missing_observation_policy": "PRECEDING_PUBLISHED_OFFICIAL_RATE_REMAINS_VALID_WHEN_NO_FIXING_IS_AVAILABLE; NO_SYNTHETIC_INTERPOLATION",
+      "classification": "CERTIFIABLE_WITH_CONSERVATIVE_OFFICIAL_AVAILABILITY_ENVELOPE",
+      "official_evidence_urls": [
+        "https://www.six-group.com/dam/download/market-data/indices/swiss-reference-rates/six-swiss-reference-rates-output-statement-en.pdf",
+        "https://www.six-group.com/dam/download/market-data/indices/swiss-reference-rates/six-methodology-swiss-reference-rates-rules-en.pdf",
+        "https://www.six-group.com/en/market-data/indices/switzerland/saron.html"
+      ]
+    }
+  ],
+  "classification_counts": {
+    "POINT_IN_TIME_CERTIFIABLE": 2,
+    "CERTIFIABLE_WITH_CONSERVATIVE_OFFICIAL_AVAILABILITY_ENVELOPE": 5,
+    "NOT_POINT_IN_TIME_CERTIFIABLE": 1
+  },
+  "blocking_original_series": "NZD:B2_OVERNIGHT_INTERBANK_CASH_RATE",
+  "status": "PASS_COMPLETE_REGISTRY_AUDITED_WITH_NZD_REMEDIATION_REQUIRED"
+}
