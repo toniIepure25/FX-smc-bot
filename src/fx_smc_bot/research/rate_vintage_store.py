@@ -18,21 +18,27 @@ from pathlib import Path
 from typing import Any, Final
 from zoneinfo import ZoneInfo
 
+from fx_smc_bot.research.publication_censoring import (
+    PublicationEvidence,
+    PublicationEvidenceKind,
+    RevisionStatus,
+)
 from fx_smc_bot.research.rate_calendars import calendar_for_currency
 
 SCHEMA_VERSION: Final = "F0RPE2E_RATE_VINTAGE_STORE_V2"
 V3_SCHEMA_VERSION: Final = "F0RPE2ER_RATE_VINTAGE_STORE_V3"
 V3_SCHEMA_ID: Final = V3_SCHEMA_VERSION
-SUPPORTED_SCHEMA_VERSIONS: Final = frozenset({SCHEMA_VERSION, V3_SCHEMA_VERSION})
+V4_SCHEMA_VERSION: Final = "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4"
+V4_SCHEMA_ID: Final = V4_SCHEMA_VERSION
+SUPPORTED_SCHEMA_VERSIONS: Final = frozenset({SCHEMA_VERSION, V3_SCHEMA_VERSION, V4_SCHEMA_VERSION})
+_CERTIFIED_SCHEMA_VERSIONS: Final = frozenset({V3_SCHEMA_VERSION, V4_SCHEMA_VERSION})
 PASSING_CERTIFICATION_STATUSES: Final = frozenset({"PASS", "CERTIFIED"})
 _STRATEGY_TIMEZONE: Final = ZoneInfo("America/New_York")
 _EONIA_END: Final = date(2019, 9, 30)
 _ESTR_START: Final = date(2019, 10, 1)
 _V3_AUTHORIZED_START: Final = date(2010, 1, 1)
 _V3_AUTHORIZED_END: Final = date(2022, 12, 31)
-_V3_AUTHORIZED_CURRENCIES: Final = frozenset(
-    {"USD", "EUR", "GBP", "AUD", "JPY", "CAD", "CHF"}
-)
+_V3_AUTHORIZED_CURRENCIES: Final = frozenset({"USD", "EUR", "GBP", "AUD", "JPY", "CAD", "CHF"})
 
 
 class RateVintageStoreError(RuntimeError):
@@ -58,10 +64,10 @@ class AvailableRate:
     series_id: str
     observation_date: date
     value: float
-    publication_timestamp: datetime
+    publication_timestamp: datetime | None
     effective_timestamp: datetime
     strategy_availability_timestamp: datetime
-    revision_identifier: str
+    revision_identifier: str | None
     revision_status: str
     day_count_convention: str
     calendar_id: str
@@ -69,6 +75,11 @@ class AvailableRate:
     certification_status: str
     age_in_calendar_days: int
     carry_forward_reason: str | None
+    publication_lower_bound: datetime | None = None
+    publication_upper_bound: datetime | None = None
+    publication_upper_bound_exclusive: bool | None = None
+    publication_evidence_kind: PublicationEvidenceKind | None = None
+    publication_evidence_source: str | None = None
 
 
 @dataclass(frozen=True)
@@ -118,6 +129,10 @@ def _aware(value: Any, field: str) -> datetime:
     return value.astimezone(UTC)
 
 
+def _optional_aware(value: Any, field: str) -> datetime | None:
+    return None if value is None else _aware(value, field)
+
+
 def _timestamp(value: datetime) -> str:
     return value.astimezone(UTC).isoformat().replace("+00:00", "Z")
 
@@ -165,9 +180,7 @@ def _validate_series_regime(currency: str, series_id: str, observation_date: dat
         return
     expected = "EONIA" if observation_date <= _EONIA_END else "ESTR"
     if series_id != expected:
-        raise RateVintageIntegrityError(
-            "EUR series violates the frozen EONIA/ESTR transition"
-        )
+        raise RateVintageIntegrityError("EUR series violates the frozen EONIA/ESTR transition")
 
 
 class RateVintageStore:
@@ -192,7 +205,7 @@ class RateVintageStore:
         self._schema_version = requested_schema
         self._panel_table = (
             "aligned_daily_rate_panel"
-            if requested_schema == V3_SCHEMA_VERSION
+            if requested_schema in _CERTIFIED_SCHEMA_VERSIONS
             else "daily_strategy_rate_panel"
         )
         if self.database_path != ":memory:":
@@ -207,8 +220,8 @@ class RateVintageStore:
         self._create_schema()
 
     def _validate_existing_database(self, database: Path) -> None:
-        """Reject in-place V2-to-V3 upgrades while allowing an existing V3 replay."""
-        if self._schema_version != V3_SCHEMA_VERSION or not database.exists():
+        """Require certified schemas to use a clean or exactly matching database."""
+        if self._schema_version not in _CERTIFIED_SCHEMA_VERSIONS or not database.exists():
             return
         if database.stat().st_size == 0:
             return
@@ -226,13 +239,14 @@ class RateVintageStore:
             )
         except sqlite3.DatabaseError as exc:
             raise RateVintageIntegrityError(
-                "V3 requires a new clean database or an existing V3 database"
+                f"{self._schema_version} requires a new clean or matching database"
             ) from exc
         finally:
             connection.close()
-        if existing is None or existing[0] != V3_SCHEMA_VERSION:
+        if existing is None or existing[0] != self._schema_version:
             raise RateVintageIntegrityError(
-                "V3 requires a new clean database; in-place schema upgrades are prohibited"
+                f"{self._schema_version} requires a new clean database; "
+                "in-place schema upgrades are prohibited"
             )
 
     def __enter__(self) -> RateVintageStore:
@@ -254,7 +268,7 @@ class RateVintageStore:
         return str(row["value"])
 
     def _create_schema(self) -> None:
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             self._connection.executescript(
                 """
                 CREATE TABLE IF NOT EXISTS source_requests (
@@ -284,6 +298,66 @@ class RateVintageStore:
                     UNIQUE(request_identity, adapter_id, source_snapshot_sha256),
                     FOREIGN KEY(request_identity, adapter_id)
                         REFERENCES source_requests(request_identity, adapter_id)
+                );
+                """
+            )
+        if self._schema_version == V4_SCHEMA_VERSION:
+            evidence_kinds = ", ".join(f"'{kind.value}'" for kind in PublicationEvidenceKind)
+            revision_statuses = ", ".join(f"'{status.value}'" for status in RevisionStatus)
+            self._connection.executescript(
+                f"""
+                CREATE TABLE IF NOT EXISTS rate_versions (
+                    version_id TEXT PRIMARY KEY,
+                    observation_identity_id INTEGER NOT NULL
+                        REFERENCES rate_observation_identities(observation_identity_id),
+                    currency TEXT NOT NULL,
+                    series_id TEXT NOT NULL,
+                    observation_date TEXT NOT NULL,
+                    value_text TEXT NOT NULL,
+                    publication_timestamp TEXT,
+                    publication_lower_bound TEXT NOT NULL,
+                    publication_upper_bound TEXT NOT NULL,
+                    publication_upper_bound_exclusive INTEGER NOT NULL
+                        CHECK(publication_upper_bound_exclusive IN (0, 1)),
+                    publication_evidence_kind TEXT NOT NULL
+                        CHECK(publication_evidence_kind IN ({evidence_kinds})),
+                    publication_evidence_source TEXT NOT NULL
+                        CHECK(length(trim(publication_evidence_source)) > 0),
+                    effective_timestamp TEXT NOT NULL,
+                    strategy_availability_timestamp TEXT NOT NULL,
+                    source_publisher TEXT NOT NULL,
+                    source_document_id TEXT NOT NULL,
+                    source_endpoint_role TEXT NOT NULL,
+                    source_snapshot_id INTEGER NOT NULL,
+                    source_adapter_id TEXT NOT NULL,
+                    source_request_identity TEXT NOT NULL,
+                    source_snapshot_sha256 TEXT NOT NULL,
+                    parser_version TEXT NOT NULL,
+                    revision_identifier TEXT,
+                    revision_status TEXT NOT NULL
+                        CHECK(revision_status IN ({revision_statuses})),
+                    day_count_convention TEXT NOT NULL,
+                    calendar_id TEXT NOT NULL,
+                    retrieved_at TEXT NOT NULL,
+                    CHECK(publication_lower_bound <= publication_upper_bound),
+                    CHECK(
+                        (
+                            publication_evidence_kind = 'EXACT_TIMESTAMP'
+                            AND publication_timestamp IS NOT NULL
+                            AND publication_lower_bound = publication_timestamp
+                            AND publication_upper_bound = publication_timestamp
+                            AND publication_upper_bound_exclusive = 0
+                        ) OR (
+                            publication_evidence_kind != 'EXACT_TIMESTAMP'
+                            AND publication_timestamp IS NULL
+                        )
+                    ),
+                    FOREIGN KEY(
+                        source_snapshot_id, source_adapter_id,
+                        source_request_identity, source_snapshot_sha256
+                    ) REFERENCES source_snapshots(
+                        source_snapshot_id, adapter_id, request_identity, payload_sha256
+                    )
                 );
                 """
             )
@@ -422,7 +496,7 @@ class RateVintageStore:
                 ON dataset_freeze_versions(version_id, dataset_freeze_id);
             """
         )
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             self._connection.executescript(
                 """
                 CREATE TABLE IF NOT EXISTS aligned_daily_rate_panel (
@@ -440,6 +514,15 @@ class RateVintageStore:
                         REFERENCES dataset_freeze_versions(dataset_freeze_id, version_id)
                 );
                 """
+            )
+        if self._schema_version == V4_SCHEMA_VERSION:
+            self._connection.execute(
+                """CREATE UNIQUE INDEX IF NOT EXISTS uq_v4_exact_rate_version_identity
+                ON rate_versions(
+                    observation_identity_id, publication_timestamp, revision_identifier
+                )
+                WHERE publication_timestamp IS NOT NULL
+                  AND revision_identifier IS NOT NULL"""
             )
         existing = self._connection.execute(
             "SELECT value FROM store_metadata WHERE key = 'schema_version'"
@@ -465,7 +548,7 @@ class RateVintageStore:
             "dataset_freeze_certifications",
             "daily_strategy_rate_panel",
         ]
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             immutable_tables.extend(
                 (
                     "source_requests",
@@ -503,12 +586,7 @@ class RateVintageStore:
                 "(existing.currency = NEW.currency AND existing.series_id = NEW.series_id "
                 "AND existing.observation_date = NEW.observation_date)"
             ),
-            "rate_versions": (
-                "existing.version_id = NEW.version_id OR "
-                "(existing.observation_identity_id = NEW.observation_identity_id "
-                "AND existing.publication_timestamp = NEW.publication_timestamp "
-                "AND existing.revision_identifier = NEW.revision_identifier)"
-            ),
+            "rate_versions": "existing.version_id = NEW.version_id",
             "availability_events": (
                 "existing.availability_event_id = NEW.availability_event_id OR "
                 "(existing.version_id = NEW.version_id AND existing.event_type = NEW.event_type "
@@ -539,7 +617,21 @@ class RateVintageStore:
                 "AND existing.dataset_freeze_id = NEW.dataset_freeze_id"
             ),
         }
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version != V4_SCHEMA_VERSION:
+            collision_checks["rate_versions"] += (
+                " OR (existing.observation_identity_id = NEW.observation_identity_id "
+                "AND existing.publication_timestamp = NEW.publication_timestamp "
+                "AND existing.revision_identifier = NEW.revision_identifier)"
+            )
+        else:
+            collision_checks["rate_versions"] += (
+                " OR (NEW.publication_timestamp IS NOT NULL "
+                "AND NEW.revision_identifier IS NOT NULL "
+                "AND existing.observation_identity_id = NEW.observation_identity_id "
+                "AND existing.publication_timestamp = NEW.publication_timestamp "
+                "AND existing.revision_identifier = NEW.revision_identifier)"
+            )
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             collision_checks.update(
                 {
                     "source_requests": (
@@ -561,7 +653,7 @@ class RateVintageStore:
                     ),
                 }
             )
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             self._connection.execute(
                 """CREATE TRIGGER IF NOT EXISTS validate_snapshot_source_request
                 BEFORE INSERT ON source_snapshots
@@ -603,9 +695,9 @@ class RateVintageStore:
         )
 
     def append_source_request(self, request: object) -> str:
-        """Append one exact V3 request identity or return it on exact replay."""
-        if self._schema_version != V3_SCHEMA_VERSION:
-            raise RateVintageIntegrityError("source_requests are available only in V3 mode")
+        """Append one exact certified-schema request or return it on exact replay."""
+        if self._schema_version not in _CERTIFIED_SCHEMA_VERSIONS:
+            raise RateVintageIntegrityError("source_requests are available only in V3/V4 mode")
         request_identity = _text(_value(request, "request_identity"), "request_identity")
         currency = _text(_value(request, "currency"), "currency").upper()
         if currency == "NZD":
@@ -620,9 +712,7 @@ class RateVintageStore:
         request_headers = self._normalized_pairs(
             _optional_value(request, "request_headers", ()), "request_headers"
         )
-        accept_values = [
-            value for name, value in request_headers if name.lower() == "accept"
-        ]
+        accept_values = [value for name, value in request_headers if name.lower() == "accept"]
         response_format = _text(
             _optional_value(
                 request,
@@ -636,15 +726,11 @@ class RateVintageStore:
             "adapter_id": _text(_value(request, "adapter_id"), "adapter_id"),
             "currency": currency,
             "series_id": _text(_value(request, "series_id"), "series_id"),
-            "source_publisher": _text(
-                _value(request, "source_publisher"), "source_publisher"
-            ),
+            "source_publisher": _text(_value(request, "source_publisher"), "source_publisher"),
             "source_endpoint_role": _text(
                 _value(request, "source_endpoint_role"), "source_endpoint_role"
             ),
-            "request_method": _text(
-                _optional_value(request, "method", "GET"), "method"
-            ).upper(),
+            "request_method": _text(_optional_value(request, "method", "GET"), "method").upper(),
             "endpoint_url": _text(_value(request, "url"), "url"),
             "start_date": start.isoformat(),
             "end_date": end.isoformat(),
@@ -700,9 +786,7 @@ class RateVintageStore:
             try:
                 pairs = tuple((str(item[0]), str(item[1])) for item in value)
             except (IndexError, TypeError) as exc:
-                raise RateVintageIntegrityError(
-                    f"{field} must contain key-value pairs"
-                ) from exc
+                raise RateVintageIntegrityError(f"{field} must contain key-value pairs") from exc
         else:
             raise RateVintageIntegrityError(f"{field} must contain key-value pairs")
         if len({name for name, _ in pairs}) != len(pairs):
@@ -737,7 +821,7 @@ class RateVintageStore:
             ),
             "payload_sha256",
         )
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             payload = _optional_value(snapshot, "payload")
             if not isinstance(payload, bytes):
                 raise RateVintageIntegrityError("V3 source snapshots require payload bytes")
@@ -764,14 +848,10 @@ class RateVintageStore:
         retrieved_at = _aware(_value(snapshot, "retrieved_at"), "retrieved_at")
         headers = _optional_value(snapshot, "response_headers", {})
         if isinstance(headers, Mapping):
-            normalized_headers = {
-                str(key): str(value) for key, value in headers.items()
-            }
+            normalized_headers = {str(key): str(value) for key, value in headers.items()}
         elif isinstance(headers, Sequence) and not isinstance(headers, (str, bytes)):
             try:
-                normalized_headers = {
-                    str(item[0]): str(item[1]) for item in headers
-                }
+                normalized_headers = {str(item[0]): str(item[1]) for item in headers}
             except (IndexError, TypeError) as exc:
                 raise RateVintageIntegrityError(
                     "response_headers must contain key-value pairs"
@@ -791,7 +871,7 @@ class RateVintageStore:
                 existing["source_document_id"] != source_document_id
                 or existing["response_headers_json"] != headers_json
                 or (
-                    self._schema_version == V3_SCHEMA_VERSION
+                    self._schema_version in _CERTIFIED_SCHEMA_VERSIONS
                     and existing["retrieved_at"] != _timestamp(retrieved_at)
                 )
             ):
@@ -863,9 +943,7 @@ class RateVintageStore:
                 raise RateVintageIntegrityError("Firewall certification row is invalid")
             currency = _text(row.get("currency"), "certified row currency").upper()
             series_id = _text(row.get("seriesId"), "certified row seriesId")
-            observation = _day(
-                row.get("observationDate"), "certified row observationDate"
-            )
+            observation = _day(row.get("observationDate"), "certified row observationDate")
             if (
                 currency not in _V3_AUTHORIZED_CURRENCIES
                 or currency != request_currency
@@ -902,9 +980,7 @@ class RateVintageStore:
             len(rows),
         )
 
-    def _append_firewall_certification(
-        self, values: tuple[str, str, str, str, str, int]
-    ) -> None:
+    def _append_firewall_certification(self, values: tuple[str, str, str, str, str, int]) -> None:
         existing = self._connection.execute(
             """SELECT * FROM response_firewall_certifications
             WHERE request_identity = ? AND adapter_id = ?
@@ -913,9 +989,7 @@ class RateVintageStore:
         ).fetchone()
         if existing is not None:
             if tuple(existing[key] for key in existing.keys()) != values:
-                raise RateVintageConflictError(
-                    "Conflicting response firewall certification replay"
-                )
+                raise RateVintageConflictError("Conflicting response firewall certification replay")
             return
         try:
             with self._connection:
@@ -972,13 +1046,13 @@ class RateVintageStore:
         currency = _text(_value(version, "currency"), "currency").upper()
         series_id = _text(_value(version, "series_id"), "series_id")
         observation_date = _day(_value(version, "observation_date"), "observation_date")
-        if self._schema_version == V3_SCHEMA_VERSION and (
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS and (
             currency not in _V3_AUTHORIZED_CURRENCIES
             or observation_date < _V3_AUTHORIZED_START
             or observation_date > _V3_AUTHORIZED_END
         ):
             raise RateVintageIntegrityError(
-                "V3 rate version is outside the authorized historical scope"
+                "Certified rate version is outside the authorized historical scope"
             )
         _validate_series_regime(currency, series_id, observation_date)
         raw_value = _value(version, "value")
@@ -989,18 +1063,23 @@ class RateVintageStore:
         if not math.isfinite(numeric_value):
             raise RateVintageIntegrityError("value must be finite")
         value_text = repr(numeric_value)
-        publication = _aware(
-            _value(version, "publication_timestamp"), "publication_timestamp"
-        )
         effective = _aware(_value(version, "effective_timestamp"), "effective_timestamp")
         availability = _aware(
             _value(version, "strategy_availability_timestamp"),
             "strategy_availability_timestamp",
         )
-        if availability != max(publication, effective):
-            raise RateVintageIntegrityError(
-                "strategy_availability_timestamp must equal max(publication, effective)"
+        publication_fields: dict[str, object]
+        if self._schema_version == V4_SCHEMA_VERSION:
+            publication_fields = self._v4_publication_fields(
+                version, effective=effective, availability=availability
             )
+        else:
+            publication = _aware(_value(version, "publication_timestamp"), "publication_timestamp")
+            if availability != max(publication, effective):
+                raise RateVintageIntegrityError(
+                    "strategy_availability_timestamp must equal max(publication, effective)"
+                )
+            publication_fields = {"publication_timestamp": _timestamp(publication)}
         expected_calendar = calendar_for_currency(currency)
         availability_day = availability.astimezone(ZoneInfo(expected_calendar.timezone)).date()
         if observation_date > availability_day:
@@ -1011,25 +1090,54 @@ class RateVintageStore:
         source_snapshot_sha256 = _sha256(
             _value(version, "source_snapshot_sha256"), "source_snapshot_sha256"
         )
-        if self._schema_version == V3_SCHEMA_VERSION and (
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS and (
             _optional_value(version, "source_adapter_id") is None
             or _optional_value(version, "source_request_identity") is None
         ):
             raise RateVintageIntegrityError(
-                "V3 rate versions require exact source adapter and request identity"
+                "Certified rate versions require exact source adapter and request identity"
             )
         snapshot = self._resolve_source_snapshot(version, source_snapshot_sha256)
-        fields = {
+        raw_revision_identifier = _value(version, "revision_identifier")
+        revision_identifier = (
+            None
+            if self._schema_version == V4_SCHEMA_VERSION and raw_revision_identifier is None
+            else _text(raw_revision_identifier, "revision_identifier")
+        )
+        revision_status = _text(_value(version, "revision_status"), "revision_status")
+        if self._schema_version == V4_SCHEMA_VERSION:
+            try:
+                revision_status = RevisionStatus(revision_status).value
+            except ValueError as exc:
+                raise RateVintageIntegrityError(
+                    "revision_status must be a publication_censoring RevisionStatus"
+                ) from exc
+            explicit_statuses = {
+                RevisionStatus.ORIGINAL_EXPLICIT.value,
+                RevisionStatus.REVISED_EXPLICIT.value,
+            }
+            if revision_status in explicit_statuses and revision_identifier is None:
+                raise RateVintageIntegrityError(
+                    "Explicit revision status requires an official revision identifier"
+                )
+            if (
+                revision_status == RevisionStatus.FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID.value
+                and revision_identifier is not None
+            ):
+                raise RateVintageIntegrityError(
+                    "Final-history status requires a null official revision identifier"
+                )
+            if revision_status == RevisionStatus.UNKNOWN_REJECTED.value:
+                raise RateVintageIntegrityError("Unknown revision status cannot be persisted")
+        fields: dict[str, object] = {
             "currency": currency,
             "series_id": series_id,
             "observation_date": observation_date.isoformat(),
             "value_text": value_text,
-            "publication_timestamp": _timestamp(publication),
+            **publication_fields,
             "effective_timestamp": _timestamp(effective),
             "strategy_availability_timestamp": _timestamp(availability),
-            "source_publisher": _text(
-                _value(version, "source_publisher"), "source_publisher"
-            ),
+            "source_publisher": _text(_value(version, "source_publisher"), "source_publisher"),
             "source_document_id": _text(
                 _value(version, "source_document_id"), "source_document_id"
             ),
@@ -1040,18 +1148,14 @@ class RateVintageStore:
             "source_request_identity": str(snapshot["request_identity"]),
             "source_snapshot_sha256": source_snapshot_sha256,
             "parser_version": _text(_value(version, "parser_version"), "parser_version"),
-            "revision_identifier": _text(
-                _value(version, "revision_identifier"), "revision_identifier"
-            ),
-            "revision_status": _text(
-                _value(version, "revision_status"), "revision_status"
-            ),
+            "revision_identifier": revision_identifier,
+            "revision_status": revision_status,
             "day_count_convention": _text(
                 _value(version, "day_count_convention"), "day_count_convention"
             ),
             "calendar_id": _text(_value(version, "calendar_id"), "calendar_id"),
         }
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             self._validate_v3_version_request(fields, snapshot, retrieved_at)
         if fields["calendar_id"] != expected_calendar.calendar_id:
             raise RateVintageIntegrityError("Rate version uses the wrong currency calendar")
@@ -1061,27 +1165,73 @@ class RateVintageStore:
             identity_id = self._ensure_observation_identity(
                 series_pk, currency, series_id, observation_date
             )
-            existing = self._connection.execute(
-                """SELECT * FROM rate_versions
-                WHERE observation_identity_id = ?
-                  AND publication_timestamp = ?
-                  AND revision_identifier = ?""",
-                (
-                    identity_id,
-                    fields["publication_timestamp"],
-                    fields["revision_identifier"],
-                ),
-            ).fetchone()
+            if self._schema_version == V4_SCHEMA_VERSION:
+                existing = self._connection.execute(
+                    "SELECT * FROM rate_versions WHERE version_id = ?", (version_id,)
+                ).fetchone()
+                if (
+                    existing is None
+                    and fields["revision_status"]
+                    == RevisionStatus.FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID.value
+                ):
+                    final_history = self._connection.execute(
+                        """SELECT * FROM rate_versions
+                        WHERE observation_identity_id = ?
+                          AND revision_status = ?
+                          AND revision_identifier IS NULL""",
+                        (
+                            identity_id,
+                            RevisionStatus.FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID.value,
+                        ),
+                    ).fetchone()
+                    if final_history is not None:
+                        raise RateVintageConflictError(
+                            "Conflicting final-history rate without explicit revision identifier"
+                        )
+                if (
+                    existing is None
+                    and fields["publication_timestamp"] is not None
+                    and fields["revision_identifier"] is not None
+                ):
+                    exact_identity = self._connection.execute(
+                        """SELECT * FROM rate_versions
+                        WHERE observation_identity_id = ?
+                          AND publication_timestamp = ?
+                          AND revision_identifier = ?""",
+                        (
+                            identity_id,
+                            fields["publication_timestamp"],
+                            fields["revision_identifier"],
+                        ),
+                    ).fetchone()
+                    if exact_identity is not None:
+                        raise RateVintageConflictError("Conflicting duplicate exact rate version")
+            else:
+                existing = self._connection.execute(
+                    """SELECT * FROM rate_versions
+                    WHERE observation_identity_id = ?
+                      AND publication_timestamp = ?
+                      AND revision_identifier = ?""",
+                    (
+                        identity_id,
+                        fields["publication_timestamp"],
+                        fields["revision_identifier"],
+                    ),
+                ).fetchone()
             if existing is not None:
                 comparable = {key: existing[key] for key in fields}
-                if (
-                    comparable != fields
-                    or int(existing["source_snapshot_id"]) != int(snapshot["source_snapshot_id"])
+                if comparable != fields or int(existing["source_snapshot_id"]) != int(
+                    snapshot["source_snapshot_id"]
                 ):
                     raise RateVintageConflictError("Conflicting duplicate rate version")
                 return str(existing["version_id"])
-            self._connection.execute(
-                """INSERT INTO rate_versions(
+            if self._schema_version == V4_SCHEMA_VERSION:
+                self._insert_v4_rate_version(
+                    version_id, identity_id, fields, snapshot, retrieved_at
+                )
+            else:
+                self._connection.execute(
+                    """INSERT INTO rate_versions(
                     version_id, observation_identity_id, currency, series_id,
                     observation_date, value_text, publication_timestamp,
                     effective_timestamp, strategy_availability_timestamp,
@@ -1090,38 +1240,44 @@ class RateVintageStore:
                     source_snapshot_sha256, parser_version, revision_identifier,
                     revision_status, day_count_convention, calendar_id, retrieved_at
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                (
-                    version_id,
-                    identity_id,
-                    *(fields[key] for key in (
-                        "currency",
-                        "series_id",
-                        "observation_date",
-                        "value_text",
-                        "publication_timestamp",
-                        "effective_timestamp",
-                        "strategy_availability_timestamp",
-                        "source_publisher",
-                        "source_document_id",
-                        "source_endpoint_role",
-                    )),
-                    int(snapshot["source_snapshot_id"]),
-                    *(fields[key] for key in (
-                        "source_adapter_id",
-                        "source_request_identity",
-                        "source_snapshot_sha256",
-                        "parser_version",
-                        "revision_identifier",
-                        "revision_status",
-                        "day_count_convention",
-                        "calendar_id",
-                    )),
-                    _timestamp(retrieved_at),
-                ),
-            )
+                    (
+                        version_id,
+                        identity_id,
+                        *(
+                            fields[key]
+                            for key in (
+                                "currency",
+                                "series_id",
+                                "observation_date",
+                                "value_text",
+                                "publication_timestamp",
+                                "effective_timestamp",
+                                "strategy_availability_timestamp",
+                                "source_publisher",
+                                "source_document_id",
+                                "source_endpoint_role",
+                            )
+                        ),
+                        int(snapshot["source_snapshot_id"]),
+                        *(
+                            fields[key]
+                            for key in (
+                                "source_adapter_id",
+                                "source_request_identity",
+                                "source_snapshot_sha256",
+                                "parser_version",
+                                "revision_identifier",
+                                "revision_status",
+                                "day_count_convention",
+                                "calendar_id",
+                            )
+                        ),
+                        _timestamp(retrieved_at),
+                    ),
+                )
             event_type = (
                 "INITIAL_PUBLICATION"
-                if fields["revision_status"].upper() in {"INITIAL", "ORIGINAL"}
+                if str(fields["revision_status"]).upper() in {"INITIAL", "ORIGINAL"}
                 else "REVISION"
             )
             event_id = _content_sha256(
@@ -1142,9 +1298,125 @@ class RateVintageStore:
             )
         return version_id
 
+    def _v4_publication_fields(
+        self,
+        version: object,
+        *,
+        effective: datetime,
+        availability: datetime,
+    ) -> dict[str, object]:
+        actual = _optional_aware(
+            _optional_value(
+                version,
+                "publication_timestamp",
+                _optional_value(version, "actual_publication_timestamp"),
+            ),
+            "publication_timestamp",
+        )
+        lower = _aware(_value(version, "publication_lower_bound"), "publication_lower_bound")
+        upper = _aware(_value(version, "publication_upper_bound"), "publication_upper_bound")
+        exclusive = _value(version, "publication_upper_bound_exclusive")
+        if not isinstance(exclusive, bool):
+            raise RateVintageIntegrityError("publication_upper_bound_exclusive must be a bool")
+        raw_kind = _value(version, "publication_evidence_kind")
+        try:
+            evidence_kind = PublicationEvidenceKind(str(raw_kind))
+        except ValueError as exc:
+            raise RateVintageIntegrityError(
+                "publication_evidence_kind must be a PublicationEvidenceKind"
+            ) from exc
+        evidence_source = _text(
+            _value(version, "publication_evidence_source"),
+            "publication_evidence_source",
+        )
+        try:
+            evidence = PublicationEvidence(
+                actual_publication_timestamp=actual,
+                publication_lower_bound=lower,
+                publication_upper_bound=upper,
+                publication_upper_bound_exclusive=exclusive,
+                publication_evidence_kind=evidence_kind,
+                publication_evidence_source=evidence_source,
+                effective_timestamp=effective,
+                strategy_availability_timestamp=availability,
+            )
+        except ValueError as exc:
+            raise RateVintageIntegrityError(str(exc)) from exc
+        return {
+            "publication_timestamp": (
+                _timestamp(evidence.actual_publication_timestamp)
+                if evidence.actual_publication_timestamp is not None
+                else None
+            ),
+            "publication_lower_bound": _timestamp(evidence.publication_lower_bound),
+            "publication_upper_bound": _timestamp(evidence.publication_upper_bound),
+            "publication_upper_bound_exclusive": int(evidence.publication_upper_bound_exclusive),
+            "publication_evidence_kind": evidence.publication_evidence_kind.value,
+            "publication_evidence_source": evidence.publication_evidence_source,
+        }
+
+    def _insert_v4_rate_version(
+        self,
+        version_id: str,
+        identity_id: int,
+        fields: Mapping[str, object],
+        snapshot: sqlite3.Row,
+        retrieved_at: datetime,
+    ) -> None:
+        ordered_fields = (
+            "currency",
+            "series_id",
+            "observation_date",
+            "value_text",
+            "publication_timestamp",
+            "publication_lower_bound",
+            "publication_upper_bound",
+            "publication_upper_bound_exclusive",
+            "publication_evidence_kind",
+            "publication_evidence_source",
+            "effective_timestamp",
+            "strategy_availability_timestamp",
+            "source_publisher",
+            "source_document_id",
+            "source_endpoint_role",
+        )
+        trailing_fields = (
+            "source_adapter_id",
+            "source_request_identity",
+            "source_snapshot_sha256",
+            "parser_version",
+            "revision_identifier",
+            "revision_status",
+            "day_count_convention",
+            "calendar_id",
+        )
+        self._connection.execute(
+            """INSERT INTO rate_versions(
+                version_id, observation_identity_id, currency, series_id,
+                observation_date, value_text, publication_timestamp,
+                publication_lower_bound, publication_upper_bound,
+                publication_upper_bound_exclusive, publication_evidence_kind,
+                publication_evidence_source, effective_timestamp,
+                strategy_availability_timestamp, source_publisher,
+                source_document_id, source_endpoint_role, source_snapshot_id,
+                source_adapter_id, source_request_identity, source_snapshot_sha256,
+                parser_version, revision_identifier, revision_status,
+                day_count_convention, calendar_id, retrieved_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                      ?, ?, ?, ?)""",
+            (
+                version_id,
+                identity_id,
+                *(fields[key] for key in ordered_fields),
+                int(snapshot["source_snapshot_id"]),
+                *(fields[key] for key in trailing_fields),
+                _timestamp(retrieved_at),
+            ),
+        )
+
     def _validate_v3_version_request(
         self,
-        fields: Mapping[str, str],
+        fields: Mapping[str, object],
         snapshot: sqlite3.Row,
         retrieved_at: datetime,
     ) -> None:
@@ -1162,17 +1434,13 @@ class RateVintageStore:
             "source_endpoint_role": request["source_endpoint_role"],
         }
         if any(fields[field] != value for field, value in expected.items()):
-            raise RateVintageIntegrityError(
-                "Rate version does not match its exact source request"
-            )
+            raise RateVintageIntegrityError("Rate version does not match its exact source request")
         if _timestamp(retrieved_at) != snapshot["retrieved_at"]:
             raise RateVintageIntegrityError(
                 "Rate version retrieval timestamp does not match its source snapshot"
             )
 
-    def _resolve_source_snapshot(
-        self, version: object, payload_sha256: str
-    ) -> sqlite3.Row:
+    def _resolve_source_snapshot(self, version: object, payload_sha256: str) -> sqlite3.Row:
         adapter_id = _optional_value(version, "source_adapter_id")
         request_identity = _optional_value(version, "source_request_identity")
         if adapter_id is not None or request_identity is not None:
@@ -1202,7 +1470,7 @@ class RateVintageStore:
             )
         return rows[0]
 
-    def _ensure_series(self, fields: Mapping[str, str]) -> int:
+    def _ensure_series(self, fields: Mapping[str, object]) -> int:
         existing = self._connection.execute(
             "SELECT * FROM rate_series WHERE currency = ? AND series_id = ?",
             (fields["currency"], fields["series_id"]),
@@ -1406,9 +1674,7 @@ class RateVintageStore:
                 or existing_certifications != certification_pins
             ):
                 raise RateVintageConflictError("Conflicting dataset freeze replay")
-            return DatasetFreeze(
-                freeze_id, created, freeze_hash, pinned, certification_pins
-            )
+            return DatasetFreeze(freeze_id, created, freeze_hash, pinned, certification_pins)
         with self._connection:
             self._connection.execute(
                 "INSERT INTO dataset_freezes VALUES (?, ?, ?, ?)",
@@ -1437,9 +1703,12 @@ class RateVintageStore:
         normalized_currency = _text(currency, "currency").upper()
         strategy_time = _aware(strategy_timestamp, "strategy_timestamp")
         freeze_id = _text(dataset_freeze_id, "dataset_freeze_id")
-        if self._connection.execute(
-            "SELECT 1 FROM dataset_freezes WHERE dataset_freeze_id = ?", (freeze_id,)
-        ).fetchone() is None:
+        if (
+            self._connection.execute(
+                "SELECT 1 FROM dataset_freezes WHERE dataset_freeze_id = ?", (freeze_id,)
+            ).fetchone()
+            is None
+        ):
             raise RateVintageIntegrityError(f"Unknown dataset freeze: {freeze_id}")
         row = self._connection.execute(
             """SELECT rv.*, cr.certification_status
@@ -1485,26 +1754,53 @@ class RateVintageStore:
             series_id=str(row["series_id"]),
             observation_date=observation,
             value=float(row["value_text"]),
-            publication_timestamp=_parse_timestamp(str(row["publication_timestamp"])),
+            publication_timestamp=(
+                _parse_timestamp(str(row["publication_timestamp"]))
+                if row["publication_timestamp"] is not None
+                else None
+            ),
             effective_timestamp=_parse_timestamp(str(row["effective_timestamp"])),
             strategy_availability_timestamp=_parse_timestamp(
                 str(row["strategy_availability_timestamp"])
             ),
-            revision_identifier=str(row["revision_identifier"]),
+            revision_identifier=(
+                str(row["revision_identifier"]) if row["revision_identifier"] is not None else None
+            ),
             revision_status=str(row["revision_status"]),
             day_count_convention=str(row["day_count_convention"]),
             calendar_id=str(row["calendar_id"]),
             source_snapshot_sha256=str(row["source_snapshot_sha256"]),
             certification_status=str(row["certification_status"]),
             age_in_calendar_days=age,
-            carry_forward_reason=(
-                "LAST_OFFICIALLY_AVAILABLE_RATE" if age > 0 else None
+            carry_forward_reason=("LAST_OFFICIALLY_AVAILABLE_RATE" if age > 0 else None),
+            publication_lower_bound=(
+                _parse_timestamp(str(row["publication_lower_bound"]))
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
+            ),
+            publication_upper_bound=(
+                _parse_timestamp(str(row["publication_upper_bound"]))
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
+            ),
+            publication_upper_bound_exclusive=(
+                bool(row["publication_upper_bound_exclusive"])
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
+            ),
+            publication_evidence_kind=(
+                PublicationEvidenceKind(str(row["publication_evidence_kind"]))
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
+            ),
+            publication_evidence_source=(
+                str(row["publication_evidence_source"])
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
             ),
         )
 
-    def append_daily_strategy_rate(
-        self, result: AvailableRate | MissingRate
-    ) -> str:
+    def append_daily_strategy_rate(self, result: AvailableRate | MissingRate) -> str:
         """Persist an idempotent aligned-panel selection without changing the freeze."""
         record = {
             "currency": result.currency,
@@ -1541,10 +1837,10 @@ class RateVintageStore:
         return record_hash
 
     def append_aligned_daily_rate(self, result: AvailableRate | MissingRate) -> str:
-        """Persist a V3 aligned-panel record using the backward-compatible API."""
-        if self._schema_version != V3_SCHEMA_VERSION:
+        """Persist a certified-schema panel record through the compatible API."""
+        if self._schema_version not in _CERTIFIED_SCHEMA_VERSIONS:
             raise RateVintageIntegrityError(
-                "aligned_daily_rate_panel is available only in V3 mode"
+                "aligned_daily_rate_panel is available only in V3/V4 mode"
             )
         return self.append_daily_strategy_rate(result)
 
@@ -1562,7 +1858,7 @@ class RateVintageStore:
             "dataset_freeze_versions",
             "dataset_freeze_certifications",
         ]
-        if self._schema_version == V3_SCHEMA_VERSION:
+        if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             tables[0:0] = ["source_requests", "response_firewall_certifications"]
             tables.append("aligned_daily_rate_panel")
         else:
