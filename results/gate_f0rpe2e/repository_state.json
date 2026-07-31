@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_REPOSITORY_STATE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "gate_id": "F0_RP_E2E_OFFICIAL_RATE_AND_EMPIRICAL_ORCHESTRATION_V1",
+  "captured_on": "2026-07-31",
+  "branch": "research/classical-fx-risk-premia-v1",
+  "required_starting_sha": "08b72a232a9fd305b525e6417c2f05b17688e548",
+  "local_head": "08b72a232a9fd305b525e6417c2f05b17688e548",
+  "remote_branch_head": "08b72a232a9fd305b525e6417c2f05b17688e548",
+  "origin_main": "e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+  "fetch_all_prune_completed": true,
+  "local_remote_synchronized": true,
+  "worktree_clean_before_gate": true,
+  "git_diff_check": "PASS",
+  "status": "PASS"
+}

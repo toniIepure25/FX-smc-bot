@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2E_PRE_EXECUTION_INTEGRITY_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "gate_id": "F0_RP_E2E_OFFICIAL_RATE_AND_EMPIRICAL_ORCHESTRATION_V1",
+  "captured_at_sha": "08b72a232a9fd305b525e6417c2f05b17688e548",
+  "market_provider_requests_sent": 0,
+  "rate_provider_requests_sent": 0,
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false,
+  "development_outcomes_generated": false,
+  "validation_outcomes_generated": false,
+  "replication_outcomes_generated": false,
+  "nzd_rate_accessed": false,
+  "nzdusd_market_accessed": false,
+  "years_2023_through_2025_accessed_or_enumerated": false,
+  "official_endpoint_metadata_observation_free": true,
+  "historical_publication_timestamps_inferred": false,
+  "row_level_data_committed": false,
+  "status": "PASS"
+}
