@@ -724,3 +724,783 @@ def build_stage_evidence_template(stage: GateStage | str) -> dict[str, Any]:
             }
         )
     return template
+
+
+# Gate F0-RP-E2E-R is a new lineage.  The V1 names above intentionally remain
+# unchanged so sealed V1 callers and tests continue to replay byte-for-byte.
+V2_PROGRAM_ID: Final = "FX_CLASSICAL_RISK_PREMIA_V2"
+V2_LINEAGE_ID: Final = "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2"
+V2_GATE_ID: Final = "F0_RP_E2E_REBASELINE_V1"
+V2_STATE_SCHEMA_VERSION: Final = "F0RPE2ER_ORCHESTRATOR_STATE_V2"
+V2_REBASELINE_ID: Final = "F0RPE2ER_FUTURE_ONLY_CONFIRMATORY_BASELINE_V1"
+V2_BOUNDARY_ID: Final = "F0RPE2ER_DOCUMENTATION_DATA_BOUNDARY_V1"
+V2_INFRASTRUCTURE_FREEZE_ID: Final = "F0RPE2ER_EMPIRICAL_INFRASTRUCTURE_V1"
+V2_FAILED_GATE_TIP_SHA: Final = "2a2a42fd9be080ca36cc7c5f9ae5e574c4b1a2a2"
+V2_INTEGRITY_BOUNDARY_PRE_NETWORK_SHA: Final = (
+    "313349aecc6694c1e852f1d0b2b2f6170ed81514"
+)
+V2_PREDECESSOR_DECISION: Final = "BLOCKED_BY_PROSPECTIVE_INTEGRITY"
+V2_RELATIONSHIP: Final = (
+    "SCIENTIFIC_PROTOCOL_INHERITANCE_WITH_NEW_FUTURE_ONLY_INTEGRITY_BASELINE"
+)
+V2_QUARANTINE_STATUS: Final = (
+    "QUARANTINED_FROM_ALL_SELECTION_REPLICATION_AND_CONFIRMATORY_USE"
+)
+V2_FUTURE_START_RULE: Final = (
+    "FIRST_COMPLETE_FX_TRADING_DAY_AFTER_FINAL_PORTFOLIO_FREEZE"
+)
+
+V2_DATASET_FREEZE_IDS: Final = {
+    "development": "FX_CLASSICAL_FACTORS_DEVELOPMENT_2010_2016_V2",
+    "validation": "FX_CLASSICAL_FACTORS_VALIDATION_2017_2019_V2",
+    "replication": "FX_CLASSICAL_FACTORS_REPLICATION_2020_2022_V2",
+}
+V2_FINAL_DECISIONS: Final = frozenset(
+    {
+        "F0RPE2ER_PORTFOLIO_FROZEN_FOR_FUTURE_CONFIRMATION",
+        "F0RPE2ER_NO_PORTFOLIO_PASSED_DEVELOPMENT",
+        "F0RPE2ER_NO_PORTFOLIO_PASSED_INTERNAL_VALIDATION",
+        "F0RPE2ER_NO_PORTFOLIO_SURVIVED_INDEPENDENT_REPLICATION",
+        "F0RPE2ER_INFRASTRUCTURE_CERTIFIED_EMPIRICAL_EXECUTION_BLOCKED",
+        "BLOCKED_BY_FAILED_GATE_PROVENANCE",
+        "BLOCKED_BY_PROTOCOL_INHERITANCE",
+        "BLOCKED_BY_INTEGRITY_REBASELINE",
+        "BLOCKED_BY_CLEAN_ROOM_ISOLATION",
+        "BLOCKED_BY_SOURCE_ALLOWLIST",
+        "BLOCKED_BY_DOCUMENTATION_DATA_BOUNDARY",
+        "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+        "BLOCKED_BY_RATE_SOURCE_ACCESS",
+        "BLOCKED_BY_RATE_PARSE_INTEGRITY",
+        "BLOCKED_BY_RATE_VINTAGE_INTEGRITY",
+        "BLOCKED_BY_RATE_ALIGNMENT",
+        "BLOCKED_BY_EONIA_ESTR_TRANSITION",
+        "BLOCKED_BY_MARKET_DATA_PROVENANCE",
+        "BLOCKED_BY_STORAGE_BUDGET",
+        "BLOCKED_BY_PROVIDER_ACCESS",
+        "BLOCKED_BY_DATA_CERTIFICATION",
+        "BLOCKED_BY_EMPIRICAL_ORCHESTRATION",
+        "BLOCKED_BY_EXECUTION_INTEGRITY",
+        "BLOCKED_BY_FINANCING_COST_MODEL",
+        "BLOCKED_BY_LOOKAHEAD_OR_LEAKAGE",
+        "BLOCKED_BY_PORTFOLIO_ACCOUNTING",
+        "BLOCKED_BY_NONDETERMINISM",
+        "BLOCKED_BY_MULTIPLE_TESTING_INTEGRITY",
+        "BLOCKED_BY_RESULT_INTEGRITY",
+        "BLOCKED_BY_STATIC_ANALYSIS",
+        "BLOCKED_BY_FUTURE_PROSPECTIVE_INTEGRITY",
+    }
+)
+
+
+class V2GateStage(str, Enum):
+    FAILED_GATE_INHERITED = "FAILED_GATE_INHERITED"
+    INTEGRITY_REBASELINED = "INTEGRITY_REBASELINED"
+    SOURCE_BOUNDARY_FROZEN = "SOURCE_BOUNDARY_FROZEN"
+    LIVE_ADAPTERS_CERTIFIED = "LIVE_ADAPTERS_CERTIFIED"
+    INFRASTRUCTURE_FROZEN = "INFRASTRUCTURE_FROZEN"
+    DEVELOPMENT_RATES_ACQUIRED = "DEVELOPMENT_RATES_ACQUIRED"
+    DEVELOPMENT_RATES_CERTIFIED = "DEVELOPMENT_RATES_CERTIFIED"
+    DEVELOPMENT_MARKET_ACQUIRED = "DEVELOPMENT_MARKET_ACQUIRED"
+    DEVELOPMENT_MARKET_CERTIFIED = "DEVELOPMENT_MARKET_CERTIFIED"
+    DEVELOPMENT_DATASET_FROZEN = "DEVELOPMENT_DATASET_FROZEN"
+    DEVELOPMENT_EXECUTED = "DEVELOPMENT_EXECUTED"
+    VALIDATION_SHORTLIST_FROZEN = "VALIDATION_SHORTLIST_FROZEN"
+    VALIDATION_DATASET_FROZEN = "VALIDATION_DATASET_FROZEN"
+    VALIDATION_EXECUTED = "VALIDATION_EXECUTED"
+    REPLICATION_SHORTLIST_FROZEN = "REPLICATION_SHORTLIST_FROZEN"
+    REPLICATION_DATASET_FROZEN = "REPLICATION_DATASET_FROZEN"
+    REPLICATION_EXECUTED = "REPLICATION_EXECUTED"
+    FINAL_ADJUDICATION = "FINAL_ADJUDICATION"
+
+
+V2_STAGE_ORDER: Final = tuple(V2GateStage)
+V2_EXECUTION_STAGES: Final = {
+    V2GateStage.DEVELOPMENT_EXECUTED: "development",
+    V2GateStage.VALIDATION_EXECUTED: "validation",
+    V2GateStage.REPLICATION_EXECUTED: "replication",
+}
+V2_DATASET_STAGES: Final = {
+    V2GateStage.DEVELOPMENT_DATASET_FROZEN: "development",
+    V2GateStage.VALIDATION_DATASET_FROZEN: "validation",
+    V2GateStage.REPLICATION_DATASET_FROZEN: "replication",
+}
+V2_CERTIFY_ONLY_STAGES: Final = frozenset(
+    {
+        V2GateStage.FAILED_GATE_INHERITED,
+        V2GateStage.INTEGRITY_REBASELINED,
+        V2GateStage.SOURCE_BOUNDARY_FROZEN,
+        V2GateStage.LIVE_ADAPTERS_CERTIFIED,
+        V2GateStage.INFRASTRUCTURE_FROZEN,
+        V2GateStage.DEVELOPMENT_RATES_CERTIFIED,
+        V2GateStage.DEVELOPMENT_MARKET_CERTIFIED,
+    }
+)
+_V2_ACQUISITION_STAGES: Final = frozenset(
+    {
+        V2GateStage.DEVELOPMENT_RATES_ACQUIRED,
+        V2GateStage.DEVELOPMENT_MARKET_ACQUIRED,
+        V2GateStage.VALIDATION_DATASET_FROZEN,
+        V2GateStage.REPLICATION_DATASET_FROZEN,
+    }
+)
+_V2_COMMIT_BOUNDARIES: Final = {
+    V2GateStage.LIVE_ADAPTERS_CERTIFIED: V2GateStage.SOURCE_BOUNDARY_FROZEN,
+    V2GateStage.DEVELOPMENT_RATES_ACQUIRED: V2GateStage.INFRASTRUCTURE_FROZEN,
+    V2GateStage.DEVELOPMENT_MARKET_ACQUIRED: V2GateStage.DEVELOPMENT_RATES_CERTIFIED,
+    V2GateStage.DEVELOPMENT_EXECUTED: V2GateStage.DEVELOPMENT_DATASET_FROZEN,
+    V2GateStage.VALIDATION_DATASET_FROZEN: V2GateStage.VALIDATION_SHORTLIST_FROZEN,
+    V2GateStage.VALIDATION_EXECUTED: V2GateStage.VALIDATION_DATASET_FROZEN,
+    V2GateStage.REPLICATION_DATASET_FROZEN: V2GateStage.REPLICATION_SHORTLIST_FROZEN,
+    V2GateStage.REPLICATION_EXECUTED: V2GateStage.REPLICATION_DATASET_FROZEN,
+}
+
+
+def _v2_scan_evidence(value: object, path: str = "evidence") -> None:
+    """Reject numerical payloads and excluded assets while allowing policy metadata."""
+    if isinstance(value, Mapping):
+        for key, item in value.items():
+            key_text = str(key)
+            if key_text.lower() in _ROW_LEVEL_KEYS or key_text.lower() == "metrics":
+                raise EvidenceError(f"{path}.{key_text} contains prohibited numerical content")
+            _v2_scan_evidence(key_text, f"{path}.key")
+            _v2_scan_evidence(item, f"{path}.{key_text}")
+        return
+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):
+        for index, item in enumerate(value):
+            _v2_scan_evidence(item, f"{path}[{index}]")
+        return
+    if isinstance(value, str) and "N" + "ZD" in value.upper():
+        raise EvidenceError(f"{path} references an excluded asset")
+
+
+def _v2_state(max_workers: int, clean_room_identity: str) -> dict[str, Any]:
+    return {
+        "schema_version": V2_STATE_SCHEMA_VERSION,
+        "program_id": V2_PROGRAM_ID,
+        "lineage_id": V2_LINEAGE_ID,
+        "gate_id": V2_GATE_ID,
+        "predecessor_program": PROGRAM_ID,
+        "predecessor_gate": GATE_ID,
+        "predecessor_decision": V2_PREDECESSOR_DECISION,
+        "relationship": V2_RELATIONSHIP,
+        "amendment_id": AMENDMENT_ID,
+        "authorized_instruments": list(AUTHORIZED_INSTRUMENTS),
+        "authorized_currencies": list(AUTHORIZED_CURRENCIES),
+        "phase_intervals": {key: list(value) for key, value in PHASE_INTERVALS.items()},
+        "quarantined_interval": ["2023-01-01", "2025-12-31"],
+        "quarantine_status": V2_QUARANTINE_STATUS,
+        "quarantined_interval_untouched_claim": False,
+        "future_confirmatory_start_rule": V2_FUTURE_START_RULE,
+        "future_observations_status": "NOT_YET_GENERATED_OR_ACCESSED",
+        "max_workers": max_workers,
+        "clean_room_identity_sha256": clean_room_identity,
+        "status": "READY",
+        "current_stage": None,
+        "completed_stages": [],
+        "checkpoints": {},
+        "failure": None,
+        "provider_requests": {"market": None, "rates": None},
+        "source_snapshots": None,
+        "integrity_boundary_pre_network_sha": None,
+        "infrastructure_pre_observation_sha": None,
+        "live_adapter_certifications": None,
+        "outcomes": {
+            phase: {
+                "status": "NOT_RUN",
+                "results_artifact_sha256": None,
+                "metrics_manifest_sha256": None,
+            }
+            for phase in PHASE_INTERVALS
+        },
+        "shortlists": {
+            "validation": {"status": "NOT_RUN", "candidates": None, "freeze_sha256": None},
+            "replication": {"status": "NOT_RUN", "candidates": None, "freeze_sha256": None},
+        },
+        "final_decision": None,
+        "audit": [],
+    }
+
+
+@dataclass(frozen=True)
+class V2GatePlan:
+    current_stage: str | None
+    next_stages: tuple[str, ...]
+    status: str
+    provider_requests: Mapping[str, int | None]
+    outcomes: Mapping[str, Mapping[str, object]]
+
+    def as_dict(self) -> dict[str, object]:
+        return {
+            "program_id": V2_PROGRAM_ID,
+            "lineage_id": V2_LINEAGE_ID,
+            "gate_id": V2_GATE_ID,
+            "current_stage": self.current_stage,
+            "next_stages": list(self.next_stages),
+            "status": self.status,
+            "provider_requests": dict(self.provider_requests),
+            "outcomes": {key: dict(value) for key, value in self.outcomes.items()},
+        }
+
+
+class ClassicalFXV2Orchestrator:
+    """Fail-closed V2 lineage orchestrator with recoverable atomic checkpoints."""
+
+    def __init__(
+        self,
+        output_dir: Path,
+        *,
+        clean_room_root: Path,
+        max_workers: int = 1,
+        resume: bool = False,
+    ) -> None:
+        if not 1 <= max_workers <= 32:
+            raise ValueError("max_workers must be between 1 and 32")
+        self.output_dir = Path(output_dir)
+        _v2_scan_evidence(os.path.abspath(os.fspath(self.output_dir)), "output_dir")
+        self.state_path = self.output_dir / "orchestrator_state_v2.json"
+        self.pending_path = self.output_dir / ".orchestrator_state_v2.pending.json"
+        self.clean_room_identity = self._clean_room_identity(clean_room_root)
+        self._recover_pending_transition()
+        if self.state_path.exists():
+            if not resume:
+                raise OrchestrationError("Existing V2 state requires resume=True")
+            self.state = json.loads(self.state_path.read_text(encoding="utf-8"))
+            self._validate_loaded_state(max_workers)
+        else:
+            self.state = _v2_state(max_workers, self.clean_room_identity)
+
+    @staticmethod
+    def _clean_room_identity(root: Path) -> str:
+        lexical = os.path.abspath(os.fspath(root))
+        _v2_scan_evidence(lexical, "clean_room_root")
+        return hashlib.sha256(os.path.normcase(lexical).encode("utf-8")).hexdigest()
+
+    def _validate_loaded_state(self, max_workers: int) -> None:
+        expected = {
+            "schema_version": V2_STATE_SCHEMA_VERSION,
+            "program_id": V2_PROGRAM_ID,
+            "lineage_id": V2_LINEAGE_ID,
+            "gate_id": V2_GATE_ID,
+            "relationship": V2_RELATIONSHIP,
+            "amendment_id": AMENDMENT_ID,
+            "authorized_instruments": list(AUTHORIZED_INSTRUMENTS),
+            "authorized_currencies": list(AUTHORIZED_CURRENCIES),
+            "max_workers": max_workers,
+            "clean_room_identity_sha256": self.clean_room_identity,
+        }
+        for key, value in expected.items():
+            if self.state.get(key) != value:
+                raise OrchestrationError(f"Resumed V2 {key} does not match the checkpoint")
+
+    def _recover_pending_transition(self) -> None:
+        if not self.pending_path.exists():
+            return
+        pending = json.loads(self.pending_path.read_text(encoding="utf-8"))
+        state = pending.get("state")
+        checkpoint = pending.get("checkpoint")
+        checkpoint_name = pending.get("checkpoint_name")
+        if (
+            not isinstance(state, Mapping)
+            or not isinstance(checkpoint, Mapping)
+            or not isinstance(checkpoint_name, str)
+            or pending.get("transaction_sha256")
+            != canonical_sha256(
+                {"state": state, "checkpoint": checkpoint, "checkpoint_name": checkpoint_name}
+            )
+        ):
+            raise OrchestrationError("Invalid pending V2 checkpoint transaction")
+        _atomic_write_json(self.output_dir / "checkpoints_v2" / checkpoint_name, checkpoint)
+        _atomic_write_json(self.state_path, state)
+        self.pending_path.unlink()
+
+    def plan(self) -> V2GatePlan:
+        return V2GatePlan(
+            current_stage=self.state["current_stage"],
+            next_stages=tuple(stage.value for stage in self._allowed_next_stages()),
+            status=self.state["status"],
+            provider_requests=self.state["provider_requests"],
+            outcomes=self.state["outcomes"],
+        )
+
+    def persist(self) -> None:
+        _atomic_write_json(self.state_path, self.state)
+
+    def advance(
+        self,
+        stage: V2GateStage | str,
+        evidence: Mapping[str, Any],
+        *,
+        resume: bool = False,
+        certify_only: bool = False,
+    ) -> dict[str, Any]:
+        target = V2GateStage(stage)
+        _v2_scan_evidence(evidence)
+        if certify_only and target not in V2_CERTIFY_ONLY_STAGES:
+            raise StageOrderError("certify-only mode cannot access data or outcomes")
+        evidence_hash = canonical_sha256(evidence)
+        existing = self.state["checkpoints"].get(target.value)
+        if existing is not None:
+            if existing["evidence_sha256"] != evidence_hash:
+                raise EvidenceError("Completed V2 stage cannot be replaced")
+            return self.state
+        if self.state["status"] == "BLOCKED" and not resume:
+            raise OrchestrationError("Blocked V2 state requires resume=True")
+        if target not in self._allowed_next_stages():
+            allowed = ", ".join(item.value for item in self._allowed_next_stages()) or "none"
+            self._persist_failure(target, f"expected {allowed}")
+            raise StageOrderError(f"Stage {target.value} is not allowed; expected {allowed}")
+        try:
+            normalized = self._validate_evidence(target, evidence)
+        except OrchestrationError as exc:
+            self._persist_failure(target, str(exc))
+            raise
+        checkpoint = self._checkpoint(target, evidence_hash, normalized)
+        next_state = json.loads(json.dumps(self.state, allow_nan=False))
+        self._apply_stage(next_state, target, normalized)
+        next_state["status"] = "COMPLETE" if target is V2GateStage.FINAL_ADJUDICATION else "READY"
+        next_state["failure"] = None
+        next_state["current_stage"] = target.value
+        next_state["completed_stages"].append(target.value)
+        next_state["checkpoints"][target.value] = checkpoint
+        self._append_audit(next_state, target.value, evidence_hash)
+        self._persist_transition(next_state, checkpoint)
+        self.state = next_state
+        return self.state
+
+    def _allowed_next_stages(self) -> tuple[V2GateStage, ...]:
+        current = self.state["current_stage"]
+        if current is None:
+            return (V2GateStage.FAILED_GATE_INHERITED,)
+        stage = V2GateStage(current)
+        if stage is V2GateStage.FINAL_ADJUDICATION:
+            return ()
+        if stage is V2GateStage.VALIDATION_SHORTLIST_FROZEN:
+            candidates = self.state["shortlists"]["validation"]["candidates"]
+            return (
+                (V2GateStage.VALIDATION_DATASET_FROZEN,)
+                if candidates
+                else (V2GateStage.FINAL_ADJUDICATION,)
+            )
+        if stage is V2GateStage.REPLICATION_SHORTLIST_FROZEN:
+            candidates = self.state["shortlists"]["replication"]["candidates"]
+            return (
+                (V2GateStage.REPLICATION_DATASET_FROZEN,)
+                if candidates
+                else (V2GateStage.FINAL_ADJUDICATION,)
+            )
+        return (V2_STAGE_ORDER[V2_STAGE_ORDER.index(stage) + 1],)
+
+    def _validate_evidence(
+        self, stage: V2GateStage, evidence: Mapping[str, Any]
+    ) -> dict[str, Any]:
+        normalized = dict(evidence)
+        normalized["stage_commit_sha"] = _validate_sha(
+            evidence.get("stage_commit_sha"), commit=True, label="stage_commit_sha"
+        )
+        artifacts = evidence.get("artifacts")
+        if not isinstance(artifacts, Mapping) or not artifacts:
+            raise EvidenceError("Every V2 stage requires aggregate artifacts")
+        normalized["artifacts"] = {
+            str(name): _validate_sha(value, label=f"artifacts.{name}")
+            for name, value in sorted(artifacts.items())
+        }
+        if evidence.get("instrument_universe") != list(AUTHORIZED_INSTRUMENTS):
+            raise EvidenceError("V2 stage changed the instrument universe")
+        if evidence.get("currency_universe") != list(AUTHORIZED_CURRENCIES):
+            raise EvidenceError("V2 stage changed the currency universe")
+        self._validate_commit_order(stage, evidence, normalized["stage_commit_sha"])
+
+        if stage is V2GateStage.FAILED_GATE_INHERITED:
+            self._validate_failed_gate(evidence, normalized["stage_commit_sha"])
+        elif stage is V2GateStage.INTEGRITY_REBASELINED:
+            self._validate_rebaseline(evidence)
+        elif stage is V2GateStage.SOURCE_BOUNDARY_FROZEN:
+            self._validate_source_boundary(evidence)
+        elif stage is V2GateStage.LIVE_ADAPTERS_CERTIFIED:
+            self._validate_live_adapters(evidence)
+        elif stage is V2GateStage.INFRASTRUCTURE_FROZEN:
+            if (
+                evidence.get("freeze_id") != V2_INFRASTRUCTURE_FREEZE_ID
+                or evidence.get("certification_status") != "PASS"
+                or evidence.get("observation_access_before_freeze") is not False
+            ):
+                raise EvidenceError("Infrastructure must pass before observation access")
+            _validate_sha(evidence.get("infrastructure_manifest_sha256"), label="manifest hash")
+        elif stage in _V2_ACQUISITION_STAGES:
+            self._validate_acquisition(stage, evidence)
+        elif stage in {
+            V2GateStage.DEVELOPMENT_RATES_CERTIFIED,
+            V2GateStage.DEVELOPMENT_MARKET_CERTIFIED,
+        }:
+            if evidence.get("certification_status") != "PASS":
+                raise EvidenceError("Certification stage requires PASS")
+        if stage in V2_DATASET_STAGES:
+            self._validate_dataset_freeze(V2_DATASET_STAGES[stage], evidence)
+        if stage in V2_EXECUTION_STAGES:
+            self._validate_execution(V2_EXECUTION_STAGES[stage], evidence)
+        if stage is V2GateStage.VALIDATION_SHORTLIST_FROZEN:
+            self._validate_shortlist(
+                evidence,
+                maximum=4,
+                status="FROZEN_BEFORE_VALIDATION_DATA_ACCESS",
+            )
+        if stage is V2GateStage.REPLICATION_SHORTLIST_FROZEN:
+            self._validate_shortlist(
+                evidence, maximum=2, status="FROZEN_BEFORE_REPLICATION_DATA_ACCESS"
+            )
+        if stage is V2GateStage.FINAL_ADJUDICATION:
+            self._validate_final(evidence)
+        return normalized
+
+    def _validate_commit_order(
+        self, stage: V2GateStage, evidence: Mapping[str, Any], stage_commit: str
+    ) -> None:
+        if stage is V2GateStage.FAILED_GATE_INHERITED:
+            if stage_commit != V2_FAILED_GATE_TIP_SHA:
+                raise EvidenceError("Failed-gate inheritance must start at the sealed V1 tip")
+            return
+        current = V2GateStage(self.state["current_stage"])
+        previous_commit = self.state["checkpoints"][current.value]["stage_commit_sha"]
+        if evidence.get("predecessor_stage_commit_sha") != previous_commit:
+            raise EvidenceError("Stage does not bind the immediately preceding commit")
+        boundary = _V2_COMMIT_BOUNDARIES.get(stage)
+        if boundary is not None:
+            boundary_commit = self.state["checkpoints"][boundary.value]["stage_commit_sha"]
+            if evidence.get("access_predecessor_commit_sha") != boundary_commit:
+                raise EvidenceError("Stage does not bind the required pre-access commit")
+            if stage_commit == boundary_commit:
+                raise EvidenceError("Access or outcomes must occur after the boundary commit")
+
+    def _validate_failed_gate(self, evidence: Mapping[str, Any], stage_commit: str) -> None:
+        if (
+            evidence.get("inheritance_status") != "FAILED_GATE_PRESERVED_NOT_REVERSED"
+            or evidence.get("failed_gate_tip_sha") != stage_commit
+            or evidence.get("predecessor_decision") != V2_PREDECESSOR_DECISION
+            or evidence.get("failed_integrity_audit_preserved") is not True
+            or evidence.get("exposed_documentation_record_preserved") is not True
+        ):
+            raise EvidenceError("Failed V1 gate provenance was not preserved exactly")
+
+    def _validate_rebaseline(self, evidence: Mapping[str, Any]) -> None:
+        if (
+            evidence.get("rebaseline_id") != V2_REBASELINE_ID
+            or evidence.get("quarantine_status") != V2_QUARANTINE_STATUS
+            or evidence.get("untouched_claim") is not False
+            or evidence.get("future_confirmatory_start_rule") != V2_FUTURE_START_RULE
+            or evidence.get("future_observations_status")
+            != "NOT_YET_GENERATED_OR_ACCESSED"
+            or evidence.get("clean_room_identity_sha256") != self.clean_room_identity
+            or evidence.get("clean_room_certification_status") != "PASS"
+        ):
+            raise EvidenceError("Future-only integrity rebaseline is incomplete")
+
+    @staticmethod
+    def _validate_source_boundary(evidence: Mapping[str, Any]) -> None:
+        if (
+            evidence.get("stage_commit_sha") != V2_INTEGRITY_BOUNDARY_PRE_NETWORK_SHA
+            or evidence.get("boundary_id") != V2_BOUNDARY_ID
+            or evidence.get("boundary_status") != "PASS"
+            or evidence.get("metadata_class_supplies_numerical_observations") is not False
+            or evidence.get("numerical_class_requires_server_side_bounds") is not True
+            or evidence.get("official_source_count") != len(AUTHORIZED_CURRENCIES)
+            or evidence.get("maximum_authorized_date") != "2022-12-31"
+        ):
+            raise EvidenceError("Documentation/data source boundary is incomplete")
+        _validate_sha(evidence.get("source_allowlist_sha256"), label="source allowlist hash")
+
+    def _validate_live_adapters(self, evidence: Mapping[str, Any]) -> None:
+        matrix = evidence.get("adapter_certifications")
+        source_checkpoint = self.state["checkpoints"][
+            V2GateStage.SOURCE_BOUNDARY_FROZEN.value
+        ]
+        if (
+            evidence.get("certification_mode") != "LIVE_OFFICIAL_BOUNDED"
+            or not isinstance(matrix, Mapping)
+            or set(matrix) != set(AUTHORIZED_CURRENCIES)
+            or any(status != "PASS" for status in matrix.values())
+            or evidence.get("source_boundary_checkpoint_sha256")
+            != source_checkpoint["evidence_sha256"]
+            or evidence.get("integrity_boundary_pre_network_sha")
+            != V2_INTEGRITY_BOUNDARY_PRE_NETWORK_SHA
+            or evidence.get("response_firewall_status") != "PASS"
+            or evidence.get("server_side_date_bounds_status") != "PASS"
+            or evidence.get("eonia_estr_transition_status") != "PASS"
+        ):
+            raise EvidenceError("Live V2 adapter certification is incomplete")
+
+    @staticmethod
+    def _validate_storage_recheck(value: object, stage: V2GateStage) -> None:
+        if not isinstance(value, Mapping):
+            raise EvidenceError("Acquisition requires a storage recheck")
+        if (
+            value.get("status") != "PASS"
+            or value.get("checked_for_stage") != stage.value
+            or not isinstance(value.get("free_bytes"), int)
+            or not isinstance(value.get("required_bytes"), int)
+            or value["required_bytes"] <= 0
+            or value["free_bytes"] < value["required_bytes"]
+        ):
+            raise EvidenceError("Storage recheck is missing, stale, or insufficient")
+        _validate_sha(value.get("evidence_sha256"), label="storage recheck hash")
+
+    def _validate_acquisition(self, stage: V2GateStage, evidence: Mapping[str, Any]) -> None:
+        infrastructure = self.state["checkpoints"].get(V2GateStage.INFRASTRUCTURE_FROZEN.value)
+        live = self.state["checkpoints"].get(V2GateStage.LIVE_ADAPTERS_CERTIFIED.value)
+        certifications = self.state.get("live_adapter_certifications")
+        if (
+            infrastructure is None
+            or evidence.get("infrastructure_pre_observation_sha")
+            != infrastructure["stage_commit_sha"]
+        ):
+            raise EvidenceError("Acquisition requires the committed infrastructure freeze")
+        if (
+            live is None
+            or evidence.get("live_adapter_certification_sha256") != live["evidence_sha256"]
+            or not isinstance(certifications, Mapping)
+            or set(certifications) != set(AUTHORIZED_CURRENCIES)
+            or any(status != "PASS" for status in certifications.values())
+        ):
+            raise EvidenceError("Acquisition requires all seven live official adapters to pass")
+        if stage in {
+            V2GateStage.VALIDATION_DATASET_FROZEN,
+            V2GateStage.REPLICATION_DATASET_FROZEN,
+        }:
+            checks = evidence.get("storage_rechecks")
+            if not isinstance(checks, Mapping) or set(checks) != {"rates", "market"}:
+                raise EvidenceError("Conditional acquisition requires two storage rechecks")
+            self._validate_storage_recheck(checks["rates"], stage)
+            self._validate_storage_recheck(checks["market"], stage)
+            if evidence.get("acquisition_order") != "RATES_CERTIFIED_BEFORE_MARKET":
+                raise EvidenceError("Conditional rates must be certified before market access")
+        else:
+            self._validate_storage_recheck(evidence.get("storage_recheck"), stage)
+        counts = evidence.get("provider_request_counts")
+        expected = (
+            {"rates"}
+            if stage is V2GateStage.DEVELOPMENT_RATES_ACQUIRED
+            else {"market"}
+            if stage is V2GateStage.DEVELOPMENT_MARKET_ACQUIRED
+            else {"rates", "market"}
+        )
+        if (
+            not isinstance(counts, Mapping)
+            or set(counts) != expected
+            or any(not isinstance(count, int) or count <= 0 for count in counts.values())
+        ):
+            raise EvidenceError("Provider request counts must be positive and stage-specific")
+        if evidence.get("response_scope_status") != "PASS":
+            raise EvidenceError("Acquisition response scope must pass atomically")
+
+    @staticmethod
+    def _validate_dataset_freeze(phase: str, evidence: Mapping[str, Any]) -> None:
+        if (
+            evidence.get("dataset_freeze_id") != V2_DATASET_FREEZE_IDS[phase]
+            or evidence.get("authorized_interval") != list(PHASE_INTERVALS[phase])
+            or evidence.get("rate_certification_status") != "PASS"
+            or evidence.get("market_certification_status") != "PASS"
+        ):
+            raise EvidenceError(f"{phase.title()} V2 dataset freeze is incomplete")
+        manifest = evidence.get("freeze_manifest")
+        required = {
+            "market_hashes",
+            "m1_hashes",
+            "m5_hashes",
+            "source_snapshot_hashes",
+            "rate_version_ids_hash",
+            "aligned_panel_hash",
+            "calendar_versions_hash",
+            "parser_versions_hash",
+            "software_sha",
+        }
+        if not isinstance(manifest, Mapping) or set(manifest) != required:
+            raise EvidenceError("V2 dataset freeze manifest is incomplete")
+        for name, value in manifest.items():
+            _validate_sha(value, commit=name == "software_sha", label=f"freeze_manifest.{name}")
+
+    def _validate_execution(self, phase: str, evidence: Mapping[str, Any]) -> None:
+        freeze_stage = {
+            "development": V2GateStage.DEVELOPMENT_DATASET_FROZEN,
+            "validation": V2GateStage.VALIDATION_DATASET_FROZEN,
+            "replication": V2GateStage.REPLICATION_DATASET_FROZEN,
+        }[phase]
+        checkpoint = self.state["checkpoints"].get(freeze_stage.value)
+        if checkpoint is None or evidence.get("dataset_checkpoint_sha256") != checkpoint[
+            "evidence_sha256"
+        ]:
+            raise EvidenceError("Outcome evidence is not bound to the frozen V2 dataset")
+        if (
+            evidence.get("execution_status") != "PASS"
+            or evidence.get("metrics_status") != "COMPLETE"
+        ):
+            raise EvidenceError("Execution requires complete, non-placeholder metrics")
+        results_hash = _validate_sha(
+            evidence.get("results_artifact_sha256"), label="results artifact hash"
+        )
+        metrics_hash = _validate_sha(
+            evidence.get("metrics_manifest_sha256"), label="metrics manifest hash"
+        )
+        if results_hash in {"0" * 64, "f" * 64} or metrics_hash in {"0" * 64, "f" * 64}:
+            raise EvidenceError("Placeholder outcome hashes are prohibited")
+        expected = (
+            FROZEN_CANDIDATES
+            if phase == "development"
+            else self.state["shortlists"][phase]["candidates"]
+        )
+        if evidence.get("candidate_ids") != list(expected or ()):
+            raise EvidenceError(f"{phase.title()} candidate set changed")
+
+    @staticmethod
+    def _validate_shortlist(evidence: Mapping[str, Any], *, maximum: int, status: str) -> None:
+        candidates = evidence.get("candidates")
+        if (
+            not isinstance(candidates, list)
+            or len(candidates) > maximum
+            or len(set(candidates)) != len(candidates)
+            or any(candidate not in FROZEN_CANDIDATES for candidate in candidates)
+            or evidence.get("freeze_status") != status
+        ):
+            raise EvidenceError("V2 shortlist is not a frozen subset of the six candidates")
+        _validate_sha(evidence.get("shortlist_freeze_sha256"), label="shortlist hash")
+
+    def _validate_final(self, evidence: Mapping[str, Any]) -> None:
+        decision = evidence.get("decision")
+        if decision not in V2_FINAL_DECISIONS:
+            raise EvidenceError("Final V2 decision is outside the frozen decision set")
+        validation = self.state["shortlists"]["validation"]["candidates"]
+        replication = self.state["shortlists"]["replication"]["candidates"]
+        if decision == "F0RPE2ER_NO_PORTFOLIO_PASSED_DEVELOPMENT" and validation:
+            raise EvidenceError("Development decision conflicts with its shortlist")
+        if decision == "F0RPE2ER_NO_PORTFOLIO_PASSED_INTERNAL_VALIDATION" and replication:
+            raise EvidenceError("Validation decision conflicts with its shortlist")
+        if decision == "F0RPE2ER_PORTFOLIO_FROZEN_FOR_FUTURE_CONFIRMATION":
+            selected = evidence.get("selected_candidates")
+            if (
+                not isinstance(selected, list)
+                or len(selected) != 1
+                or selected[0] not in (replication or [])
+                or evidence.get("future_freeze_status")
+                != "FROZEN_BEFORE_FUTURE_DATA_GENERATION"
+                or evidence.get("future_observations_accessed") is not False
+                or evidence.get("minimum_eligible_trading_days") != 252
+                or evidence.get("minimum_calendar_months") != 12
+            ):
+                raise EvidenceError("Future portfolio protocol is incomplete or retrospective")
+
+    def _checkpoint(
+        self, stage: V2GateStage, evidence_hash: str, evidence: Mapping[str, Any]
+    ) -> dict[str, Any]:
+        checkpoint = {
+            "stage": stage.value,
+            "evidence_sha256": evidence_hash,
+            "stage_commit_sha": evidence["stage_commit_sha"],
+            "artifact_hashes": evidence["artifacts"],
+            "task_identity": canonical_sha256(
+                {
+                    "program_id": V2_PROGRAM_ID,
+                    "lineage_id": V2_LINEAGE_ID,
+                    "stage": stage.value,
+                    "evidence_sha256": evidence_hash,
+                }
+            ),
+        }
+        checkpoint["checkpoint_sha256"] = canonical_sha256(checkpoint)
+        return checkpoint
+
+    @staticmethod
+    def _apply_stage(
+        state: dict[str, Any], stage: V2GateStage, evidence: Mapping[str, Any]
+    ) -> None:
+        if stage in _V2_ACQUISITION_STAGES:
+            for kind, count in evidence["provider_request_counts"].items():
+                previous = state["provider_requests"][kind]
+                state["provider_requests"][kind] = (previous or 0) + count
+        if stage in V2_EXECUTION_STAGES:
+            phase = V2_EXECUTION_STAGES[stage]
+            state["outcomes"][phase] = {
+                "status": "PASS",
+                "results_artifact_sha256": evidence["results_artifact_sha256"],
+                "metrics_manifest_sha256": evidence["metrics_manifest_sha256"],
+            }
+        if stage is V2GateStage.VALIDATION_SHORTLIST_FROZEN:
+            state["shortlists"]["validation"] = {
+                "status": evidence["freeze_status"],
+                "candidates": list(evidence["candidates"]),
+                "freeze_sha256": evidence["shortlist_freeze_sha256"],
+            }
+        if stage is V2GateStage.REPLICATION_SHORTLIST_FROZEN:
+            state["shortlists"]["replication"] = {
+                "status": evidence["freeze_status"],
+                "candidates": list(evidence["candidates"]),
+                "freeze_sha256": evidence["shortlist_freeze_sha256"],
+            }
+        if stage is V2GateStage.FINAL_ADJUDICATION:
+            state["final_decision"] = evidence["decision"]
+        if stage is V2GateStage.SOURCE_BOUNDARY_FROZEN:
+            state["integrity_boundary_pre_network_sha"] = evidence["stage_commit_sha"]
+        if stage is V2GateStage.LIVE_ADAPTERS_CERTIFIED:
+            state["live_adapter_certifications"] = dict(evidence["adapter_certifications"])
+        if stage is V2GateStage.INFRASTRUCTURE_FROZEN:
+            state["infrastructure_pre_observation_sha"] = evidence["stage_commit_sha"]
+
+    def _persist_transition(
+        self, next_state: Mapping[str, Any], checkpoint: Mapping[str, Any]
+    ) -> None:
+        number = len(next_state["completed_stages"])
+        name = f"{number:02d}-{checkpoint['stage']}.json"
+        body: dict[str, Any] = {
+            "state": next_state,
+            "checkpoint": checkpoint,
+            "checkpoint_name": name,
+        }
+        body["transaction_sha256"] = canonical_sha256(body)
+        _atomic_write_json(self.pending_path, body)
+        _atomic_write_json(self.output_dir / "checkpoints_v2" / name, checkpoint)
+        _atomic_write_json(self.state_path, next_state)
+        self.pending_path.unlink()
+
+    def _persist_failure(self, target: V2GateStage, detail: str) -> None:
+        failure = {
+            "decision": "BLOCKED_BY_EMPIRICAL_ORCHESTRATION",
+            "attempted_stage": target.value,
+            "detail": detail,
+        }
+        failure["failure_id"] = canonical_sha256(failure)
+        self.state["status"] = "BLOCKED"
+        self.state["failure"] = failure
+        self._append_audit(self.state, "STAGE_BLOCKED", failure["failure_id"])
+        self.persist()
+
+    @staticmethod
+    def _append_audit(state: dict[str, Any], action: str, payload_hash: str) -> None:
+        event = {
+            "sequence": len(state["audit"]) + 1,
+            "action": action,
+            "payload_sha256": payload_hash,
+        }
+        event["event_id"] = canonical_sha256(event)
+        state["audit"].append(event)
+
+
+F0RPE2EROrchestrator = ClassicalFXV2Orchestrator
+
+
+def build_v2_stage_evidence_template(stage: V2GateStage | str) -> dict[str, Any]:
+    """Return a V2 schema template without observations or placeholder metrics."""
+    target = V2GateStage(stage)
+    return {
+        "stage": target.value,
+        "stage_commit_sha": None,
+        "predecessor_stage_commit_sha": None,
+        "access_predecessor_commit_sha": None,
+        "artifacts": None,
+        "instrument_universe": list(AUTHORIZED_INSTRUMENTS),
+        "currency_universe": list(AUTHORIZED_CURRENCIES),
+        "storage_recheck": None,
+        "integrity_boundary_pre_network_sha": None,
+        "infrastructure_pre_observation_sha": None,
+        "live_adapter_certification_sha256": None,
+        "provider_request_counts": None,
+        "results_artifact_sha256": None,
+        "metrics_manifest_sha256": None,
+        "status": "NOT_RUN",
+    }
