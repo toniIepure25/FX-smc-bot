@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_Q1_LINE_ENDING_RECONCILIATION_V1",
+  "reconciliation_id": "Q1_MANIFEST_LINE_ENDING_VALIDATOR_RECONCILIATION_V1",
+  "status": "PASS_WITH_PRESERVED_HISTORICAL_DIGEST_DEFECTS",
+  "effective_hash_mode": "SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS",
+  "hash_algorithm": "SHA256_UTF8_AFTER_CRLF_AND_CR_TO_LF_NORMALIZATION",
+  "raw_byte_mode": "SHA256_OF_RAW_BYTES",
+  "sealed_q1_manifest_declares_hash_mode": false,
+  "reconciliation_scope": "VALIDATOR_AND_TEST_ONLY",
+  "declared_records": 41,
+  "sealed_record_digest_modes": {
+    "LF_NORMALIZED": 12,
+    "CRLF_RAW": 25,
+    "PRE_EXISTING_NON_LINE_ENDING_DIGEST_DEFECT": 4
+  },
+  "worktree_integrity_rule": "LF_NORMALIZED_WORKTREE_CONTENT_MUST_EQUAL_LF_NORMALIZED_HEAD_GIT_BLOB",
+  "preserved_historical_digest_defects": [
+    {
+      "path": "results/gate_q0r/execution_certification.json",
+      "sealed_manifest_sha256": "820f4224dc0a40fc7451b39ef53bac01ef26b02ae554dbcbc1fa8a85c214eec9",
+      "current_lf_normalized_sha256": "a92e5b615bed8c438a1f3d15a188f1ba0a57d0db65cf1e1f1141c75503bac6a5",
+      "classification": "PRE_EXISTING_NON_LINE_ENDING_DIGEST_DEFECT"
+    },
+    {
+      "path": "results/gate_q0r/lookahead_audit.json",
+      "sealed_manifest_sha256": "172d0c776ac42ab02f7db7c77b7e5a6af9b1a6fdc2121436865266d5db99ab69",
+      "current_lf_normalized_sha256": "d81786da73b7058bcf0833741623f4a38bd82d70369dd3cd5f9e8e1a8abc052d",
+      "classification": "PRE_EXISTING_NON_LINE_ENDING_DIGEST_DEFECT"
+    },
+    {
+      "path": "results/gate_q0r/model_selection_leakage_audit.json",
+      "sealed_manifest_sha256": "ac9cf8e931fba75f54948579766f7291b5f6721cfd3d31be5eda36e4b73d5ae0",
+      "current_lf_normalized_sha256": "173c40b714f28048db0f7dd958f6d47fd2c1255cc597f085f96b98f98e76b1b5",
+      "classification": "PRE_EXISTING_NON_LINE_ENDING_DIGEST_DEFECT"
+    },
+    {
+      "path": "results/gate_q0r/development_overfitting_audit.json",
+      "sealed_manifest_sha256": "bbe25f5716a33ba08cae78c3a23e90e710ed7d0eabf77c1fd6371f7ab61f360f",
+      "current_lf_normalized_sha256": "52aa43e9104c02ae63cf85b521c93048565c7469183bf6500c1938bdbb4057f9",
+      "classification": "PRE_EXISTING_NON_LINE_ENDING_DIGEST_DEFECT"
+    }
+  ],
+  "sealed_artifact_sha256_raw_bytes_before_reconciliation": {
+    "results/gate_q1/reproducibility_manifest.json": "111bac819981a85e0ccdf2be752f4a222a11c437b0603c335fb737b50be89519",
+    "results/gate_q1/quant_polarity_lineage_seal.json": "c0a724ddca6953ed924f4ae6d504e5517193249e56fa732305ccc9f7b70a9eb4",
+    "results/gate_q1/closure_lock.json": "fb8ef24df48b1d1d524588ed1b5ea35fd840c2c7e6a7d123db1d91067c31a3f0"
+  },
+  "sealed_artifact_sha256_raw_bytes_after_reconciliation": {
+    "results/gate_q1/reproducibility_manifest.json": "111bac819981a85e0ccdf2be752f4a222a11c437b0603c335fb737b50be89519",
+    "results/gate_q1/quant_polarity_lineage_seal.json": "c0a724ddca6953ed924f4ae6d504e5517193249e56fa732305ccc9f7b70a9eb4",
+    "results/gate_q1/closure_lock.json": "fb8ef24df48b1d1d524588ed1b5ea35fd840c2c7e6a7d123db1d91067c31a3f0"
+  },
+  "q1_committed_artifacts_modified": false,
+  "q1_manifest_modified": false,
+  "q1_seal_modified": false,
+  "q1_closure_lock_modified": false,
+  "historical_scientific_claim_changed": false
+}

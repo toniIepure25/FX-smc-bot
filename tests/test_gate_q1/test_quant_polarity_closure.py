@@ -2,8 +2,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
+from fx_smc_bot.research.manifest_hashing import (
+    SHA256_OF_RAW_BYTES,
+    manifest_bytes_sha256,
+    manifest_file_sha256,
+)
 from fx_smc_bot.research.quant_polarity_closure import (
     CANDIDATE_IDS,
     CLOSURE_ID,
@@ -27,11 +33,21 @@ from fx_smc_bot.research.quant_polarity_closure import (
 
 REPO = Path(__file__).resolve().parents[2]
 Q1 = REPO / "results" / "gate_q1"
+F0RP = REPO / "results" / "gate_f0rp"
 DOCS = REPO / "docs" / "research" / "quant_polarity_v2"
 
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_head_blob(relative_path: str) -> bytes:
+    return subprocess.run(
+        ["git", "show", f"HEAD:{relative_path}"],
+        cwd=REPO,
+        check=True,
+        capture_output=True,
+    ).stdout
 
 
 def test_aggregate_reproduction_matches_every_frozen_conclusion() -> None:
@@ -209,11 +225,16 @@ def test_publication_package_preserves_negative_claim_boundaries() -> None:
 
 def test_reproducibility_manifest_hashes_every_declared_artifact() -> None:
     manifest = load_json(Q1 / "reproducibility_manifest.json")
+    reconciliation = load_json(F0RP / "q1_line_ending_reconciliation.json")
     records = [
         record
         for values in manifest["artifact_groups"].values()
         for record in values
     ]
+    exceptions = {
+        record["path"]: record
+        for record in reconciliation["preserved_historical_digest_defects"]
+    }
 
     assert manifest["status"] == "PASS"
     assert manifest["all_declared_artifacts_present"] is True
@@ -223,7 +244,32 @@ def test_reproducibility_manifest_hashes_every_declared_artifact() -> None:
     assert manifest["manifest_hash"] == payload_hash_without(
         manifest, "manifest_hash"
     )
+    assert reconciliation["reconciliation_id"] == (
+        "Q1_MANIFEST_LINE_ENDING_VALIDATOR_RECONCILIATION_V1"
+    )
+    assert reconciliation["effective_hash_mode"] == (
+        "SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS"
+    )
     for record in records:
         path = REPO / record["path"]
         assert path.is_file()
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == record["raw_sha256"]
+        observed = manifest_file_sha256(path, reconciliation["effective_hash_mode"])
+        tracked = load_head_blob(record["path"])
+        tracked_lf = manifest_bytes_sha256(tracked, reconciliation["effective_hash_mode"])
+        assert observed == tracked_lf
+        exception = exceptions.get(record["path"])
+        if exception is None:
+            tracked_text = tracked.decode("utf-8")
+            tracked_crlf = tracked_text.replace("\r\n", "\n").replace("\r", "\n")
+            tracked_crlf_digest = hashlib.sha256(
+                tracked_crlf.replace("\n", "\r\n").encode("utf-8")
+            ).hexdigest()
+            assert record["raw_sha256"] in {
+                tracked_lf,
+                manifest_bytes_sha256(tracked, SHA256_OF_RAW_BYTES),
+                tracked_crlf_digest,
+            }
+            continue
+        assert exception["sealed_manifest_sha256"] == record["raw_sha256"]
+        assert exception["current_lf_normalized_sha256"] == observed
+        assert exception["classification"] == "PRE_EXISTING_NON_LINE_ENDING_DIGEST_DEFECT"
