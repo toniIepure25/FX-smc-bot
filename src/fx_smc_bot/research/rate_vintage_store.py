@@ -11,7 +11,7 @@ import hashlib
 import json
 import math
 import sqlite3
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from pathlib import Path
@@ -21,10 +21,18 @@ from zoneinfo import ZoneInfo
 from fx_smc_bot.research.rate_calendars import calendar_for_currency
 
 SCHEMA_VERSION: Final = "F0RPE2E_RATE_VINTAGE_STORE_V2"
+V3_SCHEMA_VERSION: Final = "F0RPE2ER_RATE_VINTAGE_STORE_V3"
+V3_SCHEMA_ID: Final = V3_SCHEMA_VERSION
+SUPPORTED_SCHEMA_VERSIONS: Final = frozenset({SCHEMA_VERSION, V3_SCHEMA_VERSION})
 PASSING_CERTIFICATION_STATUSES: Final = frozenset({"PASS", "CERTIFIED"})
 _STRATEGY_TIMEZONE: Final = ZoneInfo("America/New_York")
 _EONIA_END: Final = date(2019, 9, 30)
 _ESTR_START: Final = date(2019, 10, 1)
+_V3_AUTHORIZED_START: Final = date(2010, 1, 1)
+_V3_AUTHORIZED_END: Final = date(2022, 12, 31)
+_V3_AUTHORIZED_CURRENCIES: Final = frozenset(
+    {"USD", "EUR", "GBP", "AUD", "JPY", "CAD", "CHF"}
+)
 
 
 class RateVintageStoreError(RuntimeError):
@@ -165,16 +173,67 @@ def _validate_series_regime(currency: str, series_id: str, observation_date: dat
 class RateVintageStore:
     """SQLite-backed append-only official-rate vintage store."""
 
-    def __init__(self, database_path: str | Path) -> None:
+    def __init__(
+        self,
+        database_path: str | Path,
+        *,
+        schema_version: str = SCHEMA_VERSION,
+        schema_id: str | None = None,
+    ) -> None:
+        requested_schema = schema_id or schema_version
+        if schema_id is not None and schema_version != SCHEMA_VERSION:
+            if schema_id != schema_version:
+                raise RateVintageIntegrityError("Conflicting schema selectors")
+        if requested_schema not in SUPPORTED_SCHEMA_VERSIONS:
+            raise RateVintageIntegrityError(
+                f"Unsupported rate vintage store schema: {requested_schema}"
+            )
         self.database_path = str(database_path)
+        self._schema_version = requested_schema
+        self._panel_table = (
+            "aligned_daily_rate_panel"
+            if requested_schema == V3_SCHEMA_VERSION
+            else "daily_strategy_rate_panel"
+        )
         if self.database_path != ":memory:":
-            Path(self.database_path).parent.mkdir(parents=True, exist_ok=True)
+            database = Path(self.database_path)
+            database.parent.mkdir(parents=True, exist_ok=True)
+            self._validate_existing_database(database)
         self._connection = sqlite3.connect(self.database_path)
         self._connection.row_factory = sqlite3.Row
         self._connection.execute("PRAGMA foreign_keys = ON")
         self._connection.execute("PRAGMA recursive_triggers = ON")
         self._connection.execute("PRAGMA busy_timeout = 5000")
         self._create_schema()
+
+    def _validate_existing_database(self, database: Path) -> None:
+        """Reject in-place V2-to-V3 upgrades while allowing an existing V3 replay."""
+        if self._schema_version != V3_SCHEMA_VERSION or not database.exists():
+            return
+        if database.stat().st_size == 0:
+            return
+        connection = sqlite3.connect(database)
+        try:
+            metadata_exists = connection.execute(
+                "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'store_metadata'"
+            ).fetchone()
+            existing = (
+                connection.execute(
+                    "SELECT value FROM store_metadata WHERE key = 'schema_version'"
+                ).fetchone()
+                if metadata_exists
+                else None
+            )
+        except sqlite3.DatabaseError as exc:
+            raise RateVintageIntegrityError(
+                "V3 requires a new clean database or an existing V3 database"
+            ) from exc
+        finally:
+            connection.close()
+        if existing is None or existing[0] != V3_SCHEMA_VERSION:
+            raise RateVintageIntegrityError(
+                "V3 requires a new clean database; in-place schema upgrades are prohibited"
+            )
 
     def __enter__(self) -> RateVintageStore:
         return self
@@ -195,6 +254,39 @@ class RateVintageStore:
         return str(row["value"])
 
     def _create_schema(self) -> None:
+        if self._schema_version == V3_SCHEMA_VERSION:
+            self._connection.executescript(
+                """
+                CREATE TABLE IF NOT EXISTS source_requests (
+                    request_identity TEXT PRIMARY KEY,
+                    adapter_id TEXT NOT NULL,
+                    currency TEXT NOT NULL,
+                    series_id TEXT NOT NULL,
+                    source_publisher TEXT NOT NULL,
+                    source_endpoint_role TEXT NOT NULL,
+                    request_method TEXT NOT NULL,
+                    endpoint_url TEXT NOT NULL,
+                    start_date TEXT NOT NULL,
+                    end_date TEXT NOT NULL,
+                    query_parameters_json TEXT NOT NULL,
+                    request_headers_json TEXT NOT NULL,
+                    response_format TEXT NOT NULL,
+                    request_record_sha256 TEXT NOT NULL UNIQUE,
+                    UNIQUE(request_identity, adapter_id)
+                );
+                CREATE TABLE IF NOT EXISTS response_firewall_certifications (
+                    firewall_certification_id TEXT PRIMARY KEY,
+                    request_identity TEXT NOT NULL,
+                    adapter_id TEXT NOT NULL,
+                    source_snapshot_sha256 TEXT NOT NULL,
+                    schema_id TEXT NOT NULL,
+                    certified_row_count INTEGER NOT NULL CHECK(certified_row_count >= 0),
+                    UNIQUE(request_identity, adapter_id, source_snapshot_sha256),
+                    FOREIGN KEY(request_identity, adapter_id)
+                        REFERENCES source_requests(request_identity, adapter_id)
+                );
+                """
+            )
         self._connection.executescript(
             """
             CREATE TABLE IF NOT EXISTS store_metadata (
@@ -330,17 +422,36 @@ class RateVintageStore:
                 ON dataset_freeze_versions(version_id, dataset_freeze_id);
             """
         )
+        if self._schema_version == V3_SCHEMA_VERSION:
+            self._connection.executescript(
+                """
+                CREATE TABLE IF NOT EXISTS aligned_daily_rate_panel (
+                    currency TEXT NOT NULL,
+                    strategy_timestamp TEXT NOT NULL,
+                    dataset_freeze_id TEXT NOT NULL,
+                    version_id TEXT,
+                    missing_reason TEXT,
+                    panel_record_sha256 TEXT NOT NULL,
+                    PRIMARY KEY(currency, strategy_timestamp, dataset_freeze_id),
+                    CHECK((version_id IS NULL) <> (missing_reason IS NULL)),
+                    FOREIGN KEY(dataset_freeze_id)
+                        REFERENCES dataset_freezes(dataset_freeze_id),
+                    FOREIGN KEY(dataset_freeze_id, version_id)
+                        REFERENCES dataset_freeze_versions(dataset_freeze_id, version_id)
+                );
+                """
+            )
         existing = self._connection.execute(
             "SELECT value FROM store_metadata WHERE key = 'schema_version'"
         ).fetchone()
         if existing is None:
             self._connection.execute(
                 "INSERT INTO store_metadata(key, value) VALUES('schema_version', ?)",
-                (SCHEMA_VERSION,),
+                (self._schema_version,),
             )
-        elif existing["value"] != SCHEMA_VERSION:
+        elif existing["value"] != self._schema_version:
             raise RateVintageIntegrityError("Unsupported rate vintage store schema")
-        immutable_tables = (
+        immutable_tables = [
             "store_metadata",
             "source_snapshots",
             "ingestion_runs",
@@ -353,7 +464,15 @@ class RateVintageStore:
             "dataset_freeze_versions",
             "dataset_freeze_certifications",
             "daily_strategy_rate_panel",
-        )
+        ]
+        if self._schema_version == V3_SCHEMA_VERSION:
+            immutable_tables.extend(
+                (
+                    "source_requests",
+                    "response_firewall_certifications",
+                    "aligned_daily_rate_panel",
+                )
+            )
         for table in immutable_tables:
             for operation in ("UPDATE", "DELETE"):
                 trigger = f"prevent_{operation.lower()}_{table}"
@@ -420,6 +539,50 @@ class RateVintageStore:
                 "AND existing.dataset_freeze_id = NEW.dataset_freeze_id"
             ),
         }
+        if self._schema_version == V3_SCHEMA_VERSION:
+            collision_checks.update(
+                {
+                    "source_requests": (
+                        "existing.request_identity = NEW.request_identity OR "
+                        "existing.request_record_sha256 = NEW.request_record_sha256"
+                    ),
+                    "response_firewall_certifications": (
+                        "existing.firewall_certification_id = "
+                        "NEW.firewall_certification_id OR "
+                        "(existing.request_identity = NEW.request_identity "
+                        "AND existing.adapter_id = NEW.adapter_id "
+                        "AND existing.source_snapshot_sha256 = "
+                        "NEW.source_snapshot_sha256)"
+                    ),
+                    "aligned_daily_rate_panel": (
+                        "existing.currency = NEW.currency "
+                        "AND existing.strategy_timestamp = NEW.strategy_timestamp "
+                        "AND existing.dataset_freeze_id = NEW.dataset_freeze_id"
+                    ),
+                }
+            )
+        if self._schema_version == V3_SCHEMA_VERSION:
+            self._connection.execute(
+                """CREATE TRIGGER IF NOT EXISTS validate_snapshot_source_request
+                BEFORE INSERT ON source_snapshots
+                WHEN NOT EXISTS(
+                    SELECT 1 FROM source_requests AS request
+                    WHERE request.request_identity = NEW.request_identity
+                      AND request.adapter_id = NEW.adapter_id
+                )
+                BEGIN SELECT RAISE(ABORT, 'snapshot requires exact source request'); END"""
+            )
+            self._connection.execute(
+                """CREATE TRIGGER IF NOT EXISTS validate_snapshot_firewall_certification
+                BEFORE INSERT ON source_snapshots
+                WHEN NOT EXISTS(
+                    SELECT 1 FROM response_firewall_certifications AS certification
+                    WHERE certification.request_identity = NEW.request_identity
+                      AND certification.adapter_id = NEW.adapter_id
+                      AND certification.source_snapshot_sha256 = NEW.payload_sha256
+                )
+                BEGIN SELECT RAISE(ABORT, 'snapshot requires firewall certification'); END"""
+            )
         for table, condition in collision_checks.items():
             self._connection.execute(
                 f"""CREATE TRIGGER IF NOT EXISTS prevent_replace_{table}
@@ -439,7 +602,119 @@ class RateVintageStore:
             BEGIN SELECT RAISE(ABORT, 'dataset freeze requires passing certification'); END"""
         )
 
-    def append_source_snapshot(self, snapshot: object) -> int:
+    def append_source_request(self, request: object) -> str:
+        """Append one exact V3 request identity or return it on exact replay."""
+        if self._schema_version != V3_SCHEMA_VERSION:
+            raise RateVintageIntegrityError("source_requests are available only in V3 mode")
+        request_identity = _text(_value(request, "request_identity"), "request_identity")
+        currency = _text(_value(request, "currency"), "currency").upper()
+        if currency == "NZD":
+            raise RateVintageIntegrityError("NZD source requests are prohibited")
+        start = _day(_value(request, "start"), "start")
+        end = _day(_value(request, "end"), "end")
+        if start > end:
+            raise RateVintageIntegrityError("Source request interval is invalid")
+        query_parameters = self._normalized_pairs(
+            _optional_value(request, "query_parameters", ()), "query_parameters"
+        )
+        request_headers = self._normalized_pairs(
+            _optional_value(request, "request_headers", ()), "request_headers"
+        )
+        accept_values = [
+            value for name, value in request_headers if name.lower() == "accept"
+        ]
+        response_format = _text(
+            _optional_value(
+                request,
+                "response_format",
+                accept_values[0] if len(accept_values) == 1 else None,
+            ),
+            "response_format",
+        )
+        record = {
+            "request_identity": request_identity,
+            "adapter_id": _text(_value(request, "adapter_id"), "adapter_id"),
+            "currency": currency,
+            "series_id": _text(_value(request, "series_id"), "series_id"),
+            "source_publisher": _text(
+                _value(request, "source_publisher"), "source_publisher"
+            ),
+            "source_endpoint_role": _text(
+                _value(request, "source_endpoint_role"), "source_endpoint_role"
+            ),
+            "request_method": _text(
+                _optional_value(request, "method", "GET"), "method"
+            ).upper(),
+            "endpoint_url": _text(_value(request, "url"), "url"),
+            "start_date": start.isoformat(),
+            "end_date": end.isoformat(),
+            "query_parameters_json": _canonical_json(query_parameters),
+            "request_headers_json": _canonical_json(request_headers),
+            "response_format": response_format,
+        }
+        expected_identity = _content_sha256(
+            {
+                "adapter_id": record["adapter_id"],
+                "currency": record["currency"],
+                "end": record["end_date"],
+                "endpoint_role": record["source_endpoint_role"],
+                "method": record["request_method"],
+                "query_parameters": query_parameters,
+                "series_id": record["series_id"],
+                "start": record["start_date"],
+                "url": record["endpoint_url"],
+            }
+        )
+        if request_identity != expected_identity:
+            raise RateVintageIntegrityError(
+                "Source request identity does not match its canonical request"
+            )
+        record_sha256 = _content_sha256(record)
+        values = (*record.values(), record_sha256)
+        existing = self._connection.execute(
+            "SELECT * FROM source_requests WHERE request_identity = ?",
+            (request_identity,),
+        ).fetchone()
+        if existing is not None:
+            comparable = tuple(existing[key] for key in record) + (
+                existing["request_record_sha256"],
+            )
+            if comparable != values:
+                raise RateVintageConflictError("Conflicting source request replay")
+            return request_identity
+        try:
+            with self._connection:
+                self._connection.execute(
+                    "INSERT INTO source_requests VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    values,
+                )
+        except sqlite3.IntegrityError as exc:
+            raise RateVintageConflictError("Conflicting source request replay") from exc
+        return request_identity
+
+    @staticmethod
+    def _normalized_pairs(value: object, field: str) -> tuple[tuple[str, str], ...]:
+        if isinstance(value, Mapping):
+            pairs = tuple(sorted((str(key), str(item)) for key, item in value.items()))
+        elif isinstance(value, Sequence) and not isinstance(value, (str, bytes)):
+            try:
+                pairs = tuple((str(item[0]), str(item[1])) for item in value)
+            except (IndexError, TypeError) as exc:
+                raise RateVintageIntegrityError(
+                    f"{field} must contain key-value pairs"
+                ) from exc
+        else:
+            raise RateVintageIntegrityError(f"{field} must contain key-value pairs")
+        if len({name for name, _ in pairs}) != len(pairs):
+            raise RateVintageIntegrityError(f"{field} contains duplicate names")
+        return pairs
+
+    def append_source_snapshot(
+        self,
+        snapshot: object,
+        *,
+        firewall_certification: object | None = None,
+    ) -> int:
         """Append a snapshot identity, returning its stable row ID on exact replay."""
         request = _optional_value(snapshot, "request")
         adapter_id = _text(
@@ -462,6 +737,26 @@ class RateVintageStore:
             ),
             "payload_sha256",
         )
+        if self._schema_version == V3_SCHEMA_VERSION:
+            payload = _optional_value(snapshot, "payload")
+            if not isinstance(payload, bytes):
+                raise RateVintageIntegrityError("V3 source snapshots require payload bytes")
+            if hashlib.sha256(payload).hexdigest() != payload_sha256:
+                raise RateVintageIntegrityError("Source snapshot payload SHA-256 mismatch")
+            if request is None:
+                raise RateVintageIntegrityError(
+                    "V3 source snapshots require the exact source request"
+                )
+            certification = self._validate_firewall_certification(
+                request,
+                payload,
+                payload_sha256,
+                firewall_certification,
+            )
+            registered_identity = self.append_source_request(request)
+            if registered_identity != request_identity:
+                raise RateVintageIntegrityError("Snapshot request identity mismatch")
+            self._append_firewall_certification(certification)
         source_document_id = _text(
             _optional_value(snapshot, "source_document_id", request_identity),
             "source_document_id",
@@ -485,7 +780,8 @@ class RateVintageStore:
             raise RateVintageIntegrityError("response_headers must contain key-value pairs")
         headers_json = _canonical_json(normalized_headers)
         existing = self._connection.execute(
-            """SELECT source_snapshot_id, source_document_id, response_headers_json
+            """SELECT source_snapshot_id, source_document_id, retrieved_at,
+                      response_headers_json
             FROM source_snapshots
             WHERE adapter_id = ? AND request_identity = ? AND payload_sha256 = ?""",
             (adapter_id, request_identity, payload_sha256),
@@ -494,6 +790,10 @@ class RateVintageStore:
             if (
                 existing["source_document_id"] != source_document_id
                 or existing["response_headers_json"] != headers_json
+                or (
+                    self._schema_version == V3_SCHEMA_VERSION
+                    and existing["retrieved_at"] != _timestamp(retrieved_at)
+                )
             ):
                 raise RateVintageConflictError("Conflicting source snapshot replay")
             return int(existing["source_snapshot_id"])
@@ -515,6 +815,118 @@ class RateVintageStore:
         if cursor.lastrowid is None:
             raise RateVintageIntegrityError("SQLite did not return a snapshot row ID")
         return cursor.lastrowid
+
+    def _validate_firewall_certification(
+        self,
+        request: object,
+        payload: bytes,
+        payload_sha256: str,
+        certification: object | None,
+    ) -> tuple[str, str, str, str, str, int]:
+        if certification is None:
+            raise RateVintageIntegrityError(
+                "V3 source snapshot persistence requires firewall certification"
+            )
+        request_identity = _text(
+            _value(certification, "request_identity"), "firewall request_identity"
+        )
+        if request_identity != _text(_value(request, "request_identity"), "request_identity"):
+            raise RateVintageIntegrityError("Firewall certification request mismatch")
+        schema_id = _text(_value(certification, "schema_id"), "firewall schema_id")
+        rows = _value(certification, "rows")
+        if not isinstance(rows, Sequence) or isinstance(rows, (str, bytes)):
+            raise RateVintageIntegrityError("Firewall certification rows are invalid")
+        try:
+            document = json.loads(payload)
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise RateVintageIntegrityError(
+                "Firewall-certified snapshot must contain valid JSON"
+            ) from exc
+        if (
+            not isinstance(document, Mapping)
+            or set(document) != {"schema", "observations"}
+            or document["schema"] != schema_id
+            or not isinstance(document["observations"], list)
+            or _canonical_json(document["observations"]) != _canonical_json(list(rows))
+        ):
+            raise RateVintageIntegrityError(
+                "Firewall certification does not match the complete snapshot payload"
+            )
+        adapter_id = _text(_value(request, "adapter_id"), "adapter_id")
+        request_currency = _text(_value(request, "currency"), "currency").upper()
+        request_series = _text(_value(request, "series_id"), "series_id")
+        request_start = _day(_value(request, "start"), "start")
+        request_end = _day(_value(request, "end"), "end")
+        seen: set[tuple[str, str, date]] = set()
+        for row in rows:
+            if not isinstance(row, Mapping):
+                raise RateVintageIntegrityError("Firewall certification row is invalid")
+            currency = _text(row.get("currency"), "certified row currency").upper()
+            series_id = _text(row.get("seriesId"), "certified row seriesId")
+            observation = _day(
+                row.get("observationDate"), "certified row observationDate"
+            )
+            if (
+                currency not in _V3_AUTHORIZED_CURRENCIES
+                or currency != request_currency
+                or series_id != request_series
+                or observation < _V3_AUTHORIZED_START
+                or observation > _V3_AUTHORIZED_END
+                or observation < request_start
+                or observation > request_end
+            ):
+                raise RateVintageIntegrityError(
+                    "Firewall certification contains a prohibited or out-of-scope row"
+                )
+            identity = (currency, series_id, observation)
+            if identity in seen:
+                raise RateVintageIntegrityError(
+                    "Firewall certification contains duplicate observation identities"
+                )
+            seen.add(identity)
+        certification_id = _content_sha256(
+            {
+                "request_identity": request_identity,
+                "adapter_id": adapter_id,
+                "source_snapshot_sha256": payload_sha256,
+                "schema_id": schema_id,
+                "rows": list(rows),
+            }
+        )
+        return (
+            certification_id,
+            request_identity,
+            adapter_id,
+            payload_sha256,
+            schema_id,
+            len(rows),
+        )
+
+    def _append_firewall_certification(
+        self, values: tuple[str, str, str, str, str, int]
+    ) -> None:
+        existing = self._connection.execute(
+            """SELECT * FROM response_firewall_certifications
+            WHERE request_identity = ? AND adapter_id = ?
+              AND source_snapshot_sha256 = ?""",
+            (values[1], values[2], values[3]),
+        ).fetchone()
+        if existing is not None:
+            if tuple(existing[key] for key in existing.keys()) != values:
+                raise RateVintageConflictError(
+                    "Conflicting response firewall certification replay"
+                )
+            return
+        try:
+            with self._connection:
+                self._connection.execute(
+                    "INSERT INTO response_firewall_certifications VALUES (?, ?, ?, ?, ?, ?)",
+                    values,
+                )
+        except sqlite3.IntegrityError as exc:
+            raise RateVintageConflictError(
+                "Conflicting response firewall certification replay"
+            ) from exc
 
     def append_ingestion_run(
         self,
@@ -560,6 +972,14 @@ class RateVintageStore:
         currency = _text(_value(version, "currency"), "currency").upper()
         series_id = _text(_value(version, "series_id"), "series_id")
         observation_date = _day(_value(version, "observation_date"), "observation_date")
+        if self._schema_version == V3_SCHEMA_VERSION and (
+            currency not in _V3_AUTHORIZED_CURRENCIES
+            or observation_date < _V3_AUTHORIZED_START
+            or observation_date > _V3_AUTHORIZED_END
+        ):
+            raise RateVintageIntegrityError(
+                "V3 rate version is outside the authorized historical scope"
+            )
         _validate_series_regime(currency, series_id, observation_date)
         raw_value = _value(version, "value")
         try:
@@ -591,6 +1011,13 @@ class RateVintageStore:
         source_snapshot_sha256 = _sha256(
             _value(version, "source_snapshot_sha256"), "source_snapshot_sha256"
         )
+        if self._schema_version == V3_SCHEMA_VERSION and (
+            _optional_value(version, "source_adapter_id") is None
+            or _optional_value(version, "source_request_identity") is None
+        ):
+            raise RateVintageIntegrityError(
+                "V3 rate versions require exact source adapter and request identity"
+            )
         snapshot = self._resolve_source_snapshot(version, source_snapshot_sha256)
         fields = {
             "currency": currency,
@@ -624,6 +1051,8 @@ class RateVintageStore:
             ),
             "calendar_id": _text(_value(version, "calendar_id"), "calendar_id"),
         }
+        if self._schema_version == V3_SCHEMA_VERSION:
+            self._validate_v3_version_request(fields, snapshot, retrieved_at)
         if fields["calendar_id"] != expected_calendar.calendar_id:
             raise RateVintageIntegrityError("Rate version uses the wrong currency calendar")
         version_id = _content_sha256(fields)
@@ -712,6 +1141,34 @@ class RateVintageStore:
                 ),
             )
         return version_id
+
+    def _validate_v3_version_request(
+        self,
+        fields: Mapping[str, str],
+        snapshot: sqlite3.Row,
+        retrieved_at: datetime,
+    ) -> None:
+        request = self._connection.execute(
+            """SELECT * FROM source_requests
+            WHERE request_identity = ? AND adapter_id = ?""",
+            (snapshot["request_identity"], snapshot["adapter_id"]),
+        ).fetchone()
+        if request is None:
+            raise RateVintageIntegrityError("Rate version references an unknown source request")
+        expected = {
+            "currency": request["currency"],
+            "series_id": request["series_id"],
+            "source_publisher": request["source_publisher"],
+            "source_endpoint_role": request["source_endpoint_role"],
+        }
+        if any(fields[field] != value for field, value in expected.items()):
+            raise RateVintageIntegrityError(
+                "Rate version does not match its exact source request"
+            )
+        if _timestamp(retrieved_at) != snapshot["retrieved_at"]:
+            raise RateVintageIntegrityError(
+                "Rate version retrieval timestamp does not match its source snapshot"
+            )
 
     def _resolve_source_snapshot(
         self, version: object, payload_sha256: str
@@ -1058,7 +1515,7 @@ class RateVintageStore:
         }
         record_hash = _content_sha256(record)
         existing = self._connection.execute(
-            """SELECT * FROM daily_strategy_rate_panel
+            f"""SELECT * FROM {self._panel_table}
             WHERE currency = ? AND strategy_timestamp = ? AND dataset_freeze_id = ?""",
             (record["currency"], record["strategy_timestamp"], record["dataset_freeze_id"]),
         ).fetchone()
@@ -1078,14 +1535,22 @@ class RateVintageStore:
                 )
         with self._connection:
             self._connection.execute(
-                "INSERT INTO daily_strategy_rate_panel VALUES (?, ?, ?, ?, ?, ?)",
+                f"INSERT INTO {self._panel_table} VALUES (?, ?, ?, ?, ?, ?)",
                 (*record.values(), record_hash),
             )
         return record_hash
 
+    def append_aligned_daily_rate(self, result: AvailableRate | MissingRate) -> str:
+        """Persist a V3 aligned-panel record using the backward-compatible API."""
+        if self._schema_version != V3_SCHEMA_VERSION:
+            raise RateVintageIntegrityError(
+                "aligned_daily_rate_panel is available only in V3 mode"
+            )
+        return self.append_daily_strategy_rate(result)
+
     def table_counts(self) -> dict[str, int]:
         """Return aggregate counts only; no row-level observations are exposed."""
-        tables: Iterable[str] = (
+        tables: list[str] = [
             "source_snapshots",
             "ingestion_runs",
             "rate_series",
@@ -1093,11 +1558,15 @@ class RateVintageStore:
             "rate_versions",
             "availability_events",
             "certification_results",
-            "daily_strategy_rate_panel",
             "dataset_freezes",
             "dataset_freeze_versions",
             "dataset_freeze_certifications",
-        )
+        ]
+        if self._schema_version == V3_SCHEMA_VERSION:
+            tables[0:0] = ["source_requests", "response_firewall_certifications"]
+            tables.append("aligned_daily_rate_panel")
+        else:
+            tables.append("daily_strategy_rate_panel")
         return {
             table: int(self._connection.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0])
             for table in tables
