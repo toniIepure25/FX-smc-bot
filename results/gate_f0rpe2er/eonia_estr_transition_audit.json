@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_EONIA_ESTR_TRANSITION_AUDIT_V1",
+  "required_eonia_end": "2019-09-30",
+  "required_estr_start": "2019-10-01",
+  "live_transition_test": "NOT_RUN_FAIL_FAST_AFTER_USD_ADAPTER_FAILURE",
+  "eonia_requests": 0,
+  "estr_requests": 0,
+  "status": "NOT_RUN"
+}

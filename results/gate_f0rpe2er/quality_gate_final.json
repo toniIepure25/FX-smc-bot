@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_QUALITY_GATE_FINAL_V1",
+  "full_pytest_status": "PASS",
+  "full_pytest_passed": 1336,
+  "full_pytest_warnings": 91,
+  "targeted_ruff_status": "PASS",
+  "targeted_mypy_status": "PASS",
+  "broad_ruff_delta": 0,
+  "broad_mypy_delta": 0,
+  "node_status": "PASS",
+  "node_tests_passed": 2,
+  "git_diff_check": "PASS",
+  "status": "PASS"
+}

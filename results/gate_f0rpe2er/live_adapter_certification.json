@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_LIVE_ADAPTER_CERTIFICATION_V1",
+  "integrity_boundary_pre_network_sha": "313349aecc6694c1e852f1d0b2b2f6170ed81514",
+  "infrastructure_pre_observation_sha": "d65fa4abf95d15475f389b852bee0fe7c3b1d89a",
+  "official_rate_provider_requests_sent": 1,
+  "request_windows": [{"currency": "USD", "start": "2016-01-04", "end": "2016-01-08", "request_identity": "6c0fe53d4d94105dc8e4b12cdd7a709c42715cf4a51be3c297584b61dc005e38"}],
+  "all_requested_dates_lte_2022_12_31": true,
+  "http_200_response_reached_firewall": true,
+  "failure_code": "SOURCE_RESPONSE_SCHEMA_VIOLATION",
+  "failure_stage": "RESPONSE_FIREWALL",
+  "failure_disposition": "RESPONSE_REJECTED_ATOMICALLY_BEFORE_PERSISTENCE",
+  "source_snapshots_persisted": 0,
+  "numerical_rows_exposed_to_parser": 0,
+  "rate_observation_identities_persisted": 0,
+  "rate_versions_persisted": 0,
+  "revisions_persisted": 0,
+  "market_provider_requests_sent": 0,
+  "promotes_live_adapters_certified_stage": false,
+  "blocking_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "status": "FAIL"
+}

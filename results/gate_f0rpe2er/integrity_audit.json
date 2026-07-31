@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_INTEGRITY_AUDIT_V1",
+  "failed_f0rpe2e_audit_preserved": true,
+  "historical_2023_2025_status": "QUARANTINED_FROM_ALL_SELECTION_REPLICATION_AND_CONFIRMATORY_USE",
+  "historical_2023_2025_untouched_claim": false,
+  "historical_2023_2025_used_in_development": false,
+  "historical_2023_2025_used_in_validation": false,
+  "historical_2023_2025_used_in_replication": false,
+  "historical_2023_2025_used_in_selection": false,
+  "historical_2023_2025_persisted": false,
+  "nzd_accessed": false,
+  "nzdusd_accessed": false,
+  "future_prospective_observations_accessed": false,
+  "future_prospective_storage_enumerated": false,
+  "future_portfolio_returns_generated": false,
+  "development_rate_requests": 0,
+  "market_requests": 0,
+  "candidate_outcomes": 0,
+  "candidate_ranking": false,
+  "status": "PASS"
+}

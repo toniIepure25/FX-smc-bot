@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_FINAL_DECISION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "predecessor_decision": "BLOCKED_BY_PROSPECTIVE_INTEGRITY",
+  "relationship": "SCIENTIFIC_PROTOCOL_INHERITANCE_WITH_NEW_FUTURE_ONLY_INTEGRITY_BASELINE",
+  "highest_stage_reached": "LIVE_OFFICIAL_ENDPOINT_CERTIFICATION",
+  "blocking_adapter": "NY_FED_EFFR_V2",
+  "blocking_failure": "SOURCE_RESPONSE_SCHEMA_VIOLATION",
+  "official_rate_requests": 1,
+  "source_snapshots_persisted": 0,
+  "market_requests": 0,
+  "development_executed": false,
+  "validation_executed": false,
+  "replication_executed": false,
+  "future_portfolio_frozen": false,
+  "live_capital_authorized": false,
+  "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER"
+}

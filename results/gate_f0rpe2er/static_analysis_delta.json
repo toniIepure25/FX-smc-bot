@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_STATIC_ANALYSIS_DELTA_V1",
+  "comparison_base": "origin/main",
+  "changed_python_files_ruff": 55,
+  "changed_source_files_mypy": 27,
+  "new_broad_ruff_violations": 0,
+  "new_broad_mypy_violations": 0,
+  "targeted_ruff": "PASS",
+  "targeted_mypy": "PASS",
+  "status": "PASS"
+}

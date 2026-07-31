@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_LIVE_ADAPTER_MATRIX_V1",
+  "infrastructure_pre_observation_sha": "d65fa4abf95d15475f389b852bee0fe7c3b1d89a",
+  "certification_mode": "LIVE_OFFICIAL_BOUNDED_FAIL_FAST",
+  "adapters": {
+    "USD": {"adapter_id": "NY_FED_EFFR_V2", "official_publisher": "PASS", "exact_endpoint": "PASS", "server_side_date_range": "PASS", "series_identity": "PASS", "response_schema": "FAIL", "response_firewall": "FAIL_CLOSED", "parser": "NOT_RUN", "publication_rule": "NOT_RUN", "effective_rule": "NOT_RUN", "revision_handling": "NOT_RUN", "timezone": "NOT_RUN", "calendar": "NOT_RUN", "three_run_deterministic_parse": "NOT_RUN", "as_of_availability": "NOT_RUN"},
+    "EUR": {"adapter_id": "ECB_EONIA_ESTR_V2", "status": "NOT_RUN_FAIL_FAST_AFTER_USD"},
+    "GBP": {"adapter_id": "BOE_SONIA_V2", "status": "NOT_RUN_FAIL_FAST_AFTER_USD"},
+    "AUD": {"adapter_id": "RBA_CASH_RATE_V2", "status": "NOT_RUN_FAIL_FAST_AFTER_USD"},
+    "JPY": {"adapter_id": "BOJ_FINAL_UO_CALL_V2", "status": "NOT_RUN_FAIL_FAST_AFTER_USD"},
+    "CAD": {"adapter_id": "BOC_V39079_EVENTS_V2", "status": "NOT_RUN_FAIL_FAST_AFTER_USD"},
+    "CHF": {"adapter_id": "SIX_SARON_1800_V2", "status": "NOT_RUN_FAIL_FAST_AFTER_USD"}
+  },
+  "all_required_adapters_certified": false,
+  "status": "FAIL"
+}

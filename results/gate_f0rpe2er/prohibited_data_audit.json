@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_PROHIBITED_DATA_AUDIT_V1",
+  "official_numerical_source_payloads_tracked": 0,
+  "bi5_files_tracked": 0,
+  "m1_files_tracked": 0,
+  "m5_files_tracked": 0,
+  "rate_rows_tracked": 0,
+  "rate_versions_tracked": 0,
+  "aligned_panel_rows_tracked": 0,
+  "daily_signals_tracked": 0,
+  "positions_tracked": 0,
+  "transactions_tracked": 0,
+  "daily_portfolio_returns_tracked": 0,
+  "benchmark_rows_tracked": 0,
+  "credentials_detected": 0,
+  "absolute_clean_room_paths_tracked": 0,
+  "git_scan_status": "PASS",
+  "status": "PASS"
+}

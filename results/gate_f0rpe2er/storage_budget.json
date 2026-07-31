@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_STORAGE_BUDGET_V1",
+  "free_bytes": 50256506880,
+  "official_rate_snapshot_estimate": 268435456,
+  "sqlite_estimate": 536870912,
+  "development_bi5_estimate": 12683575296,
+  "m1_estimate": 3170893824,
+  "m5_estimate": 792723456,
+  "temporary_peak": 21217935360,
+  "certification_scratch": 3765436416,
+  "validation_conditional_estimate": 8748269568,
+  "replication_conditional_estimate": 8748269568,
+  "required_reserve": 10737418240,
+  "estimated_remaining_after_development_peak_and_reserve": 18301153280,
+  "estimate_basis": "SCALED_FROM_GATE_Q0R_CERTIFIED_PARTITION_BUDGET_BY_PAIR_MONTH_COUNT",
+  "safe_development_peak": "PASS",
+  "acquisition_started": false,
+  "status": "PASS_BUDGET_ONLY_EXECUTION_BLOCKED_EARLIER"
+}
