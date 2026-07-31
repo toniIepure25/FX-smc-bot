@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_RATE_VINTAGE_STORE_CERTIFICATION_V1",
+  "store_schema_id": "F0RPE2ER_RATE_VINTAGE_STORE_V3",
+  "code_sha256": "18317a37a8afb7b8445dfb8a267683732afb53c5549329b30973562e262a89aa",
+  "required_tables": ["source_requests", "source_snapshots", "ingestion_runs", "rate_series", "rate_observation_identities", "rate_versions", "availability_events", "certification_results", "aligned_daily_rate_panel", "dataset_freezes"],
+  "new_database_required": "PASS",
+  "append_only_snapshots": "PASS",
+  "append_only_versions": "PASS",
+  "firewall_certification_before_snapshot": "PASS",
+  "request_snapshot_version_binding": "PASS",
+  "timezone_aware_timestamps": "PASS",
+  "availability_max_publication_effective": "PASS",
+  "explicit_as_of_required": "PASS",
+  "freeze_pins_exact_version_ids": "PASS",
+  "revision_no_backward_leakage": "PASS",
+  "focused_tests_passed": 27,
+  "official_observation_identities": 0,
+  "official_rate_versions": 0,
+  "official_revisions": 0,
+  "status": "PASS_SYNTHETIC_CERTIFICATION"
+}

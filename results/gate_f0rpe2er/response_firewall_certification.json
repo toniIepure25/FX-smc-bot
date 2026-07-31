@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_RESPONSE_FIREWALL_CERTIFICATION_V1",
+  "firewall_id": "F0RPE2ER_HISTORICAL_RESPONSE_FIREWALL_V1",
+  "authorized_minimum_date": "2010-01-01",
+  "authorized_maximum_date": "2022-12-31",
+  "code_sha256": "8f653a677d7b70768f959d294cddaa5fef3f01c3a552aebdad672de4a62f558b",
+  "request_preflight_before_network": "PASS",
+  "declared_series_currency_schema": "PASS",
+  "malformed_date_rejection": "PASS",
+  "conflicting_duplicate_rejection": "PASS",
+  "mixed_response_atomic_rejection": "PASS",
+  "out_of_range_disposition": "SOURCE_RESPONSE_SCOPE_VIOLATION",
+  "violation_records_contain_numerical_values": false,
+  "nzd_rejection": "PASS",
+  "nzdusd_rejection": "PASS",
+  "focused_tests_passed": 21,
+  "official_network_requests": 0,
+  "status": "PASS_SYNTHETIC_AND_TRANSPORT_CERTIFICATION"
+}

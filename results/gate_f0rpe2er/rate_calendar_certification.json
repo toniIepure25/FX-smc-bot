@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ER_RATE_CALENDAR_CERTIFICATION_V1",
+  "calendar_version": "F0RPE2E_RATE_CALENDARS_V2",
+  "code_sha256": "b06394aea4316ceb12061fa289e0efb1192682b389bc655e29e6bd88b2bfeddf",
+  "authorized_interval": ["2010-01-01", "2022-12-31"],
+  "named_calendars": 8,
+  "authorized_currencies": 7,
+  "nzd_calendar_present": false,
+  "historical_exception_rules": "PASS",
+  "event_calendar_requires_certified_dates": "PASS",
+  "focused_calendar_and_alignment_tests_passed": 30,
+  "status": "PASS_SYNTHETIC_CERTIFICATION"
+}
