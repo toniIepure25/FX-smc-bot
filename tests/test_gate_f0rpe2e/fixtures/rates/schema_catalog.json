@@ -1,0 +1,13 @@
+{
+  "fixture_kind": "SYNTHETIC_SCHEMA_METADATA_ONLY",
+  "contains_observation_rows": false,
+  "schemas": {
+    "AUD": "rba-cash-rate-official-v1",
+    "CAD": "boc-v39079-policy-events-official-v1",
+    "CHF": "six-saron-1800-official-v1",
+    "EUR": "ecb-overnight-rate-official-v1",
+    "GBP": "boe-iudsoia-official-v1",
+    "JPY": "boj-final-call-rate-official-v1",
+    "USD": "ny-fed-effr-official-v1"
+  }
+}
