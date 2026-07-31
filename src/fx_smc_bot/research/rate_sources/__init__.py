@@ -3,6 +3,7 @@
 from fx_smc_bot.research.rate_sources.bank_of_canada import BankOfCanadaAdapter
 from fx_smc_bot.research.rate_sources.bank_of_england import BankOfEnglandSoniaAdapter
 from fx_smc_bot.research.rate_sources.bank_of_japan import BankOfJapanCallRateAdapter
+from fx_smc_bot.research.rate_sources.client import OfficialRateSnapshotClient
 from fx_smc_bot.research.rate_sources.ecb import EcbEoniaEstrAdapter
 from fx_smc_bot.research.rate_sources.new_york_fed import NewYorkFedEffrAdapter
 from fx_smc_bot.research.rate_sources.rba import RbaCashRateAdapter
@@ -25,6 +26,7 @@ __all__ = [
     "EcbEoniaEstrAdapter",
     "NewYorkFedEffrAdapter",
     "OFFICIAL_RATE_ADAPTERS",
+    "OfficialRateSnapshotClient",
     "RbaCashRateAdapter",
     "Saron18Adapter",
 ]
