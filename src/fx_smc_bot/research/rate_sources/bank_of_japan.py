@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 
 from fx_smc_bot.research.rate_sources.base import (
+    OfficialNumericalEndpoint,
     OfficialRateRequest,
     RateAccessAuthorization,
     RateCertification,
@@ -14,8 +15,11 @@ from fx_smc_bot.research.rate_sources.base import (
     certify_common,
     combine_certification,
     make_request,
+    make_v2_request,
     reject_duplicate_versions,
+    schema_fingerprint,
     strict_json_rows,
+    validate_v2_snapshot,
     version_from_row,
 )
 
@@ -116,3 +120,65 @@ class BankOfJapanCallRateAdapter:
             or snapshot.request.series_id != self.series_id
         ):
             raise RateSourceError("SNAPSHOT_REQUEST_IDENTITY_MISMATCH")
+
+
+class BankOfJapanCallRateAdapterV2(BankOfJapanCallRateAdapter):
+    """Future-baseline adapter restricted to final BOJ observations."""
+
+    adapter_id = "BOJ_FINAL_UO_CALL_V2"
+    parser_version = "BOJ_FINAL_UO_CALL_JSON_V2"
+    schema_id = "BOJ_FAME_FINAL_JSON_V2"
+    endpoint_declarations = (
+        OfficialNumericalEndpoint(
+            allowlist_identity="F0RPE2ER_OFFICIAL_SOURCE_ALLOWLIST_V1",
+            adapter_id=adapter_id,
+            currency=BankOfJapanCallRateAdapter.currency,
+            series_id=BankOfJapanCallRateAdapter.series_id,
+            publisher=BankOfJapanCallRateAdapter.publisher,
+            url="https://www.stat-search.boj.or.jp/ssi/cgi-bin/famecgi2",
+            start_parameter="startDate",
+            end_parameter="endDate",
+            series_parameter="code",
+            series_parameter_value=BankOfJapanCallRateAdapter.series_id,
+            response_format="JSON_FINAL_ONLY",
+            accept_media_type="application/json",
+            format_parameter="format",
+            format_parameter_value="json",
+            series_path_token=None,
+            format_path_token=None,
+            schema_id=schema_id,
+            required_fields=tuple(sorted(BankOfJapanCallRateAdapter.required_fields)),
+            schema_fingerprint=schema_fingerprint(
+                schema_id,
+                BankOfJapanCallRateAdapter.required_fields,
+            ),
+            publication_timestamp_field="publicationTimestamp",
+            effective_timestamp_field="effectiveTimestamp",
+        ),
+    )
+
+    def build_requests(
+        self, start: date, end: date, authorization: RateAccessAuthorization
+    ) -> tuple[OfficialRateRequest, ...]:
+        return (
+            make_v2_request(
+                declaration=self.endpoint_declarations[0],
+                endpoint_role=self.endpoint_role,
+                start=start,
+                end=end,
+                query_parameters={
+                    "code": self.series_id,
+                    "endDate": end.isoformat(),
+                    "format": "json",
+                    "resultType": "final",
+                    "startDate": start.isoformat(),
+                },
+                authorization=authorization,
+            ),
+        )
+
+    def parse_snapshot(self, snapshot: SourceSnapshot) -> tuple[RateVersion, ...]:
+        validate_v2_snapshot(
+            snapshot, adapter_id=self.adapter_id, declarations=self.endpoint_declarations
+        )
+        return super().parse_snapshot(snapshot)

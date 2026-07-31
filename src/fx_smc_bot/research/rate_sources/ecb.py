@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 
 from fx_smc_bot.research.rate_sources.base import (
+    OfficialNumericalEndpoint,
     OfficialRateRequest,
     RateAccessAuthorization,
     RateCertification,
@@ -14,8 +15,11 @@ from fx_smc_bot.research.rate_sources.base import (
     certify_common,
     combine_certification,
     make_request,
+    make_v2_request,
     reject_duplicate_versions,
+    schema_fingerprint,
     strict_json_rows,
+    validate_v2_snapshot,
     version_from_row,
 )
 
@@ -135,3 +139,69 @@ class EcbEoniaEstrAdapter:
             },
             authorization=authorization,
         )
+
+
+class EcbEoniaEstrAdapterV2(EcbEoniaEstrAdapter):
+    """Future-baseline EUR transition adapter with two disjoint declarations."""
+
+    adapter_id = "ECB_EONIA_ESTR_V2"
+    parser_version = "ECB_EONIA_ESTR_JSON_V2"
+    schema_id = "ECB_SDMX_JSONDATA_V2"
+    endpoint_declarations = tuple(
+        OfficialNumericalEndpoint(
+            allowlist_identity="F0RPE2ER_OFFICIAL_SOURCE_ALLOWLIST_V1",
+            adapter_id="ECB_EONIA_ESTR_V2",
+            currency=EcbEoniaEstrAdapter.currency,
+            series_id=source_series,
+            publisher=EcbEoniaEstrAdapter.publisher,
+            url=f"https://data-api.ecb.europa.eu/service/data/{dataset}/B.EU000A2X2A25.WT",
+            start_parameter="startPeriod",
+            end_parameter="endPeriod",
+            series_parameter="PATH_SERIES_KEY",
+            series_parameter_value=source_series,
+            response_format="JSONDATA",
+            accept_media_type="application/json",
+            format_parameter="format",
+            format_parameter_value="jsondata",
+            series_path_token=f"/data/{dataset}/B.EU000A2X2A25.WT",
+            format_path_token=None,
+            schema_id="ECB_SDMX_JSONDATA_V2",
+            required_fields=tuple(sorted(EcbEoniaEstrAdapter.required_fields)),
+            schema_fingerprint=schema_fingerprint(
+                "ECB_SDMX_JSONDATA_V2", EcbEoniaEstrAdapter.required_fields
+            ),
+            publication_timestamp_field="publicationTimestamp",
+            effective_timestamp_field="effectiveTimestamp",
+        )
+        for source_series, dataset in (("EONIA", "EON"), ("ESTR", "EST"))
+    )
+
+    def _request(
+        self,
+        source_series: str,
+        start: date,
+        end: date,
+        authorization: RateAccessAuthorization,
+    ) -> OfficialRateRequest:
+        declaration = next(
+            item for item in self.endpoint_declarations if item.series_id == source_series
+        )
+        return make_v2_request(
+            declaration=declaration,
+            endpoint_role=self.endpoint_role,
+            start=start,
+            end=end,
+            query_parameters={
+                "detail": "full",
+                "endPeriod": end.isoformat(),
+                "format": "jsondata",
+                "startPeriod": start.isoformat(),
+            },
+            authorization=authorization,
+        )
+
+    def parse_snapshot(self, snapshot: SourceSnapshot) -> tuple[RateVersion, ...]:
+        validate_v2_snapshot(
+            snapshot, adapter_id=self.adapter_id, declarations=self.endpoint_declarations
+        )
+        return super().parse_snapshot(snapshot)

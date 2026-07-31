@@ -19,6 +19,9 @@ from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 MAX_REQUEST_DAYS = 370
+V2_AUTHORIZED_START = date(2010, 1, 1)
+V2_AUTHORIZED_END = date(2022, 12, 31)
+V2_FIREWALL_ID = "F0RPE2ER_HISTORICAL_RESPONSE_FIREWALL_V1"
 PROHIBITED_CURRENCY = "NZD"
 PROHIBITED_YEARS = frozenset({2023, 2024, 2025})
 ALLOWED_REVISION_STATUSES = frozenset({"ORIGINAL", "REVISED", "CORRECTED", "FINAL"})
@@ -30,6 +33,175 @@ class RateSourceError(ValueError):
 
 
 @dataclass(frozen=True, slots=True)
+class BoundedRetryPolicy:
+    """Finite retry metadata consumed by the acquisition client."""
+
+    policy_id: str = "F0RPE2ER_OFFICIAL_RATE_RETRY_V1"
+    maximum_attempts: int = 3
+    initial_backoff_seconds: float = 0.25
+    maximum_backoff_seconds: float = 1.0
+    retryable_status_codes: tuple[int, ...] = (429, 500, 502, 503, 504)
+
+    def __post_init__(self) -> None:
+        if not self.policy_id.strip():
+            raise RateSourceError("RETRY_POLICY_ID_REQUIRED")
+        if not 1 <= self.maximum_attempts <= 4:
+            raise RateSourceError("RETRY_ATTEMPTS_NOT_BOUNDED")
+        if not 0 <= self.initial_backoff_seconds <= self.maximum_backoff_seconds <= 5:
+            raise RateSourceError("RETRY_BACKOFF_NOT_BOUNDED")
+        if tuple(sorted(set(self.retryable_status_codes))) != self.retryable_status_codes:
+            raise RateSourceError("RETRYABLE_STATUS_CODES_MUST_BE_SORTED_UNIQUE")
+
+    def backoff_seconds(self, failed_attempt: int) -> float:
+        if failed_attempt < 1 or failed_attempt >= self.maximum_attempts:
+            raise RateSourceError("RETRY_ATTEMPT_OUTSIDE_POLICY")
+        return min(
+            self.initial_backoff_seconds * (2 ** (failed_attempt - 1)),
+            self.maximum_backoff_seconds,
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class OfficialNumericalEndpoint:
+    """Allowlisted machine endpoint with enforceable server-side bounds."""
+
+    allowlist_identity: str
+    adapter_id: str
+    currency: str
+    series_id: str
+    publisher: str
+    url: str
+    start_parameter: str
+    end_parameter: str
+    series_parameter: str
+    series_parameter_value: str
+    response_format: str
+    accept_media_type: str
+    format_parameter: str | None
+    format_parameter_value: str | None
+    series_path_token: str | None
+    format_path_token: str | None
+    schema_id: str
+    required_fields: tuple[str, ...]
+    schema_fingerprint: str
+    publication_timestamp_field: str
+    effective_timestamp_field: str
+    firewall_id: str = V2_FIREWALL_ID
+    retry_policy: BoundedRetryPolicy = field(default_factory=BoundedRetryPolicy)
+
+    def __post_init__(self) -> None:
+        required = (
+            self.allowlist_identity,
+            self.adapter_id,
+            self.currency,
+            self.series_id,
+            self.publisher,
+            self.start_parameter,
+            self.end_parameter,
+            self.series_parameter,
+            self.series_parameter_value,
+            self.response_format,
+            self.accept_media_type,
+            self.schema_id,
+            self.schema_fingerprint,
+            self.publication_timestamp_field,
+            self.effective_timestamp_field,
+        )
+        if any(not value.strip() for value in required):
+            raise RateSourceError("OFFICIAL_ENDPOINT_DECLARATION_INCOMPLETE")
+        normalized_fields = tuple(sorted(set(self.required_fields)))
+        if not self.required_fields or normalized_fields != self.required_fields:
+            raise RateSourceError("REQUIRED_SCHEMA_FIELDS_MUST_BE_SORTED_UNIQUE")
+        if self.currency == PROHIBITED_CURRENCY or "NZD" in self.series_id.upper():
+            raise RateSourceError("NZD_ENDPOINT_PROHIBITED")
+        parsed = urlparse(self.url)
+        if parsed.scheme != "https" or not parsed.hostname or parsed.query:
+            raise RateSourceError("EXACT_HTTPS_NUMERICAL_ENDPOINT_REQUIRED")
+        if (self.format_parameter is None) != (self.format_parameter_value is None):
+            raise RateSourceError("FORMAT_PARAMETER_DECLARATION_INCOMPLETE")
+        if self.series_parameter == "PATH_SERIES_KEY" and not self.series_path_token:
+            raise RateSourceError("PATH_SERIES_KEY_TOKEN_REQUIRED")
+        if self.series_parameter == "FIXED_ENDPOINT_SERIES" and self.series_path_token:
+            raise RateSourceError("FIXED_ENDPOINT_MUST_NOT_DECLARE_SERIES_TOKEN")
+        if self.format_parameter is None and not self.format_path_token:
+            raise RateSourceError("EXPLICIT_RESPONSE_FORMAT_BINDING_REQUIRED")
+        _validate_sha256(self.schema_fingerprint)
+        if self.schema_fingerprint != schema_fingerprint(
+            self.schema_id, frozenset(self.required_fields)
+        ):
+            raise RateSourceError("SCHEMA_FINGERPRINT_MISMATCH")
+        if self.firewall_id != V2_FIREWALL_ID:
+            raise RateSourceError("UNAUTHORIZED_RESPONSE_FIREWALL")
+
+    def validate_request(self, request: OfficialRateRequest) -> None:
+        if (
+            request.adapter_id != self.adapter_id
+            or request.currency != self.currency
+            or request.series_id != self.series_id
+            or request.source_publisher != self.publisher
+            or request.url != self.url
+        ):
+            raise RateSourceError("REQUEST_ENDPOINT_DECLARATION_MISMATCH")
+        if request.start < V2_AUTHORIZED_START or request.end > V2_AUTHORIZED_END:
+            raise RateSourceError("V2_REQUEST_OUTSIDE_2010_2022")
+        parameters = dict(request.query_parameters)
+        if self.start_parameter not in parameters or self.end_parameter not in parameters:
+            raise RateSourceError("SERVER_SIDE_DATE_BOUNDS_REQUIRED")
+        if self.series_parameter == "PATH_SERIES_KEY":
+            if self.series_path_token is None or self.series_path_token not in self.url:
+                raise RateSourceError("PATH_SERIES_KEY_NOT_BOUND")
+        elif self.series_parameter == "FIXED_ENDPOINT_SERIES":
+            if request.url != self.url:
+                raise RateSourceError("FIXED_ENDPOINT_SERIES_NOT_BOUND")
+        elif parameters.get(self.series_parameter) != self.series_parameter_value:
+            raise RateSourceError("SERVER_SIDE_SERIES_PARAMETER_REQUIRED")
+        if self.format_parameter is not None and (
+            parameters.get(self.format_parameter) != self.format_parameter_value
+        ):
+            raise RateSourceError("EXPLICIT_RESPONSE_FORMAT_REQUIRED")
+        if self.format_parameter is None and (
+            self.format_path_token is None or self.format_path_token not in self.url
+        ):
+            raise RateSourceError("PATH_RESPONSE_FORMAT_NOT_BOUND")
+
+    @property
+    def declaration_sha256(self) -> str:
+        return _canonical_sha256(
+            {
+                "adapter_id": self.adapter_id,
+                "allowlist_identity": self.allowlist_identity,
+                "currency": self.currency,
+                "accept_media_type": self.accept_media_type,
+                "effective_timestamp_field": self.effective_timestamp_field,
+                "end_parameter": self.end_parameter,
+                "firewall_id": self.firewall_id,
+                "format_parameter": self.format_parameter,
+                "format_parameter_value": self.format_parameter_value,
+                "format_path_token": self.format_path_token,
+                "publication_timestamp_field": self.publication_timestamp_field,
+                "publisher": self.publisher,
+                "response_format": self.response_format,
+                "required_fields": self.required_fields,
+                "retry_policy": {
+                    "initial_backoff_seconds": self.retry_policy.initial_backoff_seconds,
+                    "maximum_attempts": self.retry_policy.maximum_attempts,
+                    "maximum_backoff_seconds": self.retry_policy.maximum_backoff_seconds,
+                    "policy_id": self.retry_policy.policy_id,
+                    "retryable_status_codes": self.retry_policy.retryable_status_codes,
+                },
+                "schema_fingerprint": self.schema_fingerprint,
+                "schema_id": self.schema_id,
+                "series_id": self.series_id,
+                "series_parameter": self.series_parameter,
+                "series_parameter_value": self.series_parameter_value,
+                "series_path_token": self.series_path_token,
+                "start_parameter": self.start_parameter,
+                "url": self.url,
+            }
+        )
+
+
+@dataclass(frozen=True, slots=True)
 class RateAccessAuthorization:
     authorization_id: str
     adapter_ids: frozenset[str]
@@ -38,6 +210,7 @@ class RateAccessAuthorization:
     start: date
     end: date
     official_hosts: frozenset[str]
+    source_allowlist_identities: frozenset[str] = frozenset()
 
     def __post_init__(self) -> None:
         if not self.authorization_id.strip():
@@ -60,6 +233,10 @@ class RateAccessAuthorization:
         host = (urlparse(request.url).hostname or "").lower()
         if host not in self.official_hosts:
             raise RateSourceError("NON_OFFICIAL_HOST")
+        if request.endpoint_declaration is not None:
+            identity = request.endpoint_declaration.allowlist_identity
+            if identity not in self.source_allowlist_identities:
+                raise RateSourceError("SOURCE_ALLOWLIST_IDENTITY_NOT_AUTHORIZED")
 
 
 @dataclass(frozen=True, slots=True)
@@ -75,6 +252,7 @@ class OfficialRateRequest:
     query_parameters: HeaderPairs = ()
     request_headers: HeaderPairs = (("Accept", "application/json"),)
     method: str = "GET"
+    endpoint_declaration: OfficialNumericalEndpoint | None = None
 
     def __post_init__(self) -> None:
         if self.currency == PROHIBITED_CURRENCY:
@@ -93,6 +271,8 @@ class OfficialRateRequest:
             raise RateSourceError("QUERY_PARAMETERS_MUST_BE_SORTED")
         if len({name for name, _ in self.query_parameters}) != len(self.query_parameters):
             raise RateSourceError("DUPLICATE_QUERY_PARAMETER")
+        if self.endpoint_declaration is not None:
+            self.endpoint_declaration.validate_request(self)
 
     @property
     def request_identity(self) -> str:
@@ -106,6 +286,11 @@ class OfficialRateRequest:
             "series_id": self.series_id,
             "start": self.start.isoformat(),
             "url": self.url,
+            "endpoint_declaration_sha256": (
+                self.endpoint_declaration.declaration_sha256
+                if self.endpoint_declaration is not None
+                else None
+            ),
         }
         return _canonical_sha256(record)
 
@@ -232,6 +417,16 @@ class OfficialRateAdapter(Protocol):
     def certify_version(self, version: RateVersion) -> RateCertification: ...
 
 
+class RateResponseFirewall(Protocol):
+    """Transport boundary implemented by the historical response firewall."""
+
+    firewall_id: str
+
+    def validate_request(self, request: OfficialRateRequest) -> None: ...
+
+    def validate_snapshot(self, snapshot: SourceSnapshot) -> None: ...
+
+
 def make_request(
     *,
     adapter_id: str,
@@ -245,6 +440,7 @@ def make_request(
     query_parameters: Mapping[str, str],
     authorization: RateAccessAuthorization,
     accept: str = "application/json",
+    endpoint_declaration: OfficialNumericalEndpoint | None = None,
 ) -> OfficialRateRequest:
     request = OfficialRateRequest(
         adapter_id=adapter_id,
@@ -257,9 +453,67 @@ def make_request(
         url=url,
         query_parameters=tuple(sorted(query_parameters.items())),
         request_headers=(("Accept", accept),),
+        endpoint_declaration=endpoint_declaration,
     )
     authorization.authorize(request)
     return request
+
+
+def make_v2_request(
+    *,
+    declaration: OfficialNumericalEndpoint,
+    endpoint_role: str,
+    start: date,
+    end: date,
+    query_parameters: Mapping[str, str],
+    authorization: RateAccessAuthorization,
+) -> OfficialRateRequest:
+    """Construct a V2 request only from its frozen endpoint declaration."""
+
+    return make_request(
+        adapter_id=declaration.adapter_id,
+        currency=declaration.currency,
+        series_id=declaration.series_id,
+        publisher=declaration.publisher,
+        endpoint_role=endpoint_role,
+        start=start,
+        end=end,
+        url=declaration.url,
+        query_parameters=query_parameters,
+        authorization=authorization,
+        accept=declaration.accept_media_type,
+        endpoint_declaration=declaration,
+    )
+
+
+def validate_v2_snapshot(
+    snapshot: SourceSnapshot,
+    *,
+    adapter_id: str,
+    declarations: Sequence[OfficialNumericalEndpoint],
+) -> OfficialNumericalEndpoint:
+    """Pin a supplied snapshot to one and only one declared V2 endpoint."""
+
+    declaration = snapshot.request.endpoint_declaration
+    if declaration is None or declaration not in declarations:
+        raise RateSourceError("V2_SNAPSHOT_ENDPOINT_NOT_DECLARED")
+    if snapshot.request.adapter_id != adapter_id:
+        raise RateSourceError("V2_SNAPSHOT_ADAPTER_ID_MISMATCH")
+    declaration.validate_request(snapshot.request)
+    if declaration.schema_fingerprint != schema_fingerprint(
+        declaration.schema_id, frozenset(declaration.required_fields)
+    ):
+        raise RateSourceError("V2_SCHEMA_FINGERPRINT_MISMATCH")
+    return declaration
+
+
+def schema_fingerprint(
+    schema_id: str,
+    required_fields: frozenset[str],
+) -> str:
+    """Hash a normalized source schema without requiring observation rows."""
+
+    return _canonical_sha256({"required_fields": sorted(required_fields), "schema_id": schema_id})
 
 
 def strict_json_rows(

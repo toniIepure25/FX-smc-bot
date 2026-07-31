@@ -6,6 +6,7 @@ from datetime import date
 from zoneinfo import ZoneInfo
 
 from fx_smc_bot.research.rate_sources.base import (
+    OfficialNumericalEndpoint,
     OfficialRateRequest,
     RateAccessAuthorization,
     RateCertification,
@@ -15,8 +16,11 @@ from fx_smc_bot.research.rate_sources.base import (
     certify_common,
     combine_certification,
     make_request,
+    make_v2_request,
     reject_duplicate_versions,
+    schema_fingerprint,
     strict_json_rows,
+    validate_v2_snapshot,
     version_from_row,
 )
 
@@ -119,3 +123,65 @@ class NewYorkFedEffrAdapter:
             raise RateSourceError("SNAPSHOT_REQUEST_IDENTITY_MISMATCH")
         if request.source_endpoint_role != self.endpoint_role:
             raise RateSourceError("SNAPSHOT_ENDPOINT_ROLE_MISMATCH")
+
+
+class NewYorkFedEffrAdapterV2(NewYorkFedEffrAdapter):
+    """Future-baseline EFFR adapter pinned to the bounded official API."""
+
+    adapter_id = "NY_FED_EFFR_V2"
+    parser_version = "NY_FED_EFFR_JSON_V2"
+    schema_id = "NY_FED_RATES_SEARCH_JSON_V2"
+    endpoint_declarations = (
+        OfficialNumericalEndpoint(
+            allowlist_identity="F0RPE2ER_OFFICIAL_SOURCE_ALLOWLIST_V1",
+            adapter_id=adapter_id,
+            currency=NewYorkFedEffrAdapter.currency,
+            series_id=NewYorkFedEffrAdapter.series_id,
+            publisher=NewYorkFedEffrAdapter.publisher,
+            url="https://markets.newyorkfed.org/api/rates/all/search.json",
+            start_parameter="startDate",
+            end_parameter="endDate",
+            series_parameter="eventCodes",
+            series_parameter_value="500",
+            response_format="JSON",
+            accept_media_type="application/json",
+            format_parameter="format",
+            format_parameter_value="json",
+            series_path_token=None,
+            format_path_token=None,
+            schema_id=schema_id,
+            required_fields=tuple(sorted(NewYorkFedEffrAdapter.required_fields)),
+            schema_fingerprint=schema_fingerprint(
+                schema_id, NewYorkFedEffrAdapter.required_fields
+            ),
+            publication_timestamp_field="publicationTimestamp",
+            effective_timestamp_field="effectiveTimestamp",
+        ),
+    )
+
+    def build_requests(
+        self, start: date, end: date, authorization: RateAccessAuthorization
+    ) -> tuple[OfficialRateRequest, ...]:
+        declaration = self.endpoint_declarations[0]
+        return (
+            make_v2_request(
+                declaration=declaration,
+                endpoint_role=self.endpoint_role,
+                start=start,
+                end=end,
+                query_parameters={
+                    "endDate": end.isoformat(),
+                    "eventCodes": "500",
+                    "format": "json",
+                    "startDate": start.isoformat(),
+                    "type": "rate",
+                },
+                authorization=authorization,
+            ),
+        )
+
+    def parse_snapshot(self, snapshot: SourceSnapshot) -> tuple[RateVersion, ...]:
+        validate_v2_snapshot(
+            snapshot, adapter_id=self.adapter_id, declarations=self.endpoint_declarations
+        )
+        return super().parse_snapshot(snapshot)

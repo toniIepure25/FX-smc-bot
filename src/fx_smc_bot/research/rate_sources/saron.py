@@ -6,6 +6,7 @@ from datetime import date
 from zoneinfo import ZoneInfo
 
 from fx_smc_bot.research.rate_sources.base import (
+    OfficialNumericalEndpoint,
     OfficialRateRequest,
     RateAccessAuthorization,
     RateCertification,
@@ -15,8 +16,11 @@ from fx_smc_bot.research.rate_sources.base import (
     certify_common,
     combine_certification,
     make_request,
+    make_v2_request,
     reject_duplicate_versions,
+    schema_fingerprint,
     strict_json_rows,
+    validate_v2_snapshot,
     version_from_row,
 )
 
@@ -114,3 +118,63 @@ class Saron18Adapter:
             or snapshot.request.series_id != self.series_id
         ):
             raise RateSourceError("SNAPSHOT_REQUEST_IDENTITY_MISMATCH")
+
+
+class Saron18AdapterV2(Saron18Adapter):
+    """Future-baseline adapter restricted to the selected 18:00 SARON fixing."""
+
+    adapter_id = "SIX_SARON_1800_V2"
+    parser_version = "SIX_SARON_1800_JSON_V2"
+    schema_id = "SNB_CUBE_JSON_V2"
+    publisher = "Swiss National Bank / SIX Index AG"
+    endpoint_declarations = (
+        OfficialNumericalEndpoint(
+            allowlist_identity="F0RPE2ER_OFFICIAL_SOURCE_ALLOWLIST_V1",
+            adapter_id=adapter_id,
+            currency=Saron18Adapter.currency,
+            series_id=Saron18Adapter.series_id,
+            publisher=publisher,
+            url="https://data.snb.ch/api/cube/zimoma/data/json/en",
+            start_parameter="fromDate",
+            end_parameter="toDate",
+            series_parameter="dimSel",
+            series_parameter_value="SRFXON3",
+            response_format="JSON",
+            accept_media_type="application/json",
+            format_parameter=None,
+            format_parameter_value=None,
+            series_path_token=None,
+            format_path_token="/json/",
+            schema_id=schema_id,
+            required_fields=tuple(sorted(Saron18Adapter.required_fields)),
+            schema_fingerprint=schema_fingerprint(
+                schema_id, Saron18Adapter.required_fields
+            ),
+            publication_timestamp_field="publicationTimestamp",
+            effective_timestamp_field="effectiveTimestamp",
+        ),
+    )
+
+    def build_requests(
+        self, start: date, end: date, authorization: RateAccessAuthorization
+    ) -> tuple[OfficialRateRequest, ...]:
+        return (
+            make_v2_request(
+                declaration=self.endpoint_declarations[0],
+                endpoint_role=self.endpoint_role,
+                start=start,
+                end=end,
+                query_parameters={
+                    "dimSel": self.series_id,
+                    "fromDate": start.isoformat(),
+                    "toDate": end.isoformat(),
+                },
+                authorization=authorization,
+            ),
+        )
+
+    def parse_snapshot(self, snapshot: SourceSnapshot) -> tuple[RateVersion, ...]:
+        validate_v2_snapshot(
+            snapshot, adapter_id=self.adapter_id, declarations=self.endpoint_declarations
+        )
+        return super().parse_snapshot(snapshot)

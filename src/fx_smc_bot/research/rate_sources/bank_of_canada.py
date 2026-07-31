@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 
 from fx_smc_bot.research.rate_sources.base import (
+    OfficialNumericalEndpoint,
     OfficialRateRequest,
     RateAccessAuthorization,
     RateCertification,
@@ -14,8 +15,11 @@ from fx_smc_bot.research.rate_sources.base import (
     certify_common,
     combine_certification,
     make_request,
+    make_v2_request,
     reject_duplicate_versions,
+    schema_fingerprint,
     strict_json_rows,
+    validate_v2_snapshot,
     version_from_row,
 )
 
@@ -117,3 +121,62 @@ class BankOfCanadaAdapter:
             or snapshot.request.series_id != self.series_id
         ):
             raise RateSourceError("SNAPSHOT_REQUEST_IDENTITY_MISMATCH")
+
+
+class BankOfCanadaAdapterV2(BankOfCanadaAdapter):
+    """Future-baseline V39079 adapter pinned to bounded Valet requests."""
+
+    adapter_id = "BOC_V39079_EVENTS_V2"
+    parser_version = "BOC_V39079_EVENT_JSON_V2"
+    schema_id = "BOC_VALET_JSON_V2"
+    endpoint_declarations = (
+        OfficialNumericalEndpoint(
+            allowlist_identity="F0RPE2ER_OFFICIAL_SOURCE_ALLOWLIST_V1",
+            adapter_id=adapter_id,
+            currency=BankOfCanadaAdapter.currency,
+            series_id=BankOfCanadaAdapter.series_id,
+            publisher=BankOfCanadaAdapter.publisher,
+            url="https://www.bankofcanada.ca/valet/observations/V39079/json",
+            start_parameter="start_date",
+            end_parameter="end_date",
+            series_parameter="PATH_SERIES_KEY",
+            series_parameter_value="V39079",
+            response_format="JSON",
+            accept_media_type="application/json",
+            format_parameter=None,
+            format_parameter_value=None,
+            series_path_token="/observations/V39079/",
+            format_path_token="/json",
+            schema_id=schema_id,
+            required_fields=tuple(sorted(BankOfCanadaAdapter.required_fields)),
+            schema_fingerprint=schema_fingerprint(
+                schema_id, BankOfCanadaAdapter.required_fields
+            ),
+            publication_timestamp_field="publicationTimestamp",
+            effective_timestamp_field="effectiveTimestamp",
+        ),
+    )
+
+    def build_requests(
+        self, start: date, end: date, authorization: RateAccessAuthorization
+    ) -> tuple[OfficialRateRequest, ...]:
+        return (
+            make_v2_request(
+                declaration=self.endpoint_declarations[0],
+                endpoint_role=self.endpoint_role,
+                start=start,
+                end=end,
+                query_parameters={
+                    "end_date": end.isoformat(),
+                    "event_metadata": "policy-announcement",
+                    "start_date": start.isoformat(),
+                },
+                authorization=authorization,
+            ),
+        )
+
+    def parse_snapshot(self, snapshot: SourceSnapshot) -> tuple[RateVersion, ...]:
+        validate_v2_snapshot(
+            snapshot, adapter_id=self.adapter_id, declarations=self.endpoint_declarations
+        )
+        return super().parse_snapshot(snapshot)
