@@ -1,0 +1,98 @@
+{
+  "current_lineage_confirmation_permitted": false,
+  "future_work_requires": [
+    "new lineage ID",
+    "new financially motivated hypothesis",
+    "new candidate family",
+    "new preregistration",
+    "new multiple-testing family",
+    "independent data partition"
+  ],
+  "hypotheses": [
+    {
+      "hypothesis": "lower the 0.55 model probability thresholds",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "remove the ABSTAIN action",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "change target-label construction",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "change elastic-net regularization grid",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "use instrument identity as a predictive feature",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "introduce tree, boosting or neural models on the same development sample",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "select only USDCHF for the meta-model",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "select favorable development years",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "select favorable instruments",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "exclude losing trades",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "change transaction costs",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "change session definitions",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "change purge or embargo",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "access 2020-2022 despite the empty shortlist",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "use the quarantined historical interval as confirmation",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "reverse the inverted policies again",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "optimize stop loss or take profit",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    },
+    {
+      "hypothesis": "add another SMC transformation",
+      "status": "OUTCOME_INFORMED_NOT_CONFIRMABLE_IN_CURRENT_LINEAGE"
+    }
+  ],
+  "quarantine_hash": "316615ce35f6ea1c9d1f4aaee5a250d25b755e4539758426ebdc9e1c8f69c58b",
+  "quarantine_id": "FX_QUANT_POLARITY_META_V2_POSTHOC_QUARANTINE_V1",
+  "status": "ACTIVE",
+  "validation": {
+    "checks": {
+      "complete": true,
+      "current_lineage_blocked": true,
+      "hash": true,
+      "identity": true,
+      "uniform_status": true
+    },
+    "status": "PASS"
+  }
+}
