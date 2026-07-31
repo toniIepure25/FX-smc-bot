@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DEVELOPMENT_INFERENCE_V1",
+  "status": "NOT_RUN_EMPIRICAL_EXECUTION_BLOCKED",
+  "reality_check": null,
+  "hansen_spa": null,
+  "romano_wolf": null,
+  "holm": null,
+  "fdr": null,
+  "psr": null,
+  "dsr": null,
+  "raw_p_values": null,
+  "adjusted_p_values": null
+}

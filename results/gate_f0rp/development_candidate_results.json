@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DEVELOPMENT_CANDIDATE_RESULTS_V1",
+  "status": "NOT_RUN_EMPIRICAL_EXECUTION_BLOCKED",
+  "candidates": [
+    {"candidate_id": "F0_TSMOM_COMPOSITE_V1", "status": "NOT_RUN", "metrics": null},
+    {"candidate_id": "F0_SHORT_TERM_REVERSAL_V1", "status": "NOT_RUN", "metrics": null},
+    {"candidate_id": "F0_DUAL_HORIZON_TREND_V1", "status": "NOT_RUN", "metrics": null},
+    {"candidate_id": "F0_DONCHIAN_BREAKOUT_V1", "status": "NOT_RUN", "metrics": null},
+    {"candidate_id": "F0_RATE_DIFFERENTIAL_CARRY_V1", "status": "NOT_RUN", "metrics": null},
+    {"candidate_id": "F0_FIXED_MULTI_FACTOR_V1", "status": "NOT_RUN", "metrics": null}
+  ],
+  "development_shortlist": null,
+  "candidate_ranking_performed": false,
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false
+}

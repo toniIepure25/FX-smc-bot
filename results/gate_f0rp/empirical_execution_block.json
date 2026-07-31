@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_EMPIRICAL_EXECUTION_BLOCK_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "status": "F0RP_RATE_PROVENANCE_RECONCILED_EMPIRICAL_EXECUTION_BLOCKED",
+  "amendment_pre_data_access_sha": "62ee708891b8ee056bf8052f74eece2cb71bba49",
+  "protocol_commit_pre_provider_access_sha": "a0a183421d3cd7bab67392cfc1f1163430643768",
+  "rate_provenance_reconciled": true,
+  "selected_nzd_remediation_route": "OUTCOME_BLIND_NZD_EXCLUSION",
+  "blocking_capabilities": [
+    "NO_CONCRETE_OFFICIAL_RATE_PROVIDER_ADAPTERS",
+    "NO_LOCAL_POINT_IN_TIME_RATE_PANEL_PERSISTENCE",
+    "NO_AMENDED_NINE_INSTRUMENT_EMPIRICAL_PORTFOLIO_ORCHESTRATION",
+    "NO_VALIDATION_OR_REPLICATION_ACQUISITION_OR_ACCESS_FIREWALL",
+    "EUR_2019_TRANSITION_REQUIRES_SPLIT_PARTITIONS_NOT_IMPLEMENTED"
+  ],
+  "market_acquisition_skipped_reason": "RATE_AND_DOWNSTREAM_CERTIFICATION_CANNOT_COMPLETE; AVOID_ORPHANED_PROVIDER_REQUESTS_AND_UNCERTIFIABLE_DATA",
+  "market_provider_requests_sent": 0,
+  "rate_provider_requests_sent": 0,
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false,
+  "development_outcomes_generated": false,
+  "validation_accessed": false,
+  "replication_accessed": false,
+  "future_data_accessed": false
+}

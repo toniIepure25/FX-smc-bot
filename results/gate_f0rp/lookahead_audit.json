@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_LOOKAHEAD_AUDIT_V1",
+  "status": "NOT_RUN_ON_EMPIRICAL_DATA_EXECUTION_BLOCKED",
+  "signals_t_minus_1_or_earlier": null,
+  "rates_respect_publication_timestamps": null,
+  "covariance_lagged_one_day": null,
+  "volatility_lagged_one_day": null,
+  "execution_after_signal_availability": null,
+  "future_price_perturbation": "NOT_RUN",
+  "future_rate_perturbation": "NOT_RUN",
+  "empirical_rows_loaded": false
+}

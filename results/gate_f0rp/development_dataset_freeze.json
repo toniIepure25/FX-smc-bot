@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DEVELOPMENT_DATASET_FREEZE_V1",
+  "status": "NOT_CREATED_EMPIRICAL_EXECUTION_BLOCKED",
+  "market_dataset_frozen": false,
+  "rate_dataset_frozen": false,
+  "development_outcomes_authorized": false,
+  "local_row_level_dataset_created": false,
+  "development_outcome_predecessor_sha": null
+}

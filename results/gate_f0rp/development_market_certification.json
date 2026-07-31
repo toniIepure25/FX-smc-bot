@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DEVELOPMENT_MARKET_CERTIFICATION_V1",
+  "status": "NOT_RUN_EMPIRICAL_EXECUTION_BLOCKED",
+  "planned_side_month_partitions": 1512,
+  "planned_pair_months": 756,
+  "requested_partitions": 0,
+  "certified_pair_months": 0,
+  "missing_required_partitions": null,
+  "successful_zero_row_partitions": null,
+  "three_run_parity": null,
+  "market_observations_accessed": false,
+  "reason": "OFFICIAL_RATE_PROVIDER_AND_DOWNSTREAM_EMPIRICAL_ORCHESTRATION_UNAVAILABLE"
+}

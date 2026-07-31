@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DEVELOPMENT_OVERFITTING_AUDIT_V1",
+  "status": "NOT_RUN_EMPIRICAL_EXECUTION_BLOCKED",
+  "pbo": null,
+  "candidate_ranking_performed": false,
+  "selection_thresholds_changed": false
+}

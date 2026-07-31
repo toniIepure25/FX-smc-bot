@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DEVELOPMENT_ADJUDICATION_V1",
+  "status": "NOT_RUN_EMPIRICAL_EXECUTION_BLOCKED",
+  "eligible_candidates": null,
+  "development_shortlist": null,
+  "shortlist_commit": null,
+  "validation_access_authorized": false
+}

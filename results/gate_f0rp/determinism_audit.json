@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DETERMINISM_AUDIT_V1",
+  "status": "NOT_RUN_ON_EMPIRICAL_DATA_EXECUTION_BLOCKED",
+  "required_empirical_replays": 3,
+  "completed_empirical_replays": 0,
+  "equal_market_hashes": null,
+  "equal_rate_hashes": null,
+  "equal_signal_hashes": null,
+  "equal_position_hashes": null,
+  "equal_return_hashes": null,
+  "empirical_rows_loaded": false
+}

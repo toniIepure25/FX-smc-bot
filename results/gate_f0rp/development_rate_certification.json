@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_DEVELOPMENT_RATE_CERTIFICATION_V1",
+  "status": "NOT_RUN_EMPIRICAL_EXECUTION_BLOCKED",
+  "planned_partitions": 49,
+  "requested_partitions": 0,
+  "certified_partitions": 0,
+  "official_rate_provider_adapters_implemented": false,
+  "point_in_time_availability_certified_on_observations": false,
+  "publication_timestamps_loaded": false,
+  "effective_timestamps_loaded": false,
+  "revised_value_used_before_publication": null,
+  "rate_observations_accessed": false,
+  "reason": "NO_CONCRETE_OFFICIAL_RATE_PROVIDER_ADAPTERS_OR_LOCAL_POINT_IN_TIME_RATE_PANEL"
+}

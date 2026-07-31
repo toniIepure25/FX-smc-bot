@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_EXECUTION_CERTIFICATION_V1",
+  "status": "NOT_RUN_ON_EMPIRICAL_DATA_EXECUTION_BLOCKED",
+  "inherited_synthetic_engine_certification": "results/gate_f0/execution_certification.json",
+  "certified_on_real_data": false,
+  "future_price_perturbation_test_on_real_data": "NOT_RUN",
+  "future_rate_perturbation_test_on_real_data": "NOT_RUN",
+  "three_complete_empirical_replays": "NOT_RUN",
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false
+}

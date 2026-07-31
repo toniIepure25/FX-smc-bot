@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_PORTFOLIO_ACCOUNTING_AUDIT_V1",
+  "status": "NOT_RUN_ON_EMPIRICAL_DATA_EXECUTION_BLOCKED",
+  "bid_ask_side_reconciled": null,
+  "financing_sign_reconciled": null,
+  "day_count_reconciled": null,
+  "multi_day_rollover_reconciled": null,
+  "currency_legs_reconciled": null,
+  "gross_leverage_reconciled": null,
+  "daily_nav_reconciled": null,
+  "gross_to_net_pnl_reconciled": null,
+  "positions_generated": false,
+  "transactions_generated": false,
+  "daily_returns_generated": false
+}
