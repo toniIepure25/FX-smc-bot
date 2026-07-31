@@ -4,7 +4,7 @@
   "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
   "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
   "status": "FROZEN_PRE_ACQUISITION",
-  "protocol_pre_data_access_sha": "d648cc244a33b32e3e1061458a9f64bb65ef1020",
+  "protocol_pre_data_access_sha": "054fb0562d6df8fa08cac03204b6b08d42ae0bd8",
   "frozen_specification": {
     "provider": "DUKASCOPY_BI5_BID_AND_ASK",
     "provider_client": "dukascopy-node",

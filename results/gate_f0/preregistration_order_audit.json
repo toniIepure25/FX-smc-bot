@@ -4,8 +4,12 @@
   "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
   "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
   "status": "PASS",
-  "protocol_pre_data_access_sha": "d648cc244a33b32e3e1061458a9f64bb65ef1020",
-  "protocol_commit_message": "research: freeze classical FX factor and portfolio protocol",
+  "initial_protocol_freeze_sha": "d648cc244a33b32e3e1061458a9f64bb65ef1020",
+  "protocol_pre_data_access_sha": "054fb0562d6df8fa08cac03204b6b08d42ae0bd8",
+  "protocol_commit_chain": [
+    "research: freeze classical FX factor and portfolio protocol",
+    "research: clarify pre-data factor and recovery contracts"
+  ],
   "ordering_assertions": {
     "new_lineage_initialized_before_protocol_freeze": true,
     "instrument_universe_frozen_before_market_data_access": true,
@@ -15,6 +19,7 @@
     "factor_family_frozen_before_outcomes": true,
     "portfolio_construction_frozen_before_outcomes": true,
     "costs_benchmarks_estimands_and_selection_frozen_before_outcomes": true,
+    "factor_zero_return_tie_rule_clarified_before_data_or_outcomes": true,
     "market_observations_accessed_before_protocol_commit": false,
     "rate_observations_accessed_before_protocol_commit": false,
     "provider_requests_sent_before_protocol_commit": false,
