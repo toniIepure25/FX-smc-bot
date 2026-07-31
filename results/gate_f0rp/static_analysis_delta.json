@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_STATIC_ANALYSIS_DELTA_V1",
+  "status": "PASS",
+  "comparison_base": "origin/main@e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+  "method": "CHECK_ALL_CHANGED_PYTHON_PATHS_FROM_ORIGIN_MAIN_THROUGH_CURRENT_IMPLEMENTATION",
+  "targeted_ruff": "PASS",
+  "targeted_mypy": "PASS",
+  "new_broad_ruff": 0,
+  "new_broad_mypy": 0,
+  "ruff_checked_changed_python_files": 22,
+  "mypy_checked_source_files": 10
+}

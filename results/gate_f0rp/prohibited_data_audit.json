@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_PROHIBITED_DATA_AUDIT_V1",
+  "status": "PASS",
+  "original_f0_block_preserved": true,
+  "market_or_rate_access_before_amendment": false,
+  "git_contains_raw_bi5": false,
+  "git_contains_canonical_m1_or_m5": false,
+  "git_contains_row_level_rate_observations": false,
+  "git_contains_rate_event_rows": false,
+  "git_contains_positions": false,
+  "git_contains_transactions": false,
+  "git_contains_daily_factor_or_portfolio_returns": false,
+  "git_contains_provider_payloads": false,
+  "git_contains_credentials": false,
+  "git_contains_absolute_local_clean_room_paths": false,
+  "quarantined_market_or_rate_interval_accessed": false,
+  "quarantined_market_or_rate_interval_enumerated": false,
+  "market_provider_requests_sent": 0,
+  "rate_provider_requests_sent": 0,
+  "nzd_provider_requests_sent": 0,
+  "nzdusd_provider_requests_sent": 0
+}

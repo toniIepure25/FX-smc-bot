@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_QUALITY_GATE_FINAL_V1",
+  "status": "PASS",
+  "full_pytest": {
+    "status": "PASS",
+    "passed": 1139,
+    "failed": 0,
+    "warnings": 91,
+    "duration_seconds": 227.16
+  },
+  "q1_line_ending_regression": {
+    "status": "PASS",
+    "passed": 22,
+    "failed": 0,
+    "reconciliation_id": "Q1_MANIFEST_LINE_ENDING_VALIDATOR_RECONCILIATION_V1"
+  },
+  "gate_f0rp_targeted": {
+    "status": "PASS",
+    "passed": 11,
+    "failed": 0
+  },
+  "targeted_ruff": "PASS",
+  "targeted_mypy": "PASS",
+  "new_broad_ruff": 0,
+  "new_broad_mypy": 0,
+  "node": {
+    "status": "PASS",
+    "passed": 2,
+    "failed": 0,
+    "runtime": "BUNDLED_WORKSPACE_NODE"
+  },
+  "git_diff_check": "PASS",
+  "quality_pass_does_not_imply_empirical_execution": true
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_PROSPECTIVE_INTEGRITY_V1",
+  "status": "PASS",
+  "original_f0_block_preserved": true,
+  "amendment_frozen_before_observation_access": true,
+  "amendment_pre_data_access_sha": "62ee708891b8ee056bf8052f74eece2cb71bba49",
+  "development_data_accessed": false,
+  "validation_data_accessed": false,
+  "replication_data_accessed": false,
+  "future_prospective_data_accessed": false,
+  "future_prospective_storage_enumerated": false,
+  "future_candidate_created": false,
+  "future_collection_handoff_created": false,
+  "paper_or_live_capital_handoff_created": false,
+  "first_permissible_future_date": null
+}
