@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_PREREGISTRATION_ORDER_AUDIT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS",
+  "protocol_pre_data_access_sha": "d648cc244a33b32e3e1061458a9f64bb65ef1020",
+  "protocol_commit_message": "research: freeze classical FX factor and portfolio protocol",
+  "ordering_assertions": {
+    "new_lineage_initialized_before_protocol_freeze": true,
+    "instrument_universe_frozen_before_market_data_access": true,
+    "time_partitions_frozen_before_market_data_access": true,
+    "market_contract_frozen_before_market_data_access": true,
+    "rate_and_financing_contract_frozen_before_rate_data_access": true,
+    "factor_family_frozen_before_outcomes": true,
+    "portfolio_construction_frozen_before_outcomes": true,
+    "costs_benchmarks_estimands_and_selection_frozen_before_outcomes": true,
+    "market_observations_accessed_before_protocol_commit": false,
+    "rate_observations_accessed_before_protocol_commit": false,
+    "provider_requests_sent_before_protocol_commit": false,
+    "outcomes_generated_before_protocol_commit": false
+  },
+  "next_permitted_stage": "CAPABILITY_SAFE_IO_CERTIFICATION"
+}
