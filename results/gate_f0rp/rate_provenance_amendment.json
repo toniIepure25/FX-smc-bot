@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_RATE_PROVENANCE_AMENDMENT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "gate_id": "F0-RP",
+  "amendment_id": "F0_RATE_PROVENANCE_AMENDMENT_V1",
+  "status": "FROZEN_BEFORE_ANY_MARKET_OR_RATE_OBSERVATION_ACCESS",
+  "selected_nzd_remediation_route": "OUTCOME_BLIND_NZD_EXCLUSION",
+  "route_a_assessment": {
+    "preferred_series": "RESERVE_BANK_OF_NEW_ZEALAND_OFFICIAL_CASH_RATE",
+    "authorized_interval": "2010-01-01_THROUGH_2022-12-31",
+    "scheduled_release_regimes_certified": true,
+    "complete_event_registry_certified": false,
+    "decisive_gap": "UNSCHEDULED_2020-03-16_OCR_REDUCTION_HAS_NO_OFFICIAL_ARCHIVED_OR_DETERMINISTIC_ORIGINAL_PUBLICATION_TIME",
+    "inferred_time_used": false,
+    "route_a_selected": false
+  },
+  "nzd": {
+    "status": "EXCLUDED_BY_OUTCOME_BLIND_RATE_PROVENANCE_AMENDMENT",
+    "rate_observation_access_allowed": false,
+    "rate_download_allowed": false,
+    "b2_timestamp_inferred": false,
+    "b2_observation_date_plus_lag_used": false
+  },
+  "nzdusd": {
+    "status": "EXCLUDED_FROM_PRIMARY_INSTRUMENT_UNIVERSE",
+    "market_observation_access_allowed": false,
+    "provider_request_allowed": false
+  },
+  "amended_instrument_universe": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY"
+  ],
+  "amended_currency_universe": [
+    "USD",
+    "EUR",
+    "GBP",
+    "AUD",
+    "JPY",
+    "CAD",
+    "CHF"
+  ],
+  "amended_rate_registry": {
+    "USD": {
+      "series_identifier": "EFFR",
+      "availability": "OFFICIAL_REVISION_WINDOW_CLOSED_ON_FOLLOWING_NEW_YORK_FED_BUSINESS_DAY",
+      "calendar": "NEW_YORK_FED_BUSINESS_DAYS",
+      "day_count": "ACT_360"
+    },
+    "EUR": {
+      "series_identifier": "EONIA_TO_ESTR",
+      "availability": "EONIA_AFTER_19:00_CET_ON_T; ESTR_AFTER_09:00_CET_ON_T_PLUS_1_TARGET2_DAY",
+      "calendar": "TARGET2_BUSINESS_DAYS",
+      "day_count": "ACT_360"
+    },
+    "GBP": {
+      "series_identifier": "IUDSOIA",
+      "availability": "12:00_EUROPE_LONDON_ON_T_PLUS_1_LONDON_BUSINESS_DAY",
+      "calendar": "LONDON_BUSINESS_DAYS",
+      "day_count": "ACT_365_FIXED"
+    },
+    "AUD": {
+      "series_identifier": "RBA_CASH_RATE",
+      "availability": "16:00_AUSTRALIA_SYDNEY_ON_FOLLOWING_RITS_BUSINESS_DAY",
+      "calendar": "RITS_BUSINESS_DAYS",
+      "day_count": "ACT_365_FIXED"
+    },
+    "JPY": {
+      "series_identifier": "FM01'STRDCLUCON",
+      "availability": "END_OF_T_PLUS_1_BANK_OF_JAPAN_PUBLICATION_DAY_FINAL_RESULT_ONLY",
+      "calendar": "BANK_OF_JAPAN_BUSINESS_DAYS",
+      "day_count": "ACT_365_FIXED"
+    },
+    "CAD": {
+      "series_identifier": "V39079",
+      "availability": "MAX_OF_OFFICIAL_DECISION_RELEASE_AND_EFFECTIVE_TIMESTAMP",
+      "calendar": "BANK_OF_CANADA_BUSINESS_DAYS",
+      "day_count": "ACT_365_FIXED"
+    },
+    "CHF": {
+      "series_identifier": "SRFXON3",
+      "availability": "T_PLUS_1_AT_18:00_EUROPE_ZURICH_FOR_PUBLIC_HISTORICAL_REDISTRIBUTION",
+      "calendar": "CHF_TRADING_DAYS",
+      "day_count": "ACT_360"
+    }
+  },
+  "rate_transition_policies": {
+    "USD": "PRESERVE_2016_METHODOLOGY_BREAK_WITHOUT_BACKFILL",
+    "EUR": "EONIA_THROUGH_2019-09-30_THEN_ESTR_FROM_2019-10-01_WITH_TRANSITION_SPLIT",
+    "GBP": "PRESERVE_2018-04-23_REFORM_BREAK_AND_USE_CONSERVATIVE_T_PLUS_1_ENVELOPE",
+    "AUD": "PRESERVE_MAY_2016_INPUT_METHOD_BREAK",
+    "JPY": "FINAL_RESULT_ONLY",
+    "CAD": "PRESERVE_2013_PUBLICATION_TIME_AND_2021_EFFECTIVE_DATE_CHANGES",
+    "CHF": "PUBLIC_HISTORICAL_REDISTRIBUTION_DELAY_APPLIES"
+  },
+  "missing_rate_behavior": "NO_INTERPOLATION; CARRY_ONLY_A_LEGALLY_AVAILABLE_OFFICIAL_VALUE; OTHERWISE_NO_POSITION_CHANGE_WITH_RECORDED_REASON",
+  "strategy_availability_rule": "MAX_OF_ORIGINAL_OFFICIAL_PUBLICATION_TIMESTAMP_AND_OFFICIAL_EFFECTIVE_TIMESTAMP",
+  "revision_policy": "NEVER_BACKFILL_A_LATER_REVISION_INTO_AN_EARLIER_STRATEGY_TIMESTAMP",
+  "compatibility_with_original_freezes": {
+    "factor_family_sha256": "a395c00621238c6cf4aaf127e5f48696c7bf4b54b5250b201e48d87cb31b9371",
+    "factor_config_sha256": "e951832ec1f521381d9d4b609b8cb62a87c5a58771a9dd9cd74dea64d7f3c22e",
+    "portfolio_construction_sha256": "1cc22d2b5072f90ae9469fc2e735f8f69f7e89d2d9d25c5d7b87a0fdc20db04b",
+    "benchmark_sha256": "fefdd8b4b0216d66637a4213bc61f41d660497dfb746c2f11f7de94c8ab3ea60",
+    "estimand_sha256": "69675f0592c53783266a7fed49a9a6ddcc1ce3c9cbbc1bf59817373685de9175",
+    "only_semantic_change": "NZD_AND_NZDUSD_INCLUSION_STATUS",
+    "factor_definitions_changed": false,
+    "factor_risk_weights_changed": false,
+    "portfolio_construction_changed": false,
+    "costs_changed": false,
+    "benchmarks_changed": false,
+    "estimands_changed": false,
+    "selection_criteria_changed": false,
+    "temporal_partitions_changed": false
+  },
+  "outcome_blindness": {
+    "proof_artifact": "results/gate_f0rp/pre_amendment_outcome_blindness.json",
+    "market_observations_accessed": false,
+    "rate_observations_accessed": false,
+    "portfolio_outcomes_available": false,
+    "route_selected_from_portfolio_performance": false
+  },
+  "official_evidence": [
+    "results/gate_f0rp/full_rate_provenance_audit.json",
+    "https://www.rbnz.govt.nz/statistics/series/exchange-and-interest-rates/wholesale-interest-rates",
+    "https://www.rbnz.govt.nz/monetary-policy/monetary-policy-decisions",
+    "https://www.rbnz.govt.nz/news-and-events/news/2018/06/ocr-mps-and-fsr-dates-for-2019-2020",
+    "https://www.rbnz.govt.nz/news-and-events/news/2020/03/ocr-reduced-to-025-percent-for-next-12-months"
+  ],
+  "amendment_hash_scope": "CANONICAL_JSON_OF_THIS_DOCUMENT_WITH_AMENDMENT_SHA256_SET_TO_NULL",
+  "amendment_sha256": "e1a2245542cb74f1eb48bbdba01e9bcd9689662b13d8069602297c97705e904b",
+  "amendment_pre_data_access_sha_recorded_separately": true
+}
