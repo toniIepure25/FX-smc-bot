@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_MARKET_RECOVERY_PROTOCOL_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "amendment_pre_data_access_sha": "62ee708891b8ee056bf8052f74eece2cb71bba49",
+  "status": "FROZEN_AFTER_AMENDMENT_BEFORE_ACQUISITION",
+  "provider_hierarchy": [
+    "DUKASCOPY_BI5_BID_ASK",
+    "UTC_M1_BID_ASK",
+    "DETERMINISTIC_M5_BID_ASK"
+  ],
+  "provider_client": "dukascopy-node@1.46.4",
+  "amended_instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY"
+  ],
+  "nzdusd_provider_request_allowed": false,
+  "temporal_scope": {
+    "warm_up": "2010-01-01_THROUGH_2010-12-31",
+    "development": "2011-01-01_THROUGH_2016-12-31",
+    "validation": "2017-01-01_THROUGH_2019-12-31",
+    "replication": "2020-01-01_THROUGH_2022-12-31",
+    "quarantined_interval_accessed": false,
+    "future_prospective_interval_accessed": false
+  },
+  "partitioning": {
+    "granularity": "CALENDAR_MONTH_BY_INSTRUMENT_AND_SIDE",
+    "development_side_month_partitions": 1512,
+    "development_pair_months": 756,
+    "development_partition_plan_sha256": "84c5d0b5237f90d9c9c09348e023bdf4e4828d57f7e8c234959b23ad500d0b80",
+    "validation_side_month_partitions": 648,
+    "validation_pair_months": 324,
+    "replication_side_month_partitions": 648,
+    "replication_pair_months": 324,
+    "maximum_parallel_workers": 8
+  },
+  "canonicalization": {
+    "source": "M1_BID_ASK_OHLC",
+    "execution_bars": "M5_BID_ASK_OHLC",
+    "daily_close": "17:00_America/New_York",
+    "aggregation": "M1_TO_CERTIFIED_M5_TO_CROSS_MONTH_DAILY",
+    "forward_fill": false,
+    "successful_zero_row_partition_allowed": false,
+    "partial_partition_allowed": false,
+    "three_run_parity_required": true
+  },
+  "storage": {
+    "local_only": true,
+    "old_checkpoint_or_payload_reuse_allowed": false,
+    "row_level_data_commit_allowed": false,
+    "provider_payload_commit_allowed": false
+  },
+  "failure_decisions": {
+    "provider_access": "BLOCKED_BY_PROVIDER_ACCESS",
+    "market_provenance": "BLOCKED_BY_MARKET_DATA_PROVENANCE",
+    "storage": "BLOCKED_BY_STORAGE_BUDGET",
+    "certification": "BLOCKED_BY_DATA_CERTIFICATION",
+    "nondeterminism": "BLOCKED_BY_NONDETERMINISM"
+  },
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false
+}

@@ -57,6 +57,9 @@ AMENDED_RATE_SERIES: Final = {
     "CHF": "SRFXON3",
 }
 
+RATE_PROVIDER_IMPLEMENTATIONS_AVAILABLE: Final = False
+EMPIRICAL_ORCHESTRATION_AVAILABLE: Final = False
+
 
 def _month_end(year: int, month: int) -> date:
     return date(year, month, calendar.monthrange(year, month)[1])
@@ -126,6 +129,78 @@ def amendment_overlay() -> dict[str, object]:
     }
     overlay["overlay_sha256"] = canonical_sha256(overlay)
     return overlay
+
+
+def development_market_plan() -> dict[str, object]:
+    """Build a compact deterministic market plan without crossing an I/O boundary."""
+    partitions = development_market_partitions()
+    records = [
+        {
+            "partition_id": partition.partition_id,
+            "instrument": partition.instrument,
+            "side": partition.side,
+            "start": partition.start.isoformat(),
+            "end": partition.end.isoformat(),
+        }
+        for partition in partitions
+    ]
+    return {
+        "stage": "F0RP_DEVELOPMENT_MARKET_PLAN",
+        "interval": {
+            "start": DEVELOPMENT_START.isoformat(),
+            "end": DEVELOPMENT_END.isoformat(),
+        },
+        "instruments": list(AMENDED_INSTRUMENT_ORDER),
+        "partition_count": len(records),
+        "pair_month_count": EXPECTED_DEVELOPMENT_PAIR_MONTHS,
+        "partition_plan_sha256": canonical_sha256(records),
+        "provider_requests_sent": 0,
+        "market_observations_accessed": False,
+        "status": "FROZEN_DRY_RUN_PLAN",
+    }
+
+
+def development_rate_plan() -> dict[str, object]:
+    """Build a compact deterministic rate plan without provider access."""
+    partitions = development_rate_partitions()
+    records = [
+        {
+            "partition_id": partition.partition_id,
+            "currency": partition.currency,
+            "series_identifier": AMENDED_RATE_SERIES[partition.currency],
+            "start": partition.start.isoformat(),
+            "end": partition.end.isoformat(),
+        }
+        for partition in partitions
+    ]
+    return {
+        "stage": "F0RP_DEVELOPMENT_RATE_PLAN",
+        "interval": {
+            "start": DEVELOPMENT_START.isoformat(),
+            "end": DEVELOPMENT_END.isoformat(),
+        },
+        "currencies": list(AMENDED_CURRENCY_ORDER),
+        "partition_count": len(records),
+        "partition_plan_sha256": canonical_sha256(records),
+        "provider_requests_sent": 0,
+        "rate_observations_accessed": False,
+        "status": "FROZEN_DRY_RUN_PLAN",
+    }
+
+
+def execution_readiness() -> dict[str, object]:
+    """Report the earliest honest execution boundary without probing providers."""
+    return {
+        "amendment_id": AMENDMENT_ID,
+        "nzd_rate_remediation_route": NZD_RATE_REMEDIATION_ROUTE,
+        "official_rate_provider_adapters_implemented": RATE_PROVIDER_IMPLEMENTATIONS_AVAILABLE,
+        "end_to_end_empirical_orchestration_implemented": EMPIRICAL_ORCHESTRATION_AVAILABLE,
+        "provider_requests_sent": 0,
+        "market_observations_accessed": False,
+        "rate_observations_accessed": False,
+        "development_outcomes_generated": False,
+        "status": "F0RP_RATE_PROVENANCE_RECONCILED_EMPIRICAL_EXECUTION_BLOCKED",
+    }
 
 
 if not AMENDED_INSTRUMENTS < FROZEN_INSTRUMENTS:

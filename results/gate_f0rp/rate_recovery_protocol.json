@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_RATE_RECOVERY_PROTOCOL_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "amendment_pre_data_access_sha": "62ee708891b8ee056bf8052f74eece2cb71bba49",
+  "status": "FROZEN_AFTER_AMENDMENT_BEFORE_ACQUISITION",
+  "currencies": [
+    "USD",
+    "EUR",
+    "GBP",
+    "AUD",
+    "JPY",
+    "CAD",
+    "CHF"
+  ],
+  "series_identifiers": {
+    "USD": "EFFR",
+    "EUR": "EONIA_TO_ESTR",
+    "GBP": "IUDSOIA",
+    "AUD": "RBA_CASH_RATE",
+    "JPY": "FM01'STRDCLUCON",
+    "CAD": "V39079",
+    "CHF": "SRFXON3"
+  },
+  "nzd_provider_request_allowed": false,
+  "partitioning": {
+    "default_granularity": "SERIES_BY_CALENDAR_YEAR",
+    "development_partitions": 49,
+    "development_partition_plan_sha256": "28a32e9dcde8de818cf4382b00f43288252cacfccd882766d8794b5293745108",
+    "validation_partitions": 22,
+    "replication_partitions": 21,
+    "eur_transition_split": "2019_EONIA_THROUGH_2019-09-30_AND_ESTR_FROM_2019-10-01",
+    "maximum_parallel_workers": 4
+  },
+  "required_local_fields": [
+    "observation_date",
+    "original_publication_timestamp",
+    "effective_timestamp",
+    "available_value_at_each_strategy_timestamp",
+    "source_document_identifier",
+    "source_hash",
+    "revision_status"
+  ],
+  "source_rule": "OFFICIAL_PUBLISHER_ONLY_WITH_METADATA_AND_METHOD_HASHES",
+  "point_in_time_rule": "MAX_OF_ORIGINAL_PUBLICATION_TIMESTAMP_AND_EFFECTIVE_TIMESTAMP",
+  "revision_policy": "PRESERVE_ORIGINAL_AVAILABILITY_AND_NEVER_BACKFILL_A_REVISION",
+  "missing_timestamp_policy": "TREAT_OBSERVATION_AS_MISSING",
+  "interpolation_allowed": false,
+  "carry_forward_rule": "ONLY_AFTER_PROVEN_OFFICIAL_AVAILABILITY_UNTIL_NEXT_OFFICIAL_VALUE",
+  "historical_announcement_cross_check_required": true,
+  "three_run_normalization_replay_required": true,
+  "row_level_rate_commit_allowed": false,
+  "provider_implementation_readiness": {
+    "official_rate_provider_adapters_implemented": false,
+    "provider_requests_sent": 0,
+    "blocking_status": "F0RP_RATE_PROVENANCE_RECONCILED_EMPIRICAL_EXECUTION_BLOCKED"
+  },
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RP_RATE_NORMALIZATION_PROTOCOL_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "amendment_pre_data_access_sha": "62ee708891b8ee056bf8052f74eece2cb71bba49",
+  "status": "FROZEN_AFTER_AMENDMENT_BEFORE_ACQUISITION",
+  "normalization": {
+    "timezone_storage": "UTC_WITH_ORIGINAL_SOURCE_TIMEZONE_RETAINED_IN_METADATA",
+    "strategy_availability_timestamp": "MAX_OF_ORIGINAL_PUBLICATION_TIMESTAMP_AND_EFFECTIVE_TIMESTAMP",
+    "revision_order": "ORIGINAL_PUBLICATION_SEQUENCE",
+    "revision_backfill_allowed": false,
+    "unproven_timestamp_action": "MISSING",
+    "interpolation_allowed": false,
+    "official_value_carry_forward": "ONLY_AFTER_AVAILABILITY_UNTIL_NEXT_OFFICIAL_VALUE",
+    "source_payload_hash_required": true,
+    "source_metadata_hash_required": true,
+    "revision_status_required": true,
+    "three_run_content_hash_equality_required": true
+  },
+  "daily_alignment": {
+    "market_day_close": "17:00_America/New_York",
+    "rate_join": "AS_OF_JOIN_AVAILABLE_TIMESTAMP_LESS_THAN_OR_EQUAL_TO_STRATEGY_TIMESTAMP",
+    "future_publication_allowed": false,
+    "future_effective_value_allowed": false,
+    "missing_rate_action": "NO_POSITION_CHANGE_WITH_RECORDED_REASON",
+    "multi_day_accrual": "ACTUAL_CALENDAR_DAYS_USING_FROZEN_DAY_COUNT",
+    "currency_leg_reconciliation_required": true
+  },
+  "day_count_conventions": {
+    "USD": "ACT_360",
+    "EUR": "ACT_360",
+    "GBP": "ACT_365_FIXED",
+    "AUD": "ACT_365_FIXED",
+    "JPY": "ACT_365_FIXED",
+    "CAD": "ACT_365_FIXED",
+    "CHF": "ACT_360"
+  },
+  "market_observations_accessed": false,
+  "rate_observations_accessed": false
+}
