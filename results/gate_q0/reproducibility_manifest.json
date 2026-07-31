@@ -1,0 +1,38 @@
+{
+  "artifacts": {
+    "development_acquisition_status_sha256": "4d5e060f832936dcce9d54a611f552b633b6364a55a2c8b97ba82a8067654606",
+    "final_decision_sha256": "8ec6f29691f0243daf8a86e2db85c02904706572117832529b3ba191c62b3fea",
+    "holdout_integrity_sha256": "8e1a679571229bb23f8c063d3211d39dcc0270ae619451bbed2c1b3a06447ea",
+    "prohibited_data_audit_sha256": "5ed17358876a58111bfeec3690fa05cf8eafdae0fb036f53cf7b9f04d2414332",
+    "quality_gate_final_sha256": "02ee4f2a56f089c46a7dceb564749361031def40f4791b86654ababca1cfece",
+    "static_analysis_delta_sha256": "5d096d79ee5614e98282593ee570fcabeed3b703dd866bbb7180072618d76cec"
+  },
+  "branch": "research/quant-polarity-meta-v1",
+  "branch_start_sha": "1df74d0dbf185fad78851036f13fcf4d3166ea0a",
+  "candidate_family_hash": "fd4f0a73b1277edf55160a3c844b6b5ab9b6e72622fcaed4aa8bd2aa8c1960e3",
+  "commits_before_final_artifact_commit": [
+    "27f45d964272c609fdb3e7f3d48af95ac28046dc",
+    "121a7d934d8b9e5b520b1a7380be1e9f7297000e",
+    "1e9396ece79211030f4b0f30c4c44c9e8f808311",
+    "af420be9068f445f10294182f1932937a3d09e76",
+    "9f2a4902d9d5520aac03cb5277c23525246bffd1",
+    "6b8c962a800619c1c8c7b1bd622dfef2fd172956",
+    "fa3170eef914d67bf9eae5e1c838878fac691238"
+  ],
+  "development_certification_run": false,
+  "development_outcome_execution_run": false,
+  "environment": {
+    "node": "24.14.0",
+    "python": "3.13.5",
+    "scikit_learn": "1.7.0"
+  },
+  "feature_order_hash": "1800c83a2afa7691a4d0d141b1791975eaa1dcbc5c59110c737723c6b6d3c126",
+  "final_decision": "BLOCKED_BY_HOLDOUT_INTEGRITY",
+  "main_sha": "1df74d0dbf185fad78851036f13fcf4d3166ea0a",
+  "pr_2_merge_commit": "1df74d0dbf185fad78851036f13fcf4d3166ea0a",
+  "program_id": "FX_QUANT_POLARITY_META_V1",
+  "protocol_hash": "ae91b1ce04784d76bf58f1c232b07e41a4e782fcce3b0c4f97488c4b35700435",
+  "raw_canonical_or_row_level_committed": false,
+  "replication_access_started": false,
+  "status": "COMPLETE_BLOCKED_RECORD"
+}

@@ -1,0 +1,10 @@
+{
+  "candidate_modification_authorized": false,
+  "history_rewrite_authorized": false,
+  "market_data_access_authorized": false,
+  "q0r_decision": "Q0R_NO_CANDIDATE_SURVIVED_INDEPENDENT_REPLICATION",
+  "q0r_final_sha": "1ae0abe19ad138e166f83b4a1d3fd48af34b8a3e",
+  "replication_authorized": false,
+  "row_level_access_authorized": false,
+  "status": "PASS"
+}

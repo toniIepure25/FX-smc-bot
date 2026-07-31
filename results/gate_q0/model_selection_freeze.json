@@ -1,0 +1,50 @@
+{
+  "allowed_hyperparameters": [
+    {
+      "inverse_regularization_c": 0.01,
+      "l1_ratio": 0.0
+    },
+    {
+      "inverse_regularization_c": 0.01,
+      "l1_ratio": 0.5
+    },
+    {
+      "inverse_regularization_c": 0.01,
+      "l1_ratio": 1.0
+    },
+    {
+      "inverse_regularization_c": 0.1,
+      "l1_ratio": 0.0
+    },
+    {
+      "inverse_regularization_c": 0.1,
+      "l1_ratio": 0.5
+    },
+    {
+      "inverse_regularization_c": 0.1,
+      "l1_ratio": 1.0
+    },
+    {
+      "inverse_regularization_c": 1.0,
+      "l1_ratio": 0.0
+    },
+    {
+      "inverse_regularization_c": 1.0,
+      "l1_ratio": 0.5
+    },
+    {
+      "inverse_regularization_c": 1.0,
+      "l1_ratio": 1.0
+    }
+  ],
+  "embargo_fx_trading_days": 5,
+  "hyperparameter_count": 9,
+  "inner_fold_constraint": "dates strictly earlier than outer-test dates",
+  "model": "multinomial elastic-net logistic regression",
+  "outer_folds": "calendar-year forward folds within 2015-2019",
+  "performance_metrics_for_selection": false,
+  "purge": "maximum position horizon plus warm-up dependency",
+  "seed": 1729,
+  "selection_metric": "cross-validated multinomial log loss",
+  "status": "PASS"
+}

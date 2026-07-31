@@ -1,0 +1,22 @@
+{
+  "claim_matrix_hash": "3fb9d811b702895ef881f0c0fd708a413f198d9ec1459abbd8a0f76d126b84ce",
+  "closure_hash": "3a9d6e19f7a470c09eef93fc722521f5d19933ac1bcca6c21e40160f132cecae",
+  "closure_id": "FX_QUANT_POLARITY_META_V2_CLOSURE_V1",
+  "created_at_utc": "2026-07-31T08:11:50Z",
+  "empty_shortlist_hash": "be1c82325d03b26256935d3621759d6535ac58dddf36261986a92c3a59580234",
+  "final_q0r_decision": "Q0R_NO_CANDIDATE_SURVIVED_INDEPENDENT_REPLICATION",
+  "final_q0r_sha": "1ae0abe19ad138e166f83b4a1d3fd48af34b8a3e",
+  "future_candidate_created": false,
+  "lineage_id": "FX_QUANT_EDGE_DISCOVERY_LINEAGE_V2",
+  "paper_or_live_handoff_created": false,
+  "program_id": "FX_QUANT_POLARITY_META_V2",
+  "q0r_integrity_audit_sha256": "0fa0bd5d7f89005d1473b759149ccbb7f2c62436ae11630c88bc1c9e8954d41f",
+  "q0r_quality_gate_sha256": "b5094515e97109a240de456de9af453cbe494216f60c8621a9eeb21a5b8534f8",
+  "q0r_reproducibility_manifest_sha256": "52ca4c199f9db5d41e714c9d9ba1dcd76248eae60bea6107b19188122ed9a322",
+  "quarantine_hash": "316615ce35f6ea1c9d1f4aaee5a250d25b755e4539758426ebdc9e1c8f69c58b",
+  "quarantine_id": "FX_QUANT_POLARITY_META_V2_POSTHOC_QUARANTINE_V1",
+  "replication_accessed": false,
+  "seal_hash": "6a5c4c631dbdb0ced12878ce1bd92cfdb7808d928ac7cb1db0d7a08df946173e",
+  "seal_id": "FX_QUANT_POLARITY_META_V2_LINEAGE_SEAL_V1",
+  "status": "LOCKED"
+}

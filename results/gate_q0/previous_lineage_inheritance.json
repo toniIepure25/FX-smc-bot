@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "results/gate_p1/strategy_alpha_lineage_seal.json",
+      "raw_sha256": "19d55e26e827b23f71b4165c11d3a6a1cd57e1e646b680ea02b2d1588b2cae0a"
+    },
+    {
+      "path": "results/gate_p1/posthoc_hypothesis_quarantine.json",
+      "raw_sha256": "a0f99f54855790cfd95aa50b83bacdb1668fa15077d8679d6d4aeb6ee2621bab"
+    },
+    {
+      "path": "results/gate_p1/final_claim_matrix.json",
+      "raw_sha256": "ceb53f4e043b163a8fba63bba4705ccef0713f2a75af304bdd68618b43d0ee5c"
+    },
+    {
+      "path": "results/gate_p1/closure_lock.json",
+      "raw_sha256": "4e7fac314c9938bf4d214263d18d7bcab9b113a2e8cde7eff0496d81f63df0d1"
+    },
+    {
+      "path": "results/gate_p1/reproducibility_manifest.json",
+      "raw_sha256": "bd28c92ca71a27489bf4e7b9acc20faf52aa347cf4275e81824d5fea5f15c7db"
+    }
+  ],
+  "previous_seal_hash": "4879da718c42e030232b9c7cad32e14b97263ead5c6a4e464c53406f2f02303e",
+  "previous_seal_id": "FX_SMC_STRATEGY_ALPHA_LINEAGE_V1",
+  "previous_status": "CLOSED_ALL_CANDIDATES_TIER_C_NO_FORWARD_TEST",
+  "status": "PASS",
+  "validation": {
+    "checks": {
+      "old_lineage_closed": true,
+      "quarantine_id": true,
+      "relationship_independent": true,
+      "seal_hash": true,
+      "seal_id": true,
+      "seal_status": true
+    },
+    "status": "PASS"
+  }
+}

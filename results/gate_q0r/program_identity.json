@@ -1,0 +1,10 @@
+{
+  "closed_strategy_lineage": "FX_SMC_STRATEGY_ALPHA_LINEAGE_V1",
+  "closed_strategy_seal_hash": "4879da718c42e030232b9c7cad32e14b97263ead5c6a4e464c53406f2f02303e",
+  "lineage_id": "FX_QUANT_EDGE_DISCOVERY_LINEAGE_V2",
+  "predecessor_decision": "BLOCKED_BY_HOLDOUT_INTEGRITY",
+  "predecessor_program": "FX_QUANT_POLARITY_META_V1",
+  "program_id": "FX_QUANT_POLARITY_META_V2",
+  "relationship": "PROTOCOL_INHERITANCE_WITH_NEW_INTEGRITY_AND_PROSPECTIVE_HOLDOUT_BASELINE",
+  "status": "PASS"
+}

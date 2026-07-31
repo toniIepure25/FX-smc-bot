@@ -1,0 +1,59 @@
+program_id: FX_QUANT_POLARITY_META_V1
+lineage_id: FX_QUANT_EDGE_DISCOVERY_LINEAGE_V1
+source_hypothesis: FX_SMC_STRATEGY_ALPHA_POSTHOC_QUARANTINE_V1
+relationship_to_previous_lineage: NEW_INDEPENDENT_LINEAGE
+
+instruments:
+  development: [AUDUSD, NZDUSD, USDCAD, USDCHF]
+  replication: [EURJPY, GBPJPY]
+  excluded: [EURUSD, GBPUSD, USDJPY]
+
+time_partitions:
+  development: [2015-01-01, 2019-12-31]
+  replication: [2020-01-01, 2022-12-31]
+  confirmatory_holdout: [2023-01-01, 2025-12-31]
+
+execution:
+  provider: dukascopy_tick_bi5_bid_ask
+  canonical_intermediate: utc_m1_bid_ask_ohlc
+  bars: deterministic_m5_bid_ask_ohlc
+  same_bar_rule: adverse_first
+  warmup_m5_bars: 500
+  overnight_carry: false
+  weekend_carry: false
+  london_session: "08:00-11:00 Europe/London"
+  new_york_session: "08:00-11:00 America/New_York"
+  fx_week: "Sunday 17:00-Friday 17:00 America/New_York"
+
+candidates:
+  - id: Q0_INV_SWEEP_V1
+    source_policy: SMC_A_SWEEP_REVERSAL_V1
+    transformation: reverse_trade_direction_only
+  - id: Q0_INV_ACCEPTANCE_V1
+    source_policy: SMC_B_ACCEPTANCE_CONTINUATION_V1
+    transformation: reverse_trade_direction_only
+  - id: Q0_INV_LONDON_OR_V1
+    source_policy: SMC_C_LONDON_OPENING_RANGE_V1
+    transformation: reverse_trade_direction_only
+  - id: Q0_INV_NEWYORK_OR_V1
+    source_policy: SMC_C_NEWYORK_OPENING_RANGE_V1
+    transformation: reverse_trade_direction_only
+  - id: Q0_META_POLARITY_ELASTIC_NET_V1
+    model: multinomial_elastic_net_logistic_regression
+    actions: [ORIGINAL, INVERSE, ABSTAIN]
+    original_threshold: 0.55
+    inverse_threshold: 0.55
+
+model_selection:
+  inverse_regularization_c: [0.01, 0.1, 1.0]
+  l1_ratio: [0.0, 0.5, 1.0]
+  primary_metric: multinomial_log_loss
+  outer_folds: calendar_year_forward_2015_2019
+  purge: maximum_position_horizon_plus_warmup_dependency
+  embargo_fx_trading_days: 5
+  maximum_shortlist: 2
+
+seeds:
+  model: 1729
+  bootstrap: 1729
+  permutation: 1729

@@ -1,0 +1,17 @@
+{
+  "confirmatory_holdout": [
+    "2023-01-01",
+    "2025-12-31"
+  ],
+  "development": [
+    "2015-01-01",
+    "2019-12-31"
+  ],
+  "gate_q0_latest_permitted_date": "2022-12-31",
+  "holdout_untouched_required": true,
+  "internal_replication": [
+    "2020-01-01",
+    "2022-12-31"
+  ],
+  "status": "PASS"
+}

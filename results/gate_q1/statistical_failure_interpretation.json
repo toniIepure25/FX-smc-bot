@@ -1,0 +1,23 @@
+{
+  "dsr": {
+    "interpretation": "No Sharpe result survives multiple-testing and non-normality adjustment.",
+    "maximum_probability": 2.4072381359488004e-07
+  },
+  "empty_shortlist": "Stopping before replication was the preregistered scientific gate working as designed, not an operational failure.",
+  "hansen_spa": {
+    "interpretation": "No candidate demonstrated superior predictive ability.",
+    "p_value": 1.0
+  },
+  "interpretation_hash": "07a760c5c930cdb5672e52d5bc94757d42dc575b38579d00525901b357302dff",
+  "pbo": {
+    "interpretation": "The selection structure is maximally consistent with backtest overfitting or nontransportable selection.",
+    "value": 1.0
+  },
+  "romano_wolf_boundary": "Small values for deterministic candidates accompany negative relative effects and do not establish profitable alpha.",
+  "stability": "Negative deterministic-candidate performance spans every development instrument and year rather than one isolated subgroup.",
+  "status": "PASS",
+  "white_reality_check": {
+    "interpretation": "No evidence that the best frozen candidate outperformed the null after candidate-family data-snooping adjustment.",
+    "p_value": 0.9898
+  }
+}

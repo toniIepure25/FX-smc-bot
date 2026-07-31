@@ -1,0 +1,12 @@
+{
+  "clean_room_market_data_loaded_by_q1": false,
+  "future_candidate_created": false,
+  "future_prospective_data_accessed": false,
+  "paper_or_live_handoff_created": false,
+  "q0_failure_preserved": true,
+  "q0r_historical_artifacts_unchanged": true,
+  "quarantined_historical_interval_accessed_by_q1": false,
+  "quarantined_historical_interval_enumerated_by_q1": false,
+  "replication_data_accessed": false,
+  "status": "PASS"
+}

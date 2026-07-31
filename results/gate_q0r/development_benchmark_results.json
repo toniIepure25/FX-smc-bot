@@ -1,0 +1,60 @@
+{
+  "results": {
+    "Q0_INV_ACCEPTANCE_V1": {
+      "day_cluster_signflip_p_value": 1.0,
+      "fdr_adjusted_p_value": 1.0,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha": -0.5275786373197038,
+      "matched_random_mean_net_r": -0.23486648157436968,
+      "raw_permutation_p_value": 1.0,
+      "romano_wolf_adjusted_p_value": 0.0001999600079984003,
+      "strategy_mean_net_r": -0.7624451188940735,
+      "trade_count": 6932
+    },
+    "Q0_INV_LONDON_OR_V1": {
+      "day_cluster_signflip_p_value": 1.0,
+      "fdr_adjusted_p_value": 1.0,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha": -0.21511247711209341,
+      "matched_random_mean_net_r": -0.19518725444092913,
+      "raw_permutation_p_value": 1.0,
+      "romano_wolf_adjusted_p_value": 0.0001999600079984003,
+      "strategy_mean_net_r": -0.4102997315530225,
+      "trade_count": 930
+    },
+    "Q0_INV_NEWYORK_OR_V1": {
+      "day_cluster_signflip_p_value": 1.0,
+      "fdr_adjusted_p_value": 1.0,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha": -0.2840619748484751,
+      "matched_random_mean_net_r": -0.13703901196847137,
+      "raw_permutation_p_value": 1.0,
+      "romano_wolf_adjusted_p_value": 0.0001999600079984003,
+      "strategy_mean_net_r": -0.4211009868169465,
+      "trade_count": 1488
+    },
+    "Q0_INV_SWEEP_V1": {
+      "day_cluster_signflip_p_value": 1.0,
+      "fdr_adjusted_p_value": 1.0,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha": -0.2554387266481907,
+      "matched_random_mean_net_r": -0.06636635603712376,
+      "raw_permutation_p_value": 1.0,
+      "romano_wolf_adjusted_p_value": 0.0003999200159968006,
+      "strategy_mean_net_r": -0.32180508268531444,
+      "trade_count": 364
+    },
+    "Q0_META_POLARITY_ELASTIC_NET_V1": {
+      "day_cluster_signflip_p_value": 0.850629874025195,
+      "fdr_adjusted_p_value": 1.0,
+      "holm_adjusted_p_value": 1.0,
+      "matched_random_alpha": -0.1282468904668793,
+      "matched_random_mean_net_r": 0.0063794830554242425,
+      "raw_permutation_p_value": 0.8475152484751525,
+      "romano_wolf_adjusted_p_value": 0.2429514097180564,
+      "strategy_mean_net_r": -0.12186740741145506,
+      "trade_count": 6
+    }
+  },
+  "status": "PASS"
+}

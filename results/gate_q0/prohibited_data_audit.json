@@ -1,0 +1,9 @@
+{
+  "development_row_level_commit_attempted": false,
+  "holdout_content_loaded": false,
+  "holdout_path_enumeration_detected": true,
+  "market_outcome_execution_started": false,
+  "raw_or_canonical_commit_attempted": false,
+  "replication_access_started": false,
+  "status": "FAIL"
+}

@@ -1,0 +1,14 @@
+{
+  "absolute_local_data_paths_introduced": false,
+  "canonical_m1_introduced": false,
+  "canonical_m5_introduced": false,
+  "changed_path_count": 134,
+  "credentials_introduced": false,
+  "future_or_live_handoff_paths": [],
+  "prohibited_paths": [],
+  "provider_payloads_introduced": false,
+  "raw_bi5_introduced": false,
+  "row_level_research_records_introduced": false,
+  "status": "PASS",
+  "temporary_acquisition_files_introduced": false
+}

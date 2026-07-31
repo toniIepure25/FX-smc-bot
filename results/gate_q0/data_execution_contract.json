@@ -1,0 +1,20 @@
+{
+  "canonical_intermediate": "UTC M1 bid/ask OHLC",
+  "cost_scenarios": {
+    "base": "actual executable spread + frozen commission + frozen slippage",
+    "stress_1": "1.5x spread and slippage",
+    "stress_2": "2.0x spread and slippage"
+  },
+  "execution_bars": "deterministic M5 bid/ask OHLC",
+  "fx_week": "Sunday 17:00-Friday 17:00 America/New_York",
+  "overnight_carry": false,
+  "provider": "Dukascopy tick/BI5 bid and ask",
+  "same_bar_primary_rule": "adverse-first",
+  "sessions": {
+    "london": "08:00-11:00 Europe/London",
+    "new_york": "08:00-11:00 America/New_York"
+  },
+  "status": "PASS",
+  "warmup_m5_bars": 500,
+  "weekend_carry": false
+}

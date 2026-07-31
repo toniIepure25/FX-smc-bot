@@ -1,0 +1,10 @@
+{
+  "candidate_trial_count": 5,
+  "hansen_spa_p_value": 1.0,
+  "model_convergence_warning_decision_impact": "NONE_ALL_CANDIDATES_INELIGIBLE",
+  "model_convergence_warnings_observed": true,
+  "parameter_search_count": 9,
+  "pbo": 1.0,
+  "status": "PASS",
+  "white_reality_check_p_value": 0.9898
+}

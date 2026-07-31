@@ -1,0 +1,11 @@
+{
+  "completion_history": [
+    {"complete": 459, "failed": 21},
+    {"complete": 475, "failed": 5},
+    {"complete": 480, "failed": 0}
+  ],
+  "final_remaining_failed_partitions": 0,
+  "hash_validated_partitions_redownloaded": 0,
+  "resumable_exact_plan": true,
+  "status": "PASS"
+}

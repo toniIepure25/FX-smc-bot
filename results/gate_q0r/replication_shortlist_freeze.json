@@ -1,0 +1,19 @@
+{
+  "candidate_family_hash": "fd4f0a73b1277edf55160a3c844b6b5ab9b6e72622fcaed4aa8bd2aa8c1960e3",
+  "development_rules_applied_mechanically": true,
+  "manual_override": false,
+  "maximum_selected": 2,
+  "model_hash": "1f7529796ec1dbfc734ef7b3615dc68419a935f617a557a79d7b88a28859c531",
+  "replication_data_accessed": false,
+  "replication_provider_request_sent": false,
+  "selected_candidates": [],
+  "selected_count": 0,
+  "selected_hyperparameters": {
+    "inverse_regularization_c": 0.01,
+    "l1_ratio": 0.0
+  },
+  "shortlist_freeze_predecessor_sha": "df26dcac15890ec81ac1bf1c5e3b4a02505852e4",
+  "shortlist_hash": "be1c82325d03b26256935d3621759d6535ac58dddf36261986a92c3a59580234",
+  "shortlist_status": "FROZEN_BEFORE_REPLICATION_DATA_ACCESS",
+  "status": "PASS"
+}

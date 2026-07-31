@@ -1,0 +1,40 @@
+{
+  "comparison_target": "origin/main",
+  "measurement": {
+    "head_python_files": 24,
+    "origin_main_existing_python_files": 3,
+    "scope": "all Python files changed by the Q0/Q0-R branch",
+    "source_only_mypy_scope": true
+  },
+  "mypy": {
+    "head_findings": 1,
+    "new_findings": 0,
+    "origin_main_findings": 1,
+    "shared_finding": "missing pandas stubs in unchanged import at dukascopy_node_provider.py:19"
+  },
+  "repository_wide_diagnostics": {
+    "mypy": {
+      "result": "PRE_EXISTING_DUPLICATE_MODULE_MAPPING",
+      "status": "DIAGNOSTIC_NOT_DELTA_BASIS"
+    },
+    "ruff": {
+      "findings": 1373,
+      "status": "PRE_EXISTING_REPOSITORY_DEBT"
+    }
+  },
+  "ruff": {
+    "head_findings": 8,
+    "new_findings": 0,
+    "origin_main_findings": 8,
+    "shared_findings_location": "unchanged lines in src/fx_smc_bot/config.py"
+  },
+  "status": "PASS",
+  "targeted_mypy": {
+    "findings": 0,
+    "status": "PASS"
+  },
+  "targeted_ruff": {
+    "findings": 0,
+    "status": "PASS"
+  }
+}

@@ -26,9 +26,15 @@ logger = logging.getLogger(__name__)
 TOOL_DIR = Path(__file__).resolve().parents[3] / "tools" / "dukascopy-node"
 
 PAIR_TO_INSTRUMENT = {
+    TradingPair.AUDUSD: "audusd",
+    TradingPair.NZDUSD: "nzdusd",
+    TradingPair.USDCAD: "usdcad",
+    TradingPair.USDCHF: "usdchf",
+    TradingPair.EURJPY: "eurjpy",
     TradingPair.EURUSD: "eurusd",
     TradingPair.GBPUSD: "gbpusd",
     TradingPair.USDJPY: "usdjpy",
+    TradingPair.GBPJPY: "gbpjpy",
 }
 
 INSTRUMENT_TO_PAIR = {v: k for k, v in PAIR_TO_INSTRUMENT.items()}
@@ -152,6 +158,7 @@ def _download_single_day(
         "--batchSize", str(batch_size),
         "--retries", str(retries),
         "--pauseBetweenBatchesMs", str(pause_between_batches_ms),
+        "--cache", "false",
     ]
 
     try:
@@ -232,6 +239,7 @@ def _download_month_bulk(
         "--batchSize", str(batch_size),
         "--retries", str(retries),
         "--pauseBetweenBatchesMs", str(pause_between_batches_ms),
+        "--cache", "false",
     ]
 
     timeout = max(600, days_in_month * 30)

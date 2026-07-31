@@ -1,0 +1,22 @@
+{
+  "candidate_frozen_for_future_prospective_confirmation": false,
+  "decision": "Q0R_NO_CANDIDATE_SURVIVED_INDEPENDENT_REPLICATION",
+  "development_data_certified": true,
+  "development_outcomes_generated": true,
+  "final_decision_predecessor_sha": "7c2c2bb9d3a6489fb95ffb08a20c690eadd6644e",
+  "future_collection_handoff_created": false,
+  "future_prospective_data_accessed": false,
+  "historical_q0_failure_preserved": true,
+  "historical_quarantine_classification": "QUARANTINED_FROM_CONFIRMATORY_USE_DUE_TO_Q0_STORAGE_ENUMERATION",
+  "live_capital_handoff_created": false,
+  "prospective_start": null,
+  "prospective_start_rule": "first complete FX trading day strictly after a final candidate-freeze commit",
+  "quality_gate_status": "PASS",
+  "replication_access_started": false,
+  "replication_outcomes_generated": false,
+  "replication_shortlist": [],
+  "replication_shortlist_count": 0,
+  "replication_status": "NOT_RUN_EMPTY_FROZEN_SHORTLIST",
+  "status": "FINAL",
+  "tier_adjudication": "NOT_RUN_EMPTY_FROZEN_SHORTLIST"
+}

@@ -1,0 +1,8 @@
+{
+  "dataset_freeze_id": "FX_QUANT_POLARITY_DEVELOPMENT_2015_2019_V2",
+  "dataset_manifest_sha256": "246864624e1aa66303b5eb7f5e818186f6d86b290fb79952e36ea093f34715af",
+  "pair_month_count": 240,
+  "raw_or_canonical_committed": false,
+  "status": "PASS",
+  "three_run_canonical_parity": true
+}

@@ -1,0 +1,10 @@
+{
+  "final_failed_partitions": 0,
+  "final_failures": [],
+  "resolved_transient_categories": [
+    "PROVIDER_ERROR_FETCH_FAILED",
+    "PROVIDER_ERROR_UNKNOWN"
+  ],
+  "transient_failed_partitions_after_pass": [21, 5, 0],
+  "status": "PASS"
+}

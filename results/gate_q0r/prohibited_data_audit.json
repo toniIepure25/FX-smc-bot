@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "benchmark_rows_committed": false,
+    "canonical_m1_committed": false,
+    "canonical_m5_committed": false,
+    "credentials_committed": false,
+    "feature_rows_committed": false,
+    "individual_trades_committed": false,
+    "labels_committed": false,
+    "local_data_root_absolute_paths_committed": false,
+    "orders_committed": false,
+    "predictions_committed": false,
+    "provider_payloads_committed": false,
+    "raw_bi5_committed": false,
+    "signals_committed": false,
+    "temporary_acquisition_data_committed": false
+  },
+  "evidence": {
+    "branch_diff_file_list_reviewed": true,
+    "branch_diff_path_string_scan_passed": true,
+    "compact_aggregate_artifacts_only": true,
+    "historical_q0_artifact_diff_empty": true,
+    "row_level_artifacts_remain_outside_repository": true
+  },
+  "status": "PASS"
+}

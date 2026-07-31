@@ -1,0 +1,7 @@
+{
+  "branch": "research/quant-polarity-meta-v2-prospective",
+  "remote_predecessor_sha": "62ca0b35de561350ef55fb211bb72ceb5ce9513a",
+  "starting_sha": "62ca0b35de561350ef55fb211bb72ceb5ce9513a",
+  "starting_worktree_clean": true,
+  "status": "PASS"
+}

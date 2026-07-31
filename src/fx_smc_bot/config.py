@@ -19,6 +19,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 # ---------------------------------------------------------------------------
 
 class TradingPair(str, Enum):
+    AUDUSD = "AUDUSD"
+    NZDUSD = "NZDUSD"
+    USDCAD = "USDCAD"
+    USDCHF = "USDCHF"
+    EURJPY = "EURJPY"
     EURUSD = "EURUSD"
     GBPUSD = "GBPUSD"
     USDJPY = "USDJPY"
@@ -50,6 +55,11 @@ TIMEFRAME_MINUTES: dict[Timeframe, int] = {
 # ---------------------------------------------------------------------------
 
 PAIR_PIP_INFO: dict[TradingPair, tuple[float, int]] = {
+    TradingPair.AUDUSD: (0.0001, 4),
+    TradingPair.NZDUSD: (0.0001, 4),
+    TradingPair.USDCAD: (0.0001, 4),
+    TradingPair.USDCHF: (0.0001, 4),
+    TradingPair.EURJPY: (0.01, 2),
     TradingPair.EURUSD: (0.0001, 4),
     TradingPair.GBPUSD: (0.0001, 4),
     TradingPair.USDJPY: (0.01, 2),
@@ -58,6 +68,11 @@ PAIR_PIP_INFO: dict[TradingPair, tuple[float, int]] = {
 
 # Base and quote currency for each pair.
 PAIR_CURRENCIES: dict[TradingPair, tuple[str, str]] = {
+    TradingPair.AUDUSD: ("AUD", "USD"),
+    TradingPair.NZDUSD: ("NZD", "USD"),
+    TradingPair.USDCAD: ("USD", "CAD"),
+    TradingPair.USDCHF: ("USD", "CHF"),
+    TradingPair.EURJPY: ("EUR", "JPY"),
     TradingPair.EURUSD: ("EUR", "USD"),
     TradingPair.GBPUSD: ("GBP", "USD"),
     TradingPair.USDJPY: ("USD", "JPY"),

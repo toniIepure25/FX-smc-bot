@@ -1,0 +1,113 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "Q0_INV_SWEEP_V1",
+      "checks": {
+        "completed_trades_gte": true,
+        "day_cluster_ci_lower_gte": false,
+        "matched_random_alpha_gt": false,
+        "mean_net_r_gt": false,
+        "pbo_lt": false,
+        "positive_leave_one_year_out_gte": false,
+        "positive_years_gte": false,
+        "profit_factor_gt": false,
+        "stress_1_5x_mean_net_r_gte": false
+      },
+      "eligible": false,
+      "ranking": {
+        "day_cluster_ci_lower": -0.3885499548593513,
+        "maximum_drawdown_r": 118.37052801571205,
+        "pbo": 1.0,
+        "stress_1_5x_mean": -0.3566398459810714
+      }
+    },
+    {
+      "candidate_id": "Q0_INV_ACCEPTANCE_V1",
+      "checks": {
+        "completed_trades_gte": true,
+        "day_cluster_ci_lower_gte": false,
+        "matched_random_alpha_gt": false,
+        "mean_net_r_gt": false,
+        "pbo_lt": false,
+        "positive_leave_one_year_out_gte": false,
+        "positive_years_gte": false,
+        "profit_factor_gt": false,
+        "stress_1_5x_mean_net_r_gte": false
+      },
+      "eligible": false,
+      "ranking": {
+        "day_cluster_ci_lower": -0.7795131706336297,
+        "maximum_drawdown_r": 5285.269564173732,
+        "pbo": 1.0,
+        "stress_1_5x_mean": -0.8587348880385567
+      }
+    },
+    {
+      "candidate_id": "Q0_INV_LONDON_OR_V1",
+      "checks": {
+        "completed_trades_gte": true,
+        "day_cluster_ci_lower_gte": false,
+        "matched_random_alpha_gt": false,
+        "mean_net_r_gt": false,
+        "pbo_lt": false,
+        "positive_leave_one_year_out_gte": false,
+        "positive_years_gte": false,
+        "profit_factor_gt": false,
+        "stress_1_5x_mean_net_r_gte": false
+      },
+      "eligible": false,
+      "ranking": {
+        "day_cluster_ci_lower": -0.4466741339332402,
+        "maximum_drawdown_r": 381.5787503443108,
+        "pbo": 1.0,
+        "stress_1_5x_mean": -0.4713457415645153
+      }
+    },
+    {
+      "candidate_id": "Q0_INV_NEWYORK_OR_V1",
+      "checks": {
+        "completed_trades_gte": true,
+        "day_cluster_ci_lower_gte": false,
+        "matched_random_alpha_gt": false,
+        "mean_net_r_gt": false,
+        "pbo_lt": false,
+        "positive_leave_one_year_out_gte": false,
+        "positive_years_gte": false,
+        "profit_factor_gt": false,
+        "stress_1_5x_mean_net_r_gte": false
+      },
+      "eligible": false,
+      "ranking": {
+        "day_cluster_ci_lower": -0.4598382098540272,
+        "maximum_drawdown_r": 626.598268383617,
+        "pbo": 1.0,
+        "stress_1_5x_mean": -0.4732850104281334
+      }
+    },
+    {
+      "candidate_id": "Q0_META_POLARITY_ELASTIC_NET_V1",
+      "checks": {
+        "completed_trades_gte": false,
+        "day_cluster_ci_lower_gte": false,
+        "matched_random_alpha_gt": false,
+        "mean_net_r_gt": false,
+        "pbo_lt": false,
+        "positive_leave_one_year_out_gte": false,
+        "positive_years_gte": false,
+        "profit_factor_gt": false,
+        "stress_1_5x_mean_net_r_gte": false
+      },
+      "eligible": false,
+      "ranking": {
+        "day_cluster_ci_lower": -0.2147623834031884,
+        "maximum_drawdown_r": 0.7927310548746986,
+        "pbo": 1.0,
+        "stress_1_5x_mean": -0.13314980657724576
+      }
+    }
+  ],
+  "manual_override": false,
+  "maximum_shortlist": 2,
+  "selected_candidates": [],
+  "status": "PASS"
+}

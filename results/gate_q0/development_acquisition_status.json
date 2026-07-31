@@ -1,0 +1,13 @@
+{
+  "certification_run": false,
+  "checked_partitions": 185,
+  "completed_partitions": 181,
+  "holdout_provider_requests_sent": false,
+  "planned_partitions": 480,
+  "provider_request_latest_permitted_date": "2019-12-31",
+  "replication_provider_requests_sent": false,
+  "status": "STOPPED_BY_HOLDOUT_INTEGRITY",
+  "unchecked_partitions": 295,
+  "unresolved_partitions": 4,
+  "worker_processes_stopped": true
+}

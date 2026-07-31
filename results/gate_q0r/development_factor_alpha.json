@@ -1,0 +1,45 @@
+{
+  "results": {
+    "Q0_INV_ACCEPTANCE_V1": {
+      "alpha": -3.05360352519059,
+      "lag": 5,
+      "observations": 1212,
+      "p_value": 1.1584439322073808e-44,
+      "standard_error": 0.20893500192498582,
+      "t_statistic": -14.615088410542763
+    },
+    "Q0_INV_LONDON_OR_V1": {
+      "alpha": -0.5765647851334814,
+      "lag": 5,
+      "observations": 616,
+      "p_value": 7.358672544946253e-23,
+      "standard_error": 0.05624629074574682,
+      "t_statistic": -10.250716580400985
+    },
+    "Q0_INV_NEWYORK_OR_V1": {
+      "alpha": -0.5631093637908369,
+      "lag": 5,
+      "observations": 824,
+      "p_value": 1.2279388194506188e-17,
+      "standard_error": 0.06437410964239451,
+      "t_statistic": -8.747450907188826
+    },
+    "Q0_INV_SWEEP_V1": {
+      "alpha": -0.28033879198930334,
+      "lag": 5,
+      "observations": 270,
+      "p_value": 0.00016960969301029963,
+      "standard_error": 0.07348611983597975,
+      "t_statistic": -3.8148536433140925
+    },
+    "Q0_META_POLARITY_ELASTIC_NET_V1": {
+      "alpha": 0.1861771636773347,
+      "lag": 5,
+      "observations": 5,
+      "p_value": 5.418597668772609e-13,
+      "standard_error": 1.5846494074931349e-13,
+      "t_statistic": 1174879205438.0095
+    }
+  },
+  "status": "PASS"
+}

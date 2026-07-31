@@ -1,0 +1,31 @@
+{
+  "cost_stress_fixed_components": [
+    "commission"
+  ],
+  "cost_stress_scaled_components": [
+    "actual_executable_spread",
+    "slippage"
+  ],
+  "direction_only_transform": "mirror stop and target around unchanged entry",
+  "economic_metrics_reported": false,
+  "inverse_changes_direction_only": true,
+  "long_entry_price_side": "ask",
+  "long_exit_price_side": "bid",
+  "no_reconciliation_violations": true,
+  "no_runtime_errors": true,
+  "order_expiry_unchanged": true,
+  "order_type_unchanged": true,
+  "replay_count": 3,
+  "same_bar_primary_rule": "adverse-first",
+  "session_exit_unchanged": true,
+  "short_entry_price_side": "bid",
+  "short_exit_price_side": "ask",
+  "smoke_window": [
+    "2015-01-01",
+    "2015-01-16"
+  ],
+  "source_inverse_signal_timestamps_identical": true,
+  "stop_distance_unchanged": true,
+  "target_r_unchanged": true,
+  "status": "PASS"
+}

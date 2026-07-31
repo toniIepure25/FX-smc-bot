@@ -1,0 +1,439 @@
+{
+  "integrity": {
+    "candidate_trade_ledger_rows": 9720,
+    "candidate_trade_ledger_schema_hash": "709581c9e997e9fc8a12f841032be2c48bef4de63b725f8bd5dd63acbf46d027",
+    "candidate_trade_ledger_sha256": "a0d7dda317333a5c074588560d5b41a4fe6d14534c2eb4dd102cb9f2c905ecb8",
+    "feature_matrix_columns": [
+      "source_policy_family",
+      "source_signal_direction",
+      "session",
+      "minute_of_session_sine",
+      "minute_of_session_cosine",
+      "return_12_m5_div_atr",
+      "return_48_m5_div_atr",
+      "return_288_m5_div_atr",
+      "realized_volatility_20",
+      "realized_volatility_100",
+      "volatility_ratio_20_100",
+      "spread_div_trailing_median_spread",
+      "atr_14",
+      "distance_prior_day_high_div_atr",
+      "distance_prior_day_low_div_atr",
+      "current_session_range_div_atr",
+      "event_quality__signal_body_div_atr",
+      "event_quality_missing__signal_body_div_atr",
+      "event_quality__signal_range_div_atr",
+      "event_quality_missing__signal_range_div_atr",
+      "event_quality__stop_distance_div_atr",
+      "event_quality_missing__stop_distance_div_atr",
+      "event_quality__target_distance_div_atr",
+      "event_quality_missing__target_distance_div_atr"
+    ],
+    "feature_matrix_rows": 13129,
+    "feature_matrix_schema_hash": "32e32927062410fa5aea1fcdc14629ac46bd5b23a796b358ab8ea76842c7ca1c",
+    "feature_matrix_sha256": "8d4466995a69c7506abdfbf1fcf3d362c3c142db148e0e3402242e48326dffac",
+    "implementation_hash": "23ec47466aa705cfc8847d2d7359f321ff7dd03b5beeed7d04a7676ac3dbce26",
+    "oof_prediction_schema_hash": "60cf1c1224202b042ef87a07553fd985551090cf4a209a526c5073f4db5df91d",
+    "row_level_committed": false,
+    "signal_ledger_hash": "7736eab8181b6078140ceb76cc4a99f5af8bdc27f10736a51a5a443537ea26bb",
+    "signal_ledger_rows": 13129,
+    "signal_ledger_schema_hash": "11f851ea97931aa3c7d9ee2323be6ddc1acb06678cbf1a2c3d0421de064ce2ea",
+    "source_candidate_config_hashes": {
+      "SMC_A_SWEEP_REVERSAL_V1": [
+        "b8dfd15cf012a8ceba5b4031694726361a0055ee82f1d6dfc5ab1acaa1aab168"
+      ],
+      "SMC_B_ACCEPTANCE_CONTINUATION_V1": [
+        "18c1492f8bd5ef2241b9ead7fb2f1d41d5c05cc42e0ae59cd1ac775559e196c8"
+      ],
+      "SMC_C_LONDON_OPENING_RANGE_V1": [
+        "87c63a17e4d0c7c0f5a13bc591c21af29180bb5c652a2b79d927e66155f9bef0"
+      ],
+      "SMC_C_NEWYORK_OPENING_RANGE_V1": [
+        "87c63a17e4d0c7c0f5a13bc591c21af29180bb5c652a2b79d927e66155f9bef0"
+      ]
+    }
+  },
+  "model": {
+    "embargo_fx_trading_days": 5,
+    "final_model_file_sha256": "c9278713b2cd3491c36fcccc21235b8a70149bc28fc0f599787358399a892ff7",
+    "final_model_hash": "1f7529796ec1dbfc734ef7b3615dc68419a935f617a557a79d7b88a28859c531",
+    "final_selection_hash": "6696b33ce714b8ff04624b962949663aa7e85d12a0444c133941952f600cc97c",
+    "in_sample_performance_used": false,
+    "oof_prediction_rows": 10456,
+    "oof_prediction_sha256": "5a21614378cd3475557d9c14d51d0277d378ec310c20367b28dea57520dfc62f",
+    "outer_fold_model_hashes": [
+      "383b9432883d8eb0f52826878d6a5d62334855d3edf6245e55aa4658b0f368d1",
+      "41fc87ca1ebd24b96f14aa48223fe0ba756c45e5f59724b6526453a6ee76c54d",
+      "6b92bb1519da260d90794a67c0491ce0d10798d33be5a89048916c674aac2a56",
+      "86a0bdab71dbe562ab0d5836eb723773da0a1e34dc0995471e6e39ee8c0ab320"
+    ],
+    "outer_fold_selection_hashes": [
+      "686613a9a4ed60780a8e8440179441b51ca6423957775f33646d9625c3dae64f",
+      "cc14dc83bbdc8d3209f110ec296648f983d1dd25e6bffbfa39c8f170f06351f1",
+      "63bbcad9af2bd2bcf4355b452729aaaa4142432701da850a9d1d9b38338fadda",
+      "0be362d43495c5c897d5d26059d6a044c83a641fb6450495dbcfb0475db26a61"
+    ],
+    "outer_fold_selections": [
+      {
+        "fold_log_losses": [
+          0.6506550716526077,
+          0.7064636814917602,
+          0.7019936207592521
+        ],
+        "inverse_regularization_c": 0.1,
+        "l1_ratio": 1.0,
+        "mean_log_loss": 0.6863707913012066,
+        "selection_hash": "686613a9a4ed60780a8e8440179441b51ca6423957775f33646d9625c3dae64f"
+      },
+      {
+        "fold_log_losses": [
+          0.701394873260595,
+          0.6836756665690629,
+          0.6698008885434575
+        ],
+        "inverse_regularization_c": 0.01,
+        "l1_ratio": 0.0,
+        "mean_log_loss": 0.6849571427910385,
+        "selection_hash": "cc14dc83bbdc8d3209f110ec296648f983d1dd25e6bffbfa39c8f170f06351f1"
+      },
+      {
+        "fold_log_losses": [
+          0.6816181890864248,
+          0.6742447958352689,
+          0.6520933574574752
+        ],
+        "inverse_regularization_c": 0.01,
+        "l1_ratio": 0.0,
+        "mean_log_loss": 0.6693187807930562,
+        "selection_hash": "63bbcad9af2bd2bcf4355b452729aaaa4142432701da850a9d1d9b38338fadda"
+      },
+      {
+        "fold_log_losses": [
+          0.674499161533468,
+          0.6620162615788653,
+          0.6478518149048115
+        ],
+        "inverse_regularization_c": 0.01,
+        "l1_ratio": 0.0,
+        "mean_log_loss": 0.661455746005715,
+        "selection_hash": "0be362d43495c5c897d5d26059d6a044c83a641fb6450495dbcfb0475db26a61"
+      }
+    ],
+    "purge_dependency_minutes": 2680,
+    "selected_hyperparameters": {
+      "inverse_regularization_c": 0.01,
+      "l1_ratio": 0.0
+    },
+    "status": "PASS"
+  },
+  "results": {
+    "Q0_INV_ACCEPTANCE_V1": {
+      "average_loss_r": -0.9592514373683774,
+      "average_win_r": 0.8358293516630382,
+      "best_5_trade_share": 0.015217346951510714,
+      "best_month_share": 0.02934090210272335,
+      "best_trade_share": 0.0030596907059273456,
+      "best_year_share": 0.20620214244394283,
+      "calmar": -0.2006630778563275,
+      "cost_drag_r": 1631.3976496448977,
+      "cvar_95_r": -1.099225877545338,
+      "day_cluster_ci": [
+        -0.7795131706336297,
+        -0.7453488816445171
+      ],
+      "deflated_sharpe": 0.0,
+      "gross_r": -3653.8719145288196,
+      "leave_one_year_out_mean_net_r": {
+        "2015": -0.7608327092326244,
+        "2016": -0.7604399459310449,
+        "2017": -0.7631457585281998,
+        "2018": -0.7587744695689578,
+        "2019": -0.7690144924009674
+      },
+      "leave_one_year_out_positive": false,
+      "maximum_drawdown_pct_at_0_50pct_risk": 0.9999999999969383,
+      "maximum_drawdown_r": 5285.269564173732,
+      "mean_net_r": -0.7624451188940735,
+      "mean_stress_1_5x_net_r": -0.8587348880385567,
+      "mean_stress_2_0x_net_r": -0.95502465718304,
+      "median_net_r": -1.0291697705283251,
+      "net_r": -5285.269564173717,
+      "probabilistic_sharpe": 7.53787601322482e-282,
+      "profit_factor": 0.10729335715865178,
+      "risk_0_25_pct_max_drawdown": 0.9999982122912322,
+      "risk_0_25_pct_return": -0.9999982122912322,
+      "risk_0_50_pct_max_drawdown": 0.9999999999969383,
+      "risk_0_50_pct_return": -0.9999999999969383,
+      "sharpe": -17.868969747189123,
+      "sortino": -11.477555271188015,
+      "status": "PASS",
+      "trade_count": 6932,
+      "week_cluster_ci": [
+        -0.7803669504001391,
+        -0.7442128103673339
+      ],
+      "win_rate": 0.10963646855164455,
+      "yearly_mean_net_r": {
+        "2015": -0.768771078389702,
+        "2016": -0.7707057206575691,
+        "2017": -0.7595481037550411,
+        "2018": -0.7766055425344104,
+        "2019": -0.7363232525231579
+      },
+      "yearly_trade_counts": {
+        "2015": 1408,
+        "2016": 1354,
+        "2017": 1350,
+        "2018": 1427,
+        "2019": 1393
+      },
+      "years_with_20_or_more_trades": 5
+    },
+    "Q0_INV_LONDON_OR_V1": {
+      "average_loss_r": -0.6219995088380785,
+      "average_win_r": 0.3673512091272587,
+      "best_5_trade_share": 0.12383530631994612,
+      "best_month_share": 0.05445338880991412,
+      "best_trade_share": 0.02620052291149085,
+      "best_year_share": 0.24872386121510764,
+      "calmar": -0.20134444002082513,
+      "cost_drag_r": 138.51131836076135,
+      "cvar_95_r": -1.0980842736044847,
+      "day_cluster_ci": [
+        -0.4466741339332402,
+        -0.3730563645422273
+      ],
+      "deflated_sharpe": 0.0,
+      "gross_r": -243.06743198354957,
+      "leave_one_year_out_mean_net_r": {
+        "2015": -0.4190041084375924,
+        "2016": -0.40999996886852524,
+        "2017": -0.40062348347184196,
+        "2018": -0.4091872315622058,
+        "2019": -0.4129863793336447
+      },
+      "leave_one_year_out_positive": false,
+      "maximum_drawdown_pct_at_0_50pct_risk": 0.8524318997152323,
+      "maximum_drawdown_r": 381.5787503443108,
+      "mean_net_r": -0.4102997315530225,
+      "mean_stress_1_5x_net_r": -0.4713457415645153,
+      "mean_stress_2_0x_net_r": -0.5323917515760079,
+      "median_net_r": -0.391788186465018,
+      "net_r": -381.57875034431095,
+      "probabilistic_sharpe": 1.9012291639924638e-74,
+      "profit_factor": 0.16077818858460013,
+      "risk_0_25_pct_max_drawdown": 0.6153179899048891,
+      "risk_0_25_pct_return": -0.6153179899048891,
+      "risk_0_50_pct_max_drawdown": 0.8524318997152323,
+      "risk_0_50_pct_return": -0.8524318997152323,
+      "sharpe": -12.067576213686714,
+      "sortino": -8.929085918972417,
+      "status": "PASS",
+      "trade_count": 930,
+      "week_cluster_ci": [
+        -0.4483782078683356,
+        -0.3708324580940222
+      ],
+      "win_rate": 0.21397849462365592,
+      "yearly_mean_net_r": {
+        "2015": -0.3742799620141117,
+        "2016": -0.41171027130154647,
+        "2017": -0.4548337889868893,
+        "2018": -0.4143091374605202,
+        "2019": -0.40152499201264186
+      },
+      "yearly_trade_counts": {
+        "2015": 181,
+        "2016": 163,
+        "2017": 166,
+        "2018": 202,
+        "2019": 218
+      },
+      "years_with_20_or_more_trades": 5
+    },
+    "Q0_INV_NEWYORK_OR_V1": {
+      "average_loss_r": -0.7323313661225782,
+      "average_win_r": 0.5125901510999483,
+      "best_5_trade_share": 0.05027839910718307,
+      "best_month_share": 0.04519239944500211,
+      "best_trade_share": 0.01012071371029742,
+      "best_year_share": 0.23262603956695635,
+      "calmar": -0.20079637470078665,
+      "cost_drag_r": 189.93074959553803,
+      "cvar_95_r": -1.0864722337504755,
+      "day_cluster_ci": [
+        -0.4598382098540272,
+        -0.3840669123981279
+      ],
+      "deflated_sharpe": 0.0,
+      "gross_r": -436.6675187880784,
+      "leave_one_year_out_mean_net_r": {
+        "2015": -0.4234428572450509,
+        "2016": -0.4129493708372381,
+        "2017": -0.42756153777171435,
+        "2018": -0.41568785684360887,
+        "2019": -0.42607804118193177
+      },
+      "leave_one_year_out_positive": false,
+      "maximum_drawdown_pct_at_0_50pct_risk": 0.9569227924237377,
+      "maximum_drawdown_r": 626.598268383617,
+      "mean_net_r": -0.4211009868169465,
+      "mean_stress_1_5x_net_r": -0.4732850104281334,
+      "mean_stress_2_0x_net_r": -0.5254690340393203,
+      "median_net_r": -0.5410174580386328,
+      "net_r": -626.5982683836164,
+      "probabilistic_sharpe": 1.9617744883144603e-69,
+      "profit_factor": 0.23331430497732297,
+      "risk_0_25_pct_max_drawdown": 0.7918373583452376,
+      "risk_0_25_pct_return": -0.7918373583452376,
+      "risk_0_50_pct_max_drawdown": 0.9569227924237377,
+      "risk_0_50_pct_return": -0.9569227924237377,
+      "sharpe": -10.645914237105165,
+      "sortino": -8.242009434317046,
+      "status": "PASS",
+      "trade_count": 1488,
+      "week_cluster_ci": [
+        -0.46008809048849275,
+        -0.38176135736337447
+      ],
+      "win_rate": 0.25,
+      "yearly_mean_net_r": {
+        "2015": -0.41230962019387096,
+        "2016": -0.4580408376692309,
+        "2017": -0.39789085931278034,
+        "2018": -0.44175496817152604,
+        "2019": -0.39895036024750646
+      },
+      "yearly_trade_counts": {
+        "2015": 313,
+        "2016": 269,
+        "2017": 324,
+        "2018": 309,
+        "2019": 273
+      },
+      "years_with_20_or_more_trades": 5
+    },
+    "Q0_INV_SWEEP_V1": {
+      "average_loss_r": -0.6292391977132973,
+      "average_win_r": 0.5011246191572659,
+      "best_5_trade_share": 0.19086941579776767,
+      "best_month_share": 0.10629820268211859,
+      "best_trade_share": 0.03883968490606404,
+      "best_year_share": 0.3219522060155254,
+      "calmar": -0.19891547320545092,
+      "cost_drag_r": 30.87887671350812,
+      "cvar_95_r": -1.0241375728225346,
+      "day_cluster_ci": [
+        -0.3885499548593513,
+        -0.2528047871729444
+      ],
+      "deflated_sharpe": 2.4902929492675005e-123,
+      "gross_r": -86.25817338394634,
+      "leave_one_year_out_mean_net_r": {
+        "2015": -0.34478394543725266,
+        "2016": -0.3274908284266354,
+        "2017": -0.2890640454131987,
+        "2018": -0.32038587890704373,
+        "2019": -0.33060998556989074
+      },
+      "leave_one_year_out_positive": false,
+      "maximum_drawdown_pct_at_0_50pct_risk": 0.44796809465573456,
+      "maximum_drawdown_r": 118.37052801571205,
+      "mean_net_r": -0.32180508268531444,
+      "mean_stress_1_5x_net_r": -0.3566398459810714,
+      "mean_stress_2_0x_net_r": -0.3914746092768284,
+      "median_net_r": -0.3373051661234518,
+      "net_r": -117.13705009745445,
+      "probabilistic_sharpe": 2.307691096057232e-13,
+      "profit_factor": 0.29752214142460354,
+      "risk_0_25_pct_max_drawdown": 0.2565844971194288,
+      "risk_0_25_pct_return": -0.2542969993516514,
+      "risk_0_50_pct_max_drawdown": 0.44796809465573456,
+      "risk_0_50_pct_return": -0.4445783126142079,
+      "sharpe": -8.37730925308663,
+      "sortino": -7.114281297725979,
+      "status": "PASS",
+      "trade_count": 364,
+      "week_cluster_ci": [
+        -0.38840170534046403,
+        -0.2523283730286041
+      ],
+      "win_rate": 0.27197802197802196,
+      "yearly_mean_net_r": {
+        "2015": -0.2518472116405249,
+        "2016": -0.30314245842850807,
+        "2017": -0.5057501829959283,
+        "2018": -0.32766179686888225,
+        "2019": -0.27973721334789414
+      },
+      "yearly_trade_counts": {
+        "2015": 90,
+        "2016": 85,
+        "2017": 55,
+        "2018": 71,
+        "2019": 63
+      },
+      "years_with_20_or_more_trades": 5
+    },
+    "Q0_META_POLARITY_ELASTIC_NET_V1": {
+      "average_loss_r": -0.1585462109749397,
+      "average_win_r": 0.06152661040596825,
+      "best_5_trade_share": 1.0,
+      "best_month_share": 1.0,
+      "best_trade_share": 1.0,
+      "best_year_share": 1.0,
+      "calmar": -0.289931731705232,
+      "cost_drag_r": 0.1697050598986543,
+      "cvar_95_r": -0.36579275905117636,
+      "day_cluster_ci": [
+        -0.2147623834031884,
+        0.001455411000542317
+      ],
+      "deflated_sharpe": 2.4072381359488004e-07,
+      "gross_r": -0.561499384570076,
+      "leave_one_year_out_mean_net_r": {
+        "2016": -0.1585462109749397,
+        "2017": -0.017254109893452746,
+        "2018": -0.1439490038743609,
+        "2019": -0.12587498589586593
+      },
+      "leave_one_year_out_positive": false,
+      "maximum_drawdown_pct_at_0_50pct_risk": 0.00395822387812536,
+      "maximum_drawdown_r": 0.7927310548746986,
+      "mean_net_r": -0.12186740741145506,
+      "mean_stress_1_5x_net_r": -0.13314980657724576,
+      "mean_stress_2_0x_net_r": -0.1444322057430365,
+      "median_net_r": -0.12481775980416449,
+      "net_r": -0.7312044444687303,
+      "probabilistic_sharpe": 0.036996615272133763,
+      "profit_factor": 0.07761347310367869,
+      "risk_0_25_pct_max_drawdown": 0.001980469389292276,
+      "risk_0_25_pct_return": -0.0018269574921987441,
+      "risk_0_50_pct_max_drawdown": 0.00395822387812536,
+      "risk_0_50_pct_return": -0.0036518085065878614,
+      "sharpe": -10.41750579231282,
+      "sortino": -8.45177452263245,
+      "status": "PASS",
+      "trade_count": 6,
+      "week_cluster_ci": [
+        -0.21781822581357307,
+        -0.00033902887426315586
+      ],
+      "win_rate": 0.16666666666666666,
+      "yearly_mean_net_r": {
+        "2016": 0.06152661040596825,
+        "2017": -0.22648070492945735,
+        "2018": -0.011459425096925789,
+        "2019": -0.1018295149894007
+      },
+      "yearly_trade_counts": {
+        "2016": 1,
+        "2017": 3,
+        "2018": 1,
+        "2019": 1
+      },
+      "years_with_20_or_more_trades": 0
+    }
+  },
+  "status": "PASS"
+}

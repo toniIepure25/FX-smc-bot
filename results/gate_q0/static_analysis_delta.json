@@ -1,0 +1,7 @@
+{
+  "broad_mypy_delta": "NOT_COMPUTED_AFTER_EARLY_GATE_STOP",
+  "broad_ruff_delta": "NOT_COMPUTED_AFTER_EARLY_GATE_STOP",
+  "new_targeted_mypy_issues": 0,
+  "new_targeted_ruff_issues": 0,
+  "status": "PARTIAL_BLOCKED_BY_HOLDOUT_INTEGRITY"
+}

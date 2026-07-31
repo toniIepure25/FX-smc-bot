@@ -1,0 +1,27 @@
+{
+  "factor_alpha": "descriptive intercept",
+  "factor_model": [
+    "fixed FX time-series momentum factor",
+    "fixed short-term reversal factor",
+    "broad USD-direction factor",
+    "realized-volatility factor"
+  ],
+  "newey_west_hac_lag_trading_days": 5,
+  "primary_benchmark_alpha": "candidate mean net R minus matched-random-entry mean net R",
+  "primary_profitability_estimand": "mean net executable R per accepted trade",
+  "required_inference": [
+    "day-cluster bootstrap CI",
+    "week-cluster bootstrap sensitivity",
+    "stationary bootstrap",
+    "permutation test versus matched random entries",
+    "White Reality Check",
+    "Hansen SPA",
+    "Romano-Wolf max-T sensitivity",
+    "Holm family-wise correction",
+    "Benjamini-Hochberg FDR sensitivity",
+    "probabilistic Sharpe ratio",
+    "deflated Sharpe ratio",
+    "probability of backtest overfitting"
+  ],
+  "status": "PASS"
+}

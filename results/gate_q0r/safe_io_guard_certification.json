@@ -1,0 +1,38 @@
+{
+  "authorized_date_end_inclusive": "2022-12-31",
+  "authorized_date_start_inclusive": "2015-01-01",
+  "authorized_instrument_count": 6,
+  "capability_immutable": true,
+  "capability_requires": [
+    "authorized_root",
+    "authorized_instruments",
+    "authorized_start",
+    "authorized_end",
+    "authorized_partitions",
+    "authorized_operation"
+  ],
+  "clean_root_runtime_validation": "PASS",
+  "forbidden_recursive_discovery_api_audit": "PASS",
+  "mypy": "PASS",
+  "path_generation": "FROZEN_PLAN_ONLY",
+  "pytest": {
+    "passed": 16,
+    "status": "PASS"
+  },
+  "rejections_certified": [
+    "date_after_authorized_window",
+    "date_before_authorized_window",
+    "unknown_instrument",
+    "old_q0_root",
+    "repository_root",
+    "repository_ancestor",
+    "nonempty_root",
+    "recursive_wildcard",
+    "multicomponent_leaf",
+    "unplanned_partition",
+    "unauthorized_delete_operation",
+    "symlink_or_junction_escape"
+  ],
+  "ruff": "PASS",
+  "status": "PASS"
+}
