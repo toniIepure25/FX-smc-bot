@@ -28,23 +28,46 @@ EXECUTION_TIMEZONE: Final = "America/New_York"
 EXECUTION_LOCAL_TIME: Final = time(17, 5)
 CERTIFIED_STATUS: Final = "CERTIFIED"
 CERTIFIED_STATUSES: Final = frozenset({CERTIFIED_STATUS, "PASS"})
+EONIA_END: Final = date(2019, 9, 30)
+ESTR_START: Final = date(2019, 10, 1)
 _NY_ZONE: Final = ZoneInfo(EXECUTION_TIMEZONE)
 
 
 class RateVersionLike(Protocol):
     """Structural surface required from an immutable rate-vintage record."""
 
-    currency: str
-    series_id: str
-    observation_date: date
-    value: float
-    publication_timestamp: datetime
-    effective_timestamp: datetime
-    strategy_availability_timestamp: datetime
-    source_snapshot_sha256: str
-    revision_identifier: str
-    certification_status: str
-    calendar_id: str
+    @property
+    def currency(self) -> str: ...
+
+    @property
+    def series_id(self) -> str: ...
+
+    @property
+    def observation_date(self) -> date: ...
+
+    @property
+    def value(self) -> float: ...
+
+    @property
+    def publication_timestamp(self) -> datetime: ...
+
+    @property
+    def effective_timestamp(self) -> datetime: ...
+
+    @property
+    def strategy_availability_timestamp(self) -> datetime: ...
+
+    @property
+    def source_snapshot_sha256(self) -> str: ...
+
+    @property
+    def revision_identifier(self) -> str: ...
+
+    @property
+    def certification_status(self) -> str: ...
+
+    @property
+    def calendar_id(self) -> str: ...
 
 
 @dataclass(frozen=True)
@@ -126,6 +149,7 @@ def align_rate_for_day(
     dataset_freeze_id: str,
     *,
     certified_event_dates: frozenset[date] = frozenset(),
+    frozen_version_ids: frozenset[str] | None = None,
 ) -> AlignedRate:
     """Select the latest certified version available at the frozen timestamp."""
     _validate_freeze_id(dataset_freeze_id)
@@ -134,7 +158,14 @@ def align_rate_for_day(
         raise ValueError(f"Date is not an explicit FX trading day: {trading_day.isoformat()}")
     timestamp = strategy_timestamp(trading_day)
     timestamp_utc = timestamp.astimezone(UTC)
-    currency_versions = tuple(version for version in versions if version.currency == currency)
+    frozen_versions = _validate_freeze_membership(
+        tuple(versions), dataset_freeze_id, frozen_version_ids
+    )
+    currency_versions = tuple(
+        version for version in frozen_versions if version.currency == currency
+    )
+    for version in currency_versions:
+        _validate_eur_transition(version)
     certified = tuple(
         version
         for version in currency_versions
@@ -208,6 +239,7 @@ def align_rate_panel(
     *,
     currencies: Sequence[str] = AMENDED_CURRENCY_ORDER,
     certified_event_dates: frozenset[date] = frozenset(),
+    frozen_version_ids: frozenset[str] | None = None,
 ) -> AlignedRatePanel:
     """Build a deterministic currency-by-FX-day panel without interpolation."""
     _validate_freeze_id(dataset_freeze_id)
@@ -220,13 +252,17 @@ def align_rate_panel(
     for day in frozen_trading_days:
         if not fx_calendar.is_open(day):
             raise ValueError(f"Date is not an explicit FX trading day: {day.isoformat()}")
+    frozen_versions = _validate_freeze_membership(
+        tuple(versions), dataset_freeze_id, frozen_version_ids
+    )
     rows = tuple(
         align_rate_for_day(
-            versions,
+            frozen_versions,
             currency,
             trading_day,
             dataset_freeze_id,
             certified_event_dates=certified_event_dates,
+            frozen_version_ids=frozen_version_ids,
         )
         for trading_day in sorted(frozen_trading_days)
         for currency in currencies
@@ -267,7 +303,7 @@ def _carry_forward_reason(
         )
     intervening = tuple(
         observation_date.fromordinal(ordinal)
-        for ordinal in range(observation_date.toordinal() + 1, trading_day.toordinal())
+        for ordinal in range(observation_date.toordinal() + 1, trading_day.toordinal() + 1)
     )
     if intervening and all(not definition.is_open(day) for day in intervening):
         return "SOURCE_CALENDAR_CLOSED"
@@ -318,6 +354,32 @@ def _version_identity(version: RateVersionLike) -> str:
         )
     )
     return hashlib.sha256(payload.encode("ascii")).hexdigest()
+
+
+def _validate_freeze_membership(
+    versions: tuple[RateVersionLike, ...],
+    dataset_freeze_id: str,
+    frozen_version_ids: frozenset[str] | None,
+) -> tuple[RateVersionLike, ...]:
+    for version in versions:
+        version_id = _version_identity(version)
+        recorded_freeze = getattr(version, "dataset_freeze_id", None)
+        if recorded_freeze is not None and recorded_freeze != dataset_freeze_id:
+            raise ValueError("Rate version carries a conflicting dataset freeze identity")
+        if frozen_version_ids is None:
+            if recorded_freeze != dataset_freeze_id:
+                raise ValueError("Rate version is not bound to the requested dataset freeze")
+        elif version_id not in frozen_version_ids:
+            raise ValueError("Rate version is outside the pinned dataset freeze")
+    return versions
+
+
+def _validate_eur_transition(version: RateVersionLike) -> None:
+    if version.currency != "EUR":
+        return
+    expected = "EONIA" if version.observation_date <= EONIA_END else "ESTR"
+    if version.series_id != expected:
+        raise ValueError("EONIA_ESTR_TRANSITION_VIOLATION")
 
 
 def _aware_utc(value: datetime) -> datetime:

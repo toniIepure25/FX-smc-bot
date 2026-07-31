@@ -9,6 +9,7 @@ from fx_smc_bot.research import rate_alignment as alignment
 from fx_smc_bot.research.rate_calendars import (
     BANK_OF_CANADA_ANNOUNCEMENT_CALENDAR,
     NEW_YORK_FED_BUSINESS_DAY,
+    TARGET2,
 )
 
 
@@ -26,6 +27,7 @@ class SyntheticVersion:
     certification_status: str = alignment.CERTIFIED_STATUS
     calendar_id: str = NEW_YORK_FED_BUSINESS_DAY
     version_id: str = "synthetic-version-initial"
+    dataset_freeze_id: str = "synthetic-freeze"
 
 
 def _replace(version: SyntheticVersion, **changes: object) -> SyntheticVersion:
@@ -36,8 +38,12 @@ def _replace(version: SyntheticVersion, **changes: object) -> SyntheticVersion:
 def test_execution_timestamp_is_exact_and_dst_aware() -> None:
     winter = alignment.strategy_timestamp(date(2012, 1, 6))
     summer = alignment.strategy_timestamp(date(2012, 7, 6))
-    assert (winter.hour, winter.minute, winter.utcoffset().total_seconds()) == (17, 5, -18_000)
-    assert (summer.hour, summer.minute, summer.utcoffset().total_seconds()) == (17, 5, -14_400)
+    winter_offset = winter.utcoffset()
+    summer_offset = summer.utcoffset()
+    assert winter_offset is not None
+    assert summer_offset is not None
+    assert (winter.hour, winter.minute, winter_offset.total_seconds()) == (17, 5, -18_000)
+    assert (summer.hour, summer.minute, summer_offset.total_seconds()) == (17, 5, -14_400)
     assert winter.astimezone(UTC).hour == 22
     assert summer.astimezone(UTC).hour == 21
 
@@ -133,19 +139,19 @@ def test_store_pass_status_is_recognized_as_certified() -> None:
     assert row.certification_status == "PASS"
 
 
-def test_weekend_carry_has_explicit_source_calendar_reason() -> None:
+def test_carry_reason_includes_the_current_source_calendar_day() -> None:
     version = _replace(
         SyntheticVersion(),
-        observation_date=date(2012, 1, 6),
-        publication_timestamp=datetime(2012, 1, 6, 15, tzinfo=UTC),
-        effective_timestamp=datetime(2012, 1, 6, 5, tzinfo=UTC),
-        strategy_availability_timestamp=datetime(2012, 1, 6, 15, tzinfo=UTC),
+        observation_date=date(2012, 1, 13),
+        publication_timestamp=datetime(2012, 1, 13, 15, tzinfo=UTC),
+        effective_timestamp=datetime(2012, 1, 13, 5, tzinfo=UTC),
+        strategy_availability_timestamp=datetime(2012, 1, 13, 15, tzinfo=UTC),
     )
-    row = alignment.align_rate_for_day(
-        [version], "USD", date(2012, 1, 9), "synthetic-freeze"
+    holiday = alignment.align_rate_for_day(
+        [version], "USD", date(2012, 1, 16), "synthetic-freeze"
     )
-    assert row.age_calendar_days == 3
-    assert row.carry_forward_reason == "SOURCE_CALENDAR_CLOSED"
+    assert holiday.age_calendar_days == 3
+    assert holiday.carry_forward_reason == "SOURCE_CALENDAR_CLOSED"
 
 
 def test_event_rate_carries_only_between_explicit_certified_events() -> None:
@@ -209,3 +215,84 @@ def test_panel_requires_explicit_freeze_unique_inputs_and_fx_days() -> None:
         alignment.align_rate_for_day([], "USD", date(2012, 1, 7), "freeze")
     with pytest.raises(TypeError, match="must be a date"):
         alignment.strategy_timestamp(datetime(2012, 1, 6, tzinfo=UTC))  # type: ignore[arg-type]
+
+
+def test_alignment_rejects_versions_outside_pinned_freeze() -> None:
+    conflicting = _replace(SyntheticVersion(), dataset_freeze_id="other-freeze")
+    with pytest.raises(ValueError, match="conflicting dataset freeze"):
+        alignment.align_rate_for_day(
+            [conflicting], "USD", date(2012, 1, 6), "synthetic-freeze"
+        )
+
+    injected = _replace(
+        SyntheticVersion(),
+        version_id="not-pinned",
+        dataset_freeze_id="synthetic-freeze",
+    )
+    with pytest.raises(ValueError, match="outside the pinned dataset freeze"):
+        alignment.align_rate_panel(
+            [injected],
+            [date(2012, 1, 6)],
+            "synthetic-freeze",
+            currencies=("USD",),
+            frozen_version_ids=frozenset({"different-version"}),
+        )
+
+
+def test_future_observation_date_is_never_selected() -> None:
+    future_observation = _replace(
+        SyntheticVersion(),
+        observation_date=date(2012, 1, 9),
+        publication_timestamp=datetime(2012, 1, 6, 14, tzinfo=UTC),
+        effective_timestamp=datetime(2012, 1, 6, 14, tzinfo=UTC),
+        strategy_availability_timestamp=datetime(2012, 1, 6, 14, tzinfo=UTC),
+    )
+    result = alignment.align_rate_for_day(
+        [future_observation], "USD", date(2012, 1, 6), "synthetic-freeze"
+    )
+    assert result.value is None
+    assert result.missing_reason == "NO_CERTIFIED_RATE_AVAILABLE_AS_OF_TIMESTAMP"
+
+
+def test_eur_transition_accepts_exact_boundary_and_rejects_overlap() -> None:
+    eonia = _replace(
+        SyntheticVersion(),
+        currency="EUR",
+        series_id="EONIA",
+        observation_date=alignment.EONIA_END,
+        publication_timestamp=datetime(2019, 10, 1, 8, tzinfo=UTC),
+        effective_timestamp=datetime(2019, 9, 30, tzinfo=UTC),
+        strategy_availability_timestamp=datetime(2019, 10, 1, 8, tzinfo=UTC),
+        calendar_id=TARGET2,
+        version_id="eonia-boundary",
+    )
+    estr = _replace(
+        eonia,
+        series_id="ESTR",
+        observation_date=alignment.ESTR_START,
+        publication_timestamp=datetime(2019, 10, 2, 8, tzinfo=UTC),
+        effective_timestamp=datetime(2019, 10, 1, tzinfo=UTC),
+        strategy_availability_timestamp=datetime(2019, 10, 2, 8, tzinfo=UTC),
+        version_id="estr-boundary",
+    )
+    assert alignment.align_rate_for_day(
+        [eonia], "EUR", date(2019, 10, 1), "synthetic-freeze"
+    ).series_id == "EONIA"
+    assert alignment.align_rate_for_day(
+        [estr], "EUR", date(2019, 10, 2), "synthetic-freeze"
+    ).series_id == "ESTR"
+
+    with pytest.raises(ValueError, match="EONIA_ESTR_TRANSITION_VIOLATION"):
+        alignment.align_rate_for_day(
+            [_replace(eonia, series_id="ESTR")],
+            "EUR",
+            date(2019, 10, 1),
+            "synthetic-freeze",
+        )
+    with pytest.raises(ValueError, match="EONIA_ESTR_TRANSITION_VIOLATION"):
+        alignment.align_rate_for_day(
+            [_replace(estr, series_id="EONIA")],
+            "EUR",
+            date(2019, 10, 2),
+            "synthetic-freeze",
+        )

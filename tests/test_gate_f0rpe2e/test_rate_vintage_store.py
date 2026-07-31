@@ -52,6 +52,8 @@ class SyntheticRateVersion:
     day_count_convention: str
     calendar_id: str
     retrieved_at: datetime
+    source_adapter_id: str
+    source_request_identity: str
 
 
 def _request() -> SyntheticRequest:
@@ -104,6 +106,8 @@ def _version(
         day_count_convention="ACT_360",
         calendar_id="NEW_YORK_FED_BUSINESS_DAY",
         retrieved_at=snapshot.retrieved_at,
+        source_adapter_id=snapshot.request.adapter_id,
+        source_request_identity=snapshot.request.request_identity,
     )
 
 
@@ -119,6 +123,13 @@ def _freeze(
     version_ids: list[str],
     freeze_id: str = "SYNTHETIC_FREEZE_V1",
 ) -> str:
+    for version_id in version_ids:
+        store.append_certification(
+            version_id,
+            status="PASS",
+            certified_at=datetime(2010, 1, 8, 13, tzinfo=UTC),
+            details={"fixture": "schema-only"},
+        )
     return store.create_dataset_freeze(
         freeze_id,
         version_ids,
@@ -141,10 +152,11 @@ def test_schema_contains_all_gate_tables_and_enforces_append_only(tmp_path: Path
         "rate_observation_identities": 1,
         "rate_versions": 1,
         "availability_events": 1,
-        "certification_results": 0,
+        "certification_results": 1,
         "daily_strategy_rate_panel": 0,
         "dataset_freezes": 1,
         "dataset_freeze_versions": 1,
+        "dataset_freeze_certifications": 1,
     }
     store.close()
 
@@ -161,28 +173,33 @@ def test_source_payload_and_ingestion_replay_are_idempotent(tmp_path: Path) -> N
     replay = _snapshot(retrieved_at=snapshot.retrieved_at + timedelta(hours=1))
 
     assert store.append_source_snapshot(snapshot) == store.append_source_snapshot(replay)
-    run_args = {
-        "adapter_id": "SYNTHETIC_USD_OFFICIAL_V1",
-        "started_at": datetime(2010, 1, 8, 12, tzinfo=UTC),
-        "completed_at": datetime(2010, 1, 8, 12, 1, tzinfo=UTC),
-        "status": "PASS",
-        "snapshot_count": 1,
-        "details": {"fixture": True},
-    }
-    assert store.append_ingestion_run("RUN-1", **run_args) == "RUN-1"
-    assert store.append_ingestion_run("RUN-1", **run_args) == "RUN-1"
+    started = datetime(2010, 1, 8, 12, tzinfo=UTC)
+    completed = datetime(2010, 1, 8, 12, 1, tzinfo=UTC)
+    for _attempt in range(2):
+        assert store.append_ingestion_run(
+            "RUN-1",
+            adapter_id="SYNTHETIC_USD_OFFICIAL_V1",
+            started_at=started,
+            completed_at=completed,
+            status="PASS",
+            snapshot_count=1,
+            details={"fixture": True},
+        ) == "RUN-1"
     with pytest.raises(RateVintageConflictError, match="ingestion run"):
-        store.append_ingestion_run("RUN-1", **{**run_args, "status": "FAIL"})
+        store.append_ingestion_run(
+            "RUN-1",
+            adapter_id="SYNTHETIC_USD_OFFICIAL_V1",
+            started_at=started,
+            completed_at=completed,
+            status="FAIL",
+            snapshot_count=1,
+            details={"fixture": True},
+        )
 
 
 def test_initial_publication_is_missing_before_and_available_after(tmp_path: Path) -> None:
     store, snapshot = _store(tmp_path)
     version_id = store.append_rate_version(_version(snapshot))
-    store.append_certification(
-        version_id,
-        status="PASS",
-        certified_at=datetime(2010, 1, 5, 9, 1, tzinfo=UTC),
-    )
     freeze_id = _freeze(store, [version_id])
 
     before = store.get_rate_as_of("USD", datetime(2010, 1, 5, 8, 59, tzinfo=UTC), freeze_id)
@@ -382,3 +399,164 @@ def test_invalid_availability_unknown_snapshot_and_unknown_freeze_are_rejected(
         store.append_rate_version(replace(version, source_snapshot_sha256="f" * 64))
     with pytest.raises(RateVintageIntegrityError, match="Unknown dataset freeze"):
         store.get_rate_as_of("USD", datetime(2010, 1, 6, tzinfo=UTC), "UNKNOWN")
+
+
+def test_freeze_requires_latest_passing_certification(tmp_path: Path) -> None:
+    store, snapshot = _store(tmp_path)
+    uncertified = store.append_rate_version(_version(snapshot))
+    with pytest.raises(RateVintageIntegrityError, match="requires a certification"):
+        store.create_dataset_freeze(
+            "NO_CERT_FREEZE",
+            [uncertified],
+            created_at=datetime(2010, 2, 1, tzinfo=UTC),
+        )
+
+    store.append_certification(
+        uncertified,
+        status="REJECTED",
+        certified_at=datetime(2010, 1, 8, 13, tzinfo=UTC),
+    )
+    with pytest.raises(RateVintageIntegrityError, match="latest certification to pass"):
+        store.create_dataset_freeze(
+            "REJECTED_FREEZE",
+            [uncertified],
+            created_at=datetime(2010, 2, 1, tzinfo=UTC),
+        )
+
+
+def test_frozen_certification_is_immutable_after_later_append(tmp_path: Path) -> None:
+    store, snapshot = _store(tmp_path)
+    version_id = store.append_rate_version(_version(snapshot))
+    freeze_id = _freeze(store, [version_id])
+    before = store.get_rate_as_of(
+        "USD", datetime(2010, 1, 9, 17, tzinfo=UTC), freeze_id
+    )
+    assert isinstance(before, AvailableRate)
+    assert before.certification_status == "PASS"
+
+    store.append_certification(
+        version_id,
+        status="REJECTED",
+        certified_at=datetime(2010, 1, 9, 14, tzinfo=UTC),
+    )
+    after = store.get_rate_as_of(
+        "USD", datetime(2010, 1, 9, 17, tzinfo=UTC), freeze_id
+    )
+    replay = _freeze(store, [version_id])
+    assert isinstance(after, AvailableRate)
+    assert after.certification_status == "PASS"
+    assert after.version_id == before.version_id
+    assert replay == freeze_id
+
+
+def test_certification_cannot_predate_snapshot_retrieval(tmp_path: Path) -> None:
+    store, snapshot = _store(tmp_path)
+    version_id = store.append_rate_version(_version(snapshot))
+    with pytest.raises(RateVintageIntegrityError, match="predate source retrieval"):
+        store.append_certification(
+            version_id,
+            status="PASS",
+            certified_at=snapshot.retrieved_at - timedelta(seconds=1),
+        )
+
+
+def test_future_observation_date_and_wrong_eur_regime_fail_closed(tmp_path: Path) -> None:
+    store, snapshot = _store(tmp_path)
+    with pytest.raises(RateVintageIntegrityError, match="observation_date"):
+        store.append_rate_version(
+            _version(
+                snapshot,
+                observation=date(2010, 1, 6),
+                publication=datetime(2010, 1, 5, 9, tzinfo=UTC),
+                effective=datetime(2010, 1, 5, tzinfo=UTC),
+            )
+        )
+
+    invalid_eur = replace(
+        _version(
+            snapshot,
+            observation=date(2019, 9, 30),
+            publication=datetime(2019, 10, 1, 8, tzinfo=UTC),
+            effective=datetime(2019, 9, 30, tzinfo=UTC),
+        ),
+        currency="EUR",
+        series_id="ESTR",
+        calendar_id="TARGET2",
+    )
+    with pytest.raises(RateVintageIntegrityError, match="EONIA/ESTR"):
+        store.append_rate_version(invalid_eur)
+
+
+def test_rate_version_is_bound_to_exact_snapshot_identity(tmp_path: Path) -> None:
+    store, snapshot = _store(tmp_path)
+    second = SyntheticSnapshot(
+        request=SyntheticRequest("SYNTHETIC_OTHER_V1", "synthetic-other-request"),
+        payload=snapshot.payload,
+        response_headers=snapshot.response_headers,
+        retrieved_at=snapshot.retrieved_at,
+        source_snapshot_sha256=snapshot.source_snapshot_sha256,
+    )
+    store.append_source_snapshot(second)
+
+    version_id = store.append_rate_version(_version(snapshot))
+    assert version_id
+    with pytest.raises(RateVintageIntegrityError, match="unknown source snapshot"):
+        store.append_rate_version(
+            replace(
+                _version(snapshot, revision_identifier="OTHER-SNAPSHOT"),
+                source_adapter_id="SYNTHETIC_OTHER_V1",
+                source_request_identity="missing-request",
+            )
+        )
+
+    unbound = {
+        field: getattr(_version(snapshot), field)
+        for field in _version(snapshot).__dataclass_fields__
+        if field not in {"source_adapter_id", "source_request_identity"}
+    }
+    with pytest.raises(RateVintageIntegrityError, match="ambiguous"):
+        store.append_rate_version(unbound)
+
+
+def test_daily_panel_rejects_version_outside_declared_freeze(tmp_path: Path) -> None:
+    store, snapshot = _store(tmp_path)
+    first = store.append_rate_version(_version(snapshot))
+    second = store.append_rate_version(
+        _version(
+            snapshot,
+            observation=date(2010, 1, 5),
+            publication=datetime(2010, 1, 6, 9, tzinfo=UTC),
+            revision_identifier="ORIGINAL-2",
+        )
+    )
+    first_freeze = _freeze(store, [first], "FIRST_FREEZE")
+    _freeze(store, [second], "SECOND_FREEZE")
+    selected = store.get_rate_as_of(
+        "USD", datetime(2010, 1, 9, 17, tzinfo=UTC), first_freeze
+    )
+    assert isinstance(selected, AvailableRate)
+    forged = replace(selected, version_id=second)
+    with pytest.raises(RateVintageIntegrityError, match="outside its dataset freeze"):
+        store.append_daily_strategy_rate(forged)
+
+
+def test_direct_sql_replace_and_metadata_mutation_are_blocked(tmp_path: Path) -> None:
+    database = tmp_path / "synthetic-rate-vintages.sqlite3"
+    store, _snapshot_record = _store(tmp_path)
+    store.close()
+
+    connection = sqlite3.connect(database)
+    with pytest.raises(sqlite3.IntegrityError, match="append-only"):
+        connection.execute(
+            "UPDATE store_metadata SET value = 'CORRUPTED' WHERE key = 'schema_version'"
+        )
+    with pytest.raises(sqlite3.IntegrityError, match="append-only insert collision"):
+        connection.execute(
+            """INSERT OR REPLACE INTO source_snapshots(
+                source_snapshot_id, adapter_id, request_identity, payload_sha256,
+                source_document_id, retrieved_at, response_headers_json
+            ) SELECT source_snapshot_id, adapter_id, request_identity, payload_sha256,
+                     source_document_id, retrieved_at, response_headers_json
+              FROM source_snapshots LIMIT 1"""
+        )
+    connection.close()

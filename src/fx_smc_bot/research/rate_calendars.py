@@ -21,8 +21,26 @@ BANK_OF_CANADA_ANNOUNCEMENT_CALENDAR: Final = "BANK_OF_CANADA_ANNOUNCEMENT_CALEN
 CHF_CURRENCY_BUSINESS_DAY: Final = "CHF_CURRENCY_BUSINESS_DAY"
 FX_TRADING_DAY: Final = "FX_TRADING_DAY"
 
-CALENDAR_VERSION: Final = "F0RPE2E_RATE_CALENDARS_V1"
+CALENDAR_VERSION: Final = "F0RPE2E_RATE_CALENDARS_V2"
 _WEEKEND: Final = frozenset({5, 6})
+SUPPORTED_START: Final = date(2010, 1, 1)
+SUPPORTED_END: Final = date(2022, 12, 31)
+
+_LONDON_ADDITIONAL_HOLIDAYS: Final = {
+    2011: frozenset({date(2011, 4, 29)}),
+    2012: frozenset({date(2012, 6, 4), date(2012, 6, 5)}),
+    2020: frozenset({date(2020, 5, 8)}),
+    2022: frozenset({date(2022, 6, 2), date(2022, 6, 3), date(2022, 9, 19)}),
+}
+_LONDON_REPLACED_HOLIDAYS: Final = {
+    2012: frozenset({date(2012, 5, 28)}),
+    2020: frozenset({date(2020, 5, 4)}),
+    2022: frozenset({date(2022, 5, 30)}),
+}
+_RITS_ADDITIONAL_HOLIDAYS: Final = {
+    2011: frozenset({date(2011, 4, 26)}),
+    2022: frozenset({date(2022, 9, 22)}),
+}
 
 
 @dataclass(frozen=True)
@@ -46,6 +64,8 @@ class CalendarDefinition:
         """Return calendar membership using only explicit rules and inputs."""
         if type(day) is not date:
             raise TypeError("Calendar day must be a date")
+        if not SUPPORTED_START <= day <= SUPPORTED_END:
+            raise ValueError("Calendar day is outside the authorized 2010-2022 interval")
         if self.requires_explicit_event_dates:
             return day in event_dates and day not in additional_closures
         return (
@@ -143,6 +163,8 @@ def calendar_days(
     additional_closures: frozenset[date] = frozenset(),
 ) -> tuple[date, ...]:
     """Enumerate named-calendar days over an explicitly bounded interval."""
+    if type(start) is not date or type(end) is not date:
+        raise TypeError("Calendar interval boundaries must be dates")
     if end < start:
         raise ValueError("Calendar interval end precedes start")
     definition = calendar_definition(calendar_id)
@@ -220,6 +242,8 @@ def _london_holidays(year: int) -> frozenset[date]:
         _last_weekday(year, 8, 0),
     }
     holidays.update(_paired_weekday_substitutes(date(year, 12, 25), date(year, 12, 26)))
+    holidays.difference_update(_LONDON_REPLACED_HOLIDAYS.get(year, frozenset()))
+    holidays.update(_LONDON_ADDITIONAL_HOLIDAYS.get(year, frozenset()))
     return frozenset(holidays)
 
 
@@ -236,6 +260,7 @@ def _rits_holidays(year: int) -> frozenset[date]:
         _nth_weekday(year, 10, 0, 1),
     }
     holidays.update(_paired_weekday_substitutes(date(year, 12, 25), date(year, 12, 26)))
+    holidays.update(_RITS_ADDITIONAL_HOLIDAYS.get(year, frozenset()))
     return frozenset(holidays)
 
 
@@ -250,14 +275,33 @@ def _tokyo_holidays(year: int) -> frozenset[date]:
         date(year, 5, 3),
         date(year, 5, 4),
         date(year, 5, 5),
-        _nth_weekday(year, 7, 0, 3),
         _nth_weekday(year, 9, 0, 3),
-        _nth_weekday(year, 10, 0, 2),
         date(year, 11, 3),
         date(year, 11, 23),
     }
+    if year == 2020:
+        holidays.update({date(2020, 7, 23), date(2020, 7, 24), date(2020, 8, 10)})
+    elif year == 2021:
+        holidays.update({date(2021, 7, 22), date(2021, 7, 23), date(2021, 8, 8)})
+    else:
+        holidays.update(
+            {_nth_weekday(year, 7, 0, 3), _nth_weekday(year, 10, 0, 2)}
+        )
+        if year >= 2016:
+            holidays.add(date(year, 8, 11))
     if 1989 <= year <= 2018:
         holidays.add(date(year, 12, 23))
+    if year >= 2020:
+        holidays.add(date(year, 2, 23))
+    if year == 2019:
+        holidays.update(
+            {
+                date(2019, 4, 30),
+                date(2019, 5, 1),
+                date(2019, 5, 2),
+                date(2019, 10, 22),
+            }
+        )
     holidays.add(date(year, 3, _japan_vernal_equinox_day(year)))
     holidays.add(date(year, 9, _japan_autumn_equinox_day(year)))
     for holiday in sorted(tuple(holidays)):
@@ -266,6 +310,14 @@ def _tokyo_holidays(year: int) -> frozenset[date]:
             while substitute in holidays:
                 substitute += timedelta(days=1)
             holidays.add(substitute)
+    for ordinal in range(date(year, 1, 2).toordinal(), date(year, 12, 31).toordinal()):
+        candidate = date.fromordinal(ordinal)
+        if (
+            candidate.weekday() not in _WEEKEND
+            and candidate - timedelta(days=1) in holidays
+            and candidate + timedelta(days=1) in holidays
+        ):
+            holidays.add(candidate)
     return frozenset(holidays)
 
 

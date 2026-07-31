@@ -28,7 +28,7 @@ def test_registry_exposes_exact_named_calendars_and_currency_mapping() -> None:
         "CHF": calendars.CHF_CURRENCY_BUSINESS_DAY,
     }
     assert {item.version for item in calendars.CALENDARS.values()} == {
-        "F0RPE2E_RATE_CALENDARS_V1"
+        "F0RPE2E_RATE_CALENDARS_V2"
     }
 
 
@@ -107,3 +107,35 @@ def test_unknown_calendar_and_currency_fail_closed() -> None:
         calendars.calendar_definition(calendars.TARGET2).is_open(  # type: ignore[arg-type]
             datetime(2012, 1, 3)
         )
+
+
+def test_london_exception_calendar_covers_authorized_one_off_holidays() -> None:
+    london = calendars.calendar_definition(calendars.LONDON_BUSINESS_DAY)
+    assert not london.is_open(date(2011, 4, 29))
+    assert london.is_open(date(2012, 5, 28))
+    assert not london.is_open(date(2012, 6, 4))
+    assert not london.is_open(date(2012, 6, 5))
+    assert london.is_open(date(2020, 5, 4))
+    assert not london.is_open(date(2020, 5, 8))
+    assert london.is_open(date(2022, 5, 30))
+    assert not london.is_open(date(2022, 6, 2))
+    assert not london.is_open(date(2022, 6, 3))
+    assert not london.is_open(date(2022, 9, 19))
+
+
+def test_rits_and_tokyo_critical_exceptions_are_explicit() -> None:
+    rits = calendars.calendar_definition(calendars.RITS_BUSINESS_DAY)
+    tokyo = calendars.calendar_definition(calendars.TOKYO_BUSINESS_DAY)
+    assert not rits.is_open(date(2011, 4, 26))
+    assert not rits.is_open(date(2022, 9, 22))
+    assert not tokyo.is_open(date(2019, 5, 1))
+    assert not tokyo.is_open(date(2019, 10, 22))
+    assert not tokyo.is_open(date(2020, 7, 23))
+    assert tokyo.is_open(date(2020, 7, 20))
+    assert not tokyo.is_open(date(2021, 8, 9))
+
+
+def test_calendars_reject_days_outside_authorized_interval() -> None:
+    target = calendars.calendar_definition(calendars.TARGET2)
+    with pytest.raises(ValueError, match="authorized 2010-2022 interval"):
+        target.is_open(date(2009, 12, 31))

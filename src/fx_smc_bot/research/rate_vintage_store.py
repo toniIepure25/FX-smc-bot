@@ -16,8 +16,15 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Final
+from zoneinfo import ZoneInfo
 
-SCHEMA_VERSION: Final = "F0RPE2E_RATE_VINTAGE_STORE_V1"
+from fx_smc_bot.research.rate_calendars import calendar_for_currency
+
+SCHEMA_VERSION: Final = "F0RPE2E_RATE_VINTAGE_STORE_V2"
+PASSING_CERTIFICATION_STATUSES: Final = frozenset({"PASS", "CERTIFIED"})
+_STRATEGY_TIMEZONE: Final = ZoneInfo("America/New_York")
+_EONIA_END: Final = date(2019, 9, 30)
+_ESTR_START: Final = date(2019, 10, 1)
 
 
 class RateVintageStoreError(RuntimeError):
@@ -51,7 +58,7 @@ class AvailableRate:
     day_count_convention: str
     calendar_id: str
     source_snapshot_sha256: str
-    certification_status: str | None
+    certification_status: str
     age_in_calendar_days: int
     carry_forward_reason: str | None
 
@@ -74,6 +81,7 @@ class DatasetFreeze:
     created_at: datetime
     freeze_sha256: str
     version_ids: tuple[str, ...]
+    certification_ids: tuple[tuple[str, str], ...] = ()
 
 
 def _value(record: object, name: str) -> Any:
@@ -144,6 +152,16 @@ def _content_sha256(value: object) -> str:
     return hashlib.sha256(_canonical_json(value).encode("utf-8")).hexdigest()
 
 
+def _validate_series_regime(currency: str, series_id: str, observation_date: date) -> None:
+    if currency != "EUR":
+        return
+    expected = "EONIA" if observation_date <= _EONIA_END else "ESTR"
+    if series_id != expected:
+        raise RateVintageIntegrityError(
+            "EUR series violates the frozen EONIA/ESTR transition"
+        )
+
+
 class RateVintageStore:
     """SQLite-backed append-only official-rate vintage store."""
 
@@ -154,6 +172,7 @@ class RateVintageStore:
         self._connection = sqlite3.connect(self.database_path)
         self._connection.row_factory = sqlite3.Row
         self._connection.execute("PRAGMA foreign_keys = ON")
+        self._connection.execute("PRAGMA recursive_triggers = ON")
         self._connection.execute("PRAGMA busy_timeout = 5000")
         self._create_schema()
 
@@ -190,7 +209,8 @@ class RateVintageStore:
                 source_document_id TEXT NOT NULL,
                 retrieved_at TEXT NOT NULL,
                 response_headers_json TEXT NOT NULL,
-                UNIQUE(adapter_id, request_identity, payload_sha256)
+                UNIQUE(adapter_id, request_identity, payload_sha256),
+                UNIQUE(source_snapshot_id, adapter_id, request_identity, payload_sha256)
             );
             CREATE TABLE IF NOT EXISTS ingestion_runs (
                 ingestion_run_id TEXT PRIMARY KEY,
@@ -232,6 +252,9 @@ class RateVintageStore:
                 source_publisher TEXT NOT NULL,
                 source_document_id TEXT NOT NULL,
                 source_endpoint_role TEXT NOT NULL,
+                source_snapshot_id INTEGER NOT NULL,
+                source_adapter_id TEXT NOT NULL,
+                source_request_identity TEXT NOT NULL,
                 source_snapshot_sha256 TEXT NOT NULL,
                 parser_version TEXT NOT NULL,
                 revision_identifier TEXT NOT NULL,
@@ -239,7 +262,13 @@ class RateVintageStore:
                 day_count_convention TEXT NOT NULL,
                 calendar_id TEXT NOT NULL,
                 retrieved_at TEXT NOT NULL,
-                UNIQUE(observation_identity_id, publication_timestamp, revision_identifier)
+                UNIQUE(observation_identity_id, publication_timestamp, revision_identifier),
+                FOREIGN KEY(
+                    source_snapshot_id, source_adapter_id,
+                    source_request_identity, source_snapshot_sha256
+                ) REFERENCES source_snapshots(
+                    source_snapshot_id, adapter_id, request_identity, payload_sha256
+                )
             );
             CREATE TABLE IF NOT EXISTS availability_events (
                 availability_event_id TEXT PRIMARY KEY,
@@ -254,7 +283,8 @@ class RateVintageStore:
                 certification_status TEXT NOT NULL,
                 certified_at TEXT NOT NULL,
                 details_json TEXT NOT NULL,
-                UNIQUE(version_id, certification_status, certified_at)
+                UNIQUE(version_id, certified_at),
+                UNIQUE(certification_result_id, version_id)
             );
             CREATE TABLE IF NOT EXISTS dataset_freezes (
                 dataset_freeze_id TEXT PRIMARY KEY,
@@ -268,16 +298,31 @@ class RateVintageStore:
                 version_id TEXT NOT NULL REFERENCES rate_versions(version_id),
                 PRIMARY KEY(dataset_freeze_id, version_id)
             );
+            CREATE TABLE IF NOT EXISTS dataset_freeze_certifications (
+                dataset_freeze_id TEXT NOT NULL,
+                version_id TEXT NOT NULL,
+                certification_result_id TEXT NOT NULL
+                    REFERENCES certification_results(certification_result_id),
+                PRIMARY KEY(dataset_freeze_id, version_id),
+                UNIQUE(dataset_freeze_id, certification_result_id),
+                FOREIGN KEY(dataset_freeze_id, version_id)
+                    REFERENCES dataset_freeze_versions(dataset_freeze_id, version_id),
+                FOREIGN KEY(certification_result_id, version_id)
+                    REFERENCES certification_results(certification_result_id, version_id)
+            );
             CREATE TABLE IF NOT EXISTS daily_strategy_rate_panel (
                 currency TEXT NOT NULL,
                 strategy_timestamp TEXT NOT NULL,
-                dataset_freeze_id TEXT NOT NULL
-                    REFERENCES dataset_freezes(dataset_freeze_id),
-                version_id TEXT REFERENCES rate_versions(version_id),
+                dataset_freeze_id TEXT NOT NULL,
+                version_id TEXT,
                 missing_reason TEXT,
                 panel_record_sha256 TEXT NOT NULL,
                 PRIMARY KEY(currency, strategy_timestamp, dataset_freeze_id),
-                CHECK((version_id IS NULL) <> (missing_reason IS NULL))
+                CHECK((version_id IS NULL) <> (missing_reason IS NULL)),
+                FOREIGN KEY(dataset_freeze_id)
+                    REFERENCES dataset_freezes(dataset_freeze_id),
+                FOREIGN KEY(dataset_freeze_id, version_id)
+                    REFERENCES dataset_freeze_versions(dataset_freeze_id, version_id)
             );
             CREATE INDEX IF NOT EXISTS idx_rate_versions_as_of
                 ON rate_versions(currency, observation_date, strategy_availability_timestamp);
@@ -285,16 +330,18 @@ class RateVintageStore:
                 ON dataset_freeze_versions(version_id, dataset_freeze_id);
             """
         )
-        self._connection.execute(
-            "INSERT OR IGNORE INTO store_metadata(key, value) VALUES('schema_version', ?)",
-            (SCHEMA_VERSION,),
-        )
         existing = self._connection.execute(
             "SELECT value FROM store_metadata WHERE key = 'schema_version'"
         ).fetchone()
-        if existing is None or existing["value"] != SCHEMA_VERSION:
+        if existing is None:
+            self._connection.execute(
+                "INSERT INTO store_metadata(key, value) VALUES('schema_version', ?)",
+                (SCHEMA_VERSION,),
+            )
+        elif existing["value"] != SCHEMA_VERSION:
             raise RateVintageIntegrityError("Unsupported rate vintage store schema")
         immutable_tables = (
+            "store_metadata",
             "source_snapshots",
             "ingestion_runs",
             "rate_series",
@@ -304,6 +351,7 @@ class RateVintageStore:
             "certification_results",
             "dataset_freezes",
             "dataset_freeze_versions",
+            "dataset_freeze_certifications",
             "daily_strategy_rate_panel",
         )
         for table in immutable_tables:
@@ -314,7 +362,82 @@ class RateVintageStore:
                     BEFORE {operation} ON {table}
                     BEGIN SELECT RAISE(ABORT, 'append-only table: {table}'); END"""
                 )
+        self._create_insert_collision_triggers()
         self._connection.commit()
+
+    def _create_insert_collision_triggers(self) -> None:
+        collision_checks = {
+            "store_metadata": "existing.key = NEW.key",
+            "source_snapshots": (
+                "existing.source_snapshot_id = NEW.source_snapshot_id OR "
+                "(existing.adapter_id = NEW.adapter_id "
+                "AND existing.request_identity = NEW.request_identity "
+                "AND existing.payload_sha256 = NEW.payload_sha256)"
+            ),
+            "ingestion_runs": "existing.ingestion_run_id = NEW.ingestion_run_id",
+            "rate_series": (
+                "existing.rate_series_pk = NEW.rate_series_pk OR "
+                "(existing.currency = NEW.currency AND existing.series_id = NEW.series_id)"
+            ),
+            "rate_observation_identities": (
+                "existing.observation_identity_id = NEW.observation_identity_id OR "
+                "(existing.currency = NEW.currency AND existing.series_id = NEW.series_id "
+                "AND existing.observation_date = NEW.observation_date)"
+            ),
+            "rate_versions": (
+                "existing.version_id = NEW.version_id OR "
+                "(existing.observation_identity_id = NEW.observation_identity_id "
+                "AND existing.publication_timestamp = NEW.publication_timestamp "
+                "AND existing.revision_identifier = NEW.revision_identifier)"
+            ),
+            "availability_events": (
+                "existing.availability_event_id = NEW.availability_event_id OR "
+                "(existing.version_id = NEW.version_id AND existing.event_type = NEW.event_type "
+                "AND existing.event_timestamp = NEW.event_timestamp)"
+            ),
+            "certification_results": (
+                "existing.certification_result_id = NEW.certification_result_id OR "
+                "(existing.version_id = NEW.version_id "
+                "AND existing.certified_at = NEW.certified_at)"
+            ),
+            "dataset_freezes": (
+                "existing.dataset_freeze_id = NEW.dataset_freeze_id OR "
+                "existing.freeze_sha256 = NEW.freeze_sha256"
+            ),
+            "dataset_freeze_versions": (
+                "existing.dataset_freeze_id = NEW.dataset_freeze_id "
+                "AND existing.version_id = NEW.version_id"
+            ),
+            "dataset_freeze_certifications": (
+                "(existing.dataset_freeze_id = NEW.dataset_freeze_id "
+                "AND existing.version_id = NEW.version_id) OR "
+                "(existing.dataset_freeze_id = NEW.dataset_freeze_id "
+                "AND existing.certification_result_id = NEW.certification_result_id)"
+            ),
+            "daily_strategy_rate_panel": (
+                "existing.currency = NEW.currency "
+                "AND existing.strategy_timestamp = NEW.strategy_timestamp "
+                "AND existing.dataset_freeze_id = NEW.dataset_freeze_id"
+            ),
+        }
+        for table, condition in collision_checks.items():
+            self._connection.execute(
+                f"""CREATE TRIGGER IF NOT EXISTS prevent_replace_{table}
+                BEFORE INSERT ON {table}
+                WHEN EXISTS(SELECT 1 FROM {table} AS existing WHERE {condition})
+                BEGIN SELECT RAISE(ABORT, 'append-only insert collision: {table}'); END"""
+            )
+        self._connection.execute(
+            """CREATE TRIGGER IF NOT EXISTS validate_frozen_certification
+            BEFORE INSERT ON dataset_freeze_certifications
+            WHEN NOT EXISTS(
+                SELECT 1 FROM certification_results AS certification
+                WHERE certification.certification_result_id = NEW.certification_result_id
+                  AND certification.version_id = NEW.version_id
+                  AND certification.certification_status IN ('PASS', 'CERTIFIED')
+            )
+            BEGIN SELECT RAISE(ABORT, 'dataset freeze requires passing certification'); END"""
+        )
 
     def append_source_snapshot(self, snapshot: object) -> int:
         """Append a snapshot identity, returning its stable row ID on exact replay."""
@@ -437,6 +560,7 @@ class RateVintageStore:
         currency = _text(_value(version, "currency"), "currency").upper()
         series_id = _text(_value(version, "series_id"), "series_id")
         observation_date = _day(_value(version, "observation_date"), "observation_date")
+        _validate_series_regime(currency, series_id, observation_date)
         raw_value = _value(version, "value")
         try:
             numeric_value = float(raw_value)
@@ -457,10 +581,17 @@ class RateVintageStore:
             raise RateVintageIntegrityError(
                 "strategy_availability_timestamp must equal max(publication, effective)"
             )
+        expected_calendar = calendar_for_currency(currency)
+        availability_day = availability.astimezone(ZoneInfo(expected_calendar.timezone)).date()
+        if observation_date > availability_day:
+            raise RateVintageIntegrityError(
+                "observation_date cannot follow strategy availability in the source timezone"
+            )
         retrieved_at = _aware(_value(version, "retrieved_at"), "retrieved_at")
         source_snapshot_sha256 = _sha256(
             _value(version, "source_snapshot_sha256"), "source_snapshot_sha256"
         )
+        snapshot = self._resolve_source_snapshot(version, source_snapshot_sha256)
         fields = {
             "currency": currency,
             "series_id": series_id,
@@ -478,6 +609,8 @@ class RateVintageStore:
             "source_endpoint_role": _text(
                 _value(version, "source_endpoint_role"), "source_endpoint_role"
             ),
+            "source_adapter_id": str(snapshot["adapter_id"]),
+            "source_request_identity": str(snapshot["request_identity"]),
             "source_snapshot_sha256": source_snapshot_sha256,
             "parser_version": _text(_value(version, "parser_version"), "parser_version"),
             "revision_identifier": _text(
@@ -491,12 +624,8 @@ class RateVintageStore:
             ),
             "calendar_id": _text(_value(version, "calendar_id"), "calendar_id"),
         }
-        snapshot = self._connection.execute(
-            "SELECT 1 FROM source_snapshots WHERE payload_sha256 = ? LIMIT 1",
-            (source_snapshot_sha256,),
-        ).fetchone()
-        if snapshot is None:
-            raise RateVintageIntegrityError("Rate version references an unknown source snapshot")
+        if fields["calendar_id"] != expected_calendar.calendar_id:
+            raise RateVintageIntegrityError("Rate version uses the wrong currency calendar")
         version_id = _content_sha256(fields)
         with self._connection:
             series_pk = self._ensure_series(fields)
@@ -516,7 +645,10 @@ class RateVintageStore:
             ).fetchone()
             if existing is not None:
                 comparable = {key: existing[key] for key in fields}
-                if comparable != fields:
+                if (
+                    comparable != fields
+                    or int(existing["source_snapshot_id"]) != int(snapshot["source_snapshot_id"])
+                ):
                     raise RateVintageConflictError("Conflicting duplicate rate version")
                 return str(existing["version_id"])
             self._connection.execute(
@@ -525,13 +657,36 @@ class RateVintageStore:
                     observation_date, value_text, publication_timestamp,
                     effective_timestamp, strategy_availability_timestamp,
                     source_publisher, source_document_id, source_endpoint_role,
+                    source_snapshot_id, source_adapter_id, source_request_identity,
                     source_snapshot_sha256, parser_version, revision_identifier,
                     revision_status, day_count_convention, calendar_id, retrieved_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     version_id,
                     identity_id,
-                    *(fields[key] for key in fields),
+                    *(fields[key] for key in (
+                        "currency",
+                        "series_id",
+                        "observation_date",
+                        "value_text",
+                        "publication_timestamp",
+                        "effective_timestamp",
+                        "strategy_availability_timestamp",
+                        "source_publisher",
+                        "source_document_id",
+                        "source_endpoint_role",
+                    )),
+                    int(snapshot["source_snapshot_id"]),
+                    *(fields[key] for key in (
+                        "source_adapter_id",
+                        "source_request_identity",
+                        "source_snapshot_sha256",
+                        "parser_version",
+                        "revision_identifier",
+                        "revision_status",
+                        "day_count_convention",
+                        "calendar_id",
+                    )),
                     _timestamp(retrieved_at),
                 ),
             )
@@ -557,6 +712,38 @@ class RateVintageStore:
                 ),
             )
         return version_id
+
+    def _resolve_source_snapshot(
+        self, version: object, payload_sha256: str
+    ) -> sqlite3.Row:
+        adapter_id = _optional_value(version, "source_adapter_id")
+        request_identity = _optional_value(version, "source_request_identity")
+        if adapter_id is not None or request_identity is not None:
+            if adapter_id is None or request_identity is None:
+                raise RateVintageIntegrityError(
+                    "source_adapter_id and source_request_identity must be supplied together"
+                )
+            rows = self._connection.execute(
+                """SELECT * FROM source_snapshots
+                WHERE adapter_id = ? AND request_identity = ? AND payload_sha256 = ?""",
+                (
+                    _text(adapter_id, "source_adapter_id"),
+                    _text(request_identity, "source_request_identity"),
+                    payload_sha256,
+                ),
+            ).fetchall()
+        else:
+            rows = self._connection.execute(
+                "SELECT * FROM source_snapshots WHERE payload_sha256 = ?",
+                (payload_sha256,),
+            ).fetchall()
+        if not rows:
+            raise RateVintageIntegrityError("Rate version references an unknown source snapshot")
+        if len(rows) != 1:
+            raise RateVintageIntegrityError(
+                "Rate version snapshot identity is ambiguous; exact adapter/request required"
+            )
+        return rows[0]
 
     def _ensure_series(self, fields: Mapping[str, str]) -> int:
         existing = self._connection.execute(
@@ -620,9 +807,18 @@ class RateVintageStore:
         details: Mapping[str, object] | None = None,
     ) -> str:
         certified = _aware(certified_at, "certified_at")
+        normalized_version_id = _text(version_id, "version_id")
+        version_row = self._connection.execute(
+            "SELECT retrieved_at FROM rate_versions WHERE version_id = ?",
+            (normalized_version_id,),
+        ).fetchone()
+        if version_row is None:
+            raise RateVintageIntegrityError("Certification references an unknown version")
+        if certified < _parse_timestamp(str(version_row["retrieved_at"])):
+            raise RateVintageIntegrityError("Certification cannot predate source retrieval")
         payload = {
-            "version_id": _text(version_id, "version_id"),
-            "status": _text(status, "status"),
+            "version_id": normalized_version_id,
+            "status": _text(status, "status").upper(),
             "certified_at": _timestamp(certified),
             "details": details or {},
         }
@@ -635,18 +831,27 @@ class RateVintageStore:
             _canonical_json(payload["details"]),
         )
         existing = self._connection.execute(
-            "SELECT * FROM certification_results WHERE certification_result_id = ?",
-            (certification_id,),
+            """SELECT * FROM certification_results
+            WHERE version_id = ? AND certified_at = ?""",
+            (payload["version_id"], payload["certified_at"]),
         ).fetchone()
         if existing is not None:
-            return certification_id
+            comparable = (
+                existing["certification_result_id"],
+                existing["certification_status"],
+                existing["details_json"],
+            )
+            expected = (certification_id, payload["status"], values[-1])
+            if comparable != expected:
+                raise RateVintageConflictError("Conflicting certification replay")
+            return str(existing["certification_result_id"])
         try:
             with self._connection:
                 self._connection.execute(
                     "INSERT INTO certification_results VALUES (?, ?, ?, ?, ?)", values
                 )
         except sqlite3.IntegrityError as exc:
-            raise RateVintageIntegrityError("Certification references an unknown version") from exc
+            raise RateVintageConflictError("Conflicting certification replay") from exc
         return certification_id
 
     def create_dataset_freeze(
@@ -672,16 +877,52 @@ class RateVintageStore:
         if {str(row["version_id"]) for row in rows} != set(pinned):
             raise RateVintageIntegrityError("Dataset freeze references an unknown version")
         metadata_json = _canonical_json(metadata or {})
+        existing = self._connection.execute(
+            "SELECT * FROM dataset_freezes WHERE dataset_freeze_id = ?", (freeze_id,)
+        ).fetchone()
+        if existing is not None:
+            certification_pins = tuple(
+                (row["version_id"], row["certification_result_id"])
+                for row in self._connection.execute(
+                    """SELECT version_id, certification_result_id
+                    FROM dataset_freeze_certifications
+                    WHERE dataset_freeze_id = ? ORDER BY version_id""",
+                    (freeze_id,),
+                )
+            )
+        else:
+            pinned_certifications: list[tuple[str, str]] = []
+            for version_id in pinned:
+                certification = self._connection.execute(
+                    """SELECT * FROM certification_results
+                    WHERE version_id = ? AND certified_at <= ?
+                    ORDER BY certified_at DESC, certification_result_id DESC
+                    LIMIT 1""",
+                    (version_id, _timestamp(created)),
+                ).fetchone()
+                if certification is None:
+                    raise RateVintageIntegrityError(
+                        "Dataset freeze requires a certification for every version"
+                    )
+                if (
+                    str(certification["certification_status"]).upper()
+                    not in PASSING_CERTIFICATION_STATUSES
+                ):
+                    raise RateVintageIntegrityError(
+                        "Dataset freeze requires the latest certification to pass"
+                    )
+                pinned_certifications.append(
+                    (version_id, str(certification["certification_result_id"]))
+                )
+            certification_pins = tuple(sorted(pinned_certifications))
         freeze_payload = {
             "dataset_freeze_id": freeze_id,
             "created_at": _timestamp(created),
             "version_ids": list(pinned),
+            "certification_ids": [list(item) for item in certification_pins],
             "metadata": json.loads(metadata_json),
         }
         freeze_hash = _content_sha256(freeze_payload)
-        existing = self._connection.execute(
-            "SELECT * FROM dataset_freezes WHERE dataset_freeze_id = ?", (freeze_id,)
-        ).fetchone()
         if existing is not None:
             existing_ids = tuple(
                 row["version_id"]
@@ -691,14 +932,26 @@ class RateVintageStore:
                     (freeze_id,),
                 )
             )
+            existing_certifications = tuple(
+                (row["version_id"], row["certification_result_id"])
+                for row in self._connection.execute(
+                    """SELECT version_id, certification_result_id
+                    FROM dataset_freeze_certifications
+                    WHERE dataset_freeze_id = ? ORDER BY version_id""",
+                    (freeze_id,),
+                )
+            )
             if (
                 existing["created_at"] != freeze_payload["created_at"]
                 or existing["metadata_json"] != metadata_json
                 or existing["freeze_sha256"] != freeze_hash
                 or existing_ids != pinned
+                or existing_certifications != certification_pins
             ):
                 raise RateVintageConflictError("Conflicting dataset freeze replay")
-            return DatasetFreeze(freeze_id, created, freeze_hash, pinned)
+            return DatasetFreeze(
+                freeze_id, created, freeze_hash, pinned, certification_pins
+            )
         with self._connection:
             self._connection.execute(
                 "INSERT INTO dataset_freezes VALUES (?, ?, ?, ?)",
@@ -708,7 +961,14 @@ class RateVintageStore:
                 "INSERT INTO dataset_freeze_versions VALUES (?, ?)",
                 ((freeze_id, version_id) for version_id in pinned),
             )
-        return DatasetFreeze(freeze_id, created, freeze_hash, pinned)
+            self._connection.executemany(
+                "INSERT INTO dataset_freeze_certifications VALUES (?, ?, ?)",
+                (
+                    (freeze_id, version_id, certification_id)
+                    for version_id, certification_id in certification_pins
+                ),
+            )
+        return DatasetFreeze(freeze_id, created, freeze_hash, pinned, certification_pins)
 
     def get_rate_as_of(
         self,
@@ -728,28 +988,26 @@ class RateVintageStore:
             """SELECT rv.*, cr.certification_status
             FROM dataset_freeze_versions AS dfv
             JOIN rate_versions AS rv ON rv.version_id = dfv.version_id
-            LEFT JOIN certification_results AS cr
-              ON cr.certification_result_id = (
-                SELECT inner_cr.certification_result_id
-                FROM certification_results AS inner_cr
-                WHERE inner_cr.version_id = rv.version_id
-                  AND inner_cr.certified_at <= ?
-                ORDER BY inner_cr.certified_at DESC, inner_cr.certification_result_id DESC
-                LIMIT 1
-              )
+            JOIN dataset_freeze_certifications AS dfc
+              ON dfc.dataset_freeze_id = dfv.dataset_freeze_id
+             AND dfc.version_id = rv.version_id
+            JOIN certification_results AS cr
+              ON cr.certification_result_id = dfc.certification_result_id
             WHERE dfv.dataset_freeze_id = ?
               AND rv.currency = ?
               AND rv.strategy_availability_timestamp <= ?
+              AND rv.observation_date <= ?
+              AND cr.certification_status IN ('PASS', 'CERTIFIED')
             ORDER BY rv.observation_date DESC,
                      rv.strategy_availability_timestamp DESC,
                      rv.publication_timestamp DESC,
                      rv.version_id DESC
             LIMIT 1""",
             (
-                _timestamp(strategy_time),
                 freeze_id,
                 normalized_currency,
                 _timestamp(strategy_time),
+                strategy_time.astimezone(_STRATEGY_TIMEZONE).date().isoformat(),
             ),
         ).fetchone()
         if row is None:
@@ -760,7 +1018,8 @@ class RateVintageStore:
                 reason="NO_FROZEN_VERSION_AVAILABLE_AS_OF_STRATEGY_TIMESTAMP",
             )
         observation = date.fromisoformat(str(row["observation_date"]))
-        age = (strategy_time.date() - observation).days
+        strategy_day = strategy_time.astimezone(_STRATEGY_TIMEZONE).date()
+        age = (strategy_day - observation).days
         return AvailableRate(
             currency=normalized_currency,
             strategy_timestamp=strategy_time,
@@ -779,11 +1038,7 @@ class RateVintageStore:
             day_count_convention=str(row["day_count_convention"]),
             calendar_id=str(row["calendar_id"]),
             source_snapshot_sha256=str(row["source_snapshot_sha256"]),
-            certification_status=(
-                str(row["certification_status"])
-                if row["certification_status"] is not None
-                else None
-            ),
+            certification_status=str(row["certification_status"]),
             age_in_calendar_days=age,
             carry_forward_reason=(
                 "LAST_OFFICIALLY_AVAILABLE_RATE" if age > 0 else None
@@ -811,6 +1066,16 @@ class RateVintageStore:
             if existing["panel_record_sha256"] != record_hash:
                 raise RateVintageConflictError("Conflicting daily strategy-rate replay")
             return record_hash
+        if isinstance(result, AvailableRate):
+            membership = self._connection.execute(
+                """SELECT 1 FROM dataset_freeze_versions
+                WHERE dataset_freeze_id = ? AND version_id = ?""",
+                (result.dataset_freeze_id, result.version_id),
+            ).fetchone()
+            if membership is None:
+                raise RateVintageIntegrityError(
+                    "Daily strategy rate version is outside its dataset freeze"
+                )
         with self._connection:
             self._connection.execute(
                 "INSERT INTO daily_strategy_rate_panel VALUES (?, ?, ?, ?, ?, ?)",
@@ -831,6 +1096,7 @@ class RateVintageStore:
             "daily_strategy_rate_panel",
             "dataset_freezes",
             "dataset_freeze_versions",
+            "dataset_freeze_certifications",
         )
         return {
             table: int(self._connection.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0])
