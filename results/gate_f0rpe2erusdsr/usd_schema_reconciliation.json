@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_USD_SCHEMA_RECONCILIATION_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "reconciliation_id": "NY_FED_EFFR_SCHEMA_RECONCILIATION_V1",
+  "status": "FROZEN_BEFORE_USD_RATE_PERSISTENCE",
+  "adapter_authorization": {
+    "currency": "USD",
+    "series_id": "EFFR",
+    "publisher": "Federal Reserve Bank of New York",
+    "official_endpoint": "https://markets.newyorkfed.org/api/rates/all/search.json",
+    "event_code": "500",
+    "row_series_identity_field": "type",
+    "required_row_series_identity": "EFFR"
+  },
+  "supported_schemas": [
+    {
+      "schema_role": "LEGACY_PRE_FIELD_CHANGE_SCHEMA",
+      "official_schema_fingerprint": "da2935b38af012e67bf97d5900d44c64a9495b454262c698ae8827464cf7d00e",
+      "valid_observation_date_interval": {
+        "start": "2010-01-01",
+        "end": "2016-02-29"
+      },
+      "observed_discovery_window": {
+        "start": "2016-01-04",
+        "end": "2016-01-08"
+      },
+      "row_container_path": "$.refRates",
+      "observation_date_field": "effectiveDate",
+      "rate_value_field": "percentRate",
+      "revision_indicator_field": "revisionIndicator",
+      "footnote_fields": [],
+      "series_identity_proof": "ALLOWLISTED_USD_EFFR_REQUEST_AND_EXACT_ROW_FILTER_TYPE_EQUALS_EFFR",
+      "units": "PERCENT_PER_ANNUM",
+      "unit_conversion": "DIVIDE_PERCENT_RATE_BY_100_TO_ANNUAL_DECIMAL",
+      "null_policy": "REJECT_NULL_IN_TYPE_EFFECTIVE_DATE_PERCENT_RATE_OR_REVISION_INDICATOR",
+      "duplicate_policy": "REQUIRE_EXACTLY_ONE_EFFR_ROW_PER_OBSERVATION_DATE_AND_REJECT_CONFLICTING_DUPLICATES",
+      "publication_availability_rule": "END_OF_NEXT_AUTHORIZED_NEW_YORK_FED_PUBLICATION_BUSINESS_DAY",
+      "effective_availability_rule": "EQUALS_ORIGINAL_PUBLICATION_AVAILABILITY_UNDER_FROZEN_USD_PROVENANCE",
+      "normalized_rate_version_mapping": {
+        "currency": "CONSTANT_USD_FROM_ADAPTER_AUTHORIZATION",
+        "series_id": "CONSTANT_EFFR_AFTER_TYPE_EQUALS_EFFR_CHECK",
+        "observation_date": "PARSE_EFFECTIVE_DATE_AS_ISO_DATE",
+        "value": "DIVIDE_PERCENT_RATE_BY_100",
+        "publication_timestamp": "NOT_CONSTRUCTIBLE_FROM_FROZEN_LEGACY_END_OF_DAY_ENVELOPE_WITHOUT_INVENTING_AN_INSTANT",
+        "effective_timestamp": "NOT_CONSTRUCTIBLE_BECAUSE_IT_EQUALS_THE_UNRESOLVED_PUBLICATION_TIMESTAMP",
+        "strategy_availability_timestamp": "NOT_CONSTRUCTIBLE_UNDER_RATE_VERSION_EXACT_TIMESTAMP_INVARIANT",
+        "source_document_id": "DETERMINISTIC_REQUEST_IDENTITY_ENDPOINT_IDENTITY_AND_SOURCE_SNAPSHOT_SHA256",
+        "revision_identifier": "NOT_CONSTRUCTED",
+        "revision_status": "NOT_CONSTRUCTED",
+        "day_count_convention": "ACT_360",
+        "calendar_id": "NEW_YORK_FED_BUSINESS_DAYS"
+      },
+      "rate_version_emission_allowed": false
+    },
+    {
+      "schema_role": "MODERN_POST_FIELD_CHANGE_SCHEMA",
+      "official_schema_fingerprint": "a002a5c557f22d51e9ac2171b981472589800ffe8a03d481629bd8844c165dff",
+      "valid_observation_date_interval": {
+        "start": "2016-03-01",
+        "end": "2022-12-31"
+      },
+      "observed_discovery_window": {
+        "start": "2016-03-01",
+        "end": "2016-03-04"
+      },
+      "row_container_path": "$.refRates",
+      "observation_date_field": "effectiveDate",
+      "rate_value_field": "percentRate",
+      "revision_indicator_field": "revisionIndicator",
+      "footnote_fields": [],
+      "series_identity_proof": "ALLOWLISTED_USD_EFFR_REQUEST_AND_EXACT_ROW_FILTER_TYPE_EQUALS_EFFR; CO-RETURNED_OBFR_ROWS_ARE_NOT_NORMALIZED",
+      "units": "PERCENT_PER_ANNUM",
+      "unit_conversion": "DIVIDE_PERCENT_RATE_BY_100_TO_ANNUAL_DECIMAL",
+      "null_policy": "REJECT_NULL_IN_TYPE_EFFECTIVE_DATE_PERCENT_RATE_OR_REVISION_INDICATOR",
+      "duplicate_policy": "REQUIRE_EXACTLY_ONE_EFFR_ROW_PER_OBSERVATION_DATE_AND_REJECT_CONFLICTING_DUPLICATES",
+      "publication_availability_rule": "14:30_AMERICA_NEW_YORK_ON_NEXT_AUTHORIZED_NEW_YORK_FED_PUBLICATION_BUSINESS_DAY",
+      "effective_availability_rule": "EQUALS_FINAL_PUBLICATION_AVAILABILITY_UNDER_FROZEN_USD_PROVENANCE",
+      "normalized_rate_version_mapping": {
+        "currency": "CONSTANT_USD_FROM_ADAPTER_AUTHORIZATION",
+        "series_id": "CONSTANT_EFFR_AFTER_TYPE_EQUALS_EFFR_CHECK",
+        "observation_date": "PARSE_EFFECTIVE_DATE_AS_ISO_DATE",
+        "value": "DIVIDE_PERCENT_RATE_BY_100",
+        "publication_timestamp": "NEXT_AUTHORIZED_PUBLICATION_BUSINESS_DAY_AT_14:30_AMERICA_NEW_YORK",
+        "effective_timestamp": "EQUALS_PUBLICATION_TIMESTAMP",
+        "strategy_availability_timestamp": "MAX_OF_PUBLICATION_AND_EFFECTIVE_TIMESTAMP",
+        "source_document_id": "DETERMINISTIC_REQUEST_IDENTITY_ENDPOINT_IDENTITY_AND_SOURCE_SNAPSHOT_SHA256",
+        "revision_identifier": "NOT_CONSTRUCTED_BEFORE_REVISION_SEMANTICS_CERTIFICATION",
+        "revision_status": "NOT_CONSTRUCTED_BEFORE_REVISION_SEMANTICS_CERTIFICATION",
+        "day_count_convention": "ACT_360",
+        "calendar_id": "NEW_YORK_FED_BUSINESS_DAYS"
+      },
+      "rate_version_emission_allowed": false
+    }
+  ],
+  "unknown_schema_fingerprint_policy": "REJECT_ATOMICALLY",
+  "arbitrary_key_guessing_allowed": false,
+  "internal_normalized_fields_claimed_as_official_fields": [],
+  "publication_timestamp_inferred_from_fetch_time": false,
+  "publication_timestamp_inferred_from_file_metadata": false,
+  "publication_timestamp_inferred_from_observation_date_alone": false,
+  "rate_versions_persisted": 0,
+  "blocking_next_phase": "PUBLICATION_AND_REVISION_AVAILABILITY"
+}

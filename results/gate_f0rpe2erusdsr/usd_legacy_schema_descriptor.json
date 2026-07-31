@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_USD_LEGACY_SCHEMA_DESCRIPTOR_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "inspector_id": "F0RPE2ERUSDSR_OFFICIAL_RESPONSE_SHAPE_V1",
+  "adapter_id": "NY_FED_EFFR_V2",
+  "series_id": "EFFR",
+  "window": {
+    "start": "2016-01-04",
+    "end": "2016-01-08",
+    "role": "LEGACY_PRE_FIELD_CHANGE_SCHEMA"
+  },
+  "request_identity": "6c0fe53d4d94105dc8e4b12cdd7a709c42715cf4a51be3c297584b61dc005e38",
+  "request_count": 1,
+  "snapshot_count": 1,
+  "snapshot_sha256": "c2da958e75b10e28d901a197eac1be78b2acdf4ffe77335f0bf325edc68370c3",
+  "snapshot_location": "EXTERNAL_CLEAN_ROOM_NOT_GIT",
+  "descriptor": {
+    "content_type": "application/json",
+    "payload_encoding": "utf-8",
+    "top_level_json_type": "object",
+    "top_level_key_names": [
+      "refRates"
+    ],
+    "candidate_row_container_paths": [
+      "$.refRates"
+    ],
+    "row_containers": [
+      {
+        "path": "$.refRates",
+        "row_count": 5,
+        "row_object_key_names": [
+          "effectiveDate",
+          "intraDayHigh",
+          "intraDayLow",
+          "percentRate",
+          "revisionIndicator",
+          "stdDeviation",
+          "targetRateFrom",
+          "targetRateTo",
+          "type"
+        ],
+        "field_json_types": {
+          "effectiveDate": ["string"],
+          "intraDayHigh": ["number"],
+          "intraDayLow": ["number"],
+          "percentRate": ["number"],
+          "revisionIndicator": ["string"],
+          "stdDeviation": ["number"],
+          "targetRateFrom": ["number"],
+          "targetRateTo": ["number"],
+          "type": ["string"]
+        },
+        "nullable_fields": [],
+        "stable_fields": [
+          "effectiveDate",
+          "intraDayHigh",
+          "intraDayLow",
+          "percentRate",
+          "revisionIndicator",
+          "stdDeviation",
+          "targetRateFrom",
+          "targetRateTo",
+          "type"
+        ],
+        "optional_fields": []
+      }
+    ],
+    "schema_fingerprint": "da2935b38af012e67bf97d5900d44c64a9495b454262c698ae8827464cf7d00e",
+    "payload_byte_count": 1058,
+    "row_count": 5,
+    "minimum_response_date": "2016-01-04",
+    "maximum_response_date": "2016-01-08"
+  },
+  "official_endpoint_identity": "PASS",
+  "server_side_request_bounds": "PASS",
+  "http_content_type": "PASS",
+  "generic_date_firewall": "PASS",
+  "all_discovered_dates_authorized": true,
+  "numerical_rows_exposed_to_parser": 0,
+  "status": "PASS"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_USD_SCHEMA_DIFFERENCE_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "classification": "TWO_EXPLICITLY_VERSIONED_SCHEMAS",
+  "legacy_schema_fingerprint": "da2935b38af012e67bf97d5900d44c64a9495b454262c698ae8827464cf7d00e",
+  "modern_schema_fingerprint": "a002a5c557f22d51e9ac2171b981472589800ffe8a03d481629bd8844c165dff",
+  "common_structure": {
+    "content_type": "application/json",
+    "payload_encoding": "utf-8",
+    "top_level_json_type": "object",
+    "top_level_key_names": ["refRates"],
+    "row_container_path": "$.refRates",
+    "stable_fields": [
+      "effectiveDate",
+      "percentRate",
+      "revisionIndicator",
+      "type"
+    ]
+  },
+  "legacy_only_fields": [
+    "intraDayHigh",
+    "intraDayLow",
+    "stdDeviation"
+  ],
+  "modern_only_fields": [
+    "percentPercentile1",
+    "percentPercentile25",
+    "percentPercentile75",
+    "percentPercentile99"
+  ],
+  "field_presence_difference": {
+    "legacy_target_fields": "STABLE_IN_DISCOVERY_WINDOW",
+    "modern_target_fields": "OPTIONAL_ACROSS_COMPLETE_RESPONSE_BECAUSE_MULTIPLE_OFFICIAL_SERIES_TYPES_ARE_RETURNED"
+  },
+  "series_composition_difference": {
+    "legacy_distinct_type_labels": ["EFFR"],
+    "modern_distinct_type_labels": ["EFFR", "OBFR"],
+    "modern_effr_rows": 4,
+    "modern_non_effr_rows": 4,
+    "normalization_selection_rule": "REQUIRE_TYPE_EXACTLY_EFFR_AND_EXCLUDE_OTHER_OFFICIAL_SERIES_FROM_EFFR_NORMALIZATION"
+  },
+  "cardinality_is_not_part_of_schema_fingerprint": true,
+  "permissive_arbitrary_key_guessing_allowed": false,
+  "total_official_requests": 2,
+  "total_local_snapshots": 2,
+  "numerical_rows_exposed_to_parser": 0,
+  "status": "PASS"
+}

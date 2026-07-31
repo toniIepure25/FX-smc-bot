@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0RPE2ERUSDSR_USD_MODERN_SCHEMA_DESCRIPTOR_V1",
+  "gate_id": "F0RPE2ER_USD_SCHEMA_RECONCILIATION_V1",
+  "inspector_id": "F0RPE2ERUSDSR_OFFICIAL_RESPONSE_SHAPE_V1",
+  "adapter_id": "NY_FED_EFFR_V2",
+  "series_id": "EFFR",
+  "window": {
+    "start": "2016-03-01",
+    "end": "2016-03-04",
+    "role": "MODERN_POST_FIELD_CHANGE_SCHEMA"
+  },
+  "request_identity": "a1289ce5201a55ea5c1d28d8df88241dd0be2e0587e3c3e9e1b1cb1bea6a7b4e",
+  "request_count": 1,
+  "snapshot_count": 1,
+  "snapshot_sha256": "8cf63f8ae7886e63475d8a92cdecac6f5e40d50908498c5eb547f1801cafa342",
+  "snapshot_location": "EXTERNAL_CLEAN_ROOM_NOT_GIT",
+  "descriptor": {
+    "content_type": "application/json",
+    "payload_encoding": "utf-8",
+    "top_level_json_type": "object",
+    "top_level_key_names": [
+      "refRates"
+    ],
+    "candidate_row_container_paths": [
+      "$.refRates"
+    ],
+    "row_containers": [
+      {
+        "path": "$.refRates",
+        "row_count": 8,
+        "row_object_key_names": [
+          "effectiveDate",
+          "percentPercentile1",
+          "percentPercentile25",
+          "percentPercentile75",
+          "percentPercentile99",
+          "percentRate",
+          "revisionIndicator",
+          "targetRateFrom",
+          "targetRateTo",
+          "type"
+        ],
+        "field_json_types": {
+          "effectiveDate": ["string"],
+          "percentPercentile1": ["number"],
+          "percentPercentile25": ["number"],
+          "percentPercentile75": ["number"],
+          "percentPercentile99": ["number"],
+          "percentRate": ["number"],
+          "revisionIndicator": ["string"],
+          "targetRateFrom": ["number"],
+          "targetRateTo": ["number"],
+          "type": ["string"]
+        },
+        "nullable_fields": [],
+        "stable_fields": [
+          "effectiveDate",
+          "percentPercentile1",
+          "percentPercentile25",
+          "percentPercentile75",
+          "percentPercentile99",
+          "percentRate",
+          "revisionIndicator",
+          "type"
+        ],
+        "optional_fields": [
+          "targetRateFrom",
+          "targetRateTo"
+        ]
+      }
+    ],
+    "schema_fingerprint": "a002a5c557f22d51e9ac2171b981472589800ffe8a03d481629bd8844c165dff",
+    "payload_byte_count": 1898,
+    "row_count": 8,
+    "minimum_response_date": "2016-03-01",
+    "maximum_response_date": "2016-03-04"
+  },
+  "official_endpoint_identity": "PASS",
+  "server_side_request_bounds": "PASS",
+  "http_content_type": "PASS",
+  "generic_date_firewall": "PASS",
+  "all_discovered_dates_authorized": true,
+  "numerical_rows_exposed_to_parser": 0,
+  "status": "PASS"
+}
