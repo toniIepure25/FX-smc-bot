@@ -538,7 +538,7 @@ def validate_posthoc_quarantine(payload: dict[str, Any]) -> dict[str, Any]:
             payload.get("current_lineage_confirmation_permitted") is False
         ),
         "hash": payload.get("quarantine_hash")
-        == payload_hash_without(payload, "quarantine_hash"),
+        == payload_hash_without(payload, "quarantine_hash", "validation"),
     }
     return {"checks": checks, "status": "PASS" if all(checks.values()) else "FAIL"}
 
