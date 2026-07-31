@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_DEVELOPMENT_RATE_RECOVERY_PROTOCOL_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_ACQUISITION",
+  "protocol_pre_data_access_sha": "d648cc244a33b32e3e1061458a9f64bb65ef1020",
+  "frozen_specification": {
+    "authorized_start": "2010-01-01",
+    "authorized_end": "2016-12-31",
+    "currencies": [
+      "USD",
+      "EUR",
+      "GBP",
+      "AUD",
+      "NZD",
+      "JPY",
+      "CAD",
+      "CHF"
+    ],
+    "series_identifiers": {
+      "USD": "EFFR",
+      "EUR": "EONIA_TO_ESTR",
+      "GBP": "IUDSOIA",
+      "JPY": "FM01'STRDCLUCON",
+      "AUD": "RBA_CASH_RATE",
+      "NZD": "B2_OVERNIGHT_INTERBANK_CASH_RATE",
+      "CAD": "V39079",
+      "CHF": "SRFXON3"
+    },
+    "source_rule": "EXACT_OFFICIAL_URLS_AND_PUBLISHERS_FROM_FROZEN_RATE_SERIES_REGISTRY",
+    "partition_granularity": "SERIES_BY_CALENDAR_YEAR",
+    "expected_partition_count": 56,
+    "maximum_parallel_workers": 4,
+    "retry_count_per_partition": 5,
+    "point_in_time_join_key": "MAX_OF_ORIGINAL_PUBLICATION_TIMESTAMP_AND_EFFECTIVE_TIMESTAMP",
+    "revision_policy": "PRESERVE_ORIGINAL_AVAILABILITY_AND_NEVER_BACKFILL_A_REVISION",
+    "missing_timestamp_policy": "TREAT_OBSERVATION_AS_MISSING",
+    "interpolation_allowed": false,
+    "carry_forward_rule": "ONLY_AFTER_PROVEN_PUBLICATION_UNTIL_NEXT_OFFICIAL_OBSERVATION",
+    "official_release_metadata_required": true,
+    "payload_and_release_metadata_hash_required": true,
+    "historical_announcement_cross_check_required": true,
+    "three_run_normalization_replay_required": true,
+    "old_checkpoint_or_payload_reuse_allowed": false,
+    "unofficial_reconstructed_series_allowed": false,
+    "capability_authorization_required_before_provider_or_filesystem_access": true,
+    "row_level_rate_commit_allowed": false
+  },
+  "certification_requirements": [
+    "ALL_REQUIRED_RATE_INTERVALS_CERTIFIED",
+    "ZERO_UNRESOLVED_REQUIRED_RATE_PARTITIONS",
+    "ORIGINAL_PUBLICATION_OR_CONSERVATIVE_OFFICIAL_AVAILABILITY_PROVEN",
+    "EFFECTIVE_TIMESTAMP_PROVEN",
+    "DAY_COUNT_CONVENTION_FROZEN",
+    "TRANSITIONS_RECONCILED",
+    "THREE_RUN_CONTENT_HASH_EQUALITY"
+  ],
+  "failure_decisions": {
+    "provenance": "BLOCKED_BY_RATE_DATA_PROVENANCE",
+    "provider_access": "BLOCKED_BY_PROVIDER_ACCESS",
+    "certification": "BLOCKED_BY_DATA_CERTIFICATION",
+    "nondeterminism": "BLOCKED_BY_NONDETERMINISM"
+  },
+  "rate_observations_accessed": false
+}

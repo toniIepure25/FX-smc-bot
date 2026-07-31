@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_DEVELOPMENT_STORAGE_BUDGET_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "PASS",
+  "measurement": {
+    "volume_role": "VOLUME_CONTAINING_FX_F0_DATA_ROOT",
+    "absolute_path_recorded": false,
+    "free_bytes_before_development_acquisition": 50440110080,
+    "measurement_method": "WIN32_LOGICAL_DISK_FREE_SPACE"
+  },
+  "frozen_budget": {
+    "raw_provider_payload_and_cache_bytes": 10000000000,
+    "canonical_m1_and_m5_bytes": 8000000000,
+    "rate_payload_metadata_and_local_ledgers_bytes": 1000000000,
+    "deterministic_replay_temporary_bytes": 6000000000,
+    "filesystem_and_recovery_overhead_bytes": 5000000000,
+    "maximum_planned_peak_bytes": 30000000000,
+    "minimum_unallocated_reserve_bytes": 10000000000,
+    "required_free_bytes": 40000000000,
+    "measured_margin_bytes": 10440110080
+  },
+  "enforcement": {
+    "check_before_each_partition_batch": true,
+    "stop_when_projected_peak_exceeds_budget": true,
+    "stop_when_free_space_falls_below_reserve": true,
+    "blocking_decision": "BLOCKED_BY_STORAGE_BUDGET"
+  },
+  "market_or_rate_observations_accessed": false
+}
