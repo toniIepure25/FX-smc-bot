@@ -1,0 +1,27 @@
+{
+  "conclusion": "The absence of an eligible candidate is due to negative economic and statistical evidence, not missing data, runtime failure, or incomplete certification.",
+  "controls": {
+    "benchmark_relative_alpha": "FAIL",
+    "clean_room_isolation": "PASS",
+    "data_certification": "PASS",
+    "development_eligibility": "FAIL",
+    "economic_performance": "FAIL",
+    "execution_integrity": "PASS",
+    "lookahead_protection": "PASS",
+    "model_selection_separation": "PASS",
+    "prospective_candidate": "NOT_CREATED",
+    "replication": "NOT_ACCESSED",
+    "safe_io": "PASS"
+  },
+  "dimensions": {
+    "data_failure": "PASS_DATASET_FULLY_CERTIFIED",
+    "economic_failure": "FAIL_ALL_CANDIDATE_MEAN_NET_R_NEGATIVE",
+    "execution_failure": "PASS_NO_EXECUTION_INTEGRITY_FAILURE",
+    "integrity_failure": "PASS_Q0R_CLEAN_ROOM_INTEGRITY_PRESERVED",
+    "model_failure": "FAIL_META_MODEL_INSUFFICIENT_ACTIVITY_AND_NEGATIVE_ECONOMICS",
+    "scientific_failure": "FAIL_NO_ELIGIBLE_DEVELOPMENT_CANDIDATE",
+    "statistical_failure": "FAIL_NO_FAMILY_OR_MULTIPLICITY_ADJUSTED_SUPPORT"
+  },
+  "failure_mechanism_hash": "a8a6db974e3027d1f1722339fa39a47633fb4cab56b51e77260c87865eec3bf6",
+  "status": "PASS"
+}

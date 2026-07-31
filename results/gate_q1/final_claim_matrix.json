@@ -1,0 +1,95 @@
+{
+  "claim_matrix_hash": "3fb9d811b702895ef881f0c0fd708a413f198d9ec1459abbd8a0f76d126b84ce",
+  "claims": [
+    {
+      "claim": "The repository contains a clean-room, capability-restricted, deterministic bid/ask research pipeline for quant-polarity evaluation.",
+      "claim_id": "A",
+      "status": "SUPPORTED"
+    },
+    {
+      "claim": "Simple inversion of the four previously studied SMC policies produced positive development expectancy on independent instruments.",
+      "claim_id": "B",
+      "status": "REJECTED"
+    },
+    {
+      "claim": "The elastic-net polarity meta-model produced a usable trading candidate.",
+      "claim_id": "C",
+      "status": "NOT_SUPPORTED_INSUFFICIENT_ACTIVITY_AND_NEGATIVE_ECONOMICS"
+    },
+    {
+      "claim": "Any candidate justified independent replication.",
+      "claim_id": "D",
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "claim": "Independent replication failed.",
+      "claim_id": "E",
+      "status": "NOT_TESTED_BECAUSE_NO_CANDIDATE_WAS_ELIGIBLE"
+    },
+    {
+      "claim": "Any candidate demonstrated positive benchmark-relative alpha.",
+      "claim_id": "F",
+      "status": "REJECTED_IN_DEVELOPMENT"
+    },
+    {
+      "claim": "Small Romano-Wolf values establish profitable alpha.",
+      "claim_id": "G",
+      "status": "FALSE_INTERPRETATION"
+    },
+    {
+      "claim": "The quarantined historical interval remains an untouched confirmatory holdout.",
+      "claim_id": "H",
+      "status": "REJECTED_BY_HISTORICAL_INTEGRITY_EVENT"
+    },
+    {
+      "claim": "A future candidate or prospective protocol was created.",
+      "claim_id": "I",
+      "status": "FALSE"
+    },
+    {
+      "claim": "The current results authorize paper trading or live-capital deployment.",
+      "claim_id": "J",
+      "status": "NOT_AUTHORIZED"
+    }
+  ],
+  "status": "PASS",
+  "validation": {
+    "checks": {
+      "A": true,
+      "B": true,
+      "C": true,
+      "D": true,
+      "E": true,
+      "F": true,
+      "G": true,
+      "H": true,
+      "I": true,
+      "J": true
+    },
+    "expected_statuses": {
+      "A": "SUPPORTED",
+      "B": "REJECTED",
+      "C": "NOT_SUPPORTED_INSUFFICIENT_ACTIVITY_AND_NEGATIVE_ECONOMICS",
+      "D": "NOT_SUPPORTED",
+      "E": "NOT_TESTED_BECAUSE_NO_CANDIDATE_WAS_ELIGIBLE",
+      "F": "REJECTED_IN_DEVELOPMENT",
+      "G": "FALSE_INTERPRETATION",
+      "H": "REJECTED_BY_HISTORICAL_INTEGRITY_EVENT",
+      "I": "FALSE",
+      "J": "NOT_AUTHORIZED"
+    },
+    "observed_statuses": {
+      "A": "SUPPORTED",
+      "B": "REJECTED",
+      "C": "NOT_SUPPORTED_INSUFFICIENT_ACTIVITY_AND_NEGATIVE_ECONOMICS",
+      "D": "NOT_SUPPORTED",
+      "E": "NOT_TESTED_BECAUSE_NO_CANDIDATE_WAS_ELIGIBLE",
+      "F": "REJECTED_IN_DEVELOPMENT",
+      "G": "FALSE_INTERPRETATION",
+      "H": "REJECTED_BY_HISTORICAL_INTEGRITY_EVENT",
+      "I": "FALSE",
+      "J": "NOT_AUTHORIZED"
+    },
+    "status": "PASS"
+  }
+}
