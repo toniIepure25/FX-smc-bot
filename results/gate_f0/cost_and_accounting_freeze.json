@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_COST_AND_ACCOUNTING_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "primary_net_portfolio_return_components": [
+      "EXECUTABLE_BID_ASK_SPREAD",
+      "COMMISSION",
+      "SLIPPAGE",
+      "OVERNIGHT_FINANCING",
+      "MULTI_DAY_ROLLOVER",
+      "TURNOVER",
+      "CURRENCY_CONVERSION"
+    ],
+    "execution_cost_scenarios": {
+      "base": {
+        "spread": "ACTUAL_EXECUTABLE_BID_ASK",
+        "spread_multiplier": 1.0,
+        "commission": "CONFIGURED_COMMISSION",
+        "slippage": "CONFIGURED_SLIPPAGE",
+        "slippage_multiplier": 1.0,
+        "financing_markup_annualized": 0.005
+      },
+      "stress_1": {
+        "spread": "ACTUAL_EXECUTABLE_BID_ASK",
+        "spread_multiplier": 1.5,
+        "commission": "CONFIGURED_COMMISSION",
+        "slippage": "CONFIGURED_SLIPPAGE",
+        "slippage_multiplier": 1.5,
+        "financing_markup_annualized": 0.01
+      },
+      "stress_2": {
+        "spread": "ACTUAL_EXECUTABLE_BID_ASK",
+        "spread_multiplier": 2.0,
+        "commission": "CONFIGURED_COMMISSION",
+        "slippage": "CONFIGURED_SLIPPAGE",
+        "slippage_multiplier": 2.0,
+        "financing_markup_annualized": 0.015
+      }
+    },
+    "commission_and_slippage_values": {
+      "status": "MUST_BE_CONFIGURED_IN_PRE_DATA_RECOVERY_PROTOCOL_BEFORE_ANY_OUTCOME_RUN",
+      "zero_slippage_allowed": false,
+      "post_outcome_change_allowed": false
+    },
+    "portfolio_accounting_reconciliations": [
+      "DAILY_NAV_RECONCILIATION",
+      "POSITION_RECONCILIATION",
+      "CASH_RECONCILIATION",
+      "CURRENCY_LEG_RECONCILIATION",
+      "COST_RECONCILIATION",
+      "GROSS_TO_NET_RETURN_RECONCILIATION"
+    ],
+    "unexplained_pnl_tolerance": 0.0,
+    "reconciliation_failure_action": "BLOCKED_BY_PORTFOLIO_ACCOUNTING",
+    "accounting_identity": "ENDING_NAV_EQUALS_BEGINNING_NAV_PLUS_GROSS_MARK_TO_MARKET_PLUS_FINANCING_RETURN_MINUS_SPREAD_COMMISSION_SLIPPAGE_FINANCING_MARKUP_AND_CONVERSION_COSTS",
+    "row_level_cost_or_transaction_commit_allowed": false,
+    "cost_results_generated_during_preregistration": false
+  }
+}

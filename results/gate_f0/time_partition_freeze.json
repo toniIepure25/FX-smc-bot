@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_TIME_PARTITION_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "partitions": {
+      "warmup_only": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "outcome_adjudication_allowed": false
+      },
+      "development": {
+        "start": "2011-01-01",
+        "end": "2016-12-31"
+      },
+      "internal_validation": {
+        "start": "2017-01-01",
+        "end": "2019-12-31"
+      },
+      "independent_replication": {
+        "start": "2020-01-01",
+        "end": "2022-12-31"
+      },
+      "quarantined_interval": {
+        "start": "2023-01-01",
+        "end": "2025-12-31",
+        "status": "QUARANTINED_FROM_CONFIRMATORY_USE",
+        "access_allowed": false,
+        "enumeration_allowed": false,
+        "provider_requests_allowed": false,
+        "untouched_holdout_claim_allowed": false
+      },
+      "future_confirmatory": {
+        "start_rule": "FIRST_COMPLETE_FX_TRADING_DAY_STRICTLY_AFTER_FINAL_PORTFOLIO_FREEZE_COMMIT",
+        "collection_in_gate_f0_allowed": false,
+        "evaluation_in_gate_f0_allowed": false
+      }
+    },
+    "staged_access_order": [
+      "WARMUP_AND_DEVELOPMENT",
+      "INTERNAL_VALIDATION_AFTER_DEVELOPMENT_SHORTLIST_FREEZE",
+      "INDEPENDENT_REPLICATION_AFTER_REPLICATION_SHORTLIST_FREEZE",
+      "FUTURE_CONFIRMATORY_AFTER_FINAL_PORTFOLIO_FREEZE_COMMIT"
+    ]
+  }
+}

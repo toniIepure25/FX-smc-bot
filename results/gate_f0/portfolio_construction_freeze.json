@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_PORTFOLIO_CONSTRUCTION_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "applies_to_each_candidate": true,
+    "per_instrument_volatility_scaling": {
+      "estimator": "EWMA_OF_DAILY_CLOSE_TO_CLOSE_SIMPLE_RETURNS",
+      "lookback_trading_days": 60,
+      "decay": 0.94,
+      "annualization_factor": 252,
+      "annualized_volatility_target": 0.1,
+      "information_lag_trading_days": 1,
+      "pnl_based_target_optimization_allowed": false
+    },
+    "portfolio_covariance": {
+      "estimator": "LEDOIT_WOLF_COVARIANCE_SHRINKAGE",
+      "return_window_trading_days": 252,
+      "return_type": "DAILY_CLOSE_TO_CLOSE_SIMPLE_RETURN",
+      "information_lag_trading_days": 1
+    },
+    "portfolio_target_and_caps": {
+      "annualized_portfolio_volatility_target": 0.1,
+      "maximum_gross_leverage": 3.0,
+      "maximum_absolute_instrument_exposure_nav": 0.5,
+      "maximum_absolute_currency_exposure_nav": 1.0,
+      "pnl_or_sharpe_based_target_optimization_allowed": false
+    },
+    "currency_exposure": {
+      "translation": "PAIR_POSITION_TO_BASE_AND_QUOTE_CURRENCY_LEGS",
+      "long_pair": "LONG_BASE_AND_SHORT_QUOTE",
+      "short_pair": "SHORT_BASE_AND_LONG_QUOTE",
+      "constraint_timing": "AFTER_VOLATILITY_SCALING_AND_BEFORE_EXECUTION",
+      "reconciliation_required": true
+    },
+    "constraint_application": {
+      "method": "DETERMINISTIC_PROPORTIONAL_SCALING_TO_MOST_BINDING_LIMIT",
+      "order": [
+        "PER_INSTRUMENT_VOLATILITY_SCALING",
+        "PORTFOLIO_VOLATILITY_SCALING",
+        "GROSS_LEVERAGE_CAP",
+        "INSTRUMENT_EXPOSURE_CAP",
+        "CURRENCY_EXPOSURE_CAP"
+      ],
+      "direction_changes_introduced_by_constraints_allowed": false
+    },
+    "rebalancing": {
+      "frequency": "DAILY",
+      "no_trade_band_threshold": 0.05,
+      "no_trade_rule": "DO_NOT_REBALANCE_WHEN_ABSOLUTE_REQUIRED_NOTIONAL_CHANGE_IS_LESS_THAN_5_PERCENT_OF_CURRENT_ABSOLUTE_NOTIONAL_TARGET",
+      "zero_current_target_rule": "NO_TRADE_BAND_DOES_NOT_SUPPRESS_ENTRY_OR_REQUIRED_FLATTENING"
+    },
+    "missing_data": {
+      "required_inputs": [
+        "PRICE",
+        "SPREAD",
+        "RATE",
+        "COVARIANCE"
+      ],
+      "action": "NO_POSITION_CHANGE_WITH_RECORDED_REASON",
+      "price_forward_fill_allowed": false,
+      "official_rate_carry_forward": "ONLY_AFTER_PUBLICATION_UNTIL_NEXT_OFFICIAL_OBSERVATION_AS_FROZEN_IN_RATE_REGISTRY"
+    },
+    "execution_timing": "FIRST_CERTIFIED_EXECUTABLE_M5_QUOTE_AT_OR_AFTER_17:05_AMERICA_NEW_YORK",
+    "weekend_position_rule": "NO_POSITION_MAY_REMAIN_OPEN_BEYOND_FRIDAY_16:55_AMERICA_NEW_YORK"
+  }
+}

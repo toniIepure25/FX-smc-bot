@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_MARKET_DATA_CONTRACT_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "provider": "DUKASCOPY_BI5_BID_AND_ASK",
+    "canonical_intermediate": {
+      "frequency": "M1",
+      "timezone": "UTC",
+      "fields": [
+        "BID_OPEN",
+        "BID_HIGH",
+        "BID_LOW",
+        "BID_CLOSE",
+        "ASK_OPEN",
+        "ASK_HIGH",
+        "ASK_LOW",
+        "ASK_CLOSE"
+      ]
+    },
+    "execution_bars": {
+      "frequency": "M5",
+      "construction": "DETERMINISTIC_FROM_CERTIFIED_UTC_M1_BID_ASK_OHLC",
+      "fields": [
+        "BID_OPEN",
+        "BID_HIGH",
+        "BID_LOW",
+        "BID_CLOSE",
+        "ASK_OPEN",
+        "ASK_HIGH",
+        "ASK_LOW",
+        "ASK_CLOSE"
+      ]
+    },
+    "daily_research_close": {
+      "rule": "FINAL_CERTIFIED_M5_BAR_IMMEDIATELY_PRECEDING_CUTOFF",
+      "cutoff_local_time": "17:00",
+      "timezone": "America/New_York"
+    },
+    "daily_execution": {
+      "rule": "FIRST_CERTIFIED_EXECUTABLE_M5_QUOTE_AT_OR_AFTER_CUTOFF",
+      "cutoff_local_time": "17:05",
+      "timezone": "America/New_York"
+    },
+    "signal_information_rule": "TRADING_DAY_T_SIGNAL_MAY_USE_ONLY_INFORMATION_AVAILABLE_BEFORE_T_EXECUTION_TIMESTAMP",
+    "same_bar_ambiguity": "ADVERSE_FIRST",
+    "overnight_positions_allowed": true,
+    "financing_costs_mandatory": true,
+    "weekend_rule": {
+      "positions_open_beyond_friday_deadline_allowed": false,
+      "friday_deadline_local_time": "16:55",
+      "timezone": "America/New_York"
+    },
+    "price_forward_fill_allowed": false,
+    "raw_or_canonical_market_data_commit_allowed": false,
+    "market_data_accessed_during_preregistration": false
+  }
+}

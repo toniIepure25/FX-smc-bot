@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_ESTIMAND_AND_INFERENCE_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "primary_profitability_estimand": {
+      "name": "MEAN_DAILY_NET_PORTFOLIO_RETURN",
+      "unit": "DAILY_RETURN",
+      "cost_scenario": "BASE",
+      "eligible_observations_only": true
+    },
+    "primary_economic_effect": {
+      "name": "ANNUALIZED_NET_GEOMETRIC_RETURN",
+      "annualization_trading_days": 252,
+      "cost_scenario": "BASE"
+    },
+    "primary_benchmark_relative_alpha": {
+      "name": "CANDIDATE_DAILY_NET_RETURN_MINUS_MATCHED_TURNOVER_RANDOM_SIGN_DAILY_NET_RETURN",
+      "benchmark_id": "F0_BENCHMARK_MATCHED_TURNOVER_RANDOM_SIGN_V1",
+      "cost_scenario": "BASE"
+    },
+    "required_metrics": [
+      "ANNUALIZED_RETURN",
+      "ANNUALIZED_VOLATILITY",
+      "SHARPE",
+      "SORTINO",
+      "CALMAR",
+      "MAXIMUM_DRAWDOWN",
+      "TIME_UNDER_WATER",
+      "CVAR_95",
+      "SKEW",
+      "KURTOSIS",
+      "TURNOVER",
+      "SPREAD_COST",
+      "COMMISSION_COST",
+      "SLIPPAGE_COST",
+      "FINANCING_RETURN",
+      "FINANCING_MARKUP_COST",
+      "GROSS_LEVERAGE",
+      "CURRENCY_EXPOSURE",
+      "HIT_RATE",
+      "MONTHLY_WIN_RATE",
+      "YEARLY_RETURN",
+      "INSTRUMENT_CONTRIBUTION",
+      "FACTOR_CONTRIBUTION"
+    ],
+    "metric_conventions": {
+      "return_type": "NET_SIMPLE_DAILY_PORTFOLIO_RETURN",
+      "annualization_trading_days": 252,
+      "sharpe_cash_rate": 0.0,
+      "sortino_minimum_acceptable_return": 0.0,
+      "cvar_tail_probability": 0.05,
+      "drawdown_basis": "COMPOUNDED_NET_NAV",
+      "turnover": "SUM_ABSOLUTE_TRADED_NOTIONAL_DIVIDED_BY_NAV",
+      "contributions_reconcile_to_total_net_pnl": true
+    },
+    "required_inference": [
+      "STATIONARY_BOOTSTRAP_CONFIDENCE_INTERVAL",
+      "MONTH_CLUSTER_BOOTSTRAP",
+      "NEWEY_WEST_HAC_ALPHA",
+      "WHITE_REALITY_CHECK",
+      "HANSEN_SPA",
+      "ROMANO_WOLF_MAX_T",
+      "HOLM_CORRECTION",
+      "BENJAMINI_HOCHBERG_FDR_SENSITIVITY",
+      "PROBABILISTIC_SHARPE_RATIO",
+      "DEFLATED_SHARPE_RATIO",
+      "PROBABILITY_OF_BACKTEST_OVERFITTING"
+    ],
+    "inference_conventions": {
+      "confidence_interval_level": 0.95,
+      "null_mean_daily_net_return": 0.0,
+      "hac_lag_trading_days": 5,
+      "bootstrap_seed": 1729,
+      "permutation_seed": 1729,
+      "primary_alpha_series": "CANDIDATE_NET_RETURN_MINUS_MATCHED_TURNOVER_RANDOM_SIGN_NET_RETURN",
+      "factor_adjusted_hac_regression_controls": [
+        "F0_BENCHMARK_LONG_USD_V1_DAILY_NET_RETURN",
+        "F0_BENCHMARK_PASSIVE_V1_DAILY_NET_RETURN",
+        "F0_BENCHMARK_TSMOM_12M_V1_DAILY_NET_RETURN"
+      ],
+      "multiple_testing_family_development": "ALL_SIX_FROZEN_CANDIDATES",
+      "multiple_testing_family_internal_validation": "ALL_FROZEN_INTERNAL_VALIDATION_SHORTLIST_CANDIDATES",
+      "multiple_testing_family_replication": "ALL_FROZEN_REPLICATION_SHORTLIST_CANDIDATES",
+      "holm_is_primary_adjustment": true,
+      "benjamini_hochberg_is_sensitivity_only": true,
+      "optional_unregistered_tests_allowed": false
+    },
+    "post_outcome_estimand_or_inference_change_allowed": false,
+    "results_generated_during_preregistration": false
+  }
+}

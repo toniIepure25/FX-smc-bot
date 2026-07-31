@@ -1,0 +1,255 @@
+schema_version: 1
+program_id: FX_CLASSICAL_RISK_PREMIA_V1
+lineage_id: FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1
+relationship_to_previous_programs: NEW_FINANCIALLY_MOTIVATED_LINEAGE
+research_stage: PREREGISTERED_PRE_DATA_ACCESS
+
+closed_lineages:
+  - FX_SMC_STRATEGY_ALPHA_LINEAGE_V1
+  - FX_QUANT_POLARITY_META_V2_LINEAGE_SEAL_V1
+
+instruments:
+  - EURUSD
+  - GBPUSD
+  - AUDUSD
+  - NZDUSD
+  - USDJPY
+  - USDCAD
+  - USDCHF
+  - EURJPY
+  - GBPJPY
+  - AUDJPY
+
+currencies:
+  - USD
+  - EUR
+  - GBP
+  - AUD
+  - NZD
+  - JPY
+  - CAD
+  - CHF
+
+time_partitions:
+  warmup_only:
+    start: "2010-01-01"
+    end: "2010-12-31"
+  development:
+    start: "2011-01-01"
+    end: "2016-12-31"
+  internal_validation:
+    start: "2017-01-01"
+    end: "2019-12-31"
+  independent_replication:
+    start: "2020-01-01"
+    end: "2022-12-31"
+  quarantined_interval:
+    start: "2023-01-01"
+    end: "2025-12-31"
+    status: QUARANTINED_FROM_CONFIRMATORY_USE
+    access_allowed: false
+    enumeration_allowed: false
+  future_confirmatory:
+    start_rule: FIRST_COMPLETE_FX_TRADING_DAY_STRICTLY_AFTER_FINAL_PORTFOLIO_FREEZE_COMMIT
+    collect_in_gate_f0: false
+
+market_data:
+  provider: DUKASCOPY_BI5_BID_AND_ASK
+  canonical_intermediate: UTC_M1_BID_ASK_OHLC
+  execution_bars: DETERMINISTIC_M5_BID_ASK_OHLC
+  daily_research_close:
+    rule: FINAL_CERTIFIED_M5_BAR_IMMEDIATELY_PRECEDING_CUTOFF
+    cutoff: "17:00 America/New_York"
+  daily_execution:
+    rule: FIRST_CERTIFIED_EXECUTABLE_M5_QUOTE_AT_OR_AFTER_CUTOFF
+    cutoff: "17:05 America/New_York"
+  signal_information_cutoff: STRICTLY_BEFORE_EXECUTION_TIMESTAMP_FOR_TRADING_DAY
+  same_bar_ambiguity: ADVERSE_FIRST
+  overnight_positions_allowed: true
+  financing_mandatory: true
+  friday_flatten:
+    required: true
+    deadline: "Friday 16:55 America/New_York"
+  price_forward_fill: false
+
+rates:
+  point_in_time_required: true
+  availability_rule: MAX_OF_ORIGINAL_PUBLICATION_AND_EFFECTIVE_TIMESTAMP
+  revisions:
+    backfill_before_original_publication: false
+    preserve_original_publication_timestamp: true
+  series:
+    USD:
+      identifier: EFFR
+      publisher: FEDERAL_RESERVE_BANK_OF_NEW_YORK
+    EUR:
+      identifiers: [EONIA, ESTR]
+      publisher: [EUROPEAN_MONEY_MARKETS_INSTITUTE, EUROPEAN_CENTRAL_BANK]
+      transition: EONIA_TO_ESTR
+    GBP:
+      identifier: IUDSOIA
+      publisher: BANK_OF_ENGLAND
+    JPY:
+      identifier: "FM01'STRDCLUCON"
+      publisher: BANK_OF_JAPAN
+    AUD:
+      identifier: RBA_CASH_RATE
+      publisher: RESERVE_BANK_OF_AUSTRALIA
+    NZD:
+      identifier: B2_OVERNIGHT_INTERBANK_CASH_RATE
+      publisher: RESERVE_BANK_OF_NEW_ZEALAND
+    CAD:
+      identifier: V39079
+      publisher: BANK_OF_CANADA
+    CHF:
+      identifier: SRFXON3
+      publisher: SIX_INDEX_AG
+
+financing:
+  long_base_short_quote:
+    formula: "(base_overnight_rate - quote_overnight_rate - broker_financing_markup) * applicable_day_count_fraction"
+  short_base_long_quote:
+    formula: "(quote_overnight_rate - base_overnight_rate - broker_financing_markup) * applicable_day_count_fraction"
+  calendar_days_financed: ACTUAL
+  provider_specific_rollover: REQUIRED
+  markup_annualized:
+    base: 0.005
+    stress_1: 0.010
+    stress_2: 0.015
+
+candidates:
+  - candidate_id: F0_TSMOM_COMPOSITE_V1
+    information_lag_trading_days: 1
+    return_lookbacks: [21, 63, 126, 252]
+    signal: MEAN_OF_RETURN_SIGNS
+    signal_values: [-1.0, -0.5, 0.0, 0.5, 1.0]
+  - candidate_id: F0_SHORT_TERM_REVERSAL_V1
+    information_lag_trading_days: 1
+    return_lookback: 5
+    volatility_lookback: 60
+    signal: "clip(-five_day_return / (sqrt(5) * sixty_day_daily_volatility), -1, 1)"
+  - candidate_id: F0_DUAL_HORIZON_TREND_V1
+    information_lag_trading_days: 1
+    fast_ema_days: 50
+    slow_ema_days: 200
+    volatility_lookback: 60
+    signal: "clip((EMA_50 - EMA_200) / (close * sixty_day_daily_volatility * sqrt(252)), -1, 1)"
+  - candidate_id: F0_DONCHIAN_BREAKOUT_V1
+    information_lag_trading_days: 1
+    entry_channel_days: 55
+    exit_channel_days: 20
+    channels_exclude_current_observation: true
+    comparison_price: PREVIOUS_DAILY_RESEARCH_CLOSE
+    upper_channel_price: CERTIFIED_DAILY_RESEARCH_HIGH
+    lower_channel_price: CERTIFIED_DAILY_RESEARCH_LOW
+    channel_window_ends_trading_days_before_comparison_close: 1
+    long_entry: PREVIOUS_CLOSE_ABOVE_PREVIOUS_55_DAY_HIGH
+    short_entry: PREVIOUS_CLOSE_BELOW_PREVIOUS_55_DAY_LOW
+    long_exit: PREVIOUS_CLOSE_BELOW_PREVIOUS_20_DAY_LOW
+    short_exit: PREVIOUS_CLOSE_ABOVE_PREVIOUS_20_DAY_HIGH
+  - candidate_id: F0_RATE_DIFFERENTIAL_CARRY_V1
+    rates_lagged_by_publication_and_effective_timestamp: true
+    normalization: 0.05
+    signal: "clip((base_overnight_rate - quote_overnight_rate) / 0.05, -1, 1)"
+  - candidate_id: F0_FIXED_MULTI_FACTOR_V1
+    combination: FIXED_EX_ANTE_FACTOR_RISK_CONTRIBUTION_TARGETS
+    optimization_allowed: false
+    factor_risk_weights:
+      F0_TSMOM_COMPOSITE_V1: 0.25
+      F0_SHORT_TERM_REVERSAL_V1: 0.15
+      F0_DUAL_HORIZON_TREND_V1: 0.20
+      F0_DONCHIAN_BREAKOUT_V1: 0.15
+      F0_RATE_DIFFERENTIAL_CARRY_V1: 0.25
+
+portfolio:
+  per_instrument_volatility:
+    estimator: EWMA_DAILY
+    lookback_days: 60
+    decay: 0.94
+    annualized_target: 0.10
+    information_lag_trading_days: 1
+  covariance:
+    estimator: LEDOIT_WOLF_SHRINKAGE
+    return_window_days: 252
+    information_lag_trading_days: 1
+  annualized_portfolio_volatility_target: 0.10
+  maximum_gross_leverage: 3.0
+  maximum_absolute_instrument_exposure_nav: 0.50
+  maximum_absolute_currency_exposure_nav: 1.00
+  currency_exposure_method: BASE_AND_QUOTE_CURRENCY_LEGS
+  constraint_order: AFTER_VOLATILITY_SCALING_BEFORE_EXECUTION
+  rebalance: DAILY
+  no_trade_band:
+    threshold: 0.05
+    denominator: CURRENT_ABSOLUTE_NOTIONAL_TARGET
+  missing_input_action: NO_POSITION_CHANGE_WITH_RECORDED_REASON
+  official_rate_carry_forward: AFTER_PUBLICATION_UNTIL_NEXT_OFFICIAL_OBSERVATION
+
+costs:
+  required_components:
+    - EXECUTABLE_BID_ASK_SPREAD
+    - COMMISSION
+    - SLIPPAGE
+    - OVERNIGHT_FINANCING
+    - MULTI_DAY_ROLLOVER
+    - TURNOVER
+    - CURRENCY_CONVERSION
+  scenarios:
+    base:
+      spread_multiplier: 1.0
+      slippage_multiplier: 1.0
+      financing_markup_annualized: 0.005
+    stress_1:
+      spread_multiplier: 1.5
+      slippage_multiplier: 1.5
+      financing_markup_annualized: 0.010
+    stress_2:
+      spread_multiplier: 2.0
+      slippage_multiplier: 2.0
+      financing_markup_annualized: 0.015
+  unexplained_pnl_tolerance: 0.0
+
+benchmarks:
+  benchmark_ids:
+    - ZERO_RETURN_CASH_PORTFOLIO
+    - EQUAL_RISK_LONG_USD_BASKET
+    - EQUAL_RISK_PASSIVE_CURRENCY_BASKET
+    - FIXED_12_MONTH_TSMOM_BENCHMARK
+    - MATCHED_TURNOVER_RANDOM_SIGN_PORTFOLIO
+  matched_turnover_random_sign:
+    seed: 1729
+    preserve:
+      - INSTRUMENT
+      - REBALANCE_DATES
+      - ABSOLUTE_NOTIONAL
+      - HOLDING_DURATION
+      - TURNOVER
+      - COST_EXPOSURE
+
+inference:
+  primary_profitability_estimand: MEAN_DAILY_NET_PORTFOLIO_RETURN
+  primary_economic_effect: ANNUALIZED_NET_GEOMETRIC_RETURN
+  primary_benchmark_relative_alpha: CANDIDATE_NET_RETURN_MINUS_MATCHED_TURNOVER_RANDOM_SIGN_NET_RETURN
+  hac_lag_trading_days: 5
+  bootstrap_seed: 1729
+  permutation_seed: 1729
+  required_methods:
+    - STATIONARY_BOOTSTRAP_CONFIDENCE_INTERVAL
+    - MONTH_CLUSTER_BOOTSTRAP
+    - NEWEY_WEST_HAC_ALPHA
+    - WHITE_REALITY_CHECK
+    - HANSEN_SPA
+    - ROMANO_WOLF_MAX_T
+    - HOLM_CORRECTION
+    - BENJAMINI_HOCHBERG_FDR_SENSITIVITY
+    - PROBABILISTIC_SHARPE_RATIO
+    - DEFLATED_SHARPE_RATIO
+    - PROBABILITY_OF_BACKTEST_OVERFITTING
+
+selection:
+  maximum_development_shortlist: 4
+  maximum_replication_shortlist: 2
+  maximum_future_candidates: 1
+  shortlist_must_be_frozen_before_next_partition_access: true
+  no_candidate_parameters_fitted: true
+  future_eligible_tiers: [A, B]

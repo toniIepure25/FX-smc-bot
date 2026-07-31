@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_INSTRUMENT_UNIVERSE_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "instruments": [
+      "EURUSD",
+      "GBPUSD",
+      "AUDUSD",
+      "NZDUSD",
+      "USDJPY",
+      "USDCAD",
+      "USDCHF",
+      "EURJPY",
+      "GBPJPY",
+      "AUDJPY"
+    ],
+    "currencies": [
+      "USD",
+      "EUR",
+      "GBP",
+      "AUD",
+      "NZD",
+      "JPY",
+      "CAD",
+      "CHF"
+    ],
+    "instrument_count": 10,
+    "currency_count": 8,
+    "post_outcome_addition_allowed": false,
+    "post_outcome_removal_allowed": false
+  }
+}

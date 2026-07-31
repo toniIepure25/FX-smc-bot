@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_FINANCING_COST_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "overnight_financing_mandatory": true,
+    "long_base_short_quote": {
+      "formula": "(base_overnight_rate - quote_overnight_rate - broker_financing_markup) * applicable_day_count_fraction",
+      "rate_differential_sign": "BASE_MINUS_QUOTE"
+    },
+    "short_base_long_quote": {
+      "formula": "(quote_overnight_rate - base_overnight_rate - broker_financing_markup) * applicable_day_count_fraction",
+      "rate_differential_sign": "QUOTE_MINUS_BASE"
+    },
+    "broker_financing_markup_annualized": {
+      "base": 0.005,
+      "stress_1": 0.01,
+      "stress_2": 0.015
+    },
+    "applicable_day_count": "SERIES_SPECIFIC_FROZEN_REGISTRY_CONVENTION",
+    "calendar_days_financed": "ACTUAL",
+    "wednesday_or_provider_specific_multi_day_rollover": "MUST_REFLECT_ACTUAL_NUMBER_OF_CALENDAR_DAYS_FINANCED",
+    "official_rate_availability": "ONLY_AFTER_ORIGINAL_PUBLICATION_AND_EFFECTIVE_TIMESTAMP",
+    "missing_rate_action": "NO_POSITION_CHANGE_WITH_RECORDED_REASON",
+    "silent_financing_omission_allowed": false,
+    "zero_financing_assumption_allowed": false,
+    "financing_data_accessed_during_preregistration": false
+  }
+}

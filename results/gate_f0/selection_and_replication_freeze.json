@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_SELECTION_AND_REPLICATION_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "candidate_parameters_fitted": false,
+    "partitions_used_for_staged_adjudication": true,
+    "development": {
+      "partition": {
+        "start": "2011-01-01",
+        "end": "2016-12-31"
+      },
+      "all_criteria_required": true,
+      "criteria": [
+        {
+          "metric": "ELIGIBLE_DAILY_PORTFOLIO_OBSERVATIONS",
+          "operator": ">=",
+          "value": 1000
+        },
+        {
+          "metric": "ANNUALIZED_NET_RETURN",
+          "operator": ">",
+          "value": 0.0
+        },
+        {
+          "metric": "SHARPE",
+          "operator": ">",
+          "value": 0.0
+        },
+        {
+          "metric": "BASE_COST_RESULT",
+          "operator": ">",
+          "value": 0.0
+        },
+        {
+          "metric": "STRESS_1_ANNUALIZED_RETURN",
+          "operator": ">=",
+          "value": -0.01
+        },
+        {
+          "metric": "POSITIVE_CALENDAR_YEAR_COUNT",
+          "operator": ">=",
+          "value": 4,
+          "out_of": 6
+        },
+        {
+          "metric": "MAXIMUM_DRAWDOWN",
+          "operator": "<=",
+          "value": 0.3
+        },
+        {
+          "metric": "MATCHED_TURNOVER_ALPHA",
+          "operator": ">",
+          "value": 0.0
+        },
+        {
+          "metric": "PBO",
+          "operator": "<",
+          "value": 0.6
+        }
+      ],
+      "maximum_candidates_proceeding": 4,
+      "shortlist_freeze_required_before_internal_validation_access": true
+    },
+    "internal_validation": {
+      "partition": {
+        "start": "2017-01-01",
+        "end": "2019-12-31"
+      },
+      "all_criteria_required": true,
+      "criteria": [
+        {
+          "metric": "ANNUALIZED_NET_RETURN",
+          "operator": ">",
+          "value": 0.0
+        },
+        {
+          "metric": "SHARPE",
+          "operator": ">",
+          "value": 0.3
+        },
+        {
+          "metric": "PROFIT_AFTER_ALL_BASE_COSTS",
+          "operator": ">",
+          "value": 0.0
+        },
+        {
+          "metric": "STRESS_1_ANNUALIZED_RETURN",
+          "operator": ">=",
+          "value": 0.0
+        },
+        {
+          "metric": "POSITIVE_CALENDAR_YEAR_COUNT",
+          "operator": ">=",
+          "value": 2,
+          "out_of": 3
+        },
+        {
+          "metric": "MATCHED_TURNOVER_ALPHA",
+          "operator": ">",
+          "value": 0.0
+        },
+        {
+          "metric": "HOLM_ADJUSTED_P",
+          "operator": "<",
+          "value": 0.1
+        },
+        {
+          "metric": "HANSEN_SPA_P",
+          "operator": "<",
+          "value": 0.1
+        },
+        {
+          "metric": "PSR",
+          "operator": ">",
+          "value": 0.9
+        },
+        {
+          "metric": "DSR_PROBABILITY",
+          "operator": ">",
+          "value": 0.75
+        },
+        {
+          "metric": "MAXIMUM_DRAWDOWN",
+          "operator": "<=",
+          "value": 0.25
+        }
+      ],
+      "maximum_candidates_proceeding": 2,
+      "shortlist_freeze_required_before_replication_access": true
+    },
+    "independent_replication": {
+      "partition": {
+        "start": "2020-01-01",
+        "end": "2022-12-31"
+      },
+      "one_time_evaluation": true,
+      "tier_a": {
+        "all_criteria_required": true,
+        "criteria": [
+          {
+            "metric": "ANNUALIZED_NET_RETURN",
+            "operator": ">",
+            "value": 0.0
+          },
+          {
+            "metric": "STATIONARY_BOOTSTRAP_CI_LOWER_BOUND_ANNUALIZED",
+            "operator": ">",
+            "value": 0.0
+          },
+          {
+            "metric": "SHARPE",
+            "operator": ">",
+            "value": 0.75
+          },
+          {
+            "metric": "PSR",
+            "operator": ">",
+            "value": 0.95
+          },
+          {
+            "metric": "DSR_PROBABILITY",
+            "operator": ">",
+            "value": 0.9
+          },
+          {
+            "metric": "STRESS_1_ANNUALIZED_RETURN",
+            "operator": ">",
+            "value": 0.0
+          },
+          {
+            "metric": "STRESS_2_ANNUALIZED_RETURN",
+            "operator": ">=",
+            "value": 0.0
+          },
+          {
+            "metric": "POSITIVE_RETURN_IN_EACH_CALENDAR_YEAR",
+            "operator": "==",
+            "value": true,
+            "years": [
+              2020,
+              2021,
+              2022
+            ]
+          },
+          {
+            "metric": "MATCHED_TURNOVER_ALPHA",
+            "operator": ">",
+            "value": 0.0
+          },
+          {
+            "metric": "HOLM_ADJUSTED_P",
+            "operator": "<",
+            "value": 0.05
+          },
+          {
+            "metric": "HANSEN_SPA_P",
+            "operator": "<",
+            "value": 0.05
+          },
+          {
+            "metric": "FACTOR_ADJUSTED_HAC_ALPHA",
+            "operator": ">",
+            "value": 0.0
+          },
+          {
+            "metric": "FACTOR_ADJUSTED_HAC_P",
+            "operator": "<",
+            "value": 0.05
+          },
+          {
+            "metric": "PBO",
+            "operator": "<",
+            "value": 0.25
+          },
+          {
+            "metric": "MAXIMUM_DRAWDOWN",
+            "operator": "<=",
+            "value": 0.2
+          },
+          {
+            "metric": "BEST_MONTH_SHARE_OF_TOTAL_PNL",
+            "operator": "<",
+            "value": 0.25
+          },
+          {
+            "metric": "BEST_INSTRUMENT_SHARE_OF_TOTAL_PNL",
+            "operator": "<",
+            "value": 0.35
+          }
+        ]
+      },
+      "tier_b": {
+        "all_criteria_required": true,
+        "criteria": [
+          {
+            "metric": "ANNUALIZED_NET_RETURN",
+            "operator": ">",
+            "value": 0.0
+          },
+          {
+            "metric": "STATIONARY_BOOTSTRAP_CI_LOWER_BOUND_ANNUALIZED",
+            "operator": ">=",
+            "value": -0.01
+          },
+          {
+            "metric": "SHARPE",
+            "operator": ">",
+            "value": 0.5
+          },
+          {
+            "metric": "PSR",
+            "operator": ">",
+            "value": 0.9
+          },
+          {
+            "metric": "DSR_PROBABILITY",
+            "operator": ">",
+            "value": 0.75
+          },
+          {
+            "metric": "STRESS_1_ANNUALIZED_RETURN",
+            "operator": ">=",
+            "value": 0.0
+          },
+          {
+            "metric": "POSITIVE_CALENDAR_YEAR_COUNT",
+            "operator": ">=",
+            "value": 2,
+            "out_of": 3
+          },
+          {
+            "metric": "MATCHED_TURNOVER_ALPHA",
+            "operator": ">",
+            "value": 0.0
+          },
+          {
+            "metric": "HOLM_ADJUSTED_P",
+            "operator": "<",
+            "value": 0.1
+          },
+          {
+            "metric": "HANSEN_SPA_P",
+            "operator": "<",
+            "value": 0.1
+          },
+          {
+            "metric": "PBO",
+            "operator": "<",
+            "value": 0.4
+          },
+          {
+            "metric": "MAXIMUM_DRAWDOWN",
+            "operator": "<=",
+            "value": 0.25
+          }
+        ]
+      },
+      "future_freeze_eligible_tiers": [
+        "A",
+        "B"
+      ],
+      "tier_c_rule": "FAILS_TO_SATISFY_ALL_TIER_A_AND_ALL_TIER_B_CRITERIA",
+      "maximum_future_candidates": 1,
+      "ranking_order": [
+        "TIER_A_OVER_TIER_B",
+        "HIGHEST_REPLICATION_CI_LOWER_BOUND",
+        "HIGHEST_STRESS_1_RETURN",
+        "HIGHEST_DSR_PROBABILITY",
+        "LOWEST_PBO",
+        "LOWEST_MAXIMUM_DRAWDOWN"
+      ]
+    },
+    "empty_replication_shortlist_decision": "F0_NO_FACTOR_PORTFOLIO_SURVIVED_INDEPENDENT_REPLICATION",
+    "no_replication_survivor_decision": "F0_NO_FACTOR_PORTFOLIO_SURVIVED_INDEPENDENT_REPLICATION",
+    "single_survivor_decision": "F0_CLASSICAL_FACTOR_PORTFOLIO_FROZEN_FOR_FUTURE_CONFIRMATION",
+    "post_outcome_rule_change_allowed": false,
+    "selection_results_generated_during_preregistration": false
+  }
+}

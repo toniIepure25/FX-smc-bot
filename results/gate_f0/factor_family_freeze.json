@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_FACTOR_FAMILY_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "candidate_count": 6,
+    "parameters_fitted": false,
+    "post_outcome_factor_addition_allowed": false,
+    "post_outcome_factor_removal_allowed": false,
+    "post_outcome_lookback_change_allowed": false,
+    "pnl_based_weight_optimization_allowed": false,
+    "candidates": [
+      {
+        "candidate_id": "F0_TSMOM_COMPOSITE_V1",
+        "name": "COMPOSITE_TIME_SERIES_MOMENTUM",
+        "information_set": "CERTIFIED_DAILY_RESEARCH_OHLC_THROUGH_T_MINUS_1",
+        "return_lookbacks_trading_days": [
+          21,
+          63,
+          126,
+          252
+        ],
+        "return_definition": "CLOSE_TO_CLOSE_SIMPLE_RETURN_OVER_LOOKBACK",
+        "signal_formula": "mean(sign(r_21), sign(r_63), sign(r_126), sign(r_252))",
+        "sign_zero_rule": "sign(0)=0",
+        "signal_domain": [
+          -1.0,
+          -0.5,
+          0.0,
+          0.5,
+          1.0
+        ]
+      },
+      {
+        "candidate_id": "F0_SHORT_TERM_REVERSAL_V1",
+        "name": "SHORT_TERM_REVERSAL",
+        "information_set": "DAILY_RESEARCH_CLOSES_THROUGH_T_MINUS_1",
+        "five_day_return_definition": "CLOSE_TO_CLOSE_SIMPLE_RETURN_OVER_5_TRADING_DAYS",
+        "sixty_day_daily_volatility": "SAMPLE_STANDARD_DEVIATION_OF_DAILY_CLOSE_TO_CLOSE_SIMPLE_RETURNS_OVER_60_TRADING_DAYS",
+        "signal_formula": "clip(-five_day_return / (sqrt(5) * sixty_day_daily_volatility), -1, 1)",
+        "zero_or_missing_denominator_action": "MISSING_REQUIRED_SIGNAL_INPUT"
+      },
+      {
+        "candidate_id": "F0_DUAL_HORIZON_TREND_V1",
+        "name": "DUAL_HORIZON_TREND",
+        "information_set": "DAILY_RESEARCH_CLOSES_THROUGH_T_MINUS_1",
+        "fast_ema_trading_days": 50,
+        "slow_ema_trading_days": 200,
+        "ema_adjust": false,
+        "ema_initialization": "FIRST_AVAILABLE_DAILY_RESEARCH_CLOSE_WITH_WARMUP_REQUIRED_BEFORE_ELIGIBILITY",
+        "sixty_day_daily_volatility": "SAMPLE_STANDARD_DEVIATION_OF_DAILY_CLOSE_TO_CLOSE_SIMPLE_RETURNS_OVER_60_TRADING_DAYS",
+        "signal_formula": "clip((EMA_50 - EMA_200) / (close * sixty_day_daily_volatility * sqrt(252)), -1, 1)",
+        "zero_or_missing_denominator_action": "MISSING_REQUIRED_SIGNAL_INPUT"
+      },
+      {
+        "candidate_id": "F0_DONCHIAN_BREAKOUT_V1",
+        "name": "DONCHIAN_BREAKOUT",
+        "information_set": "DAILY_RESEARCH_CLOSES_THROUGH_T_MINUS_1",
+        "entry_channel_trading_days": 55,
+        "exit_channel_trading_days": 20,
+        "channels_exclude_current_observation": true,
+        "comparison_price": "PREVIOUS_DAILY_RESEARCH_CLOSE",
+        "upper_channel_price": "CERTIFIED_DAILY_RESEARCH_HIGH",
+        "lower_channel_price": "CERTIFIED_DAILY_RESEARCH_LOW",
+        "channel_window_ends_trading_days_before_comparison_close": 1,
+        "long_entry": "PREVIOUS_CLOSE_STRICTLY_ABOVE_PREVIOUS_55_DAY_HIGH",
+        "short_entry": "PREVIOUS_CLOSE_STRICTLY_BELOW_PREVIOUS_55_DAY_LOW",
+        "long_exit": "PREVIOUS_CLOSE_STRICTLY_BELOW_PREVIOUS_20_DAY_LOW",
+        "short_exit": "PREVIOUS_CLOSE_STRICTLY_ABOVE_PREVIOUS_20_DAY_HIGH",
+        "entry_signal": {
+          "long": 1.0,
+          "short": -1.0
+        },
+        "position_state_between_entry_and_exit": "HOLD_LAST_DONCHIAN_DIRECTION",
+        "exit_signal": 0.0,
+        "simultaneous_or_equal_threshold_rule": "NO_NEW_STATE_CHANGE"
+      },
+      {
+        "candidate_id": "F0_RATE_DIFFERENTIAL_CARRY_V1",
+        "name": "RATE_DIFFERENTIAL_CARRY",
+        "information_set": "LATEST_OFFICIAL_RATES_AVAILABLE_BEFORE_T_EXECUTION_UNDER_FROZEN_REGISTRY",
+        "signal_formula": "clip((base_overnight_rate - quote_overnight_rate) / 0.05, -1, 1)",
+        "normalization_rate": 0.05,
+        "publication_and_effective_timestamp_lag_required": true,
+        "missing_rate_action": "MISSING_REQUIRED_SIGNAL_INPUT"
+      },
+      {
+        "candidate_id": "F0_FIXED_MULTI_FACTOR_V1",
+        "name": "FIXED_DIVERSIFIED_MULTI_FACTOR_PORTFOLIO",
+        "component_candidates": [
+          "F0_TSMOM_COMPOSITE_V1",
+          "F0_SHORT_TERM_REVERSAL_V1",
+          "F0_DUAL_HORIZON_TREND_V1",
+          "F0_DONCHIAN_BREAKOUT_V1",
+          "F0_RATE_DIFFERENTIAL_CARRY_V1"
+        ],
+        "combination_rule": "FIXED_EX_ANTE_FACTOR_RISK_CONTRIBUTION_TARGETS",
+        "factor_risk_contribution_targets": {
+          "F0_TSMOM_COMPOSITE_V1": 0.25,
+          "F0_SHORT_TERM_REVERSAL_V1": 0.15,
+          "F0_DUAL_HORIZON_TREND_V1": 0.2,
+          "F0_DONCHIAN_BREAKOUT_V1": 0.15,
+          "F0_RATE_DIFFERENTIAL_CARRY_V1": 0.25
+        },
+        "targets_are_nominal_capital_weights": false,
+        "optimization_allowed": false
+      }
+    ]
+  }
+}

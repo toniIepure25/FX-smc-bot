@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "artifact_id": "F0_BENCHMARK_FREEZE_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V1",
+  "status": "FROZEN_PRE_DATA_ACCESS",
+  "frozen_specification": {
+    "benchmark_count": 5,
+    "benchmarks": [
+      {
+        "benchmark_id": "F0_BENCHMARK_CASH_V1",
+        "name": "ZERO_RETURN_CASH_PORTFOLIO",
+        "return": 0.0,
+        "positions": "NONE",
+        "costs": 0.0
+      },
+      {
+        "benchmark_id": "F0_BENCHMARK_LONG_USD_V1",
+        "name": "EQUAL_RISK_LONG_USD_BASKET",
+        "direction_rule": "LONG_USD_LEG_FOR_EACH_FROZEN_PAIR",
+        "allocation_rule": "EQUAL_EX_ANTE_INSTRUMENT_RISK",
+        "uses_frozen_portfolio_caps_and_cost_accounting": true
+      },
+      {
+        "benchmark_id": "F0_BENCHMARK_PASSIVE_V1",
+        "name": "EQUAL_RISK_PASSIVE_CURRENCY_BASKET",
+        "direction_rule": "FIXED_LONG_BASE_SHORT_QUOTE_DIRECTION_AS_LISTED_IN_FROZEN_INSTRUMENT_UNIVERSE",
+        "allocation_rule": "EQUAL_EX_ANTE_INSTRUMENT_RISK",
+        "uses_frozen_portfolio_caps_and_cost_accounting": true
+      },
+      {
+        "benchmark_id": "F0_BENCHMARK_TSMOM_12M_V1",
+        "name": "FIXED_12_MONTH_TSMOM_BENCHMARK",
+        "signal": "sign(252_trading_day_close_to_close_simple_return)",
+        "information_set": "DAILY_RESEARCH_CLOSES_THROUGH_T_MINUS_1",
+        "allocation_rule": "EQUAL_EX_ANTE_INSTRUMENT_RISK",
+        "uses_frozen_portfolio_caps_and_cost_accounting": true
+      },
+      {
+        "benchmark_id": "F0_BENCHMARK_MATCHED_TURNOVER_RANDOM_SIGN_V1",
+        "name": "MATCHED_TURNOVER_RANDOM_SIGN_PORTFOLIO",
+        "seed": 1729,
+        "randomization_unit": "CANDIDATE_INSTRUMENT_POSITION_EPISODE",
+        "sign_distribution": "INDEPENDENT_RADEMACHER_WITH_EQUAL_PROBABILITY",
+        "preserve_exactly": [
+          "INSTRUMENT",
+          "REBALANCE_DATES",
+          "ABSOLUTE_NOTIONAL",
+          "HOLDING_DURATION",
+          "TURNOVER",
+          "COST_EXPOSURE"
+        ],
+        "uses_candidate_execution_and_cost_timestamps": true
+      }
+    ],
+    "post_outcome_benchmark_change_allowed": false,
+    "benchmark_results_generated_during_preregistration": false
+  }
+}
