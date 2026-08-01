@@ -1,0 +1,31 @@
+{
+  "database_location": "LOCAL_CLEAN_ROOM_OUTSIDE_GIT",
+  "dataset_freeze_id": "F0RPE2ERUSDSRLPAEURSR_EUR_CERTIFICATION_V1",
+  "dataset_freeze_pinning": "PASS",
+  "dataset_freeze_sha256": "e2f45944a4fdc9b6f23674622150c145024415bc671c66ff391139e92c1ecfb1",
+  "eur_source_reconciliation_pre_parse_sha": "11a31fe6dbb10b001d9b943448cb88c99942e98e",
+  "explicit_asof_query": "PASS",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "new_database_required": true,
+  "nullable_actual_publication_timestamp": "PASS",
+  "nullable_official_revision_identifier": "PASS",
+  "publication_interval_support": "PASS",
+  "schema_version": "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4",
+  "status": "PASS",
+  "table_counts": {
+    "aligned_daily_rate_panel": 0,
+    "availability_events": 12,
+    "certification_results": 12,
+    "dataset_freeze_certifications": 24,
+    "dataset_freeze_versions": 24,
+    "dataset_freezes": 13,
+    "ingestion_runs": 1,
+    "rate_observation_identities": 12,
+    "rate_series": 2,
+    "rate_versions": 12,
+    "response_firewall_certifications": 3,
+    "source_requests": 3,
+    "source_snapshots": 3
+  },
+  "v4_insertion": "PASS"
+}

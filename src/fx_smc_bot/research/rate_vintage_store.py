@@ -7,7 +7,9 @@ and revisions cannot leak into an earlier replay.
 
 from __future__ import annotations
 
+import csv
 import hashlib
+import io
 import json
 import math
 import sqlite3
@@ -185,6 +187,61 @@ def _validate_series_regime(currency: str, series_id: str, observation_date: dat
     expected = "EONIA" if observation_date <= _EONIA_END else "ESTR"
     if series_id != expected:
         raise RateVintageIntegrityError("EUR series violates the frozen EONIA/ESTR transition")
+
+
+def _inspect_ecb_sdmx_csv_snapshot(snapshot: object) -> tuple[str, int]:
+    from fx_smc_bot.research.rate_sources.base import SourceSnapshot
+    from fx_smc_bot.research.rate_sources.ecb import (
+        EONIA_V3_KEY,
+        EONIA_V3_SCHEMA_FINGERPRINT,
+        ESTR_V3_KEY,
+        ESTR_V3_SCHEMA_FINGERPRINT,
+        EcbEoniaEstrAdapterV3,
+    )
+
+    if not isinstance(snapshot, SourceSnapshot):
+        raise RateVintageIntegrityError("ECB SDMX inspection requires a SourceSnapshot")
+    media_type = str(snapshot.content_type).partition(";")[0].strip().lower()
+    if media_type not in {"text/csv", "application/csv"}:
+        raise RateVintageIntegrityError("ECB SDMX content type mismatch")
+    request = snapshot.request
+    if request.series_id == "EONIA":
+        expected_key = EONIA_V3_KEY
+        expected_freq = "D"
+        expected_fingerprint = EONIA_V3_SCHEMA_FINGERPRINT
+        expected_fields: tuple[str, ...] = EcbEoniaEstrAdapterV3.eonia_fields
+    elif request.series_id == "ESTR":
+        expected_key = ESTR_V3_KEY
+        expected_freq = "B"
+        expected_fingerprint = ESTR_V3_SCHEMA_FINGERPRINT
+        expected_fields = EcbEoniaEstrAdapterV3.estr_fields
+    else:
+        raise RateVintageIntegrityError("ECB SDMX unsupported series")
+    try:
+        reader = csv.DictReader(
+            io.StringIO(snapshot.payload.decode("utf-8-sig")),
+            strict=True,
+        )
+        if tuple(reader.fieldnames or ()) != expected_fields:
+            raise RateVintageIntegrityError("ECB SDMX CSV header mismatch")
+        rows = tuple(dict(row) for row in reader)
+    except (UnicodeDecodeError, csv.Error) as exc:
+        raise RateVintageIntegrityError("Invalid ECB SDMX CSV payload") from exc
+    if not rows:
+        raise RateVintageIntegrityError("ECB SDMX CSV requires at least one row")
+    for row in rows:
+        key = str(row.get("KEY", ""))
+        freq = str(row.get("FREQ", ""))
+        if key != expected_key or freq != expected_freq:
+            raise RateVintageIntegrityError("ECB SDMX scope mismatch")
+        if "NZD" in key.upper():
+            raise RateVintageIntegrityError("NZD scope is prohibited")
+        observed = _day(row.get("TIME_PERIOD"), "TIME_PERIOD")
+        if observed < request.start or observed > request.end:
+            raise RateVintageIntegrityError("ECB SDMX response outside request bounds")
+        if observed > _V3_AUTHORIZED_END:
+            raise RateVintageIntegrityError("ECB SDMX response outside authorized scope")
+    return expected_fingerprint, len(rows)
 
 
 class RateVintageStore:
@@ -1041,13 +1098,21 @@ class RateVintageStore:
             _value(certification, "schema_fingerprint"), "schema_fingerprint"
         )
         inspector_id = _text(_value(certification, "inspector_id"), "inspector_id")
-        if inspector_id != INSPECTOR_ID:
+        if inspector_id not in {
+            INSPECTOR_ID,
+            "F0RPE2ERUSDSRLPAEURSR_ECB_SDMX_CSV_SHAPE_V1",
+        }:
             raise RateVintageIntegrityError("Shape certification inspector mismatch")
         row_path = _text(
             _value(certification, "row_container_path"), "row_container_path"
         )
         schema_role = _text(_value(certification, "schema_role"), "schema_role")
-        if row_path != "$.refRates":
+        if inspector_id == INSPECTOR_ID and row_path != "$.refRates":
+            raise RateVintageIntegrityError("Shape certification row path mismatch")
+        if (
+            inspector_id == "F0RPE2ERUSDSRLPAEURSR_ECB_SDMX_CSV_SHAPE_V1"
+            and row_path != "$.sdmx_csv_rows"
+        ):
             raise RateVintageIntegrityError("Shape certification row path mismatch")
         row_count = _value(certification, "row_count")
         if not isinstance(row_count, int) or isinstance(row_count, bool) or row_count < 1:
@@ -1076,15 +1141,22 @@ class RateVintageStore:
                 }
             ),
         )
-        shape = inspect_official_json_response(snapshot, authorization)
-        if (
-            shape.schema_fingerprint != fingerprint
-            or shape.candidate_row_container_paths != (row_path,)
-            or shape.row_count != row_count
-        ):
-            raise RateVintageIntegrityError(
-                "Shape certification does not match the complete snapshot payload"
-            )
+        if inspector_id == INSPECTOR_ID:
+            shape = inspect_official_json_response(snapshot, authorization)
+            if (
+                shape.schema_fingerprint != fingerprint
+                or shape.candidate_row_container_paths != (row_path,)
+                or shape.row_count != row_count
+            ):
+                raise RateVintageIntegrityError(
+                    "Shape certification does not match the complete snapshot payload"
+                )
+        else:
+            observed_fingerprint, observed_row_count = _inspect_ecb_sdmx_csv_snapshot(snapshot)
+            if observed_fingerprint != fingerprint or observed_row_count != row_count:
+                raise RateVintageIntegrityError(
+                    "Shape certification does not match the complete snapshot payload"
+                )
         adapter_id = _text(_value(request, "adapter_id"), "adapter_id")
         certification_id = _content_sha256(
             {

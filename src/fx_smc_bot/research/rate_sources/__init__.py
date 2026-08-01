@@ -13,7 +13,11 @@ from fx_smc_bot.research.rate_sources.bank_of_japan import (
     BankOfJapanCallRateAdapterV2,
 )
 from fx_smc_bot.research.rate_sources.client import OfficialRateSnapshotClient
-from fx_smc_bot.research.rate_sources.ecb import EcbEoniaEstrAdapter, EcbEoniaEstrAdapterV2
+from fx_smc_bot.research.rate_sources.ecb import (
+    EcbEoniaEstrAdapter,
+    EcbEoniaEstrAdapterV2,
+    EcbEoniaEstrAdapterV3,
+)
 from fx_smc_bot.research.rate_sources.new_york_fed import (
     NewYorkFedEffrAdapter,
     NewYorkFedEffrAdapterV2,
@@ -50,6 +54,7 @@ __all__ = [
     "BankOfJapanCallRateAdapterV2",
     "EcbEoniaEstrAdapter",
     "EcbEoniaEstrAdapterV2",
+    "EcbEoniaEstrAdapterV3",
     "NewYorkFedEffrAdapter",
     "NewYorkFedEffrAdapterV2",
     "OFFICIAL_RATE_ADAPTERS",

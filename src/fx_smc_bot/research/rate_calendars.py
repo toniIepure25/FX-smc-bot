@@ -84,7 +84,7 @@ CALENDARS: Final[dict[str, CalendarDefinition]] = {
     ),
     TARGET2: CalendarDefinition(
         TARGET2,
-        "Europe/Frankfurt",
+        "Europe/Brussels",
         "BUSINESS_DAY",
         ("TARGET_CLOSING_DAYS", "SATURDAY_SUNDAY_CLOSED"),
     ),

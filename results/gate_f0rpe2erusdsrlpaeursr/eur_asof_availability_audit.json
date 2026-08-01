@@ -1,0 +1,18 @@
+{
+  "actual_publication_timestamp_fabricated": false,
+  "asof_after_availability_available": 12,
+  "asof_at_availability_available": 12,
+  "asof_before_availability_missing": 12,
+  "benchmark_vs_archive_availability_separated": true,
+  "dataset_freeze_id": "F0RPE2ERUSDSRLPAEURSR_EUR_CERTIFICATION_V1",
+  "eonia_at_1900_available": 8,
+  "eonia_before_1900_missing": 8,
+  "estr_at_0900_available": 4,
+  "estr_before_0900_missing": 4,
+  "eur_source_reconciliation_pre_parse_sha": "11a31fe6dbb10b001d9b943448cb88c99942e98e",
+  "future_revision_leakage": "PASS",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "ny_1705_alignment_available": 12,
+  "status": "PASS",
+  "versions_audited": 12
+}
