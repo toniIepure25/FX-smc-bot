@@ -110,7 +110,9 @@ class BankOfJapanCallRateAdapter:
         reasons = []
         if version.revision_status != "FINAL":
             reasons.append("BOJ_FINAL_RESULT_REQUIRED")
-        if version.publication_timestamp.date() <= version.observation_date:
+        if version.publication_timestamp is None:
+            reasons.append("BOJ_FINAL_PUBLICATION_TIMESTAMP_REQUIRED")
+        elif version.publication_timestamp.date() <= version.observation_date:
             reasons.append("BOJ_FINAL_PUBLICATION_MUST_FOLLOW_OBSERVATION_DATE")
         return combine_certification(result, reasons)
 

@@ -821,6 +821,13 @@ def _first_new_york_execution_after(boundary: datetime) -> datetime:
         candidate_day += timedelta(days=1)
 
 
+def _mapping_int(item: Mapping[str, object], key: str) -> int:
+    value = item[key]
+    if not isinstance(value, int):
+        raise RateSourceError(f"RBA_HISTORICAL_F1_INVALID_{key.upper()}")
+    return value
+
+
 class _OleWorkbook:
     def __init__(self, payload: bytes) -> None:
         if payload[:8] != bytes.fromhex("d0cf11e0a1b11ae1"):
@@ -835,18 +842,22 @@ class _OleWorkbook:
         )
         if workbook is None:
             raise RateSourceError("RBA_HISTORICAL_F1_WORKBOOK_STREAM_MISSING")
-        self.workbook = self._read_stream(int(workbook["start"]), int(workbook["size"]))
+        self.workbook = self._read_stream(
+            _mapping_int(workbook, "start"), _mapping_int(workbook, "size")
+        )
         self.records = self._records(self.workbook)
         self.sheets = self._sheets()
 
     def records_for_sheet(self, name: str) -> tuple[tuple[int, int, bytes], ...]:
-        sheets = sorted(self.sheets, key=lambda item: item["offset"])
+        sheets = sorted(self.sheets, key=lambda item: _mapping_int(item, "offset"))
         for index, sheet in enumerate(sheets):
             if sheet["name"] != name:
                 continue
-            start = int(sheet["offset"])
+            start = _mapping_int(sheet, "offset")
             end = (
-                int(sheets[index + 1]["offset"]) if index + 1 < len(sheets) else len(self.workbook)
+                _mapping_int(sheets[index + 1], "offset")
+                if index + 1 < len(sheets)
+                else len(self.workbook)
             )
             return tuple(record for record in self.records if start <= record[0] < end)
         raise RateSourceError("RBA_HISTORICAL_F1_DATA_SHEET_MISSING")
