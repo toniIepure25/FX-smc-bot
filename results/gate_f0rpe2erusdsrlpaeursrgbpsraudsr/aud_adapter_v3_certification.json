@@ -1,0 +1,53 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "adapter_id": "RBA_CASH_RATE_V3",
+  "currency": "AUD",
+  "series_id": "RBA_CASH_RATE",
+  "status": "PASS",
+  "source_contract_commit": "f31198dacde9428e8a38e4cec2518e464750b75d",
+  "implementation": {
+    "active_endpoint_removed": "https://www.rba.gov.au/statistics/cash-rate/cash-rate.json",
+    "historical_endpoint": "https://www.rba.gov.au/statistics/tables/xls-hist/f01dhist.xls",
+    "current_endpoint": "https://www.rba.gov.au/statistics/tables/xls/f01d.xlsx",
+    "parser_version": "RBA_F1_CASH_RATE_WORKBOOK_V3",
+    "historical_schema_fingerprint": "fce982bc4adbf9c3f5b1588780320b78be96b38b155e0981a1a1de9e9cfff65a",
+    "current_schema_fingerprint": "abcaf1b6d80a76d816fd580b6b74a88080054a4c69d5ffbbf568345fc4f5b492"
+  },
+  "certification_checks": {
+    "official_publisher": "PASS",
+    "official_f1_identity": "PASS",
+    "historical_current_table_boundary": "PASS",
+    "cash_rate_series_identity": "PASS",
+    "cash_rate_target_rejection": "PASS",
+    "unit_normalization": "PASS",
+    "rits_calendar": "PASS",
+    "publication_date_derivation": "PASS",
+    "publication_day_envelope": "PASS",
+    "revision_nullability": "PASS",
+    "expert_judgement_metadata": "PASS",
+    "unknown_workbook_schema_rejected": "PASS",
+    "conflicting_duplicate_observation_rejected": "PASS",
+    "unauthorized_dates_rejected": "PASS",
+    "post_2022_row_value_never_decoded": "PASS"
+  },
+  "official_memory_only_validation": {
+    "historical_window": {
+      "start": "2010-12-20",
+      "end": "2010-12-31",
+      "row_count": 8,
+      "certification_statuses": [
+        "PASS"
+      ],
+      "raw_payload_persisted": false
+    },
+    "current_window": {
+      "start": "2016-01-04",
+      "end": "2016-01-15",
+      "row_count": 10,
+      "certification_statuses": [
+        "PASS"
+      ],
+      "raw_payload_persisted": false
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "reconciliation_id": "RBA_F1_CASH_RATE_SCHEMA_RECONCILIATION_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "status": "FROZEN_BEFORE_AUD_RATE_VERSION_PERSISTENCE",
+  "worksheet": "Data",
+  "date_column": "A",
+  "cash_rate_column": "D",
+  "official_series_name": "Interbank Overnight Cash Rate",
+  "official_series_code": "FIRMMCRID",
+  "unit": "Per cent",
+  "source": "RBA",
+  "missing_value_marker": "blank cell rejected for requested observations",
+  "expert_judgement_marker": "Use of Expert Judgement sheet when present; Cash Rate value remains FIRMMCRID",
+  "fallback_marker": "official F1 expert-judgement metadata only; no independent target substitution",
+  "notes_linkage": "Notes sheet retained as source metadata; exact intraday publication time not inferred",
+  "normalization": {
+    "observation_date": "Report Date",
+    "official_percentage_value_divided_by_100": "annualized decimal rate",
+    "currency": "AUD",
+    "series_id": "RBA_CASH_RATE",
+    "day_count": "ACT/365 Fixed",
+    "calendar": "RITS business day"
+  },
+  "publication_semantics": {
+    "report_date": "RITS business day T",
+    "publication_date": "immediately following RITS business day",
+    "actual_publication_timestamp": null,
+    "publication_evidence_kind": "PUBLICATION_DAY_ENVELOPE",
+    "publication_lower_bound": "00:00 Australia/Sydney on Publication Date",
+    "publication_upper_bound": "00:00 Australia/Sydney on calendar day immediately following Publication Date, exclusive",
+    "strategy_availability": "first frozen 17:05 America/New_York execution strictly after publication_upper_bound"
+  },
+  "revision_semantics": {
+    "revision_identifier": null,
+    "revision_status": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID"
+  },
+  "schema_fingerprints": {
+    "historical_f1": "fce982bc4adbf9c3f5b1588780320b78be96b38b155e0981a1a1de9e9cfff65a",
+    "current_f1": "abcaf1b6d80a76d816fd580b6b74a88080054a4c69d5ffbbf568345fc4f5b492"
+  },
+  "identity_rule": "official label and FIRMMCRID series code required; numerical proximity to target is never used"
+}

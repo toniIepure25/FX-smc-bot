@@ -1,0 +1,21 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "audit_id": "AUD_RBA_CASH_RATE_V3_ASOF_AVAILABILITY_AUDIT_V1",
+  "status": "PASS",
+  "publication_evidence_kind": "PUBLICATION_DAY_ENVELOPE",
+  "actual_publication_timestamp": null,
+  "availability_policy": {
+    "publication_lower_bound": "00:00 Australia/Sydney on Publication Date",
+    "publication_upper_bound": "00:00 Australia/Sydney on the calendar day immediately following Publication Date, exclusive",
+    "first_eligible_strategy_execution": "first 17:05 America/New_York execution strictly after publication_upper_bound"
+  },
+  "checks": {
+    "as_of_before_availability": "MISSING",
+    "as_of_at_availability": "AVAILABLE",
+    "as_of_after_availability": "AVAILABLE",
+    "future_revision_leakage": "PASS",
+    "sydney_new_york_dst_divergence": "PASS",
+    "rits_holiday_boundary": "PASS",
+    "year_end_2022_publication_boundary": "PASS"
+  }
+}

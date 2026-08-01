@@ -1,0 +1,92 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "schema_artifact_id": "RBA_CURRENT_F1_SCHEMA_V1",
+  "source_endpoint": "https://www.rba.gov.au/statistics/tables/xls/f01d.xlsx",
+  "transport": {
+    "content_type": "application/octet-stream",
+    "file_format": "XLSX/OOXML",
+    "payload_bytes": 402898,
+    "payload_sha256": "973e127104d90e2e28bc7b274f46824e93eb8014d6efe4d3119286ffe0b36ba8",
+    "raw_workbook_persisted": false,
+    "quarantine_overlay_id": "RBA_F1_QUARANTINE_AWARE_INGRESS_V1"
+  },
+  "workbook": {
+    "sheet_names": [
+      "Data",
+      "Notes",
+      "Use of Expert Judgement"
+    ],
+    "selected_sheet": "Data",
+    "notes_sheet_present": true,
+    "expert_judgement_sheet_present": true
+  },
+  "schema": {
+    "header_row_indices_one_based": {
+      "title": 1,
+      "series_name": 2,
+      "series_description": 3,
+      "unit": 6,
+      "source": 9,
+      "publication_date": 10,
+      "series_code": 11
+    },
+    "date_column": {
+      "excel_column": "A",
+      "zero_based_index": 0
+    },
+    "selected_cash_rate_column": {
+      "excel_column": "D",
+      "zero_based_index": 3,
+      "series_name": "Interbank Overnight Cash Rate",
+      "series_description": "Interbank Overnight Cash Rate on date",
+      "series_code": "FIRMMCRID",
+      "unit": "Per cent",
+      "source": "RBA"
+    },
+    "rejected_columns": [
+      {
+        "excel_column": "B",
+        "series_name": "Cash Rate Target",
+        "series_code": "FIRMMCRTD"
+      },
+      {
+        "excel_column": "I",
+        "series_name": "Total Return Index",
+        "series_description": "Cash Rate Total Return Index on date",
+        "series_code": "FIRMMCTRI"
+      },
+      {
+        "excel_column": "E",
+        "series_name": "Highest Interbank Overnight Cash Rate"
+      },
+      {
+        "excel_column": "F",
+        "series_name": "Lowest Interbank Overnight Cash Rate"
+      },
+      {
+        "excel_column": "G",
+        "series_name": "Volume of Cash Market Transactions"
+      },
+      {
+        "excel_column": "H",
+        "series_name": "Number of Cash Market Transactions"
+      }
+    ],
+    "schema_fingerprint": "abcaf1b6d80a76d816fd580b6b74a88080054a4c69d5ffbbf568345fc4f5b492"
+  },
+  "authorized_date_scope": {
+    "authorized_row_count": 3036,
+    "minimum_authorized_date": "2011-01-04",
+    "maximum_authorized_date": "2022-12-30",
+    "post_2022_observation_dates_structurally_encountered": true,
+    "post_2022_date_count": 906
+  },
+  "quarantine_integrity": {
+    "post_2022_workbook_transport_envelope_received": true,
+    "post_2022_observation_dates_structurally_encountered": true,
+    "post_2022_numerical_values_decoded": false,
+    "post_2022_numerical_values_persisted": false,
+    "post_2022_numerical_values_used": false,
+    "raw_workbook_persisted": false
+  }
+}

@@ -274,6 +274,21 @@ def _inspect_boe_iadb_csv_snapshot(snapshot: object) -> tuple[str, int]:
     return BOE_IUDSOIA_V3_SCHEMA_FINGERPRINT, len(rows)
 
 
+def _inspect_rba_f1_snapshot(snapshot: object) -> tuple[str, int]:
+    from fx_smc_bot.research.rate_sources.base import SourceSnapshot
+    from fx_smc_bot.research.rate_sources.rba import _parse_rba_f1_snapshot
+
+    if not isinstance(snapshot, SourceSnapshot):
+        raise RateVintageIntegrityError("RBA F1 inspection requires a SourceSnapshot")
+    try:
+        rows, fingerprint, _role = _parse_rba_f1_snapshot(snapshot)
+    except Exception as exc:
+        raise RateVintageIntegrityError("Invalid RBA F1 workbook payload") from exc
+    if not rows:
+        raise RateVintageIntegrityError("RBA F1 workbook requires at least one row")
+    return fingerprint, len(rows)
+
+
 class RateVintageStore:
     """SQLite-backed append-only official-rate vintage store."""
 
@@ -1012,9 +1027,10 @@ class RateVintageStore:
             raise RateVintageIntegrityError(
                 "V3 source snapshot persistence requires firewall certification"
             )
-        if self._schema_version == V4_SCHEMA_VERSION and _optional_value(
-            certification, "schema_fingerprint"
-        ) is not None:
+        if (
+            self._schema_version == V4_SCHEMA_VERSION
+            and _optional_value(certification, "schema_fingerprint") is not None
+        ):
             return self._validate_v4_shape_certification(
                 snapshot,
                 payload_sha256,
@@ -1124,19 +1140,16 @@ class RateVintageStore:
         )
         if certified_snapshot != payload_sha256:
             raise RateVintageIntegrityError("Shape certification snapshot mismatch")
-        fingerprint = _sha256(
-            _value(certification, "schema_fingerprint"), "schema_fingerprint"
-        )
+        fingerprint = _sha256(_value(certification, "schema_fingerprint"), "schema_fingerprint")
         inspector_id = _text(_value(certification, "inspector_id"), "inspector_id")
         if inspector_id not in {
             INSPECTOR_ID,
             "F0RPE2ERUSDSRLPAEURSR_ECB_SDMX_CSV_SHAPE_V1",
             "F0RPE2ERUSDSRLPAEURSRGBPSR_BOE_IADB_CSV_SHAPE_V1",
+            "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_RBA_F1_SHAPE_V1",
         }:
             raise RateVintageIntegrityError("Shape certification inspector mismatch")
-        row_path = _text(
-            _value(certification, "row_container_path"), "row_container_path"
-        )
+        row_path = _text(_value(certification, "row_container_path"), "row_container_path")
         schema_role = _text(_value(certification, "schema_role"), "schema_role")
         if inspector_id == INSPECTOR_ID and row_path != "$.refRates":
             raise RateVintageIntegrityError("Shape certification row path mismatch")
@@ -1150,34 +1163,43 @@ class RateVintageStore:
             and row_path != "$.iadb_tabular_csv_rows"
         ):
             raise RateVintageIntegrityError("Shape certification row path mismatch")
+        if (
+            inspector_id == "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_RBA_F1_SHAPE_V1"
+            and row_path != "$.rba_f1_cash_rate_rows"
+        ):
+            raise RateVintageIntegrityError("Shape certification row path mismatch")
         row_count = _value(certification, "row_count")
         if not isinstance(row_count, int) or isinstance(row_count, bool) or row_count < 1:
             raise RateVintageIntegrityError("Shape certification row count is invalid")
         declaration = _optional_value(request, "endpoint_declaration")
-        if declaration is None:
-            raise RateVintageIntegrityError(
-                "Shape certification requires an endpoint declaration"
+        if (
+            declaration is None
+            and inspector_id != "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_RBA_F1_SHAPE_V1"
+        ):
+            raise RateVintageIntegrityError("Shape certification requires an endpoint declaration")
+        authorization = None
+        if declaration is not None:
+            authorization = RateAccessAuthorization(
+                authorization_id=f"V4_STORE_SHAPE_{expected_request}",
+                adapter_ids=frozenset({_text(_value(request, "adapter_id"), "adapter_id")}),
+                currencies=frozenset({_text(_value(request, "currency"), "currency")}),
+                series_ids=frozenset({_text(_value(request, "series_id"), "series_id")}),
+                start=_day(_value(request, "start"), "start"),
+                end=_day(_value(request, "end"), "end"),
+                official_hosts=frozenset(
+                    {urlparse(_text(_value(request, "url"), "url")).hostname or ""}
+                ),
+                source_allowlist_identities=frozenset(
+                    {
+                        _text(
+                            _value(declaration, "allowlist_identity"),
+                            "allowlist_identity",
+                        )
+                    }
+                ),
             )
-        authorization = RateAccessAuthorization(
-            authorization_id=f"V4_STORE_SHAPE_{expected_request}",
-            adapter_ids=frozenset({_text(_value(request, "adapter_id"), "adapter_id")}),
-            currencies=frozenset({_text(_value(request, "currency"), "currency")}),
-            series_ids=frozenset({_text(_value(request, "series_id"), "series_id")}),
-            start=_day(_value(request, "start"), "start"),
-            end=_day(_value(request, "end"), "end"),
-            official_hosts=frozenset(
-                {urlparse(_text(_value(request, "url"), "url")).hostname or ""}
-            ),
-            source_allowlist_identities=frozenset(
-                {
-                    _text(
-                        _value(declaration, "allowlist_identity"),
-                        "allowlist_identity",
-                    )
-                }
-            ),
-        )
         if inspector_id == INSPECTOR_ID:
+            assert authorization is not None
             shape = inspect_official_json_response(snapshot, authorization)
             if (
                 shape.schema_fingerprint != fingerprint
@@ -1189,13 +1211,11 @@ class RateVintageStore:
                 )
         else:
             if inspector_id == "F0RPE2ERUSDSRLPAEURSR_ECB_SDMX_CSV_SHAPE_V1":
-                observed_fingerprint, observed_row_count = _inspect_ecb_sdmx_csv_snapshot(
-                    snapshot
-                )
+                observed_fingerprint, observed_row_count = _inspect_ecb_sdmx_csv_snapshot(snapshot)
+            elif inspector_id == "F0RPE2ERUSDSRLPAEURSRGBPSR_BOE_IADB_CSV_SHAPE_V1":
+                observed_fingerprint, observed_row_count = _inspect_boe_iadb_csv_snapshot(snapshot)
             else:
-                observed_fingerprint, observed_row_count = _inspect_boe_iadb_csv_snapshot(
-                    snapshot
-                )
+                observed_fingerprint, observed_row_count = _inspect_rba_f1_snapshot(snapshot)
             if observed_fingerprint != fingerprint or observed_row_count != row_count:
                 raise RateVintageIntegrityError(
                     "Shape certification does not match the complete snapshot payload"
@@ -2106,8 +2126,7 @@ class RateVintageStore:
             ),
             source_metadata=(
                 tuple(
-                    (str(key), str(value))
-                    for key, value in json.loads(row["source_metadata_json"])
+                    (str(key), str(value)) for key, value in json.loads(row["source_metadata_json"])
                 )
                 if self._schema_version == V4_SCHEMA_VERSION
                 else None

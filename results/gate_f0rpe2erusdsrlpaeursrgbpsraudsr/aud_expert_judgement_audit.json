@@ -1,0 +1,22 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "audit_id": "AUD_RBA_F1_EXPERT_JUDGEMENT_AUDIT_V1",
+  "status": "PASS",
+  "historical_f1": {
+    "expert_judgement_sheet_present": false,
+    "selected_cash_rate_value_replacement_allowed": false
+  },
+  "current_f1": {
+    "expert_judgement_sheet_present": true,
+    "metadata_preservation_policy": "preserve official F1 expert-judgement sheet presence and row metadata when available",
+    "selected_cash_rate_value_replacement_allowed": false,
+    "cash_rate_target_substitution_allowed": false
+  },
+  "semantics": {
+    "official_cash_rate_series_remains_selected": "FIRMMCRID",
+    "fallback_procedure_used": "metadata only; does not alter selected Cash Rate value",
+    "insufficient_data": "metadata only; does not alter selected Cash Rate value",
+    "technical_problem": "metadata only; does not alter selected Cash Rate value",
+    "expert_judgement_type": "metadata only; does not alter selected Cash Rate value"
+  }
+}

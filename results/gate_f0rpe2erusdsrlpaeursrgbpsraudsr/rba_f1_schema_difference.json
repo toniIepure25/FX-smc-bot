@@ -1,0 +1,42 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "difference_artifact_id": "RBA_F1_HISTORICAL_CURRENT_SCHEMA_DIFFERENCE_V1",
+  "historical_schema_fingerprint": "fce982bc4adbf9c3f5b1588780320b78be96b38b155e0981a1a1de9e9cfff65a",
+  "current_schema_fingerprint": "abcaf1b6d80a76d816fd580b6b74a88080054a4c69d5ffbbf568345fc4f5b492",
+  "stable_mapping": {
+    "selected_series": "Interbank Overnight Cash Rate",
+    "selected_series_code": "FIRMMCRID",
+    "selected_column": "D",
+    "unit": "Per cent",
+    "source": "RBA",
+    "date_column": "A"
+  },
+  "differences": [
+    {
+      "field": "file_format",
+      "historical": "OLE2/BIFF .xls",
+      "current": "OOXML .xlsx"
+    },
+    {
+      "field": "coverage",
+      "historical": "1976-04-07 through 2010-12-31 observed in workbook",
+      "current": "2011-01-04 through 2022-12-30 authorized, with post-2022 rows structurally encountered"
+    },
+    {
+      "field": "expert_judgement_sheet",
+      "historical": false,
+      "current": true
+    },
+    {
+      "field": "additional_current_columns",
+      "historical": "no current Cash Market high/low/count/volume/TRI columns selected",
+      "current": "high/low/count/volume/TRI columns present and explicitly rejected"
+    }
+  ],
+  "decision": "SCHEMAS_RECONCILED_FOR_FIRMMCRID_CASH_RATE_ONLY",
+  "prohibited_substitutions": {
+    "cash_rate_target_used": false,
+    "cash_rate_total_return_index_used": false,
+    "high_low_count_volume_used": false
+  }
+}

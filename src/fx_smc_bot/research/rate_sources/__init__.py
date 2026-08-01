@@ -23,7 +23,11 @@ from fx_smc_bot.research.rate_sources.new_york_fed import (
     NewYorkFedEffrAdapter,
     NewYorkFedEffrAdapterV2,
 )
-from fx_smc_bot.research.rate_sources.rba import RbaCashRateAdapter, RbaCashRateAdapterV2
+from fx_smc_bot.research.rate_sources.rba import (
+    RbaCashRateAdapter,
+    RbaCashRateAdapterV2,
+    RbaCashRateAdapterV3,
+)
 from fx_smc_bot.research.rate_sources.saron import Saron18Adapter, Saron18AdapterV2
 
 OFFICIAL_RATE_ADAPTERS = (
@@ -64,6 +68,7 @@ __all__ = [
     "OfficialRateSnapshotClient",
     "RbaCashRateAdapter",
     "RbaCashRateAdapterV2",
+    "RbaCashRateAdapterV3",
     "Saron18Adapter",
     "Saron18AdapterV2",
 ]

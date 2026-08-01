@@ -1,0 +1,27 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "certification_id": "AUD_RBA_CASH_RATE_V3_V4_STORE_CERTIFICATION_V1",
+  "adapter_id": "RBA_CASH_RATE_V3",
+  "status": "PASS",
+  "store_schema": "V4",
+  "checks": {
+    "v4_shape_certification_registered": "PASS",
+    "rba_f1_shape_recomputed_from_complete_payload": "PASS",
+    "rate_version_requires_source_adapter_id": "PASS",
+    "rate_version_requires_request_identity": "PASS",
+    "publication_day_envelope_fields_persistable": "PASS",
+    "revision_identifier_nullability": "PASS",
+    "as_of_before_availability_missing": "PASS",
+    "as_of_at_availability_available": "PASS"
+  },
+  "test_evidence": {
+    "pytest": "tests/test_gate_f0rpe2erusdsrlpaeursrgbpsraudsr/test_rba_cash_rate_v3.py",
+    "synthetic_v4_store_case": "PASS"
+  },
+  "prohibited_persistence": {
+    "official_workbook_committed": false,
+    "rate_rows_committed": false,
+    "market_rows_committed": false,
+    "signals_positions_returns_committed": false
+  }
+}
