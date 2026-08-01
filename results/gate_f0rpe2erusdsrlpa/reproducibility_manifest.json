@@ -1,0 +1,76 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPA_REPRODUCIBILITY_MANIFEST_V1",
+  "artifact_sha256": {
+    "results\\gate_f0rpe2erusdsrlpa\\eonia_estr_transition_audit.json": "aac26fbacb5d97defa287d0888e1ce7b9b14297bfca22ca9a83a650e01e51874",
+    "results\\gate_f0rpe2erusdsrlpa\\final_decision.json": "27eb43c1cf442951a8697adb580d2d2f2f5d1b2304360c35d392283ac219bff4",
+    "results\\gate_f0rpe2erusdsrlpa\\integrity_audit.json": "9878687fdf37b04d1402d5b5283222ded155db90ca0a4150e13b105ddcff1e32",
+    "results\\gate_f0rpe2erusdsrlpa\\legacy_publication_day_provenance.json": "db3b92181e4fc4fb8b0b19a0fb15f260e997c902837dbfc78f3122857739a2cc",
+    "results\\gate_f0rpe2erusdsrlpa\\live_adapter_certification.json": "b95c0c64b5808f0d5d583c456237ee400390d1275ec29c618c44af0fd8e55bdb",
+    "results\\gate_f0rpe2erusdsrlpa\\live_adapter_matrix.json": "a358e6847b30e2a2500378398ad3f7d4d2eda5555f6af2c931bafc645e3b88dc",
+    "results\\gate_f0rpe2erusdsrlpa\\pre_amendment_integrity.json": "e66cc1e991592bcbaa9629ddf5ec918e5962bc6550a4b3cbe6f2fdb4b0e8d46b",
+    "results\\gate_f0rpe2erusdsrlpa\\predecessor_inheritance.json": "e2919c3128eab6d171a82944c9a52f446daf43770283c349864d3bccea06a012",
+    "results\\gate_f0rpe2erusdsrlpa\\prohibited_data_audit.json": "7a643098e2c86ce87685d64320dce99d32ba4e9937a9d96c2f7f6615089b09c1",
+    "results\\gate_f0rpe2erusdsrlpa\\protocol_inheritance_lock.json": "933df89f0648abecf0ff60a039568d79644013e69de015c16a8431fee3bd29aa",
+    "results\\gate_f0rpe2erusdsrlpa\\publication_censoring_overlay.json": "7d26c9f2a957fda5f66348251c9f1974d8768587cfd0666f6823c9c27b1de84c",
+    "results\\gate_f0rpe2erusdsrlpa\\repository_state.json": "2e82b6d16a41f49e437f96663dbf9f02ea302fc92343b2c0e3e8aa56aa0251ab",
+    "results\\gate_f0rpe2erusdsrlpa\\usd_adapter_v3_certification.json": "478b4fe73ba3bd723495c5b429882c9d22a429c286328555b70fec827156e393",
+    "results\\gate_f0rpe2erusdsrlpa\\usd_asof_availability_audit.json": "238b9f880e26972871ff11d86e42382ea4b52fb52ff66f437c65e0de2ad740dd",
+    "results\\gate_f0rpe2erusdsrlpa\\vintage_store_v4_certification.json": "d00636488548d82ea3d5b9ccf99b9ec9a6fa3b3106e576360a1fac12bda8ec3c"
+  },
+  "commits_before_final_artifacts": [
+    [
+      "c76ad81",
+      "research: preserve USD publication-availability block"
+    ],
+    [
+      "8335cf4",
+      "research: freeze conservative legacy EFFR availability overlay"
+    ],
+    [
+      "0a8336e",
+      "feat(rates): add publication intervals to vintage store v4"
+    ],
+    [
+      "f92e5a3",
+      "fix(rates): certify interval-censored legacy EFFR availability"
+    ],
+    [
+      "0afb26b",
+      "test(rates): certify bounded live rate source blocker"
+    ]
+  ],
+  "documentation_sha256": {
+    "docs\\research\\classical_fx_factors_v2\\F0RPE2ERUSDSRLPA_FINAL_DECISION_MEMO.md": "cc7673a4fe0829212f3a9e06e2c9f436a75dfd0ad9a9d90fbf9ea599335dc6ea",
+    "docs\\research\\classical_fx_factors_v2\\F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_EVIDENCE.md": "dab7a3398df580fb5f426190222866e05d7af5fb3be6715d36a1479bbd557ee8",
+    "docs\\research\\classical_fx_factors_v2\\F0RPE2ERUSDSRLPA_PREDECESSOR_INHERITANCE.md": "efb6c0afbfe8dab60b8719b200a7b38f835811061a0b3c6240d2b2e19023e702",
+    "docs\\research\\classical_fx_factors_v2\\F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING.md": "38f8b800079f2ea70ca3b0219a18efef9ad31e7ebd3ce640560f29261b3d5930"
+  },
+  "final_decision": "BLOCKED_BY_RATE_SOURCE_ACCESS",
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "implementation_sha_before_final_artifacts": "0afb26b6b866e0452a508b0b1cdfa2d26d482211",
+  "legacy_publication_day_provenance_status": "PASS_DAY_LEVEL_PUBLICATION_RULE",
+  "official_payloads_committed_to_git": false,
+  "protocol_lock_id": "F0RPE2ERUSDSRLPA_PROTOCOL_INHERITANCE_V1",
+  "publication_censoring_overlay_id": "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1",
+  "quality_gate": {
+    "broad_ruff": "FAIL_EXISTING_BASELINE_1373_ERRORS_OUTSIDE_GATE_DELTA",
+    "full_pytest": "PASS_1409_TESTS_91_WARNINGS",
+    "git_diff_check": "PASS",
+    "node": "PASS_2_TESTS",
+    "targeted_mypy": "PASS",
+    "targeted_ruff": "PASS"
+  },
+  "row_level_data_committed_to_git": false,
+  "schema_version": 1,
+  "source_sha256": {
+    "scripts\\run_gate_f0rpe2erusdsrlpa_live_adapters.py": "b49fdf5d3c23dc2f80563e4d70c53ccc079f772da118a01d45b500c5e27b00c0",
+    "scripts\\run_gate_f0rpe2erusdsrlpa_usd.py": "ea6c3020c9010e3db28980330d9517ff3d62920454b7312e02ca7ca4c96d7416",
+    "src\\fx_smc_bot\\research\\publication_censoring.py": "7864e4697abc83f9f973a1aee5f9ef8c7dd1bd5c75b63c4733226a72350095f6",
+    "src\\fx_smc_bot\\research\\rate_sources\\base.py": "f79c9519d8bf56570e4115b6d94cb6cfbc7cebe82208a78e9331a9bf035f4cd6",
+    "src\\fx_smc_bot\\research\\rate_sources\\new_york_fed.py": "56236d40b3e72bfc1cb6b9cf46905048462db0ac916fa390628b89e7ad566546",
+    "src\\fx_smc_bot\\research\\rate_vintage_store.py": "6001bddf1d3546781a63c21894a49c1137cd10753323c7182c5e6a25caec17a5",
+    "tests\\test_gate_f0rpe2erusdsrlpa\\test_lpa_final_blocked_decision.py": "ff44143f539e9fb4f5751cdbb24afc86061ff9d379d48e622b45bf43e9b91104"
+  },
+  "starting_sha": "c35c17aacb20afc682c14a096de1432120bec35c",
+  "status": "PASS"
+}

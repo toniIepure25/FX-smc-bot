@@ -1,0 +1,53 @@
+{
+  "actual_legacy_publication_timestamp_invented": false,
+  "artifact_id": "F0RPE2ERUSDSRLPA_FINAL_DECISION_V1",
+  "blocked_phase": 13,
+  "blocking_adapter": "ECB_EONIA_ESTR_V2",
+  "blocking_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+  "blocking_currency": "EUR",
+  "blocking_reason": "ECB_EONIA_ESTR_V2 bounded EONIA request returned HTTP 404 before any source snapshot could be persisted.",
+  "blocking_series_id": "EONIA",
+  "commits_before_final_artifacts": [
+    [
+      "c76ad81",
+      "research: preserve USD publication-availability block"
+    ],
+    [
+      "8335cf4",
+      "research: freeze conservative legacy EFFR availability overlay"
+    ],
+    [
+      "0a8336e",
+      "feat(rates): add publication intervals to vintage store v4"
+    ],
+    [
+      "f92e5a3",
+      "fix(rates): certify interval-censored legacy EFFR availability"
+    ],
+    [
+      "0afb26b",
+      "test(rates): certify bounded live rate source blocker"
+    ]
+  ],
+  "decision": "BLOCKED_BY_RATE_SOURCE_ACCESS",
+  "development_executed": false,
+  "future_portfolio_frozen": false,
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "implementation_sha_before_final_artifacts": "0afb26b6b866e0452a508b0b1cdfa2d26d482211",
+  "live_capital_authorized": false,
+  "predecessor_publication_availability_block_remains_valid": true,
+  "quality_gate": {
+    "broad_ruff": "FAIL_EXISTING_BASELINE_1373_ERRORS_OUTSIDE_GATE_DELTA",
+    "full_pytest": "PASS_1409_TESTS_91_WARNINGS",
+    "git_diff_check": "PASS",
+    "node": "PASS_2_TESTS",
+    "targeted_mypy": "PASS",
+    "targeted_ruff": "PASS"
+  },
+  "replication_executed": false,
+  "schema_version": 1,
+  "starting_sha": "c35c17aacb20afc682c14a096de1432120bec35c",
+  "status": "BLOCKED",
+  "usd_v3_certification_sha": "f92e5a315094d61d7118fdcf07fbae403a8b414f",
+  "validation_executed": false
+}

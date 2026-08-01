@@ -1,0 +1,23 @@
+{
+  "actual_legacy_publication_timestamp_fabricated": false,
+  "artifact_id": "F0RPE2ERUSDSRLPA_PROHIBITED_DATA_AUDIT_V1",
+  "excluded_2023_2025_persisted": false,
+  "excluded_2023_2025_used_in_calculation": false,
+  "final_decision": "BLOCKED_BY_RATE_SOURCE_ACCESS",
+  "future_observations_accessed": false,
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "legacy_upper_bound_used_as_actual_timestamp": false,
+  "live_capital_authorization_created": false,
+  "market_provider_requests_sent": 0,
+  "market_rows_committed_to_git": false,
+  "nzd_accessed": false,
+  "nzdusd_accessed": false,
+  "official_payloads_committed_to_git": false,
+  "phase13_official_rate_provider_requests_sent": 1,
+  "phase13_source_snapshots_persisted": 0,
+  "predecessor_decisions_preserved": true,
+  "publication_overlay_committed_before_numerical_parse": true,
+  "row_level_official_rate_data_committed_to_git": false,
+  "schema_version": 1,
+  "status": "PASS"
+}
