@@ -1,0 +1,36 @@
+{
+  "manifest_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_REPRODUCIBILITY_MANIFEST_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "BLOCKED_BY_BOJ_REVISION_PROVENANCE",
+  "commits": {
+    "starting_sha": "07844cb0774e4c3c2c9378eedd87b3821591ea56",
+    "predecessor_block_preservation_sha": "255ccca",
+    "boj_api_contract_sha": "226771d",
+    "boj_api_identity_schema_sha": "5d5d106",
+    "boj_correction_registry_sha": "d65ec15",
+    "adapter_static_typing_sha": "911963f"
+  },
+  "artifact_hashes": {
+    "protocol_inheritance_lock_sha256": "267f4dda8e53a9b5ba0761b3f8393f605cc395db01abf06b069d8b9930727181",
+    "boj_api_contract_sha256": "3cfe01c080053a99eb9cf85dc283cba0fd0aa78047c5b5a9c5f97e5507159055",
+    "boj_schema_fingerprint": "3074acf303240eec8333c835ee33b82d19fdf1c8448d9e64c6bb3535b6e66f77",
+    "boj_correction_registry_sha256": "4780c83177e2fa1206709570a0255b41462d60b5a7e77ef32241fa090143f648"
+  },
+  "verification_commands": [
+    "python -m json.tool results/gate_f0rpe2erusdsrlpaeursrgbpsraudsrjpysr/boj_correction_registry.json",
+    "python -m ruff check src/fx_smc_bot/research/rate_sources/bank_of_japan.py src/fx_smc_bot/research/rate_sources/rba.py src/fx_smc_bot/research/rate_vintage_store.py",
+    "python -m mypy src/fx_smc_bot/research/rate_sources/bank_of_japan.py src/fx_smc_bot/research/rate_sources/rba.py src/fx_smc_bot/research/rate_vintage_store.py",
+    "PYTHONPATH=src PYTEST_ADDOPTS='-p no:cacheprovider' python -m pytest tests/test_gate_f0rpe2erusdsrlpaeursrgbpsraudsr/test_rba_cash_rate_v3.py tests/test_gate_f0rpe2er/test_v2_rate_adapters.py tests/test_gate_f0rpe2erusdsrlpa/test_v4_rate_vintage_store.py -q --basetemp .pytest_tmp_targeted_jpy",
+    "PYTHONPATH=src PYTEST_ADDOPTS='-p no:cacheprovider' python -m pytest -q --import-mode=importlib --basetemp .pytest_tmp_full_jpy",
+    "git diff --check"
+  ],
+  "verified_results": {
+    "full_pytest": "1455 passed, 91 warnings",
+    "targeted_pytest": "38 passed",
+    "targeted_ruff": "All checks passed",
+    "targeted_mypy": "Success: no issues found in 3 source files",
+    "git_diff_check": "PASS",
+    "node_tests": "NOT_APPLICABLE_NO_NODE_TEST_ENTRYPOINT"
+  },
+  "final_decision": "BLOCKED_BY_BOJ_REVISION_PROVENANCE"
+}

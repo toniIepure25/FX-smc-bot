@@ -1,0 +1,22 @@
+{
+  "audit_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_INTEGRITY_AUDIT_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "PASS_WITH_FAIL_FAST_BLOCKER",
+  "blocking_decision": "BLOCKED_BY_BOJ_REVISION_PROVENANCE",
+  "checks": {
+    "predecessor_decision_unchanged": "PASS",
+    "predecessor_boj_html_blocker_preserved": "PASS",
+    "scientific_protocol_unchanged": "PASS",
+    "boj_api_reconciliation_committed_before_numerical_persistence": "PASS",
+    "boj_publication_day_envelope_frozen": "PASS",
+    "boj_correction_registry_completeness": "FAIL_CLOSED",
+    "corrections_do_not_leak_backward": "NOT_CERTIFIABLE_NO_JPY_ROWS_PERSISTED",
+    "jpy_rate_parse_integrity": "NOT_REACHED",
+    "rate_vintage_integrity": "NOT_REACHED_FOR_JPY",
+    "rate_alignment": "NOT_REACHED_AFTER_JPY_BLOCKER",
+    "empirical_preregistration_order": "PRESERVED_NO_OUTCOMES_ACCESSED",
+    "market_provider_requests_sent": 0,
+    "economic_outcomes_computed": 0,
+    "development_validation_replication_access_order": "NOT_REACHED_AFTER_JPY_BLOCKER"
+  }
+}

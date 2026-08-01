@@ -1,0 +1,27 @@
+{
+  "audit_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_PROHIBITED_DATA_AUDIT_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "PASS_WITH_FAIL_FAST_BLOCKER",
+  "checks": {
+    "predecessor_boj_html_blocker_preserved": "PASS",
+    "legacy_famecgi2_endpoint_active_use": "PROHIBITED_AND_NOT_USED_FOR_V3",
+    "boj_api_code_parameter_contains_database_prefix": false,
+    "boj_api_code_parameter_contains_apostrophe": false,
+    "provisional_boj_rate_used": false,
+    "api_response_date_used_as_publication_time": false,
+    "metadata_last_update_used_as_publication_time": false,
+    "http_date_used_as_publication_time": false,
+    "local_file_metadata_used_as_publication_time": false,
+    "exact_around_1000_timestamp_fabricated": false,
+    "current_final_history_treated_as_revision_free": false,
+    "official_api_payloads_committed": 0,
+    "rate_rows_committed": 0,
+    "market_rows_committed": 0,
+    "signals_positions_returns_committed": 0,
+    "interval_2023_2025_accessed_for_calculation_or_decision": false,
+    "interval_2023_2025_persisted": false,
+    "nzd_or_nzdusd_accessed": false,
+    "paper_or_live_capital_authorization_created": false,
+    "pull_request_created": false
+  }
+}

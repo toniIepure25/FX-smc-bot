@@ -1,0 +1,62 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_LIVE_ADAPTER_MATRIX_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "certification_mode": "LIVE_OFFICIAL_BOUNDED_FAIL_FAST_VALUE_BLIND",
+  "status": "FAIL",
+  "all_required_adapters_certified": false,
+  "adapters": {
+    "USD": {
+      "adapter_id": "NY_FED_EFFR_V3",
+      "currency": "USD",
+      "status": "PASS",
+      "certification_sha": "f92e5a315094d61d7118fdcf07fbae403a8b414f"
+    },
+    "EUR": {
+      "adapter_id": "ECB_EONIA_ESTR_V3",
+      "currency": "EUR",
+      "status": "PASS",
+      "certification_sha": "eaccdb7729ee379153eaa532f28918515bf5a2e9"
+    },
+    "GBP": {
+      "adapter_id": "BOE_SONIA_V3",
+      "currency": "GBP",
+      "status": "PASS",
+      "certification_artifact": "results/gate_f0rpe2erusdsrlpaeursrgbpsr/gbp_adapter_v3_certification.json"
+    },
+    "AUD": {
+      "adapter_id": "RBA_CASH_RATE_V3",
+      "currency": "AUD",
+      "status": "PASS",
+      "certification_artifact": "results/gate_f0rpe2erusdsrlpaeursrgbpsraudsr/aud_adapter_v3_certification.json",
+      "schema_reconciliation": "RBA_F1_CASH_RATE_SCHEMA_RECONCILIATION_V1"
+    },
+    "JPY": {
+      "adapter_id": "BOJ_FINAL_UO_CALL_V3",
+      "currency": "JPY",
+      "status": "NOT_IMPLEMENTED_FAIL_CLOSED",
+      "blocking_decision": "BLOCKED_BY_BOJ_REVISION_PROVENANCE",
+      "certified_pre_parse_components": [
+        "BOJ_TIME_SERIES_API_V1_FINAL_CALL_RATE_CONTRACT_V1",
+        "BOJ_FM01_DATABASE_IDENTITY_V1",
+        "BOJ_STRDCLUCON_SERIES_IDENTITY_V1",
+        "BOJ_STRDCLUCON_METADATA_IDENTITY_V1",
+        "BOJ_API_V1_GETDATACODE_JSON_SCHEMA_DESCRIPTOR_V1",
+        "BOJ_FM01_FINAL_CALL_RATE_API_RECONCILIATION_V1",
+        "BOJ_FINAL_CALL_RATE_PUBLICATION_AND_CORRECTION_PROTOCOL_V1"
+      ],
+      "failed_component": "BOJ_FINAL_CALL_RATE_CORRECTION_REGISTRY_V1",
+      "jpy_source_snapshots_persisted": 0,
+      "jpy_rate_versions_created": 0
+    },
+    "CAD": {
+      "adapter_id": "BOC_V39079_EVENTS_V2",
+      "currency": "CAD",
+      "status": "NOT_CERTIFIED_AFTER_JPY_FAIL_FAST"
+    },
+    "CHF": {
+      "adapter_id": "SIX_SARON_1800_V2",
+      "currency": "CHF",
+      "status": "NOT_CERTIFIED_AFTER_JPY_FAIL_FAST"
+    }
+  }
+}

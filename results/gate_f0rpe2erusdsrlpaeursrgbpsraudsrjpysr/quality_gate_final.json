@@ -1,0 +1,38 @@
+{
+  "quality_gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_QUALITY_GATE_FINAL_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "PASS_WITH_KNOWN_BROAD_LINT_BASELINE",
+  "full_pytest": {
+    "status": "PASS",
+    "result": "1455 passed, 91 warnings",
+    "command": "PYTHONPATH=src PYTEST_ADDOPTS='-p no:cacheprovider' python -m pytest -q --import-mode=importlib --basetemp .pytest_tmp_full_jpy"
+  },
+  "targeted_ruff": {
+    "status": "PASS",
+    "result": "All checks passed",
+    "paths": [
+      "src/fx_smc_bot/research/rate_sources/bank_of_japan.py",
+      "src/fx_smc_bot/research/rate_sources/rba.py",
+      "src/fx_smc_bot/research/rate_vintage_store.py"
+    ]
+  },
+  "targeted_mypy": {
+    "status": "PASS",
+    "result": "Success: no issues found in 3 source files",
+    "paths": [
+      "src/fx_smc_bot/research/rate_sources/bank_of_japan.py",
+      "src/fx_smc_bot/research/rate_sources/rba.py",
+      "src/fx_smc_bot/research/rate_vintage_store.py"
+    ]
+  },
+  "targeted_pytest_after_static_fix": {
+    "status": "PASS",
+    "result": "38 passed"
+  },
+  "broad_ruff": {
+    "status": "KNOWN_BASELINE_FAIL_OUTSIDE_CURRENT_GATE_SCOPE",
+    "result": "212 existing test-tree lint findings when run over tests/"
+  },
+  "node_tests": "NOT_APPLICABLE_NO_NODE_TEST_ENTRYPOINT",
+  "git_diff_check": "PASS"
+}

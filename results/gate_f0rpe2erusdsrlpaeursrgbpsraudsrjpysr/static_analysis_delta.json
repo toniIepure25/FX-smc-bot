@@ -1,0 +1,12 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_STATIC_ANALYSIS_DELTA_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "PASS_FOR_CHANGED_RATE_SOURCES_WITH_KNOWN_REPOSITORY_TEST_LINT_BASELINE",
+  "targeted_ruff": "PASS",
+  "targeted_mypy": "PASS",
+  "static_typing_fix_commit": "911963f",
+  "broad_ruff_new_current_gate": 0,
+  "broad_mypy_new_current_gate": 0,
+  "known_broad_ruff_baseline": "tests/ contains pre-existing lint findings outside this gate's edited files",
+  "known_broad_mypy_baseline": "cleared for the targeted rate-source files touched in this gate"
+}

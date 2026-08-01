@@ -1,0 +1,52 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "status": "BLOCKED",
+  "decision": "BLOCKED_BY_BOJ_REVISION_PROVENANCE",
+  "starting_sha": "07844cb0774e4c3c2c9378eedd87b3821591ea56",
+  "final_artifacts_pre_commit_sha": "911963fd58d03c9cab3fcbe6c383d74a85a2af0c",
+  "predecessor_block": {
+    "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+    "adapter_id": "BOJ_FINAL_UO_CALL_V2",
+    "failure_code": "OFFICIAL_ENDPOINT_UNEXPECTED_CONTENT_TYPE_TEXT_HTML",
+    "preservation": "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED"
+  },
+  "boj_reconciliation": {
+    "api_contract_id": "BOJ_TIME_SERIES_API_V1_FINAL_CALL_RATE_CONTRACT_V1",
+    "availability_protocol_id": "BOJ_FINAL_CALL_RATE_PUBLICATION_AND_CORRECTION_PROTOCOL_V1",
+    "database_identity": "BOJ_FM01_DATABASE_IDENTITY_V1",
+    "series_identity": "BOJ_STRDCLUCON_SERIES_IDENTITY_V1",
+    "metadata_identity": "BOJ_STRDCLUCON_METADATA_IDENTITY_V1",
+    "schema_descriptor": "BOJ_API_V1_GETDATACODE_JSON_SCHEMA_DESCRIPTOR_V1",
+    "schema_reconciliation": "BOJ_FM01_FINAL_CALL_RATE_API_RECONCILIATION_V1",
+    "correction_registry": "BOJ_FINAL_CALL_RATE_CORRECTION_REGISTRY_V1",
+    "blocking_component": "BOJ_FINAL_CALL_RATE_CORRECTION_REGISTRY_V1"
+  },
+  "hashes": {
+    "protocol_inheritance_lock_sha256": "267f4dda8e53a9b5ba0761b3f8393f605cc395db01abf06b069d8b9930727181",
+    "boj_api_contract_sha256": "3cfe01c080053a99eb9cf85dc283cba0fd0aa78047c5b5a9c5f97e5507159055",
+    "boj_correction_registry_sha256": "4780c83177e2fa1206709570a0255b41462d60b5a7e77ef32241fa090143f648"
+  },
+  "fail_closed_counts": {
+    "boj_structural_api_requests_successful": 3,
+    "jpy_observations_accepted": 0,
+    "jpy_rate_versions_created": 0,
+    "cad_requests_sent": 0,
+    "chf_requests_sent": 0,
+    "market_provider_requests_sent": 0,
+    "economic_outcomes_computed": 0
+  },
+  "empirical_program": {
+    "cad_chf_certification": "NOT_REACHED_AFTER_JPY_FAIL_FAST",
+    "empirical_infrastructure_v7": "NOT_REACHED",
+    "storage_budget": "NOT_REACHED",
+    "development_rate_acquisition": "NOT_REACHED",
+    "development_market_acquisition": "NOT_REACHED",
+    "development_results": "NOT_REACHED",
+    "validation": "NOT_REACHED",
+    "replication": "NOT_REACHED",
+    "future_portfolio": "NOT_FROZEN"
+  },
+  "live_capital_authorization": "NONE"
+}

@@ -1,0 +1,45 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_LIVE_ADAPTER_CERTIFICATION_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "schema_version": 1,
+  "status": "FAIL_CLOSED",
+  "blocking_decision": "BLOCKED_BY_BOJ_REVISION_PROVENANCE",
+  "predecessor_block_preserved": "PASS",
+  "adapter_certifications": {
+    "USD": "PASS_NY_FED_EFFR_V3_INHERITED",
+    "EUR": "PASS_ECB_EONIA_ESTR_V3_INHERITED",
+    "GBP": "PASS_BOE_SONIA_V3_INHERITED",
+    "AUD": "PASS_RBA_CASH_RATE_V3_INHERITED",
+    "JPY": "BLOCKED_BEFORE_BOJ_FINAL_UO_CALL_V3_IMPLEMENTATION",
+    "CAD": "NOT_REACHED_AFTER_JPY_FAIL_FAST",
+    "CHF": "NOT_REACHED_AFTER_JPY_FAIL_FAST"
+  },
+  "boj_v1_api_reconciliation": {
+    "endpoint": "https://www.stat-search.boj.or.jp/api/v1/getDataCode",
+    "database": "FM01",
+    "api_series_code": "STRDCLUCON",
+    "display_code_provenance_only": "FM01'STRDCLUCON",
+    "database_prefix_in_code_parameter": false,
+    "apostrophe_in_code_parameter": false,
+    "schema_fingerprint": "3074acf303240eec8333c835ee33b82d19fdf1c8448d9e64c6bb3535b6e66f77",
+    "successful_structural_requests": 3,
+    "official_payloads_committed": 0,
+    "individual_rate_values_committed": 0
+  },
+  "failure": {
+    "failed_component": "BOJ_FINAL_CALL_RATE_CORRECTION_REGISTRY_V1",
+    "failure_code": "INCOMPLETE_OFFICIAL_CORRECTION_REGISTRY",
+    "blocking_decision": "BLOCKED_BY_BOJ_REVISION_PROVENANCE",
+    "failure_stage": "PRE_NUMERICAL_PERSISTENCE",
+    "failure_disposition": "NO_JPY_SOURCE_SNAPSHOT_NO_JPY_RATE_VERSION_NO_MARKET_REQUEST"
+  },
+  "official_request_counts": {
+    "boj_structural_api_requests_successful": 3,
+    "boj_source_snapshots_persisted": 0,
+    "jpy_rate_versions_persisted": 0,
+    "cad_requests_sent": 0,
+    "chf_requests_sent": 0,
+    "market_provider_requests_sent": 0
+  },
+  "economic_outcomes_computed": 0
+}
