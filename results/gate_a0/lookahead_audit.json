@@ -1,0 +1,12 @@
+{
+  "audit_id": "A0_LOOKAHEAD_AUDIT_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "PASS_PRE_OUTCOME_NO_MARKET_DATA",
+  "future_price_perturbation": "NOT_REACHED",
+  "future_spread_perturbation": "NOT_REACHED",
+  "future_session_perturbation": "NOT_REACHED",
+  "same_bar_signal_execution_without_latency": false,
+  "future_spread_used": false,
+  "future_volatility_used": false,
+  "future_session_information_used": false
+}

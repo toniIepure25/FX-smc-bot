@@ -1,0 +1,14 @@
+{
+  "quality_gate_id": "A0_QUALITY_GATE_FINAL_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "PASS",
+  "full_pytest": "PASS_1455_PASSED_91_WARNINGS",
+  "targeted_ruff": "PASS_NO_CHANGED_PYTHON_FILES",
+  "targeted_mypy": "PASS_NO_CHANGED_PYTHON_FILES",
+  "broad_ruff_delta": "0_NEW_CURRENT_GATE_PYTHON_FINDINGS",
+  "broad_mypy_delta": "0_NEW_CURRENT_GATE_PYTHON_FINDINGS",
+  "node_tests": "NOT_APPLICABLE_NO_NODE_TEST_ENTRYPOINT",
+  "git_diff_check": "PASS",
+  "prohibited_data_audit": "PASS",
+  "prospective_integrity_audit": "PASS"
+}

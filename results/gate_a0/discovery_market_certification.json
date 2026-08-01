@@ -1,0 +1,19 @@
+{
+  "artifact_id": "A0_DISCOVERY_MARKET_CERTIFICATION_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "certification_counts": {
+    "raw_bi5_hashes": 0,
+    "bid_ask_presence_partitions": 0,
+    "monotonic_timestamp_partitions": 0,
+    "utc_normalized_partitions": 0,
+    "duplicate_policy_partitions": 0,
+    "weekend_policy_partitions": 0,
+    "dst_session_mapping_partitions": 0,
+    "m1_determinism_partitions": 0,
+    "m5_determinism_partitions": 0,
+    "spread_non_negative_partitions": 0,
+    "three_run_parity_partitions": 0
+  },
+  "unresolved_required_partitions": "NOT_EVALUATED_NO_CLEAN_ROOM"
+}

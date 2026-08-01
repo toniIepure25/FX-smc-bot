@@ -1,0 +1,11 @@
+{
+  "audit_id": "A0_PORTFOLIO_ACCOUNTING_AUDIT_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "gross_to_net_reconciliation_trials": 0,
+  "spread_cost_records": 0,
+  "commission_cost_records": 0,
+  "slippage_cost_records": 0,
+  "financing_cost_records": 0,
+  "overnight_carry_records": 0
+}

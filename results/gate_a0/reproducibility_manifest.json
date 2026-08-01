@@ -1,0 +1,26 @@
+{
+  "manifest_id": "A0_REPRODUCIBILITY_MANIFEST_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "commits": {
+    "starting_sha": "93221a3f666dfc9e16d9b8d5fba0344b77c2fe14",
+    "lineage_sha": "82c845f",
+    "hypothesis_trial_budget_sha": "fc4cfb2",
+    "search_space_pre_outcome_sha": "7981f6e"
+  },
+  "artifact_hashes": {
+    "hypothesis_registry_sha256": "47d1e92d39b8ae024be59168f83fc5873f3e5ef26442f8d4b51fc56c09f1f54c",
+    "search_space_freeze_sha256": "68a236052452f3e8f2aea7404cf832189ac5ebc9e80d1bfa3d94f2572b2523d0"
+  },
+  "verification_commands": [
+    "python -m json.tool results/gate_a0/final_decision.json",
+    "PYTHONPATH=src PYTEST_ADDOPTS='-p no:cacheprovider' python -m pytest -q --import-mode=importlib --basetemp .pytest_tmp_a0_final",
+    "git diff --check"
+  ],
+  "verified_results": {
+    "full_pytest": "1455 passed, 91 warnings",
+    "git_diff_check": "PASS",
+    "node_tests": "NOT_APPLICABLE_NO_NODE_TEST_ENTRYPOINT"
+  },
+  "final_decision": "BLOCKED_BY_A0_MARKET_DATA_ACCESS"
+}

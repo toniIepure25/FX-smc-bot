@@ -1,0 +1,9 @@
+{
+  "dataset_freeze_id": "A0_DISCOVERY_DATASET_FREEZE_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "NOT_CREATED_BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "market_data_accessed": false,
+  "dataset_hash": null,
+  "pre_outcome_commit": "7981f6e",
+  "reason": "FX_A0_DATA_ROOT was not configured; acquisition did not begin."
+}

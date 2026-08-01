@@ -1,0 +1,19 @@
+{
+  "artifact_id": "A0_DISCOVERY_MARKET_ACQUISITION_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "required_clean_room_env_var": "FX_A0_DATA_ROOT",
+  "clean_room_env_var_present": false,
+  "authorized_partitions_requested": [
+    "2010-01-01 through 2010-12-31",
+    "2011-01-01 through 2014-12-31"
+  ],
+  "prior_market_data_roots_inspected": false,
+  "dukascopy_bi5_requests_sent": 0,
+  "raw_bi5_files_written": 0,
+  "canonical_m1_files_written": 0,
+  "canonical_m5_files_written": 0,
+  "quote_rows_committed": 0,
+  "quarantined_2023_2025_accessed": false,
+  "nzd_or_nzdusd_accessed": false
+}

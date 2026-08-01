@@ -1,0 +1,13 @@
+{
+  "audit_id": "A0_PROSPECTIVE_INTEGRITY_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "PASS_PRE_OUTCOME",
+  "future_confirmation_started": false,
+  "future_start_defined": "first complete FX trading day strictly after final candidate-freeze commit",
+  "future_candidate_frozen": false,
+  "minimum_future_evidence": "252 eligible trading days and 12 calendar months",
+  "live_capital": "NOT_AUTHORIZED",
+  "validation_accessed_before_shortlist_commit": false,
+  "replication_accessed_before_shortlist_commit": false,
+  "holdout_reinspection": false
+}

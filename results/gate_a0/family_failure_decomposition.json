@@ -1,0 +1,17 @@
+{
+  "artifact_id": "A0_FAMILY_FAILURE_DECOMPOSITION_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "NOT_EMPIRICAL_BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "families_evaluated": 0,
+  "failure_map": {
+    "no_raw_predictability": "NOT_REACHED",
+    "failed_after_spread": "NOT_REACHED",
+    "failed_after_commission_slippage": "NOT_REACHED",
+    "failed_from_instability": "NOT_REACHED",
+    "failed_from_concentration": "NOT_REACHED",
+    "failed_from_multiple_testing_correction": "NOT_REACHED",
+    "failed_only_in_replication": "NOT_REACHED",
+    "execution_alpha_but_no_directional_alpha": "NOT_REACHED",
+    "blocked_before_empirical_evaluation": "BLOCKED_BY_A0_MARKET_DATA_ACCESS"
+  }
+}

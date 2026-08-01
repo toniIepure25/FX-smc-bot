@@ -1,0 +1,32 @@
+{
+  "audit_id": "A0_PROHIBITED_DATA_AUDIT_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "PASS",
+  "checks": {
+    "prior_gate_decision_modified": false,
+    "boj_blocker_claimed_resolved": false,
+    "rate_series_accessed": false,
+    "financing_series_accessed": false,
+    "overnight_carry_used": false,
+    "position_crossed_rollover": false,
+    "quarantined_2023_2025_accessed": false,
+    "quarantined_2023_2025_data_committed": false,
+    "prior_market_data_roots_enumerated": false,
+    "old_outcomes_reused_as_candidates": false,
+    "nzd_or_nzdusd_accessed": false,
+    "bi5_committed": false,
+    "m1_rows_committed": false,
+    "m5_rows_committed": false,
+    "quote_rows_committed": false,
+    "signals_committed": false,
+    "positions_committed": false,
+    "transactions_committed": false,
+    "daily_returns_committed": false,
+    "model_training_matrices_committed": false,
+    "raw_predictions_committed": false,
+    "provider_credentials_committed": false,
+    "absolute_clean_room_paths_committed": false,
+    "pull_request_created": false,
+    "live_capital_authorization_created": false
+  }
+}

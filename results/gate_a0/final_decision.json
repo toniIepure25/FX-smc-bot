@@ -1,0 +1,31 @@
+{
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "status": "BLOCKED",
+  "decision": "BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "starting_sha": "93221a3f666dfc9e16d9b8d5fba0344b77c2fe14",
+  "search_space_pre_outcome_sha": "7981f6edfc5bea0c5045059ee8c8b5e038cc5245",
+  "hashes": {
+    "hypothesis_registry_sha256": "47d1e92d39b8ae024be59168f83fc5873f3e5ef26442f8d4b51fc56c09f1f54c",
+    "search_space_freeze_sha256": "68a236052452f3e8f2aea7404cf832189ac5ebc9e80d1bfa3d94f2572b2523d0"
+  },
+  "blocking_failure": {
+    "failure_code": "FX_A0_DATA_ROOT_NOT_CONFIGURED",
+    "failure_stage": "DISCOVERY_MARKET_DATA_ACQUISITION",
+    "failure_disposition": "NO_MARKET_DATA_ACCESS_NO_TRIALS_NO_OUTCOMES"
+  },
+  "counts": {
+    "registered_trials": 0,
+    "completed_trials": 0,
+    "failed_technical_trials": 0,
+    "invalid_protocol_trials": 0,
+    "dukascopy_bi5_requests_sent": 0,
+    "market_partitions_certified": 0,
+    "positions_crossed_rollover": 0,
+    "rate_series_accessed": 0,
+    "quarantined_2023_2025_accessed": 0
+  },
+  "final_candidate": null,
+  "live_capital_authorization": "NONE"
+}

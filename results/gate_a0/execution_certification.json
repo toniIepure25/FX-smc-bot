@@ -1,0 +1,17 @@
+{
+  "artifact_id": "A0_EXECUTION_CERTIFICATION_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "frozen_contract": {
+    "side_correct_entry": "REQUIRED",
+    "side_correct_exit": "REQUIRED",
+    "one_bar_minimum_latency": "REQUIRED",
+    "adverse_first_ambiguity": "REQUIRED",
+    "mandatory_flat_time": "16:45 America/New_York",
+    "no_entry_during_rollover_exclusion": "REQUIRED",
+    "mid_price_execution": "PROHIBITED",
+    "rate_or_financing_series": "PROHIBITED"
+  },
+  "positions_crossed_rollover": 0,
+  "execution_trials_run": 0
+}

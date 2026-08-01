@@ -1,0 +1,7 @@
+{
+  "audit_id": "A0_DETERMINISM_AUDIT_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "three_deterministic_full_replays": "NOT_RUN",
+  "registered_trial_results_replayed": 0
+}
