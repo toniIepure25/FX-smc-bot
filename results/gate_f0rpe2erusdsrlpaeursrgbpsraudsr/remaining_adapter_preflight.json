@@ -1,0 +1,56 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_REMAINING_ADAPTER_PREFLIGHT_V1",
+  "status": "FAIL_FAST_BLOCKED",
+  "certification_order": [
+    "JPY",
+    "CAD",
+    "CHF"
+  ],
+  "preflight_policy": {
+    "transport_only": true,
+    "raw_payload_persisted": false,
+    "rate_rows_persisted": false,
+    "numerical_values_committed": false,
+    "market_requests_sent": 0,
+    "economic_outcomes_computed": 0
+  },
+  "results": {
+    "JPY": {
+      "adapter_id": "BOJ_FINAL_UO_CALL_V2",
+      "currency": "JPY",
+      "series_id": "FM01'STRDCLUCON",
+      "endpoint": "https://www.stat-search.boj.or.jp/ssi/cgi-bin/famecgi2",
+      "http_status": 200,
+      "content_type": "text/html",
+      "content_length": "6819",
+      "prefix_bytes_read": 4096,
+      "prefix_sha256": "4ec3ac58dc848cf1a29040166fd734c2b17397e877de9e7084a6cbc4062e6ee3",
+      "status": "FAIL",
+      "failure_code": "OFFICIAL_ENDPOINT_UNEXPECTED_CONTENT_TYPE_TEXT_HTML",
+      "failure_stage": "OFFICIAL_SCHEMA_PREFLIGHT",
+      "failure_disposition": "NO_SOURCE_SNAPSHOT_PERSISTED"
+    },
+    "CAD": {
+      "adapter_id": "BOC_V39079_EVENTS_V2",
+      "currency": "CAD",
+      "series_id": "V39079",
+      "endpoint": "https://www.bankofcanada.ca/valet/observations/V39079/json",
+      "transport_observation": "HTTP_400_BAD_REQUEST",
+      "status": "NOT_CERTIFIED_AFTER_JPY_FAIL_FAST"
+    },
+    "CHF": {
+      "adapter_id": "SIX_SARON_1800_V2",
+      "currency": "CHF",
+      "series_id": "SRFXON3",
+      "endpoint": "https://data.snb.ch/api/cube/zimoma/data/json/en",
+      "transport_observation": "HTTP_400_BAD_REQUEST",
+      "status": "NOT_CERTIFIED_AFTER_JPY_FAIL_FAST"
+    }
+  },
+  "blocking_adapter": {
+    "currency": "JPY",
+    "adapter_id": "BOJ_FINAL_UO_CALL_V2",
+    "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER"
+  }
+}

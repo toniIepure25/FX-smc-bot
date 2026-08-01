@@ -1,0 +1,25 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "audit_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_PROHIBITED_DATA_AUDIT_V1",
+  "status": "PASS",
+  "prohibitions": {
+    "nzd_or_nzdusd_accessed": false,
+    "cash_rate_json_used_by_active_adapter": false,
+    "cash_rate_target_substituted_for_actual_cash_rate": false,
+    "target_and_actual_cash_rate_treated_as_identical": false,
+    "publication_time_inferred_from_retrieval_or_file_metadata": false,
+    "09_20_represented_as_actual_timestamp": false,
+    "16_00_represented_as_actual_republication_timestamp": false,
+    "official_revision_identifiers_fabricated": false,
+    "post_2022_numerical_values_decoded": false,
+    "post_2022_numerical_values_persisted": false,
+    "post_2022_numerical_values_used": false,
+    "official_workbooks_committed": false,
+    "rate_rows_committed": false,
+    "market_rows_committed": false,
+    "signals_positions_returns_committed": false,
+    "pull_request_created": false,
+    "merge_performed": false,
+    "live_capital_authorization_created": false
+  }
+}

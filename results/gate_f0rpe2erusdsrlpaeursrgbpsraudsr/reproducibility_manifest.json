@@ -1,0 +1,21 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "manifest_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_REPRODUCIBILITY_MANIFEST_V1",
+  "status": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "commits": {
+    "predecessor_starting_sha": "607aa53f990a99d36ea8c2d5ddc845e3924fa23b",
+    "predecessor_inheritance_sha": "efad13f",
+    "rba_source_contract_pre_parse_sha": "f31198d",
+    "aud_v3_certification_sha": "4c2a4fd"
+  },
+  "verification_commands": [
+    "python -m ruff check src/fx_smc_bot/research/rate_sources/rba.py src/fx_smc_bot/research/rate_sources/__init__.py src/fx_smc_bot/research/rate_vintage_store.py tests/test_gate_f0rpe2erusdsrlpaeursrgbpsraudsr/test_rba_cash_rate_v3.py",
+    "PYTHONPATH=src PYTEST_ADDOPTS='-p no:cacheprovider' python -m pytest tests/test_gate_f0rpe2erusdsrlpaeursrgbpsraudsr/test_rba_cash_rate_v3.py tests/test_gate_f0rpe2er/test_v2_rate_adapters.py tests/test_gate_f0rpe2erusdsrlpa/test_v4_rate_vintage_store.py tests/test_gate_f0rpe2erusdsrlpaeursrgbpsr/test_boe_sonia_v3.py -q --basetemp .pytest_tmp_all"
+  ],
+  "verified_results": {
+    "focused_pytest": "47 passed",
+    "ruff": "All checks passed",
+    "official_rba_memory_only_validation": "PASS",
+    "remaining_adapter_blocker": "BOJ_FINAL_UO_CALL_V2"
+  }
+}

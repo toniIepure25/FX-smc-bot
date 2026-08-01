@@ -1,0 +1,19 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "audit_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_INTEGRITY_AUDIT_V1",
+  "status": "PASS_WITH_FAIL_FAST_BLOCKER",
+  "checks": {
+    "predecessor_block_preserved": "PASS",
+    "scientific_protocol_unchanged": "PASS",
+    "aud_v3_committed_before_remaining_adapters": "PASS",
+    "rba_cash_rate_target_not_substituted": "PASS",
+    "current_workbook_raw_payload_persisted": false,
+    "post_2022_observation_dates_structurally_encountered": true,
+    "post_2022_numerical_values_decoded": false,
+    "post_2022_numerical_values_persisted": false,
+    "post_2022_numerical_values_used": false,
+    "jpy_blocker_recorded_fail_fast": "PASS",
+    "market_provider_requests_sent": 0,
+    "economic_outcomes_computed": 0
+  }
+}

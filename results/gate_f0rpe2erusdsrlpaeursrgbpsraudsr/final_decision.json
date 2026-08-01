@@ -1,0 +1,39 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "status": "BLOCKED",
+  "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "starting_sha": "607aa53f990a99d36ea8c2d5ddc845e3924fa23b",
+  "rba_source_contract_pre_parse_sha": "f31198dacde9428e8a38e4cec2518e464750b75d",
+  "aud_v3_certification_sha": "4c2a4fd",
+  "predecessor_block": {
+    "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+    "adapter_id": "RBA_CASH_RATE_V2",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+    "preservation": "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED"
+  },
+  "aud_status": {
+    "adapter_id": "RBA_CASH_RATE_V3",
+    "status": "PASS",
+    "source_contract": "RBA_STATISTICAL_TABLE_F1_SOURCE_CONTRACT_V1",
+    "schema_reconciliation": "RBA_F1_CASH_RATE_SCHEMA_RECONCILIATION_V1"
+  },
+  "blocking_failure": {
+    "adapter_id": "BOJ_FINAL_UO_CALL_V2",
+    "currency": "JPY",
+    "series_id": "FM01'STRDCLUCON",
+    "failure_code": "OFFICIAL_ENDPOINT_UNEXPECTED_CONTENT_TYPE_TEXT_HTML",
+    "failure_stage": "OFFICIAL_SCHEMA_PREFLIGHT",
+    "failure_disposition": "NO_SOURCE_SNAPSHOT_PERSISTED"
+  },
+  "empirical_program": {
+    "development_rate_acquisition": "NOT_RUN_AFTER_FAIL_FAST",
+    "development_market_acquisition": "NOT_RUN",
+    "development_results": "NOT_RUN",
+    "validation": "NOT_RUN",
+    "replication": "NOT_RUN",
+    "future_portfolio": "NOT_FROZEN"
+  },
+  "live_capital_authorization": "NONE"
+}
