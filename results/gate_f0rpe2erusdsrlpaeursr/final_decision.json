@@ -1,0 +1,23 @@
+{
+  "blocked_stage": "PHASE_15_REMAINING_LIVE_ADAPTER_CERTIFICATION",
+  "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "failure": {
+    "adapter_id": "BOE_SONIA_V2",
+    "currency": "GBP",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_403",
+    "request_count": 1,
+    "source_snapshots_persisted": 0
+  },
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "predecessor_blocker": {
+    "adapter_id": "ECB_EONIA_ESTR_V2",
+    "decision": "BLOCKED_BY_RATE_SOURCE_ACCESS",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+    "preserved": true
+  },
+  "status": "BLOCKED",
+  "successful_certifications": {
+    "EUR": "ECB_EONIA_ESTR_V3",
+    "USD": "NY_FED_EFFR_V3"
+  }
+}

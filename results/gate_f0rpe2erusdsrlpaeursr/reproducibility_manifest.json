@@ -1,0 +1,19 @@
+{
+  "artifact_sha256": {
+    "results/gate_f0rpe2erusdsrlpaeursr/ecb_endpoint_reconciliation.json": "a58d8ddf4c734aea8de848edd1af96781951ad0abeea29e5f2af4d16ec158a33",
+    "results/gate_f0rpe2erusdsrlpaeursr/eur_adapter_v3_certification.json": "62064c5b741d7c1825bd8e8bb1e5054a64c7f23d72aae93c4b58eae73092a7e3",
+    "results/gate_f0rpe2erusdsrlpaeursr/eur_asof_availability_audit.json": "d6dbe731a90b998034e165c82eb3900320b4e2b8237a205e34cbe77ccdc63efc",
+    "results/gate_f0rpe2erusdsrlpaeursr/eur_vintage_store_certification.json": "32735860069139651a384a3937387f430ba22801573d1d8ef1b1751e6f4765be",
+    "results/gate_f0rpe2erusdsrlpaeursr/live_adapter_certification.json": "b2c68313cf37a5269686a24be9a47993bbb03e4c6aaab06eb8662280e3fc5840",
+    "results/gate_f0rpe2erusdsrlpaeursr/live_adapter_matrix.json": "84b229d2a152397bb47b73464f0498dbe322bcd7bae3b32c75cdc8cd3fe903e9",
+    "results/gate_f0rpe2erusdsrlpaeursr/protocol_inheritance_lock.json": "b7aea31750abebac1a5b81411cfd1540b710613c2c524cfb316578382d98d0d2"
+  },
+  "commits": {
+    "eur_source_reconciliation_pre_parse_sha": "11a31fe6dbb10b001d9b943448cb88c99942e98e",
+    "eur_v3_certification_sha": "eaccdb7729ee379153eaa532f28918515bf5a2e9",
+    "starting_sha": "c1d9a2a9f4a28a30959b85b67f4b62e965f91223"
+  },
+  "final_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "status": "BLOCKED"
+}

@@ -1,0 +1,33 @@
+{
+  "diff_check": {
+    "command": "git diff --check",
+    "status": "PASS"
+  },
+  "full_pytest": {
+    "command": "python -m pytest --basetemp .pytest_tmp -q",
+    "failed": 1,
+    "passed": 1428,
+    "status": "FAIL_PREDECESSOR_MANIFEST_HASH_AFTER_CURRENT_SOURCE_CHANGE",
+    "test": "tests/test_gate_f0rpe2erusdsrlpa/test_lpa_final_blocked_decision.py::test_final_manifest_hashes_reached_artifacts_and_contains_no_rate_rows"
+  },
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "mypy": {
+    "command": "python -m mypy src/fx_smc_bot/research/rate_sources/ecb.py src/fx_smc_bot/research/rate_sources/__init__.py src/fx_smc_bot/research/rate_vintage_store.py src/fx_smc_bot/research/rate_calendars.py scripts/run_gate_f0rpe2erusdsrlpaeursr_eur.py scripts/run_gate_f0rpe2erusdsrlpaeursr_live_adapters.py",
+    "status": "PASS"
+  },
+  "node_wrapper_tests": {
+    "command": "python -m pytest --basetemp .pytest_tmp tests/test_gate_c3r/test_dukascopy_node_integration.py -q",
+    "passed": 49,
+    "status": "PASS"
+  },
+  "ruff": {
+    "command": "python -m ruff check src/fx_smc_bot/research/rate_sources/ecb.py src/fx_smc_bot/research/rate_sources/__init__.py src/fx_smc_bot/research/rate_vintage_store.py src/fx_smc_bot/research/rate_calendars.py scripts/run_gate_f0rpe2erusdsrlpaeursr_eur.py scripts/run_gate_f0rpe2erusdsrlpaeursr_live_adapters.py tests/test_gate_f0rpe2erusdsrlpaeursr",
+    "status": "PASS"
+  },
+  "status": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "targeted_pytest": {
+    "command": "python -m pytest --basetemp .pytest_tmp tests/test_gate_f0rpe2erusdsrlpaeursr -q",
+    "passed": 20,
+    "status": "PASS"
+  }
+}

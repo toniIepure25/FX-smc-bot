@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "development_validation_replication_order": "PASS_NO_EMPIRICAL_STAGE_REACHED",
+    "eur_correction_committed_before_numerical_persistence": "PASS",
+    "future_observations_inaccessible": "PASS",
+    "invalid_eon_key_active": false,
+    "market_provider_requests_sent": 0,
+    "nzd_and_nzdusd_inaccessible": "PASS",
+    "official_payloads_committed_to_git": 0,
+    "predecessor_decision_preserved": "PASS",
+    "rate_or_market_rows_committed_to_git": 0,
+    "source_retrieval_timestamp_used_for_availability": false,
+    "years_2023_2025_unused_and_unpersisted": "PASS"
+  },
+  "final_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "status": "PASS"
+}
