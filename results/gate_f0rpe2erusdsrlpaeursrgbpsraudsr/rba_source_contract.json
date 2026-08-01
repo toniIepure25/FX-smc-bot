@@ -1,0 +1,54 @@
+{
+  "contract_id": "RBA_STATISTICAL_TABLE_F1_SOURCE_CONTRACT_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "publisher": "Reserve Bank of Australia",
+  "economic_series": "Australian Interbank Overnight Cash Rate",
+  "currency": "AUD",
+  "series_id": "RBA_CASH_RATE",
+  "historical_f1": {
+    "role": "2010 warm-up coverage",
+    "endpoint": "https://www.rba.gov.au/statistics/tables/xls-hist/f01dhist.xls",
+    "official_coverage": {
+      "start": "1976-01-01",
+      "end": "2010-12-31"
+    },
+    "source_evidence": "https://www.rba.gov.au/statistics/historical-data.html"
+  },
+  "current_f1": {
+    "role": "2011-2022 authorized research coverage",
+    "endpoint": "https://www.rba.gov.au/statistics/tables/xls/f01d.xlsx",
+    "official_series_start": "2011-01-04",
+    "source_evidence": "https://www.rba.gov.au/statistics/tables/"
+  },
+  "selected_series_identity": {
+    "required_label": "Australian Interbank Overnight Cash Rate",
+    "meaning": "actual interbank overnight Cash Rate calculated from cash market transactions or official expert judgement",
+    "manual_evidence": "https://www.rba.gov.au/mkt-operations/resources/cash-rate-methodology/cash-rate-procedures-manual.html"
+  },
+  "rejected_series": [
+    "Cash Rate Target",
+    "Cash Rate Total Return Index",
+    "Highest Interbank Overnight Cash Rate",
+    "Lowest Interbank Overnight Cash Rate",
+    "Number of Cash Market Transactions",
+    "Volume of Cash Market Transactions"
+  ],
+  "publication_contract": {
+    "report_date": "RITS business day T",
+    "publication_date": "immediately following RITS business day",
+    "normal_publication": "before 09:20 Australia/Sydney on Publication Date",
+    "frequency_table_publication_time": "9:15 am daily",
+    "possible_republication": "until 16:00 Australia/Sydney on Publication Date",
+    "strategy_policy": "conservative publication-day envelope; no exact intraday timestamp claimed"
+  },
+  "revision_contract": {
+    "revision_identifier": null,
+    "revision_status": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID",
+    "expert_judgement_metadata": "preserve official F1 notes/Expert Judgement tab metadata when present"
+  },
+  "predecessor_endpoint": {
+    "endpoint": "https://www.rba.gov.au/statistics/cash-rate/cash-rate.json",
+    "status": "NONEXISTENT_PRESERVED_AS_PREDECESSOR_BLOCKER",
+    "active_adapter_use": "PROHIBITED"
+  }
+}

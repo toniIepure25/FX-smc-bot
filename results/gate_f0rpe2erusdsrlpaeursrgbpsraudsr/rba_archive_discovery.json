@@ -1,0 +1,29 @@
+{
+  "discovery_id": "RBA_F1_OFFICIAL_PRE_2023_ARCHIVE_DISCOVERY_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "status": "OFFICIAL_PRE_2023_ARCHIVE_NOT_FOUND",
+  "classification_scope": "2011-2022 current-table coverage",
+  "official_sources_checked": [
+    {
+      "source": "RBA Historical Data",
+      "url": "https://www.rba.gov.au/statistics/historical-data.html",
+      "result": "official F1 historical workbook found only for 1976-01-01 through 2010-12-31"
+    },
+    {
+      "source": "RBA Statistical Tables",
+      "url": "https://www.rba.gov.au/statistics/tables/",
+      "result": "current F1 table listed, no dated official pre-2023 current-table snapshot discovered"
+    },
+    {
+      "source": "RBA Changes to Statistical Tables",
+      "url": "https://www.rba.gov.au/statistics/tables/changes-to-tables.html",
+      "result": "F1 expert-judgement changes documented, no dated pre-2023 F1 workbook snapshot discovered"
+    }
+  ],
+  "official_pre_2023_archive_for_warmup": {
+    "endpoint": "https://www.rba.gov.au/statistics/tables/xls-hist/f01dhist.xls",
+    "coverage_end": "2010-12-31",
+    "classification": "OFFICIAL_HISTORICAL_F1_FOUND_FOR_2010_WARMUP_ONLY"
+  },
+  "non_permitted_sources_used": []
+}

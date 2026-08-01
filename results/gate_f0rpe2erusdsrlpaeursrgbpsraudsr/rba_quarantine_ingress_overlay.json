@@ -1,0 +1,42 @@
+{
+  "overlay_id": "RBA_F1_QUARANTINE_AWARE_INGRESS_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "status": "FROZEN_BEFORE_CURRENT_F1_ACCESS",
+  "reason": "No official dated pre-2023 current-table snapshot was found for 2011-2022 coverage.",
+  "policy": {
+    "current_workbook_raw_payload": "MEMORY_ONLY",
+    "raw_workbook_persisted": false,
+    "full_payload_sha256": "COMPUTED_WHILE_STREAMING",
+    "maximum_payload_size_bytes": 25000000,
+    "transport_level_workbook_receipt": "SEPARATE_FROM_NUMERICAL_DECODING",
+    "structural_metadata_decoding": "ALLOWED",
+    "authorized_numerical_observation_decoding": "ONLY_ROWS_DATED_2011-01-04_THROUGH_2022-12-31",
+    "quarantined_numerical_observation_decoding": "PROHIBITED",
+    "future_quarantined_date_cells": "MAY_BE_DECODED_ONLY_TO_ESTABLISH_ROW_SCOPE",
+    "future_quarantined_numerical_cells": "MUST_NOT_BE_DECODED",
+    "future_quarantined_numerical_cells_persisted": false,
+    "future_quarantined_numerical_cells_used": false,
+    "persistence": "AUTHORIZED_EXTRACTS_ONLY_IN_CLEAN_ROOM",
+    "economic_use": "AUTHORIZED_DATES_ONLY_AFTER_CERTIFICATION"
+  },
+  "xlsx_parser_requirements": {
+    "parser_kind": "LOW_LEVEL_STREAMING_XLSX_XML",
+    "must_not_use_eager_workbook_materialization": true,
+    "allowed_parts": [
+      "workbook metadata",
+      "shared strings needed for selected sheet and headers",
+      "sheet identity",
+      "header rows",
+      "date column",
+      "authorized Cash Rate cells for rows dated <= 2022-12-31"
+    ],
+    "post_2022_row_rule": "stop processing immediately after date is known; do not read Cash Rate value or any other numerical cell"
+  },
+  "integrity_claim_template": {
+    "post_2022_workbook_transport_envelope_received": null,
+    "post_2022_observation_dates_structurally_encountered": null,
+    "post_2022_numerical_values_decoded": false,
+    "post_2022_numerical_values_persisted": false,
+    "post_2022_numerical_values_used": false
+  }
+}
