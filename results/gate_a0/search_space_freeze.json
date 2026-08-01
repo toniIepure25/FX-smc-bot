@@ -1,0 +1,35 @@
+{
+  "freeze_id": "A0_ALPHA_SEARCH_SPACE_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "FROZEN_PRE_OUTCOME",
+  "config_path": "configs/research/fx_intraday_alpha_search_v1.yaml",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "global_trial_budget": 1200,
+  "family_count": 12,
+  "search_methods": [
+    "complete_grid_for_small_spaces",
+    "random_search",
+    "bayesian_optimization",
+    "successive_halving"
+  ],
+  "optimizer_constraints": {
+    "fixed_seed": 1729,
+    "fixed_maximum_trials": true,
+    "fixed_parameter_bounds": true,
+    "fixed_objective": true,
+    "fixed_early_stopping_rule": true,
+    "optimize_final_cumulative_return": false
+  },
+  "primary_objective": "median net Sharpe across purged walk-forward discovery folds minus turnover penalty minus cross-fold instability penalty",
+  "execution_contract_hash_source": {
+    "rollover_exclusion_start": "16:30 America/New_York",
+    "mandatory_flat_time": "16:45 America/New_York",
+    "new_entry_resume": "17:30 America/New_York",
+    "entry": "side-correct bid or ask",
+    "exit": "side-correct bid or ask",
+    "same_bar_ambiguity": "adverse-first",
+    "signal_latency": "minimum one completed M1 bar"
+  },
+  "outcome_data_accessed": false
+}

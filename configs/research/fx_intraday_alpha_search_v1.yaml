@@ -1,0 +1,131 @@
+program_id: FX_INTRADAY_ALPHA_DISCOVERY_V1
+lineage_id: FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1
+gate_id: A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1
+freeze_id: A0_ALPHA_SEARCH_SPACE_V1
+
+relationship_to_classical_factor_program: INDEPENDENT_PARALLEL_RESEARCH_LINEAGE
+
+partitions:
+  warm_up: ["2010-01-01", "2010-12-31"]
+  broad_discovery: ["2011-01-01", "2014-12-31"]
+  internal_confirmation: ["2015-01-01", "2016-12-31"]
+  external_validation: ["2017-01-01", "2019-12-31"]
+  independent_replication: ["2020-01-01", "2022-12-31"]
+  quarantined: ["2023-01-01", "2025-12-31"]
+
+instrument_universe:
+  - EURUSD
+  - GBPUSD
+  - AUDUSD
+  - USDJPY
+  - USDCAD
+  - USDCHF
+  - EURJPY
+  - GBPJPY
+  - AUDJPY
+
+excluded_instruments:
+  - NZD
+  - NZDUSD
+
+data_contract:
+  provider: Dukascopy BI5 bid/ask
+  canonical_m1: UTC M1 bid/ask OHLC
+  canonical_m5: deterministic M5 bid/ask OHLC
+  clean_room_env_var: FX_A0_DATA_ROOT
+  inspect_prior_market_data_roots: false
+  acquire_initial_partitions_only:
+    - warm_up
+    - broad_discovery
+
+execution_contract:
+  rollover_exclusion_start: "16:30 America/New_York"
+  mandatory_flat_time: "16:45 America/New_York"
+  new_entry_resume: "17:30 America/New_York"
+  max_position_holding: intraday_only
+  rate_series_allowed: false
+  financing_series_allowed: false
+  overnight_carry_allowed: false
+  entry_price: side_correct_bid_or_ask
+  exit_price: side_correct_bid_or_ask
+  commission: existing_repository_base_commission_model
+  slippage_base: existing_repository_base_slippage_model
+  stress_1_commission_slippage_multiplier: 1.5
+  stress_2_commission_slippage_multiplier: 2.0
+  same_bar_ambiguity: adverse_first
+  signal_latency: minimum_one_completed_m1_bar
+  missing_quote: no_synthetic_fill
+
+trial_budget:
+  global_maximum_candidate_equivalent_trials: 1200
+  delete_losing_trials: false
+
+walk_forward:
+  discovery_train_min_months: 12
+  discovery_test_months: 3
+  embargo: max_feature_lookback_plus_max_holding_period
+  purging: overlapping_target_horizons
+  instrument_leave_one_out: true
+  year_leave_one_out: true
+  parameter_neighborhood_stability: true
+
+optimization:
+  methods:
+    - complete_grid_for_small_spaces
+    - random_search
+    - bayesian_optimization
+    - successive_halving
+  fixed_seed: 1729
+  objective: median_net_sharpe_minus_turnover_penalty_minus_cross_fold_instability_penalty
+  optimize_final_cumulative_return: false
+
+families:
+  F01_SESSION_OPENING_MOMENTUM_REVERSAL:
+    anchors: [tokyo_open, london_open, new_york_open, london_1600_fixing_window]
+    lookbacks_minutes: [15, 30, 60, 90]
+    holding_minutes: [15, 30, 60, 120]
+    variants: [continuation, reversal]
+  F02_QUOTE_RUN_CONTINUATION_EXHAUSTION:
+    horizons_minutes: [5, 15, 30, 60]
+    features: [signed_mid_change, run_length, return_per_quote, spread_state, realized_volatility, quote_mean_distance]
+  F03_VOLATILITY_BREAKOUT:
+    variants: [breakout, failed_breakout]
+    features: [rolling_range, realized_volatility, range_compression, volatility_expansion, session_range_percentile]
+  F04_LIQUIDITY_SHOCK_REVERSAL:
+    entry_after_shock_bar_complete: true
+    triggers: [spread_z_spike, quote_gap_spike, abnormal_return, abnormal_update_rate, spread_expansion_then_compression]
+  F05_SPREAD_AWARE_EXECUTION_GATING:
+    forecasters: [seasonal_median, har_linear, elastic_net, gradient_boosted_trees]
+    report_execution_alpha_separately: true
+  F06_CROSS_PAIR_LEAD_LAG:
+    lags_minutes: [1, 2, 3, 5, 10, 15, 30]
+    edges:
+      - [EURUSD, EURJPY]
+      - [USDJPY, EURJPY]
+      - [GBPUSD, GBPJPY]
+      - [USDJPY, GBPJPY]
+      - [AUDUSD, AUDJPY]
+      - [USDJPY, AUDJPY]
+  F07_CURRENCY_FACTOR_RESIDUALS:
+    estimation: rolling_or_expanding_lagged
+    variants: [residual_continuation, residual_mean_reversion]
+  F08_TRIANGULAR_CONSISTENCY_RESIDUALS:
+    triangles:
+      - [EURJPY, EURUSD, USDJPY]
+      - [GBPJPY, GBPUSD, USDJPY]
+      - [AUDJPY, AUDUSD, USDJPY]
+    variants: [single_leg_convergence, two_leg_hedge, three_leg_executable_basket]
+  F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL:
+    allocations: [top_minus_bottom, currency_neutral, usd_beta_neutral, jpy_beta_neutral]
+  F10_INTRADAY_SEASONALITY:
+    cells: [minute_of_session, hour_of_session, day_of_week, month_end, quarter_end, pre_holiday, post_holiday]
+    estimates_from_prior_years_only: true
+  F11_REGIME_CONDITIONED_TREND_REVERSAL:
+    regime_models: [fixed_quantile_bins, hmm_frozen_state_count, gaussian_mixture_frozen_component_count]
+    filtered_probabilities_only: true
+  F12_COST_SENSITIVE_ML_ABSTENTION:
+    models: [logistic_regression, ridge_regression, elastic_net, random_forest, gradient_boosted_trees, small_fully_connected_neural_network]
+    targets: [net_executable_return_sign, net_executable_return, gross_move_exceeds_frozen_round_trip_cost]
+    horizons_minutes: [5, 15, 30, 60, 120]
+    actions: [long, short, abstain]
+    unrestricted_reinforcement_learning: false
