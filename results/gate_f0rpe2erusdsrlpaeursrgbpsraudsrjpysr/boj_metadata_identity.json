@@ -1,0 +1,28 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "artifact_id": "BOJ_STRDCLUCON_METADATA_IDENTITY_V1",
+  "status": "PASS",
+  "metadata_paths": {
+    "series_code": "$.RESULTSET[0].SERIES_CODE",
+    "name": "$.RESULTSET[0].NAME_OF_TIME_SERIES",
+    "unit": "$.RESULTSET[0].UNIT",
+    "frequency": "$.RESULTSET[0].FREQUENCY",
+    "category": "$.RESULTSET[0].CATEGORY",
+    "last_update": "$.RESULTSET[0].LAST_UPDATE"
+  },
+  "metadata_values": {
+    "SERIES_CODE": "STRDCLUCON",
+    "NAME_OF_TIME_SERIES": "Call Rate, Uncollateralized Overnight, Average (Daily)",
+    "UNIT": "percent per annum",
+    "FREQUENCY": "DAILY",
+    "CATEGORY": "Call Rate",
+    "LAST_UPDATE_presence": true
+  },
+  "provenance_only_fields": [
+    "$.DATE",
+    "$.RESULTSET[0].LAST_UPDATE",
+    "HTTP Date",
+    "retrieved_at"
+  ],
+  "publication_timestamp_fields": []
+}

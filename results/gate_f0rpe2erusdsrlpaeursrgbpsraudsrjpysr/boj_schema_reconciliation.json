@@ -1,0 +1,39 @@
+{
+  "reconciliation_id": "BOJ_FM01_FINAL_CALL_RATE_API_RECONCILIATION_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "FROZEN_BEFORE_JPY_RATE_VERSION_PERSISTENCE",
+  "api_database": "FM01",
+  "api_series_code": "STRDCLUCON",
+  "frequency": "DAILY",
+  "exact_field_mappings": {
+    "$.RESULTSET[0].VALUES.SURVEY_DATES[i]": "observation_date",
+    "$.RESULTSET[0].VALUES.VALUES[i] / 100": "annualized decimal rate",
+    "$.RESULTSET[0].SERIES_CODE": "source_series_code",
+    "$.RESULTSET[0].UNIT": "unit",
+    "$.RESULTSET[0].FREQUENCY": "frequency"
+  },
+  "normalization": {
+    "currency": "JPY",
+    "series_id": "BOJ_FINAL_UNCOLLATERALIZED_OVERNIGHT_CALL_RATE",
+    "source_series_code": "STRDCLUCON",
+    "day_count": "ACT/365 Fixed",
+    "calendar": "Tokyo business day"
+  },
+  "required_integrity_checks": [
+    "len(SURVEY_DATES) == len(VALUES)",
+    "duplicate observation dates rejected",
+    "non-finite values rejected",
+    "non-daily frequency rejected",
+    "unexpected series codes rejected",
+    "unexpected units rejected",
+    "out-of-month observations rejected",
+    "unknown response fingerprints rejected"
+  ],
+  "non_publication_evidence_fields": [
+    "$.DATE",
+    "$.RESULTSET[0].LAST_UPDATE",
+    "HTTP Date header",
+    "retrieval timestamp"
+  ],
+  "schema_fingerprint": "3074acf303240eec8333c835ee33b82d19fdf1c8448d9e64c6bb3535b6e66f77"
+}

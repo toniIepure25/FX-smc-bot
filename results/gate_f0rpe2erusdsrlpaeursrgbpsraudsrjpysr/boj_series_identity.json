@@ -1,0 +1,24 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "artifact_id": "BOJ_STRDCLUCON_SERIES_IDENTITY_V1",
+  "status": "PASS",
+  "api_series_code": "STRDCLUCON",
+  "series_code_path": "$.RESULTSET[0].SERIES_CODE",
+  "name_of_time_series": "Call Rate, Uncollateralized Overnight, Average (Daily)",
+  "economic_series": "final weighted-average uncollateralized overnight call rate",
+  "currency": "JPY",
+  "internal_series_id": "BOJ_FINAL_UNCOLLATERALIZED_OVERNIGHT_CALL_RATE",
+  "unit": "percent per annum",
+  "frequency": "DAILY",
+  "rejected_series": [
+    "provisional uncollateralized overnight call rate",
+    "highest rate",
+    "lowest rate",
+    "transaction volume",
+    "collateralized call rate",
+    "policy rate",
+    "monthly-converted rate",
+    "frequency-converted rate"
+  ],
+  "selection_method": "exact API database, API series code, metadata name, unit and frequency; no value-plausibility selection"
+}

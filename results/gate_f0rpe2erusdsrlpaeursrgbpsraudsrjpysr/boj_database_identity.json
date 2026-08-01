@@ -1,0 +1,13 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "artifact_id": "BOJ_FM01_DATABASE_IDENTITY_V1",
+  "status": "PASS",
+  "api_endpoint": "https://www.stat-search.boj.or.jp/api/v1/getDataCode",
+  "database": "FM01",
+  "parameter_path": "$.PARAMETER.DB",
+  "parameter_echo": "FM01",
+  "legacy_display_code": "FM01'STRDCLUCON",
+  "api_code_parameter": "STRDCLUCON",
+  "database_prefix_in_code_parameter": false,
+  "apostrophe_in_code_parameter": false
+}

@@ -1,0 +1,100 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "artifact_id": "BOJ_API_V1_GETDATACODE_JSON_SCHEMA_DESCRIPTOR_V1",
+  "status": "PASS",
+  "schema_fingerprint": "3074acf303240eec8333c835ee33b82d19fdf1c8448d9e64c6bb3535b6e66f77",
+  "top_level_keys": [
+    "STATUS",
+    "MESSAGEID",
+    "MESSAGE",
+    "DATE",
+    "PARAMETER",
+    "NEXTPOSITION",
+    "RESULTSET"
+  ],
+  "processing_status": {
+    "status_path": "$.STATUS",
+    "required_status": 200,
+    "message_id_path": "$.MESSAGEID",
+    "message_path": "$.MESSAGE"
+  },
+  "parameter_echo_keys": [
+    "FORMAT",
+    "LANG",
+    "DB",
+    "STARTDATE",
+    "ENDDATE",
+    "STARTPOSITION"
+  ],
+  "exact_response_paths": {
+    "series_container": "$.RESULTSET[0]",
+    "series_code": "$.RESULTSET[0].SERIES_CODE",
+    "name": "$.RESULTSET[0].NAME_OF_TIME_SERIES",
+    "unit": "$.RESULTSET[0].UNIT",
+    "frequency": "$.RESULTSET[0].FREQUENCY",
+    "last_update": "$.RESULTSET[0].LAST_UPDATE",
+    "survey_dates": "$.RESULTSET[0].VALUES.SURVEY_DATES",
+    "values": "$.RESULTSET[0].VALUES.VALUES"
+  },
+  "series_metadata_keys": [
+    "SERIES_CODE",
+    "NAME_OF_TIME_SERIES",
+    "UNIT",
+    "FREQUENCY",
+    "CATEGORY",
+    "LAST_UPDATE"
+  ],
+  "structural_windows": [
+    {
+      "label": "ordinary",
+      "startDate": "201601",
+      "endDate": "201601",
+      "http_status": 200,
+      "content_type": "application/json",
+      "payload_bytes": 979,
+      "payload_sha256": "292875b66294a2eb717b085fac09c2375310dabfc09fa08bf3862fd7e56d7aa6",
+      "row_count": 31,
+      "nonnull_observation_count": 19,
+      "null_count": 12,
+      "minimum_nonnull_observation_date": "20160104",
+      "maximum_nonnull_observation_date": "20160129",
+      "out_of_month_observations": []
+    },
+    {
+      "label": "japan_holiday_boundary",
+      "startDate": "201605",
+      "endDate": "201605",
+      "http_status": 200,
+      "content_type": "application/json",
+      "payload_bytes": 999,
+      "payload_sha256": "fd41ca599a50af57e89fee3305c668be474e033a491916ad8b151d7f72ee05b4",
+      "row_count": 31,
+      "nonnull_observation_count": 19,
+      "null_count": 12,
+      "minimum_nonnull_observation_date": "20160502",
+      "maximum_nonnull_observation_date": "20160531",
+      "out_of_month_observations": []
+    },
+    {
+      "label": "year_end_boundary",
+      "startDate": "201612",
+      "endDate": "201701",
+      "http_status": 200,
+      "content_type": "application/json",
+      "payload_bytes": 1471,
+      "payload_sha256": "49493891efdd354c7814b2ad7e0ee6eda470e869f3a3d327771b3b073db77caf",
+      "row_count": 62,
+      "nonnull_observation_count": 40,
+      "null_count": 22,
+      "minimum_nonnull_observation_date": "20161201",
+      "maximum_nonnull_observation_date": "20170131",
+      "out_of_month_observations": []
+    }
+  ],
+  "prohibited_committed_content": {
+    "individual_call_rate_values": false,
+    "payload_fragments": false,
+    "rate_distributions": false,
+    "release_file_contents": false
+  }
+}
