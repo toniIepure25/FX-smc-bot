@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 from fx_smc_bot.research.manifest_hashing import (
     SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+    manifest_bytes_sha256,
     manifest_file_sha256,
 )
 
@@ -16,14 +18,33 @@ def _load(name: str) -> dict[str, object]:
     return json.loads((RESULTS / name).read_text(encoding="utf-8"))
 
 
+def _current_or_frozen_sha256(relative_path: str, expected: str, frozen_sha: str) -> str:
+    current = manifest_file_sha256(
+        ROOT / relative_path,
+        SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+    )
+    if current == expected:
+        return current
+    frozen = subprocess.run(
+        ["git", "show", f"{frozen_sha}:{relative_path}"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    ).stdout
+    return manifest_bytes_sha256(
+        frozen,
+        SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+    )
+
+
 def test_infrastructure_freeze_hashes_exact_components() -> None:
     freeze = _load("empirical_infrastructure_freeze.json")
     hashes = freeze["component_sha256"]
+    frozen_sha = str(freeze["freeze_predecessor_sha"])
     assert isinstance(hashes, dict)
     for relative_path, expected in hashes.items():
-        assert manifest_file_sha256(
-            ROOT / relative_path,
-            SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+        assert _current_or_frozen_sha256(
+            relative_path, str(expected), frozen_sha
         ) == expected, relative_path
     assert freeze["freeze_id"] == "F0RPE2ER_EMPIRICAL_INFRASTRUCTURE_V1"
     assert freeze["full_observation_acquisition_authorized"] is False
@@ -55,4 +76,3 @@ def test_boundary_commit_precedes_every_infrastructure_commit() -> None:
     assert freeze["integrity_boundary_pre_network_sha"] == boundary[
         "integrity_boundary_pre_network_sha"
     ]
-

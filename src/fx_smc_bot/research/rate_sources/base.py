@@ -24,7 +24,18 @@ V2_AUTHORIZED_END = date(2022, 12, 31)
 V2_FIREWALL_ID = "F0RPE2ER_HISTORICAL_RESPONSE_FIREWALL_V1"
 PROHIBITED_CURRENCY = "NZD"
 PROHIBITED_YEARS = frozenset({2023, 2024, 2025})
-ALLOWED_REVISION_STATUSES = frozenset({"ORIGINAL", "REVISED", "CORRECTED", "FINAL"})
+ALLOWED_REVISION_STATUSES = frozenset(
+    {
+        "ORIGINAL",
+        "REVISED",
+        "CORRECTED",
+        "FINAL",
+        "ORIGINAL_EXPLICIT",
+        "REVISED_EXPLICIT",
+        "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID",
+        "UNKNOWN_REJECTED",
+    }
+)
 HeaderPairs: TypeAlias = tuple[tuple[str, str], ...]
 
 
@@ -328,7 +339,7 @@ class RateVersion:
     series_id: str
     observation_date: date
     value: float
-    publication_timestamp: datetime
+    publication_timestamp: datetime | None
     effective_timestamp: datetime
     strategy_availability_timestamp: datetime
     source_publisher: str
@@ -336,37 +347,118 @@ class RateVersion:
     source_endpoint_role: str
     source_snapshot_sha256: str
     parser_version: str
-    revision_identifier: str
+    revision_identifier: str | None
     revision_status: str
     day_count_convention: str
     calendar_id: str
     retrieved_at: datetime
     source_metadata: HeaderPairs = field(default=())
+    publication_lower_bound: datetime | None = None
+    publication_upper_bound: datetime | None = None
+    publication_upper_bound_exclusive: bool = False
+    publication_evidence_kind: str = "EXACT_TIMESTAMP"
+    publication_evidence_source: str = "LEGACY_EXACT_TIMESTAMP_CONTRACT"
+    schema_fingerprint: str | None = None
+    source_row_ordinal: int | None = None
+    source_adapter_id: str | None = None
+    source_request_identity: str | None = None
 
     def __post_init__(self) -> None:
+        from fx_smc_bot.research.publication_censoring import (
+            PublicationEvidence,
+            PublicationEvidenceKind,
+            RevisionStatus,
+        )
+
         if self.currency == PROHIBITED_CURRENCY:
             raise RateSourceError("NZD_VERSION_PROHIBITED")
         if not math.isfinite(self.value):
             raise RateSourceError("NON_FINITE_RATE_VALUE")
         for timestamp, name in (
-            (self.publication_timestamp, "PUBLICATION_TIMESTAMP"),
             (self.effective_timestamp, "EFFECTIVE_TIMESTAMP"),
             (self.strategy_availability_timestamp, "STRATEGY_AVAILABILITY_TIMESTAMP"),
             (self.retrieved_at, "RETRIEVED_AT"),
         ):
             _require_aware(timestamp, name)
-        expected = max(self.publication_timestamp, self.effective_timestamp)
-        if self.strategy_availability_timestamp != expected:
-            raise RateSourceError("STRATEGY_AVAILABILITY_MUST_EQUAL_MAX_PUBLICATION_EFFECTIVE")
+        actual = self.publication_timestamp
+        if actual is not None:
+            _require_aware(actual, "PUBLICATION_TIMESTAMP")
+        try:
+            evidence_kind = PublicationEvidenceKind(self.publication_evidence_kind)
+        except ValueError as exc:
+            raise RateSourceError("UNSUPPORTED_PUBLICATION_EVIDENCE_KIND") from exc
+        lower = self.publication_lower_bound or actual
+        upper = self.publication_upper_bound or actual
+        if lower is None or upper is None:
+            raise RateSourceError("PUBLICATION_BOUNDS_REQUIRED")
+        try:
+            PublicationEvidence(
+                actual_publication_timestamp=actual,
+                publication_lower_bound=lower,
+                publication_upper_bound=upper,
+                publication_upper_bound_exclusive=self.publication_upper_bound_exclusive,
+                publication_evidence_kind=evidence_kind,
+                publication_evidence_source=self.publication_evidence_source,
+                effective_timestamp=self.effective_timestamp,
+                strategy_availability_timestamp=self.strategy_availability_timestamp,
+            )
+        except ValueError as exc:
+            raise RateSourceError(str(exc).upper().replace(" ", "_")) from exc
+        if evidence_kind is PublicationEvidenceKind.EXACT_TIMESTAMP:
+            assert actual is not None
+            expected = max(actual, self.effective_timestamp)
+            if self.strategy_availability_timestamp != expected:
+                raise RateSourceError(
+                    "STRATEGY_AVAILABILITY_MUST_EQUAL_MAX_PUBLICATION_EFFECTIVE"
+                )
         if self.revision_status not in ALLOWED_REVISION_STATUSES:
             raise RateSourceError("UNSUPPORTED_REVISION_STATUS")
-        if not self.source_document_id.strip() or not self.revision_identifier.strip():
+        explicit_statuses = {
+            RevisionStatus.ORIGINAL_EXPLICIT.value,
+            RevisionStatus.REVISED_EXPLICIT.value,
+        }
+        if self.revision_status in explicit_statuses and not self.revision_identifier:
+            raise RateSourceError("EXPLICIT_REVISION_IDENTIFIER_REQUIRED")
+        if (
+            self.revision_status
+            == RevisionStatus.FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID.value
+            and self.revision_identifier is not None
+        ):
+            raise RateSourceError("FINAL_HISTORY_REVISION_IDENTIFIER_MUST_BE_NULL")
+        if self.revision_status == RevisionStatus.UNKNOWN_REJECTED.value:
+            raise RateSourceError("UNKNOWN_REVISION_STATUS_REJECTED")
+        if self.revision_status in {"ORIGINAL", "REVISED", "CORRECTED", "FINAL"} and (
+            not self.revision_identifier or not self.revision_identifier.strip()
+        ):
             raise RateSourceError("SOURCE_DOCUMENT_AND_REVISION_REQUIRED")
+        if not self.source_document_id.strip():
+            raise RateSourceError("SOURCE_DOCUMENT_REQUIRED")
+        if self.schema_fingerprint is not None:
+            _validate_sha256(self.schema_fingerprint)
+        if self.source_row_ordinal is not None and self.source_row_ordinal < 0:
+            raise RateSourceError("SOURCE_ROW_ORDINAL_INVALID")
         _validate_sha256(self.source_snapshot_sha256)
 
     @property
     def identity(self) -> RateObservationIdentity:
         return RateObservationIdentity(self.currency, self.series_id, self.observation_date)
+
+    @property
+    def actual_publication_timestamp(self) -> datetime | None:
+        return self.publication_timestamp
+
+    @property
+    def resolved_publication_lower_bound(self) -> datetime:
+        return self.publication_lower_bound or self._required_actual_publication()
+
+    @property
+    def resolved_publication_upper_bound(self) -> datetime:
+        return self.publication_upper_bound or self._required_actual_publication()
+
+    def _required_actual_publication(self) -> datetime:
+        if self.publication_timestamp is None:
+            raise RateSourceError("ACTUAL_PUBLICATION_TIMESTAMP_NOT_AVAILABLE")
+        return self.publication_timestamp
 
 
 @dataclass(frozen=True, slots=True)
@@ -392,7 +484,7 @@ class RateAvailabilityEvent:
 class RateCertification:
     adapter_id: str
     identity: RateObservationIdentity
-    revision_identifier: str
+    revision_identifier: str | None
     passed: bool
     status: str
     checks: tuple[str, ...]
@@ -605,9 +697,16 @@ def version_from_row(
 
 
 def reject_duplicate_versions(versions: Sequence[RateVersion]) -> tuple[RateVersion, ...]:
-    seen: dict[tuple[RateObservationIdentity, datetime, str], RateVersion] = {}
+    seen: dict[
+        tuple[RateObservationIdentity, datetime | None, str | None, str], RateVersion
+    ] = {}
     for version in versions:
-        key = (version.identity, version.publication_timestamp, version.revision_identifier)
+        key = (
+            version.identity,
+            version.publication_timestamp,
+            version.revision_identifier,
+            version.revision_status,
+        )
         previous = seen.get(key)
         if previous is not None:
             if previous != version:
@@ -619,8 +718,8 @@ def reject_duplicate_versions(versions: Sequence[RateVersion]) -> tuple[RateVers
             seen.values(),
             key=lambda item: (
                 item.observation_date,
-                item.publication_timestamp,
-                item.revision_identifier,
+                item.strategy_availability_timestamp,
+                item.revision_identifier or "",
             ),
         )
     )
@@ -663,7 +762,15 @@ def certify_common(
         reasons.append("CALENDAR_MISMATCH")
     if version.source_endpoint_role not in endpoint_roles:
         reasons.append("ENDPOINT_ROLE_MISMATCH")
-    if not timestamp_matches_zone(version.publication_timestamp, publication_zone):
+    publication_times = (
+        (version.publication_timestamp,)
+        if version.publication_timestamp is not None
+        else (
+            version.resolved_publication_lower_bound,
+            version.resolved_publication_upper_bound,
+        )
+    )
+    if any(not timestamp_matches_zone(value, publication_zone) for value in publication_times):
         reasons.append("PUBLICATION_TIMEZONE_MISMATCH")
     if not -20.0 <= version.value <= 100.0:
         reasons.append("RATE_OUT_OF_RANGE")

@@ -1,0 +1,17 @@
+{
+  "actual_publication_timestamp_fabricated": false,
+  "asof_after_availability_available": 9,
+  "asof_at_availability_available": 9,
+  "asof_before_availability_missing": 9,
+  "dataset_freeze_id": "F0RPE2ERUSDSRLPA_USD_CERTIFICATION_V1",
+  "future_revision_leakage": "PASS",
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "legacy_availability_overlay_pre_parse_sha": "8335cf4f0ee87a0d3e636b402676455f7e6730fe",
+  "legacy_publication_day_1705_missing": 5,
+  "legacy_rule": "FIRST_FROZEN_1705_EXECUTION_STRICTLY_AFTER_PUBLICATION_DAY_ENVELOPE",
+  "modern_publication_day_1705_available": 4,
+  "modern_rule": "SAME_PUBLICATION_DAY_1705_AFTER_1430_REVISION_COMPLETE_BOUNDARY",
+  "overlay_id": "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1",
+  "status": "PASS",
+  "versions_audited": 9
+}

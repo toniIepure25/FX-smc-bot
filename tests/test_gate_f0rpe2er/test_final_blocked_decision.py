@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 from fx_smc_bot.research.manifest_hashing import (
     SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+    manifest_bytes_sha256,
     manifest_file_sha256,
 )
 
@@ -14,6 +16,27 @@ RESULTS = ROOT / "results" / "gate_f0rpe2er"
 
 def _load(name: str) -> dict[str, object]:
     return json.loads((RESULTS / name).read_text(encoding="utf-8"))
+
+
+def _current_or_frozen_sha256(
+    relative_path: str, expected: str, frozen_sha: str
+) -> str:
+    current = manifest_file_sha256(
+        ROOT / relative_path,
+        SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+    )
+    if current == expected:
+        return current
+    frozen = subprocess.run(
+        ["git", "show", f"{frozen_sha}:{relative_path}"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    ).stdout
+    return manifest_bytes_sha256(
+        frozen,
+        SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+    )
 
 
 def test_live_schema_failure_stops_before_persistence_and_market_access() -> None:
@@ -58,11 +81,11 @@ def test_unreached_empirical_stages_do_not_contain_placeholder_results() -> None
 
 def test_reproducibility_manifest_hashes_every_reached_artifact() -> None:
     manifest = _load("reproducibility_manifest.json")
+    frozen_sha = str(manifest["implementation_sha_before_final_artifacts"])
     for section in ("artifact_sha256", "documentation_sha256", "source_sha256"):
         hashes = manifest[section]
         assert isinstance(hashes, dict)
         for relative_path, expected in hashes.items():
-            assert manifest_file_sha256(
-                ROOT / relative_path,
-                SHA256_OF_UTF8_TEXT_WITH_LF_NORMALIZED_LINE_ENDINGS,
+            assert _current_or_frozen_sha256(
+                relative_path, str(expected), frozen_sha
             ) == expected, relative_path

@@ -16,6 +16,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Final
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 from fx_smc_bot.research.publication_censoring import (
@@ -80,6 +81,9 @@ class AvailableRate:
     publication_upper_bound_exclusive: bool | None = None
     publication_evidence_kind: PublicationEvidenceKind | None = None
     publication_evidence_source: str | None = None
+    schema_fingerprint: str | None = None
+    source_row_ordinal: int | None = None
+    source_metadata: tuple[tuple[str, str], ...] | None = None
 
 
 @dataclass(frozen=True)
@@ -333,6 +337,9 @@ class RateVintageStore:
                     source_request_identity TEXT NOT NULL,
                     source_snapshot_sha256 TEXT NOT NULL,
                     parser_version TEXT NOT NULL,
+                    schema_fingerprint TEXT NOT NULL,
+                    source_row_ordinal INTEGER NOT NULL CHECK(source_row_ordinal >= 0),
+                    source_metadata_json TEXT NOT NULL,
                     revision_identifier TEXT,
                     revision_status TEXT NOT NULL
                         CHECK(revision_status IN ({revision_statuses})),
@@ -738,19 +745,28 @@ class RateVintageStore:
             "request_headers_json": _canonical_json(request_headers),
             "response_format": response_format,
         }
-        expected_identity = _content_sha256(
-            {
-                "adapter_id": record["adapter_id"],
-                "currency": record["currency"],
-                "end": record["end_date"],
-                "endpoint_role": record["source_endpoint_role"],
-                "method": record["request_method"],
-                "query_parameters": query_parameters,
-                "series_id": record["series_id"],
-                "start": record["start_date"],
-                "url": record["endpoint_url"],
-            }
-        )
+        identity_record: dict[str, object] = {
+            "adapter_id": record["adapter_id"],
+            "currency": record["currency"],
+            "end": record["end_date"],
+            "endpoint_role": record["source_endpoint_role"],
+            "method": record["request_method"],
+            "query_parameters": query_parameters,
+            "series_id": record["series_id"],
+            "start": record["start_date"],
+            "url": record["endpoint_url"],
+        }
+        if self._schema_version == V4_SCHEMA_VERSION:
+            declaration = _optional_value(request, "endpoint_declaration")
+            identity_record["endpoint_declaration_sha256"] = (
+                None
+                if declaration is None
+                else _sha256(
+                    _value(declaration, "declaration_sha256"),
+                    "endpoint_declaration_sha256",
+                )
+            )
+        expected_identity = _content_sha256(identity_record)
         if request_identity != expected_identity:
             raise RateVintageIntegrityError(
                 "Source request identity does not match its canonical request"
@@ -832,8 +848,7 @@ class RateVintageStore:
                     "V3 source snapshots require the exact source request"
                 )
             certification = self._validate_firewall_certification(
-                request,
-                payload,
+                snapshot,
                 payload_sha256,
                 firewall_certification,
             )
@@ -898,14 +913,25 @@ class RateVintageStore:
 
     def _validate_firewall_certification(
         self,
-        request: object,
-        payload: bytes,
+        snapshot: object,
         payload_sha256: str,
         certification: object | None,
     ) -> tuple[str, str, str, str, str, int]:
+        request = _value(snapshot, "request")
+        payload = _value(snapshot, "payload")
+        if not isinstance(payload, bytes):
+            raise RateVintageIntegrityError("Firewall validation requires payload bytes")
         if certification is None:
             raise RateVintageIntegrityError(
                 "V3 source snapshot persistence requires firewall certification"
+            )
+        if self._schema_version == V4_SCHEMA_VERSION and _optional_value(
+            certification, "schema_fingerprint"
+        ) is not None:
+            return self._validate_v4_shape_certification(
+                snapshot,
+                payload_sha256,
+                certification,
             )
         request_identity = _text(
             _value(certification, "request_identity"), "firewall request_identity"
@@ -978,6 +1004,107 @@ class RateVintageStore:
             payload_sha256,
             schema_id,
             len(rows),
+        )
+
+    def _validate_v4_shape_certification(
+        self,
+        snapshot: object,
+        payload_sha256: str,
+        certification: object,
+    ) -> tuple[str, str, str, str, str, int]:
+        from fx_smc_bot.research.official_response_shape import (
+            INSPECTOR_ID,
+            inspect_official_json_response,
+        )
+        from fx_smc_bot.research.rate_sources.base import (
+            RateAccessAuthorization,
+            SourceSnapshot,
+        )
+
+        if not isinstance(snapshot, SourceSnapshot):
+            raise RateVintageIntegrityError(
+                "Shape certification requires an immutable SourceSnapshot"
+            )
+        request = _value(snapshot, "request")
+        request_identity = _text(
+            _value(certification, "request_identity"), "shape request_identity"
+        )
+        expected_request = _text(_value(request, "request_identity"), "request_identity")
+        if request_identity != expected_request:
+            raise RateVintageIntegrityError("Shape certification request mismatch")
+        certified_snapshot = _sha256(
+            _value(certification, "snapshot_sha256"), "shape snapshot_sha256"
+        )
+        if certified_snapshot != payload_sha256:
+            raise RateVintageIntegrityError("Shape certification snapshot mismatch")
+        fingerprint = _sha256(
+            _value(certification, "schema_fingerprint"), "schema_fingerprint"
+        )
+        inspector_id = _text(_value(certification, "inspector_id"), "inspector_id")
+        if inspector_id != INSPECTOR_ID:
+            raise RateVintageIntegrityError("Shape certification inspector mismatch")
+        row_path = _text(
+            _value(certification, "row_container_path"), "row_container_path"
+        )
+        schema_role = _text(_value(certification, "schema_role"), "schema_role")
+        if row_path != "$.refRates":
+            raise RateVintageIntegrityError("Shape certification row path mismatch")
+        row_count = _value(certification, "row_count")
+        if not isinstance(row_count, int) or isinstance(row_count, bool) or row_count < 1:
+            raise RateVintageIntegrityError("Shape certification row count is invalid")
+        declaration = _optional_value(request, "endpoint_declaration")
+        if declaration is None:
+            raise RateVintageIntegrityError(
+                "Shape certification requires an endpoint declaration"
+            )
+        authorization = RateAccessAuthorization(
+            authorization_id=f"V4_STORE_SHAPE_{expected_request}",
+            adapter_ids=frozenset({_text(_value(request, "adapter_id"), "adapter_id")}),
+            currencies=frozenset({_text(_value(request, "currency"), "currency")}),
+            series_ids=frozenset({_text(_value(request, "series_id"), "series_id")}),
+            start=_day(_value(request, "start"), "start"),
+            end=_day(_value(request, "end"), "end"),
+            official_hosts=frozenset(
+                {urlparse(_text(_value(request, "url"), "url")).hostname or ""}
+            ),
+            source_allowlist_identities=frozenset(
+                {
+                    _text(
+                        _value(declaration, "allowlist_identity"),
+                        "allowlist_identity",
+                    )
+                }
+            ),
+        )
+        shape = inspect_official_json_response(snapshot, authorization)
+        if (
+            shape.schema_fingerprint != fingerprint
+            or shape.candidate_row_container_paths != (row_path,)
+            or shape.row_count != row_count
+        ):
+            raise RateVintageIntegrityError(
+                "Shape certification does not match the complete snapshot payload"
+            )
+        adapter_id = _text(_value(request, "adapter_id"), "adapter_id")
+        certification_id = _content_sha256(
+            {
+                "request_identity": request_identity,
+                "adapter_id": adapter_id,
+                "source_snapshot_sha256": payload_sha256,
+                "schema_fingerprint": fingerprint,
+                "inspector_id": inspector_id,
+                "row_container_path": row_path,
+                "schema_role": schema_role,
+                "row_count": row_count,
+            }
+        )
+        return (
+            certification_id,
+            request_identity,
+            adapter_id,
+            payload_sha256,
+            fingerprint,
+            row_count,
         )
 
     def _append_firewall_certification(self, values: tuple[str, str, str, str, str, int]) -> None:
@@ -1155,6 +1282,24 @@ class RateVintageStore:
             ),
             "calendar_id": _text(_value(version, "calendar_id"), "calendar_id"),
         }
+        if self._schema_version == V4_SCHEMA_VERSION:
+            fields["schema_fingerprint"] = _sha256(
+                _value(version, "schema_fingerprint"), "schema_fingerprint"
+            )
+            source_row_ordinal = _value(version, "source_row_ordinal")
+            if (
+                not isinstance(source_row_ordinal, int)
+                or isinstance(source_row_ordinal, bool)
+                or source_row_ordinal < 0
+            ):
+                raise RateVintageIntegrityError("source_row_ordinal must be non-negative")
+            fields["source_row_ordinal"] = source_row_ordinal
+            fields["source_metadata_json"] = _canonical_json(
+                self._normalized_pairs(
+                    _optional_value(version, "source_metadata", ()),
+                    "source_metadata",
+                )
+            )
         if self._schema_version in _CERTIFIED_SCHEMA_VERSIONS:
             self._validate_v3_version_request(fields, snapshot, retrieved_at)
         if fields["calendar_id"] != expected_calendar.calendar_id:
@@ -1385,6 +1530,9 @@ class RateVintageStore:
             "source_request_identity",
             "source_snapshot_sha256",
             "parser_version",
+            "schema_fingerprint",
+            "source_row_ordinal",
+            "source_metadata_json",
             "revision_identifier",
             "revision_status",
             "day_count_convention",
@@ -1400,10 +1548,12 @@ class RateVintageStore:
                 strategy_availability_timestamp, source_publisher,
                 source_document_id, source_endpoint_role, source_snapshot_id,
                 source_adapter_id, source_request_identity, source_snapshot_sha256,
-                parser_version, revision_identifier, revision_status,
+                parser_version, schema_fingerprint, source_row_ordinal,
+                source_metadata_json,
+                revision_identifier, revision_status,
                 day_count_convention, calendar_id, retrieved_at
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                      ?, ?, ?, ?)""",
+                      ?, ?, ?, ?, ?, ?, ?)""",
             (
                 version_id,
                 identity_id,
@@ -1439,6 +1589,37 @@ class RateVintageStore:
             raise RateVintageIntegrityError(
                 "Rate version retrieval timestamp does not match its source snapshot"
             )
+        if self._schema_version == V4_SCHEMA_VERSION:
+            firewall = self._connection.execute(
+                """SELECT schema_id, certified_row_count
+                FROM response_firewall_certifications
+                WHERE request_identity = ? AND adapter_id = ?
+                  AND source_snapshot_sha256 = ?""",
+                (
+                    snapshot["request_identity"],
+                    snapshot["adapter_id"],
+                    snapshot["payload_sha256"],
+                ),
+            ).fetchone()
+            if firewall is None:
+                raise RateVintageIntegrityError(
+                    "V4 rate version requires its snapshot firewall certification"
+                )
+            certified_schema = str(firewall["schema_id"])
+            schema_is_fingerprint = len(certified_schema) == 64 and all(
+                character in "0123456789abcdef" for character in certified_schema
+            )
+            if schema_is_fingerprint and fields["schema_fingerprint"] != certified_schema:
+                raise RateVintageIntegrityError(
+                    "Rate version schema fingerprint does not match its snapshot"
+                )
+            source_row_ordinal = fields["source_row_ordinal"]
+            if not isinstance(source_row_ordinal, int):
+                raise RateVintageIntegrityError("Rate version source ordinal is invalid")
+            if source_row_ordinal >= int(firewall["certified_row_count"]):
+                raise RateVintageIntegrityError(
+                    "Rate version source ordinal exceeds its certified snapshot"
+                )
 
     def _resolve_source_snapshot(self, version: object, payload_sha256: str) -> sqlite3.Row:
         adapter_id = _optional_value(version, "source_adapter_id")
@@ -1795,6 +1976,24 @@ class RateVintageStore:
             ),
             publication_evidence_source=(
                 str(row["publication_evidence_source"])
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
+            ),
+            schema_fingerprint=(
+                str(row["schema_fingerprint"])
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
+            ),
+            source_row_ordinal=(
+                int(row["source_row_ordinal"])
+                if self._schema_version == V4_SCHEMA_VERSION
+                else None
+            ),
+            source_metadata=(
+                tuple(
+                    (str(key), str(value))
+                    for key, value in json.loads(row["source_metadata_json"])
+                )
                 if self._schema_version == V4_SCHEMA_VERSION
                 else None
             ),

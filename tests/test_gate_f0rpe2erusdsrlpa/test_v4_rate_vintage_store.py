@@ -55,6 +55,7 @@ class SyntheticRequest:
             "series_id": self.series_id,
             "start": self.start.isoformat(),
             "url": self.url,
+            "endpoint_declaration_sha256": None,
         }
         return hashlib.sha256(
             json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode(
@@ -105,6 +106,8 @@ class SyntheticVersion:
     retrieved_at: datetime
     source_adapter_id: str
     source_request_identity: str
+    schema_fingerprint: str
+    source_row_ordinal: int
 
 
 def _snapshot() -> tuple[SyntheticSnapshot, SyntheticFirewallCertification]:
@@ -166,6 +169,8 @@ def _legacy_version(snapshot: SyntheticSnapshot, *, value: float = 0.0037) -> Sy
         retrieved_at=snapshot.retrieved_at,
         source_adapter_id=snapshot.request.adapter_id,
         source_request_identity=snapshot.request.request_identity,
+        schema_fingerprint=hashlib.sha256(b"synthetic-v4-schema").hexdigest(),
+        source_row_ordinal=0,
     )
 
 
@@ -196,6 +201,8 @@ def test_v4_is_explicit_reopenable_and_clean_database_only(tmp_path: Path) -> No
     assert columns["publication_evidence_kind"] == ("TEXT", 1)
     assert columns["publication_evidence_source"] == ("TEXT", 1)
     assert columns["revision_identifier"] == ("TEXT", 0)
+    assert columns["schema_fingerprint"] == ("TEXT", 1)
+    assert columns["source_row_ordinal"] == ("INTEGER", 1)
     indexes = {
         str(row[1]): int(row[4])
         for row in store._connection.execute("PRAGMA index_list(rate_versions)")
@@ -263,6 +270,8 @@ def test_freeze_and_get_rate_as_of_round_trip_censored_fields(tmp_path: Path) ->
     assert at.publication_evidence_kind is PublicationEvidenceKind.PUBLICATION_DAY_ENVELOPE
     assert at.publication_evidence_source == version.publication_evidence_source
     assert at.revision_identifier is None
+    assert at.schema_fingerprint == version.schema_fingerprint
+    assert at.source_row_ordinal == 0
 
     later_actual = availability + timedelta(days=1)
     store.append_rate_version(
