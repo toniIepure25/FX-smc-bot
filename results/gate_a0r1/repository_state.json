@@ -1,0 +1,14 @@
+{
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "branch": "research/fx-intraday-alpha-discovery-v1",
+  "starting_sha": "c9221477bbe74142a81efe554e1868cfca32871d",
+  "local_head_verified": "c9221477bbe74142a81efe554e1868cfca32871d",
+  "remote_head_verified": "c9221477bbe74142a81efe554e1868cfca32871d",
+  "worktree_before_a0r1": "CLEAN",
+  "git_diff_check_before_a0r1": "PASS",
+  "predecessor_gate": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "predecessor_decision": "BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "relationship": "INFRASTRUCTURE_REMEDIATION_WITH_EXACT_SCIENTIFIC_INHERITANCE"
+}

@@ -1,0 +1,18 @@
+{
+  "artifact_id": "A0R1_PREDECESSOR_INHERITANCE_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS",
+  "predecessor_gate": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "predecessor_decision": "BLOCKED_BY_A0_MARKET_DATA_ACCESS",
+  "predecessor_blocker": "FX_A0_DATA_ROOT_NOT_CONFIGURED",
+  "predecessor_blocker_classification": "INFRASTRUCTURE_ONLY",
+  "predecessor_counts": {
+    "dukascopy_requests": 0,
+    "registered_empirical_trials": 0,
+    "market_partitions": 0,
+    "economic_outcomes": 0,
+    "access_2023_2025": 0
+  },
+  "prior_decisions_modified": false,
+  "old_outcomes_imported_as_candidates": false
+}
