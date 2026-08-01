@@ -1,0 +1,35 @@
+{
+  "certification_id": "BOE_SONIA_V3_V4_STORE_CERTIFICATION_V1",
+  "store_schema_version": "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4",
+  "status": "PASS",
+  "dataset_freeze_id": "BOE_SONIA_V3_STRUCTURAL_CERTIFICATION_FREEZE",
+  "dataset_freeze_hash": "75d3395f10a588e0377ad0521de56f2acf7476624c087f5e1753c0c715bf84f2",
+  "table_counts": {
+    "source_requests": 3,
+    "response_firewall_certifications": 3,
+    "source_snapshots": 3,
+    "rate_series": 1,
+    "rate_observation_identities": 10,
+    "rate_versions": 10,
+    "availability_events": 10,
+    "certification_results": 10,
+    "dataset_freezes": 1,
+    "dataset_freeze_versions": 10,
+    "dataset_freeze_certifications": 10,
+    "aligned_daily_rate_panel": 0
+  },
+  "legacy_rate_version_count": 5,
+  "reformed_rate_version_count": 5,
+  "checks": {
+    "source_request_identity": "PASS",
+    "source_snapshot_payload_hash": "PASS",
+    "shape_certification_recomputed_from_payload": "PASS",
+    "schema_fingerprint_bound_to_rate_versions": "PASS",
+    "source_row_ordinal_bounds": "PASS",
+    "final_history_revision_nullability": "PASS",
+    "append_only_replay": "PASS"
+  },
+  "store_path": "not_committed",
+  "committed_payloads": "NONE",
+  "committed_row_values": "NONE"
+}

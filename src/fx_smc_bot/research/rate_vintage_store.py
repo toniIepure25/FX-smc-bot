@@ -244,6 +244,36 @@ def _inspect_ecb_sdmx_csv_snapshot(snapshot: object) -> tuple[str, int]:
     return expected_fingerprint, len(rows)
 
 
+def _inspect_boe_iadb_csv_snapshot(snapshot: object) -> tuple[str, int]:
+    from fx_smc_bot.research.rate_sources.bank_of_england import (
+        BOE_IUDSOIA_V3_SCHEMA_FINGERPRINT,
+        BankOfEnglandSoniaAdapterV3,
+        _strict_boe_iadb_csv_rows,
+    )
+    from fx_smc_bot.research.rate_sources.base import SourceSnapshot
+
+    if not isinstance(snapshot, SourceSnapshot):
+        raise RateVintageIntegrityError("BOE IADB inspection requires a SourceSnapshot")
+    media_type = str(snapshot.content_type).partition(";")[0].strip().lower()
+    if media_type not in {"text/csv", "application/csv"}:
+        raise RateVintageIntegrityError("BOE IADB content type mismatch")
+    if snapshot.request.series_id != "IUDSOIA":
+        raise RateVintageIntegrityError("BOE IADB unsupported series")
+    rows = _strict_boe_iadb_csv_rows(
+        snapshot,
+        required_fields=BankOfEnglandSoniaAdapterV3.csv_fields,
+    )
+    if not rows:
+        raise RateVintageIntegrityError("BOE IADB CSV requires at least one row")
+    adapter = BankOfEnglandSoniaAdapterV3()
+    for row in rows:
+        try:
+            adapter._validate_csv_scope(row, request=snapshot.request)
+        except Exception as exc:
+            raise RateVintageIntegrityError("BOE IADB response outside certified scope") from exc
+    return BOE_IUDSOIA_V3_SCHEMA_FINGERPRINT, len(rows)
+
+
 class RateVintageStore:
     """SQLite-backed append-only official-rate vintage store."""
 
@@ -1101,6 +1131,7 @@ class RateVintageStore:
         if inspector_id not in {
             INSPECTOR_ID,
             "F0RPE2ERUSDSRLPAEURSR_ECB_SDMX_CSV_SHAPE_V1",
+            "F0RPE2ERUSDSRLPAEURSRGBPSR_BOE_IADB_CSV_SHAPE_V1",
         }:
             raise RateVintageIntegrityError("Shape certification inspector mismatch")
         row_path = _text(
@@ -1112,6 +1143,11 @@ class RateVintageStore:
         if (
             inspector_id == "F0RPE2ERUSDSRLPAEURSR_ECB_SDMX_CSV_SHAPE_V1"
             and row_path != "$.sdmx_csv_rows"
+        ):
+            raise RateVintageIntegrityError("Shape certification row path mismatch")
+        if (
+            inspector_id == "F0RPE2ERUSDSRLPAEURSRGBPSR_BOE_IADB_CSV_SHAPE_V1"
+            and row_path != "$.iadb_tabular_csv_rows"
         ):
             raise RateVintageIntegrityError("Shape certification row path mismatch")
         row_count = _value(certification, "row_count")
@@ -1152,7 +1188,14 @@ class RateVintageStore:
                     "Shape certification does not match the complete snapshot payload"
                 )
         else:
-            observed_fingerprint, observed_row_count = _inspect_ecb_sdmx_csv_snapshot(snapshot)
+            if inspector_id == "F0RPE2ERUSDSRLPAEURSR_ECB_SDMX_CSV_SHAPE_V1":
+                observed_fingerprint, observed_row_count = _inspect_ecb_sdmx_csv_snapshot(
+                    snapshot
+                )
+            else:
+                observed_fingerprint, observed_row_count = _inspect_boe_iadb_csv_snapshot(
+                    snapshot
+                )
             if observed_fingerprint != fingerprint or observed_row_count != row_count:
                 raise RateVintageIntegrityError(
                     "Shape certification does not match the complete snapshot payload"

@@ -1,0 +1,31 @@
+{
+  "audit_id": "BOE_SONIA_V3_ASOF_AVAILABILITY_AUDIT_V1",
+  "status": "PASS",
+  "strategy_execution": "17:05 America/New_York",
+  "checks": {
+    "legacy_single_version_before_availability": "MISSING",
+    "legacy_single_version_at_availability": "AVAILABLE",
+    "legacy_single_version_after_availability": "AVAILABLE",
+    "reformed_single_version_before_availability": "MISSING",
+    "reformed_single_version_at_availability": "AVAILABLE",
+    "reformed_single_version_after_availability": "AVAILABLE",
+    "full_freeze_before_current_observation_availability_returns_only_prior_available_rate": "PASS",
+    "future_revision_leakage": "PASS"
+  },
+  "legacy_probe": {
+    "observation_date": "2018-04-20",
+    "availability_timestamp_utc": "2018-04-23T21:05:00Z",
+    "availability_rule": "first frozen 17:05 America/New_York execution strictly after the publication-day envelope closes"
+  },
+  "reformed_probe": {
+    "observation_date": "2018-04-23",
+    "availability_timestamp_utc": "2018-04-24T11:00:00Z",
+    "availability_rule": "12:00 Europe/London on the next London business day"
+  },
+  "benchmark_database_separation": {
+    "benchmark_publication_timestamp_or_bounds": "stored on RateVersion publication fields",
+    "benchmark_revision_complete_bound": "stored on RateVersion publication_upper_bound",
+    "iadb_archive_availability_bound": "not used for strategy availability",
+    "source_retrieval_timestamp": "provenance only"
+  }
+}

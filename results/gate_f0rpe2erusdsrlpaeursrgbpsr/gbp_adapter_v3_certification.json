@@ -1,0 +1,67 @@
+{
+  "certification_id": "BOE_SONIA_V3_ADAPTER_CERTIFICATION_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "gbp_source_reconciliation_pre_parse_sha": "83a2bb4a1cc5997790941fd7c760208121e834e1",
+  "adapter_id": "BOE_SONIA_V3",
+  "currency": "GBP",
+  "series_id": "IUDSOIA",
+  "status": "PASS",
+  "checks": {
+    "official_publisher": "PASS",
+    "machine_readable_route": "PASS",
+    "server_side_bounds": "PASS",
+    "series_identity": "PASS",
+    "response_schema": "PASS",
+    "unit_normalization": "PASS",
+    "london_calendar": "PASS",
+    "legacy_publication_rule": "PASS",
+    "reformed_publication_rule": "PASS",
+    "republication_complete_rule": "PASS",
+    "methodology_transition": "PASS",
+    "revision_nullability": "PASS",
+    "response_date_firewall": "PASS",
+    "three_run_deterministic_parsing": "PASS"
+  },
+  "route": {
+    "selected": "CSV",
+    "format_code": "TN",
+    "format_meaning": "TABULAR_NO_TITLES",
+    "xml_fallback": "NOT_USED_CSV_ACCESSIBLE_AND_STRUCTURALLY_CERTIFIABLE"
+  },
+  "request_counts": {
+    "official_requests": 3,
+    "source_snapshots_certified": 3,
+    "market_requests": 0
+  },
+  "window_certifications": {
+    "legacy": {
+      "request_identity": "d0c6f6858b0d4500a57e989bb3a670fdc89363e6ddd8be01a84fc6a16da95203",
+      "snapshot_sha256": "a7479e32f09d79018395c6e1bbae3e4f76275199013edc3ea85535337a5efa23",
+      "row_count": 5,
+      "minimum_date": "2018-04-16",
+      "maximum_date": "2018-04-20",
+      "schema_fingerprint": "0cabc3dd69e8438ec9acefd96e185571e19c829635034eb9df9e42e75238c8b8",
+      "parse_determinism_3_run": "PASS"
+    },
+    "boundary": {
+      "request_identity": "33cf26ce45fd579f7980ebe813a70a389fa412ed0fb4d596558253dd1f2ab071",
+      "snapshot_sha256": "be2c6155cb8fb745e07a5dfd1c8035f6f8a2a489ad30e3b163c5195530cf59f8",
+      "row_count": 6,
+      "minimum_date": "2018-04-20",
+      "maximum_date": "2018-04-27",
+      "schema_fingerprint": "0cabc3dd69e8438ec9acefd96e185571e19c829635034eb9df9e42e75238c8b8",
+      "parse_determinism_3_run": "PASS"
+    },
+    "reformed": {
+      "request_identity": "b14105677cc330369099aad0c335586459a2c1b07d0c3db246182403d50a2241",
+      "snapshot_sha256": "8425bdc88259b300cca42fe951bdfec1eb3c8cadbf2516b998ed05006350effc",
+      "row_count": 5,
+      "minimum_date": "2018-04-23",
+      "maximum_date": "2018-04-27",
+      "schema_fingerprint": "0cabc3dd69e8438ec9acefd96e185571e19c829635034eb9df9e42e75238c8b8",
+      "parse_determinism_3_run": "PASS"
+    }
+  },
+  "committed_payloads": "NONE",
+  "committed_row_values": "NONE"
+}

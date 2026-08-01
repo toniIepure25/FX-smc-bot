@@ -1,0 +1,39 @@
+{
+  "audit_id": "BOE_IUDSOIA_SONIA_TRANSITION_AUDIT_V1",
+  "status": "PASS",
+  "final_legacy_observation": "2018-04-20",
+  "first_reformed_observation": "2018-04-23",
+  "transition_weekend": [
+    "2018-04-21",
+    "2018-04-22"
+  ],
+  "legacy_publication_rule": {
+    "actual_publication_timestamp": "not claimed",
+    "publication_evidence_kind": "PUBLICATION_DAY_ENVELOPE",
+    "publication_lower_bound": "18:00 Europe/London on observation day",
+    "publication_upper_bound": "exclusive end of the same Europe/London calendar day",
+    "strategy_availability": "first frozen 17:05 America/New_York execution strictly after the publication-day envelope closes",
+    "revision_identifier": null,
+    "revision_status": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID"
+  },
+  "reformed_publication_rule": {
+    "actual_publication_timestamp": "nullable and not claimed",
+    "publication_evidence_kind": "BOUNDED_TIME_ENVELOPE",
+    "publication_lower_bound": "09:00 Europe/London on the next London business day",
+    "publication_upper_bound": "12:00 Europe/London on that publication day",
+    "strategy_availability": "12:00 Europe/London on the publication day",
+    "revision_identifier": null,
+    "revision_status": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID"
+  },
+  "edge_cases_tested": {
+    "2018-04-20_final_legacy_inclusion": "PASS",
+    "2018-04-23_first_reformed_inclusion": "PASS",
+    "weekend_transition_has_no_synthetic_observations": "PASS",
+    "london_holiday_boundary": "PASS",
+    "uk_us_dst_divergence": "PASS",
+    "wrong_series_rejection": "PASS",
+    "out_of_range_rejection": "PASS",
+    "mixed_scope_atomic_rejection": "PASS",
+    "unknown_schema_rejection": "PASS"
+  }
+}

@@ -7,6 +7,7 @@ from fx_smc_bot.research.rate_sources.bank_of_canada import (
 from fx_smc_bot.research.rate_sources.bank_of_england import (
     BankOfEnglandSoniaAdapter,
     BankOfEnglandSoniaAdapterV2,
+    BankOfEnglandSoniaAdapterV3,
 )
 from fx_smc_bot.research.rate_sources.bank_of_japan import (
     BankOfJapanCallRateAdapter,
@@ -50,6 +51,7 @@ __all__ = [
     "BankOfCanadaAdapterV2",
     "BankOfEnglandSoniaAdapter",
     "BankOfEnglandSoniaAdapterV2",
+    "BankOfEnglandSoniaAdapterV3",
     "BankOfJapanCallRateAdapter",
     "BankOfJapanCallRateAdapterV2",
     "EcbEoniaEstrAdapter",
