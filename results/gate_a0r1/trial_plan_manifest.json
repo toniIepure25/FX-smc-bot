@@ -1,0 +1,122 @@
+{
+  "artifact_id": "A0R1_TRIAL_PLAN_MANIFEST_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS",
+  "planned_trial_count": 1200,
+  "candidate_equivalent_trial_count": 1200,
+  "trials_per_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 120,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 96,
+    "F03_VOLATILITY_BREAKOUT": 96,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 96,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 84,
+    "F06_CROSS_PAIR_LEAD_LAG": 120,
+    "F07_CURRENCY_FACTOR_RESIDUALS": 96,
+    "F08_TRIANGULAR_CONSISTENCY_RESIDUALS": 84,
+    "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL": 96,
+    "F10_INTRADAY_SEASONALITY": 84,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 108,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 120
+  },
+  "model_seeds_per_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 120,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 96,
+    "F03_VOLATILITY_BREAKOUT": 96,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 96,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 84,
+    "F06_CROSS_PAIR_LEAD_LAG": 120,
+    "F07_CURRENCY_FACTOR_RESIDUALS": 96,
+    "F08_TRIANGULAR_CONSISTENCY_RESIDUALS": 84,
+    "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL": 96,
+    "F10_INTRADAY_SEASONALITY": 84,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 108,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 120
+  },
+  "target_horizons_per_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F03_VOLATILITY_BREAKOUT": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F04_LIQUIDITY_SHOCK_REVERSAL": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F05_SPREAD_AWARE_EXECUTION_GATING": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F06_CROSS_PAIR_LEAD_LAG": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F07_CURRENCY_FACTOR_RESIDUALS": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F08_TRIANGULAR_CONSISTENCY_RESIDUALS": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F10_INTRADAY_SEASONALITY": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ],
+    "F12_COST_SENSITIVE_ML_ABSTENTION": [
+      5,
+      15,
+      30,
+      60,
+      120
+    ]
+  },
+  "registry_sha256": "66b4856cbd64ca05ac2a79324eed3f24bc5107f6697cc74cbe6206e9d12dcc60"
+}
