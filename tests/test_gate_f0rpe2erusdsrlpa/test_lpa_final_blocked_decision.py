@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
+
+from fx_smc_bot.research.manifest_hashing import verify_manifest_sections
 
 ROOT = Path(__file__).resolve().parents[2]
 RESULTS = ROOT / "results" / "gate_f0rpe2erusdsrlpa"
@@ -10,11 +11,6 @@ RESULTS = ROOT / "results" / "gate_f0rpe2erusdsrlpa"
 
 def _load(name: str) -> dict[str, object]:
     return json.loads((RESULTS / name).read_text(encoding="utf-8"))
-
-
-def _sha256(relative_path: str) -> str:
-    data = (ROOT / relative_path).read_bytes().replace(b"\r\n", b"\n")
-    return hashlib.sha256(data).hexdigest()
 
 
 def test_final_decision_stops_at_rate_source_access_without_empirical_access() -> None:
@@ -48,11 +44,12 @@ def test_final_decision_stops_at_rate_source_access_without_empirical_access() -
 
 def test_final_manifest_hashes_reached_artifacts_and_contains_no_rate_rows() -> None:
     manifest = _load("reproducibility_manifest.json")
-    for section in ("artifact_sha256", "documentation_sha256", "source_sha256"):
-        hashes = manifest[section]
-        assert isinstance(hashes, dict)
-        for relative_path, expected in hashes.items():
-            assert _sha256(str(relative_path)) == expected, relative_path
+    verify_manifest_sections(
+        manifest,
+        repository_root=ROOT,
+        sections=("artifact_sha256", "documentation_sha256", "source_sha256"),
+        manifest_relative_path="results/gate_f0rpe2erusdsrlpa/reproducibility_manifest.json",
+    )
 
     serialized = json.dumps(
         [

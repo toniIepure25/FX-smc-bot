@@ -1,0 +1,25 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "inherited_artifact_sha256": {
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPAEURSR_FINAL_DECISION_MEMO.md": "11448bf8a7e8994936e96422684f54013d425a9ecb92def3c0dd6a8b07abd86a",
+    "results/gate_f0rpe2erusdsrlpaeursr/eonia_estr_transition_audit.json": "42b6ca32200bd00d838b465c8b04d156b05188f9e588e7421a3acd587a2e834c",
+    "results/gate_f0rpe2erusdsrlpaeursr/eur_adapter_v3_certification.json": "62064c5b741d7c1825bd8e8bb1e5054a64c7f23d72aae93c4b58eae73092a7e3",
+    "results/gate_f0rpe2erusdsrlpaeursr/final_decision.json": "e44856e5abeac754eef2589ebead4ca095fc2f8fc29b1ec0834e046acac593a0",
+    "results/gate_f0rpe2erusdsrlpaeursr/integrity_audit.json": "bdd710b260b1c3c3fe0763ea608b7d40134ff21cf9fb689d7c46f4c3a408f6fa",
+    "results/gate_f0rpe2erusdsrlpaeursr/live_adapter_certification.json": "b2c68313cf37a5269686a24be9a47993bbb03e4c6aaab06eb8662280e3fc5840",
+    "results/gate_f0rpe2erusdsrlpaeursr/live_adapter_matrix.json": "84b229d2a152397bb47b73464f0498dbe322bcd7bae3b32c75cdc8cd3fe903e9",
+    "results/gate_f0rpe2erusdsrlpaeursr/prohibited_data_audit.json": "cad8aa5ba59ac6f2db4a9033fc392e5e517cdcdec8e314337926d2ca389f9b7b",
+    "results/gate_f0rpe2erusdsrlpaeursr/reproducibility_manifest.json": "2937f229954ad293bdd9341b89e2fdd95f33865ab93683e7f36dcad9bd17e430"
+  },
+  "market_requests": 0,
+  "predecessor_block": "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED",
+  "predecessor_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "predecessor_failure": {
+    "adapter_id": "BOE_SONIA_V2",
+    "currency": "GBP",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_403",
+    "series_id": "IUDSOIA",
+    "source_snapshots_persisted": 0
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "actual_mismatch_at_recorded_commit_fails": "PASS",
+    "current_working_tree_mode_supported_when_explicit": "PASS",
+    "historical_source_verification_uses_recorded_git_blob": "PASS",
+    "later_source_modification_does_not_invalidate_historical_manifest": "PASS",
+    "lf_crlf_normalization": "PASS",
+    "missing_historical_path_fails": "PASS",
+    "path_escape_rejected": "PASS",
+    "raw_byte_mode_byte_sensitive": "PASS"
+  },
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "predecessor_manifest_modified": false,
+  "previously_failing_test": {
+    "name": "tests/test_gate_f0rpe2erusdsrlpa/test_lpa_final_blocked_decision.py::test_final_manifest_hashes_reached_artifacts_and_contains_no_rate_rows",
+    "status": "PASS"
+  },
+  "reconciliation_id": "HISTORICAL_MANIFEST_COMMIT_PINNING_RECONCILIATION_V1",
+  "status": "PASS"
+}

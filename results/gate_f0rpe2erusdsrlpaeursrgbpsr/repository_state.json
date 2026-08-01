@@ -1,0 +1,10 @@
+{
+  "branch": "research/classical-fx-risk-premia-v2-future-baseline",
+  "expected_starting_sha": "aab00b31ff46367c8c6c1c69ce045ad23ea6243d",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "local_head_at_start": "aab00b31ff46367c8c6c1c69ce045ad23ea6243d",
+  "origin_main_sha": "e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+  "remote_head_at_start": "aab00b31ff46367c8c6c1c69ce045ad23ea6243d",
+  "status": "PASS",
+  "worktree_clean_at_start": true
+}

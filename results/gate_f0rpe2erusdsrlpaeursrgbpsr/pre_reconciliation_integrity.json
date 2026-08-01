@@ -1,0 +1,9 @@
+{
+  "diff_check_at_start": "PASS",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "history_rewrite_used": false,
+  "local_remote_synchronized_at_start": true,
+  "pre_reconciliation_sha": "aab00b31ff46367c8c6c1c69ce045ad23ea6243d",
+  "status": "PASS",
+  "worktree_clean_at_start": true
+}

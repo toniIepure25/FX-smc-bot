@@ -1,0 +1,26 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "lock_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_PROTOCOL_INHERITANCE_V1",
+  "permitted_changes": [
+    "historical manifest verification",
+    "Bank of England request identity",
+    "CSV/XML parsing",
+    "SONIA publication evidence",
+    "SONIA methodology-regime metadata",
+    "rate-store integration",
+    "remaining adapter infrastructure",
+    "empirical orchestration"
+  ],
+  "preserved_locks": [
+    "F0_RATE_PROVENANCE_AMENDMENT_V1",
+    "F0RPE2ER_FUTURE_ONLY_CONFIRMATORY_BASELINE_V1",
+    "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1",
+    "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4",
+    "NY_FED_EFFR_V3",
+    "ECB_EONIA_ESTR_V3"
+  ],
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "scientific_parameter_change": false,
+  "status": "PASS"
+}
