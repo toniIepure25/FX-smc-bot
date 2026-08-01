@@ -1,0 +1,35 @@
+{
+  "artifact_id": "A0R1_DISCOVERY_REQUEST_PLAN_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "FROZEN_PRE_PROVIDER_REQUEST",
+  "provider": "Dukascopy BI5 bid/ask",
+  "instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY"
+  ],
+  "start": "2010-01-01",
+  "end": "2014-12-31",
+  "roles": {
+    "2010": "warm-up only",
+    "2011-2014": "broad discovery only"
+  },
+  "sides": [
+    "bid",
+    "ask"
+  ],
+  "month_count": 60,
+  "instrument_month_side_partitions": 1080,
+  "prohibited": {
+    "2015_onward_before_shortlist": true,
+    "2023_2025": true,
+    "NZD": true,
+    "NZDUSD": true
+  }
+}
