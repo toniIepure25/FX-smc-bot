@@ -1,0 +1,17 @@
+{
+  "audit_id": "A0_FEATURE_AVAILABILITY_AUDIT_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "PASS_PRE_OUTCOME",
+  "checks": {
+    "all_features_have_earliest_availability": "PASS",
+    "model_fitted_transforms_fold_local": "REQUIRED",
+    "full_sample_normalization": "PROHIBITED",
+    "backward_filled_feature": "PROHIBITED",
+    "future_spread_feature": "PROHIBITED",
+    "future_volatility_feature": "PROHIBITED",
+    "future_session_information": "PROHIBITED",
+    "rate_or_financing_feature": "PROHIBITED",
+    "quote_proxies_labeled_as_proxies": "PASS"
+  },
+  "outcome_data_accessed": false
+}

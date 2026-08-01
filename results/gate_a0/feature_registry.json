@@ -1,0 +1,126 @@
+{
+  "registry_id": "A0_FEATURE_REGISTRY_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "FROZEN_PRE_OUTCOME",
+  "feature_groups": [
+    {
+      "feature_id": "QUOTE_PROXY_SIGNED_MID_CHANGE",
+      "source_columns": ["bid_close", "ask_close"],
+      "lookback": "1 to 120 completed M1 bars",
+      "earliest_availability": "after source bar close plus one completed M1 latency",
+      "timezone": "UTC source, America/New_York session overlays",
+      "missing_value_behavior": "no synthetic fill; missing feature invalidates signal",
+      "normalization_window": "rolling or expanding inside fold only",
+      "cross_sectional": false,
+      "model_fitted": false,
+      "quote_based_proxy": true
+    },
+    {
+      "feature_id": "QUOTE_PROXY_RUN_LENGTH",
+      "source_columns": ["bid_close", "ask_close"],
+      "lookback": "consecutive completed quote-derived mid changes",
+      "earliest_availability": "after run terminal bar close",
+      "timezone": "UTC",
+      "missing_value_behavior": "run resets at gap",
+      "normalization_window": "none or rolling inside fold",
+      "cross_sectional": false,
+      "model_fitted": false,
+      "quote_based_proxy": true
+    },
+    {
+      "feature_id": "SPREAD_STATE",
+      "source_columns": ["bid_close", "ask_close"],
+      "lookback": "5 to 390 completed M1 bars",
+      "earliest_availability": "after completed bar close",
+      "timezone": "UTC plus session labels",
+      "missing_value_behavior": "missing bid or ask blocks signal",
+      "normalization_window": "rolling median/z-score fitted inside fold",
+      "cross_sectional": true,
+      "model_fitted": false,
+      "quote_based_proxy": true
+    },
+    {
+      "feature_id": "REALIZED_VOLATILITY_AND_JUMP_PROXY",
+      "source_columns": ["bid_close", "ask_close", "bid_high", "bid_low", "ask_high", "ask_low"],
+      "lookback": "15 to 390 completed M1 bars",
+      "earliest_availability": "after completed lookback window",
+      "timezone": "UTC",
+      "missing_value_behavior": "window invalid when required quote is missing",
+      "normalization_window": "rolling or expanding inside fold only",
+      "cross_sectional": true,
+      "model_fitted": false,
+      "quote_based_proxy": true
+    },
+    {
+      "feature_id": "SESSION_CELL",
+      "source_columns": ["timestamp"],
+      "lookback": "prior years only for learned cell statistics",
+      "earliest_availability": "timestamp known at decision time",
+      "timezone": "America/New_York, Europe/London, Asia/Tokyo",
+      "missing_value_behavior": "unknown DST or holiday cell invalidates signal",
+      "normalization_window": "prior-year cell estimates inside fold",
+      "cross_sectional": false,
+      "model_fitted": true,
+      "quote_based_proxy": false
+    },
+    {
+      "feature_id": "CROSS_PAIR_LAGGED_RETURNS",
+      "source_columns": ["bid_close", "ask_close"],
+      "lookback": "1,2,3,5,10,15,30 completed M1 bars",
+      "earliest_availability": "after source-pair lag bar close",
+      "timezone": "UTC synchronized",
+      "missing_value_behavior": "no backfill; target signal invalid if source lag missing",
+      "normalization_window": "fold-local volatility scaling",
+      "cross_sectional": true,
+      "model_fitted": false,
+      "quote_based_proxy": true
+    },
+    {
+      "feature_id": "CURRENCY_FACTOR_RESIDUAL",
+      "source_columns": ["pair log returns from nine-pair graph"],
+      "lookback": "rolling or expanding past window",
+      "earliest_availability": "after all required lagged pair bars close",
+      "timezone": "UTC synchronized",
+      "missing_value_behavior": "factor estimate invalid if graph is rank deficient or pair missing",
+      "normalization_window": "fold-local rolling or expanding estimation",
+      "cross_sectional": true,
+      "model_fitted": true,
+      "quote_based_proxy": true
+    },
+    {
+      "feature_id": "TRIANGULAR_EXECUTABLE_RESIDUAL",
+      "source_columns": ["three-leg bid/ask quotes"],
+      "lookback": "1 to 30 completed M1 bars",
+      "earliest_availability": "after all three legs have side-correct executable quotes",
+      "timezone": "UTC synchronized",
+      "missing_value_behavior": "no signal if any leg missing",
+      "normalization_window": "fold-local rolling",
+      "cross_sectional": true,
+      "model_fitted": false,
+      "quote_based_proxy": true
+    },
+    {
+      "feature_id": "REGIME_STATE",
+      "source_columns": ["lagged volatility", "spread", "trend", "correlation", "dispersion"],
+      "lookback": "rolling or expanding past window",
+      "earliest_availability": "filtered state after decision cutoff",
+      "timezone": "UTC plus session overlays",
+      "missing_value_behavior": "state unavailable blocks signal",
+      "normalization_window": "fold-local fit only",
+      "cross_sectional": true,
+      "model_fitted": true,
+      "quote_based_proxy": true
+    }
+  ],
+  "fitted_transforms_must_be_fold_local": [
+    "scaling",
+    "winsorization",
+    "imputation",
+    "PCA",
+    "currency-factor estimation",
+    "regime fitting",
+    "feature selection"
+  ],
+  "full_sample_normalization": "PROHIBITED",
+  "backward_fill": "PROHIBITED"
+}

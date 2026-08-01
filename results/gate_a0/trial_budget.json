@@ -1,0 +1,22 @@
+{
+  "budget_id": "A0_TRIAL_BUDGET_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "FROZEN_PRE_OUTCOME",
+  "global_maximum_candidate_equivalent_trials": 1200,
+  "registered_trials": 0,
+  "completed_trials": 0,
+  "failed_technical_trials": 0,
+  "invalid_protocol_trials": 0,
+  "candidate_equivalent_trial_definition": [
+    "parameter configurations",
+    "feature subsets",
+    "target horizons",
+    "model classes",
+    "random seeds",
+    "ensemble weight variants",
+    "threshold variants",
+    "position-sizing variants"
+  ],
+  "trial_deletion": "PROHIBITED",
+  "losing_trial_suppression": "PROHIBITED"
+}

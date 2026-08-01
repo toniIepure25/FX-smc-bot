@@ -1,0 +1,33 @@
+{
+  "registry_id": "A0_TARGET_REGISTRY_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "FROZEN_PRE_OUTCOME",
+  "targets": [
+    {
+      "target_id": "NET_EXECUTABLE_RETURN_SIGN",
+      "definition": "sign of side-correct bid/ask executable return net of spread, commission and slippage",
+      "horizons_minutes": [5, 15, 30, 60, 120],
+      "same_bar_ambiguity": "adverse-first",
+      "signal_latency": "minimum one completed M1 bar",
+      "rollover_rule": "target invalid if position cannot be flat by 16:45 America/New_York"
+    },
+    {
+      "target_id": "NET_EXECUTABLE_RETURN",
+      "definition": "side-correct bid/ask executable return net of spread, commission and slippage",
+      "horizons_minutes": [5, 15, 30, 60, 120],
+      "same_bar_ambiguity": "adverse-first",
+      "signal_latency": "minimum one completed M1 bar",
+      "rollover_rule": "target invalid if position cannot be flat by 16:45 America/New_York"
+    },
+    {
+      "target_id": "GROSS_MOVE_EXCEEDS_FROZEN_ROUND_TRIP_COST",
+      "definition": "probability that gross side-correct move exceeds frozen round-trip cost estimate",
+      "horizons_minutes": [5, 15, 30, 60, 120],
+      "same_bar_ambiguity": "adverse-first",
+      "signal_latency": "minimum one completed M1 bar",
+      "rollover_rule": "target invalid if position cannot be flat by 16:45 America/New_York"
+    }
+  ],
+  "mid_price_execution": "PROHIBITED",
+  "same_bar_signal_and_execution_without_latency": "PROHIBITED"
+}

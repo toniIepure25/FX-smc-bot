@@ -1,0 +1,181 @@
+{
+  "registry_id": "A0_HYPOTHESIS_REGISTRY_V1",
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "status": "FROZEN_PRE_OUTCOME",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "instrument_universe": [
+    "EURUSD",
+    "GBPUSD",
+    "AUDUSD",
+    "USDJPY",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY"
+  ],
+  "excluded_instruments": [
+    "NZD",
+    "NZDUSD"
+  ],
+  "rate_or_financing_series_allowed": false,
+  "hypotheses": [
+    {
+      "hypothesis_id": "A0_F01_SESSION_OPEN_CONTINUATION",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "rationale": "Regional opens can concentrate information processing and liquidity demand.",
+      "required_data": "M1/M5 bid/ask prices and timezone-aware session labels",
+      "signal_definition_class": "session anchor return continuation",
+      "expected_horizon": "15-120 minutes",
+      "failure_mechanism": "spread and fast liquidity replenishment erase open drift",
+      "cost_sensitivity": "high",
+      "possible_confounders": "DST, holidays, macro announcements, opening spread spikes",
+      "preregistered_falsification_test": "continuation fails if net return is not positive in at least 70 percent of discovery folds"
+    },
+    {
+      "hypothesis_id": "A0_F01_SESSION_OPEN_REVERSAL",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "rationale": "Opening imbalances may overshoot and mean-revert once liquidity deepens.",
+      "required_data": "M1/M5 bid/ask prices and timezone-aware session labels",
+      "signal_definition_class": "session anchor return reversal",
+      "expected_horizon": "15-120 minutes",
+      "failure_mechanism": "open move reflects durable information rather than transient pressure",
+      "cost_sensitivity": "high",
+      "possible_confounders": "session overlap, news clustering, roll exclusion",
+      "preregistered_falsification_test": "reversal fails if stress_1 net performance is non-positive"
+    },
+    {
+      "hypothesis_id": "A0_F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "rationale": "Runs of signed quote changes may proxy short-lived order-flow imbalance.",
+      "required_data": "quote-derived signed mid changes, spread, realized volatility and quote-run length",
+      "signal_definition_class": "quote-run continuation or exhaustion",
+      "expected_horizon": "5-60 minutes",
+      "failure_mechanism": "quote-run proxy is mostly bid-ask bounce or stale quote refresh",
+      "cost_sensitivity": "very_high",
+      "possible_confounders": "quote clustering, missing quote bursts, spread widening",
+      "preregistered_falsification_test": "fails if bid/ask executable returns disappear after one-bar latency"
+    },
+    {
+      "hypothesis_id": "A0_F03_VOLATILITY_BREAKOUT",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "rationale": "Compression followed by expansion may mark intraday repricing.",
+      "required_data": "M1/M5 high-low range, realized variance and session-relative range percentile",
+      "signal_definition_class": "breakout or failed-breakout",
+      "expected_horizon": "15-120 minutes",
+      "failure_mechanism": "breakouts are too late after executable costs",
+      "cost_sensitivity": "medium_high",
+      "possible_confounders": "news, spread spikes, session transition",
+      "preregistered_falsification_test": "fails if parameter-neighborhood stability does not pass"
+    },
+    {
+      "hypothesis_id": "A0_F04_LIQUIDITY_SHOCK_REVERSAL",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "rationale": "Spread, gap and abnormal return shocks can mark temporary liquidity dislocations.",
+      "required_data": "spread z-score, quote gaps, one-bar returns, bid/ask update asymmetry",
+      "signal_definition_class": "post-shock reversal after completed shock bar",
+      "expected_horizon": "5-60 minutes",
+      "failure_mechanism": "shock contains persistent information or no executable quote appears",
+      "cost_sensitivity": "very_high",
+      "possible_confounders": "holiday liquidity, data gaps, central-bank announcements",
+      "preregistered_falsification_test": "fails on any unresolved execution-integrity violation"
+    },
+    {
+      "hypothesis_id": "A0_F05_SPREAD_AWARE_EXECUTION_GATING",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "rationale": "Net returns may improve when independent signals are executed only in forecast low-cost states.",
+      "required_data": "frozen directional signals plus lagged spread and liquidity predictors",
+      "signal_definition_class": "execution filter, not directional alpha",
+      "expected_horizon": "same as underlying directional signal",
+      "failure_mechanism": "filter removes winners or forecasts costs poorly",
+      "cost_sensitivity": "direct",
+      "possible_confounders": "cost savings confused with directional alpha",
+      "preregistered_falsification_test": "must report execution alpha separately from directional alpha"
+    },
+    {
+      "hypothesis_id": "A0_F06_CROSS_PAIR_LEAD_LAG",
+      "family_id": "F06_CROSS_PAIR_LEAD_LAG",
+      "rationale": "Economically linked pairs may adjust with small lags when liquidity differs.",
+      "required_data": "strictly lagged M1/M5 returns for related pair graph",
+      "signal_definition_class": "lagged source-pair return predicting target-pair executable return",
+      "expected_horizon": "1-30 minutes",
+      "failure_mechanism": "lag disappears after synchronization and costs",
+      "cost_sensitivity": "high",
+      "possible_confounders": "contemporaneous leakage, stale bars, common USD shock",
+      "preregistered_falsification_test": "fails if any target return after signal cutoff enters features"
+    },
+    {
+      "hypothesis_id": "A0_F07_CURRENCY_FACTOR_RESIDUALS",
+      "family_id": "F07_CURRENCY_FACTOR_RESIDUALS",
+      "rationale": "Residuals from lagged currency-factor estimates may mean-revert or continue.",
+      "required_data": "nine-pair graph returns and rolling or expanding lagged factor estimates",
+      "signal_definition_class": "residual continuation or residual mean reversion",
+      "expected_horizon": "15-120 minutes",
+      "failure_mechanism": "factor residual mostly reflects noise and spread",
+      "cost_sensitivity": "medium_high",
+      "possible_confounders": "rank deficiency, USD common shock, JPY concentration",
+      "preregistered_falsification_test": "fails if factor estimation uses full-sample or future smoothing"
+    },
+    {
+      "hypothesis_id": "A0_F08_TRIANGULAR_CONSISTENCY_RESIDUALS",
+      "family_id": "F08_TRIANGULAR_CONSISTENCY_RESIDUALS",
+      "rationale": "Triangular price relationships may leave transient residuals, but only executable legs matter.",
+      "required_data": "bid/ask prices for EURJPY/EURUSD/USDJPY, GBPJPY/GBPUSD/USDJPY, AUDJPY/AUDUSD/USDJPY",
+      "signal_definition_class": "single-leg, two-leg hedge or three-leg executable basket convergence",
+      "expected_horizon": "1-30 minutes",
+      "failure_mechanism": "mid residual is not executable after all bid/ask costs",
+      "cost_sensitivity": "very_high",
+      "possible_confounders": "asynchronous quote timestamps, stale legs, multi-leg fill risk",
+      "preregistered_falsification_test": "fails if basket uses mid-price discrepancy as arbitrage"
+    },
+    {
+      "hypothesis_id": "A0_F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL",
+      "family_id": "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL",
+      "rationale": "Pairs with strong lagged normalized returns may continue or reverse intraday.",
+      "required_data": "lagged volatility-normalized returns across nine pairs",
+      "signal_definition_class": "top-minus-bottom, currency-neutral, USD-beta-neutral or JPY-beta-neutral allocation",
+      "expected_horizon": "15-120 minutes",
+      "failure_mechanism": "cross-sectional signal concentrates in one instrument or costlier pairs",
+      "cost_sensitivity": "medium_high",
+      "possible_confounders": "neutrality estimate leakage, duplicated currency exposures",
+      "preregistered_falsification_test": "fails if no neutrality calculation is lagged"
+    },
+    {
+      "hypothesis_id": "A0_F10_INTRADAY_SEASONALITY",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "rationale": "Timezone cells can encode recurring liquidity, spread and volatility patterns.",
+      "required_data": "prior-year cell statistics, session clock, day-of-week and holiday-adjacent flags",
+      "signal_definition_class": "seasonal directional or abstention cell",
+      "expected_horizon": "5-120 minutes",
+      "failure_mechanism": "seasonality is cost or liquidity pattern, not directional alpha",
+      "cost_sensitivity": "high",
+      "possible_confounders": "full-sample cell leakage, sparse cells, DST",
+      "preregistered_falsification_test": "fails if any cell statistic uses same-year future observations"
+    },
+    {
+      "hypothesis_id": "A0_F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "rationale": "Trend and reversal may depend on lagged volatility, liquidity and correlation regimes.",
+      "required_data": "lagged volatility, spread, trend strength, cross-pair correlation and dispersion",
+      "signal_definition_class": "fixed-bin, HMM-filtered or Gaussian-mixture-filtered regime conditioning",
+      "expected_horizon": "15-120 minutes",
+      "failure_mechanism": "regime model overfits or future smoothing leaks",
+      "cost_sensitivity": "medium_high",
+      "possible_confounders": "state instability, insufficient regime observations",
+      "preregistered_falsification_test": "fails if regime probability is smoothed with future data"
+    },
+    {
+      "hypothesis_id": "A0_F12_COST_SENSITIVE_ML_ABSTENTION",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "rationale": "Strictly lagged nonlinear feature interactions may predict when net executable return is positive.",
+      "required_data": "registered feature matrix, cost-aware labels and fold-local fitted transforms",
+      "signal_definition_class": "long, short or abstain model",
+      "expected_horizon": "5-120 minutes",
+      "failure_mechanism": "model overfits costs, regimes or sparse instruments",
+      "cost_sensitivity": "direct",
+      "possible_confounders": "feature selection leakage, seed mining, class imbalance",
+      "preregistered_falsification_test": "fails if any fitted preprocessing uses observations outside the fold"
+    }
+  ]
+}
