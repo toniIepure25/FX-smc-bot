@@ -1,0 +1,115 @@
+{
+  "registry_id": "BOJ_FINAL_CALL_RATE_CORRECTION_REGISTRY_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "BLOCKED_INCOMPLETE_OFFICIAL_CORRECTION_REGISTRY",
+  "decision": "BLOCKED_BY_BOJ_REVISION_PROVENANCE",
+  "authorized_interval": {
+    "start": "2010-01-01",
+    "end": "2022-12-31"
+  },
+  "official_sources_checked": {
+    "boj_current_call_money_market_page": {
+      "url": "https://www.boj.or.jp/en/statistics/market/short/mutan/index.htm",
+      "status": "AVAILABLE",
+      "use": "publication schedule, current releases, notices section, and current-page release lifecycle context"
+    },
+    "boj_uncollateralized_overnight_call_rate_explanation": {
+      "url": "https://www.boj.or.jp/en/statistics/outline/exp/exmutan.htm",
+      "status": "AVAILABLE",
+      "use": "series-context corroboration only"
+    },
+    "notices_by_year_2010_2022": {
+      "url_pattern": "https://www.boj.or.jp/en/statistics/outline/notice_<YYYY>/index.htm",
+      "years_checked": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "transport_status": "HTTP_200_FOR_EACH_YEAR_CHECKED",
+      "completeness_interpretation": "year pages are useful for candidate notices but do not prove global completeness for final call-rate value corrections"
+    },
+    "historical_final_result_release_pages": {
+      "tested_url_patterns": [
+        "https://www.boj.or.jp/en/statistics/market/short/mutan/d_release/md/<YYYY>/index.htm",
+        "https://www.boj.or.jp/en/statistics/market/short/mutan/<YYYY>/index.htm"
+      ],
+      "years_tested": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "transport_status": "HTTP_404_FOR_TESTED_PATTERNS",
+      "completeness_interpretation": "official historical final-release pages for the authorized interval were not located by the tested official URL patterns"
+    }
+  },
+  "call_money_related_notice_candidates": [
+    {
+      "year": 2013,
+      "title": "Alterations in the \"Amounts Outstanding in Short-term Money Market / Certificates of Deposit Outstanding\"",
+      "url": "https://www.boj.or.jp/en/statistics/outline/notice_2013/not130604b.htm",
+      "classification": "FORMAT_OR_SCOPE_RELATED_CANDIDATE",
+      "value_changing_final_call_rate_correction": "NOT_CERTIFIED"
+    },
+    {
+      "year": 2016,
+      "title": "Release of \"Call Money Market Data\"",
+      "url": "https://www.boj.or.jp/en/statistics/outline/notice_2016/not161228a.pdf",
+      "classification": "RELEASE_FORMAT_RELATED_CANDIDATE",
+      "value_changing_final_call_rate_correction": "NOT_CERTIFIED"
+    },
+    {
+      "year": 2019,
+      "title": "Changes in the Format of \"Amounts Outstanding in the Call Money Market\"",
+      "url": "https://www.boj.or.jp/en/statistics/outline/notice_2019/not191210a.htm",
+      "classification": "FORMAT_RELATED_CANDIDATE",
+      "value_changing_final_call_rate_correction": "NOT_CERTIFIED"
+    },
+    {
+      "year": 2020,
+      "title": "Changes in the Format of \"Call Money Market Data\"",
+      "url": "https://www.boj.or.jp/en/statistics/outline/notice_2020/not200313a.htm",
+      "classification": "FORMAT_RELATED_CANDIDATE",
+      "value_changing_final_call_rate_correction": "NOT_CERTIFIED"
+    }
+  ],
+  "correction_count": "NOT_CERTIFIABLE",
+  "value_changing_correction_completeness": "NOT_CERTIFIABLE",
+  "original_official_vintages_available": false,
+  "corrected_value_leakage_can_be_ruled_out": false,
+  "strategy_availability_for_corrected_current_values": "UNDEFINED_BECAUSE_COMPLETE_OFFICIAL_CORRECTION_REGISTRY_NOT_CERTIFIED",
+  "revision_semantics": {
+    "revision_identifier": "null unless explicitly supplied by BOJ",
+    "uncorrected_revision_status": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID",
+    "corrected_revision_status": "CORRECTED_BY_EXPLICIT_OFFICIAL_NOTICE",
+    "internal_storage_key_as_official_revision_id": "PROHIBITED"
+  },
+  "fail_closed_effects": {
+    "jpy_v3_adapter_implemented": false,
+    "jpy_source_snapshots_persisted": 0,
+    "jpy_numerical_rows_persisted": 0,
+    "jpy_rate_versions_created": 0,
+    "market_provider_requests": 0,
+    "empirical_execution": "NOT_REACHED"
+  },
+  "rationale": "The official API identity, series identity, schema and conservative publication-day envelope were certifiable, but the current API returns current final history and a sufficiently complete official value-correction registry for 2010-2022 could not be established. The gate therefore stops before JPY numerical persistence."
+}
