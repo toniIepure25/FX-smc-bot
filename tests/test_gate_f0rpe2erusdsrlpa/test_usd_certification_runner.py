@@ -3,17 +3,17 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
-import tempfile
 import uuid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "scripts" / "run_gate_f0rpe2erusdsrlpa_usd.py"
 RESULTS = ROOT / "results" / "gate_f0rpe2erusdsrlpa"
+EXTERNAL_TMP = ROOT.parent / "FX-smc-bot-local-data" / "test-tmp"
 
 
 def test_runner_dry_run_is_offline_and_does_not_create_database(tmp_path: Path) -> None:
-    external_root = Path(tempfile.gettempdir()) / f"effr-v4-{uuid.uuid4().hex}"
+    external_root = EXTERNAL_TMP / f"effr-v4-{uuid.uuid4().hex}"
     database = external_root / "rate-vintage-v4.sqlite3"
     completed = subprocess.run(
         [
@@ -46,7 +46,7 @@ def test_runner_rejects_a_database_inside_git(tmp_path: Path) -> None:
             sys.executable,
             str(SCRIPT),
             "--source-clean-room-root",
-            str(Path(tempfile.gettempdir()) / f"effr-source-{uuid.uuid4().hex}"),
+            str(EXTERNAL_TMP / f"effr-source-{uuid.uuid4().hex}"),
             "--v4-database",
             str(ROOT / "forbidden-rate-vintage-v4.sqlite3"),
             "--dry-run",

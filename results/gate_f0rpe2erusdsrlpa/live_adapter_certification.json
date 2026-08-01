@@ -1,0 +1,130 @@
+{
+  "adapter_certifications": {
+    "AUD": {
+      "adapter_id": "RBA_CASH_RATE_V2",
+      "as_of_availability": "NOT_RUN",
+      "currency": "AUD",
+      "exact_endpoint": "NOT_RUN",
+      "official_publisher": "NOT_RUN",
+      "parser": "NOT_RUN",
+      "publication_rule": "NOT_RUN",
+      "response_firewall": "NOT_RUN",
+      "response_schema": "NOT_RUN",
+      "series_identity": "NOT_RUN",
+      "server_side_date_range": "NOT_RUN",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    },
+    "CAD": {
+      "adapter_id": "BOC_V39079_EVENTS_V2",
+      "as_of_availability": "NOT_RUN",
+      "currency": "CAD",
+      "exact_endpoint": "NOT_RUN",
+      "official_publisher": "NOT_RUN",
+      "parser": "NOT_RUN",
+      "publication_rule": "NOT_RUN",
+      "response_firewall": "NOT_RUN",
+      "response_schema": "NOT_RUN",
+      "series_identity": "NOT_RUN",
+      "server_side_date_range": "NOT_RUN",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    },
+    "CHF": {
+      "adapter_id": "SIX_SARON_1800_V2",
+      "as_of_availability": "NOT_RUN",
+      "currency": "CHF",
+      "exact_endpoint": "NOT_RUN",
+      "official_publisher": "NOT_RUN",
+      "parser": "NOT_RUN",
+      "publication_rule": "NOT_RUN",
+      "response_firewall": "NOT_RUN",
+      "response_schema": "NOT_RUN",
+      "series_identity": "NOT_RUN",
+      "server_side_date_range": "NOT_RUN",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    },
+    "EUR": {
+      "adapter_id": "ECB_EONIA_ESTR_V2",
+      "as_of_availability": "NOT_RUN",
+      "currency": "EUR",
+      "exact_endpoint": "PASS",
+      "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+      "official_publisher": "PASS",
+      "parser": "NOT_RUN",
+      "publication_rule": "NOT_RUN",
+      "response_firewall": "FAIL_CLOSED",
+      "response_schema": "FAIL",
+      "series_identity": "PASS",
+      "server_side_date_range": "PASS",
+      "status": "FAIL"
+    },
+    "GBP": {
+      "adapter_id": "BOE_SONIA_V2",
+      "as_of_availability": "NOT_RUN",
+      "currency": "GBP",
+      "exact_endpoint": "NOT_RUN",
+      "official_publisher": "NOT_RUN",
+      "parser": "NOT_RUN",
+      "publication_rule": "NOT_RUN",
+      "response_firewall": "NOT_RUN",
+      "response_schema": "NOT_RUN",
+      "series_identity": "NOT_RUN",
+      "server_side_date_range": "NOT_RUN",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    },
+    "JPY": {
+      "adapter_id": "BOJ_FINAL_UO_CALL_V2",
+      "as_of_availability": "NOT_RUN",
+      "currency": "JPY",
+      "exact_endpoint": "NOT_RUN",
+      "official_publisher": "NOT_RUN",
+      "parser": "NOT_RUN",
+      "publication_rule": "NOT_RUN",
+      "response_firewall": "NOT_RUN",
+      "response_schema": "NOT_RUN",
+      "series_identity": "NOT_RUN",
+      "server_side_date_range": "NOT_RUN",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    }
+  },
+  "all_requested_dates_lte_2022_12_31": true,
+  "artifact_id": "F0RPE2ERUSDSRLPA_LIVE_ADAPTER_CERTIFICATION_V1",
+  "blocking_decision": "BLOCKED_BY_RATE_SOURCE_ACCESS",
+  "failure": {
+    "adapter_id": "ECB_EONIA_ESTR_V2",
+    "blocking_decision": "BLOCKED_BY_RATE_SOURCE_ACCESS",
+    "currency": "EUR",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+    "failure_disposition": "NO_SOURCE_SNAPSHOT_PERSISTED",
+    "failure_stage": "RATE_SOURCE_ACCESS",
+    "series_id": "EONIA"
+  },
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "market_provider_requests_sent": 0,
+  "numerical_rows_exposed_to_parser": 0,
+  "official_rate_provider_requests_sent": 1,
+  "rate_versions_persisted": 0,
+  "request_windows": [
+    {
+      "adapter_id": "ECB_EONIA_ESTR_V2",
+      "currency": "EUR",
+      "end": "2019-09-30",
+      "endpoint_declaration_sha256": "1e84948eb8c657b099bc988537d21501e8e2980e6e3f5ab1a9b820b22968aec6",
+      "request_identity": "1d4a217323bec51a8f4aca15b0754f7f44b51da6412d12abee13fadd5eaaf415",
+      "series_id": "EONIA",
+      "start": "2019-09-27"
+    },
+    {
+      "adapter_id": "ECB_EONIA_ESTR_V2",
+      "currency": "EUR",
+      "end": "2019-10-04",
+      "endpoint_declaration_sha256": "8cb6e9837030d8070093c708fd412f7576d78deded2788037bae861d20ded9ec",
+      "request_identity": "434dec3d05c8c30c979ee99e0ffb37460acf0a75d782b5d7906b7c1adcb8c0d8",
+      "series_id": "ESTR",
+      "start": "2019-10-01"
+    }
+  ],
+  "schema_version": 1,
+  "source_snapshots_persisted": 0,
+  "status": "FAIL",
+  "usd_v3_certification_sha": "f92e5a315094d61d7118fdcf07fbae403a8b414f"
+}

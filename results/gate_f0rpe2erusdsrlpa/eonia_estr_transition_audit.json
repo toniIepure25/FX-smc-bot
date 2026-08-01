@@ -1,0 +1,12 @@
+{
+  "adapter_id": "ECB_EONIA_ESTR_V2",
+  "artifact_id": "F0RPE2ERUSDSRLPA_EONIA_ESTR_TRANSITION_AUDIT_V1",
+  "eonia_request_planned": true,
+  "estr_request_planned": true,
+  "gate_id": "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+  "live_transition_test": "BLOCKED_BEFORE_FULL_EONIA_ESTR_PARSE",
+  "required_eonia_end": "2019-09-30",
+  "required_estr_start": "2019-10-01",
+  "schema_version": 1,
+  "status": "BLOCKED"
+}
