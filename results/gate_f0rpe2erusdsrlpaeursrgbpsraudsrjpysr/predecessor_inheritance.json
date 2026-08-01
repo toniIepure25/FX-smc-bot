@@ -1,0 +1,38 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "inheritance_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_PREDECESSOR_INHERITANCE_V1",
+  "status": "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED",
+  "predecessor_gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "predecessor_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "blocking_adapter": {
+    "adapter_id": "BOJ_FINAL_UO_CALL_V2",
+    "currency": "JPY",
+    "internal_series_identity": "FM01'STRDCLUCON",
+    "failed_endpoint": "https://www.stat-search.boj.or.jp/ssi/cgi-bin/famecgi2",
+    "failure": "OFFICIAL_ENDPOINT_UNEXPECTED_CONTENT_TYPE_TEXT_HTML",
+    "failure_stage": "OFFICIAL_SCHEMA_PREFLIGHT"
+  },
+  "predecessor_null_effects": {
+    "jpy_snapshots": 0,
+    "jpy_rows_parsed": 0,
+    "jpy_rate_versions": 0,
+    "market_provider_requests": 0,
+    "economic_outcomes": 0
+  },
+  "inherited_certified_adapters": {
+    "USD": "NY_FED_EFFR_V3",
+    "EUR": "ECB_EONIA_ESTR_V3",
+    "GBP": "BOE_SONIA_V3",
+    "AUD": "RBA_CASH_RATE_V3"
+  },
+  "artifact_hashes": {
+    "final_decision": "f904df6b039b57a9f72bbe21692ecbdf69d440f449464cbf9ece64fccaec3eff",
+    "live_adapter_matrix": "ac10a01d49cda3e44dfa6134037b93cd9b82f9259b5f8bee55d0590152762150",
+    "live_adapter_certification": "11a075b8fdbcbab227c30a86f4d9bb633e359fb64b9de8c8526bbb7ce43a74ff",
+    "aud_adapter_v3_certification": "3bc64e46181df05dda00e2cc924b5b325675b291ec5b7470ce5b34fa0b64b682",
+    "integrity_audit": "ae29a4dab3a5e614ac646fa5f81a2d239d20ae332760aa4560fa6fb4dcf48c15",
+    "prohibited_data_audit": "82eb7284ca600c87b63046f2c49ee0efe994c90a7c64fdfd87e85c0509be4191",
+    "reproducibility_manifest": "0724f08271554773e3d4c98d6c35f86e1a6111756448d83fa694a87001e7c3e1",
+    "final_decision_memo": "c43da02a90f7adc9930e566e0aee291e840263861af1a57c208231b7f4a98d62"
+  }
+}

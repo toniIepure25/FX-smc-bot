@@ -1,0 +1,30 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "lock_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSRJPYSR_PROTOCOL_INHERITANCE_V1",
+  "status": "PASS",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "inherited_contracts": [
+    "F0_RATE_PROVENANCE_AMENDMENT_V1",
+    "F0RPE2ER_FUTURE_ONLY_CONFIRMATORY_BASELINE_V1",
+    "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1",
+    "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4",
+    "HISTORICAL_MANIFEST_COMMIT_PINNING_RECONCILIATION_V1",
+    "NY_FED_EFFR_V3",
+    "ECB_EONIA_ESTR_V3",
+    "BOE_SONIA_V3",
+    "RBA_CASH_RATE_V3"
+  ],
+  "scientific_parameter_changes": "NONE",
+  "permitted_change_surface": [
+    "BOJ official API identity",
+    "BOJ database and series identity",
+    "BOJ metadata validation",
+    "BOJ API parsing",
+    "JPY publication evidence",
+    "JPY correction evidence",
+    "rate-store integration",
+    "CAD/CHF adapter infrastructure",
+    "empirical orchestration"
+  ]
+}

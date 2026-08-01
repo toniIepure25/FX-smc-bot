@@ -1,0 +1,12 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "PASS",
+  "preconditions": {
+    "expected_branch": "PASS",
+    "expected_local_head": "PASS",
+    "expected_remote_head": "PASS",
+    "worktree_clean": "PASS",
+    "no_pr_or_merge": "PASS"
+  },
+  "starting_sha": "07844cb0774e4c3c2c9378eedd87b3821591ea56"
+}
