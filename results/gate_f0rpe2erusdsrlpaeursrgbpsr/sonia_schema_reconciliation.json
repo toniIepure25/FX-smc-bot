@@ -1,0 +1,28 @@
+{
+  "reconciliation_id": "BOE_IUDSOIA_EXPORT_SCHEMA_RECONCILIATION_V1",
+  "status": "FROZEN_BEFORE_GBP_RATE_VERSION_PERSISTENCE",
+  "official_series": "IUDSOIA",
+  "currency": "GBP",
+  "frequency": "daily",
+  "economic_meaning": "Sterling Overnight Index Average",
+  "unit": "percentage points per annum",
+  "normalized_value": "official value / 100",
+  "day_count": "ACT/365 Fixed",
+  "calendar": "London business day",
+  "field_mappings": {
+    "DATE": "observation_date",
+    "IUDSOIA": "annualized_decimal_value"
+  },
+  "internal_constants": {
+    "currency": "GBP",
+    "series_id": "IUDSOIA",
+    "publisher": "Bank of England"
+  },
+  "not_literal_official_fields": [
+    "publicationTimestamp",
+    "effectiveTimestamp",
+    "revisionIdentifier",
+    "methodologyRegime"
+  ],
+  "schema_fingerprint": "0cabc3dd69e8438ec9acefd96e185571e19c829635034eb9df9e42e75238c8b8"
+}

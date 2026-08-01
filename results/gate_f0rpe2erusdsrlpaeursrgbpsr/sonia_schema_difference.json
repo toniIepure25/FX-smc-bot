@@ -1,0 +1,15 @@
+{
+  "difference_id": "BOE_IADB_IUDSOIA_LEGACY_REFORMED_SCHEMA_DIFFERENCE_V1",
+  "legacy_descriptor": "BOE_IADB_IUDSOIA_LEGACY_SCHEMA_DESCRIPTOR_V1",
+  "reformed_descriptor": "BOE_IADB_IUDSOIA_REFORMED_SCHEMA_DESCRIPTOR_V1",
+  "schema_fingerprint_changed": false,
+  "header_difference": [],
+  "field_type_difference": {},
+  "series_code_difference": [],
+  "methodology_difference": {
+    "legacy": "observation_date <= 2018-04-20",
+    "reformed": "observation_date >= 2018-04-23"
+  },
+  "row_count_difference_is_window_driven": true,
+  "committed_values": "NONE"
+}

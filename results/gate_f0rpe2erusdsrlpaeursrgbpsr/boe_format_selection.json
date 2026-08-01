@@ -1,0 +1,24 @@
+{
+  "selection_id": "BOE_IADB_IUDSOIA_CSV_FORMAT_SELECTION_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "selected_route": "CSV",
+  "selected_format_code": "TN",
+  "selected_format_meaning": "TABULAR_NO_TITLES",
+  "rejected_meaning": {
+    "TN": "COLUMNAR"
+  },
+  "selection_basis": {
+    "stable_schema": "PASS",
+    "exact_series_identity": "PASS",
+    "date_range_enforceability": "PASS",
+    "deterministic_parsing": "PASS",
+    "footnote_representation": "NO_FOOTNOTE_FIELD_PRESENT",
+    "duplicate_handling": "FAIL_CLOSED_ON_CONFLICTING_DUPLICATES",
+    "outcome_values_consulted": false
+  },
+  "frozen_headers": [
+    "DATE",
+    "IUDSOIA"
+  ],
+  "schema_fingerprint": "0cabc3dd69e8438ec9acefd96e185571e19c829635034eb9df9e42e75238c8b8"
+}

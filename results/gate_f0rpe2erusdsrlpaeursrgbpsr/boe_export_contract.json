@@ -1,0 +1,73 @@
+{
+  "contract_id": "BOE_IADB_MACHINE_READABLE_EXPORT_CONTRACT_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "publisher": "Bank of England",
+  "series_id": "IUDSOIA",
+  "series_name": "Daily Sterling overnight index average rate",
+  "source_contract": {
+    "official_help_url": "https://www.bankofengland.co.uk/boeapps/database/Help.asp?Highlight=Hierarchy&Travel=",
+    "route_precedence": [
+      "CSV",
+      "XML_ONLY_WHEN_CSV_INACCESSIBLE_OR_STRUCTURALLY_UNCERTIFIABLE",
+      "NO_HTML_SCRAPING_FALLBACK"
+    ],
+    "csv_route": {
+      "endpoint": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp",
+      "method": "GET",
+      "required_query_parameters": {
+        "csv.x": "yes",
+        "Datefrom": "<DD/Mon/YYYY>",
+        "Dateto": "<DD/Mon/YYYY>",
+        "SeriesCodes": "IUDSOIA",
+        "UsingCodes": "Y",
+        "CSVF": "<EXPLICIT_FROZEN_FORMAT>",
+        "VPD": "N",
+        "VFD": "Y"
+      },
+      "accept": "text/csv"
+    },
+    "xml_route": {
+      "endpoint": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp",
+      "method": "GET",
+      "required_query_parameters": {
+        "CodeVer": "new",
+        "xml.x": "yes",
+        "Datefrom": "<DD/Mon/YYYY>",
+        "Dateto": "<DD/Mon/YYYY>",
+        "SeriesCodes": "IUDSOIA",
+        "VPD": "N",
+        "VFD": "Y"
+      },
+      "accept": "application/xml"
+    }
+  },
+  "transparent_header_policy": {
+    "allowed": {
+      "Accept": [
+        "text/csv",
+        "application/xml"
+      ],
+      "User-Agent": "FX-smc-bot-research/1.0 transparent-official-rate-certification"
+    },
+    "prohibited": [
+      "browser User-Agent impersonation",
+      "cookies",
+      "Referer spoofing",
+      "session tokens",
+      "CAPTCHA responses"
+    ],
+    "anti_bot_bypass": "PROHIBITED"
+  },
+  "csv_route_result": {
+    "status": "ACCESSIBLE",
+    "bounded_windows_requested": 3,
+    "successful_requests": 3,
+    "format_code": "TN",
+    "format_meaning": "TABULAR_NO_TITLES"
+  },
+  "xml_fallback_result": {
+    "status": "NOT_USED",
+    "reason": "CSV route was accessible and structurally certifiable under the frozen precedence."
+  },
+  "html_scraping_fallback": "PROHIBITED"
+}

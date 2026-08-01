@@ -1,0 +1,24 @@
+{
+  "transition_id": "BOE_IUDSOIA_SONIA_METHODOLOGY_TRANSITION_V1",
+  "status": "PASS",
+  "legacy_regime": {
+    "name": "LEGACY_SONIA",
+    "observation_date_rule": "observation_date <= 2018-04-20",
+    "final_observation": "2018-04-20"
+  },
+  "reformed_regime": {
+    "name": "REFORMED_SONIA",
+    "observation_date_rule": "observation_date >= 2018-04-23",
+    "first_observation": "2018-04-23"
+  },
+  "transition_weekend": {
+    "2018-04-21": "WEEKEND_NOT_SYNTHETIC_OBSERVATION",
+    "2018-04-22": "WEEKEND_NOT_SYNTHETIC_OBSERVATION"
+  },
+  "rejections": [
+    "legacy classification after 2018-04-20",
+    "reformed classification before 2018-04-23",
+    "interpolation across transition",
+    "synthetic observation for 2018-04-21 or 2018-04-22"
+  ]
+}

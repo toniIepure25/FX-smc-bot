@@ -1,0 +1,27 @@
+{
+  "descriptor_id": "BOE_IADB_IUDSOIA_REFORMED_SCHEMA_DESCRIPTOR_V1",
+  "route_identity": "CSV",
+  "format_identity": "TABULAR_NO_TITLES",
+  "content_type": "text/csv",
+  "encoding": "utf-8-sig compatible",
+  "headers": [
+    "DATE",
+    "IUDSOIA"
+  ],
+  "field_types": {
+    "DATE": "date",
+    "IUDSOIA": "decimal percent string"
+  },
+  "row_count": 5,
+  "minimum_date": "2018-04-23",
+  "maximum_date": "2018-04-27",
+  "series_codes": [
+    "IUDSOIA"
+  ],
+  "schema_fingerprint": "0cabc3dd69e8438ec9acefd96e185571e19c829635034eb9df9e42e75238c8b8",
+  "payload_byte_count": 113,
+  "footnote_field_presence": "ABSENT",
+  "provisional_field_presence": "ABSENT",
+  "response_scope": "PASS",
+  "committed_values": "NONE"
+}
