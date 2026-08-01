@@ -1,0 +1,25 @@
+{
+  "EON_DSD": "PASS",
+  "EST_DSD": "PASS",
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_ECB_DSD_IDENTITY_V1",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "metadata_contains_numerical_observations": false,
+  "metadata_requests": [
+    {
+      "dsd": "ECB_EON1",
+      "payload_byte_count": 399448,
+      "response_sha256": "aa242e7c1720670a4f74902b29fa7f4ee9c4e84d4eb06b08df9fd06424035293",
+      "status": 200,
+      "url": "https://data-api.ecb.europa.eu/service/datastructure/ECB/ECB_EON1/latest?references=children"
+    },
+    {
+      "dsd": "ECB_EST1",
+      "payload_byte_count": 21974789,
+      "response_sha256": "99b2fd5a0316ee949f9e403a8997e7490450f008c71667f668ac9c0f6e261fd4",
+      "status": 200,
+      "url": "https://data-api.ecb.europa.eu/service/datastructure/ECB/ECB_EST1/latest?references=children"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS"
+}

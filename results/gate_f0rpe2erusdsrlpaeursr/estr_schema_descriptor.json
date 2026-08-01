@@ -1,0 +1,186 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_ESTR_SCHEMA_DESCRIPTOR_V1",
+  "content_type": "text/csv",
+  "encoding": "utf-8-sig-compatible",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "header_data_types": {
+    "BENCHMARK_ITEM": [
+      "string"
+    ],
+    "BREAKS": [
+      "null"
+    ],
+    "CALCUL_END_DATE": [
+      "null"
+    ],
+    "CALCUL_START_DATE": [
+      "null"
+    ],
+    "COMMENT_OBS": [
+      "null"
+    ],
+    "COMMENT_TS": [
+      "null"
+    ],
+    "COMPILING_ORG": [
+      "null"
+    ],
+    "CONF_STATUS": [
+      "string"
+    ],
+    "COVERAGE": [
+      "string"
+    ],
+    "DATA_COMP": [
+      "null"
+    ],
+    "DATA_TYPE_EST": [
+      "string"
+    ],
+    "DECIMALS": [
+      "number"
+    ],
+    "DISS_ORG": [
+      "null"
+    ],
+    "FREQ": [
+      "string"
+    ],
+    "KEY": [
+      "string"
+    ],
+    "OBS_STATUS": [
+      "string"
+    ],
+    "OBS_VALUE": [
+      "number"
+    ],
+    "PRE_BREAK_VALUE": [
+      "null"
+    ],
+    "PUBL_ECB": [
+      "null"
+    ],
+    "PUBL_MU": [
+      "null"
+    ],
+    "PUBL_PUBLIC": [
+      "null"
+    ],
+    "TIME_FORMAT": [
+      "string"
+    ],
+    "TIME_PERIOD": [
+      "date"
+    ],
+    "TIME_PER_COLLECT": [
+      "string"
+    ],
+    "TITLE": [
+      "string"
+    ],
+    "TITLE_COMPL": [
+      "string"
+    ],
+    "UNIT_INDEX_BASE": [
+      "null"
+    ],
+    "UNIT_MEASURE": [
+      "string"
+    ],
+    "UNIT_MULT": [
+      "number"
+    ]
+  },
+  "header_names": [
+    "KEY",
+    "FREQ",
+    "BENCHMARK_ITEM",
+    "DATA_TYPE_EST",
+    "TIME_PERIOD",
+    "OBS_VALUE",
+    "OBS_STATUS",
+    "CONF_STATUS",
+    "PRE_BREAK_VALUE",
+    "COMMENT_OBS",
+    "CALCUL_START_DATE",
+    "CALCUL_END_DATE",
+    "TIME_FORMAT",
+    "BREAKS",
+    "COMMENT_TS",
+    "COMPILING_ORG",
+    "COVERAGE",
+    "DATA_COMP",
+    "DECIMALS",
+    "DISS_ORG",
+    "PUBL_ECB",
+    "PUBL_MU",
+    "PUBL_PUBLIC",
+    "TIME_PER_COLLECT",
+    "TITLE",
+    "TITLE_COMPL",
+    "UNIT_INDEX_BASE",
+    "UNIT_MEASURE",
+    "UNIT_MULT"
+  ],
+  "maximum_TIME_PERIOD": "2019-10-04",
+  "minimum_TIME_PERIOD": "2019-10-01",
+  "obs_value_values_committed": 0,
+  "optional_fields": [
+    "PRE_BREAK_VALUE",
+    "COMMENT_OBS",
+    "CALCUL_START_DATE",
+    "CALCUL_END_DATE",
+    "BREAKS",
+    "COMMENT_TS",
+    "COMPILING_ORG",
+    "DATA_COMP",
+    "DISS_ORG",
+    "PUBL_ECB",
+    "PUBL_MU",
+    "PUBL_PUBLIC",
+    "UNIT_INDEX_BASE"
+  ],
+  "payload_byte_count": 1574,
+  "row_count": 4,
+  "row_level_data_committed": 0,
+  "schema_fingerprint": "9bf2e1d2c40d883fe0da3543e6d4d8eb461b3e973488d419d6e397ab0c8e6dca",
+  "schema_version": 1,
+  "stable_fields": [
+    "KEY",
+    "FREQ",
+    "BENCHMARK_ITEM",
+    "DATA_TYPE_EST",
+    "TIME_PERIOD",
+    "OBS_VALUE",
+    "OBS_STATUS",
+    "CONF_STATUS",
+    "TIME_FORMAT",
+    "COVERAGE",
+    "DECIMALS",
+    "TIME_PER_COLLECT",
+    "TITLE",
+    "TITLE_COMPL",
+    "UNIT_MEASURE",
+    "UNIT_MULT"
+  ],
+  "status": "PASS",
+  "unique_FREQ_values": [
+    "B"
+  ],
+  "unique_KEY_values": [
+    "EST.B.EU000A2X2A25.WT"
+  ],
+  "unit_identity": [
+    "PC"
+  ],
+  "windows": [
+    {
+      "maximum_TIME_PERIOD": "2019-10-04",
+      "minimum_TIME_PERIOD": "2019-10-01",
+      "payload_byte_count": 1574,
+      "payload_sha256": "ba1a3481a98108c826f6b6f16a790aa5b049e2eaf23059441a151666fa5aced1",
+      "row_count": 4
+    }
+  ]
+}

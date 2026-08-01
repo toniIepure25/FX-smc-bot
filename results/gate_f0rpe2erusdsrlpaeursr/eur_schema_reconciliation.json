@@ -1,0 +1,38 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_EUR_SCHEMA_RECONCILIATION_V1",
+  "benchmark_vs_archive_separation": "strategy availability derives from benchmark publication evidence, not source retrieval or archive ingestion time",
+  "eonia_mapping": {
+    "FREQ": "D",
+    "KEY": "EON.D.EONIA_TO.RATE",
+    "OBS_VALUE / 100": "annualized_decimal_rate",
+    "TIME_PERIOD": "observation_date",
+    "calendar": "TARGET2",
+    "currency": "constant EUR",
+    "day_count": "ACT/360",
+    "series_id": "EONIA"
+  },
+  "eonia_schema_fingerprint": "10cdca98c037c6a6b4e61ccb9dbaa868a2bca5d6d9c3783ca60f7ab4f76a66ac",
+  "estr_mapping": {
+    "BENCHMARK_ITEM": "EU000A2X2A25",
+    "DATA_TYPE_EST": "WT",
+    "FREQ": "B",
+    "KEY": "EST.B.EU000A2X2A25.WT",
+    "OBS_VALUE / 100": "annualized_decimal_rate",
+    "TIME_PERIOD": "observation_date",
+    "calendar": "TARGET2",
+    "currency": "constant EUR",
+    "day_count": "ACT/360",
+    "series_id": "ESTR"
+  },
+  "estr_schema_fingerprint": "9bf2e1d2c40d883fe0da3543e6d4d8eb461b3e973488d419d6e397ab0c8e6dca",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "publication_rules": {
+    "EONIA": "19:00 Europe/Brussels on observation TARGET2 business day",
+    "ESTR": "bounded envelope ending 09:00 Europe/Brussels on next TARGET2 business day"
+  },
+  "reconciliation_id": "ECB_EONIA_ESTR_SDMX_CSV_RECONCILIATION_V1",
+  "reconciliation_sha256": "2f0daa48e5b6982c6ad1844a05b73d3ea3388477dbeaff10c90be3996c7996ee",
+  "revision_semantics": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID when no explicit ECB revision identifier exists",
+  "schema_version": 1,
+  "status": "PASS"
+}

@@ -1,0 +1,15 @@
+﻿{
+    "schema_version":  1,
+    "artifact_id":  "F0RPE2ERUSDSRLPAEURSR_PRE_RECONCILIATION_INTEGRITY_V1",
+    "gate_id":  "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+    "starting_sha":  "c1d9a2a9f4a28a30959b85b67f4b62e965f91223",
+    "predecessor_decision":  "BLOCKED_BY_RATE_SOURCE_ACCESS",
+    "predecessor_blocking_adapter":  "ECB_EONIA_ESTR_V2",
+    "predecessor_blocking_series":  "EONIA",
+    "predecessor_http_status":  "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+    "predecessor_ecb_snapshots_persisted":  0,
+    "predecessor_ecb_rows_parsed":  0,
+    "market_requests":  0,
+    "economic_outcomes":  0,
+    "status":  "PASS"
+}

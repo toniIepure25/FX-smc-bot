@@ -1,0 +1,33 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_ECB_ENDPOINT_RECONCILIATION_V1",
+  "eonia_endpoint": {
+    "accept_media_type": "text/csv",
+    "base_endpoint": "https://data-api.ecb.europa.eu/service/data/EON/D.EONIA_TO.RATE",
+    "format": "csvdata",
+    "maximum_authorized_endPeriod": "2022-12-31",
+    "required_parameters": [
+      "startPeriod",
+      "endPeriod",
+      "format=csvdata",
+      "detail=full"
+    ]
+  },
+  "estr_endpoint": {
+    "accept_media_type": "text/csv",
+    "base_endpoint": "https://data-api.ecb.europa.eu/service/data/EST/B.EU000A2X2A25.WT",
+    "format": "csvdata",
+    "maximum_authorized_endPeriod": "2022-12-31",
+    "required_parameters": [
+      "startPeriod",
+      "endPeriod",
+      "format=csvdata",
+      "detail=full"
+    ]
+  },
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "invalid_eon_key_rejected": "EON.B.EU000A2X2A25.WT",
+  "reconciliation_id": "ECB_EONIA_ESTR_SOURCE_RECONCILIATION_V1",
+  "reconciliation_sha256": "5ac1204732b9f4a189b71321db3f6b2f8e653b77153161e595214897b593d6a9",
+  "schema_version": 1,
+  "status": "FROZEN_BEFORE_CORRECTED_ECB_NUMERICAL_ACCESS"
+}

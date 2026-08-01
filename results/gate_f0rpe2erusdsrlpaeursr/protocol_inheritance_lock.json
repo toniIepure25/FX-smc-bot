@@ -1,0 +1,29 @@
+﻿{
+    "schema_version":  1,
+    "artifact_id":  "F0RPE2ERUSDSRLPAEURSR_PROTOCOL_INHERITANCE_LOCK_V1",
+    "gate_id":  "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+    "lock_id":  "F0RPE2ERUSDSRLPAEURSR_PROTOCOL_INHERITANCE_V1",
+    "program_id":  "FX_CLASSICAL_RISK_PREMIA_V2",
+    "lineage_id":  "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+    "preserved":  [
+                      "F0_RATE_PROVENANCE_AMENDMENT_V1",
+                      "F0RPE2ER_FUTURE_ONLY_CONFIRMATORY_BASELINE_V1",
+                      "F0RPE2ERUSDSRLPA_PROTOCOL_INHERITANCE_V1",
+                      "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1",
+                      "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4",
+                      "NY_FED_EFFR_SCHEMA_RECONCILIATION_V1",
+                      "NY_FED_EFFR_V3"
+                  ],
+    "scientific_parameters_changed":  false,
+    "permitted_change_scope":  [
+                                   "ECB dataflow identity",
+                                   "ECB series identity",
+                                   "ECB request format",
+                                   "ECB SDMX parsing",
+                                   "EUR publication evidence normalization",
+                                   "EUR transition implementation",
+                                   "official-adapter infrastructure",
+                                   "empirical orchestration"
+                               ],
+    "status":  "PASS"
+}

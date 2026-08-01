@@ -1,0 +1,23 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_EUR_SERIES_IDENTITY_FREEZE_V1",
+  "eonia_authorized_observation_interval": {
+    "end": "2019-09-30",
+    "start": "2010-01-01"
+  },
+  "eonia_source_identity": "EON.D.EONIA_TO.RATE",
+  "estr_authorized_observation_interval": {
+    "end": "2022-12-31",
+    "start": "2019-10-01"
+  },
+  "estr_source_identity": "EST.B.EU000A2X2A25.WT",
+  "explicit_rejections": [
+    "EON.B.EU000A2X2A25.WT",
+    "EST.D.EONIA_TO.RATE",
+    "pre-euro-short-term-rate",
+    "post-2019-09-30 primary EONIA",
+    "pre-2019-10-01 primary euro short-term rate"
+  ],
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "schema_version": 1,
+  "status": "PASS"
+}

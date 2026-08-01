@@ -1,0 +1,173 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_EONIA_SCHEMA_DESCRIPTOR_V1",
+  "content_type": "text/csv",
+  "encoding": "utf-8-sig-compatible",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "header_data_types": {
+    "BREAKS": [
+      "null"
+    ],
+    "COLLECTION": [
+      "string"
+    ],
+    "COMPILATION": [
+      "string"
+    ],
+    "COMPILING_ORG": [
+      "null"
+    ],
+    "DECIMALS": [
+      "number"
+    ],
+    "DISS_ORG": [
+      "null"
+    ],
+    "EONIA_BANK": [
+      "string"
+    ],
+    "EONIA_ITEM": [
+      "string"
+    ],
+    "FREQ": [
+      "string"
+    ],
+    "KEY": [
+      "string"
+    ],
+    "OBS_COM": [
+      "null"
+    ],
+    "OBS_CONF": [
+      "null"
+    ],
+    "OBS_PRE_BREAK": [
+      "null"
+    ],
+    "OBS_STATUS": [
+      "string"
+    ],
+    "OBS_VALUE": [
+      "number"
+    ],
+    "PUBL_ECB": [
+      "null"
+    ],
+    "PUBL_MU": [
+      "null"
+    ],
+    "PUBL_PUBLIC": [
+      "null"
+    ],
+    "SOURCE_AGENCY": [
+      "null"
+    ],
+    "TIME_FORMAT": [
+      "string"
+    ],
+    "TIME_PERIOD": [
+      "date"
+    ],
+    "TITLE": [
+      "string"
+    ],
+    "TITLE_COMPL": [
+      "string"
+    ],
+    "UNIT": [
+      "string"
+    ],
+    "UNIT_MULT": [
+      "number"
+    ]
+  },
+  "header_names": [
+    "KEY",
+    "FREQ",
+    "EONIA_BANK",
+    "EONIA_ITEM",
+    "TIME_PERIOD",
+    "OBS_VALUE",
+    "OBS_STATUS",
+    "OBS_CONF",
+    "OBS_PRE_BREAK",
+    "OBS_COM",
+    "TIME_FORMAT",
+    "BREAKS",
+    "COLLECTION",
+    "COMPILING_ORG",
+    "DISS_ORG",
+    "PUBL_ECB",
+    "PUBL_MU",
+    "PUBL_PUBLIC",
+    "COMPILATION",
+    "DECIMALS",
+    "SOURCE_AGENCY",
+    "TITLE",
+    "TITLE_COMPL",
+    "UNIT",
+    "UNIT_MULT"
+  ],
+  "maximum_TIME_PERIOD": "2019-09-30",
+  "minimum_TIME_PERIOD": "2016-01-04",
+  "obs_value_values_committed": 0,
+  "optional_fields": [
+    "OBS_CONF",
+    "OBS_PRE_BREAK",
+    "OBS_COM",
+    "BREAKS",
+    "COMPILING_ORG",
+    "DISS_ORG",
+    "PUBL_ECB",
+    "PUBL_MU",
+    "PUBL_PUBLIC",
+    "SOURCE_AGENCY"
+  ],
+  "payload_byte_count": 3956,
+  "row_count": 8,
+  "row_level_data_committed": 0,
+  "schema_fingerprint": "10cdca98c037c6a6b4e61ccb9dbaa868a2bca5d6d9c3783ca60f7ab4f76a66ac",
+  "schema_version": 1,
+  "stable_fields": [
+    "KEY",
+    "FREQ",
+    "EONIA_BANK",
+    "EONIA_ITEM",
+    "TIME_PERIOD",
+    "OBS_VALUE",
+    "OBS_STATUS",
+    "TIME_FORMAT",
+    "COLLECTION",
+    "COMPILATION",
+    "DECIMALS",
+    "TITLE",
+    "TITLE_COMPL",
+    "UNIT",
+    "UNIT_MULT"
+  ],
+  "status": "PASS",
+  "unique_FREQ_values": [
+    "D"
+  ],
+  "unique_KEY_values": [
+    "EON.D.EONIA_TO.RATE"
+  ],
+  "unit_identity": [
+    "PC"
+  ],
+  "windows": [
+    {
+      "maximum_TIME_PERIOD": "2016-01-08",
+      "minimum_TIME_PERIOD": "2016-01-04",
+      "payload_byte_count": 2411,
+      "payload_sha256": "c4e8f4e3a9a991ec29f671669e93e027e0aa2497a90dec22436788067e994de3",
+      "row_count": 5
+    },
+    {
+      "maximum_TIME_PERIOD": "2019-09-30",
+      "minimum_TIME_PERIOD": "2019-09-26",
+      "payload_byte_count": 1545,
+      "payload_sha256": "6f7f7c398a554af649be038cd592b8619ff035635f6b1834d52128c2609e7390",
+      "row_count": 3
+    }
+  ]
+}

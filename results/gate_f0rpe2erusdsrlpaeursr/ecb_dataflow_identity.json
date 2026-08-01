@@ -1,0 +1,29 @@
+{
+  "EON": "PASS",
+  "EST": "PASS",
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_ECB_DATAFLOW_IDENTITY_V1",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "metadata_contains_numerical_observations": false,
+  "metadata_requests": [
+    {
+      "dataflow": "EON",
+      "dsd": "ECB_EON1",
+      "meaning": "Internal Eonia Rate",
+      "payload_byte_count": 406596,
+      "response_sha256": "7348df57ca55080768bfc269b865bff88d39fca883ca98d5dec0e64b43c90582",
+      "status": 200,
+      "url": "https://data-api.ecb.europa.eu/service/dataflow/ECB/EON/latest?references=all"
+    },
+    {
+      "dataflow": "EST",
+      "dsd": "ECB_EST1",
+      "meaning": "Euro Short-Term Rate",
+      "payload_byte_count": 21981072,
+      "response_sha256": "c2a1a3183def13b9dde6bea83a5f958f664375d04e50328194f83c33e97c7ad5",
+      "status": 200,
+      "url": "https://data-api.ecb.europa.eu/service/dataflow/ECB/EST/latest?references=all"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS"
+}

@@ -1,0 +1,53 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSR_EUR_SCHEMA_DIFFERENCE_V1",
+  "eonia_only_fields": [
+    "COLLECTION",
+    "COMPILATION",
+    "EONIA_BANK",
+    "EONIA_ITEM",
+    "OBS_COM",
+    "OBS_CONF",
+    "OBS_PRE_BREAK",
+    "SOURCE_AGENCY",
+    "UNIT"
+  ],
+  "eonia_schema_fingerprint": "10cdca98c037c6a6b4e61ccb9dbaa868a2bca5d6d9c3783ca60f7ab4f76a66ac",
+  "estr_only_fields": [
+    "BENCHMARK_ITEM",
+    "CALCUL_END_DATE",
+    "CALCUL_START_DATE",
+    "COMMENT_OBS",
+    "COMMENT_TS",
+    "CONF_STATUS",
+    "COVERAGE",
+    "DATA_COMP",
+    "DATA_TYPE_EST",
+    "PRE_BREAK_VALUE",
+    "TIME_PER_COLLECT",
+    "UNIT_INDEX_BASE",
+    "UNIT_MEASURE"
+  ],
+  "estr_schema_fingerprint": "9bf2e1d2c40d883fe0da3543e6d4d8eb461b3e973488d419d6e397ab0c8e6dca",
+  "gate_id": "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+  "row_values_committed": 0,
+  "schema_version": 1,
+  "shared_fields": [
+    "BREAKS",
+    "COMPILING_ORG",
+    "DECIMALS",
+    "DISS_ORG",
+    "FREQ",
+    "KEY",
+    "OBS_STATUS",
+    "OBS_VALUE",
+    "PUBL_ECB",
+    "PUBL_MU",
+    "PUBL_PUBLIC",
+    "TIME_FORMAT",
+    "TIME_PERIOD",
+    "TITLE",
+    "TITLE_COMPL",
+    "UNIT_MULT"
+  ],
+  "status": "PASS_DISTINCT_EXPLICIT_SCHEMAS"
+}

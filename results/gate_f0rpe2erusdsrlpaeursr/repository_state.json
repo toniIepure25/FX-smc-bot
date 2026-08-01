@@ -1,0 +1,13 @@
+﻿{
+    "schema_version":  1,
+    "artifact_id":  "F0RPE2ERUSDSRLPAEURSR_REPOSITORY_STATE_V1",
+    "gate_id":  "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+    "branch":  "research/classical-fx-risk-premia-v2-future-baseline",
+    "local_head":  "c1d9a2a9f4a28a30959b85b67f4b62e965f91223",
+    "remote_head":  "c1d9a2a9f4a28a30959b85b67f4b62e965f91223",
+    "origin_main":  "e28df6330ba89ab3fa6555b3fcefcddc0c784407",
+    "worktree_clean":  true,
+    "diff_check":  "PASS",
+    "fetch_all_prune":  "PASS",
+    "status":  "PASS"
+}

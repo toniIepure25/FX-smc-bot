@@ -1,0 +1,29 @@
+﻿{
+    "schema_version":  1,
+    "artifact_id":  "F0RPE2ERUSDSRLPAEURSR_PREDECESSOR_INHERITANCE_V1",
+    "gate_id":  "F0RPE2ERUSDSRLPA_EUR_SOURCE_RECONCILIATION_V1",
+    "predecessor_gate":  "F0RPE2ERUSDSRLPA_LEGACY_PUBLICATION_AVAILABILITY_V1",
+    "predecessor_decision":  "BLOCKED_BY_RATE_SOURCE_ACCESS",
+    "blocker_preservation":  "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED",
+    "blocking_adapter":  "ECB_EONIA_ESTR_V2",
+    "blocking_currency":  "EUR",
+    "blocking_source_series":  "EONIA",
+    "http_status":  "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+    "ecb_snapshots_persisted":  0,
+    "ecb_numerical_rows_parsed":  0,
+    "market_requests":  0,
+    "economic_outcomes":  0,
+    "artifact_sha256":  {
+                            "results/gate_f0rpe2erusdsrlpa/final_decision.json":  "d2740df38b905ab48c253ad6f52af3e838cd9c1801fdea6c9ca8dc534b5c2289",
+                            "results/gate_f0rpe2erusdsrlpa/live_adapter_matrix.json":  "48f4cea4e5b25feed6912e52e848bb11502ca51a3074f93dc0516e227716d337",
+                            "results/gate_f0rpe2erusdsrlpa/live_adapter_certification.json":  "55d3e51c697c10794e87055e5fdd55aa0bcc47cdeead1fe085e9104ef584a56d",
+                            "results/gate_f0rpe2erusdsrlpa/eonia_estr_transition_audit.json":  "a3cdd9d7a6f40afd49079654fae2a267ee4e133ba4d308764daa2896d589dab5",
+                            "results/gate_f0rpe2erusdsrlpa/usd_adapter_v3_certification.json":  "ea631c6cfd4157f0536a236c46f4247cc620d9134af4b0c505cfa4b9d2c9f4c9",
+                            "results/gate_f0rpe2erusdsrlpa/vintage_store_v4_certification.json":  "e1e0602f95ccffb4811b97893ffab1d7df1fb7eb48d9fd28d9833a813ceae4b8",
+                            "results/gate_f0rpe2erusdsrlpa/integrity_audit.json":  "051bad6b03a52431350bfbf3e20671bd9876fd915af5b520d273a6c67e01b23c",
+                            "results/gate_f0rpe2erusdsrlpa/prohibited_data_audit.json":  "cd2a6d9e5584f699c44ecf1099ab9c6c47d6b91ea4eec3e9dec4741ce1a6f399",
+                            "results/gate_f0rpe2erusdsrlpa/reproducibility_manifest.json":  "7163dc13b894c8d6091e75abc190de5e2fd5c5b0091dea2d58323ca87a7ff2a6",
+                            "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPA_FINAL_DECISION_MEMO.md":  "4a1542db010791a31c8b6fada5579b8775524df879670b86d6d71db6fd81bc57"
+                        },
+    "status":  "PASS"
+}
