@@ -1,0 +1,21 @@
+{
+  "artifact_id": "A0R1_STORAGE_BUDGET_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS",
+  "scope": {
+    "start": "2010-01-01",
+    "end": "2014-12-31",
+    "instrument_count": 9
+  },
+  "free_bytes": 48120102912,
+  "estimated_raw_bi5_bytes": 9500000000,
+  "estimated_canonical_m1_bytes": 4800000000,
+  "estimated_canonical_m5_bytes": 1100000000,
+  "estimated_quote_feature_bytes": 2400000000,
+  "temporary_decompression_peak_bytes": 3800000000,
+  "model_and_outcome_scratch_bytes": 2000000000,
+  "manifest_overhead_bytes": 600000000,
+  "estimated_peak_bytes": 24200000000,
+  "required_reserve_bytes": 12884901888,
+  "estimated_peak_plus_reserve_bytes": 37084901888
+}

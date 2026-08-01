@@ -1,0 +1,32 @@
+{
+  "artifact_id": "A0R1_CLEAN_ROOM_CERTIFICATION_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS",
+  "clean_room_id": "FX_A0R1_CLEAN_ROOM_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "starting_sha": "c9221477bbe74142a81efe554e1868cfca32871d",
+  "path_hash": "3068a0b16807e499bcf494dc2431027493356812b6c2c291d70119dab2ea1aa1",
+  "identity_hash": "91fbfd68192b5a90d00bad796c6b552983ca5cc4789f7975a4a36f831a6c8c2b",
+  "filesystem_identity_hash": "f310dca94045381e9c8dd1e8fb0bc617d4e2479e14f38cdef18f0ea4a165bc54",
+  "free_bytes": 48120102912,
+  "collision_result": "EXISTS_COMPATIBLE_IDENTITY_NO_OUTCOMES",
+  "absolute_path_committed": false,
+  "prior_market_data_roots_inspected": false,
+  "relative_internal_layout": [
+    ".clean_room_identity.json",
+    "checkpoints/",
+    "raw_bi5/",
+    "canonical_m1/",
+    "canonical_m5/",
+    "quote_features_m1/",
+    "manifests/",
+    "scratch/",
+    "models/",
+    "outcomes/"
+  ],
+  "authorized_first_date": "2010-01-01",
+  "initially_authorized_last_date": "2014-12-31",
+  "nzd_authorized": false,
+  "years_2023_2025_authorized": false
+}
