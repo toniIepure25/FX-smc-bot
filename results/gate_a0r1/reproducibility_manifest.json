@@ -1,0 +1,109 @@
+{
+  "artifact_id": "A0R1_REPRODUCIBILITY_MANIFEST_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "status": "BLOCKED_REPRODUCIBLE_TO_MARKET_DATA_ACQUISITION_BLOCKER",
+  "generated_on": "2026-08-01",
+  "starting_sha": "c9221477bbe74142a81efe554e1868cfca32871d",
+  "pre_final_sha": "a179a195c87a121e2a5714968ce80beef11d7315",
+  "expected_branch": "research/fx-intraday-alpha-discovery-v1",
+  "commits_before_final_artifact_commit": [
+    {
+      "sha": "3a63f80",
+      "subject": "research: preserve blocked A0 lineage and exact protocol hashes"
+    },
+    {
+      "sha": "70658fe",
+      "subject": "feat(research): bootstrap isolated A0R1 market-data clean room"
+    },
+    {
+      "sha": "d69ece8",
+      "subject": "research: register frozen intraday alpha trial plan"
+    },
+    {
+      "sha": "a179a19",
+      "subject": "data: freeze A0R1 discovery request plan"
+    }
+  ],
+  "inherited_hashes": {
+    "hypothesis_registry_sha256": "47d1e92d39b8ae024be59168f83fc5873f3e5ef26442f8d4b51fc56c09f1f54c",
+    "search_space_freeze_sha256": "68a236052452f3e8f2aea7404cf832189ac5ebc9e80d1bfa3d94f2572b2523d0",
+    "search_space_pre_outcome_sha": "7981f6edfc5bea0c5045059ee8c8b5e038cc5245"
+  },
+  "protocol_inheritance": {
+    "lock_id": "A0R1_EXACT_SCIENTIFIC_PROTOCOL_INHERITANCE_V1",
+    "lock_sha256": "ce1b4c019502afca2452e82fde7a56116fa503fa844c6cea8d713917e075f84d"
+  },
+  "clean_room": {
+    "clean_room_id": "FX_A0R1_CLEAN_ROOM_V1",
+    "path_hash": "3068a0b16807e499bcf494dc2431027493356812b6c2c291d70119dab2ea1aa1",
+    "identity_hash": "91fbfd68192b5a90d00bad796c6b552983ca5cc4789f7975a4a36f831a6c8c2b",
+    "filesystem_identity_hash": "f310dca94045381e9c8dd1e8fb0bc617d4e2479e14f38cdef18f0ea4a165bc54",
+    "collision_result": "EXISTS_COMPATIBLE_IDENTITY_NO_OUTCOMES",
+    "absolute_path_committed": false
+  },
+  "frozen_trial_plan": {
+    "trial_plan_pre_data_sha": "d69ece8134fa0f8699e90eaa70e66337076d43d2",
+    "planned_registered_trials": 1200,
+    "candidate_equivalent_trial_count": 1200,
+    "registry_sha256": "66b4856cbd64ca05ac2a79324eed3f24bc5107f6697cc74cbe6206e9d12dcc60"
+  },
+  "frozen_request_plan": {
+    "pre_provider_request_sha": "a179a195c87a121e2a5714968ce80beef11d7315",
+    "provider": "Dukascopy BI5 bid/ask",
+    "authorized_dates": "2010-01-01..2014-12-31",
+    "authorized_instruments": [
+      "EURUSD",
+      "GBPUSD",
+      "AUDUSD",
+      "USDJPY",
+      "USDCAD",
+      "USDCHF",
+      "EURJPY",
+      "GBPJPY",
+      "AUDJPY"
+    ],
+    "required_instrument_month_side_partitions": 1080
+  },
+  "provider_probe": {
+    "provider_access": "PASS_SINGLE_AUTHORIZED_PROBE",
+    "dukascopy_requests_sent": 1,
+    "instrument": "EURUSD",
+    "date": "2010-01-04",
+    "side": "bid",
+    "payload_sha256": "a0b8e2a41b89cffaaa2e286f956180627277c01168a84e9d1f1203738baeec91",
+    "parsed_m1_rows": 1440,
+    "payload_committed": false,
+    "rows_committed": false
+  },
+  "blocked_stage": {
+    "decision": "BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+    "reason": "The full 2010-2014 nine-instrument Dukascopy discovery panel was not acquired or certified.",
+    "raw_bi5_required_partitions_certified": 0,
+    "canonical_m1_required_partitions_built": 0,
+    "canonical_m5_required_partitions_built": 0,
+    "quote_feature_required_partitions_built": 0,
+    "unresolved_required_partitions": 1080
+  },
+  "reproduction_commands": [
+    "python scripts/run_gate_a0r1.py --data-root <authorized-clean-room-root> --stage all --dry-run --max-workers 4",
+    "PYTHONPATH=src PYTEST_ADDOPTS='-p no:cacheprovider' python -m pytest -q --import-mode=importlib --basetemp .pytest_tmp_a0r1",
+    "python -m ruff check scripts/run_gate_a0r1.py",
+    "PYTHONPATH=src python -m mypy scripts/run_gate_a0r1.py",
+    "git diff --check"
+  ],
+  "not_committed": [
+    "BI5 payloads",
+    "quote rows",
+    "M1 rows",
+    "M5 rows",
+    "feature matrices",
+    "signals",
+    "positions",
+    "returns",
+    "model binaries",
+    "provider credentials",
+    "absolute clean-room path"
+  ]
+}

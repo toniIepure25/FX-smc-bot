@@ -1,0 +1,9 @@
+{
+  "audit_id": "A0R1_ROLLOVER_INTEGRITY_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS_NO_POSITIONS_EXECUTED",
+  "rollover_exclusion_start": "16:30 America/New_York",
+  "mandatory_flat": "16:45 America/New_York",
+  "new_entries_resume": "17:30 America/New_York",
+  "positions_crossing_mandatory_flat": 0
+}

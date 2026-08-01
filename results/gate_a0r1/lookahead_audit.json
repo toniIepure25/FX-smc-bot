@@ -1,0 +1,10 @@
+{
+  "audit_id": "A0R1_LOOKAHEAD_AUDIT_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS_NO_EMPIRICAL_EXECUTION",
+  "future_price_perturbation": "NOT_REACHED",
+  "future_spread_perturbation": "NOT_REACHED",
+  "future_session_perturbation": "NOT_REACHED",
+  "features_computed": 0,
+  "trials_executed": 0
+}

@@ -1,0 +1,6 @@
+{
+  "audit_id": "A0R1_CROSS_PAIR_SYNCHRONIZATION_AUDIT_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "cross_pair_features_computed": 0
+}

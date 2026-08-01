@@ -1,0 +1,52 @@
+{
+  "artifact_id": "A0R1_QUALITY_GATE_FINAL_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "status": "PASS_WITH_REPOSITORY_BASELINE_DEBT_DISCLOSED",
+  "decision_impact": "NO_STATIC_ANALYSIS_BLOCKER_FOR_A0R1_DELTA",
+  "quality_run_date": "2026-08-01",
+  "pytest": {
+    "command": "PYTHONPATH=src PYTEST_ADDOPTS='-p no:cacheprovider' python -m pytest -q --import-mode=importlib --basetemp .pytest_tmp_a0r1",
+    "status": "PASS",
+    "passed": 1455,
+    "warnings": 91,
+    "duration_seconds": 198.49
+  },
+  "targeted_ruff": {
+    "command": "python -m ruff check scripts/run_gate_a0r1.py",
+    "status": "PASS",
+    "errors": 0
+  },
+  "targeted_mypy": {
+    "command": "PYTHONPATH=src python -m mypy scripts/run_gate_a0r1.py",
+    "status": "PASS",
+    "errors": 0
+  },
+  "broad_ruff": {
+    "command": "python -m ruff check scripts/run_gate_a0r1.py src/fx_smc_bot/research tests",
+    "status": "BASELINE_DEBT_PRESENT",
+    "observed_errors": 312,
+    "a0r1_delta_errors": 0,
+    "note": "The broad command reports pre-existing repository issues outside the A0R1 delta. The only Python file changed since the A0R1 starting SHA is scripts/run_gate_a0r1.py, and it passes Ruff."
+  },
+  "broad_mypy": {
+    "command": "PYTHONPATH=src python -m mypy scripts/run_gate_a0r1.py src/fx_smc_bot/research",
+    "status": "BASELINE_DEBT_PRESENT",
+    "observed_errors": 4,
+    "a0r1_delta_errors": 0,
+    "note": "The broad command reports pre-existing scipy/yaml typing and bank_of_canada.py issues outside the A0R1 delta. The only Python file changed since the A0R1 starting SHA is scripts/run_gate_a0r1.py, and it passes mypy."
+  },
+  "git_diff_check": {
+    "command": "git diff --check",
+    "status": "PASS"
+  },
+  "node": {
+    "status": "NOT_APPLICABLE",
+    "reason": "No package.json or applicable Node entry point exists in the repository root."
+  },
+  "data_safety": {
+    "prohibited_data_audit": "PASS",
+    "prospective_integrity": "PASS",
+    "rollover_integrity": "PASS"
+  }
+}

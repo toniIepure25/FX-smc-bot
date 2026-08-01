@@ -1,0 +1,17 @@
+{
+  "artifact_id": "A0R1_EXECUTION_CERTIFICATION_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "frozen_contract_preserved": {
+    "side_correct_entry_exit": true,
+    "minimum_latency": "one completed M1 bar",
+    "rollover_exclusion_start": "16:30 America/New_York",
+    "mandatory_flat": "16:45 America/New_York",
+    "new_entries_resume": "17:30 America/New_York",
+    "same_bar_ambiguity": "adverse-first",
+    "rate_or_financing_series": "FORBIDDEN",
+    "overnight_carry": "FORBIDDEN"
+  },
+  "positions_executed": 0,
+  "positions_crossing_boundary": 0
+}

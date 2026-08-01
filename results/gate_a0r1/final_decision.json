@@ -1,0 +1,41 @@
+{
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "status": "BLOCKED",
+  "decision": "BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "starting_sha": "c9221477bbe74142a81efe554e1868cfca32871d",
+  "protocol_inheritance_lock_id": "A0R1_EXACT_SCIENTIFIC_PROTOCOL_INHERITANCE_V1",
+  "protocol_inheritance_lock_sha256": "ce1b4c019502afca2452e82fde7a56116fa503fa844c6cea8d713917e075f84d",
+  "hypothesis_registry_sha256": "47d1e92d39b8ae024be59168f83fc5873f3e5ef26442f8d4b51fc56c09f1f54c",
+  "search_space_freeze_sha256": "68a236052452f3e8f2aea7404cf832189ac5ebc9e80d1bfa3d94f2572b2523d0",
+  "search_space_pre_outcome_sha": "7981f6edfc5bea0c5045059ee8c8b5e038cc5245",
+  "trial_plan_pre_data_sha": "d69ece8134fa0f8699e90eaa70e66337076d43d2",
+  "pre_provider_request_sha": "a179a195c87a121e2a5714968ce80beef11d7315",
+  "clean_room": {
+    "clean_room_id": "FX_A0R1_CLEAN_ROOM_V1",
+    "path_hash": "3068a0b16807e499bcf494dc2431027493356812b6c2c291d70119dab2ea1aa1",
+    "collision_result": "EXISTS_COMPATIBLE_IDENTITY_NO_OUTCOMES"
+  },
+  "counts": {
+    "planned_registered_trials": 1200,
+    "candidate_equivalent_trial_count": 1200,
+    "completed_trials": 0,
+    "failed_technical_trials": 0,
+    "invalid_protocol_trials": 0,
+    "dukascopy_requests_sent": 1,
+    "raw_bi5_probe_partitions": 1,
+    "raw_bi5_required_partitions_certified": 0,
+    "m1_partitions": 0,
+    "m5_partitions": 0,
+    "quote_feature_partitions": 0,
+    "unresolved_required_partitions": 1080
+  },
+  "blocking_failure": {
+    "failure_code": "DISCOVERY_DATASET_NOT_FULLY_ACQUIRED_OR_CERTIFIED",
+    "failure_stage": "DISCOVERY_MARKET_DATA_ACQUISITION",
+    "failure_disposition": "NO_DISCOVERY_DATASET_FREEZE_NO_TRIAL_EXECUTION_NO_OUTCOMES"
+  },
+  "selected_candidate": null,
+  "live_capital_authorization": "NONE"
+}

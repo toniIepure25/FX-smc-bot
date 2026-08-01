@@ -1,0 +1,6 @@
+{
+  "audit_id": "A0R1_MODEL_TRANSFORM_LEAKAGE_AUDIT_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS_NO_MODEL_TRANSFORMS_FIT",
+  "model_transforms_fit": 0
+}

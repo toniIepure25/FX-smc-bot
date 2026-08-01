@@ -1,0 +1,31 @@
+{
+  "artifact_id": "A0R1_DISCOVERY_MARKET_ACQUISITION_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "provider_access": "PASS_SINGLE_AUTHORIZED_PROBE",
+  "frozen_request_plan_sha": "a179a195c87a121e2a5714968ce80beef11d7315",
+  "required_instrument_month_side_partitions": 1080,
+  "provider_probe": {
+    "instrument": "EURUSD",
+    "date": "2010-01-04",
+    "side": "bid",
+    "authorized_by_request_plan": true,
+    "request_count": 1,
+    "payload_bytes": 10975,
+    "parsed_m1_rows": 1440,
+    "payload_sha256": "a0b8e2a41b89cffaaa2e286f956180627277c01168a84e9d1f1203738baeec91",
+    "committed_payload": false,
+    "committed_rows": false
+  },
+  "full_acquisition": {
+    "dukascopy_requests_sent": 1,
+    "raw_bi5_day_side_probe_partitions_written_to_clean_room": 1,
+    "raw_bi5_required_partitions_certified": 0,
+    "canonical_m1_required_partitions_built": 0,
+    "canonical_m5_required_partitions_built": 0,
+    "quote_feature_required_partitions_built": 0,
+    "unresolved_required_partitions": 1080,
+    "failed_required_partitions": 0,
+    "certified_zero_row_partitions": 0
+  }
+}

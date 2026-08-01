@@ -1,0 +1,8 @@
+{
+  "dataset_freeze_id": "A0R1_DISCOVERY_MARKET_2010_2014_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "NOT_CREATED_BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "dataset_hash": null,
+  "dataset_sha": null,
+  "reason": "Only one authorized provider probe completed; the frozen 2010-2014 nine-instrument discovery panel was not acquired or certified."
+}

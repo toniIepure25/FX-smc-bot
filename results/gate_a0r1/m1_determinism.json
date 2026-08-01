@@ -1,0 +1,6 @@
+{
+  "artifact_id": "A0R1_M1_DETERMINISM_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "deterministic_replays": 0
+}

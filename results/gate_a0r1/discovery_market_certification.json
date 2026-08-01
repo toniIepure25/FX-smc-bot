@@ -1,0 +1,28 @@
+{
+  "artifact_id": "A0R1_DISCOVERY_MARKET_CERTIFICATION_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "NOT_CERTIFIED_INCOMPLETE_ACQUISITION",
+  "blocking_decision": "BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "required_all_partitions_pass": false,
+  "missing_required_partitions": 1080,
+  "failed_required_partitions": 0,
+  "certified_zero_row_partitions": 0,
+  "single_probe_checks": {
+    "provider_request_identity": "PASS",
+    "payload_sha256_recorded": "PASS",
+    "successful_bi5_decompression": "PASS",
+    "nonzero_executable_quote_count": "PASS",
+    "timestamp_inside_authorized_interval": "PASS"
+  },
+  "full_panel_checks": {
+    "bid_presence": "NOT_REACHED",
+    "ask_presence": "NOT_REACHED",
+    "side_ordering": "NOT_REACHED",
+    "non_negative_spread": "NOT_REACHED",
+    "monotonic_timestamps": "NOT_REACHED",
+    "utc_timestamp_normalization": "NOT_REACHED",
+    "m1_determinism": "NOT_REACHED",
+    "m5_determinism": "NOT_REACHED",
+    "quote_feature_determinism": "NOT_REACHED"
+  }
+}

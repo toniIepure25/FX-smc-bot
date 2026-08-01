@@ -1,0 +1,8 @@
+{
+  "audit_id": "A0R1_ROLLOVER_FLATTENING_AUDIT_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS_NO_POSITIONS_EXECUTED",
+  "positions_opened": 0,
+  "positions_crossed_rollover_exclusion": 0,
+  "positions_open_after_mandatory_flat": 0
+}

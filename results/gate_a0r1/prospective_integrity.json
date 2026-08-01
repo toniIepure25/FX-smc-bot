@@ -1,0 +1,11 @@
+{
+  "audit_id": "A0R1_PROSPECTIVE_INTEGRITY_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS_NO_FUTURE_CANDIDATE",
+  "future_candidate_frozen": false,
+  "future_data_accessed": false,
+  "future_start_definition": "first complete FX trading day strictly after final candidate-freeze commit",
+  "minimum_future_evidence": "252 eligible trading days and 12 calendar months",
+  "paper_trading_authorized": false,
+  "live_capital_authorized": false
+}

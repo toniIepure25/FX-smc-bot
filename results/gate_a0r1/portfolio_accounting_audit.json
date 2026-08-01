@@ -1,0 +1,10 @@
+{
+  "audit_id": "A0R1_PORTFOLIO_ACCOUNTING_AUDIT_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "gross_to_net_reconciliations": 0,
+  "spread_cost_records": 0,
+  "commission_records": 0,
+  "slippage_records": 0,
+  "financing_records": 0
+}

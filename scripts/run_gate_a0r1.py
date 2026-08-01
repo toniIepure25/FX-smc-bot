@@ -13,12 +13,9 @@ import json
 import os
 import shutil
 import subprocess
-import sys
 from dataclasses import dataclass
-from datetime import date
 from pathlib import Path
 from typing import Any
-
 
 GATE_ID = "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1"
 PROGRAM_ID = "FX_INTRADAY_ALPHA_DISCOVERY_V1"

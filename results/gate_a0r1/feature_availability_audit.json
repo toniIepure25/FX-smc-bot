@@ -1,0 +1,9 @@
+{
+  "audit_id": "A0R1_FEATURE_AVAILABILITY_AUDIT_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "NOT_REACHED_BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "no_full_sample_normalization": "NOT_EVALUATED_NO_FEATURE_MATRIX",
+  "no_future_spread_use": "PASS_NO_FEATURES_COMPUTED",
+  "no_future_volatility_use": "PASS_NO_FEATURES_COMPUTED",
+  "no_future_session_state_use": "PASS_NO_FEATURES_COMPUTED"
+}

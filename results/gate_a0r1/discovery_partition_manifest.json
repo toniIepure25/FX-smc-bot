@@ -1,0 +1,18 @@
+{
+  "artifact_id": "A0R1_DISCOVERY_PARTITION_MANIFEST_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "INCOMPLETE",
+  "required_instrument_month_side_partitions": 1080,
+  "certified_required_partitions": 0,
+  "probe_partitions": [
+    {
+      "partition_id": "EURUSD:2010-01-04:bid:probe",
+      "representation": "raw_bi5_day_side_probe",
+      "provider": "Dukascopy BI5 bid/ask",
+      "payload_sha256": "a0b8e2a41b89cffaaa2e286f956180627277c01168a84e9d1f1203738baeec91",
+      "payload_bytes": 10975,
+      "parsed_m1_rows": 1440,
+      "certified_as_required_partition": false
+    }
+  ]
+}

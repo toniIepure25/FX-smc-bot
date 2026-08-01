@@ -1,0 +1,33 @@
+{
+  "audit_id": "A0R1_PROHIBITED_DATA_AUDIT_V1",
+  "gate_id": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "status": "PASS",
+  "checks": {
+    "a0_hypothesis_registry_altered": false,
+    "a0_search_space_altered": false,
+    "prior_gate_decisions_modified": false,
+    "old_outcomes_imported_as_candidates": false,
+    "prior_market_data_roots_inspected": false,
+    "nzd_requests": 0,
+    "nzdusd_requests": 0,
+    "requests_2023_2025": 0,
+    "rate_series_accessed": 0,
+    "financing_series_accessed": 0,
+    "overnight_positions": 0,
+    "positions_crossing_mandatory_flat": 0,
+    "bi5_committed": false,
+    "m1_rows_committed": false,
+    "m5_rows_committed": false,
+    "quote_rows_committed": false,
+    "feature_matrices_committed": false,
+    "labels_committed": false,
+    "signals_committed": false,
+    "positions_committed": false,
+    "transactions_committed": false,
+    "per_bar_predictions_committed": false,
+    "daily_returns_committed": false,
+    "model_binaries_committed": false,
+    "provider_credentials_committed": false,
+    "absolute_clean_room_paths_committed": false
+  }
+}
