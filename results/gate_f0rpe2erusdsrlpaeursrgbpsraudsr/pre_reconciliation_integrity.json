@@ -1,0 +1,12 @@
+{
+  "integrity_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_PRE_RECONCILIATION_INTEGRITY_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "status": "PASS",
+  "expected_branch": "research/classical-fx-risk-premia-v2-future-baseline",
+  "expected_starting_sha": "607aa53f990a99d36ea8c2d5ddc845e3924fa23b",
+  "local_remote_synced": true,
+  "predecessor_decision_artifacts_present": true,
+  "historical_manifest_reconciliation_active": true,
+  "market_requests_before_gate": 0,
+  "economic_outcomes_before_gate": 0
+}

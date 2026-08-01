@@ -1,0 +1,32 @@
+{
+  "inheritance_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_PREDECESSOR_INHERITANCE_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "status": "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED",
+  "predecessor_gate": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "predecessor_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "blocking_adapter": {
+    "adapter_id": "RBA_CASH_RATE_V2",
+    "currency": "AUD",
+    "series_id": "RBA_CASH_RATE",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+    "failed_endpoint": "https://www.rba.gov.au/statistics/cash-rate/cash-rate.json"
+  },
+  "predecessor_counts": {
+    "aud_source_snapshots_persisted": 0,
+    "aud_numerical_rows_exposed_to_parser": 0,
+    "aud_rate_versions_created": 0,
+    "market_requests_sent": 0,
+    "economic_outcomes_computed": 0
+  },
+  "predecessor_artifact_sha256": {
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/final_decision.json": "d41a401827787d64716655e5fce386f559247a237cd8704b96332c343d5215c9",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/live_adapter_matrix.json": "55e79c883819d4b825e40112a817aab8370b0407eb9d26aaf639d6e89ce80911",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/live_adapter_certification.json": "e943fc9add50d762ad9246d29c2ab5c4302396a1ac3432c8a5eea5cb5751d57b",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/gbp_adapter_v3_certification.json": "12f9a534151f813bfb64db9d1c22bd0ddbad3993498692d3b2c1b704748e2edb",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/historical_manifest_reconciliation.json": "2fea3cb0925df63727f30ea29390ae27bf3c4f6102ba08568b4d52ab7c50a5f3",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/integrity_audit.json": "b84deca84bfc3fb38f4a926e3c1177af481f890d2b67b08075f68c7e896cb8ef",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/prohibited_data_audit.json": "77a343fe3f917ca87c6040cfafb81d7cf9afc1a3443f75e35cadcae5db6d0532",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/reproducibility_manifest.json": "2c25e98970edc5584f8f3aa608b54930bb486dd7c321410745cf0c2b0077cf13",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPAEURSRGBPSR_FINAL_DECISION_MEMO.md": "af86c6e8aec97cee41e6f99842f5dbd0bbf38ef10cee42caf599b2049838d0ac"
+  }
+}

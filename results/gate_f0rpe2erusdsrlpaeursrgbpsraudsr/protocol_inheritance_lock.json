@@ -1,0 +1,29 @@
+{
+  "lock_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_PROTOCOL_INHERITANCE_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_AUD_SOURCE_RECONCILIATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "status": "PASS",
+  "inherited_locks": {
+    "F0_RATE_PROVENANCE_AMENDMENT_V1": "PRESERVED",
+    "F0RPE2ER_FUTURE_ONLY_CONFIRMATORY_BASELINE_V1": "PRESERVED",
+    "F0RPE2ERUSDSRLPA_PUBLICATION_CENSORING_OVERLAY_V1": "PRESERVED",
+    "F0RPE2ERUSDSRLPA_RATE_VINTAGE_STORE_V4": "PRESERVED",
+    "HISTORICAL_MANIFEST_COMMIT_PINNING_RECONCILIATION_V1": "PRESERVED",
+    "NY_FED_EFFR_V3": "PRESERVED",
+    "ECB_EONIA_ESTR_V3": "PRESERVED",
+    "BOE_SONIA_V3": "PRESERVED"
+  },
+  "permitted_implementation_changes": [
+    "RBA official source identity",
+    "RBA workbook acquisition",
+    "RBA workbook schema parsing",
+    "AUD publication evidence",
+    "AUD revision evidence",
+    "AUD expert-judgement metadata",
+    "rate-store integration",
+    "remaining adapter infrastructure",
+    "empirical orchestration"
+  ],
+  "scientific_parameter_changes": "NONE"
+}
