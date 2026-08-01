@@ -1,0 +1,15 @@
+{
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "relationship_to_classical_factor_program": "INDEPENDENT_PARALLEL_RESEARCH_LINEAGE",
+  "branch": "research/fx-intraday-alpha-discovery-v1",
+  "created_from_sha": "93221a3f666dfc9e16d9b8d5fba0344b77c2fe14",
+  "classical_factor_branch_sha_verified": "93221a3f666dfc9e16d9b8d5fba0344b77c2fe14",
+  "worktree_before_a0_artifacts": "CLEAN",
+  "prohibited_actions": {
+    "modified_prior_gate_decision": false,
+    "merged_branch": false,
+    "created_pull_request": false
+  }
+}

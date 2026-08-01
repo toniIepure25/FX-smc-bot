@@ -1,0 +1,14 @@
+{
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "artifact_id": "A0_PRE_DISCOVERY_INTEGRITY_V1",
+  "status": "PASS",
+  "pre_outcome_state": true,
+  "market_data_accessed": false,
+  "rate_series_accessed": false,
+  "financing_series_accessed": false,
+  "prior_outcomes_imported_as_candidates": false,
+  "validation_or_replication_accessed": false,
+  "quarantined_2023_2025_accessed": false,
+  "nzd_or_nzdusd_accessed": false,
+  "trial_results_computed": false
+}

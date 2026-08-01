@@ -1,0 +1,14 @@
+{
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "artifact_id": "A0_CLEAN_ROOM_IDENTITY_V1",
+  "status": "BLOCKED_PENDING_ENVIRONMENT",
+  "required_environment_variable": "FX_A0_DATA_ROOT",
+  "observed_environment_variable_present": false,
+  "prior_market_data_roots_inspected": false,
+  "absolute_clean_room_path_committed": false,
+  "authorized_partitions_initial": [
+    "2010-01-01 through 2010-12-31",
+    "2011-01-01 through 2014-12-31"
+  ],
+  "blocked_effect": "DISCOVERY_MARKET_DATA_ACQUISITION_NOT_STARTED"
+}

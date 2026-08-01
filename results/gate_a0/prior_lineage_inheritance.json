@@ -1,0 +1,17 @@
+{
+  "gate_id": "A0_INTRADAY_ALPHA_DISCOVERY_FACTORY_V1",
+  "artifact_id": "A0_PRIOR_LINEAGE_INHERITANCE_V1",
+  "status": "PASS",
+  "relationship": "INDEPENDENT_PARALLEL_RESEARCH_LINEAGE",
+  "prior_conclusions_preserved": {
+    "smc_executable_strategies": "CLOSED_NEGATIVE",
+    "inverted_polarity_and_meta_labeling": "CLOSED_NEGATIVE",
+    "classical_factor_line": "BLOCKED_BEFORE_EMPIRICAL_EXECUTION",
+    "current_jpy_blocker": "BLOCKED_BY_BOJ_REVISION_PROVENANCE"
+  },
+  "reuse_rules": {
+    "old_strategy_result_imported_as_a0_candidate": false,
+    "old_outcomes_used_for_a0_tuning": false,
+    "old_market_data_roots_inspected": false
+  }
+}
