@@ -1,0 +1,24 @@
+{
+  "audit_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_INTEGRITY_AUDIT_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "status": "PASS",
+  "checks": {
+    "historical_manifests_verified_against_recorded_commits": "PASS",
+    "gbp_reconciliation_committed_before_official_numerical_persistence": "PASS",
+    "boe_csv_format_code_represented_as_tabular_no_titles": "PASS",
+    "internal_normalized_fields_not_required_as_literal_iadb_fields": "PASS",
+    "legacy_reformed_sonia_boundary_enforced": "PASS",
+    "benchmark_publication_separate_from_iadb_retrieval": "PASS",
+    "gbp_v4_store_scratch_certification": "PASS",
+    "remaining_adapters_fail_fast": "PASS",
+    "aud_failure_preserved_as_http_404": "PASS",
+    "development_rate_acquisition_accessed": false,
+    "development_market_acquisition_accessed": false,
+    "portfolio_outcomes_computed": false
+  },
+  "blocking_adapter": {
+    "adapter_id": "RBA_CASH_RATE_V2",
+    "currency": "AUD",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404"
+  }
+}

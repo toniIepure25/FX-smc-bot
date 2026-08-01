@@ -1,0 +1,40 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "program_id": "FX_CLASSICAL_RISK_PREMIA_V2",
+  "lineage_id": "FX_CLASSICAL_FACTOR_DISCOVERY_LINEAGE_V2",
+  "status": "BLOCKED",
+  "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "starting_sha": "aab00b31ff46367c8c6c1c69ce045ad23ea6243d",
+  "gbp_source_reconciliation_pre_parse_sha": "83a2bb4a1cc5997790941fd7c760208121e834e1",
+  "gbp_v3_certification_sha": "7936e52124c2f3b799d099e4adfd84b685cf15b5",
+  "predecessor_block": {
+    "decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+    "adapter_id": "BOE_SONIA_V2",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_403",
+    "preservation": "PREDECESSOR_BLOCK_PRESERVED_NOT_REVERSED"
+  },
+  "gbp_status": {
+    "adapter_id": "BOE_SONIA_V3",
+    "status": "PASS",
+    "legacy_rate_version_count": 5,
+    "reformed_rate_version_count": 5,
+    "source_snapshots_certified_in_scratch": 3
+  },
+  "blocking_failure": {
+    "adapter_id": "RBA_CASH_RATE_V2",
+    "currency": "AUD",
+    "series_id": "RBA_CASH_RATE",
+    "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+    "failure_stage": "RATE_SOURCE_ACCESS",
+    "failure_disposition": "NO_SOURCE_SNAPSHOT_PERSISTED"
+  },
+  "empirical_program": {
+    "development_rate_acquisition": "NOT_RUN_AFTER_FAIL_FAST",
+    "development_market_acquisition": "NOT_RUN",
+    "development_results": "NOT_RUN",
+    "validation": "NOT_RUN",
+    "replication": "NOT_RUN",
+    "future_portfolio": "NOT_FROZEN"
+  },
+  "live_capital_authorization": "NONE"
+}

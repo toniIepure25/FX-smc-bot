@@ -1,0 +1,55 @@
+{
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "status": "BLOCKED",
+  "final_decision": "BLOCKED_BY_OFFICIAL_RATE_ADAPTER",
+  "commits": {
+    "starting_sha": "aab00b31ff46367c8c6c1c69ce045ad23ea6243d",
+    "historical_manifest_reconciliation_sha": "fc9eb1f984e67d58b56c9aca745d6304a21a7e6f",
+    "gbp_source_reconciliation_pre_parse_sha": "83a2bb4a1cc5997790941fd7c760208121e834e1",
+    "gbp_v3_certification_sha": "7936e52124c2f3b799d099e4adfd84b685cf15b5"
+  },
+  "artifact_sha256": {
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/repository_state.json": "3d9b3c9a12f1b86f6754d37dc75fca3488479ee2f4d733d61ec380715f3ee934",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/pre_reconciliation_integrity.json": "244a1359b175fb617237bd73e5810421bae60f75f2e17e48fc95eea4e40c5189",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/predecessor_inheritance.json": "8dee48d7589aff8c57b5dbcbf7c7561e3c22591fa152c31971634234ac518b75",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/protocol_inheritance_lock.json": "d2353580f278f622946279a512e822a0b84245180a420ea24d0fbbccf5cce058",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/historical_manifest_reconciliation.json": "2fea3cb0925df63727f30ea29390ae27bf3c4f6102ba08568b4d52ab7c50a5f3",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/boe_export_contract.json": "496f5ce28a8fbc69458e9fbc5a6f6e4c5a8ac5c835d000755fab0ac004e42834",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/boe_format_selection.json": "d7f6278ca7c54ab683fc2b99f72e77931a6ff81792c37a1f979db5f712c01661",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/sonia_legacy_schema_descriptor.json": "9a946dea3adf75067ed446ded6872f8bb17183456e3c120870582a17562b7f10",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/sonia_reformed_schema_descriptor.json": "4d50f90735b4282f4d3a7ea4011e4c4cf60b6cb733b67df9c529dbe7c0646df4",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/sonia_schema_difference.json": "5eec6ad44dc94367d9bdb4e27f0df0acd875d178a1067da30f434267e2fc0d99",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/sonia_schema_reconciliation.json": "e3fbd0bf5bf103c6ae62a0b29cc1059ea18d0cc7f9cf7e9751c724b567e321c6",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/sonia_methodology_transition.json": "7411a7c0b38bd2d438f2dbb144cabc40af5b8b2c765e72ddcf901e0731b53ea9",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/gbp_adapter_v3_certification.json": "12f9a534151f813bfb64db9d1c22bd0ddbad3993498692d3b2c1b704748e2edb",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/gbp_vintage_store_certification.json": "dcb13df2dd1f642ae530bacf3cd1864156333e6d521191bc208b45273c31c0d2",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/gbp_asof_availability_audit.json": "cfd95b2214950d6c46b09a2ea6568cd896ae6356b645e60e4eb177c757aa9087",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/sonia_transition_audit.json": "23e50396f6054e8ff9e671b98195c88a148b49f8021ee837d088b9cc79d96e3d",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/live_adapter_matrix.json": "55e79c883819d4b825e40112a817aab8370b0407eb9d26aaf639d6e89ce80911",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/live_adapter_certification.json": "e943fc9add50d762ad9246d29c2ab5c4302396a1ac3432c8a5eea5cb5751d57b",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/prohibited_data_audit.json": "77a343fe3f917ca87c6040cfafb81d7cf9afc1a3443f75e35cadcae5db6d0532",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/integrity_audit.json": "b84deca84bfc3fb38f4a926e3c1177af481f890d2b67b08075f68c7e896cb8ef",
+    "results/gate_f0rpe2erusdsrlpaeursrgbpsr/final_decision.json": "d41a401827787d64716655e5fce386f559247a237cd8704b96332c343d5215c9",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPAEURSRGBPSR_PREDECESSOR_INHERITANCE.md": "1b8a597be3bd211389df532c02589b0c1b2d3ac123feb1cd71d0817dbc42158b",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPAEURSRGBPSR_MANIFEST_RECONCILIATION.md": "d495afff0fe425563866bfa95e5dd3bb430c24acb80fd34f3e44b9d9011674b8",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPAEURSRGBPSR_BOE_EXPORT_CONTRACT.md": "3fb1b378c78d767a87606e98ae45df590f271a99e3edd7fab9876e11930c5853",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPAEURSRGBPSR_SCHEMA_RECONCILIATION.md": "161a9e74e1ce91530331ea3b0dc8e9335bc798ea082da4cdc65460eab1f958a8",
+    "docs/research/classical_fx_factors_v2/F0RPE2ERUSDSRLPAEURSRGBPSR_FINAL_DECISION_MEMO.md": "af86c6e8aec97cee41e6f99842f5dbd0bbf38ef10cee42caf599b2049838d0ac"
+  },
+  "source_sha256": {
+    "src/fx_smc_bot/research/manifest_hashing.py": "05aaa7be78c08cd720a399f8d301559686b9ca6951ae8af7ddcdc9bb6526b716",
+    "src/fx_smc_bot/research/rate_sources/bank_of_england.py": "48c957e2eca45bb234b62656c835dad9efb21d14b2b51a3b6070f6bc7d273f96",
+    "src/fx_smc_bot/research/rate_vintage_store.py": "d720e2e4693ee826a00eab19830bb0458e511521b70415b818b40af2368e0edf",
+    "tests/test_gate_f0rpe2erusdsrlpaeursrgbpsr/test_historical_manifest_verifier.py": "9f3dea9f4c3290fe49f0e7af91c4023d94c821e7bbba1536d654a6b32dc66ad9",
+    "tests/test_gate_f0rpe2erusdsrlpaeursrgbpsr/test_boe_sonia_v3.py": "ce7d1dd6b1b33c440d1b8d0de43e09aae305babc9434d8e0fbcc3d3671dc19bd"
+  },
+  "blocked_before": [
+    "empirical infrastructure V5",
+    "development rate acquisition",
+    "development market acquisition",
+    "development outcomes",
+    "validation",
+    "replication",
+    "future portfolio"
+  ]
+}

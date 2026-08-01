@@ -1,0 +1,61 @@
+{
+  "artifact_id": "F0RPE2ERUSDSRLPAEURSRGBPSR_LIVE_ADAPTER_MATRIX_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSR_GBP_SOURCE_RECONCILIATION_V1",
+  "certification_mode": "LIVE_OFFICIAL_BOUNDED_FAIL_FAST_VALUE_BLIND",
+  "status": "FAIL",
+  "all_required_adapters_certified": false,
+  "gbp_v3_certification_sha": "7936e52124c2f3b799d099e4adfd84b685cf15b5",
+  "adapters": {
+    "USD": {
+      "adapter_id": "NY_FED_EFFR_V3",
+      "currency": "USD",
+      "status": "PASS",
+      "certification_sha": "f92e5a315094d61d7118fdcf07fbae403a8b414f"
+    },
+    "EUR": {
+      "adapter_id": "ECB_EONIA_ESTR_V3",
+      "currency": "EUR",
+      "status": "PASS",
+      "certification_sha": "eaccdb7729ee379153eaa532f28918515bf5a2e9"
+    },
+    "GBP": {
+      "adapter_id": "BOE_SONIA_V3",
+      "currency": "GBP",
+      "status": "PASS",
+      "official_publisher": "PASS",
+      "machine_readable_route": "PASS",
+      "server_side_date_range": "PASS",
+      "series_identity": "PASS",
+      "response_schema": "PASS",
+      "parser": "PASS",
+      "publication_rule": "PASS",
+      "as_of_availability": "PASS"
+    },
+    "AUD": {
+      "adapter_id": "RBA_CASH_RATE_V2",
+      "currency": "AUD",
+      "status": "FAIL",
+      "official_publisher": "PASS",
+      "exact_endpoint": "FAIL",
+      "failure_code": "OFFICIAL_ENDPOINT_HTTP_STATUS_404",
+      "failure_stage": "RATE_SOURCE_ACCESS",
+      "failure_disposition": "NO_SOURCE_SNAPSHOT_PERSISTED",
+      "request_identity": "c126a0de10230bd9d8e419d5bc729338240be9a54b079bcae50c426db8793abd"
+    },
+    "JPY": {
+      "adapter_id": "BOJ_FINAL_UO_CALL_V2",
+      "currency": "JPY",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    },
+    "CAD": {
+      "adapter_id": "BOC_V39079_EVENTS_V2",
+      "currency": "CAD",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    },
+    "CHF": {
+      "adapter_id": "SIX_SARON_1800_V2",
+      "currency": "CHF",
+      "status": "NOT_RUN_AFTER_FAIL_FAST"
+    }
+  }
+}
