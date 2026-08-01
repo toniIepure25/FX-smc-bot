@@ -1,0 +1,44 @@
+{
+  "protocol_id": "BOJ_FINAL_CALL_RATE_PUBLICATION_AND_CORRECTION_PROTOCOL_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "status": "FROZEN_BEFORE_NUMERICAL_PERSISTENCE",
+  "publication_semantics": {
+    "selected_rate": "final weighted-average uncollateralized overnight call rate",
+    "observation_date": "Tokyo business day T",
+    "publication_day": "next Tokyo business day after observation date T",
+    "actual_publication_timestamp": null,
+    "publication_evidence_kind": "PUBLICATION_DAY_ENVELOPE",
+    "publication_lower_bound": "00:00 Asia/Tokyo on publication day",
+    "publication_upper_bound": "00:00 Asia/Tokyo on the following calendar day, exclusive",
+    "strategy_availability": "first frozen 17:05 America/New_York portfolio execution strictly after publication_upper_bound"
+  },
+  "prohibited_publication_evidence": [
+    "generic API file-creation time",
+    "BOJ response DATE",
+    "metadata LAST_UPDATE",
+    "HTTP Date header",
+    "retrieval timestamp",
+    "local file metadata",
+    "an exact around-10:00 timestamp"
+  ],
+  "correction_registry_protocol": {
+    "authorized_interval": {
+      "start": "2010-01-01",
+      "end": "2022-12-31"
+    },
+    "required_official_sources": [
+      "Notices of Corrections",
+      "Notices of Changes",
+      "historical final-result release pages"
+    ],
+    "corrected_current_value_rule": "available only after official correction-publication envelope",
+    "missing_original_vintage_rule": "if original value unavailable from an official vintage, the pre-correction interval is MISSING",
+    "original_value_reconstruction": "PROHIBITED"
+  },
+  "revision_semantics": {
+    "revision_identifier": "null unless explicitly supplied by BOJ",
+    "uncorrected_revision_status": "FINAL_HISTORY_ONLY_NO_EXPLICIT_REVISION_ID",
+    "corrected_revision_status": "CORRECTED_BY_EXPLICIT_OFFICIAL_NOTICE",
+    "internal_storage_key_as_revision_id": "PROHIBITED"
+  }
+}

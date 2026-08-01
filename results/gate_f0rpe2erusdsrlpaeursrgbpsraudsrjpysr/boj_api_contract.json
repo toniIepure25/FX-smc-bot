@@ -1,0 +1,64 @@
+{
+  "contract_id": "BOJ_TIME_SERIES_API_V1_FINAL_CALL_RATE_CONTRACT_V1",
+  "gate_id": "F0RPE2ERUSDSRLPAEURSRGBPSRAUDSR_JPY_SOURCE_RECONCILIATION_V1",
+  "publisher": "Bank of Japan",
+  "active_endpoint": "https://www.stat-search.boj.or.jp/api/v1/getDataCode",
+  "method": "GET",
+  "required_parameters": {
+    "format": "json",
+    "lang": "en",
+    "db": "FM01",
+    "code": "STRDCLUCON",
+    "startDate": "<YYYYMM>",
+    "endDate": "<YYYYMM>"
+  },
+  "prohibited_parameters": {
+    "code": [
+      "FM01'STRDCLUCON"
+    ],
+    "resultType": "PROHIBITED",
+    "startDate": "<YYYY-MM-DD>",
+    "endDate": "<YYYY-MM-DD>"
+  },
+  "series_identity": {
+    "database": "FM01",
+    "api_series_code": "STRDCLUCON",
+    "display_code": "FM01'STRDCLUCON",
+    "currency": "JPY",
+    "internal_series_id": "BOJ_FINAL_UNCOLLATERALIZED_OVERNIGHT_CALL_RATE",
+    "selected_economic_series": "final weighted-average uncollateralized overnight call rate",
+    "unit": "percent per annum",
+    "frequency": "DAILY"
+  },
+  "legacy_predecessor_endpoint": {
+    "endpoint": "https://www.stat-search.boj.or.jp/ssi/cgi-bin/famecgi2",
+    "status": "PRESERVED_AS_PREDECESSOR_BLOCKER",
+    "active_adapter_use": "PROHIBITED"
+  },
+  "request_bounds": {
+    "granularity": "monthly",
+    "date_format": "YYYYMM",
+    "authorized_structural_windows": [
+      {
+        "label": "ordinary window",
+        "startDate": "201601",
+        "endDate": "201601"
+      },
+      {
+        "label": "Japan holiday boundary",
+        "startDate": "201605",
+        "endDate": "201605"
+      },
+      {
+        "label": "year-end boundary",
+        "startDate": "201612",
+        "endDate": "201701"
+      }
+    ]
+  },
+  "transport_success_requirements": {
+    "http_status": 200,
+    "content_type": "application/json",
+    "internal_status": 200
+  }
+}
