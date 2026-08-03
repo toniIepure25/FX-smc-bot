@@ -1,0 +1,15 @@
+{
+  "artifact_id": "A0R2_PREDECESSOR_INHERITANCE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "relationship": "OPERATIONAL_AND_EMPIRICAL_CONTINUATION_WITH_EXACT_PROTOCOL_INHERITANCE",
+  "predecessor_gate": "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1",
+  "predecessor_decision": "BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION",
+  "predecessor_final_sha": "bd63d81775de19099822b60f7a21b4e672b63693",
+  "a0r1_trial_plan_pre_data_sha": "d69ece8134fa0f8699e90eaa70e66337076d43d2",
+  "a0r1_pre_provider_request_sha": "a179a195c87a121e2a5714968ce80beef11d7315",
+  "provider_probe": "PASS_AUTHORIZED_NOT_MONTHLY_CERTIFIED",
+  "completed_empirical_trials": 0,
+  "economic_outcomes": 0
+}

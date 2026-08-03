@@ -1,0 +1,10 @@
+{
+  "artifact_id": "A0R2_REPOSITORY_STATE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "branch": "research/fx-intraday-alpha-discovery-v1",
+  "starting_sha": "bd63d81775de19099822b60f7a21b4e672b63693",
+  "observed_sha": "bd63d81775de19099822b60f7a21b4e672b63693",
+  "remote_sha_verified_before_gate": "bd63d81775de19099822b60f7a21b4e672b63693",
+  "worktree_required_clean": true,
+  "predecessor_decision": "BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION"
+}

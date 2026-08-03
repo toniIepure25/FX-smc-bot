@@ -1,0 +1,23 @@
+{
+  "artifact_id": "A0R2_CLEAN_ROOM_RECERTIFICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "clean_room_id": "FX_A0R1_CLEAN_ROOM_V1",
+  "path_hash": "3068a0b16807e499bcf494dc2431027493356812b6c2c291d70119dab2ea1aa1",
+  "identity_hash": "91fbfd68192b5a90d00bad796c6b552983ca5cc4789f7975a4a36f831a6c8c2b",
+  "identity_compatible": true,
+  "empirical_outcomes": "NONE",
+  "authorized_end_date": "2014-12-31",
+  "free_bytes": 47418376192,
+  "probe_reuse_policy": {
+    "existing_probe_may_be_reused": true,
+    "reuse_requirements": [
+      "request identity matches",
+      "payload hash matches",
+      "date and side are authorized",
+      "parser version matches",
+      "no unauthorized row exists"
+    ],
+    "counts_as_certified_monthly_side_partition": false
+  }
+}
