@@ -1,0 +1,13 @@
+{
+  "artifact_id": "A0R2_TRIAL_CONFIGURATION_AUDIT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "materialized_trial_ids": 1200,
+  "required_trial_ids": 1200,
+  "missing_ids": [],
+  "duplicate_ids": [],
+  "placeholder_trials_completed": 0,
+  "parameter_selection_after_outcomes": false,
+  "implementation_mapping_version": "A0R2_M1_CAPABILITY_SAFE_MAPPING_V1",
+  "fallback_rule": "narrowest deterministic textual implementation applied uniformly before outcomes"
+}
