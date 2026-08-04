@@ -1,0 +1,14 @@
+{
+  "artifact_id": "A0R2_M1_M5_DETERMINISM_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "NOT_REACHED_FULL_REPLAY_REQUIRES_COMPLETE_DATASET",
+  "sample_policy": [
+    "first month",
+    "ordinary middle month",
+    "year boundary month",
+    "DST-transition month",
+    "one USD pair",
+    "one JPY cross",
+    "one non-USD cross"
+  ]
+}

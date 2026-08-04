@@ -1,0 +1,74 @@
+{
+  "artifact_id": "A0R2_M1_ALIGNMENT_CERTIFICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "INCOMPLETE",
+  "expected_pair_month_partitions": 540,
+  "certified_pair_month_partitions": 7,
+  "reused_valid_partitions": 3,
+  "newly_built_partitions": 4,
+  "rebuilt_invalid_partitions": 0,
+  "canonicalization_failures": 3,
+  "rows": [
+    {
+      "pair": "GBPUSD",
+      "year": 2010,
+      "month": 1,
+      "sha256": "992b8d3fb07ae69f68188ae63d7bb5fea11a5a0c83396f2365396e3f8c53b675",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "USDCAD",
+      "year": 2010,
+      "month": 3,
+      "joined_rows": 33180,
+      "bid_only": 0,
+      "ask_only": 0,
+      "negative_spread_count": 0,
+      "sha256": "0c9a6f47de8e7b68935a2777817b8fb1f6634e904ba2f2bf1837d46513cad2ee"
+    },
+    {
+      "pair": "USDCHF",
+      "year": 2010,
+      "month": 3,
+      "joined_rows": 33180,
+      "bid_only": 0,
+      "ask_only": 0,
+      "negative_spread_count": 0,
+      "sha256": "ff6c820ea01ad74dfe59226bd3822d32e5f0781e297e3b311c8d249992a1c05e"
+    },
+    {
+      "pair": "EURJPY",
+      "year": 2010,
+      "month": 1,
+      "sha256": "c1d403c12aabc937454e2cca6d320a8ebc1a02cba063226e83947929820651df",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "EURJPY",
+      "year": 2010,
+      "month": 2,
+      "joined_rows": 28800,
+      "bid_only": 0,
+      "ask_only": 0,
+      "negative_spread_count": 0,
+      "sha256": "93d8624db63412db37969e5ef3e889206e8e3cbefb9d28d42270e119ee14b899"
+    },
+    {
+      "pair": "GBPJPY",
+      "year": 2010,
+      "month": 1,
+      "sha256": "7b81a9e534bd84f0be2121f746f412a8618870ceb1b6331fb175c103b75d0588",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "GBPJPY",
+      "year": 2010,
+      "month": 2,
+      "joined_rows": 28800,
+      "bid_only": 0,
+      "ask_only": 0,
+      "negative_spread_count": 0,
+      "sha256": "fc0ce057249bb06b50d042a53a3b95f3a4b0c895f10e4b3b4b19f8f4a1f1238a"
+    }
+  ]
+}

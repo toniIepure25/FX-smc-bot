@@ -1,0 +1,62 @@
+{
+  "artifact_id": "A0R2_M5_PARTITION_MANIFEST_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "INCOMPLETE",
+  "expected_pair_month_partitions": 540,
+  "certified_pair_month_partitions": 7,
+  "reused_valid_partitions": 3,
+  "newly_built_partitions": 4,
+  "rebuilt_invalid_partitions": 0,
+  "canonicalization_failures": 3,
+  "partitions": [
+    {
+      "pair": "GBPUSD",
+      "year": 2010,
+      "month": 1,
+      "sha256": "5d1e0c0b177be38cee943c9fa10871fb08dc10a46fca353f8051be1928cfcabe",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "USDCAD",
+      "year": 2010,
+      "month": 3,
+      "rows": 6636,
+      "sha256": "271ac6b3d600a89b6e690b789b4afa2e7cb6c398bfaff25ef839e2697f52e0e3"
+    },
+    {
+      "pair": "USDCHF",
+      "year": 2010,
+      "month": 3,
+      "rows": 6636,
+      "sha256": "46c7e3b0c9a9683de2f297de1286425d67577013f244b1cdc163e87ae9170b82"
+    },
+    {
+      "pair": "EURJPY",
+      "year": 2010,
+      "month": 1,
+      "sha256": "524f69f382bfb6ab04b11c039989555d83187860a584c6eb02f94fbeaafe1c6d",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "EURJPY",
+      "year": 2010,
+      "month": 2,
+      "rows": 5760,
+      "sha256": "783e3907e9d3f851866d5202007c7c4cf192bbb4cc533b9e3dd94ec0666f534a"
+    },
+    {
+      "pair": "GBPJPY",
+      "year": 2010,
+      "month": 1,
+      "sha256": "5e7a381aac728db659da138e57d19566d8ad4c318a8745571624077d7b630c40",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "GBPJPY",
+      "year": 2010,
+      "month": 2,
+      "rows": 5760,
+      "sha256": "dec2f2958d56f525bfc4c0fe8da42c9cf8dd5a7c77595ac4ac708c925f9f6730"
+    }
+  ]
+}
