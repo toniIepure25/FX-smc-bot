@@ -1,0 +1,12 @@
+{
+  "artifact_id": "A0R2_PROVIDER_UNKNOWN_ERROR_RECONCILIATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "conclusion": "DETERMINISTIC_DATE_OR_INSTRUMENT_FAILURE",
+  "failed_partition_category": "PROVIDER_DNS_OR_NETWORK",
+  "control_category": "PROVIDER_HEALTHY",
+  "failed_stack_fingerprint": "1c65b56facace425",
+  "control_stack_fingerprint": "",
+  "failed_return_code": 1,
+  "control_return_code": 0
+}

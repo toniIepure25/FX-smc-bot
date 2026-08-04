@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import shutil
+import socket
 import sys
 import threading
 import time
@@ -38,6 +39,9 @@ from fx_smc_bot.data.daily_checkpoint import (
     normalize_month_manifest_for_repair,
 )
 from fx_smc_bot.data.dukascopy_node_provider import (
+    ProviderCallResult,
+    _download_month_bulk_result,
+    _download_single_day_result,
     align_bid_ask_month,
     joined_to_parquet,
 )
@@ -164,6 +168,10 @@ FAILURE_EVIDENCE_FIELDS = (
     "next_eligible_retry_timestamp",
     "error",
 )
+
+LEASE_STALE_SECONDS = 600
+CIRCUIT_BREAKER_WINDOW = 8
+CIRCUIT_BREAKER_FAILURES = 3
 
 FROZEN_CATEGORIES: dict[str, dict[str, tuple[Any, ...]]] = {
     "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
@@ -636,6 +644,50 @@ def create_op2_start_artifacts(data_root: Path, progress: dict[str, Any]) -> Non
     }
     write_json(results_dir() / "a0r2op2_starting_state.json", state)
     write_json(results_dir() / "a0r2op2_pre_outcome_integrity.json", integrity)
+
+
+def create_op3_start_artifacts(data_root: Path, progress: dict[str, Any]) -> None:
+    state = {
+        "artifact_id": "A0R2OP3_STARTING_STATE_V1",
+        "gate_id": GATE_ID,
+        "operational_continuation": "A0R2-OP3",
+        "status": "PASS",
+        "expected_starting_sha": "ae18b59fd1cdd042a1b16ce5b35232c255ebf2ce",
+        "observed_sha": git_sha(),
+        "active_materialization": MATERIALIZATION_ID_V2,
+        "materialization_v2_sha256": MATERIALIZATION_V2_SHA256,
+        "clean_room_id": CLEAN_ROOM_ID,
+        "clean_room_path_hash": clean_room_path_hash(data_root),
+        "checkpoint_counts": {
+            "total_partitions": progress.get("total_partitions", 1080),
+            "certified": progress.get("certified_partitions", 0),
+            "complete_pending_certification": progress.get(
+                "complete_pending_certification", 0
+            ),
+            "planned": progress.get("planned_partitions", 0),
+            "running": progress.get("running_partitions", 0),
+            "retryable_failures": progress.get("retryable_failures", 0),
+            "terminal_failures": progress.get("terminal_failures", 0),
+        },
+    }
+    integrity = {
+        "artifact_id": "A0R2OP3_PRE_OUTCOME_INTEGRITY_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "completed_empirical_trials": 0,
+        "economic_outcomes": 0,
+        "discovery_dataset_frozen": False,
+        "strategy_outcomes_observed": False,
+        "returns_observed": False,
+        "trial_performance_observed": False,
+        "v2_materialization_preserved_byte_for_byte": (
+            file_sha256(results_dir() / "trial_materialization_v2.jsonl")
+            == MATERIALIZATION_V2_SHA256
+        ),
+        "materialization_v3_created": False,
+    }
+    write_json(results_dir() / "a0r2op3_starting_state.json", state)
+    write_json(results_dir() / "a0r2op3_pre_outcome_integrity.json", integrity)
 
 
 def create_materialization_amendment() -> None:
@@ -1392,6 +1444,10 @@ def progress_path(data_root: Path) -> Path:
     return checkpoint_dir(data_root) / "a0r2_progress.json"
 
 
+def lease_path(data_root: Path) -> Path:
+    return checkpoint_dir(data_root) / "a0r2_active_run_lease.json"
+
+
 def raw_dir(data_root: Path) -> Path:
     return data_root / "raw_bi5"
 
@@ -1422,6 +1478,90 @@ def load_state(data_root: Path) -> dict[str, Any]:
 
 def save_state(data_root: Path, state: dict[str, Any]) -> None:
     write_json(state_path(data_root), state)
+
+
+def host_identity_hash() -> str:
+    return sha256_bytes(socket.gethostname().encode("utf-8"))[:16]
+
+
+def pid_is_alive(pid: int | None) -> bool:
+    if not pid or pid <= 0:
+        return False
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        return False
+    return True
+
+
+def read_lease(data_root: Path) -> dict[str, Any] | None:
+    path = lease_path(data_root)
+    if not path.exists():
+        return None
+    return read_json(path)
+
+
+def write_lease(
+    data_root: Path,
+    *,
+    run_id: str,
+    stage: str,
+    worker_count: int,
+    current_partitions: list[str],
+    graceful_shutdown: bool = False,
+) -> None:
+    payload = {
+        "run_id": run_id,
+        "host_identity_hash": host_identity_hash(),
+        "pid": os.getpid(),
+        "process_start_time": datetime.now(timezone.utc).isoformat(),
+        "runner_sha": git_sha(),
+        "requested_stage": stage,
+        "worker_count": worker_count,
+        "heartbeat_timestamp": datetime.now(timezone.utc).isoformat(),
+        "current_partition_ids": current_partitions,
+        "graceful_shutdown": graceful_shutdown,
+    }
+    write_json(lease_path(data_root), payload)
+
+
+def update_lease_heartbeat(
+    data_root: Path, current_partitions: list[str], graceful_shutdown: bool = False
+) -> None:
+    lease = read_lease(data_root)
+    if not lease:
+        return
+    lease.update({
+        "heartbeat_timestamp": datetime.now(timezone.utc).isoformat(),
+        "current_partition_ids": current_partitions,
+        "graceful_shutdown": graceful_shutdown,
+    })
+    write_json(lease_path(data_root), lease)
+
+
+def close_lease(data_root: Path) -> None:
+    lease = read_lease(data_root)
+    if lease:
+        lease["graceful_shutdown"] = True
+        lease["heartbeat_timestamp"] = datetime.now(timezone.utc).isoformat()
+        write_json(lease_path(data_root), lease)
+    lease_path(data_root).unlink(missing_ok=True)
+
+
+def lease_is_live(lease: dict[str, Any] | None) -> bool:
+    if not lease:
+        return False
+    pid = int(lease.get("pid") or 0)
+    if lease.get("host_identity_hash") == host_identity_hash() and pid_is_alive(pid):
+        return True
+    heartbeat = str(lease.get("heartbeat_timestamp") or "")
+    try:
+        heartbeat_dt = datetime.fromisoformat(heartbeat)
+    except ValueError:
+        return False
+    if heartbeat_dt.tzinfo is None:
+        heartbeat_dt = heartbeat_dt.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - heartbeat_dt).total_seconds() < LEASE_STALE_SECONDS
 
 
 def append_event(data_root: Path, event: dict[str, Any]) -> None:
@@ -1674,6 +1814,229 @@ def classify_provider_failure(error: str, attempts: int) -> tuple[str, str]:
     return "FAILED_RETRYABLE", "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP"
 
 
+def classify_provider_diagnostic(result: ProviderCallResult) -> str:
+    text = " ".join(
+        [
+            result.error_message,
+            result.error_code,
+            result.stderr_excerpt,
+            " ".join(result.stdout_record_types),
+        ]
+    ).lower()
+    if result.timed_out:
+        return "PROVIDER_TIMEOUT"
+    if "429" in text:
+        return "PROVIDER_HTTP_429"
+    if "econnreset" in text or "connection reset" in text:
+        return "PROVIDER_CONNECTION_RESET"
+    if "enotfound" in text or "dns" in text or "network" in text or "fetch failed" in text:
+        return "PROVIDER_DNS_OR_NETWORK"
+    if "acquisition_error" in result.stdout_record_types and result.stack_fingerprint:
+        return "PROVIDER_LIBRARY_ERROR"
+    if result.return_code not in (0, None):
+        return "NODE_PROCESS_NONZERO"
+    if "non_json_stdout" in result.stdout_record_types:
+        return "NODE_OUTPUT_SCHEMA_ERROR"
+    if result.output_file_reported and not result.output_file_found:
+        return "OUTPUT_FILE_NOT_CREATED"
+    if result.succeeded and not result.rows:
+        return "EMPTY_OPEN_MARKET_RESPONSE"
+    if "unknown" in text:
+        return "PROVIDER_INTERNAL_UNKNOWN_ERROR"
+    return "PROVIDER_LIBRARY_ERROR" if result.error_message else "PROVIDER_HEALTHY"
+
+
+def provider_diagnostic_payload(
+    part: Partition,
+    result: ProviderCallResult,
+    *,
+    request_kind: str,
+) -> dict[str, Any]:
+    return {
+        "request_kind": request_kind,
+        "partition_id": part.key,
+        "pair": part.pair,
+        "year": part.year,
+        "month": part.month,
+        "side": part.side,
+        "node_result_type": "success" if result.succeeded else "failure",
+        "failure_category": classify_provider_diagnostic(result),
+        "error_excerpt": normalized_provider_error(result.error_message),
+        "error_code": result.error_code,
+        "stack_fingerprint": result.stack_fingerprint,
+        "stderr_fingerprint": result.stderr_fingerprint,
+        "return_code": result.return_code,
+        "timed_out": result.timed_out,
+        "duration_ms": result.duration_ms,
+        "stdout_record_types": result.stdout_record_types,
+        "row_count": len(result.rows),
+        "output_file_reported": result.output_file_reported,
+        "output_file_found": result.output_file_found,
+    }
+
+
+def recover_orphaned_running(data_root: Path, explicit: bool) -> dict[str, Any]:
+    lease = read_lease(data_root)
+    if lease_is_live(lease):
+        raise ValueError("A0R2_ACTIVE_LEASE_PREVENTS_COMPETING_RUNNER")
+    state = load_state(data_root)
+    rows = []
+    for part in partition_queue():
+        item = state.get("partitions", {}).get(part.key, {})
+        if item.get("state") != "RUNNING":
+            continue
+        same_host = bool(lease and lease.get("host_identity_hash") == host_identity_hash())
+        if lease and not same_host and not explicit:
+            continue
+        manifest = load_month_manifest(
+            raw_dir(data_root), part.pair, part.side, part.year, part.month
+        )
+        if manifest is not None:
+            manifest = normalize_month_manifest_for_repair(raw_dir(data_root), manifest)
+        manifest_status = manifest_to_status(manifest)
+        if manifest_status == "COMPLETE_PENDING_CERTIFICATION":
+            new_state = "COMPLETE_PENDING_CERTIFICATION"
+            category = ""
+        elif manifest and (manifest.days or manifest.compacted_rows):
+            new_state = "FAILED_RETRYABLE"
+            category = "PROCESS_INTERRUPTED_WITH_PARTIAL_CHECKPOINT"
+        else:
+            new_state = "FAILED_RETRYABLE"
+            category = "PROCESS_INTERRUPTED_BEFORE_CHECKPOINT"
+        evidence = manifest_failure_evidence(part, manifest)
+        updated = {
+            **item,
+            "pair": part.pair,
+            "year": part.year,
+            "month": part.month,
+            "side": part.side,
+            "state": new_state,
+            "failure_category": category or item.get("failure_category", ""),
+            "error": category or item.get("error", ""),
+            "error_fingerprint": item.get("error_fingerprint") or evidence["error_fingerprint"],
+            "failure_evidence": evidence,
+            "orphan_recovered_at_utc": datetime.now(timezone.utc).isoformat(),
+        }
+        state["partitions"][part.key] = updated
+        rows.append({
+            "partition_id": part.key,
+            "previous_state": "RUNNING",
+            "new_state": new_state,
+            "attempts_preserved": int(item.get("attempts") or 0),
+            "failure_category": category,
+            "manifest_status": manifest_status,
+        })
+    if rows:
+        save_state(data_root, state)
+    payload = {
+        "artifact_id": "A0R2_ORPHANED_RUNNING_RECOVERY_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "recovered_count": len(rows),
+        "lease_present": lease is not None,
+        "lease_live": False,
+        "rows": rows,
+    }
+    write_json(results_dir() / "orphaned_running_recovery.json", payload)
+    return payload
+
+
+def run_provider_diagnostic_control(data_root: Path) -> dict[str, Any]:
+    scratch = data_root / "scratch" / "provider_diagnostics"
+    failed = Partition("EURUSD", 2010, 1, "bid")
+    control = Partition("GBPUSD", 2010, 1, "bid")
+    failed_result = _download_month_bulk_result(
+        "eurusd",
+        failed.year,
+        failed.month,
+        failed.side,
+        scratch_root=scratch,
+    )
+    control_result = _download_single_day_result(
+        "gbpusd",
+        "2010-01-04",
+        "2010-01-05",
+        control.side,
+        scratch_root=scratch,
+        worker_id=0,
+    )
+    failed_payload = provider_diagnostic_payload(
+        failed, failed_result, request_kind="current_failed_partition"
+    )
+    control_payload = provider_diagnostic_payload(
+        control, control_result, request_kind="authorized_good_control_day"
+    )
+    if control_result.succeeded and not failed_result.succeeded:
+        conclusion = "DETERMINISTIC_DATE_OR_INSTRUMENT_FAILURE"
+    elif not control_result.succeeded and not failed_result.succeeded:
+        conclusion = "LOCAL_NODE_PROCESS_FAILURE"
+    elif failed_result.succeeded:
+        conclusion = "TRANSIENT_PROVIDER_FAILURE"
+    else:
+        conclusion = "UNRESOLVED_PROVIDER_LIBRARY_FAILURE"
+    payload = {
+        "artifact_id": "A0R2_PROVIDER_DIAGNOSTIC_CONTROL_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "failed_partition": failed_payload,
+        "control_request": control_payload,
+        "same_error_reproduced": (
+            failed_payload["failure_category"] == control_payload["failure_category"]
+            and failed_payload["failure_category"] != "PROVIDER_HEALTHY"
+        ),
+    }
+    reconciliation = {
+        "artifact_id": "A0R2_PROVIDER_UNKNOWN_ERROR_RECONCILIATION_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "conclusion": conclusion,
+        "failed_partition_category": failed_payload["failure_category"],
+        "control_category": control_payload["failure_category"],
+        "failed_stack_fingerprint": failed_payload["stack_fingerprint"],
+        "control_stack_fingerprint": control_payload["stack_fingerprint"],
+        "failed_return_code": failed_payload["return_code"],
+        "control_return_code": control_payload["return_code"],
+    }
+    write_json(results_dir() / "provider_diagnostic_control.json", payload)
+    write_json(results_dir() / "provider_unknown_error_reconciliation.json", reconciliation)
+    return reconciliation
+
+
+def audit_discovery_engine_configuration_coverage() -> dict[str, Any]:
+    rows = read_json(results_dir() / "trial_data_capability_v2_matrix.json")["rows"]
+    supported_families = set(FAMILY_LABELS)
+    executable = 0
+    invalid = 0
+    unsupported = []
+    for row in rows:
+        status = row["status"]
+        family = row["family_id"]
+        if status == "INVALID_PROTOCOL_DATA_CAPABILITY":
+            invalid += 1
+            continue
+        if status == "EXECUTABLE":
+            executable += 1
+            if family not in supported_families:
+                unsupported.append(row["trial_id"])
+            continue
+        unsupported.append(row["trial_id"])
+    payload = {
+        "artifact_id": "A0R2_DISCOVERY_ENGINE_CONFIGURATION_COVERAGE_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if not unsupported and executable == 1114 and invalid == 86 else "FAIL",
+        "materialization_id": MATERIALIZATION_ID_V2,
+        "materialization_v2_sha256": MATERIALIZATION_V2_SHA256,
+        "executable_trials": executable,
+        "capability_invalid_trials": invalid,
+        "unsupported_executable_configuration_count": len(unsupported),
+        "unsupported_trial_ids": unsupported,
+        "generic_fallback_used": False,
+        "synthetic_fixtures_only": True,
+    }
+    write_json(results_dir() / "discovery_engine_configuration_coverage.json", payload)
+    return payload
+
+
 def refresh_state_from_manifests(data_root: Path, write_state: bool = True) -> dict[str, Any]:
     state = load_state(data_root)
     raw = raw_dir(data_root)
@@ -1728,6 +2091,9 @@ def acquisition_summary(data_root: Path, write_progress: bool = True) -> dict[st
     timeout_count = 0
     connection_reset_count = 0
     provider_failure_count = 0
+    previous_progress = (
+        read_json(progress_path(data_root)) if progress_path(data_root).exists() else {}
+    )
     for item in state["partitions"].values():
         counts[item["state"]] = counts.get(item["state"], 0) + 1
         if "attempts" in item:
@@ -1782,8 +2148,10 @@ def acquisition_summary(data_root: Path, write_progress: bool = True) -> dict[st
         "provider_connection_reset_count": connection_reset_count,
         "provider_failure_count": provider_failure_count,
         "adaptive_one_worker_reductions": int(
-            (progress_path(data_root).exists())
-            and read_json(progress_path(data_root)).get("adaptive_one_worker_reductions", 0)
+            previous_progress.get("adaptive_one_worker_reductions", 0)
+        ),
+        "circuit_breaker_activations": int(
+            previous_progress.get("circuit_breaker_activations", 0)
         ),
         "provider_throttling_observations": (
             "RECORDED" if throttling_count else "NO_THROTTLING_RECORDED"
@@ -1971,6 +2339,11 @@ def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
 
 def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]:
     recertify_clean_room(data_root)
+    lease = read_lease(data_root)
+    if lease_is_live(lease):
+        raise ValueError("A0R2_ACTIVE_LEASE_PREVENTS_COMPETING_RUNNER")
+    if getattr(args, "recover_orphaned_running", False):
+        recover_orphaned_running(data_root, explicit=True)
     state = refresh_state_from_manifests(data_root)
     wanted = partition_queue(args.pair, args.year, args.month, args.side)
     runnable: deque[Partition] = deque()
@@ -1993,25 +2366,71 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     workers = min(max(1, args.max_workers), MAX_PROVIDER_WORKERS)
     max_in_flight = min(MAX_IN_FLIGHT_FUTURES, workers * 2)
     adaptive_reductions = 0
-    with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures: dict[Any, Partition] = {}
-        while runnable or futures:
-            while runnable and len(futures) < max_in_flight:
-                part = runnable.popleft()
-                futures[pool.submit(acquire_one, data_root, part)] = part
-            for future in as_completed(list(futures.keys())):
-                part = futures.pop(future)
-                result = future.result()
-                with STATE_LOCK:
-                    state = load_state(data_root)
-                    state["partitions"].setdefault(part.key, {})
-                    state["partitions"][part.key].update(result)
-                    save_state(data_root, state)
-                if result.get("error") and "429" in result.get("error", ""):
-                    adaptive_reductions += 1
-                    time.sleep(10)
-                break
+    recent_success: deque[bool] = deque(maxlen=CIRCUIT_BREAKER_WINDOW)
+    circuit_activations = 0
+    run_id = sha256_bytes(f"{time.time()}:{os.getpid()}".encode())[:16]
+    write_lease(
+        data_root,
+        run_id=run_id,
+        stage="acquire",
+        worker_count=workers,
+        current_partitions=[],
+    )
+    try:
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures: dict[Any, Partition] = {}
+            while runnable or futures:
+                active_ids = [part.key for part in futures.values()]
+                update_lease_heartbeat(data_root, active_ids)
+                if (
+                    len(recent_success) == CIRCUIT_BREAKER_WINDOW
+                    and sum(1 for ok in recent_success if not ok) >= CIRCUIT_BREAKER_FAILURES
+                ):
+                    circuit_activations += 1
+                    while futures:
+                        for future in as_completed(list(futures.keys())):
+                            part = futures.pop(future)
+                            result = future.result()
+                            with STATE_LOCK:
+                                state = load_state(data_root)
+                                state["partitions"].setdefault(part.key, {})
+                                state["partitions"][part.key].update(result)
+                                save_state(data_root, state)
+                            break
+                    break
+                while runnable and len(futures) < max_in_flight:
+                    part = runnable.popleft()
+                    futures[pool.submit(acquire_one, data_root, part)] = part
+                    update_lease_heartbeat(data_root, [p.key for p in futures.values()])
+                for future in as_completed(list(futures.keys())):
+                    part = futures.pop(future)
+                    result = future.result()
+                    recent_success.append(
+                        result.get("state") == "COMPLETE_PENDING_CERTIFICATION"
+                    )
+                    with STATE_LOCK:
+                        state = load_state(data_root)
+                        state["partitions"].setdefault(part.key, {})
+                        state["partitions"][part.key].update(result)
+                        save_state(data_root, state)
+                    if result.get("error") and "429" in result.get("error", ""):
+                        adaptive_reductions += 1
+                        time.sleep(10)
+                    if (
+                        len(recent_success) == CIRCUIT_BREAKER_WINDOW
+                        and sum(1 for ok in recent_success if not ok)
+                        >= CIRCUIT_BREAKER_FAILURES
+                    ):
+                        circuit_activations += 1
+                        runnable.clear()
+                    break
+    finally:
+        close_lease(data_root)
     progress = acquisition_summary(data_root)
+    if circuit_activations:
+        progress["circuit_breaker_activations"] = circuit_activations
+        progress["status"] = "PROVIDER_COOLDOWN_REQUIRED"
+        write_json(progress_path(data_root), progress)
     if adaptive_reductions:
         progress["adaptive_one_worker_reductions"] = (
             int(progress.get("adaptive_one_worker_reductions", 0)) + adaptive_reductions
@@ -2021,15 +2440,32 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
 
 
 def run_operational_cycle(args: argparse.Namespace, data_root: Path) -> dict[str, Any]:
-    refresh_state_from_manifests(data_root)
-    acquisition = run_acquisition(args, data_root)
-    certification = run_certification(data_root)
-    canonical = run_canonicalize(data_root)
+    started = time.monotonic()
+    completed_cycles = 0
+    acquisition: dict[str, Any] = {"status": "NOT_RUN"}
+    certification: dict[str, Any] = {"status": "NOT_RUN"}
+    canonical: dict[str, Any] = {"status": "NOT_RUN"}
+    max_cycles = getattr(args, "max_operational_cycles", None) or 1
+    max_runtime = (getattr(args, "max_runtime_minutes", None) or 0) * 60
+    while completed_cycles < max_cycles:
+        if max_runtime and (time.monotonic() - started) >= max_runtime:
+            break
+        refresh_state_from_manifests(data_root)
+        acquisition = run_acquisition(args, data_root)
+        certification = run_certification(data_root)
+        canonical = run_canonicalize(data_root)
+        completed_cycles += 1
+        if acquisition.get("status") == "PROVIDER_COOLDOWN_REQUIRED":
+            break
+        if max_runtime and (time.monotonic() - started) >= max_runtime:
+            break
     progress = acquisition_summary(data_root)
     progress["operational_cycle"] = {
         "status": "PASS",
         "retry_failed": bool(args.retry_failed),
         "max_partitions": args.max_partitions,
+        "completed_cycles": completed_cycles,
+        "runtime_seconds": int(time.monotonic() - started),
         "acquisition_status": acquisition.get("status"),
         "certification_status": certification.get("status"),
         "canonicalization_status": canonical.get("status"),
@@ -2296,6 +2732,75 @@ def analyze_retryable_failures_v2(data_root: Path) -> dict[str, Any]:
     return payload
 
 
+def analyze_retryable_failures_v3(data_root: Path) -> dict[str, Any]:
+    state = refresh_state_from_manifests(data_root)
+    rows = []
+    groups: Counter[str] = Counter()
+    for part in partition_queue():
+        item = state.get("partitions", {}).get(part.key, {})
+        if item.get("state") != "FAILED_RETRYABLE":
+            continue
+        manifest = load_month_manifest(
+            raw_dir(data_root), part.pair, part.side, part.year, part.month
+        )
+        if manifest is not None:
+            manifest = normalize_month_manifest_for_repair(raw_dir(data_root), manifest)
+        evidence = manifest_failure_evidence(part, manifest)
+        attempts = authoritative_attempt_count(data_root, part, item, manifest)
+        category = str(item.get("failure_category") or evidence["structured_reason"])
+        row = {
+            "partition_id": part.key,
+            "pair": part.pair,
+            "year": part.year,
+            "month": part.month,
+            "side": part.side,
+            "attempt_count": attempts,
+            "failure_category": category,
+            "error_code": item.get("error_code", ""),
+            "stack_fingerprint": item.get("stack_fingerprint", ""),
+            "stderr_fingerprint": item.get("stderr_fingerprint", ""),
+            "partial_data_state": (
+                "compacted"
+                if evidence["compacted_data_exists"]
+                else "partial_daily"
+                if evidence["partial_daily_files_exist"]
+                else "none"
+            ),
+            "retry_authorized": attempts < MAX_PARTITION_ATTEMPTS,
+            "evidence": evidence,
+        }
+        group_key = "|".join(
+            str(row[key])
+            for key in (
+                "error_code",
+                "stack_fingerprint",
+                "stderr_fingerprint",
+                "failure_category",
+                "year",
+                "month",
+                "pair",
+                "side",
+                "partial_data_state",
+                "attempt_count",
+            )
+        )
+        row["group_fingerprint"] = sha256_bytes(group_key.encode("utf-8"))[:16]
+        groups[str(row["group_fingerprint"])] += 1
+        rows.append(row)
+    rows.sort(key=lambda row: (row["attempt_count"], row["partition_id"]))
+    payload = {
+        "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V3",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "retryable_failure_count": len(rows),
+        "group_count": len(groups),
+        "groups": dict(sorted(groups.items())),
+        "rows": rows,
+    }
+    write_json(results_dir() / "retryable_failure_analysis_v3.json", payload)
+    return payload
+
+
 def parquet_sha(path: Path) -> str:
     return file_sha256(path)
 
@@ -2365,6 +2870,73 @@ def valid_existing_parquet(path: Path, expected_hash: str | None) -> bool:
     return True
 
 
+def canonical_sidecar_path(output_path: Path) -> Path:
+    return output_path.with_suffix(".identity.json")
+
+
+def write_canonical_sidecar(
+    output_path: Path,
+    *,
+    pair: str,
+    year: int,
+    month: int,
+    bid_checksum: str,
+    ask_checksum: str,
+    output_sha: str,
+    row_count: int,
+    layer: str,
+) -> None:
+    payload = {
+        "pair": pair,
+        "year": year,
+        "month": month,
+        "input_bid_checksum": bid_checksum,
+        "input_ask_checksum": ask_checksum,
+        "alignment_version": "A0R2_EXACT_TIMESTAMP_JOIN_V1",
+        "resampling_version": "A0R2_M5_DETERMINISTIC_RESAMPLE_V1",
+        "feature_version": "A0R2_FEATURES_M1_V1",
+        "layer": layer,
+        "output_sha256": output_sha,
+        "row_count": row_count,
+        "created_at_provenance": datetime.now(timezone.utc).isoformat(),
+    }
+    write_json(canonical_sidecar_path(output_path), payload)
+
+
+def canonical_failure_row(
+    pair: str,
+    year: int,
+    month: int,
+    state: dict[str, Any],
+    category: str,
+    error: str = "",
+    report: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    bid_key = f"{year:04d}-{month:02d}:{pair}:bid"
+    ask_key = f"{year:04d}-{month:02d}:{pair}:ask"
+    bid = state["partitions"].get(bid_key, {})
+    ask = state["partitions"].get(ask_key, {})
+    return {
+        "pair": pair,
+        "year": year,
+        "month": month,
+        "bid_certification_status": bid.get("state", "PLANNED"),
+        "ask_certification_status": ask.get("state", "PLANNED"),
+        "bid_input_checksum": bid.get("checksum", ""),
+        "ask_input_checksum": ask.get("checksum", ""),
+        "alignment_exception_category": category,
+        "alignment_error_fingerprint": failure_fingerprint(error or category),
+        "joined_row_count": int((report or {}).get("joined_rows") or 0),
+        "bid_only_count": int((report or {}).get("bid_only") or 0),
+        "ask_only_count": int((report or {}).get("ask_only") or 0),
+        "negative_spread_count": int((report or {}).get("negative_spread_count") or 0),
+        "m1_output_status": "NOT_BUILT",
+        "m5_output_status": "NOT_BUILT",
+        "feature_output_status": "NOT_BUILT",
+        "retryability": "RETRYABLE_AFTER_INPUT_OR_IO_REPAIR",
+    }
+
+
 def run_canonicalize(data_root: Path) -> dict[str, Any]:
     recertify_clean_room(data_root)
     state = refresh_state_from_manifests(data_root)
@@ -2375,6 +2947,8 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
     newly_built = 0
     rebuilt_invalid = 0
     failures = 0
+    failure_rows = []
+    not_eligible = 0
     prior_m1 = previous_partition_hashes(results_dir() / "m1_alignment_certification.json")
     prior_m5 = previous_partition_hashes(results_dir() / "m5_partition_manifest.json")
     prior_feature = previous_partition_hashes(results_dir() / "feature_partition_manifest.json")
@@ -2387,6 +2961,7 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                     state["partitions"].get(bid_key, {}).get("state") != "CERTIFIED"
                     or state["partitions"].get(ask_key, {}).get("state") != "CERTIFIED"
                 ):
+                    not_eligible += 1
                     continue
                 m1_path = canonical_partition_path(m1_dir(data_root), pair, "M1", year, month)
                 m5_path = canonical_partition_path(m5_dir(data_root), pair, "M5", year, month)
@@ -2425,14 +3000,44 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                 existed_before = m1_path.exists() or m5_path.exists() or feat_path.exists()
                 trading_pair = TradingPair(pair)
                 report = align_bid_ask_month(trading_pair, year, month, raw_dir(data_root))
-                if report.get("error") or report.get("negative_spread_count", 0) != 0:
+                if report.get("error"):
                     failures += 1
+                    failure_rows.append(
+                        canonical_failure_row(
+                            pair,
+                            year,
+                            month,
+                            state,
+                            "ALIGNMENT_EMPTY",
+                            str(report.get("error")),
+                            report,
+                        )
+                    )
+                    continue
+                if report.get("negative_spread_count", 0) != 0:
+                    failures += 1
+                    failure_rows.append(
+                        canonical_failure_row(
+                            pair,
+                            year,
+                            month,
+                            state,
+                            "NEGATIVE_SPREAD",
+                            "negative spread",
+                            report,
+                        )
+                    )
                     continue
                 out = joined_to_parquet(
                     report["joined_data"], trading_pair, year, month, m1_dir(data_root), "M1"
                 )
                 if out is None:
                     failures += 1
+                    failure_rows.append(
+                        canonical_failure_row(
+                            pair, year, month, state, "ALIGNMENT_EMPTY", "empty join", report
+                        )
+                    )
                     continue
                 m1_hash = parquet_sha(out)
                 newly_built += 0 if existed_before else 1
@@ -2447,17 +3052,54 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                     "negative_spread_count": report["negative_spread_count"],
                     "sha256": m1_hash,
                 })
+                bid_checksum = state["partitions"].get(bid_key, {}).get("checksum", "")
+                ask_checksum = state["partitions"].get(ask_key, {}).get("checksum", "")
+                write_canonical_sidecar(
+                    out,
+                    pair=pair,
+                    year=year,
+                    month=month,
+                    bid_checksum=bid_checksum,
+                    ask_checksum=ask_checksum,
+                    output_sha=m1_hash,
+                    row_count=int(report["joined_rows"]),
+                    layer="M1",
+                )
                 series = _load_bidask_series(out, trading_pair, Timeframe.M1)
                 m5 = resample_bidask(series, Timeframe.M5)
                 m5_path = _write_bidask_parquet(m5, m5_dir(data_root), "M5", year, month)
+                m5_hash = parquet_sha(m5_path)
+                write_canonical_sidecar(
+                    m5_path,
+                    pair=pair,
+                    year=year,
+                    month=month,
+                    bid_checksum=bid_checksum,
+                    ask_checksum=ask_checksum,
+                    output_sha=m5_hash,
+                    row_count=len(m5),
+                    layer="M5",
+                )
                 m5_rows.append({
                     "pair": pair,
                     "year": year,
                     "month": month,
                     "rows": len(m5),
-                    "sha256": parquet_sha(m5_path),
+                    "sha256": m5_hash,
                 })
                 feat_hash = build_features_from_m1(out, feat_path)
+                feat_rows = len(pd.read_parquet(feat_path))
+                write_canonical_sidecar(
+                    feat_path,
+                    pair=pair,
+                    year=year,
+                    month=month,
+                    bid_checksum=bid_checksum,
+                    ask_checksum=ask_checksum,
+                    output_sha=feat_hash,
+                    row_count=feat_rows,
+                    layer="FEATURE_M1",
+                )
                 feature_rows.append({
                     "pair": pair,
                     "year": year,
@@ -2474,6 +3116,7 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
         "newly_built_partitions": newly_built,
         "rebuilt_invalid_partitions": rebuilt_invalid,
         "canonicalization_failures": failures,
+        "not_eligible_pair_months": not_eligible,
         "rows": m1_rows,
     }
     m1_partition_manifest = {
@@ -2492,6 +3135,7 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
         "newly_built_partitions": newly_built,
         "rebuilt_invalid_partitions": rebuilt_invalid,
         "canonicalization_failures": failures,
+        "not_eligible_pair_months": not_eligible,
         "partitions": m5_rows,
     }
     feature_manifest = {
@@ -2504,6 +3148,7 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
         "newly_built_partitions": newly_built,
         "rebuilt_invalid_partitions": rebuilt_invalid,
         "canonicalization_failures": failures,
+        "not_eligible_pair_months": not_eligible,
         "partitions": feature_rows,
     }
     determinism = {
@@ -2526,6 +3171,17 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
     write_json(results_dir() / "m5_partition_manifest.json", m5_manifest)
     write_json(results_dir() / "feature_partition_manifest.json", feature_manifest)
     write_json(results_dir() / "m1_m5_determinism.json", determinism)
+    write_json(
+        results_dir() / "canonicalization_failure_analysis.json",
+        {
+            "artifact_id": "A0R2_CANONICALIZATION_FAILURE_ANALYSIS_V1",
+            "gate_id": GATE_ID,
+            "status": "PASS" if not failure_rows else "INCOMPLETE",
+            "failure_count": len(failure_rows),
+            "not_eligible_pair_months": not_eligible,
+            "rows": failure_rows,
+        },
+    )
     return m1_manifest
 
 
@@ -2591,11 +3247,16 @@ def parse_args() -> argparse.Namespace:
             "materialize",
             "op1-start",
             "op2-start",
+            "op3-start",
             "amendment",
             "materialize-v2",
             "capability-v2",
             "retryable-analysis",
             "retryable-analysis-v2",
+            "retryable-analysis-v3",
+            "provider-diagnostic",
+            "engine-coverage",
+            "recover-orphaned-running",
             "capability",
             "prepare",
             "acquire",
@@ -2616,6 +3277,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--retry-failed", action="store_true")
     parser.add_argument("--max-partitions", type=int, default=None)
     parser.add_argument("--operational-cycle", action="store_true")
+    parser.add_argument("--recover-orphaned-running", action="store_true")
+    parser.add_argument("--max-runtime-minutes", type=int, default=None)
+    parser.add_argument("--max-operational-cycles", type=int, default=None)
     parser.add_argument("--certify-only", action="store_true")
     parser.add_argument("--execute-trials-only", action="store_true")
     parser.add_argument("--status", action="store_true")
@@ -2629,6 +3293,10 @@ def main() -> int:
         raise ValueError("A0R2_MAX_PROVIDER_WORKERS_EXCEEDED")
     if args.max_partitions is not None and args.max_partitions < 1:
         raise ValueError("A0R2_MAX_PARTITIONS_MUST_BE_POSITIVE")
+    if args.max_runtime_minutes is not None and args.max_runtime_minutes < 1:
+        raise ValueError("A0R2_MAX_RUNTIME_MUST_BE_POSITIVE")
+    if args.max_operational_cycles is not None and args.max_operational_cycles < 1:
+        raise ValueError("A0R2_MAX_OPERATIONAL_CYCLES_MUST_BE_POSITIVE")
     stage = (
         "operational-cycle"
         if args.operational_cycle
@@ -2642,6 +3310,10 @@ def main() -> int:
         progress = run_status(data_root)
         create_op2_start_artifacts(data_root, progress)
         result = progress
+    elif stage == "op3-start":
+        progress = run_status(data_root)
+        create_op3_start_artifacts(data_root, progress)
+        result = progress
     elif stage == "amendment":
         create_materialization_amendment()
         result = {"status": "PASS"}
@@ -2653,6 +3325,16 @@ def main() -> int:
         result = analyze_retryable_failures(data_root)
     elif stage == "retryable-analysis-v2":
         result = analyze_retryable_failures_v2(data_root)
+    elif stage == "retryable-analysis-v3":
+        result = analyze_retryable_failures_v3(data_root)
+    elif stage == "provider-diagnostic":
+        result = run_provider_diagnostic_control(data_root)
+    elif stage == "engine-coverage":
+        result = audit_discovery_engine_configuration_coverage()
+    elif stage == "recover-orphaned-running":
+        result = recover_orphaned_running(
+            data_root, explicit=args.recover_orphaned_running
+        )
     else:
         result = {}
     if stage in ("inheritance", "prepare", "all"):

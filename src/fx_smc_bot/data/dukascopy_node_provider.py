@@ -10,13 +10,14 @@ import json
 import logging
 import subprocess
 import threading
+import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 import numpy as np
-import pandas as pd
+import pandas as pd  # type: ignore[import-untyped]
 
 from fx_smc_bot.config import Timeframe, TradingPair
 from fx_smc_bot.data.bidask import BidAskBarSeries
@@ -112,12 +113,160 @@ class AcquisitionManifest:
         }
 
 
+@dataclass(slots=True)
+class ProviderCallResult:
+    rows: list[dict[str, Any]]
+    succeeded: bool
+    error_message: str
+    error_code: str
+    stack_fingerprint: str
+    stderr_excerpt: str
+    stderr_fingerprint: str
+    stdout_record_types: list[str]
+    return_code: int | None
+    timed_out: bool
+    duration_ms: int
+    output_file_reported: bool
+    output_file_found: bool
+
+    def legacy_error(self) -> str:
+        if self.succeeded:
+            return ""
+        pieces = [self.error_message or "provider call failed"]
+        if self.error_code:
+            pieces.append(f"code={self.error_code}")
+        if self.stack_fingerprint:
+            pieces.append(f"stack={self.stack_fingerprint}")
+        if self.stderr_fingerprint:
+            pieces.append(f"stderr={self.stderr_fingerprint}")
+        if self.return_code is not None:
+            pieces.append(f"return_code={self.return_code}")
+        if self.timed_out:
+            pieces.append("timed_out=true")
+        return " | ".join(pieces)[:500]
+
+
 def _compute_checksum(path: Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as f:
         for chunk in iter(lambda: f.read(8192), b""):
             h.update(chunk)
     return h.hexdigest()[:16]
+
+
+def _fingerprint_text(text: str) -> str:
+    normalized = " ".join(str(text or "").split())
+    if not normalized:
+        return ""
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:16]
+
+
+def _stderr_excerpt(stderr: str) -> str:
+    return " ".join(str(stderr or "").split())[:240]
+
+
+def _run_node_acquisition(
+    cmd: list[str],
+    timeout: int,
+    tmp_out: Path,
+) -> ProviderCallResult:
+    start = time.monotonic()
+    record_types: list[str] = []
+    rows: list[dict[str, Any]] = []
+    error_message = ""
+    error_code = ""
+    stack = ""
+    output_file_reported = False
+    output_file_found = False
+    return_code: int | None = None
+    stderr = ""
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=timeout,
+            cwd=str(TOOL_DIR),
+        )
+        return_code = result.returncode
+        stderr = result.stderr or ""
+        for line in result.stdout.strip().split("\n"):
+            if not line.strip():
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                record_types.append("non_json_stdout")
+                continue
+            record_type = str(record.get("type", "unknown"))
+            record_types.append(record_type)
+            if record_type == "acquisition_complete":
+                output_file_reported = bool(record.get("outFile"))
+                src_file = Path(str(record.get("outFile", "")))
+                if not src_file.is_absolute():
+                    src_file = TOOL_DIR / src_file
+                output_file_found = src_file.exists()
+                if output_file_found:
+                    rows = json.loads(src_file.read_text())
+                    src_file.unlink(missing_ok=True)
+            elif record_type == "acquisition_error":
+                error_message = str(record.get("error", "unknown"))
+                error_code = str(record.get("code", ""))
+                stack = str(record.get("stack", ""))
+        if not error_message and return_code not in (0, None) and not rows:
+            error_message = _stderr_excerpt(stderr) or f"exit code {return_code}"
+        if output_file_reported and not output_file_found and not error_message:
+            error_message = "OUTPUT_FILE_NOT_CREATED"
+        succeeded = return_code == 0 and not error_message and (bool(rows) or output_file_found)
+        return ProviderCallResult(
+            rows=rows,
+            succeeded=succeeded,
+            error_message=error_message,
+            error_code=error_code,
+            stack_fingerprint=_fingerprint_text(stack),
+            stderr_excerpt=_stderr_excerpt(stderr),
+            stderr_fingerprint=_fingerprint_text(stderr),
+            stdout_record_types=record_types,
+            return_code=return_code,
+            timed_out=False,
+            duration_ms=int((time.monotonic() - start) * 1000),
+            output_file_reported=output_file_reported,
+            output_file_found=output_file_found,
+        )
+    except subprocess.TimeoutExpired as exc:
+        stderr = (
+            exc.stderr.decode("utf-8", errors="replace")
+            if isinstance(exc.stderr, bytes)
+            else str(exc.stderr or "")
+        )
+        return ProviderCallResult(
+            rows=[],
+            succeeded=False,
+            error_message="timeout",
+            error_code="PROVIDER_TIMEOUT",
+            stack_fingerprint="",
+            stderr_excerpt=_stderr_excerpt(stderr),
+            stderr_fingerprint=_fingerprint_text(stderr),
+            stdout_record_types=record_types,
+            return_code=None,
+            timed_out=True,
+            duration_ms=int((time.monotonic() - start) * 1000),
+            output_file_reported=False,
+            output_file_found=False,
+        )
+    except Exception as exc:
+        return ProviderCallResult(
+            rows=[],
+            succeeded=False,
+            error_message=str(exc)[:300],
+            error_code=exc.__class__.__name__,
+            stack_fingerprint=_fingerprint_text(repr(exc)),
+            stderr_excerpt="",
+            stderr_fingerprint="",
+            stdout_record_types=record_types,
+            return_code=None,
+            timed_out=False,
+            duration_ms=int((time.monotonic() - start) * 1000),
+            output_file_reported=False,
+            output_file_found=False,
+        )
 
 
 def _month_range(start_year: int, start_month: int,
@@ -144,8 +293,36 @@ def _download_single_day(
     worker_id: int | None = None,
 ) -> tuple[list[dict], str]:
     """Download one day of data. Returns (rows_list, error_string)."""
+    result = _download_single_day_result(
+        instrument,
+        date_str,
+        next_date_str,
+        side,
+        timeframe,
+        batch_size,
+        retries,
+        pause_between_batches_ms,
+        worker_id,
+    )
+    return result.rows, result.legacy_error()
+
+
+def _download_single_day_result(
+    instrument: str,
+    date_str: str,
+    next_date_str: str,
+    side: str,
+    timeframe: str = "m1",
+    batch_size: int = 10,
+    retries: int = 5,
+    pause_between_batches_ms: int = 200,
+    worker_id: int | None = None,
+    scratch_root: Path | None = None,
+) -> ProviderCallResult:
+    """Download one day and preserve structured Node diagnostics."""
     suffix = f"_{worker_id}" if worker_id is not None else f"_{threading.current_thread().ident}"
-    tmp_out = TOOL_DIR / f"_tmp_download{suffix}"
+    tmp_base = scratch_root if scratch_root is not None else TOOL_DIR
+    tmp_out = tmp_base / f"_tmp_download{suffix}"
     cmd = [
         "node", str(TOOL_DIR / "acquire.mjs"),
         "--instrument", instrument,
@@ -161,44 +338,7 @@ def _download_single_day(
         "--cache", "false",
     ]
 
-    try:
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=300,
-            cwd=str(TOOL_DIR),
-        )
-
-        for line in result.stdout.strip().split("\n"):
-            if not line.strip():
-                continue
-            try:
-                record = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-
-            if record.get("type") == "acquisition_complete":
-                out_path_str = record.get("outFile", "")
-                src_file = Path(out_path_str)
-                if not src_file.is_absolute():
-                    src_file = TOOL_DIR / src_file
-                if src_file.exists():
-                    data = json.loads(src_file.read_text())
-                    src_file.unlink(missing_ok=True)
-                    return data, ""
-                return [], ""
-
-            if record.get("type") == "acquisition_error":
-                return [], record.get("error", "unknown")
-
-        if result.returncode != 0:
-            err = result.stderr[:300] if result.stderr else ""
-            return [], err or f"exit code {result.returncode}"
-
-        return [], ""
-
-    except subprocess.TimeoutExpired:
-        return [], "timeout"
-    except Exception as exc:
-        return [], str(exc)[:300]
+    return _run_node_acquisition(cmd, 300, tmp_out)
 
 
 def _download_month_bulk(
@@ -216,6 +356,31 @@ def _download_month_bulk(
     Returns (rows_list, error_string). The rows contain timestamps that span
     the full month; the caller splits them into daily checkpoints.
     """
+    result = _download_month_bulk_result(
+        instrument,
+        year,
+        month,
+        side,
+        timeframe,
+        batch_size,
+        retries,
+        pause_between_batches_ms,
+    )
+    return result.rows, result.legacy_error()
+
+
+def _download_month_bulk_result(
+    instrument: str,
+    year: int,
+    month: int,
+    side: str,
+    timeframe: str = "m1",
+    batch_size: int = 30,
+    retries: int = 5,
+    pause_between_batches_ms: int = 200,
+    scratch_root: Path | None = None,
+) -> ProviderCallResult:
+    """Download an entire month and preserve structured Node diagnostics."""
     import calendar
 
     days_in_month = calendar.monthrange(year, month)[1]
@@ -226,7 +391,8 @@ def _download_month_bulk(
         date_to = f"{year}-{month + 1:02d}-01"
 
     suffix = f"_{threading.current_thread().ident}"
-    tmp_out = TOOL_DIR / f"_tmp_download{suffix}"
+    tmp_base = scratch_root if scratch_root is not None else TOOL_DIR
+    tmp_out = tmp_base / f"_tmp_download{suffix}"
     cmd = [
         "node", str(TOOL_DIR / "acquire.mjs"),
         "--instrument", instrument,
@@ -244,44 +410,7 @@ def _download_month_bulk(
 
     timeout = max(600, days_in_month * 30)
 
-    try:
-        result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=timeout,
-            cwd=str(TOOL_DIR),
-        )
-
-        for line in result.stdout.strip().split("\n"):
-            if not line.strip():
-                continue
-            try:
-                record = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-
-            if record.get("type") == "acquisition_complete":
-                out_path_str = record.get("outFile", "")
-                src_file = Path(out_path_str)
-                if not src_file.is_absolute():
-                    src_file = TOOL_DIR / src_file
-                if src_file.exists():
-                    data = json.loads(src_file.read_text())
-                    src_file.unlink(missing_ok=True)
-                    return data, ""
-                return [], ""
-
-            if record.get("type") == "acquisition_error":
-                return [], record.get("error", "unknown")
-
-        if result.returncode != 0:
-            err = result.stderr[:300] if result.stderr else ""
-            return [], err or f"exit code {result.returncode}"
-
-        return [], ""
-
-    except subprocess.TimeoutExpired:
-        return [], "timeout"
-    except Exception as exc:
-        return [], str(exc)[:300]
+    return _run_node_acquisition(cmd, timeout, tmp_out)
 
 
 def download_partition(

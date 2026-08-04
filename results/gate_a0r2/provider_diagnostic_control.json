@@ -1,0 +1,54 @@
+{
+  "artifact_id": "A0R2_PROVIDER_DIAGNOSTIC_CONTROL_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "failed_partition": {
+    "request_kind": "current_failed_partition",
+    "partition_id": "2010-01:EURUSD:bid",
+    "pair": "EURUSD",
+    "year": 2010,
+    "month": 1,
+    "side": "bid",
+    "node_result_type": "failure",
+    "failure_category": "PROVIDER_DNS_OR_NETWORK",
+    "error_excerpt": "fetch failed",
+    "error_code": "",
+    "stack_fingerprint": "1c65b56facace425",
+    "stderr_fingerprint": "",
+    "return_code": 1,
+    "timed_out": false,
+    "duration_ms": 65374,
+    "stdout_record_types": [
+      "acquisition_start",
+      "acquisition_error"
+    ],
+    "row_count": 0,
+    "output_file_reported": false,
+    "output_file_found": false
+  },
+  "control_request": {
+    "request_kind": "authorized_good_control_day",
+    "partition_id": "2010-01:GBPUSD:bid",
+    "pair": "GBPUSD",
+    "year": 2010,
+    "month": 1,
+    "side": "bid",
+    "node_result_type": "success",
+    "failure_category": "PROVIDER_HEALTHY",
+    "error_excerpt": "",
+    "error_code": "",
+    "stack_fingerprint": "",
+    "stderr_fingerprint": "",
+    "return_code": 0,
+    "timed_out": false,
+    "duration_ms": 32027,
+    "stdout_record_types": [
+      "acquisition_start",
+      "acquisition_complete"
+    ],
+    "row_count": 1440,
+    "output_file_reported": true,
+    "output_file_found": true
+  },
+  "same_error_reproduced": false
+}

@@ -1,0 +1,13 @@
+{
+  "artifact_id": "A0R2_DISCOVERY_ENGINE_CONFIGURATION_COVERAGE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "materialization_id": "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V2",
+  "materialization_v2_sha256": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1",
+  "executable_trials": 1114,
+  "capability_invalid_trials": 86,
+  "unsupported_executable_configuration_count": 0,
+  "unsupported_trial_ids": [],
+  "generic_fallback_used": false,
+  "synthetic_fixtures_only": true
+}
