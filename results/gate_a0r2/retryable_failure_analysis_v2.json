@@ -1,5 +1,5 @@
 {
-  "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V1",
+  "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V2",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "PASS",
   "retryable_failure_count": 12,
@@ -364,5 +364,8 @@
         "error_fingerprint": "cf1f765a20b72fd6"
       }
     }
-  ]
+  ],
+  "evidence_policy": "manifest_derived_non_empty_structured_evidence",
+  "max_partition_attempts": 5,
+  "empty_error_fingerprints": 0
 }

@@ -138,8 +138,32 @@ RETRYABLE_FAILURE_FINGERPRINTS = (
 
 MAX_PARTITION_ATTEMPTS = 5
 MAX_IN_FLIGHT_FUTURES = 4
+OP1_OPERATIONAL_SHA = "e4fbf5e5c813674e1802a8c4f43a8a0ff7328f59"
+MATERIALIZATION_V2_SHA256 = "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1"
 
 JSONL_LOCK = threading.Lock()
+STATE_LOCK = threading.Lock()
+
+STATE_PRECEDENCE = {
+    "CERTIFIED": 70,
+    "FAILED_TERMINAL": 60,
+    "COMPLETE_PENDING_CERTIFICATION": 50,
+    "MARKET_CLOSED_VALID": 40,
+    "FAILED_RETRYABLE": 30,
+    "RUNNING": 20,
+    "PLANNED": 10,
+}
+
+FAILURE_EVIDENCE_FIELDS = (
+    "attempts",
+    "first_failure_timestamp",
+    "latest_failure_timestamp",
+    "failure_category",
+    "error_fingerprint",
+    "terminal_reason",
+    "next_eligible_retry_timestamp",
+    "error",
+)
 
 FROZEN_CATEGORIES: dict[str, dict[str, tuple[Any, ...]]] = {
     "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
@@ -568,6 +592,50 @@ def create_op1_start_artifacts(data_root: Path, progress: dict[str, Any]) -> Non
     }
     write_json(results_dir() / "a0r2op1_starting_state.json", state)
     write_json(results_dir() / "a0r2op1_pre_outcome_integrity.json", integrity)
+
+
+def create_op2_start_artifacts(data_root: Path, progress: dict[str, Any]) -> None:
+    state = {
+        "artifact_id": "A0R2OP2_STARTING_STATE_V1",
+        "gate_id": GATE_ID,
+        "operational_continuation": "A0R2-OP2",
+        "status": "PASS",
+        "expected_starting_sha": OP1_OPERATIONAL_SHA,
+        "observed_sha": git_sha(),
+        "active_materialization": MATERIALIZATION_ID_V2,
+        "materialization_v2_sha256": MATERIALIZATION_V2_SHA256,
+        "clean_room_id": CLEAN_ROOM_ID,
+        "clean_room_path_hash": clean_room_path_hash(data_root),
+        "checkpoint_counts": {
+            "total_partitions": progress.get("total_partitions", 1080),
+            "certified": progress.get("certified_partitions", 0),
+            "complete_pending_certification": progress.get(
+                "complete_pending_certification", 0
+            ),
+            "planned": progress.get("planned_partitions", 0),
+            "running": progress.get("running_partitions", 0),
+            "retryable_failures": progress.get("retryable_failures", 0),
+            "terminal_failures": progress.get("terminal_failures", 0),
+        },
+    }
+    integrity = {
+        "artifact_id": "A0R2OP2_PRE_OUTCOME_INTEGRITY_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "completed_empirical_trials": 0,
+        "economic_outcomes": 0,
+        "discovery_dataset_frozen": False,
+        "strategy_outcomes_observed": False,
+        "returns_observed": False,
+        "trial_performance_observed": False,
+        "v2_materialization_preserved_byte_for_byte": (
+            file_sha256(results_dir() / "trial_materialization_v2.jsonl")
+            == MATERIALIZATION_V2_SHA256
+        ),
+        "materialization_v3_created": False,
+    }
+    write_json(results_dir() / "a0r2op2_starting_state.json", state)
+    write_json(results_dir() / "a0r2op2_pre_outcome_integrity.json", integrity)
 
 
 def create_materialization_amendment() -> None:
@@ -1386,6 +1454,176 @@ def manifest_to_status(manifest: MonthManifest | None) -> str:
     return "RUNNING" if manifest_days else "PLANNED"
 
 
+def normalized_provider_error(error: str) -> str:
+    normalized = " ".join(str(error or "").split())
+    return normalized[:240]
+
+
+def partition_id_from_values(pair: str, year: int, month: int, side: str) -> str:
+    return f"{year:04d}-{month:02d}:{pair}:{side}"
+
+
+def manifest_failure_evidence(
+    part: Partition, manifest: MonthManifest | None
+) -> dict[str, Any]:
+    if manifest is None:
+        reason = "MONTH_MANIFEST_MISSING"
+        counts: dict[str, int] = {}
+        max_day_attempts = 0
+        first_failed_date = ""
+        first_error = reason
+        partial_daily_files = False
+        compacted_exists = False
+    else:
+        status_counts = Counter(day.status for day in manifest.days)
+        counts = dict(sorted(status_counts.items()))
+        max_day_attempts = max((int(day.attempts or 0) for day in manifest.days), default=0)
+        failed_days = [day for day in manifest.days if day.status == "failed"]
+        pending_days = [day for day in manifest.days if day.status == "pending"]
+        first_failed = failed_days[0] if failed_days else None
+        first_failed_date = (
+            f"{first_failed.year:04d}-{first_failed.month:02d}-{first_failed.day:02d}"
+            if first_failed
+            else ""
+        )
+        first_error = next(
+            (
+                normalized_provider_error(day.error)
+                for day in manifest.days
+                if normalized_provider_error(day.error)
+            ),
+            "",
+        )
+        if not first_error:
+            if failed_days:
+                first_error = "MONTH_INCOMPLETE_WITH_FAILED_DAYS"
+            elif pending_days:
+                first_error = "MONTH_INCOMPLETE_WITH_PENDING_DAYS"
+            elif manifest.compacted and manifest.compacted_rows == 0:
+                first_error = "MONTH_COMPACTED_ZERO_ROWS"
+            else:
+                first_error = "MONTH_COMPACTION_MISSING_DESPITE_TERMINAL_DAYS"
+        partial_daily_files = any(day.rows > 0 or day.file_size > 0 for day in manifest.days)
+        compacted_exists = manifest.compacted and manifest.compacted_rows > 0
+    failure_category_counts = (
+        Counter(
+            day.failure_category or "UNCLASSIFIED"
+            for day in manifest.days
+            if day.status == "failed"
+        )
+        if manifest is not None
+        else Counter({"MANIFEST_MISSING": 1})
+    )
+    fingerprint_payload = {
+        "partition_id": part.key,
+        "failure_category_counts": dict(sorted(failure_category_counts.items())),
+        "first_failed_date": first_failed_date,
+        "normalized_provider_error": first_error,
+    }
+    return {
+        "partition_id": part.key,
+        "failed_day_count": counts.get("failed", 0),
+        "pending_day_count": counts.get("pending", 0),
+        "market_closed_day_count": counts.get("market_closed", 0),
+        "complete_day_count": counts.get("complete", 0),
+        "first_failed_date": first_failed_date,
+        "first_non_empty_provider_error": first_error,
+        "failure_category_counts": dict(sorted(failure_category_counts.items())),
+        "maximum_day_attempts": max_day_attempts,
+        "compacted_data_exists": compacted_exists,
+        "partial_daily_files_exist": partial_daily_files,
+        "structured_reason": first_error,
+        "error_fingerprint": sha256_json(fingerprint_payload)[:16],
+    }
+
+
+def read_jsonl_records(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    rows = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            rows.append(json.loads(line))
+    return rows
+
+
+def history_attempt_count(data_root: Path, part: Partition) -> int:
+    counts: list[int] = []
+    for path in (events_path(data_root), failures_path(data_root)):
+        for row in read_jsonl_records(path):
+            if row.get("partition") == part.key or row.get("partition_id") == part.key:
+                counts.append(int(row.get("attempts") or row.get("attempt_count") or 0))
+    return max(counts, default=0)
+
+
+def manifest_attempt_count(manifest: MonthManifest | None) -> int:
+    if manifest is None:
+        return 0
+    return max((int(day.attempts or 0) for day in manifest.days), default=0)
+
+
+def authoritative_attempt_count(
+    data_root: Path,
+    part: Partition,
+    persisted: dict[str, Any],
+    manifest: MonthManifest | None,
+) -> int:
+    return max(
+        int(persisted.get("attempts") or 0),
+        history_attempt_count(data_root, part),
+        manifest_attempt_count(manifest),
+    )
+
+
+def reconcile_partition_state(
+    persisted_state: dict[str, Any],
+    manifest: MonthManifest | None,
+) -> dict[str, Any]:
+    pair = str(persisted_state.get("pair") or (manifest.pair if manifest else ""))
+    year = int(persisted_state.get("year") or (manifest.year if manifest else 0))
+    month = int(persisted_state.get("month") or (manifest.month if manifest else 0))
+    side = str(persisted_state.get("side") or (manifest.side if manifest else ""))
+    part = Partition(pair, year, month, side) if pair and year and month and side else None
+    inferred = manifest_to_status(manifest)
+    current = str(persisted_state.get("state", "PLANNED"))
+    if current in {"CERTIFIED", "FAILED_TERMINAL"}:
+        status = current
+    elif current == "COMPLETE_PENDING_CERTIFICATION":
+        status = current
+    elif inferred == "COMPLETE_PENDING_CERTIFICATION" and current == "FAILED_RETRYABLE":
+        status = inferred
+    elif STATE_PRECEDENCE.get(inferred, 0) > STATE_PRECEDENCE.get(current, 0):
+        status = inferred
+    elif current in STATE_PRECEDENCE:
+        status = current
+    else:
+        status = inferred
+    result = {**persisted_state, "state": status}
+    if manifest is not None:
+        result.update({
+            "pair": manifest.pair,
+            "year": manifest.year,
+            "month": manifest.month,
+            "side": manifest.side,
+            "rows": manifest.compacted_rows,
+            "checksum": manifest.compacted_checksum,
+        })
+    for field in FAILURE_EVIDENCE_FIELDS:
+        if field in persisted_state:
+            result[field] = persisted_state[field]
+    if status in {"FAILED_RETRYABLE", "FAILED_TERMINAL"} and part is not None:
+        evidence = manifest_failure_evidence(part, manifest)
+        result.setdefault("failure_evidence", evidence)
+        if not result.get("failure_category"):
+            category_counts = evidence["failure_category_counts"]
+            result["failure_category"] = next(iter(category_counts), evidence["structured_reason"])
+        if not result.get("error"):
+            result["error"] = evidence["structured_reason"]
+        if not result.get("error_fingerprint"):
+            result["error_fingerprint"] = evidence["error_fingerprint"]
+    return result
+
+
 def should_acquire_partition(
     current_state: str,
     retry_failed: bool,
@@ -1420,6 +1658,8 @@ def is_running_stale(item: dict[str, Any], max_age_seconds: int = 3600) -> bool:
 
 def failure_fingerprint(error: str) -> str:
     normalized = " ".join(error.lower().split())
+    if not normalized:
+        normalized = "NO_PROVIDER_ERROR_TEXT"
     return sha256_bytes(normalized.encode("utf-8"))[:16]
 
 
@@ -1442,19 +1682,33 @@ def refresh_state_from_manifests(data_root: Path, write_state: bool = True) -> d
         if manifest is not None:
             manifest = normalize_month_manifest_for_repair(raw, manifest)
         existing = state["partitions"].get(part.key, {})
-        status = existing.get("state", "PLANNED")
-        if status != "CERTIFIED":
-            status = manifest_to_status(manifest)
-        state["partitions"][part.key] = {
+        base = {
             **existing,
             "pair": part.pair,
             "year": part.year,
             "month": part.month,
             "side": part.side,
-            "state": status,
-            "rows": manifest.compacted_rows if manifest else 0,
-            "checksum": manifest.compacted_checksum if manifest else "",
         }
+        reconciled = reconcile_partition_state(base, manifest)
+        attempts = authoritative_attempt_count(data_root, part, reconciled, manifest)
+        if attempts:
+            reconciled["attempts"] = attempts
+        if reconciled.get("state") == "FAILED_RETRYABLE" and attempts >= MAX_PARTITION_ATTEMPTS:
+            evidence = manifest_failure_evidence(part, manifest)
+            now = datetime.now(timezone.utc).isoformat()
+            reconciled.update({
+                "state": "FAILED_TERMINAL",
+                "failure_category": "RETRY_ATTEMPTS_EXHAUSTED",
+                "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
+                "latest_failure_timestamp": reconciled.get(
+                    "latest_failure_timestamp", now
+                ),
+                "error": reconciled.get("error") or evidence["structured_reason"],
+                "error_fingerprint": reconciled.get("error_fingerprint")
+                or evidence["error_fingerprint"],
+                "failure_evidence": evidence,
+            })
+        state["partitions"][part.key] = reconciled
     if write_state:
         save_state(data_root, state)
     return state
@@ -1465,16 +1719,39 @@ def acquisition_summary(data_root: Path, write_progress: bool = True) -> dict[st
     state = refresh_state_from_manifests(data_root, write_state=write_progress)
     counts: dict[str, int] = {}
     raw_bytes = 0
+    m1_bytes = 0
+    m5_bytes = 0
+    feature_bytes = 0
     attempt_counts: Counter[int] = Counter()
+    failure_categories: Counter[str] = Counter()
     throttling_count = 0
+    timeout_count = 0
+    connection_reset_count = 0
+    provider_failure_count = 0
     for item in state["partitions"].values():
         counts[item["state"]] = counts.get(item["state"], 0) + 1
         if "attempts" in item:
             attempt_counts[int(item.get("attempts") or 0)] += 1
-        if item.get("failure_category") == "HTTP_429_PROVIDER_THROTTLING":
+        failure_category = str(item.get("failure_category") or "")
+        error = str(item.get("error") or "").lower()
+        if failure_category:
+            failure_categories[failure_category] += 1
+        if "429" in failure_category or "429" in error:
             throttling_count += 1
+        if "timeout" in failure_category.lower() or "timeout" in error:
+            timeout_count += 1
+        if "connection reset" in error or "econnreset" in error:
+            connection_reset_count += 1
+        if item.get("state") in {"FAILED_RETRYABLE", "FAILED_TERMINAL"}:
+            provider_failure_count += 1
     for file_path in raw_dir(data_root).rglob("data.json"):
         raw_bytes += file_path.stat().st_size
+    for file_path in m1_dir(data_root).rglob("*.parquet"):
+        m1_bytes += file_path.stat().st_size
+    for file_path in m5_dir(data_root).rglob("*.parquet"):
+        m5_bytes += file_path.stat().st_size
+    for file_path in feature_dir(data_root).rglob("*.parquet"):
+        feature_bytes += file_path.stat().st_size
     certified = counts.get("CERTIFIED", 0)
     pending = 1080 - certified
     progress = {
@@ -1489,19 +1766,57 @@ def acquisition_summary(data_root: Path, write_progress: bool = True) -> dict[st
         "complete_pending_certification": counts.get("COMPLETE_PENDING_CERTIFICATION", 0),
         "planned_partitions": counts.get("PLANNED", 0),
         "running_partitions": counts.get("RUNNING", 0),
+        "failure_category_distribution": dict(sorted(failure_categories.items())),
+        "m1_pair_months": count_parquet_partitions(m1_dir(data_root)),
+        "m5_pair_months": count_parquet_partitions(m5_dir(data_root)),
+        "feature_pair_months": count_parquet_partitions(feature_dir(data_root)),
         "raw_bytes_used": raw_bytes,
+        "m1_bytes_used": m1_bytes,
+        "m5_bytes_used": m5_bytes,
+        "feature_bytes_used": feature_bytes,
         "current_free_bytes": int(usage.free),
         "projected_remaining_bytes": max(0, pending) * 2_000_000,
         "attempt_distribution": dict(sorted(attempt_counts.items())),
         "provider_throttling_count": throttling_count,
+        "provider_timeout_count": timeout_count,
+        "provider_connection_reset_count": connection_reset_count,
+        "provider_failure_count": provider_failure_count,
+        "adaptive_one_worker_reductions": int(
+            (progress_path(data_root).exists())
+            and read_json(progress_path(data_root)).get("adaptive_one_worker_reductions", 0)
+        ),
         "provider_throttling_observations": (
-            "RECORDED" if throttling_count else "NONE_RECORDED"
+            "RECORDED" if throttling_count else "NO_THROTTLING_RECORDED"
         ),
         "next_deterministic_queue_item": next_queue_item(state),
+        "next_retryable_partition": next_partition_by_state(state, "FAILED_RETRYABLE"),
+        "next_normal_planned_partition": next_partition_by_state(state, "PLANNED"),
+        "last_completed_partition": last_completed_partition(data_root),
     }
     if write_progress:
         write_json(progress_path(data_root), progress)
     return progress
+
+
+def count_parquet_partitions(root: Path) -> int:
+    if not root.exists():
+        return 0
+    return sum(1 for _ in root.rglob("part.parquet"))
+
+
+def next_partition_by_state(state: dict[str, Any], wanted_state: str) -> dict[str, Any] | None:
+    for part in partition_queue():
+        item = state["partitions"].get(part.key, {})
+        if item.get("state", "PLANNED") == wanted_state:
+            return {
+                "partition": part.key,
+                "pair": part.pair,
+                "year": part.year,
+                "month": part.month,
+                "side": part.side,
+                "state": wanted_state,
+            }
+    return None
 
 
 def next_queue_item(state: dict[str, Any]) -> dict[str, Any] | None:
@@ -1519,9 +1834,49 @@ def next_queue_item(state: dict[str, Any]) -> dict[str, Any] | None:
     return None
 
 
+def last_completed_partition(data_root: Path) -> dict[str, Any] | None:
+    for row in reversed(read_jsonl_records(events_path(data_root))):
+        if row.get("state") in {"COMPLETE_PENDING_CERTIFICATION", "CERTIFIED"}:
+            return {
+                "partition": row.get("partition"),
+                "pair": row.get("pair"),
+                "year": row.get("year"),
+                "month": row.get("month"),
+                "side": row.get("side"),
+                "state": row.get("state"),
+            }
+    return None
+
+
 def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
+    manifest = load_month_manifest(raw_dir(data_root), part.pair, part.side, part.year, part.month)
     current = load_state(data_root).get("partitions", {}).get(part.key, {})
-    attempt_number = int(current.get("attempts") or 0) + 1
+    current_attempts = authoritative_attempt_count(data_root, part, current, manifest)
+    if current_attempts >= MAX_PARTITION_ATTEMPTS:
+        evidence = manifest_failure_evidence(part, manifest)
+        now = datetime.now(timezone.utc).isoformat()
+        terminal = {
+            "ts": now,
+            "partition": part.key,
+            "pair": part.pair,
+            "year": part.year,
+            "month": part.month,
+            "side": part.side,
+            "attempts": current_attempts,
+            "state": "FAILED_TERMINAL",
+            "failure_category": "RETRY_ATTEMPTS_EXHAUSTED",
+            "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
+            "error": evidence["structured_reason"],
+            "error_fingerprint": evidence["error_fingerprint"],
+            "first_failure_timestamp": current.get("first_failure_timestamp", now),
+            "latest_failure_timestamp": now,
+            "next_eligible_retry_timestamp": None,
+            "failure_evidence": evidence,
+        }
+        append_event(data_root, terminal)
+        append_failure(data_root, terminal)
+        return terminal
+    attempt_number = current_attempts + 1
     event_base = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "partition": part.key,
@@ -1531,6 +1886,14 @@ def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
         "side": part.side,
         "attempts": attempt_number,
     }
+    with STATE_LOCK:
+        state = load_state(data_root)
+        state["partitions"].setdefault(part.key, {})
+        state["partitions"][part.key].update({
+            **event_base,
+            "state": "RUNNING",
+        })
+        save_state(data_root, state)
     append_event(data_root, {**event_base, "state": "RUNNING"})
     try:
         manifest = acquire_month_bulk(
@@ -1546,40 +1909,60 @@ def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
         )
     except Exception as exc:
         error = str(exc)[:500]
-        state, category = classify_provider_failure(error, attempt_number)
+        failure_state, category = classify_provider_failure(error, attempt_number)
+        if attempt_number >= MAX_PARTITION_ATTEMPTS:
+            failure_state = "FAILED_TERMINAL"
+            category = "RETRY_ATTEMPTS_EXHAUSTED"
         now = datetime.now(timezone.utc).isoformat()
         failure = {
             **event_base,
-            "state": state,
+            "state": failure_state,
             "error": error,
             "failure_category": category,
             "error_fingerprint": failure_fingerprint(error),
             "first_failure_timestamp": current.get("first_failure_timestamp", now),
             "latest_failure_timestamp": now,
-            "next_eligible_retry_timestamp": now if state == "FAILED_RETRYABLE" else None,
-            "terminal_reason": category if state == "FAILED_TERMINAL" else None,
+            "next_eligible_retry_timestamp": (
+                now if failure_state == "FAILED_RETRYABLE" else None
+            ),
+            "terminal_reason": category if failure_state == "FAILED_TERMINAL" else None,
         }
         append_event(data_root, failure)
         append_failure(data_root, failure)
         return failure
-    state = "COMPLETE_PENDING_CERTIFICATION" if manifest.compacted else "FAILED_RETRYABLE"
-    error = "" if manifest.compacted else "month did not compact"
+    month_state = "COMPLETE_PENDING_CERTIFICATION" if manifest.compacted else "FAILED_RETRYABLE"
+    evidence = manifest_failure_evidence(part, manifest)
+    error = "" if manifest.compacted else evidence["structured_reason"]
     result = {
         **event_base,
-        "state": state,
+        "state": month_state,
         "rows": manifest.compacted_rows,
         "checksum": manifest.compacted_checksum,
     }
-    if state == "FAILED_RETRYABLE":
+    if month_state == "FAILED_RETRYABLE":
         _, category = classify_provider_failure(error, attempt_number)
+        if attempt_number >= MAX_PARTITION_ATTEMPTS:
+            result["state"] = "FAILED_TERMINAL"
+            category = "RETRY_ATTEMPTS_EXHAUSTED"
         result.update({
             "error": error,
             "failure_category": category,
-            "error_fingerprint": failure_fingerprint(error),
+            "error_fingerprint": evidence["error_fingerprint"],
             "first_failure_timestamp": current.get(
                 "first_failure_timestamp", datetime.now(timezone.utc).isoformat()
             ),
             "latest_failure_timestamp": datetime.now(timezone.utc).isoformat(),
+            "next_eligible_retry_timestamp": (
+                datetime.now(timezone.utc).isoformat()
+                if result["state"] == "FAILED_RETRYABLE"
+                else None
+            ),
+            "terminal_reason": (
+                "RETRY_ATTEMPTS_EXHAUSTED"
+                if result["state"] == "FAILED_TERMINAL"
+                else None
+            ),
+            "failure_evidence": evidence,
         })
         append_failure(data_root, result)
     append_event(data_root, result)
@@ -1591,6 +1974,7 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     state = refresh_state_from_manifests(data_root)
     wanted = partition_queue(args.pair, args.year, args.month, args.side)
     runnable: deque[Partition] = deque()
+    scheduled_keys: set[str] = set()
     for part in wanted:
         item = state["partitions"].get(part.key, {})
         current = item.get("state", "PLANNED")
@@ -1600,9 +1984,15 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
             resume=args.resume,
             running_is_stale=is_running_stale(item) if current == "RUNNING" else False,
         ):
+            if part.key in scheduled_keys:
+                continue
+            if args.max_partitions is not None and len(runnable) >= args.max_partitions:
+                break
             runnable.append(part)
+            scheduled_keys.add(part.key)
     workers = min(max(1, args.max_workers), MAX_PROVIDER_WORKERS)
     max_in_flight = min(MAX_IN_FLIGHT_FUTURES, workers * 2)
+    adaptive_reductions = 0
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures: dict[Any, Partition] = {}
         while runnable or futures:
@@ -1612,14 +2002,44 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
             for future in as_completed(list(futures.keys())):
                 part = futures.pop(future)
                 result = future.result()
-                state = load_state(data_root)
-                state["partitions"].setdefault(part.key, {})
-                state["partitions"][part.key].update(result)
-                save_state(data_root, state)
+                with STATE_LOCK:
+                    state = load_state(data_root)
+                    state["partitions"].setdefault(part.key, {})
+                    state["partitions"][part.key].update(result)
+                    save_state(data_root, state)
                 if result.get("error") and "429" in result.get("error", ""):
+                    adaptive_reductions += 1
                     time.sleep(10)
                 break
-    return acquisition_summary(data_root)
+    progress = acquisition_summary(data_root)
+    if adaptive_reductions:
+        progress["adaptive_one_worker_reductions"] = (
+            int(progress.get("adaptive_one_worker_reductions", 0)) + adaptive_reductions
+        )
+        write_json(progress_path(data_root), progress)
+    return progress
+
+
+def run_operational_cycle(args: argparse.Namespace, data_root: Path) -> dict[str, Any]:
+    refresh_state_from_manifests(data_root)
+    acquisition = run_acquisition(args, data_root)
+    certification = run_certification(data_root)
+    canonical = run_canonicalize(data_root)
+    progress = acquisition_summary(data_root)
+    progress["operational_cycle"] = {
+        "status": "PASS",
+        "retry_failed": bool(args.retry_failed),
+        "max_partitions": args.max_partitions,
+        "acquisition_status": acquisition.get("status"),
+        "certification_status": certification.get("status"),
+        "canonicalization_status": canonical.get("status"),
+        "canonicalization_reused_valid": canonical.get("reused_valid_partitions", 0),
+        "canonicalization_newly_built": canonical.get("newly_built_partitions", 0),
+        "canonicalization_rebuilt_invalid": canonical.get("rebuilt_invalid_partitions", 0),
+        "canonicalization_failures": canonical.get("canonicalization_failures", 0),
+    }
+    write_json(progress_path(data_root), progress)
+    return progress
 
 
 def compacted_month_path(data_root: Path, part: Partition) -> Path:
@@ -1758,17 +2178,44 @@ def run_certification(data_root: Path) -> dict[str, Any]:
     state = refresh_state_from_manifests(data_root)
     rows = []
     for part in partition_queue():
+        existing = state["partitions"].get(part.key, {})
+        if existing.get("state") == "FAILED_TERMINAL":
+            rows.append({
+                "partition": part.key,
+                "pair": part.pair,
+                "year": part.year,
+                "month": part.month,
+                "side": part.side,
+                "status": "FAILED_TERMINAL",
+                "rows": existing.get("rows", 0),
+                "checksum": existing.get("checksum", ""),
+                "checks": {"terminal_state_preserved": True},
+            })
+            continue
         manifest = load_month_manifest(raw, part.pair, part.side, part.year, part.month)
         if manifest is not None:
             manifest = normalize_month_manifest_for_repair(raw, manifest)
         cert = certify_month_manifest(data_root, manifest, part)
         rows.append(cert)
         state["partitions"].setdefault(part.key, {})
-        state["partitions"][part.key].update({
-            "state": cert["status"],
-            "rows": cert["rows"],
-            "checksum": cert.get("checksum", ""),
-        })
+        if cert["status"] == "CERTIFIED":
+            state["partitions"][part.key].update({
+                "state": "CERTIFIED",
+                "rows": cert["rows"],
+                "checksum": cert.get("checksum", ""),
+            })
+        elif state["partitions"][part.key].get("state") != "CERTIFIED":
+            reconciled = reconcile_partition_state(
+                {
+                    **state["partitions"][part.key],
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                },
+                manifest,
+            )
+            state["partitions"][part.key].update(reconciled)
     save_state(data_root, state)
     counts: dict[str, int] = {}
     for row in rows:
@@ -1794,7 +2241,7 @@ def run_certification(data_root: Path) -> dict[str, Any]:
 
 
 def analyze_retryable_failures(data_root: Path) -> dict[str, Any]:
-    state = load_state(data_root)
+    state = refresh_state_from_manifests(data_root)
     rows = []
     for part in partition_queue():
         item = state.get("partitions", {}).get(part.key, {})
@@ -1805,21 +2252,23 @@ def analyze_retryable_failures(data_root: Path) -> dict[str, Any]:
         )
         partial_data = bool(manifest and (manifest.days or manifest.compacted_rows))
         normalization_required = bool(manifest and not manifest.compacted)
-        attempts = int(item.get("attempts") or 0)
+        attempts = authoritative_attempt_count(data_root, part, item, manifest)
+        evidence = manifest_failure_evidence(part, manifest)
         rows.append({
             "partition_id": part.key,
             "pair": part.pair,
             "year": part.year,
             "month": part.month,
             "side": part.side,
-            "failure_category": item.get("failure_category", "UNKNOWN_RETRYABLE_FAILURE"),
+            "failure_category": item.get("failure_category")
+            or evidence["structured_reason"],
             "attempt_count": attempts,
-            "error_fingerprint": item.get(
-                "error_fingerprint", failure_fingerprint(str(item.get("error", "")))
-            ),
+            "error_fingerprint": item.get("error_fingerprint")
+            or evidence["error_fingerprint"],
             "partial_data_exists": partial_data,
             "manifest_normalization_required": normalization_required,
             "retry_authorized": attempts < MAX_PARTITION_ATTEMPTS,
+            "evidence": evidence,
         })
     payload = {
         "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V1",
@@ -1829,6 +2278,21 @@ def analyze_retryable_failures(data_root: Path) -> dict[str, Any]:
         "rows": rows,
     }
     write_json(results_dir() / "retryable_failure_analysis.json", payload)
+    return payload
+
+
+def analyze_retryable_failures_v2(data_root: Path) -> dict[str, Any]:
+    v1 = analyze_retryable_failures(data_root)
+    payload = {
+        **v1,
+        "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V2",
+        "evidence_policy": "manifest_derived_non_empty_structured_evidence",
+        "max_partition_attempts": MAX_PARTITION_ATTEMPTS,
+        "empty_error_fingerprints": sum(
+            1 for row in v1["rows"] if not row.get("error_fingerprint")
+        ),
+    }
+    write_json(results_dir() / "retryable_failure_analysis_v2.json", payload)
     return payload
 
 
@@ -1864,12 +2328,56 @@ def build_features_from_m1(parquet_path: Path, out_path: Path) -> str:
     return file_sha256(out_path)
 
 
+def canonical_partition_path(root: Path, pair: str, timeframe: str, year: int, month: int) -> Path:
+    return (
+        root
+        / pair
+        / f"timeframe={timeframe}"
+        / f"year={year}"
+        / f"month={month:02d}"
+        / "part.parquet"
+    )
+
+
+def previous_partition_hashes(path: Path) -> dict[tuple[str, int, int], str]:
+    if not path.exists():
+        return {}
+    payload = read_json(path)
+    rows = payload.get("rows") or payload.get("partitions") or []
+    hashes: dict[tuple[str, int, int], str] = {}
+    for row in rows:
+        if row.get("pair") and row.get("year") and row.get("month") and row.get("sha256"):
+            hashes[(str(row["pair"]), int(row["year"]), int(row["month"]))] = str(
+                row["sha256"]
+            )
+    return hashes
+
+
+def valid_existing_parquet(path: Path, expected_hash: str | None) -> bool:
+    if not path.exists() or not expected_hash:
+        return False
+    if file_sha256(path) != expected_hash:
+        return False
+    try:
+        pd.read_parquet(path)
+    except Exception:
+        return False
+    return True
+
+
 def run_canonicalize(data_root: Path) -> dict[str, Any]:
     recertify_clean_room(data_root)
     state = refresh_state_from_manifests(data_root)
     m1_rows = []
     m5_rows = []
     feature_rows = []
+    reused_valid = 0
+    newly_built = 0
+    rebuilt_invalid = 0
+    failures = 0
+    prior_m1 = previous_partition_hashes(results_dir() / "m1_alignment_certification.json")
+    prior_m5 = previous_partition_hashes(results_dir() / "m5_partition_manifest.json")
+    prior_feature = previous_partition_hashes(results_dir() / "feature_partition_manifest.json")
     for pair in INSTRUMENTS:
         for year in YEARS:
             for month in MONTHS:
@@ -1880,16 +2388,55 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                     or state["partitions"].get(ask_key, {}).get("state") != "CERTIFIED"
                 ):
                     continue
+                m1_path = canonical_partition_path(m1_dir(data_root), pair, "M1", year, month)
+                m5_path = canonical_partition_path(m5_dir(data_root), pair, "M5", year, month)
+                feat_path = canonical_partition_path(
+                    feature_dir(data_root), pair, "M1", year, month
+                )
+                key = (pair, year, month)
+                if (
+                    valid_existing_parquet(m1_path, prior_m1.get(key))
+                    and valid_existing_parquet(m5_path, prior_m5.get(key))
+                    and valid_existing_parquet(feat_path, prior_feature.get(key))
+                ):
+                    m1_rows.append({
+                        "pair": pair,
+                        "year": year,
+                        "month": month,
+                        "sha256": prior_m1[key],
+                        "reused_valid_partition": True,
+                    })
+                    m5_rows.append({
+                        "pair": pair,
+                        "year": year,
+                        "month": month,
+                        "sha256": prior_m5[key],
+                        "reused_valid_partition": True,
+                    })
+                    feature_rows.append({
+                        "pair": pair,
+                        "year": year,
+                        "month": month,
+                        "sha256": prior_feature[key],
+                        "reused_valid_partition": True,
+                    })
+                    reused_valid += 1
+                    continue
+                existed_before = m1_path.exists() or m5_path.exists() or feat_path.exists()
                 trading_pair = TradingPair(pair)
                 report = align_bid_ask_month(trading_pair, year, month, raw_dir(data_root))
                 if report.get("error") or report.get("negative_spread_count", 0) != 0:
+                    failures += 1
                     continue
                 out = joined_to_parquet(
                     report["joined_data"], trading_pair, year, month, m1_dir(data_root), "M1"
                 )
                 if out is None:
+                    failures += 1
                     continue
                 m1_hash = parquet_sha(out)
+                newly_built += 0 if existed_before else 1
+                rebuilt_invalid += 1 if existed_before else 0
                 m1_rows.append({
                     "pair": pair,
                     "year": year,
@@ -1910,14 +2457,6 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                     "rows": len(m5),
                     "sha256": parquet_sha(m5_path),
                 })
-                feat_path = (
-                    feature_dir(data_root)
-                    / pair
-                    / "timeframe=M1"
-                    / f"year={year}"
-                    / f"month={month:02d}"
-                    / "part.parquet"
-                )
                 feat_hash = build_features_from_m1(out, feat_path)
                 feature_rows.append({
                     "pair": pair,
@@ -1931,6 +2470,10 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
         "status": "PASS" if len(m1_rows) == 540 else "INCOMPLETE",
         "expected_pair_month_partitions": 540,
         "certified_pair_month_partitions": len(m1_rows),
+        "reused_valid_partitions": reused_valid,
+        "newly_built_partitions": newly_built,
+        "rebuilt_invalid_partitions": rebuilt_invalid,
+        "canonicalization_failures": failures,
         "rows": m1_rows,
     }
     m1_partition_manifest = {
@@ -1944,6 +2487,11 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
         "gate_id": GATE_ID,
         "status": "PASS" if len(m5_rows) == 540 else "INCOMPLETE",
         "expected_pair_month_partitions": 540,
+        "certified_pair_month_partitions": len(m5_rows),
+        "reused_valid_partitions": reused_valid,
+        "newly_built_partitions": newly_built,
+        "rebuilt_invalid_partitions": rebuilt_invalid,
+        "canonicalization_failures": failures,
         "partitions": m5_rows,
     }
     feature_manifest = {
@@ -1951,6 +2499,11 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
         "gate_id": GATE_ID,
         "status": "PASS" if len(feature_rows) == 540 else "INCOMPLETE",
         "expected_pair_month_partitions": 540,
+        "certified_pair_month_partitions": len(feature_rows),
+        "reused_valid_partitions": reused_valid,
+        "newly_built_partitions": newly_built,
+        "rebuilt_invalid_partitions": rebuilt_invalid,
+        "canonicalization_failures": failures,
         "partitions": feature_rows,
     }
     determinism = {
@@ -2037,10 +2590,12 @@ def parse_args() -> argparse.Namespace:
             "inheritance",
             "materialize",
             "op1-start",
+            "op2-start",
             "amendment",
             "materialize-v2",
             "capability-v2",
             "retryable-analysis",
+            "retryable-analysis-v2",
             "capability",
             "prepare",
             "acquire",
@@ -2059,6 +2614,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--month", type=int, default=None)
     parser.add_argument("--side", choices=SIDES, default=None)
     parser.add_argument("--retry-failed", action="store_true")
+    parser.add_argument("--max-partitions", type=int, default=None)
+    parser.add_argument("--operational-cycle", action="store_true")
     parser.add_argument("--certify-only", action="store_true")
     parser.add_argument("--execute-trials-only", action="store_true")
     parser.add_argument("--status", action="store_true")
@@ -2070,10 +2627,20 @@ def main() -> int:
     data_root = resolve_data_root(args.data_root)
     if args.max_workers > MAX_PROVIDER_WORKERS:
         raise ValueError("A0R2_MAX_PROVIDER_WORKERS_EXCEEDED")
-    stage = "status" if args.status else args.stage
+    if args.max_partitions is not None and args.max_partitions < 1:
+        raise ValueError("A0R2_MAX_PARTITIONS_MUST_BE_POSITIVE")
+    stage = (
+        "operational-cycle"
+        if args.operational_cycle
+        else ("status" if args.status else args.stage)
+    )
     if stage == "op1-start":
         progress = run_status(data_root)
         create_op1_start_artifacts(data_root, progress)
+        result = progress
+    elif stage == "op2-start":
+        progress = run_status(data_root)
+        create_op2_start_artifacts(data_root, progress)
         result = progress
     elif stage == "amendment":
         create_materialization_amendment()
@@ -2084,6 +2651,8 @@ def main() -> int:
         result = freeze_capability_matrix_v2()
     elif stage == "retryable-analysis":
         result = analyze_retryable_failures(data_root)
+    elif stage == "retryable-analysis-v2":
+        result = analyze_retryable_failures_v2(data_root)
     else:
         result = {}
     if stage in ("inheritance", "prepare", "all"):
@@ -2094,6 +2663,8 @@ def main() -> int:
         freeze_capability_matrix()
     if stage == "acquire":
         result = run_acquisition(args, data_root)
+    elif stage == "operational-cycle":
+        result = run_operational_cycle(args, data_root)
     elif stage == "certify" or args.certify_only:
         result = run_certification(data_root)
     elif stage == "canonicalize":
@@ -2122,6 +2693,7 @@ def main() -> int:
         "pending_partitions": result.get("pending_partitions"),
         "retryable_failures": result.get("retryable_failures"),
         "terminal_failures": result.get("terminal_failures"),
+        "complete_pending_certification": result.get("complete_pending_certification"),
         "max_workers": min(max(1, args.max_workers), MAX_PROVIDER_WORKERS),
     }
     print(json.dumps(display, sort_keys=True))
