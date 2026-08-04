@@ -1,0 +1,28 @@
+{
+  "artifact_id": "A0R2_TRIAL_MATERIALIZATION_V2_MANIFEST_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "materialization_id": "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V2",
+  "status": "PASS",
+  "materialized_trial_ids": 1200,
+  "missing_ids": 0,
+  "duplicate_ids": 0,
+  "total_candidate_equivalent_weight": 1200,
+  "family_counts": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 120,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 96,
+    "F03_VOLATILITY_BREAKOUT": 96,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 96,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 84,
+    "F06_CROSS_PAIR_LEAD_LAG": 120,
+    "F07_CURRENCY_FACTOR_RESIDUALS": 96,
+    "F08_TRIANGULAR_CONSISTENCY_RESIDUALS": 84,
+    "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL": 96,
+    "F10_INTRADAY_SEASONALITY": 84,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 108,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 120
+  },
+  "uncovered_frozen_categorical_levels": [],
+  "uncovered_frozen_categorical_level_count": 0,
+  "materialization_sha256": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1",
+  "pre_data": true
+}

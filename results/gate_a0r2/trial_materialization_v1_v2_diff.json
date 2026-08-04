@@ -1,0 +1,24 @@
+{
+  "artifact_id": "A0R2_TRIAL_MATERIALIZATION_V1_V2_DIFF_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "v1_materialization_id": "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V1",
+  "v2_materialization_id": "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V2",
+  "trial_ids_changed": 0,
+  "candidate_equivalent_weight_changed": 0,
+  "family_allocation_changed": false,
+  "v1_sha256": "bd6ee69087036e1086c36970efd46a3025f789685cf86be7849e39280e06686d",
+  "v2_sha256": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1",
+  "coverage_corrections": [
+    "F01 explicit anchors/lookbacks/holding periods/continuation-reversal",
+    "F02 M1 direction-run versus tick-only quote-arrival categories",
+    "F04 all five shock concepts with tick-only capability invalidation",
+    "F05 all frozen spread forecasters",
+    "F06 exact six directed relationships and all frozen lags",
+    "F08 all frozen triangles and executable basket variants",
+    "F09 exact frozen neutrality definitions",
+    "F10 prior-year seasonality categories",
+    "F11 true frozen regime class labels with filtered states",
+    "F12 all frozen model classes, targets and horizons"
+  ]
+}

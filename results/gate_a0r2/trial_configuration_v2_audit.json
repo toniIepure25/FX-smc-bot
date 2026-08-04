@@ -1,0 +1,13 @@
+{
+  "artifact_id": "A0R2_TRIAL_CONFIGURATION_V2_AUDIT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "trial_ids_match_v1": true,
+  "family_allocation_unchanged": true,
+  "candidate_equivalent_weight": 1200,
+  "frozen_categorical_levels_with_zero_coverage": 0,
+  "unfrozen_categories_introduced": false,
+  "strategy_outcomes_observed": false,
+  "returns_observed": false,
+  "trial_performance_observed": false
+}
