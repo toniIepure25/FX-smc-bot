@@ -94,6 +94,7 @@ def test_empty_provider_error_produces_structured_evidence(
 ) -> None:
     part = _one_part()
     monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: [part])
+    monkeypatch.setattr(runner, "results_dir", lambda: tmp_path / "results")
     manifest = MonthManifest(part.pair, part.side, part.year, part.month)
     manifest.days = [
         DayStatus(
