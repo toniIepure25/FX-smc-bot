@@ -1,0 +1,86 @@
+{
+  "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "retryable_failure_count": 6,
+  "rows": [
+    {
+      "partition_id": "2010-01:EURUSD:bid",
+      "pair": "EURUSD",
+      "year": 2010,
+      "month": 1,
+      "side": "bid",
+      "failure_category": "UNKNOWN_RETRYABLE_FAILURE",
+      "attempt_count": 0,
+      "error_fingerprint": "e3b0c44298fc1c14",
+      "partial_data_exists": true,
+      "manifest_normalization_required": true,
+      "retry_authorized": true
+    },
+    {
+      "partition_id": "2010-01:EURUSD:ask",
+      "pair": "EURUSD",
+      "year": 2010,
+      "month": 1,
+      "side": "ask",
+      "failure_category": "UNKNOWN_RETRYABLE_FAILURE",
+      "attempt_count": 0,
+      "error_fingerprint": "e3b0c44298fc1c14",
+      "partial_data_exists": true,
+      "manifest_normalization_required": true,
+      "retry_authorized": true
+    },
+    {
+      "partition_id": "2010-01:AUDUSD:bid",
+      "pair": "AUDUSD",
+      "year": 2010,
+      "month": 1,
+      "side": "bid",
+      "failure_category": "UNKNOWN_RETRYABLE_FAILURE",
+      "attempt_count": 0,
+      "error_fingerprint": "e3b0c44298fc1c14",
+      "partial_data_exists": true,
+      "manifest_normalization_required": true,
+      "retry_authorized": true
+    },
+    {
+      "partition_id": "2010-01:AUDUSD:ask",
+      "pair": "AUDUSD",
+      "year": 2010,
+      "month": 1,
+      "side": "ask",
+      "failure_category": "UNKNOWN_RETRYABLE_FAILURE",
+      "attempt_count": 0,
+      "error_fingerprint": "e3b0c44298fc1c14",
+      "partial_data_exists": true,
+      "manifest_normalization_required": true,
+      "retry_authorized": true
+    },
+    {
+      "partition_id": "2010-01:USDJPY:bid",
+      "pair": "USDJPY",
+      "year": 2010,
+      "month": 1,
+      "side": "bid",
+      "failure_category": "UNKNOWN_RETRYABLE_FAILURE",
+      "attempt_count": 0,
+      "error_fingerprint": "e3b0c44298fc1c14",
+      "partial_data_exists": true,
+      "manifest_normalization_required": true,
+      "retry_authorized": true
+    },
+    {
+      "partition_id": "2010-01:USDJPY:ask",
+      "pair": "USDJPY",
+      "year": 2010,
+      "month": 1,
+      "side": "ask",
+      "failure_category": "UNKNOWN_RETRYABLE_FAILURE",
+      "attempt_count": 0,
+      "error_fingerprint": "e3b0c44298fc1c14",
+      "partial_data_exists": true,
+      "manifest_normalization_required": true,
+      "retry_authorized": true
+    }
+  ]
+}

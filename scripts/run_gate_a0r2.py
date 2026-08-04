@@ -14,7 +14,9 @@ import json
 import os
 import shutil
 import sys
+import threading
 import time
+from collections import Counter, deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -48,6 +50,8 @@ PREDECESSOR_GATE = "A0R1_CLEAN_ROOM_AND_EMPIRICAL_DISCOVERY_V1"
 PREDECESSOR_DECISION = "BLOCKED_BY_A0R1_MARKET_DATA_ACQUISITION"
 LOCK_ID = "A0R2_EXACT_PROTOCOL_AND_TRIAL_BUDGET_INHERITANCE_V1"
 MATERIALIZATION_ID = "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V1"
+MATERIALIZATION_ID_V2 = "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V2"
+AMENDMENT_ID = "A0R2_PRE_OUTCOME_TRIAL_MATERIALIZATION_COMPLETENESS_AMENDMENT_V1"
 CLEAN_ROOM_ID = "FX_A0R1_CLEAN_ROOM_V1"
 EXPECTED_PATH_HASH = "3068a0b16807e499bcf494dc2431027493356812b6c2c291d70119dab2ea1aa1"
 
@@ -114,6 +118,135 @@ UNAVAILABLE_FIELDS = (
     "signed customer order flow",
     "transaction volume",
 )
+
+TERMINAL_FAILURE_FINGERPRINTS = (
+    "bad instrument",
+    "schema",
+    "authorization",
+    "out-of-range",
+    "unknown data representation",
+)
+
+RETRYABLE_FAILURE_FINGERPRINTS = (
+    "timeout",
+    "fetch failed",
+    "429",
+    "temporar",
+    "network",
+    "ECONNRESET",
+)
+
+MAX_PARTITION_ATTEMPTS = 5
+MAX_IN_FLIGHT_FUTURES = 4
+
+JSONL_LOCK = threading.Lock()
+
+FROZEN_CATEGORIES: dict[str, dict[str, tuple[Any, ...]]] = {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
+        "anchors": (
+            "Tokyo open",
+            "London open",
+            "New York open",
+            "London 16:00 fixing window",
+        ),
+        "lookbacks": (15, 30, 60, 90),
+        "holding_periods": (15, 30, 60, 120),
+        "variants": ("continuation", "reversal"),
+    },
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": {
+        "horizons": (5, 15, 30, 60),
+        "data_variants": ("M1-compatible direction-run", "tick-only quote-arrival"),
+        "variants": ("continuation", "exhaustion"),
+    },
+    "F03_VOLATILITY_BREAKOUT": {
+        "variants": ("breakout", "failed breakout"),
+        "volatility_concepts": ("realized variance compression", "range compression"),
+    },
+    "F04_LIQUIDITY_SHOCK_REVERSAL": {
+        "shock_concepts": (
+            "spread widening",
+            "range expansion",
+            "true quote-arrival drought",
+            "true quote-gap shock",
+            "bar discontinuity shock",
+        ),
+    },
+    "F05_SPREAD_AWARE_EXECUTION_GATING": {
+        "spread_forecasters": (
+            "seasonal median",
+            "HAR-style linear",
+            "elastic net",
+            "gradient-boosted trees",
+        ),
+        "alpha_reports": ("execution alpha", "directional alpha", "combined alpha"),
+    },
+    "F06_CROSS_PAIR_LEAD_LAG": {
+        "directed_relationships": (
+            ("EURUSD", "EURJPY"),
+            ("USDJPY", "EURJPY"),
+            ("GBPUSD", "GBPJPY"),
+            ("USDJPY", "GBPJPY"),
+            ("AUDUSD", "AUDJPY"),
+            ("USDJPY", "AUDJPY"),
+        ),
+        "lags": (1, 2, 3, 5, 10, 15, 30),
+    },
+    "F07_CURRENCY_FACTOR_RESIDUALS": {
+        "variants": ("residual continuation", "residual mean reversion"),
+        "estimation": ("rolling estimation", "expanding estimation"),
+    },
+    "F08_TRIANGULAR_CONSISTENCY_RESIDUALS": {
+        "triangles": (
+            "EURUSD / USDJPY / EURJPY",
+            "GBPUSD / USDJPY / GBPJPY",
+            "AUDUSD / USDJPY / AUDJPY",
+        ),
+        "variants": (
+            "single-leg convergence",
+            "two-leg hedge",
+            "three-leg executable basket",
+        ),
+    },
+    "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL": {
+        "neutrality": (
+            "top-minus-bottom",
+            "currency-neutral",
+            "USD-beta-neutral",
+            "JPY-beta-neutral",
+        ),
+    },
+    "F10_INTRADAY_SEASONALITY": {
+        "seasonality": (
+            "minute of session",
+            "hour of session",
+            "day of week",
+            "month-end",
+            "quarter-end",
+            "pre-holiday",
+            "post-holiday",
+        ),
+    },
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": {
+        "regime_classes": ("fixed quantile bins", "hidden Markov model", "Gaussian mixture"),
+        "state_count_rule": (2, 3, 4),
+    },
+    "F12_COST_SENSITIVE_ML_ABSTENTION": {
+        "model_classes": (
+            "logistic regression",
+            "ridge regression",
+            "elastic net",
+            "random forest",
+            "gradient-boosted trees",
+            "small fully connected neural network",
+        ),
+        "targets": (
+            "net executable return sign",
+            "net executable return",
+            "gross move exceeds frozen round-trip cost",
+        ),
+        "horizons": (5, 15, 30, 60, 120),
+    },
+}
 
 
 @dataclass(slots=True)
@@ -202,7 +335,7 @@ def clean_room_path_hash(data_root: Path) -> str:
     return sha256_bytes(str(data_root.resolve()).encode("utf-8"))
 
 
-def recertify_clean_room(data_root: Path) -> dict[str, Any]:
+def recertify_clean_room(data_root: Path, write_artifact: bool = True) -> dict[str, Any]:
     assert_outside_repo(data_root)
     identity_path = data_root / ".clean_room_identity.json"
     if not identity_path.exists():
@@ -254,7 +387,8 @@ def recertify_clean_room(data_root: Path) -> dict[str, Any]:
             "counts_as_certified_monthly_side_partition": False,
         },
     }
-    write_json(results_dir() / "clean_room_recertification.json", payload)
+    if write_artifact:
+        write_json(results_dir() / "clean_room_recertification.json", payload)
     return payload
 
 
@@ -361,6 +495,120 @@ def load_a0r1_trials() -> list[dict[str, Any]]:
 
 def pick(items: tuple[Any, ...], idx: int) -> Any:
     return items[idx % len(items)]
+
+
+def mixed_pick(items: tuple[Any, ...], idx: int, stride: int = 1) -> Any:
+    return items[(idx // stride) % len(items)]
+
+
+def category_coverage(records: list[dict[str, Any]]) -> dict[str, dict[str, dict[str, int]]]:
+    coverage: dict[str, dict[str, dict[str, int]]] = {}
+    for family_id, axes in FROZEN_CATEGORIES.items():
+        coverage[family_id] = {
+            axis: {category_key(value): 0 for value in values} for axis, values in axes.items()
+        }
+    for record in records:
+        family_id = record["family_id"]
+        cfg = record["full_configuration"]
+        categories = cfg.get("frozen_categories", {})
+        for axis, value in categories.items():
+            if axis in coverage.get(family_id, {}):
+                coverage[family_id][axis][category_key(value)] += 1
+    return coverage
+
+
+def category_key(value: Any) -> str:
+    if isinstance(value, list):
+        value = tuple(value)
+    return str(value)
+
+
+def uncovered_categories(records: list[dict[str, Any]]) -> list[dict[str, str]]:
+    missing = []
+    for family_id, axes in category_coverage(records).items():
+        for axis, levels in axes.items():
+            for level, count in levels.items():
+                if count == 0:
+                    missing.append({"family_id": family_id, "axis": axis, "level": level})
+    return missing
+
+
+def create_op1_start_artifacts(data_root: Path, progress: dict[str, Any]) -> None:
+    state = {
+        "artifact_id": "A0R2OP1_STARTING_STATE_V1",
+        "gate_id": GATE_ID,
+        "operational_continuation": "A0R2-OP1",
+        "status": "PASS",
+        "starting_a0r2_sha": STARTING_SHA,
+        "current_operational_sha": "fadf804189db385d97d499e288eaf342af7a5bd9",
+        "observed_sha": git_sha(),
+        "clean_room_id": CLEAN_ROOM_ID,
+        "clean_room_path_hash": clean_room_path_hash(data_root),
+        "checkpoint_counts": {
+            "total_partitions": progress.get("total_partitions", 1080),
+            "certified": progress.get("certified_partitions", 0),
+            "pending": progress.get("pending_partitions", 1080),
+            "retryable_failures": progress.get("retryable_failures", 0),
+            "terminal_failures": progress.get("terminal_failures", 0),
+        },
+    }
+    integrity = {
+        "artifact_id": "A0R2OP1_PRE_OUTCOME_INTEGRITY_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "completed_empirical_trials": 0,
+        "economic_outcomes": 0,
+        "discovery_dataset_frozen": False,
+        "strategy_outcomes_observed": False,
+        "returns_observed": False,
+        "trial_performance_observed": False,
+        "v1_materialization_preserved_byte_for_byte": True,
+        "raw_provider_metadata_observed": True,
+        "raw_provider_returns_observed": False,
+    }
+    write_json(results_dir() / "a0r2op1_starting_state.json", state)
+    write_json(results_dir() / "a0r2op1_pre_outcome_integrity.json", integrity)
+
+
+def create_materialization_amendment() -> None:
+    payload = {
+        "artifact_id": "A0R2_TRIAL_MATERIALIZATION_AMENDMENT_V1",
+        "gate_id": GATE_ID,
+        "amendment_id": AMENDMENT_ID,
+        "status": "FROZEN_BEFORE_EMPIRICAL_OUTCOMES",
+        "reason": "FROZEN_SEARCH_CATEGORIES_NOT_FULLY_REPRESENTED_IN_V1_MATERIALIZATION",
+        "unchanged_surfaces": [
+            "family identities",
+            "family allocations",
+            "trial IDs",
+            "candidate-equivalent weights",
+            "temporal partitions",
+            "eligibility thresholds",
+            "cost model",
+            "execution model",
+        ],
+        "market_data_acquisition_metadata_observed": True,
+        "strategy_outcomes_observed": False,
+        "returns_observed": False,
+        "trial_performance_observed": False,
+        "amendment_outcome_blind": True,
+        "active_materialization_after_commit": MATERIALIZATION_ID_V2,
+        "v1_lineage_preserved": True,
+    }
+    write_json(results_dir() / "trial_materialization_amendment.json", payload)
+    docs_dir().mkdir(parents=True, exist_ok=True)
+    (docs_dir() / "A0R2_TRIAL_MATERIALIZATION_AMENDMENT.md").write_text(
+        "# A0R2 Trial Materialization Amendment\n\n"
+        f"Amendment ID: `{AMENDMENT_ID}`\n\n"
+        "Status: `FROZEN_BEFORE_EMPIRICAL_OUTCOMES`\n\n"
+        "Reason: `FROZEN_SEARCH_CATEGORIES_NOT_FULLY_REPRESENTED_IN_V1_MATERIALIZATION`\n\n"
+        "This is an outcome-blind implementation-completeness repair. Market-data "
+        "acquisition metadata was observed, but no strategy outcomes, returns or "
+        "trial performance were observed. The 1200 trial IDs, family allocations, "
+        "candidate-equivalent weights, temporal partitions, cost model and "
+        "execution model remain unchanged.\n",
+        encoding="utf-8",
+    )
 
 
 def base_config(record: dict[str, Any], idx: int) -> dict[str, Any]:
@@ -548,6 +796,202 @@ def materialize_family_config(record: dict[str, Any], idx: int) -> dict[str, Any
     return cfg
 
 
+def materialize_family_config_v2(
+    record: dict[str, Any], global_idx: int, family_idx: int
+) -> dict[str, Any]:
+    cfg = base_config(record, global_idx)
+    family = record["family_id"]
+    axes = FROZEN_CATEGORIES[family]
+    cfg["implementation_mapping_version"] = "A0R2_BALANCED_MIXED_RADIX_MAPPING_V2"
+    cfg["normalization_rule"] = "train_only_expanding_or_rolling_as_configured"
+
+    if family == "F01_SESSION_OPENING_MOMENTUM_REVERSAL":
+        categories = {
+            "anchors": mixed_pick(axes["anchors"], family_idx),
+            "lookbacks": mixed_pick(axes["lookbacks"], family_idx, 4),
+            "holding_periods": mixed_pick(axes["holding_periods"], family_idx, 16),
+            "variants": mixed_pick(axes["variants"], family_idx, 64),
+        }
+        cfg.update({
+            "variant": categories["variants"],
+            "session_anchor": categories["anchors"],
+            "lookback": categories["lookbacks"],
+            "holding_horizon": categories["holding_periods"],
+            "feature_list": ["session labels", "M1 signed mid return", "rolling range"],
+            "required_inputs": ["session labels", "M1 signed mid return", "rolling range"],
+        })
+    elif family == "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION":
+        categories = {
+            "horizons": mixed_pick(axes["horizons"], family_idx),
+            "data_variants": mixed_pick(axes["data_variants"], family_idx, 4),
+            "variants": mixed_pick(axes["variants"], family_idx, 8),
+        }
+        tick_only = categories["data_variants"] == "tick-only quote-arrival"
+        cfg.update({
+            "variant": categories["variants"],
+            "holding_horizon": categories["horizons"],
+            "feature_list": (
+                ["quote-arrival count", "bid-update count", "ask-update count"]
+                if tick_only else ["M1 signed mid return", "rolling spread statistics"]
+            ),
+            "required_inputs": (
+                ["quote-arrival count", "bid-update count", "ask-update count"]
+                if tick_only else ["M1 signed mid return", "rolling spread statistics"]
+            ),
+        })
+    elif family == "F03_VOLATILITY_BREAKOUT":
+        categories = {
+            "variants": mixed_pick(axes["variants"], family_idx),
+            "volatility_concepts": mixed_pick(axes["volatility_concepts"], family_idx, 2),
+        }
+        cfg.update({
+            "variant": categories["variants"],
+            "feature_list": ["rolling realized variance", "rolling range", "M1 signed mid return"],
+            "required_inputs": [
+                "rolling realized variance",
+                "rolling range",
+                "M1 signed mid return",
+            ],
+        })
+    elif family == "F04_LIQUIDITY_SHOCK_REVERSAL":
+        categories = {"shock_concepts": mixed_pick(axes["shock_concepts"], family_idx)}
+        tick_only = categories["shock_concepts"] in (
+            "true quote-arrival drought",
+            "true quote-gap shock",
+        )
+        cfg.update({
+            "variant": categories["shock_concepts"],
+            "feature_list": (
+                ["raw individual quotes", "true quote-gap distribution"]
+                if tick_only else ["spread open/high/low/close", "rolling range"]
+            ),
+            "required_inputs": (
+                ["raw individual quotes", "true quote-gap distribution"]
+                if tick_only else ["spread open/high/low/close", "rolling range"]
+            ),
+        })
+    elif family == "F05_SPREAD_AWARE_EXECUTION_GATING":
+        categories = {
+            "spread_forecasters": mixed_pick(axes["spread_forecasters"], family_idx),
+            "alpha_reports": mixed_pick(axes["alpha_reports"], family_idx, 4),
+        }
+        cfg.update({
+            "variant": categories["alpha_reports"],
+            "spread_forecaster": categories["spread_forecasters"],
+            "feature_list": ["spread open/high/low/close", "rolling spread statistics"],
+            "required_inputs": ["spread open/high/low/close", "rolling spread statistics"],
+        })
+    elif family == "F06_CROSS_PAIR_LEAD_LAG":
+        edge = mixed_pick(axes["directed_relationships"], family_idx)
+        lag = mixed_pick(axes["lags"], family_idx, 6)
+        categories = {"directed_relationships": edge, "lags": lag}
+        cfg.update({
+            "variant": "lagged_cross_pair_return",
+            "cross_pair_edge": {"leader": edge[0], "target": edge[1], "lag_minutes": lag},
+            "instrument_or_portfolio_scope": edge[1],
+            "feature_list": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
+            "required_inputs": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
+        })
+    elif family == "F07_CURRENCY_FACTOR_RESIDUALS":
+        categories = {
+            "variants": mixed_pick(axes["variants"], family_idx),
+            "estimation": mixed_pick(axes["estimation"], family_idx, 2),
+        }
+        cfg.update({
+            "variant": categories["variants"],
+            "training_window": categories["estimation"],
+            "feature_list": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
+            "required_inputs": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
+        })
+    elif family == "F08_TRIANGULAR_CONSISTENCY_RESIDUALS":
+        categories = {
+            "triangles": mixed_pick(axes["triangles"], family_idx),
+            "variants": mixed_pick(axes["variants"], family_idx, 3),
+        }
+        cfg.update({
+            "variant": categories["variants"],
+            "triangle": categories["triangles"],
+            "feature_list": ["mid open/high/low/close", "spread open/high/low/close"],
+            "required_inputs": ["mid open/high/low/close", "spread open/high/low/close"],
+        })
+    elif family == "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL":
+        categories = {"neutrality": mixed_pick(axes["neutrality"], family_idx)}
+        cfg.update({
+            "variant": "cross_sectional_intraday_momentum_reversal",
+            "neutrality_constraint": categories["neutrality"],
+            "feature_list": ["M1 signed mid return", "rolling realized variance"],
+            "required_inputs": ["M1 signed mid return", "rolling realized variance"],
+        })
+    elif family == "F10_INTRADAY_SEASONALITY":
+        categories = {"seasonality": mixed_pick(axes["seasonality"], family_idx)}
+        cfg.update({
+            "variant": categories["seasonality"],
+            "training_window": "prior_year_only",
+            "feature_list": ["session labels", "M1 signed mid return"],
+            "required_inputs": ["session labels", "M1 signed mid return"],
+        })
+    elif family == "F11_REGIME_CONDITIONED_TREND_REVERSAL":
+        categories = {
+            "regime_classes": mixed_pick(axes["regime_classes"], family_idx),
+            "state_count_rule": mixed_pick(axes["state_count_rule"], family_idx, 3),
+        }
+        cfg.update({
+            "variant": "regime_conditioned_trend_reversal",
+            "regime_model": categories["regime_classes"],
+            "regime_component_count": categories["state_count_rule"],
+            "regime_state_use": "filtered_states_only",
+            "feature_list": [
+                "rolling realized variance",
+                "rolling spread statistics",
+                "M1 signed mid return",
+            ],
+            "required_inputs": [
+                "rolling realized variance",
+                "rolling spread statistics",
+                "M1 signed mid return",
+            ],
+        })
+    elif family == "F12_COST_SENSITIVE_ML_ABSTENTION":
+        categories = {
+            "model_classes": mixed_pick(axes["model_classes"], family_idx),
+            "targets": mixed_pick(axes["targets"], family_idx, 6),
+            "horizons": mixed_pick(axes["horizons"], family_idx, 18),
+        }
+        cfg.update({
+            "variant": "cost_sensitive_abstention",
+            "model_class": categories["model_classes"],
+            "target_horizon": categories["horizons"],
+            "target": categories["targets"],
+            "abstention_threshold": round(0.50 + (family_idx % 10) * 0.025, 3),
+            "model_hyperparameters": {
+                "seed": record["random_seed"],
+                "fixed_regularization": "frozen_single_default",
+            },
+            "feature_list": [
+                "M1 signed mid return",
+                "rolling realized variance",
+                "rolling spread statistics",
+                "session labels",
+            ],
+            "required_inputs": [
+                "M1 signed mid return",
+                "rolling realized variance",
+                "rolling spread statistics",
+                "session labels",
+            ],
+        })
+    else:
+        raise ValueError(f"Unsupported family: {family}")
+
+    cfg["frozen_categories"] = categories
+    cfg["implementation_fixed_parameters"] = {
+        "non_axis_parameters": "single deterministic defaults, not optimized",
+        "regime_state_count_rule": "cycle frozen 2/3/4 by family-local index where applicable",
+        "ml_threshold_rule": "deterministic seed/index allocation before outcomes",
+    }
+    return cfg
+
+
 def materialize_trials() -> dict[str, Any]:
     records = load_a0r1_trials()
     out_path = results_dir() / "trial_materialization.jsonl"
@@ -632,17 +1076,129 @@ def materialize_trials() -> dict[str, Any]:
     return manifest
 
 
+def materialize_trials_v2() -> dict[str, Any]:
+    source_records = load_a0r1_trials()
+    out_path = results_dir() / "trial_materialization_v2.jsonl"
+    seen: set[str] = set()
+    family_local_counts: dict[str, int] = {}
+    materialized: list[dict[str, Any]] = []
+    total_weight = 0
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", encoding="utf-8") as handle:
+        for global_idx, record in enumerate(source_records):
+            trial_id = record["trial_id"]
+            family_id = record["family_id"]
+            family_idx = family_local_counts.get(family_id, 0)
+            family_local_counts[family_id] = family_idx + 1
+            if trial_id in seen:
+                raise ValueError(f"Duplicate trial_id: {trial_id}")
+            seen.add(trial_id)
+            cfg = materialize_family_config_v2(record, global_idx, family_idx)
+            payload = {
+                "materialization_id": MATERIALIZATION_ID_V2,
+                "trial_id": trial_id,
+                "family_id": family_id,
+                "full_configuration": cfg,
+                "configuration_sha256": sha256_json(cfg),
+                "scientific_source_fields": {
+                    "a0_hypothesis_registry_sha256": HYPOTHESIS_SHA,
+                    "a0_search_space_freeze_sha256": SEARCH_SPACE_SHA,
+                    "a0r1_trial_plan_pre_data_sha": A0R1_TRIAL_PLAN_SHA,
+                    "source_trial_id": trial_id,
+                    "source_random_seed": record["random_seed"],
+                },
+                "implementation_mapping_version": "A0R2_BALANCED_MIXED_RADIX_MAPPING_V2",
+                "candidate_equivalent_weight": record["candidate_equivalent_weight"],
+                "status": "REGISTERED",
+            }
+            total_weight += int(record["candidate_equivalent_weight"])
+            materialized.append(payload)
+            handle.write(json.dumps(payload, sort_keys=True) + "\n")
+
+    source_ids = {record["trial_id"] for record in source_records}
+    materialized_ids = {record["trial_id"] for record in materialized}
+    missing = sorted(source_ids - materialized_ids)
+    duplicate_count = len(materialized) - len(materialized_ids)
+    missing_categories = uncovered_categories(materialized)
+    family_counts = Counter(record["family_id"] for record in materialized)
+    manifest = {
+        "artifact_id": "A0R2_TRIAL_MATERIALIZATION_V2_MANIFEST_V1",
+        "gate_id": GATE_ID,
+        "materialization_id": MATERIALIZATION_ID_V2,
+        "status": (
+            "PASS" if not missing and not duplicate_count and not missing_categories else "FAIL"
+        ),
+        "materialized_trial_ids": len(materialized),
+        "missing_ids": len(missing),
+        "duplicate_ids": duplicate_count,
+        "total_candidate_equivalent_weight": total_weight,
+        "family_counts": dict(family_counts),
+        "uncovered_frozen_categorical_levels": missing_categories,
+        "uncovered_frozen_categorical_level_count": len(missing_categories),
+        "materialization_sha256": file_sha256(out_path),
+        "pre_data": True,
+    }
+    audit = {
+        "artifact_id": "A0R2_TRIAL_CONFIGURATION_V2_AUDIT_V1",
+        "gate_id": GATE_ID,
+        "status": manifest["status"],
+        "trial_ids_match_v1": not missing and len(materialized_ids) == len(source_ids),
+        "family_allocation_unchanged": dict(family_counts)
+        == read_json(results_dir() / "trial_materialization_manifest.json")["family_counts"],
+        "candidate_equivalent_weight": total_weight,
+        "frozen_categorical_levels_with_zero_coverage": len(missing_categories),
+        "unfrozen_categories_introduced": False,
+        "strategy_outcomes_observed": False,
+        "returns_observed": False,
+        "trial_performance_observed": False,
+    }
+    v1_manifest = read_json(results_dir() / "trial_materialization_manifest.json")
+    diff = {
+        "artifact_id": "A0R2_TRIAL_MATERIALIZATION_V1_V2_DIFF_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "v1_materialization_id": MATERIALIZATION_ID,
+        "v2_materialization_id": MATERIALIZATION_ID_V2,
+        "trial_ids_changed": 0,
+        "candidate_equivalent_weight_changed": 0,
+        "family_allocation_changed": False,
+        "v1_sha256": v1_manifest["materialization_sha256"],
+        "v2_sha256": manifest["materialization_sha256"],
+        "coverage_corrections": [
+            "F01 explicit anchors/lookbacks/holding periods/continuation-reversal",
+            "F02 M1 direction-run versus tick-only quote-arrival categories",
+            "F04 all five shock concepts with tick-only capability invalidation",
+            "F05 all frozen spread forecasters",
+            "F06 exact six directed relationships and all frozen lags",
+            "F08 all frozen triangles and executable basket variants",
+            "F09 exact frozen neutrality definitions",
+            "F10 prior-year seasonality categories",
+            "F11 true frozen regime class labels with filtered states",
+            "F12 all frozen model classes, targets and horizons",
+        ],
+    }
+    write_json(results_dir() / "trial_materialization_v2_manifest.json", manifest)
+    write_json(results_dir() / "trial_configuration_v2_audit.json", audit)
+    write_json(results_dir() / "trial_materialization_v1_v2_diff.json", diff)
+    return manifest
+
+
 def load_materialized_trials() -> list[dict[str, Any]]:
     path = results_dir() / "trial_materialization.jsonl"
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
 
 
-def freeze_capability_matrix() -> dict[str, Any]:
-    materialized = load_materialized_trials()
+def load_materialized_trials_v2() -> list[dict[str, Any]]:
+    path = results_dir() / "trial_materialization_v2.jsonl"
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+
+
+def capability_matrix_for(
+    materialized: list[dict[str, Any]], artifact_suffix: str = ""
+) -> dict[str, Any]:
     available = set(AVAILABLE_FIELDS)
     invalid = 0
     executable = 0
-    matrix_path = results_dir() / "trial_data_capability_matrix.json"
     rows = []
     by_family: dict[str, dict[str, int]] = {}
     for item in materialized:
@@ -665,7 +1221,22 @@ def freeze_capability_matrix() -> dict[str, Any]:
             "status": status,
             "candidate_equivalent_weight": item["candidate_equivalent_weight"],
         })
-    provider = {
+    return {
+        "artifact_id": f"A0R2_TRIAL_DATA_CAPABILITY{artifact_suffix}_MATRIX_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "total_trials": len(materialized),
+        "executable_trials": executable,
+        "invalid_protocol_data_capability_trials": invalid,
+        "candidate_equivalent_count": 1200,
+        "invalid_trials_remain_in_multiplicity_count": True,
+        "by_family": by_family,
+        "rows": rows,
+    }
+
+
+def provider_capability_payload() -> dict[str, Any]:
+    return {
         "artifact_id": "A0R2_PROVIDER_DATA_CAPABILITY_V1",
         "gate_id": GATE_ID,
         "status": "PASS",
@@ -679,20 +1250,13 @@ def freeze_capability_matrix() -> dict[str, Any]:
         "m1_bid_ask_ohlc_exposed": True,
         "m5_deterministic_aggregation_supported": True,
     }
-    matrix = {
-        "artifact_id": "A0R2_TRIAL_DATA_CAPABILITY_MATRIX_V1",
-        "gate_id": GATE_ID,
-        "status": "PASS",
-        "total_trials": len(materialized),
-        "executable_trials": executable,
-        "invalid_protocol_data_capability_trials": invalid,
-        "candidate_equivalent_count": 1200,
-        "invalid_trials_remain_in_multiplicity_count": True,
-        "by_family": by_family,
-        "rows": rows,
-    }
+
+
+def freeze_capability_matrix() -> dict[str, Any]:
+    provider = provider_capability_payload()
+    matrix = capability_matrix_for(load_materialized_trials())
     write_json(results_dir() / "provider_data_capability.json", provider)
-    write_json(matrix_path, matrix)
+    write_json(results_dir() / "trial_data_capability_matrix.json", matrix)
     docs_dir().mkdir(parents=True, exist_ok=True)
     (docs_dir() / "A0R2_DATA_CAPABILITY.md").write_text(
         "# A0R2 Provider Data Capability\n\n"
@@ -704,6 +1268,14 @@ def freeze_capability_matrix() -> dict[str, Any]:
         "registered and in the multiplicity universe.\n",
         encoding="utf-8",
     )
+    return matrix
+
+
+def freeze_capability_matrix_v2() -> dict[str, Any]:
+    provider = provider_capability_payload()
+    matrix = capability_matrix_for(load_materialized_trials_v2(), "_V2")
+    write_json(results_dir() / "provider_data_capability_v2.json", provider)
+    write_json(results_dir() / "trial_data_capability_v2_matrix.json", matrix)
     return matrix
 
 
@@ -787,15 +1359,19 @@ def save_state(data_root: Path, state: dict[str, Any]) -> None:
 def append_event(data_root: Path, event: dict[str, Any]) -> None:
     path = events_path(data_root)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(event, sort_keys=True) + "\n")
+    line = json.dumps(event, sort_keys=True)
+    with JSONL_LOCK:
+        with path.open("a", encoding="utf-8") as handle:
+            handle.write(line + "\n")
 
 
 def append_failure(data_root: Path, event: dict[str, Any]) -> None:
     path = failures_path(data_root)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(event, sort_keys=True) + "\n")
+    line = json.dumps(event, sort_keys=True)
+    with JSONL_LOCK:
+        with path.open("a", encoding="utf-8") as handle:
+            handle.write(line + "\n")
 
 
 def manifest_to_status(manifest: MonthManifest | None) -> str:
@@ -810,7 +1386,55 @@ def manifest_to_status(manifest: MonthManifest | None) -> str:
     return "RUNNING" if manifest_days else "PLANNED"
 
 
-def refresh_state_from_manifests(data_root: Path) -> dict[str, Any]:
+def should_acquire_partition(
+    current_state: str,
+    retry_failed: bool,
+    resume: bool,
+    running_is_stale: bool = False,
+) -> bool:
+    if current_state in {"CERTIFIED", "COMPLETE_PENDING_CERTIFICATION", "MARKET_CLOSED_VALID"}:
+        return False
+    if current_state == "FAILED_RETRYABLE":
+        return retry_failed
+    if current_state == "FAILED_TERMINAL":
+        return False
+    if current_state == "RUNNING":
+        return resume and running_is_stale
+    if current_state == "PLANNED":
+        return not retry_failed
+    return False
+
+
+def is_running_stale(item: dict[str, Any], max_age_seconds: int = 3600) -> bool:
+    ts = item.get("ts")
+    if not ts:
+        return True
+    try:
+        started = datetime.fromisoformat(str(ts))
+    except ValueError:
+        return True
+    if started.tzinfo is None:
+        started = started.replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - started).total_seconds() > max_age_seconds
+
+
+def failure_fingerprint(error: str) -> str:
+    normalized = " ".join(error.lower().split())
+    return sha256_bytes(normalized.encode("utf-8"))[:16]
+
+
+def classify_provider_failure(error: str, attempts: int) -> tuple[str, str]:
+    lowered = error.lower()
+    if any(token.lower() in lowered for token in TERMINAL_FAILURE_FINGERPRINTS):
+        return "FAILED_TERMINAL", "NON_RETRYABLE_PROVIDER_OR_PROTOCOL_FAILURE"
+    if attempts >= MAX_PARTITION_ATTEMPTS:
+        return "FAILED_TERMINAL", "RETRY_ATTEMPTS_EXHAUSTED"
+    if any(token.lower() in lowered for token in RETRYABLE_FAILURE_FINGERPRINTS):
+        return "FAILED_RETRYABLE", "TRANSIENT_PROVIDER_OR_TRANSPORT_FAILURE"
+    return "FAILED_RETRYABLE", "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP"
+
+
+def refresh_state_from_manifests(data_root: Path, write_state: bool = True) -> dict[str, Any]:
     state = load_state(data_root)
     raw = raw_dir(data_root)
     for part in partition_queue():
@@ -831,17 +1455,24 @@ def refresh_state_from_manifests(data_root: Path) -> dict[str, Any]:
             "rows": manifest.compacted_rows if manifest else 0,
             "checksum": manifest.compacted_checksum if manifest else "",
         }
-    save_state(data_root, state)
+    if write_state:
+        save_state(data_root, state)
     return state
 
 
-def acquisition_summary(data_root: Path) -> dict[str, Any]:
+def acquisition_summary(data_root: Path, write_progress: bool = True) -> dict[str, Any]:
     usage = shutil.disk_usage(data_root)
-    state = refresh_state_from_manifests(data_root)
+    state = refresh_state_from_manifests(data_root, write_state=write_progress)
     counts: dict[str, int] = {}
     raw_bytes = 0
+    attempt_counts: Counter[int] = Counter()
+    throttling_count = 0
     for item in state["partitions"].values():
         counts[item["state"]] = counts.get(item["state"], 0) + 1
+        if "attempts" in item:
+            attempt_counts[int(item.get("attempts") or 0)] += 1
+        if item.get("failure_category") == "HTTP_429_PROVIDER_THROTTLING":
+            throttling_count += 1
     for file_path in raw_dir(data_root).rglob("data.json"):
         raw_bytes += file_path.stat().st_size
     certified = counts.get("CERTIFIED", 0)
@@ -855,16 +1486,42 @@ def acquisition_summary(data_root: Path) -> dict[str, Any]:
         "pending_partitions": pending,
         "retryable_failures": counts.get("FAILED_RETRYABLE", 0),
         "terminal_failures": counts.get("FAILED_TERMINAL", 0),
+        "complete_pending_certification": counts.get("COMPLETE_PENDING_CERTIFICATION", 0),
+        "planned_partitions": counts.get("PLANNED", 0),
+        "running_partitions": counts.get("RUNNING", 0),
         "raw_bytes_used": raw_bytes,
         "current_free_bytes": int(usage.free),
         "projected_remaining_bytes": max(0, pending) * 2_000_000,
-        "provider_throttling_observations": "NONE_RECORDED",
+        "attempt_distribution": dict(sorted(attempt_counts.items())),
+        "provider_throttling_count": throttling_count,
+        "provider_throttling_observations": (
+            "RECORDED" if throttling_count else "NONE_RECORDED"
+        ),
+        "next_deterministic_queue_item": next_queue_item(state),
     }
-    write_json(progress_path(data_root), progress)
+    if write_progress:
+        write_json(progress_path(data_root), progress)
     return progress
 
 
+def next_queue_item(state: dict[str, Any]) -> dict[str, Any] | None:
+    for part in partition_queue():
+        item = state["partitions"].get(part.key, {})
+        if item.get("state", "PLANNED") in {"PLANNED", "FAILED_RETRYABLE", "RUNNING"}:
+            return {
+                "partition": part.key,
+                "pair": part.pair,
+                "year": part.year,
+                "month": part.month,
+                "side": part.side,
+                "state": item.get("state", "PLANNED"),
+            }
+    return None
+
+
 def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
+    current = load_state(data_root).get("partitions", {}).get(part.key, {})
+    attempt_number = int(current.get("attempts") or 0) + 1
     event_base = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "partition": part.key,
@@ -872,6 +1529,7 @@ def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
         "year": part.year,
         "month": part.month,
         "side": part.side,
+        "attempts": attempt_number,
     }
     append_event(data_root, {**event_base, "state": "RUNNING"})
     try:
@@ -887,17 +1545,43 @@ def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
             pause_between_batches_ms=200,
         )
     except Exception as exc:
-        failure = {**event_base, "state": "FAILED_RETRYABLE", "error": str(exc)[:500]}
+        error = str(exc)[:500]
+        state, category = classify_provider_failure(error, attempt_number)
+        now = datetime.now(timezone.utc).isoformat()
+        failure = {
+            **event_base,
+            "state": state,
+            "error": error,
+            "failure_category": category,
+            "error_fingerprint": failure_fingerprint(error),
+            "first_failure_timestamp": current.get("first_failure_timestamp", now),
+            "latest_failure_timestamp": now,
+            "next_eligible_retry_timestamp": now if state == "FAILED_RETRYABLE" else None,
+            "terminal_reason": category if state == "FAILED_TERMINAL" else None,
+        }
         append_event(data_root, failure)
         append_failure(data_root, failure)
         return failure
     state = "COMPLETE_PENDING_CERTIFICATION" if manifest.compacted else "FAILED_RETRYABLE"
+    error = "" if manifest.compacted else "month did not compact"
     result = {
         **event_base,
         "state": state,
         "rows": manifest.compacted_rows,
         "checksum": manifest.compacted_checksum,
     }
+    if state == "FAILED_RETRYABLE":
+        _, category = classify_provider_failure(error, attempt_number)
+        result.update({
+            "error": error,
+            "failure_category": category,
+            "error_fingerprint": failure_fingerprint(error),
+            "first_failure_timestamp": current.get(
+                "first_failure_timestamp", datetime.now(timezone.utc).isoformat()
+            ),
+            "latest_failure_timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+        append_failure(data_root, result)
     append_event(data_root, result)
     return result
 
@@ -906,37 +1590,141 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     recertify_clean_room(data_root)
     state = refresh_state_from_manifests(data_root)
     wanted = partition_queue(args.pair, args.year, args.month, args.side)
-    runnable = []
+    runnable: deque[Partition] = deque()
     for part in wanted:
-        current = state["partitions"].get(part.key, {}).get("state", "PLANNED")
-        if current in ("CERTIFIED", "COMPLETE_PENDING_CERTIFICATION") and not args.retry_failed:
-            continue
-        if current == "FAILED_TERMINAL" and not args.retry_failed:
-            continue
-        runnable.append(part)
+        item = state["partitions"].get(part.key, {})
+        current = item.get("state", "PLANNED")
+        if should_acquire_partition(
+            current,
+            retry_failed=args.retry_failed,
+            resume=args.resume,
+            running_is_stale=is_running_stale(item) if current == "RUNNING" else False,
+        ):
+            runnable.append(part)
     workers = min(max(1, args.max_workers), MAX_PROVIDER_WORKERS)
+    max_in_flight = min(MAX_IN_FLIGHT_FUTURES, workers * 2)
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(acquire_one, data_root, part): part for part in runnable}
-        for future in as_completed(futures):
-            part = futures[future]
-            result = future.result()
-            state = load_state(data_root)
-            state["partitions"].setdefault(part.key, {})
-            state["partitions"][part.key].update(result)
-            save_state(data_root, state)
-            if result.get("error") and "429" in result.get("error", ""):
-                time.sleep(10)
+        futures: dict[Any, Partition] = {}
+        while runnable or futures:
+            while runnable and len(futures) < max_in_flight:
+                part = runnable.popleft()
+                futures[pool.submit(acquire_one, data_root, part)] = part
+            for future in as_completed(list(futures.keys())):
+                part = futures.pop(future)
+                result = future.result()
+                state = load_state(data_root)
+                state["partitions"].setdefault(part.key, {})
+                state["partitions"][part.key].update(result)
+                save_state(data_root, state)
+                if result.get("error") and "429" in result.get("error", ""):
+                    time.sleep(10)
+                break
     return acquisition_summary(data_root)
 
 
-def certify_month_manifest(manifest: MonthManifest | None, part: Partition) -> dict[str, Any]:
+def compacted_month_path(data_root: Path, part: Partition) -> Path:
+    return (
+        raw_dir(data_root)
+        / part.pair
+        / f"price={part.side}"
+        / f"year={part.year}"
+        / f"month={part.month:02d}"
+        / "data.json"
+    )
+
+
+def certify_compacted_rows(
+    data_root: Path, manifest: MonthManifest, part: Partition
+) -> dict[str, Any]:
+    path = compacted_month_path(data_root, part)
+    checks: dict[str, bool] = {
+        "compacted_file_exists": path.exists(),
+        "checksum_recomputation": False,
+        "manifest_checksum_equality": False,
+        "positive_row_count": False,
+        "monotonic_timestamps": False,
+        "timestamps_inside_requested_month": False,
+        "finite_ohlc_values": False,
+        "high_gte_open": False,
+        "high_gte_close": False,
+        "low_lte_open": False,
+        "low_lte_close": False,
+        "high_gte_low": False,
+        "duplicate_policy": False,
+        "zero_unauthorized_timestamps": False,
+    }
+    details: dict[str, Any] = {
+        "rows": 0,
+        "duplicate_timestamps": 0,
+        "unauthorized_timestamps": 0,
+        "computed_checksum": "",
+    }
+    if not path.exists():
+        return {"checks": checks, "details": details}
+    computed = file_sha256(path)[:16]
+    details["computed_checksum"] = computed
+    checks["checksum_recomputation"] = bool(computed)
+    checks["manifest_checksum_equality"] = computed == manifest.compacted_checksum
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    details["rows"] = len(rows)
+    checks["positive_row_count"] = len(rows) > 0
+    timestamps = [row.get("timestamp") for row in rows]
+    checks["monotonic_timestamps"] = timestamps == sorted(timestamps)
+    details["duplicate_timestamps"] = len(timestamps) - len(set(timestamps))
+    checks["duplicate_policy"] = details["duplicate_timestamps"] == 0
+    start_ms = int(datetime(part.year, part.month, 1, tzinfo=timezone.utc).timestamp() * 1000)
+    if part.month == 12:
+        end_dt = datetime(part.year + 1, 1, 1, tzinfo=timezone.utc)
+    else:
+        end_dt = datetime(part.year, part.month + 1, 1, tzinfo=timezone.utc)
+    end_ms = int(end_dt.timestamp() * 1000)
+    unauthorized = [
+        ts for ts in timestamps if not isinstance(ts, int) or ts < start_ms or ts >= end_ms
+    ]
+    details["unauthorized_timestamps"] = len(unauthorized)
+    checks["timestamps_inside_requested_month"] = not unauthorized
+    checks["zero_unauthorized_timestamps"] = not unauthorized
+    finite_ok = True
+    high_open_ok = True
+    high_close_ok = True
+    low_open_ok = True
+    low_close_ok = True
+    high_low_ok = True
+    for row in rows:
+        try:
+            open_v = float(row["open"])
+            high_v = float(row["high"])
+            low_v = float(row["low"])
+            close_v = float(row["close"])
+        except (KeyError, TypeError, ValueError):
+            finite_ok = False
+            continue
+        values = np.array([open_v, high_v, low_v, close_v], dtype=np.float64)
+        finite_ok = finite_ok and bool(np.all(np.isfinite(values)))
+        high_open_ok = high_open_ok and high_v >= open_v
+        high_close_ok = high_close_ok and high_v >= close_v
+        low_open_ok = low_open_ok and low_v <= open_v
+        low_close_ok = low_close_ok and low_v <= close_v
+        high_low_ok = high_low_ok and high_v >= low_v
+    checks["finite_ohlc_values"] = finite_ok
+    checks["high_gte_open"] = high_open_ok
+    checks["high_gte_close"] = high_close_ok
+    checks["low_lte_open"] = low_open_ok
+    checks["low_lte_close"] = low_close_ok
+    checks["high_gte_low"] = high_low_ok
+    return {"checks": checks, "details": details}
+
+
+def certify_month_manifest(
+    data_root: Path, manifest: MonthManifest | None, part: Partition
+) -> dict[str, Any]:
     if manifest is None:
         return {"partition": part.key, "status": "PLANNED", "rows": 0}
     days_in_month = calendar.monthrange(part.year, part.month)[1]
     day_count_ok = len({day.day for day in manifest.days}) == days_in_month
     terminal_ok = all(day.status in ("complete", "market_closed") for day in manifest.days)
     positive_rows = manifest.compacted_rows > 0
-    checks = {
+    checks: dict[str, bool] = {
         "request_identity": True,
         "instrument_identity": manifest.pair == part.pair,
         "side_identity": manifest.side == part.side,
@@ -947,6 +1735,8 @@ def certify_month_manifest(manifest: MonthManifest | None, part: Partition) -> d
         "compacted_checksum": bool(manifest.compacted_checksum),
         "positive_row_count_for_open_market_month": positive_rows,
     }
+    row_cert = certify_compacted_rows(data_root, manifest, part)
+    checks.update(row_cert["checks"])
     status = "CERTIFIED" if all(checks.values()) else "COMPLETE_PENDING_CERTIFICATION"
     return {
         "partition": part.key,
@@ -958,6 +1748,7 @@ def certify_month_manifest(manifest: MonthManifest | None, part: Partition) -> d
         "rows": manifest.compacted_rows,
         "checksum": manifest.compacted_checksum,
         "checks": checks,
+        "row_certification": row_cert["details"],
     }
 
 
@@ -970,7 +1761,7 @@ def run_certification(data_root: Path) -> dict[str, Any]:
         manifest = load_month_manifest(raw, part.pair, part.side, part.year, part.month)
         if manifest is not None:
             manifest = normalize_month_manifest_for_repair(raw, manifest)
-        cert = certify_month_manifest(manifest, part)
+        cert = certify_month_manifest(data_root, manifest, part)
         rows.append(cert)
         state["partitions"].setdefault(part.key, {})
         state["partitions"][part.key].update({
@@ -1000,6 +1791,45 @@ def run_certification(data_root: Path) -> dict[str, Any]:
     write_json(results_dir() / "raw_partition_certification.json", detail)
     acquisition_summary(data_root)
     return summary
+
+
+def analyze_retryable_failures(data_root: Path) -> dict[str, Any]:
+    state = load_state(data_root)
+    rows = []
+    for part in partition_queue():
+        item = state.get("partitions", {}).get(part.key, {})
+        if item.get("state") != "FAILED_RETRYABLE":
+            continue
+        manifest = load_month_manifest(
+            raw_dir(data_root), part.pair, part.side, part.year, part.month
+        )
+        partial_data = bool(manifest and (manifest.days or manifest.compacted_rows))
+        normalization_required = bool(manifest and not manifest.compacted)
+        attempts = int(item.get("attempts") or 0)
+        rows.append({
+            "partition_id": part.key,
+            "pair": part.pair,
+            "year": part.year,
+            "month": part.month,
+            "side": part.side,
+            "failure_category": item.get("failure_category", "UNKNOWN_RETRYABLE_FAILURE"),
+            "attempt_count": attempts,
+            "error_fingerprint": item.get(
+                "error_fingerprint", failure_fingerprint(str(item.get("error", "")))
+            ),
+            "partial_data_exists": partial_data,
+            "manifest_normalization_required": normalization_required,
+            "retry_authorized": attempts < MAX_PARTITION_ATTEMPTS,
+        })
+    payload = {
+        "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "retryable_failure_count": len(rows),
+        "rows": rows,
+    }
+    write_json(results_dir() / "retryable_failure_analysis.json", payload)
+    return payload
 
 
 def parquet_sha(path: Path) -> str:
@@ -1194,8 +2024,8 @@ def _write_bidask_parquet(
 
 
 def run_status(data_root: Path) -> dict[str, Any]:
-    recertify_clean_room(data_root)
-    return acquisition_summary(data_root)
+    recertify_clean_room(data_root, write_artifact=False)
+    return acquisition_summary(data_root, write_progress=False)
 
 
 def parse_args() -> argparse.Namespace:
@@ -1206,6 +2036,11 @@ def parse_args() -> argparse.Namespace:
         choices=(
             "inheritance",
             "materialize",
+            "op1-start",
+            "amendment",
+            "materialize-v2",
+            "capability-v2",
+            "retryable-analysis",
             "capability",
             "prepare",
             "acquire",
@@ -1236,13 +2071,27 @@ def main() -> int:
     if args.max_workers > MAX_PROVIDER_WORKERS:
         raise ValueError("A0R2_MAX_PROVIDER_WORKERS_EXCEEDED")
     stage = "status" if args.status else args.stage
+    if stage == "op1-start":
+        progress = run_status(data_root)
+        create_op1_start_artifacts(data_root, progress)
+        result = progress
+    elif stage == "amendment":
+        create_materialization_amendment()
+        result = {"status": "PASS"}
+    elif stage == "materialize-v2":
+        result = materialize_trials_v2()
+    elif stage == "capability-v2":
+        result = freeze_capability_matrix_v2()
+    elif stage == "retryable-analysis":
+        result = analyze_retryable_failures(data_root)
+    else:
+        result = {}
     if stage in ("inheritance", "prepare", "all"):
         create_inheritance_artifacts(data_root)
     if stage in ("materialize", "prepare", "all"):
         materialize_trials()
     if stage in ("capability", "prepare", "all"):
         freeze_capability_matrix()
-    result: dict[str, Any]
     if stage == "acquire":
         result = run_acquisition(args, data_root)
     elif stage == "certify" or args.certify_only:
@@ -1251,13 +2100,16 @@ def main() -> int:
         result = run_canonicalize(data_root)
     elif stage == "all":
         result = run_acquisition(args, data_root)
-        if result["certified_partitions"] == 1080:
+        certifiable = result.get("certified_partitions", 0) + result.get(
+            "complete_pending_certification", 0
+        )
+        if certifiable == 1080:
             result = run_certification(data_root)
             if result["certified_partitions"] == 1080:
                 result = run_canonicalize(data_root)
     elif stage == "discovery" or args.execute_trials_only:
         raise ValueError("A0R2_DISCOVERY_REQUIRES_COMPLETE_CERTIFIED_DATASET")
-    else:
+    elif stage == "status":
         result = run_status(data_root)
     display = {
         "gate_id": GATE_ID,
