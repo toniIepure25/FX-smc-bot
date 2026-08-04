@@ -2,8 +2,25 @@
   "artifact_id": "A0R2_ORPHANED_RUNNING_RECOVERY_V1",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "PASS",
-  "recovered_count": 0,
+  "recovered_count": 2,
   "lease_present": false,
   "lease_live": false,
-  "rows": []
+  "rows": [
+    {
+      "partition_id": "2010-03:EURJPY:ask",
+      "previous_state": "RUNNING",
+      "new_state": "FAILED_RETRYABLE",
+      "attempts_preserved": 1,
+      "failure_category": "PROCESS_INTERRUPTED_BEFORE_CHECKPOINT",
+      "manifest_status": "PLANNED"
+    },
+    {
+      "partition_id": "2010-03:GBPJPY:bid",
+      "previous_state": "RUNNING",
+      "new_state": "FAILED_RETRYABLE",
+      "attempts_preserved": 1,
+      "failure_category": "PROCESS_INTERRUPTED_BEFORE_CHECKPOINT",
+      "manifest_status": "PLANNED"
+    }
+  ]
 }

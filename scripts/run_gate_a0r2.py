@@ -1937,6 +1937,11 @@ def recover_orphaned_running(data_root: Path, explicit: bool) -> dict[str, Any]:
         "lease_live": False,
         "rows": rows,
     }
+    existing_path = results_dir() / "orphaned_running_recovery.json"
+    if not rows and existing_path.exists():
+        existing = read_json(existing_path)
+        if int(existing.get("recovered_count", 0)) > 0:
+            return existing
     write_json(results_dir() / "orphaned_running_recovery.json", payload)
     return payload
 
