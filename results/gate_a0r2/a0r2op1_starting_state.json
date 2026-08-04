@@ -1,0 +1,18 @@
+{
+  "artifact_id": "A0R2OP1_STARTING_STATE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "operational_continuation": "A0R2-OP1",
+  "status": "PASS",
+  "starting_a0r2_sha": "bd63d81775de19099822b60f7a21b4e672b63693",
+  "current_operational_sha": "fadf804189db385d97d499e288eaf342af7a5bd9",
+  "observed_sha": "fadf804189db385d97d499e288eaf342af7a5bd9",
+  "clean_room_id": "FX_A0R1_CLEAN_ROOM_V1",
+  "clean_room_path_hash": "3068a0b16807e499bcf494dc2431027493356812b6c2c291d70119dab2ea1aa1",
+  "checkpoint_counts": {
+    "total_partitions": 1080,
+    "certified": 2,
+    "pending": 1078,
+    "retryable_failures": 6,
+    "terminal_failures": 0
+  }
+}

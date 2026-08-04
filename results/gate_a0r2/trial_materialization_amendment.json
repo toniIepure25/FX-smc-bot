@@ -1,0 +1,24 @@
+{
+  "artifact_id": "A0R2_TRIAL_MATERIALIZATION_AMENDMENT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "amendment_id": "A0R2_PRE_OUTCOME_TRIAL_MATERIALIZATION_COMPLETENESS_AMENDMENT_V1",
+  "status": "FROZEN_BEFORE_EMPIRICAL_OUTCOMES",
+  "reason": "FROZEN_SEARCH_CATEGORIES_NOT_FULLY_REPRESENTED_IN_V1_MATERIALIZATION",
+  "unchanged_surfaces": [
+    "family identities",
+    "family allocations",
+    "trial IDs",
+    "candidate-equivalent weights",
+    "temporal partitions",
+    "eligibility thresholds",
+    "cost model",
+    "execution model"
+  ],
+  "market_data_acquisition_metadata_observed": true,
+  "strategy_outcomes_observed": false,
+  "returns_observed": false,
+  "trial_performance_observed": false,
+  "amendment_outcome_blind": true,
+  "active_materialization_after_commit": "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V2",
+  "v1_lineage_preserved": true
+}

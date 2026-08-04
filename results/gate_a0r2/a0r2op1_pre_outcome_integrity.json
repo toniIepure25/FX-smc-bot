@@ -1,0 +1,14 @@
+{
+  "artifact_id": "A0R2OP1_PRE_OUTCOME_INTEGRITY_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "completed_empirical_trials": 0,
+  "economic_outcomes": 0,
+  "discovery_dataset_frozen": false,
+  "strategy_outcomes_observed": false,
+  "returns_observed": false,
+  "trial_performance_observed": false,
+  "v1_materialization_preserved_byte_for_byte": true,
+  "raw_provider_metadata_observed": true,
+  "raw_provider_returns_observed": false
+}
