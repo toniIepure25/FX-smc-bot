@@ -1,0 +1,21 @@
+{
+  "artifact_id": "A0R2_DATA_INGESTION_AMENDMENT_V1",
+  "amendment_id": "A0R2_PRE_OUTCOME_DATA_INGESTION_AND_EXECUTABLE_QUOTE_AMENDMENT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "FROZEN_BEFORE_EMPIRICAL_OUTCOMES",
+  "a0r2_ingestion_amendment_pre_additional_data_sha": "2252fb87d1fcc2248b1f51f2b2a2691af794ea7d",
+  "market_acquisition_metadata_observed": true,
+  "individual_market_rows_inspected_for_strategy_behavior": false,
+  "strategy_returns_observed": false,
+  "trial_performance_observed": false,
+  "amendment_selected_from_economic_outcomes": false,
+  "frozen_principles": {
+    "partial_successful_provider_response": "transport success plus incomplete partition",
+    "missing_open_market_days": "targeted repair required",
+    "crossed_bid_ask_m1_state": "quote unavailable for execution and feature anchoring",
+    "price_modification": "prohibited",
+    "synthetic_spread_correction": "prohibited",
+    "whole_month_rejection_solely_for_isolated_crossed_states": "not required",
+    "downstream_use_of_invalid_state": "prohibited"
+  }
+}
