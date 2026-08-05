@@ -1,0 +1,30 @@
+{
+  "artifact_id": "A0R2_PROVIDER_HEALTH_CONTROLS_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PROVIDER_COOLDOWN_REQUIRED",
+  "controls": [
+    {
+      "control": "A",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "result": "FAIL",
+      "provider_category": "PROVIDER_LIBRARY_ERROR",
+      "row_count": 0,
+      "duration_ms": 8702,
+      "error_fingerprint": "600173d81119a934"
+    },
+    {
+      "control": "B",
+      "pair": "USDCHF",
+      "side": "ask",
+      "result": "FAIL",
+      "provider_category": "PROVIDER_LIBRARY_ERROR",
+      "row_count": 0,
+      "duration_ms": 5876,
+      "error_fingerprint": "600173d81119a934"
+    }
+  ],
+  "partition_attempts_consumed": 0,
+  "rolling_health_calls": 8,
+  "trigger_unhealthy_calls": 3
+}

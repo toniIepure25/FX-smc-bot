@@ -1,0 +1,14 @@
+{
+  "artifact_id": "A0R2_PROVIDER_SCRATCH_LOCATION_AUDIT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "repository_local_a0r2_provider_payloads": 0,
+  "repository_local_a0r2_provider_cache_files": 0,
+  "clean_room_provider_scratch": "PASS",
+  "clean_room_provider_cache": "PASS",
+  "checked_patterns": [
+    "_tmp_download*",
+    ".cache",
+    "dukascopy_provider_calls"
+  ]
+}

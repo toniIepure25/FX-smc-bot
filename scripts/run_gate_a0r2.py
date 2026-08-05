@@ -2106,7 +2106,10 @@ def analyze_retryable_failures_v4(data_root: Path) -> dict[str, Any]:
         missing = find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month)
         outcome = manifest.last_provider_call_outcome if manifest else ""
         category = item.get("failure_category", "OTHER_STRUCTURED_FAILURE")
-        if outcome == "PROVIDER_CALL_SUCCESS_PARTIAL":
+        if outcome == "PROVIDER_CALL_SUCCESS_PARTIAL" or (
+            any(day.status == "complete" and day.rows > 0 for day in days)
+            and bool(missing)
+        ):
             category = "SUCCESSFUL_PARTIAL_MONTH"
         elif outcome == "PROVIDER_CALL_TRANSPORT_FAILURE":
             category = "PROVIDER_DNS_OR_NETWORK"

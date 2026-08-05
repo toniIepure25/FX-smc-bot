@@ -1,0 +1,509 @@
+{
+  "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V4",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "retryable_failure_count": 31,
+  "groups": [
+    {
+      "category": "PROCESS_INTERRUPTED_BEFORE_CHECKPOINT",
+      "count": 2,
+      "rows": [
+        {
+          "partition_id": "2010-03:EURJPY:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 31,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 31,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-03:GBPJPY:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 31,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 31,
+          "terminal_risk": false
+        }
+      ]
+    },
+    {
+      "category": "SUCCESSFUL_PARTIAL_MONTH",
+      "count": 19,
+      "rows": [
+        {
+          "partition_id": "2010-01:EURUSD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 16,
+          "completed_days": 13,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 16,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:EURUSD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 16,
+          "completed_days": 13,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 16,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:AUDUSD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 14,
+          "completed_days": 14,
+          "market_closed_days": 3,
+          "day_attempt_distribution": {
+            "1": 30,
+            "2": 1
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 14,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:AUDUSD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 6,
+          "completed_days": 21,
+          "market_closed_days": 4,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 6,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:USDJPY:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 17,
+          "completed_days": 12,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 29,
+            "0": 1,
+            "2": 1
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 17,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:USDJPY:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 18,
+          "completed_days": 11,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 18,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:USDCAD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 26,
+          "completed_days": 3,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 30,
+            "2": 1
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 4,
+          "remaining_repair_requests": 26,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:USDCHF:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 25,
+          "completed_days": 5,
+          "market_closed_days": 1,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 25,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:GBPUSD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 19,
+          "completed_days": 7,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 27,
+            "2": 1
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 19,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:GBPUSD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 19,
+          "completed_days": 7,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 28
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 19,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:AUDUSD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 16,
+          "completed_days": 10,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 27,
+            "2": 1
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 16,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:USDCAD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 17,
+          "completed_days": 9,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 28
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 17,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:USDCAD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 17,
+          "completed_days": 9,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 28
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 17,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:USDCHF:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 16,
+          "completed_days": 10,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 28
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 16,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-03:EURUSD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 19,
+          "completed_days": 10,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 19,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-03:GBPUSD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 18,
+          "completed_days": 11,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 18,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-05:AUDUSD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 18,
+          "completed_days": 11,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 18,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-05:AUDUSD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 16,
+          "completed_days": 13,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 31
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 16,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-05:USDJPY:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 19,
+          "completed_days": 10,
+          "market_closed_days": 2,
+          "day_attempt_distribution": {
+            "1": 30,
+            "2": 1
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 19,
+          "terminal_risk": false
+        }
+      ]
+    },
+    {
+      "category": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+      "count": 10,
+      "rows": [
+        {
+          "partition_id": "2010-01:AUDJPY:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 31,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 31,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-01:AUDJPY:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 31,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 31,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:EURUSD:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 28,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {
+            "1": 28
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 28,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:EURUSD:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 28,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {
+            "1": 28
+          },
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 28,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:AUDJPY:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 28,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 28,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-02:AUDJPY:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 28,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 28,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-03:AUDJPY:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 31,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 31,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-03:AUDJPY:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 31,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 31,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-04:AUDJPY:bid",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 30,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 30,
+          "terminal_risk": false
+        },
+        {
+          "partition_id": "2010-04:AUDJPY:ask",
+          "partition_cycle_count": 0,
+          "missing_open_market_days": 30,
+          "completed_days": 0,
+          "market_closed_days": 0,
+          "day_attempt_distribution": {},
+          "transport_failures": 0,
+          "partial_successful_calls": 0,
+          "dns_network_failures": 0,
+          "next_repair_day": 1,
+          "remaining_repair_requests": 30,
+          "terminal_risk": false
+        }
+      ]
+    }
+  ]
+}
