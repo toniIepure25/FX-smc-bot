@@ -42,6 +42,7 @@ async function main() {
   const priceType = args.priceType || 'bid';
   const format = args.format || 'json';
   const outDir = args.outDir || './output';
+  const cacheDir = args.cacheDir || join(outDir, '.cache');
   const batchSize = parseInt(args.batchSize || '30', 10);
   const retries = parseInt(args.retries || '5', 10);
   const pauseBetweenBatchesMs = parseInt(args.pauseBetweenBatchesMs || '200', 10);
@@ -87,7 +88,7 @@ async function main() {
       retryCount: retries,
       pauseBetweenRetriesMs: 1000,
       useCache,
-      cachePath: join(outDir, '.cache'),
+      cachePath: cacheDir,
     });
 
     mkdirSync(outDir, { recursive: true });

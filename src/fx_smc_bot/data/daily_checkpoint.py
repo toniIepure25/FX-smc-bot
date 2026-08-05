@@ -19,8 +19,8 @@ from pathlib import Path
 from fx_smc_bot.data.dukascopy_node_provider import (
     PAIR_TO_INSTRUMENT,
     _compute_checksum,
-    _download_month_bulk,
-    _download_single_day,
+    _download_month_bulk_result,
+    _download_single_day_result,
 )
 from fx_smc_bot.data.failure_categories import (
     FailureCategory,
@@ -47,6 +47,7 @@ class DayStatus:
     error: str = ""
     attempts: int = 0
     completed_at: str = ""
+    provider_call_outcome: str = ""
 
 
 @dataclass(slots=True)
@@ -60,6 +61,11 @@ class MonthManifest:
     compacted: bool = False
     compacted_checksum: str = ""
     compacted_rows: int = 0
+    provider_call_count: int = 0
+    partition_cycle_count: int = 0
+    partial_successful_calls: int = 0
+    last_provider_call_outcome: str = ""
+    last_provider_error: str = ""
 
     def to_dict(self) -> dict:
         return {
@@ -70,6 +76,11 @@ class MonthManifest:
             "compacted": self.compacted,
             "compacted_checksum": self.compacted_checksum,
             "compacted_rows": self.compacted_rows,
+            "provider_call_count": self.provider_call_count,
+            "partition_cycle_count": self.partition_cycle_count,
+            "partial_successful_calls": self.partial_successful_calls,
+            "last_provider_call_outcome": self.last_provider_call_outcome,
+            "last_provider_error": self.last_provider_error,
             "days": [asdict(d) for d in self.days],
         }
 
@@ -81,6 +92,11 @@ class MonthManifest:
             compacted=d.get("compacted", False),
             compacted_checksum=d.get("compacted_checksum", ""),
             compacted_rows=d.get("compacted_rows", 0),
+            provider_call_count=d.get("provider_call_count", 0),
+            partition_cycle_count=d.get("partition_cycle_count", 0),
+            partial_successful_calls=d.get("partial_successful_calls", 0),
+            last_provider_call_outcome=d.get("last_provider_call_outcome", ""),
+            last_provider_error=d.get("last_provider_error", ""),
         )
         for day_d in d.get("days", []):
             manifest.days.append(DayStatus(**day_d))
@@ -143,6 +159,9 @@ def download_day_with_checkpoint(
     retries: int = 5,
     max_retries: int = 3,
     pause_between_batches_ms: int = 200,
+    scratch_root: Path | None = None,
+    cache_root: Path | None = None,
+    worker_id: int | None = None,
 ) -> DayStatus:
     """Download one day, validate, and persist atomically."""
     from fx_smc_bot.config import TradingPair
@@ -179,11 +198,15 @@ def download_day_with_checkpoint(
     last_err = ""
     for attempt in range(max_retries):
         status.attempts += 1
-        data, err = _download_single_day(
+        call = _download_single_day_result(
             instrument, date_str, next_str, side,
             timeframe, batch_size, retries,
             pause_between_batches_ms=pause_between_batches_ms,
+            scratch_root=scratch_root,
+            cache_root=cache_root,
+            worker_id=worker_id,
         )
+        data, err = call.rows, call.legacy_error()
         last_err = err
 
         if not err and data:
@@ -197,6 +220,7 @@ def download_day_with_checkpoint(
             status.checksum = _compute_checksum(day_file)
             status.file_size = day_file.stat().st_size
             status.completed_at = datetime.now(timezone.utc).isoformat()
+            status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_COMPLETE"
             return status
 
         if not err and not data:
@@ -207,14 +231,17 @@ def download_day_with_checkpoint(
                 FailureCategory.MARKET_CLOSED_HOLIDAY,
             ):
                 status.status = "market_closed"
+                status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_EMPTY_MARKET_CLOSED"
                 return status
             status.status = "failed"
             status.error = "No provider data returned for open-market business day"
+            status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_EMPTY_OPEN_MARKET"
             return status
 
         cat = classify_failure(err, year, month, day, 0)
         status.failure_category = cat.value
         status.error = err
+        status.provider_call_outcome = "PROVIDER_CALL_TRANSPORT_FAILURE"
 
         if not is_retryable(cat):
             break
@@ -229,6 +256,50 @@ def download_day_with_checkpoint(
     status.status = "failed"
     status.error = last_err
     return status
+
+
+def repair_missing_days(
+    pair: str,
+    side: str,
+    year: int,
+    month: int,
+    raw_dir: Path,
+    missing_days: list[int],
+    *,
+    max_day_requests: int | None,
+    scratch_root: Path | None = None,
+    cache_root: Path | None = None,
+    worker_id: int | None = None,
+) -> MonthManifest:
+    """Repair only missing open-market days; never re-request a positive month."""
+    manifest = load_month_manifest(raw_dir, pair, side, year, month) or MonthManifest(
+        pair=pair, side=side, year=year, month=month,
+    )
+    manifest = normalize_month_manifest_for_repair(raw_dir, manifest)
+    existing = {item.day: item for item in manifest.days}
+    requested = 0
+    for day in missing_days:
+        if max_day_requests is not None and requested >= max_day_requests:
+            break
+        current = existing.get(day)
+        if current is not None and current.status in ("complete", "market_closed"):
+            continue
+        replacement = download_day_with_checkpoint(
+            pair, side, year, month, day, raw_dir,
+            scratch_root=scratch_root, cache_root=cache_root, worker_id=worker_id,
+        )
+        replacement.attempts += current.attempts if current else 0
+        if current is None:
+            manifest.days.append(replacement)
+        else:
+            manifest.days[manifest.days.index(current)] = replacement
+        existing[day] = replacement
+        manifest.provider_call_count += 1
+        requested += 1
+        save_month_manifest(raw_dir, manifest)
+    compact_month(raw_dir, manifest)
+    save_month_manifest(raw_dir, manifest)
+    return manifest
 
 
 def _is_complete_nonfailed_month(manifest: MonthManifest) -> bool:
@@ -437,6 +508,10 @@ def acquire_month_bulk(
     batch_size: int = 30,
     retries: int = 5,
     pause_between_batches_ms: int = 200,
+    scratch_root: Path | None = None,
+    cache_root: Path | None = None,
+    worker_id: int | None = None,
+    max_day_requests: int | None = None,
 ) -> MonthManifest:
     """Acquire one month in a SINGLE Node.js call, then split into daily checkpoints.
 
@@ -449,9 +524,21 @@ def acquire_month_bulk(
     days_in_month = calendar.monthrange(year, month)[1]
 
     existing = load_month_manifest(raw_dir, pair, side, year, month)
+    if existing:
+        existing = normalize_month_manifest_for_repair(raw_dir, existing)
     if existing and existing.compacted:
         logger.info(f"  {pair}/{side}/{year}-{month:02d}: already compacted")
         return existing
+
+    if existing and existing.days:
+        return repair_missing_days(
+            pair, side, year, month, raw_dir,
+            find_missing_days(raw_dir, pair, side, year, month),
+            max_day_requests=max_day_requests,
+            scratch_root=scratch_root,
+            cache_root=cache_root,
+            worker_id=worker_id,
+        )
 
     all_days_done = True
     if existing:
@@ -475,10 +562,14 @@ def acquire_month_bulk(
     bulk_data: list[dict] = []
     err = ""
     for bulk_attempt in range(3):
-        bulk_data, err = _download_month_bulk(
+        call = _download_month_bulk_result(
             instrument, year, month, side, timeframe,
             batch_size, retries, pause_between_batches_ms,
+            scratch_root=scratch_root,
+            cache_root=cache_root,
+            worker_id=worker_id,
         )
+        bulk_data, err = call.rows, call.legacy_error()
         if not err:
             break
         if bulk_attempt < 2:
@@ -500,16 +591,16 @@ def acquire_month_bulk(
     )
     existing_days = {d.day: d for d in manifest.days}
 
+    manifest.provider_call_count += 1
+    manifest.partition_cycle_count += 1
     if err:
+        manifest.last_provider_call_outcome = "PROVIDER_CALL_TRANSPORT_FAILURE"
+        manifest.last_provider_error = err
+        save_month_manifest(raw_dir, manifest)
         logger.warning(
-            f"  {pair}/{side}/{year}-{month:02d} bulk download failed: {err}, "
-            f"falling back to day-by-day"
+            f"  {pair}/{side}/{year}-{month:02d} bulk download failed: {err}"
         )
-        return acquire_month_daily(
-            pair, side, year, month, raw_dir,
-            timeframe=timeframe, batch_size=batch_size, retries=retries,
-            pause_between_batches_ms=pause_between_batches_ms,
-        )
+        return manifest
 
     rows_by_day: dict[int, list[dict]] = {}
     for row in bulk_data:
@@ -553,14 +644,11 @@ def acquire_month_bulk(
             ):
                 status.status = "market_closed"
             else:
-                status.status = "complete"
-                status.rows = 0
-                day_d = _day_dir(raw_dir, pair, side, year, month, day_num)
-                day_d.mkdir(parents=True, exist_ok=True)
-                day_file = day_d / "data.json"
-                day_file.write_text("[]")
-                status.checksum = _compute_checksum(day_file)
-                status.file_size = day_file.stat().st_size
+                status.status = "failed"
+                status.failure_category = FailureCategory.NO_PROVIDER_DATA.value
+                status.error = "Missing open-market day in successful bulk response"
+                status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_PARTIAL"
+                manifest.partial_successful_calls += 1
 
         if day_num in existing_days:
             idx = next(
@@ -573,6 +661,11 @@ def acquire_month_bulk(
     save_month_manifest(raw_dir, manifest)
 
     total_rows = sum(len(v) for v in rows_by_day.values())
+    if manifest.partial_successful_calls:
+        manifest.last_provider_call_outcome = "PROVIDER_CALL_SUCCESS_PARTIAL"
+    else:
+        manifest.last_provider_call_outcome = "PROVIDER_CALL_SUCCESS_COMPLETE"
+    manifest.last_provider_error = ""
     logger.info(f"  {pair}/{side}/{year}-{month:02d}: {total_rows} rows (bulk)")
 
     compact_month(raw_dir, manifest)

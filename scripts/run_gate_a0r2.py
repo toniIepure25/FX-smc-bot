@@ -35,10 +35,13 @@ from fx_smc_bot.data.bidask_resampling import resample_bidask
 from fx_smc_bot.data.daily_checkpoint import (
     MonthManifest,
     acquire_month_bulk,
+    find_missing_days,
     load_month_manifest,
     normalize_month_manifest_for_repair,
+    repair_missing_days,
 )
 from fx_smc_bot.data.dukascopy_node_provider import (
+    TOOL_DIR,
     ProviderCallResult,
     _download_month_bulk_result,
     _download_single_day_result,
@@ -1452,6 +1455,24 @@ def raw_dir(data_root: Path) -> Path:
     return data_root / "raw_bi5"
 
 
+def provider_scratch_dir(data_root: Path) -> Path:
+    path = data_root / "scratch" / "dukascopy_provider_calls"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def provider_cache_dir(data_root: Path) -> Path:
+    path = data_root / "scratch" / "dukascopy_cache_v1"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def provider_controls_dir(data_root: Path) -> Path:
+    path = data_root / "scratch" / "dukascopy_controls"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 def m1_dir(data_root: Path) -> Path:
     return data_root / "canonical_m1"
 
@@ -2007,6 +2028,117 @@ def run_provider_diagnostic_control(data_root: Path) -> dict[str, Any]:
     return reconciliation
 
 
+def run_provider_scratch_location_audit(data_root: Path) -> dict[str, Any]:
+    """Audit only the A0R2 wrapper's known temporary patterns."""
+    scratch = provider_scratch_dir(data_root)
+    cache = provider_cache_dir(data_root)
+    controls = provider_controls_dir(data_root)
+    local_patterns = ("_tmp_download*", ".cache", "dukascopy_provider_calls")
+    local_payloads = sum(
+        1 for pattern in local_patterns for _ in TOOL_DIR.glob(pattern)
+    )
+    payload = {
+        "artifact_id": "A0R2_PROVIDER_SCRATCH_LOCATION_AUDIT_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if local_payloads == 0 else "FAIL",
+        "repository_local_a0r2_provider_payloads": local_payloads,
+        "repository_local_a0r2_provider_cache_files": sum(
+            1 for _ in (TOOL_DIR / ".cache").rglob("*")
+        ) if (TOOL_DIR / ".cache").exists() else 0,
+        "clean_room_provider_scratch": "PASS" if scratch.is_dir() and controls.is_dir() else "FAIL",
+        "clean_room_provider_cache": "PASS" if cache.is_dir() else "FAIL",
+        "checked_patterns": list(local_patterns),
+    }
+    write_json(results_dir() / "provider_scratch_location_audit.json", payload)
+    return payload
+
+
+def run_health_controls(data_root: Path) -> dict[str, Any]:
+    """Two independent, non-partition controls gate retry attempt consumption."""
+    scratch = provider_controls_dir(data_root)
+    cache = provider_cache_dir(data_root)
+    requests = (
+        ("GBPUSD", "gbpusd", "2010-01-04", "2010-01-05", "bid"),
+        ("USDCHF", "usdchf", "2010-01-05", "2010-01-06", "ask"),
+    )
+    rows = []
+    for worker, (pair, instrument, date_from, date_to, side) in enumerate(requests):
+        result = _download_single_day_result(
+            instrument, date_from, date_to, side,
+            scratch_root=scratch, cache_root=cache, worker_id=worker,
+        )
+        category = classify_provider_diagnostic(result)
+        rows.append({
+            "control": "A" if worker == 0 else "B",
+            "pair": pair,
+            "side": side,
+            "result": "PASS" if result.succeeded and bool(result.rows) else "FAIL",
+            "provider_category": category,
+            "row_count": len(result.rows),
+            "duration_ms": result.duration_ms,
+            "error_fingerprint": result.stack_fingerprint or result.stderr_fingerprint,
+        })
+    passed = all(row["result"] == "PASS" for row in rows)
+    payload = {
+        "artifact_id": "A0R2_PROVIDER_HEALTH_CONTROLS_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if passed else "PROVIDER_COOLDOWN_REQUIRED",
+        "controls": rows,
+        "partition_attempts_consumed": 0,
+        "rolling_health_calls": 8,
+        "trigger_unhealthy_calls": 3,
+    }
+    write_json(results_dir() / "provider_health_controls.json", payload)
+    return payload
+
+
+def analyze_retryable_failures_v4(data_root: Path) -> dict[str, Any]:
+    state = load_state(data_root)
+    groups: dict[str, list[dict[str, Any]]] = {}
+    for part in partition_queue():
+        item = state.get("partitions", {}).get(part.key, {})
+        if item.get("state") != "FAILED_RETRYABLE":
+            continue
+        manifest = load_month_manifest(
+            raw_dir(data_root), part.pair, part.side, part.year, part.month
+        )
+        days = manifest.days if manifest else []
+        missing = find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month)
+        outcome = manifest.last_provider_call_outcome if manifest else ""
+        category = item.get("failure_category", "OTHER_STRUCTURED_FAILURE")
+        if outcome == "PROVIDER_CALL_SUCCESS_PARTIAL":
+            category = "SUCCESSFUL_PARTIAL_MONTH"
+        elif outcome == "PROVIDER_CALL_TRANSPORT_FAILURE":
+            category = "PROVIDER_DNS_OR_NETWORK"
+        row = {
+            "partition_id": part.key,
+            "partition_cycle_count": manifest.partition_cycle_count if manifest else 0,
+            "missing_open_market_days": len(missing),
+            "completed_days": sum(day.status == "complete" for day in days),
+            "market_closed_days": sum(day.status == "market_closed" for day in days),
+            "day_attempt_distribution": dict(Counter(day.attempts for day in days)),
+            "transport_failures": int(outcome == "PROVIDER_CALL_TRANSPORT_FAILURE"),
+            "partial_successful_calls": manifest.partial_successful_calls if manifest else 0,
+            "dns_network_failures": int(category == "PROVIDER_DNS_OR_NETWORK"),
+            "next_repair_day": min(missing) if missing else None,
+            "remaining_repair_requests": len(missing),
+            "terminal_risk": int(item.get("attempts", 0)) >= MAX_PARTITION_ATTEMPTS,
+        }
+        groups.setdefault(category, []).append(row)
+    payload = {
+        "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V4",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "retryable_failure_count": sum(len(rows) for rows in groups.values()),
+        "groups": [
+            {"category": key, "count": len(value), "rows": value}
+            for key, value in sorted(groups.items())
+        ],
+    }
+    write_json(results_dir() / "retryable_failure_analysis_v4.json", payload)
+    return payload
+
+
 def audit_discovery_engine_configuration_coverage() -> dict[str, Any]:
     rows = read_json(results_dir() / "trial_data_capability_v2_matrix.json")["rows"]
     supported_families = set(FAMILY_LABELS)
@@ -2221,7 +2353,13 @@ def last_completed_partition(data_root: Path) -> dict[str, Any] | None:
     return None
 
 
-def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
+def acquire_one(
+    data_root: Path,
+    part: Partition,
+    *,
+    repair_missing_days_only: bool = False,
+    max_day_requests: int | None = None,
+) -> dict[str, Any]:
     manifest = load_month_manifest(raw_dir(data_root), part.pair, part.side, part.year, part.month)
     current = load_state(data_root).get("partitions", {}).get(part.key, {})
     current_attempts = authoritative_attempt_count(data_root, part, current, manifest)
@@ -2269,17 +2407,26 @@ def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
         save_state(data_root, state)
     append_event(data_root, {**event_base, "state": "RUNNING"})
     try:
-        manifest = acquire_month_bulk(
-            part.pair,
-            part.side,
-            part.year,
-            part.month,
-            raw_dir(data_root),
-            timeframe="m1",
-            batch_size=30,
-            retries=5,
-            pause_between_batches_ms=200,
-        )
+        scratch = provider_scratch_dir(data_root)
+        cache = provider_cache_dir(data_root)
+        if repair_missing_days_only and manifest is not None:
+            manifest = repair_missing_days(
+                part.pair, part.side, part.year, part.month, raw_dir(data_root),
+                find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month),
+                max_day_requests=max_day_requests,
+                scratch_root=scratch,
+                cache_root=cache,
+                worker_id=threading.get_ident(),
+            )
+        else:
+            manifest = acquire_month_bulk(
+                part.pair, part.side, part.year, part.month, raw_dir(data_root),
+                timeframe="m1", batch_size=30, retries=5,
+                pause_between_batches_ms=200,
+                scratch_root=scratch, cache_root=cache,
+                worker_id=threading.get_ident(),
+                max_day_requests=max_day_requests,
+            )
     except Exception as exc:
         error = str(exc)[:500]
         failure_state, category = classify_provider_failure(error, attempt_number)
@@ -2313,8 +2460,14 @@ def acquire_one(data_root: Path, part: Partition) -> dict[str, Any]:
         "checksum": manifest.compacted_checksum,
     }
     if month_state == "FAILED_RETRYABLE":
-        _, category = classify_provider_failure(error, attempt_number)
-        if attempt_number >= MAX_PARTITION_ATTEMPTS:
+        if manifest.last_provider_call_outcome == "PROVIDER_CALL_SUCCESS_PARTIAL":
+            category = "SUCCESSFUL_PARTIAL_MONTH"
+            result["attempts"] = current_attempts
+        elif manifest.last_provider_call_outcome == "PROVIDER_CALL_TRANSPORT_FAILURE":
+            category = "PROVIDER_DNS_OR_NETWORK"
+        else:
+            _, category = classify_provider_failure(error, attempt_number)
+        if attempt_number >= MAX_PARTITION_ATTEMPTS and category != "SUCCESSFUL_PARTIAL_MONTH":
             result["state"] = "FAILED_TERMINAL"
             category = "RETRY_ATTEMPTS_EXHAUSTED"
         result.update({
@@ -2349,6 +2502,14 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
         raise ValueError("A0R2_ACTIVE_LEASE_PREVENTS_COMPETING_RUNNER")
     if getattr(args, "recover_orphaned_running", False):
         recover_orphaned_running(data_root, explicit=True)
+    if args.retry_failed:
+        controls = run_health_controls(data_root)
+        if controls["status"] != "PASS":
+            progress = acquisition_summary(data_root)
+            progress["status"] = "PROVIDER_COOLDOWN_REQUIRED"
+            progress["provider_health_controls"] = controls["status"]
+            write_json(progress_path(data_root), progress)
+            return progress
     state = refresh_state_from_manifests(data_root)
     wanted = partition_queue(args.pair, args.year, args.month, args.side)
     runnable: deque[Partition] = deque()
@@ -2405,13 +2566,24 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                     break
                 while runnable and len(futures) < max_in_flight:
                     part = runnable.popleft()
-                    futures[pool.submit(acquire_one, data_root, part)] = part
+                    if getattr(args, "repair_missing_days", False):
+                        future = pool.submit(
+                            acquire_one,
+                            data_root,
+                            part,
+                            repair_missing_days_only=True,
+                            max_day_requests=getattr(args, "max_day_requests", None),
+                        )
+                    else:
+                        future = pool.submit(acquire_one, data_root, part)
+                    futures[future] = part
                     update_lease_heartbeat(data_root, [p.key for p in futures.values()])
                 for future in as_completed(list(futures.keys())):
                     part = futures.pop(future)
                     result = future.result()
                     recent_success.append(
                         result.get("state") == "COMPLETE_PENDING_CERTIFICATION"
+                        or result.get("failure_category") == "SUCCESSFUL_PARTIAL_MONTH"
                     )
                     with STATE_LOCK:
                         state = load_state(data_root)
@@ -3253,12 +3425,16 @@ def parse_args() -> argparse.Namespace:
             "op1-start",
             "op2-start",
             "op3-start",
+            "op4-start",
             "amendment",
             "materialize-v2",
             "capability-v2",
             "retryable-analysis",
             "retryable-analysis-v2",
             "retryable-analysis-v3",
+            "retryable-analysis-v4",
+            "provider-scratch-audit",
+            "health-controls",
             "provider-diagnostic",
             "engine-coverage",
             "recover-orphaned-running",
@@ -3285,6 +3461,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--recover-orphaned-running", action="store_true")
     parser.add_argument("--max-runtime-minutes", type=int, default=None)
     parser.add_argument("--max-operational-cycles", type=int, default=None)
+    parser.add_argument("--repair-missing-days", action="store_true")
+    parser.add_argument("--max-day-requests", type=int, default=None)
     parser.add_argument("--certify-only", action="store_true")
     parser.add_argument("--execute-trials-only", action="store_true")
     parser.add_argument("--status", action="store_true")
@@ -3302,6 +3480,8 @@ def main() -> int:
         raise ValueError("A0R2_MAX_RUNTIME_MUST_BE_POSITIVE")
     if args.max_operational_cycles is not None and args.max_operational_cycles < 1:
         raise ValueError("A0R2_MAX_OPERATIONAL_CYCLES_MUST_BE_POSITIVE")
+    if args.max_day_requests is not None and args.max_day_requests < 1:
+        raise ValueError("A0R2_MAX_DAY_REQUESTS_MUST_BE_POSITIVE")
     stage = (
         "operational-cycle"
         if args.operational_cycle
@@ -3319,6 +3499,8 @@ def main() -> int:
         progress = run_status(data_root)
         create_op3_start_artifacts(data_root, progress)
         result = progress
+    elif stage == "op4-start":
+        result = run_status(data_root)
     elif stage == "amendment":
         create_materialization_amendment()
         result = {"status": "PASS"}
@@ -3332,8 +3514,14 @@ def main() -> int:
         result = analyze_retryable_failures_v2(data_root)
     elif stage == "retryable-analysis-v3":
         result = analyze_retryable_failures_v3(data_root)
+    elif stage == "retryable-analysis-v4":
+        result = analyze_retryable_failures_v4(data_root)
     elif stage == "provider-diagnostic":
         result = run_provider_diagnostic_control(data_root)
+    elif stage == "provider-scratch-audit":
+        result = run_provider_scratch_location_audit(data_root)
+    elif stage == "health-controls":
+        result = run_health_controls(data_root)
     elif stage == "engine-coverage":
         result = audit_discovery_engine_configuration_coverage()
     elif stage == "recover-orphaned-running":

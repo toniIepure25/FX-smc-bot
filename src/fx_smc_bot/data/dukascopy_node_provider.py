@@ -11,6 +11,7 @@ import logging
 import subprocess
 import threading
 import time
+import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -206,6 +207,11 @@ def _run_node_acquisition(
                 if output_file_found:
                     rows = json.loads(src_file.read_text())
                     src_file.unlink(missing_ok=True)
+                    # Successful payloads are ephemeral clean-room scratch only.
+                    try:
+                        tmp_out.rmdir()
+                    except OSError:
+                        pass
             elif record_type == "acquisition_error":
                 error_message = str(record.get("error", "unknown"))
                 error_code = str(record.get("code", ""))
@@ -318,11 +324,16 @@ def _download_single_day_result(
     pause_between_batches_ms: int = 200,
     worker_id: int | None = None,
     scratch_root: Path | None = None,
+    cache_root: Path | None = None,
 ) -> ProviderCallResult:
     """Download one day and preserve structured Node diagnostics."""
-    suffix = f"_{worker_id}" if worker_id is not None else f"_{threading.current_thread().ident}"
-    tmp_base = scratch_root if scratch_root is not None else TOOL_DIR
-    tmp_out = tmp_base / f"_tmp_download{suffix}"
+    suffix = f"w{worker_id}" if worker_id is not None else f"t{threading.current_thread().ident}"
+    request_id = uuid.uuid4().hex
+    tmp_base = scratch_root if scratch_root is not None else TOOL_DIR / "_tmp_downloads"
+    tmp_out = tmp_base / request_id
+    tmp_out.mkdir(parents=True, exist_ok=True)
+    active_cache = cache_root if cache_root is not None else tmp_base / ".cache"
+    active_cache.mkdir(parents=True, exist_ok=True)
     cmd = [
         "node", str(TOOL_DIR / "acquire.mjs"),
         "--instrument", instrument,
@@ -332,10 +343,14 @@ def _download_single_day_result(
         "--priceType", side,
         "--format", "json",
         "--outDir", str(tmp_out),
+        "--cacheDir", str(active_cache),
+        "--outFileName", f"{request_id}_{suffix}.json",
+        "--requestId", request_id,
+        "--workerId", suffix,
         "--batchSize", str(batch_size),
         "--retries", str(retries),
         "--pauseBetweenBatchesMs", str(pause_between_batches_ms),
-        "--cache", "false",
+        "--cache", "true",
     ]
 
     return _run_node_acquisition(cmd, 300, tmp_out)
@@ -379,6 +394,8 @@ def _download_month_bulk_result(
     retries: int = 5,
     pause_between_batches_ms: int = 200,
     scratch_root: Path | None = None,
+    cache_root: Path | None = None,
+    worker_id: int | None = None,
 ) -> ProviderCallResult:
     """Download an entire month and preserve structured Node diagnostics."""
     import calendar
@@ -390,9 +407,13 @@ def _download_month_bulk_result(
     else:
         date_to = f"{year}-{month + 1:02d}-01"
 
-    suffix = f"_{threading.current_thread().ident}"
-    tmp_base = scratch_root if scratch_root is not None else TOOL_DIR
-    tmp_out = tmp_base / f"_tmp_download{suffix}"
+    suffix = f"w{worker_id}" if worker_id is not None else f"t{threading.current_thread().ident}"
+    request_id = uuid.uuid4().hex
+    tmp_base = scratch_root if scratch_root is not None else TOOL_DIR / "_tmp_downloads"
+    tmp_out = tmp_base / request_id
+    tmp_out.mkdir(parents=True, exist_ok=True)
+    active_cache = cache_root if cache_root is not None else tmp_base / ".cache"
+    active_cache.mkdir(parents=True, exist_ok=True)
     cmd = [
         "node", str(TOOL_DIR / "acquire.mjs"),
         "--instrument", instrument,
@@ -402,10 +423,14 @@ def _download_month_bulk_result(
         "--priceType", side,
         "--format", "json",
         "--outDir", str(tmp_out),
+        "--cacheDir", str(active_cache),
+        "--outFileName", f"{request_id}_{suffix}.json",
+        "--requestId", request_id,
+        "--workerId", suffix,
         "--batchSize", str(batch_size),
         "--retries", str(retries),
         "--pauseBetweenBatchesMs", str(pause_between_batches_ms),
-        "--cache", "false",
+        "--cache", "true",
     ]
 
     timeout = max(600, days_in_month * 30)
