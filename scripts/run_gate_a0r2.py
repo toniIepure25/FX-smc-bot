@@ -17,6 +17,7 @@ import socket
 import sys
 import threading
 import time
+import uuid
 from collections import Counter, deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -2223,12 +2224,15 @@ def native_health_history_path(data_root: Path) -> Path:
 
 def append_native_health_history(data_root: Path, payload: dict[str, Any]) -> None:
     timestamp = datetime.now(timezone.utc).isoformat()
+    run_id = f"native-{uuid.uuid4().hex}"
     history = native_health_history_path(data_root)
     history.parent.mkdir(parents=True, exist_ok=True)
     with history.open("a", encoding="utf-8") as handle:
         for row in payload["controls"]:
             record = {
                 "timestamp": timestamp, "transport": "NATIVE_BI5_TRANSPORT",
+                "record_type": "HEALTH_CONTROL", "health_run_id": run_id,
+                "health_run_started_at": timestamp, "health_run_completed_at": timestamp,
                 "control_id": row["control"], "pair": row["pair"], "side": row["side"],
                 "date": row["date"], "result": row["status"],
                 "http_status": row.get("http_status"),
@@ -2239,33 +2243,52 @@ def append_native_health_history(data_root: Path, payload: dict[str, Any]) -> No
                 "runner_sha": git_sha(),
             }
             handle.write(json.dumps(record, sort_keys=True) + "\n")
+        handle.write(json.dumps({
+            "record_type": "HEALTH_RUN_SUMMARY", "health_run_id": run_id,
+            "timestamp": timestamp, "transport": "NATIVE_BI5_TRANSPORT",
+            "status": payload["status"], "control_sequence": ["A", "B"],
+            "runner_sha": git_sha(),
+        }, sort_keys=True) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
 
 
 def write_provider_health_summary(data_root: Path) -> dict[str, Any]:
     path = native_health_history_path(data_root)
     records = read_jsonl_records(path)
     native = [row for row in records if row.get("transport") == "NATIVE_BI5_TRANSPORT"]
-    results = [row.get("result") for row in native]
+    runs = [row for row in native if row.get("record_type") == "HEALTH_RUN_SUMMARY"]
+    controls = [row for row in native if row.get("record_type") == "HEALTH_CONTROL"]
+    results = ["PASS" if row.get("status") == "PASS" else "FAIL" for row in runs]
     categories = Counter(
         str(row.get("failure_category", ""))
-        for row in native if row.get("failure_category")
+        for row in controls if row.get("failure_category")
     )
     last_pass = next(
-        (row["timestamp"] for row in reversed(native) if row.get("result") == "PASS"), None
+        (row["timestamp"] for row in reversed(runs) if row.get("status") == "PASS"), None
     )
     last_fail = next(
-        (row["timestamp"] for row in reversed(native) if row.get("result") == "FAIL"), None
+        (row["timestamp"] for row in reversed(runs) if row.get("status") != "PASS"), None
     )
     summary = {
         "artifact_id": "A0R2_PROVIDER_HEALTH_SUMMARY_V1",
         "gate_id": GATE_ID,
         "transport": "NATIVE_BI5_TRANSPORT",
+        "latest_run_id": runs[-1].get("health_run_id") if runs else None,
         "latest_status": (
             "PASS" if results[-2:] == ["PASS", "PASS"] else "PROVIDER_COOLDOWN_REQUIRED"
         ),
-        "latest_two_control_result": results[-2:], "last_passing_timestamp": last_pass,
-        "last_failing_timestamp": last_fail, "pass_count": results.count("PASS"),
-        "fail_count": results.count("FAIL"), "failure_category_distribution": dict(categories),
+        "latest_control_results": results[-1:] if runs else [],
+        "last_full_pass_timestamp": last_pass,
+        "last_full_fail_timestamp": last_fail,
+        "full_pass_run_count": results.count("PASS"),
+        "full_fail_run_count": results.count("FAIL"),
+        "control_pass_count": sum(
+            row.get("result") == "PASS" for row in controls
+        ),
+        "control_fail_count": sum(row.get("result") == "FAIL" for row in controls),
+        "legacy_ungrouped_control_count": sum("health_run_id" not in row for row in native),
+        "failure_category_distribution": dict(categories),
     }
     write_json(results_dir() / "provider_health_summary.json", summary)
     return summary
