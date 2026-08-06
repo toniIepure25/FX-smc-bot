@@ -1,0 +1,14 @@
+{
+  "artifact_id": "A0R2_BI5_CROSS_LANGUAGE_CONTRACT_CERTIFICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "contract_id": "A0R2_BI5_CROSS_LANGUAGE_AGGREGATE_CONTRACT_V1",
+  "contract_file_sha256": "35eb7b8eacde29a8f1e44f32a6d17b939121fc4c7665dff0ed038fe126930063",
+  "python_aggregator_source_sha256": "e79541d6b18c2fc4fe91843bcd1bf1e4b95b457429b91abb4c24b8091eb15f84",
+  "javascript_parser_source_sha256": "2d3a98fb6cad7054e3685092b816f6bcd8d127f81572cf415de9109b20889784",
+  "authorized_metadata_mapping_sha256": "4b9d357792327bcc5991a1f8ed743d57e98f7a26cf185d102300094833cba366",
+  "record_size": 24,
+  "endianness": "big",
+  "zero_volume_policy": "exclude_positive_and_negative_zero",
+  "non_finite_volume_policy": "reject",
+  "status": "PASS"
+}

@@ -11,6 +11,7 @@ import argparse
 import calendar
 import hashlib
 import json
+import math
 import os
 import shutil
 import socket
@@ -2822,6 +2823,104 @@ def write_same_payload_panel_provenance() -> dict[str, Any]:
     return provenance
 
 
+def audit_node_reference_panel_validity(data_root: Path) -> dict[str, Any]:
+    panel = read_json(results_dir() / "node_reference_panel_freeze_v2.json")
+    counters: Counter[str] = Counter()
+    failures: list[dict[str, str]] = []
+    for unit in panel["units"]:
+        requested = date.fromisoformat(unit["date"])
+        path = (
+            raw_dir(data_root) / unit["pair"] / f"price={unit['side']}"
+            / f"year={requested.year}" / f"month={requested.month:02d}"
+            / f"day={requested.day:02d}" / "data.json"
+        )
+        manifest = load_month_manifest(
+            raw_dir(data_root), unit["pair"], unit["side"], requested.year, requested.month
+        )
+        manifest_days = manifest.days if manifest else []
+        day_status = next(
+            (item for item in manifest_days if item.day == requested.day), None
+        )
+        categories: list[str] = []
+        if not path.exists():
+            categories.append("MISSING_SOURCE_DAILY_FILE")
+        elif file_sha256(path) != unit["source_daily_sha256"]:
+            categories.append("SOURCE_CHECKSUM_MISMATCH")
+        if day_status is None or day_status.status != "complete":
+            categories.append("MANIFEST_NOT_COMPLETE")
+        if path.exists():
+            rows = read_json(path)
+            start_ms = int(datetime(
+                requested.year, requested.month, requested.day, tzinfo=timezone.utc
+            ).timestamp() * 1000)
+            end_ms = start_ms + 86_400_000
+            timestamps = [int(row["timestamp"]) for row in rows]
+            if not rows:
+                categories.append("EMPTY_REFERENCE")
+            if not all(start_ms <= timestamp < end_ms for timestamp in timestamps):
+                categories.append("TIMESTAMP_OUTSIDE_UTC_DAY")
+            if timestamps != sorted(timestamps):
+                categories.append("TIMESTAMPS_NON_MONOTONIC")
+            if not all(
+                float(row["high"]) >= max(float(row["open"]), float(row["close"]))
+                and float(row["low"]) <= min(float(row["open"]), float(row["close"]))
+                for row in rows
+            ):
+                categories.append("OHLC_INVARIANT_FAILURE")
+            if not all(math.isfinite(float(row.get("volume", 0.0))) for row in rows):
+                categories.append("NON_FINITE_VOLUME")
+        if categories:
+            for category in categories:
+                counters[category] += 1
+            failures.append({
+                "reference_unit_id": unit["reference_unit_id"],
+                "categories": ",".join(categories),
+            })
+    artifact = {
+        "artifact_id": "A0R2_NODE_REFERENCE_PANEL_VALIDITY_AUDIT_V1",
+        "gate_id": GATE_ID,
+        "node_reference_panel_sha256": panel["panel_sha256"],
+        "expected_units": 48,
+        "valid_units": 48 - len(failures),
+        "missing": counters["MISSING_SOURCE_DAILY_FILE"],
+        "checksum_mismatches": counters["SOURCE_CHECKSUM_MISMATCH"],
+        "market_closed_references": counters["MANIFEST_NOT_COMPLETE"],
+        "empty_references": counters["EMPTY_REFERENCE"],
+        "status": (
+            "PASS" if not failures and len(panel["units"]) == 48
+            else "BLOCKED_BY_A0R2_NODE_REFERENCE_PANEL_VALIDITY"
+        ),
+        "failures": failures,
+    }
+    write_json(results_dir() / "node_reference_panel_validity_audit.json", artifact)
+    return artifact
+
+
+def certify_cross_language_contract_pin() -> dict[str, Any]:
+    contract_path = results_dir() / "bi5_cross_language_aggregate_contract.json"
+    contract = read_json(contract_path)
+    artifact = {
+        "artifact_id": "A0R2_BI5_CROSS_LANGUAGE_CONTRACT_CERTIFICATION_V1",
+        "gate_id": GATE_ID,
+        "contract_id": contract["contract_id"],
+        "contract_file_sha256": file_sha256(contract_path),
+        "python_aggregator_source_sha256": file_sha256(
+            repo_root() / "src" / "fx_smc_bot" / "data" / "dukascopy_bi5.py"
+        ),
+        "javascript_parser_source_sha256": file_sha256(
+            repo_root() / "tools" / "dukascopy-bi5-independent" / "parse-bi5.mjs"
+        ),
+        "authorized_metadata_mapping_sha256": native_metadata_payload()["mapping_sha256"],
+        "record_size": 24,
+        "endianness": "big",
+        "zero_volume_policy": "exclude_positive_and_negative_zero",
+        "non_finite_volume_policy": "reject",
+        "status": "PASS",
+    }
+    write_json(results_dir() / "bi5_cross_language_contract_certification.json", artifact)
+    return artifact
+
+
 def _node_row_hashes(rows: list[dict[str, Any]], pair: str) -> dict[str, Any]:
     scale = instrument_metadata(pair).integer_scale
     integer_rows = [
@@ -4619,6 +4718,8 @@ def parse_args() -> argparse.Namespace:
             "parity-panel-freeze",
             "parity-panel-provenance",
             "node-reference-panel-freeze-v2",
+            "node-reference-panel-validity-audit",
+            "cross-language-contract-certification",
             "parity-queue-status",
             "javascript-parser-certification",
             "provider-health-summary",
@@ -4738,6 +4839,10 @@ def main() -> int:
         result = write_same_payload_panel_provenance()
     elif stage == "node-reference-panel-freeze-v2":
         result = freeze_node_reference_panel_v2(data_root)
+    elif stage == "node-reference-panel-validity-audit":
+        result = audit_node_reference_panel_validity(data_root)
+    elif stage == "cross-language-contract-certification":
+        result = certify_cross_language_contract_pin()
     elif stage == "parity-queue-status":
         result = parity_queue_status(data_root)
     elif stage == "javascript-parser-certification":

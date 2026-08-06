@@ -1,0 +1,13 @@
+{
+  "artifact_id": "A0R2_NODE_REFERENCE_PANEL_VALIDITY_AUDIT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "node_reference_panel_sha256": "4350703db5f16877c52cc0c155f85c7f3d9f0c551e541bb150a19f9151cd1c51",
+  "expected_units": 48,
+  "valid_units": 48,
+  "missing": 0,
+  "checksum_mismatches": 0,
+  "market_closed_references": 0,
+  "empty_references": 0,
+  "status": "PASS",
+  "failures": []
+}
