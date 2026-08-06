@@ -1,0 +1,24 @@
+{
+  "artifact_id": "A0R2OP5R4C_FROZEN_INPUT_INTEGRITY_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "expected": {
+    "node_panel_sha256": "4350703db5f16877c52cc0c155f85c7f3d9f0c551e541bb150a19f9151cd1c51",
+    "same_payload_panel_sha256": "17ed8751b40495d998b5c7eed6fbb4b4e4fba249e332cf8faeae3457a197b6f5",
+    "contract_file_sha256": "35eb7b8eacde29a8f1e44f32a6d17b939121fc4c7665dff0ed038fe126930063"
+  },
+  "actual": {
+    "node_panel_sha256": "4350703db5f16877c52cc0c155f85c7f3d9f0c551e541bb150a19f9151cd1c51",
+    "same_payload_panel_sha256": "17ed8751b40495d998b5c7eed6fbb4b4e4fba249e332cf8faeae3457a197b6f5",
+    "contract_file_sha256": "35eb7b8eacde29a8f1e44f32a6d17b939121fc4c7665dff0ed038fe126930063"
+  },
+  "file_sha256": {
+    "node_reference_panel_freeze_v2.json": "168b7df1c704f2570e9a3b2433e51156b64d82c43c28b011154266bca1d6b7bd",
+    "node_reference_panel_validity_audit.json": "8a77200a8424d0c2e88f46c6583833e72ff5a36173c820c56cce08d743366958",
+    "stratified_parity_panel_freeze.json": "3d979082b4415b1e9d49dc68c3489ff5b45640fa0457335124523bed774f6d39",
+    "bi5_cross_language_aggregate_contract.json": "35eb7b8eacde29a8f1e44f32a6d17b939121fc4c7665dff0ed038fe126930063",
+    "bi5_cross_language_contract_certification.json": "dac84c9645385633dcd7288de28d4a422e158d35648249aaff3b522d294054ee",
+    "stratified_parity_clarification.json": "0a8f41fb7bd636d32c13befe426a4cd350194b649fc718df8b93ea076d8e2723",
+    "dual_transport_amendment.json": "f4e74089a6a714f415aae1b284b6bfffd631256f2a28d8b5ae64f4b745fcaa3c"
+  }
+}

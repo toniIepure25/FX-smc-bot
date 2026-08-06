@@ -2921,6 +2921,45 @@ def certify_cross_language_contract_pin() -> dict[str, Any]:
     return artifact
 
 
+def audit_op5r4c_frozen_inputs() -> dict[str, Any]:
+    names = (
+        "node_reference_panel_freeze_v2.json",
+        "node_reference_panel_validity_audit.json",
+        "stratified_parity_panel_freeze.json",
+        "bi5_cross_language_aggregate_contract.json",
+        "bi5_cross_language_contract_certification.json",
+        "stratified_parity_clarification.json",
+        "dual_transport_amendment.json",
+    )
+    hashes = {name: file_sha256(results_dir() / name) for name in names}
+    node_panel = read_json(results_dir() / "node_reference_panel_freeze_v2.json")
+    same_panel = read_json(results_dir() / "stratified_parity_panel_freeze.json")
+    contract = read_json(results_dir() / "bi5_cross_language_aggregate_contract.json")
+    expected = {
+        "node_panel_sha256": "4350703db5f16877c52cc0c155f85c7f3d9f0c551e541bb150a19f9151cd1c51",
+        "same_payload_panel_sha256": (
+            "17ed8751b40495d998b5c7eed6fbb4b4e4fba249e332cf8faeae3457a197b6f5"
+        ),
+        "contract_file_sha256": "35eb7b8eacde29a8f1e44f32a6d17b939121fc4c7665dff0ed038fe126930063",
+    }
+    actual = {
+        "node_panel_sha256": node_panel["panel_sha256"],
+        "same_payload_panel_sha256": same_panel["panel_sha256"],
+        "contract_file_sha256": hashes["bi5_cross_language_aggregate_contract.json"],
+    }
+    contract_id_ok = contract["contract_id"] == "A0R2_BI5_CROSS_LANGUAGE_AGGREGATE_CONTRACT_V1"
+    artifact = {
+        "artifact_id": "A0R2OP5R4C_FROZEN_INPUT_INTEGRITY_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if actual == expected and contract_id_ok else "FAIL",
+        "expected": expected,
+        "actual": actual,
+        "file_sha256": hashes,
+    }
+    write_json(results_dir() / "op5r4c_frozen_input_integrity.json", artifact)
+    return artifact
+
+
 def _node_row_hashes(rows: list[dict[str, Any]], pair: str) -> dict[str, Any]:
     scale = instrument_metadata(pair).integer_scale
     integer_rows = [
@@ -4720,6 +4759,7 @@ def parse_args() -> argparse.Namespace:
             "node-reference-panel-freeze-v2",
             "node-reference-panel-validity-audit",
             "cross-language-contract-certification",
+            "op5r4c-frozen-input-integrity",
             "parity-queue-status",
             "javascript-parser-certification",
             "provider-health-summary",
@@ -4843,6 +4883,8 @@ def main() -> int:
         result = audit_node_reference_panel_validity(data_root)
     elif stage == "cross-language-contract-certification":
         result = certify_cross_language_contract_pin()
+    elif stage == "op5r4c-frozen-input-integrity":
+        result = audit_op5r4c_frozen_inputs()
     elif stage == "parity-queue-status":
         result = parity_queue_status(data_root)
     elif stage == "javascript-parser-certification":
