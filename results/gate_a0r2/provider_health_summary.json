@@ -1,0 +1,25 @@
+{
+  "artifact_id": "A0R2_PROVIDER_HEALTH_SUMMARY_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "transport": "NATIVE_BI5_TRANSPORT",
+  "status": "PASS",
+  "latest_run_id": "native-b6b9d68cc343489dbfdd3971f91aeb3a",
+  "latest_status": "PASS",
+  "latest_control_results": {
+    "A": "PASS",
+    "B": "PASS"
+  },
+  "last_full_pass_timestamp": "2026-08-06T17:02:27.473139+00:00",
+  "last_full_fail_timestamp": "2026-08-06T16:58:35.921738+00:00",
+  "full_pass_run_count": 4,
+  "full_fail_run_count": 6,
+  "complete_health_run_count": 10,
+  "consecutive_passing_runs": 2,
+  "consecutive_failing_runs": 0,
+  "control_pass_count": 11,
+  "control_fail_count": 9,
+  "legacy_ungrouped_control_count": 0,
+  "failure_category_distribution": {
+    "NATIVE_BI5_TRANSPORT_FAILURE": 9
+  }
+}

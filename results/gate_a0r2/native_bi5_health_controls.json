@@ -15,7 +15,10 @@
       "content_length": 10975,
       "row_count": 1440,
       "raw_sha256": "a0b8e2a41b89cffaaa2e286f956180627277c01168a84e9d1f1203738baeec91",
-      "parsed_row_hash": "c41463036fab0225cf657afc17f41a17e89745274a6e915f22f8e681edd0261d"
+      "parsed_row_hash": "c41463036fab0225cf657afc17f41a17e89745274a6e915f22f8e681edd0261d",
+      "control_started_at": "2026-08-06T17:01:37.039485+00:00",
+      "control_completed_at": "2026-08-06T17:01:43.916555+00:00",
+      "duration_ms": 6877
     },
     {
       "control": "B",
@@ -28,10 +31,16 @@
       "content_length": 9789,
       "row_count": 1440,
       "raw_sha256": "a4bdd5f605d6a1b2caabc569711ab9f8b33188272c5f85dec19602a15fedc2d4",
-      "parsed_row_hash": "5c54c49ff788630a97f33ad7ce34d929076c2225660c4f3ef437910275bbd226"
+      "parsed_row_hash": "5c54c49ff788630a97f33ad7ce34d929076c2225660c4f3ef437910275bbd226",
+      "control_started_at": "2026-08-06T17:01:43.916567+00:00",
+      "control_completed_at": "2026-08-06T17:02:27.473127+00:00",
+      "duration_ms": 43557
     }
   ],
   "rolling_calls": 20,
   "failure_trigger": 5,
-  "partition_attempts_consumed": 0
+  "partition_attempts_consumed": 0,
+  "health_run_started_at": "2026-08-06T17:01:37.039424+00:00",
+  "health_run_completed_at": "2026-08-06T17:02:27.473139+00:00",
+  "duration_ms": 50434
 }
