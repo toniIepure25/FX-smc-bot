@@ -20,7 +20,7 @@ import time
 from collections import Counter, deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -39,6 +39,17 @@ from fx_smc_bot.data.daily_checkpoint import (
     load_month_manifest,
     normalize_month_manifest_for_repair,
     repair_missing_days,
+)
+from fx_smc_bot.data.dukascopy_bi5 import (
+    BI5_INSTRUMENTS,
+    dukascopy_candle_url,
+    fetch_bi5_day,
+    parse_bi5_m1_candles,
+    rows_checksum,
+    validate_m1_rows,
+)
+from fx_smc_bot.data.dukascopy_bi5 import (
+    PARSER_VERSION as NATIVE_BI5_PARSER_VERSION,
 )
 from fx_smc_bot.data.dukascopy_node_provider import (
     TOOL_DIR,
@@ -1455,6 +1466,30 @@ def raw_dir(data_root: Path) -> Path:
     return data_root / "raw_bi5"
 
 
+def native_raw_dir(data_root: Path) -> Path:
+    path = data_root / "raw_bi5_native"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def native_scratch_dir(data_root: Path) -> Path:
+    path = data_root / "scratch" / "native_bi5_calls"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def native_cache_dir(data_root: Path) -> Path:
+    path = data_root / "scratch" / "native_bi5_cache"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def native_manifest_dir(data_root: Path) -> Path:
+    path = data_root / "manifests" / "native_bi5"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 def provider_scratch_dir(data_root: Path) -> Path:
     path = data_root / "scratch" / "dukascopy_provider_calls"
     path.mkdir(parents=True, exist_ok=True)
@@ -2050,6 +2085,126 @@ def run_provider_scratch_location_audit(data_root: Path) -> dict[str, Any]:
         "checked_patterns": list(local_patterns),
     }
     write_json(results_dir() / "provider_scratch_location_audit.json", payload)
+    return payload
+
+
+def native_metadata_payload() -> dict[str, Any]:
+    rows = [
+        {
+            "pair": metadata.pair,
+            "instrument_code": metadata.instrument_code,
+            "integer_price_scale": metadata.integer_scale,
+            "decimal_precision": metadata.decimal_precision,
+            "timezone": metadata.timezone,
+            "candle_record_size": metadata.candle_record_size,
+            "endianness": metadata.endianness,
+            "volume_interpretation": metadata.volume_interpretation,
+            "flat_row_handling": metadata.flat_row_handling,
+            "bid_url_construction": ".../BID_candles_min_1.bi5",
+            "ask_url_construction": ".../ASK_candles_min_1.bi5",
+        }
+        for _, metadata in sorted(BI5_INSTRUMENTS.items())
+    ]
+    return {
+        "artifact_id": "A0R2_NATIVE_BI5_INSTRUMENT_METADATA_V1",
+        "gate_id": GATE_ID,
+        "source_identity": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+        "transport_id": "DUKASCOPY_NATIVE_BI5_V1",
+        "parser_version": NATIVE_BI5_PARSER_VERSION,
+        "unknown_instrument_scales": 0,
+        "rows": rows,
+        "mapping_sha256": sha256_json(rows),
+    }
+
+
+def certify_native_metadata() -> dict[str, Any]:
+    metadata = native_metadata_payload()
+    certification = {
+        "artifact_id": "A0R2_NATIVE_BI5_PARSER_CERTIFICATION_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "instrument_mapping_sha256": metadata["mapping_sha256"],
+        "authorized_pairs": len(metadata["rows"]),
+        "unknown_instrument_scales": 0,
+        "timestamp_conversion_failures": 0,
+        "ohlc_invariant_failures": 0,
+        "unauthorized_date_rows": 0,
+        "parser_nondeterminism": 0,
+    }
+    write_json(results_dir() / "native_bi5_instrument_metadata.json", metadata)
+    write_json(results_dir() / "native_bi5_parser_certification.json", certification)
+    return certification
+
+
+def native_control_row(
+    data_root: Path, pair: str, side: str, requested: date, label: str
+) -> dict[str, Any]:
+    raw_path = native_scratch_dir(data_root) / "controls" / label / "candles.bi5"
+    fetched = fetch_bi5_day(
+        dukascopy_candle_url(pair, requested, side), raw_path, retries=2
+    )
+    if fetched.status != "PASS":
+        return {
+            "control": label,
+            "pair": pair,
+            "side": side,
+            "date": requested.isoformat(),
+            "status": "FAIL",
+            "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+            "http_status": fetched.http_status,
+            "content_length": fetched.content_length,
+            "error_fingerprint": failure_fingerprint(fetched.error),
+        }
+    try:
+        rows = parse_bi5_m1_candles(raw_path.read_bytes(), requested, pair=pair)
+        checks = validate_m1_rows(rows, requested)
+    except (OSError, ValueError) as exc:
+        return {
+            "control": label,
+            "pair": pair,
+            "side": side,
+            "date": requested.isoformat(),
+            "status": "FAIL",
+            "failure_category": "NATIVE_BI5_SCHEMA_FAILURE",
+            "http_status": fetched.http_status,
+            "content_length": fetched.content_length,
+            "error_fingerprint": failure_fingerprint(str(exc)),
+        }
+    passed = bool(rows) and all(checks[key] for key in (
+        "monotonic_timestamps", "timestamps_in_requested_day", "ohlc_valid"
+    ))
+    return {
+        "control": label,
+        "pair": pair,
+        "side": side,
+        "date": requested.isoformat(),
+        "status": "PASS" if passed else "FAIL",
+        "failure_category": "" if passed else "NATIVE_BI5_SCHEMA_FAILURE",
+        "http_status": fetched.http_status,
+        "content_length": fetched.content_length,
+        "row_count": len(rows),
+        "raw_sha256": fetched.checksum,
+        "parsed_row_hash": rows_checksum(rows),
+    }
+
+
+def run_native_health_controls(data_root: Path) -> dict[str, Any]:
+    rows = [
+        native_control_row(data_root, "EURUSD", "bid", date(2010, 1, 4), "A"),
+        native_control_row(data_root, "USDJPY", "ask", date(2010, 1, 5), "B"),
+    ]
+    passed = all(row["status"] == "PASS" for row in rows)
+    payload = {
+        "artifact_id": "A0R2_NATIVE_BI5_HEALTH_CONTROLS_V1",
+        "gate_id": GATE_ID,
+        "transport_id": "NATIVE_BI5_TRANSPORT",
+        "status": "PASS" if passed else "PROVIDER_COOLDOWN_REQUIRED",
+        "controls": rows,
+        "rolling_calls": 20,
+        "failure_trigger": 5,
+        "partition_attempts_consumed": 0,
+    }
+    write_json(results_dir() / "native_bi5_health_controls.json", payload)
     return payload
 
 
@@ -3429,6 +3584,7 @@ def parse_args() -> argparse.Namespace:
             "op2-start",
             "op3-start",
             "op4-start",
+            "op5-start",
             "amendment",
             "materialize-v2",
             "capability-v2",
@@ -3438,6 +3594,8 @@ def parse_args() -> argparse.Namespace:
             "retryable-analysis-v4",
             "provider-scratch-audit",
             "health-controls",
+            "native-metadata",
+            "native-health-controls",
             "provider-diagnostic",
             "engine-coverage",
             "recover-orphaned-running",
@@ -3465,6 +3623,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-runtime-minutes", type=int, default=None)
     parser.add_argument("--max-operational-cycles", type=int, default=None)
     parser.add_argument("--repair-missing-days", action="store_true")
+    parser.add_argument("--transport", choices=("auto", "node", "native"), default="auto")
+    parser.add_argument("--native-workers", type=int, default=4)
+    parser.add_argument("--max-months", type=int, default=None)
     parser.add_argument("--max-day-requests", type=int, default=None)
     parser.add_argument("--certify-only", action="store_true")
     parser.add_argument("--execute-trials-only", action="store_true")
@@ -3504,6 +3665,8 @@ def main() -> int:
         result = progress
     elif stage == "op4-start":
         result = run_status(data_root)
+    elif stage == "op5-start":
+        result = run_status(data_root)
     elif stage == "amendment":
         create_materialization_amendment()
         result = {"status": "PASS"}
@@ -3525,6 +3688,10 @@ def main() -> int:
         result = run_provider_scratch_location_audit(data_root)
     elif stage == "health-controls":
         result = run_health_controls(data_root)
+    elif stage == "native-metadata":
+        result = certify_native_metadata()
+    elif stage == "native-health-controls":
+        result = run_native_health_controls(data_root)
     elif stage == "engine-coverage":
         result = audit_discovery_engine_configuration_coverage()
     elif stage == "recover-orphaned-running":

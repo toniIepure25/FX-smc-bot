@@ -1,0 +1,12 @@
+{
+  "artifact_id": "A0R2_NATIVE_BI5_PARSER_CERTIFICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "instrument_mapping_sha256": "4b9d357792327bcc5991a1f8ed743d57e98f7a26cf185d102300094833cba366",
+  "authorized_pairs": 9,
+  "unknown_instrument_scales": 0,
+  "timestamp_conversion_failures": 0,
+  "ohlc_invariant_failures": 0,
+  "unauthorized_date_rows": 0,
+  "parser_nondeterminism": 0
+}

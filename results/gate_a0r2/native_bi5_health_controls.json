@@ -1,0 +1,33 @@
+{
+  "artifact_id": "A0R2_NATIVE_BI5_HEALTH_CONTROLS_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "transport_id": "NATIVE_BI5_TRANSPORT",
+  "status": "PROVIDER_COOLDOWN_REQUIRED",
+  "controls": [
+    {
+      "control": "A",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "status": "FAIL",
+      "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "http_status": null,
+      "content_length": 0,
+      "error_fingerprint": "93c4eccc6c991c57"
+    },
+    {
+      "control": "B",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-01-05",
+      "status": "FAIL",
+      "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "http_status": null,
+      "content_length": 0,
+      "error_fingerprint": "287437803801c038"
+    }
+  ],
+  "rolling_calls": 20,
+  "failure_trigger": 5,
+  "partition_attempts_consumed": 0
+}

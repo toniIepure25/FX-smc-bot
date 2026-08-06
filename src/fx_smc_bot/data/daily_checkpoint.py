@@ -8,14 +8,25 @@ checksum is invalid.
 from __future__ import annotations
 
 import calendar
+import hashlib
 import json
 import logging
+import lzma
 import os
 import time
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
+from fx_smc_bot.data.dukascopy_bi5 import (
+    PARSER_VERSION,
+    dukascopy_candle_url,
+    fetch_bi5_day,
+    parse_bi5_m1_candles,
+    raw_ohlc_checksum,
+    timestamp_checksum,
+    validate_m1_rows,
+)
 from fx_smc_bot.data.dukascopy_node_provider import (
     PAIR_TO_INSTRUMENT,
     _compute_checksum,
@@ -48,6 +59,36 @@ class DayStatus:
     attempts: int = 0
     completed_at: str = ""
     provider_call_outcome: str = ""
+    source_id: str = "DUKASCOPY_DATAFEED_M1_CANDLES_V1"
+    transport_id: str = "DUKASCOPY_NODE_1_46_4"
+    transport_version: str = "1.46.4"
+    raw_hash: str = ""
+    parsed_row_hash: str = ""
+    timestamp_set_hash: str = ""
+    raw_ohlc_hash: str = ""
+    volume_hash: str = ""
+
+
+@dataclass(frozen=True, slots=True)
+class DailyMarketUnit:
+    """Transport-neutral, daily market-data provenance contract."""
+
+    pair: str
+    side: str
+    date: str
+    source_id: str
+    transport_id: str
+    transport_version: str
+    raw_hash: str
+    parsed_row_hash: str
+    row_count: int
+    first_timestamp: int | None
+    last_timestamp: int | None
+    timestamp_set_hash: str
+    raw_ohlc_hash: str
+    volume_hash: str
+    market_calendar_status: str
+    certification_status: str
 
 
 @dataclass(slots=True)
@@ -255,6 +296,100 @@ def download_day_with_checkpoint(
 
     status.status = "failed"
     status.error = last_err
+    return status
+
+
+def download_native_day_with_checkpoint(
+    pair: str,
+    side: str,
+    year: int,
+    month: int,
+    day: int,
+    raw_dir: Path,
+    native_raw_dir: Path,
+    *,
+    max_retries: int = 3,
+) -> DayStatus:
+    """Fetch a missing daily unit from native BI5 without replacing valid data."""
+    existing = _day_dir(raw_dir, pair, side, year, month, day) / "data.json"
+    if existing.exists() and existing.stat().st_size > 2:
+        rows = json.loads(existing.read_text())
+        status = DayStatus(
+            pair=pair, side=side, year=year, month=month, day=day,
+            status="complete", rows=len(rows), checksum=_compute_checksum(existing),
+            file_size=existing.stat().st_size,
+        )
+        return status
+    requested_day = date(year, month, day)
+    raw_path = (
+        native_raw_dir / pair / f"price={side}" / f"year={year}"
+        / f"month={month:02d}" / f"day={day:02d}" / "candles.bi5"
+    )
+    fetch = fetch_bi5_day(
+        dukascopy_candle_url(pair, requested_day, side), raw_path, retries=max_retries
+    )
+    status = DayStatus(
+        pair=pair, side=side, year=year, month=month, day=day,
+        status="failed", attempts=fetch.attempts,
+        source_id="DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+        transport_id="DUKASCOPY_NATIVE_BI5_V1",
+        transport_version=PARSER_VERSION,
+    )
+    if fetch.status != "PASS":
+        status.failure_category = "NATIVE_BI5_TRANSPORT_FAILURE"
+        status.error = fetch.error[:500]
+        status.provider_call_outcome = "PROVIDER_CALL_TRANSPORT_FAILURE"
+        return status
+    try:
+        rows = parse_bi5_m1_candles(raw_path.read_bytes(), requested_day, pair=pair)
+        checks = validate_m1_rows(rows, requested_day)
+    except (OSError, ValueError, lzma.LZMAError) as exc:
+        status.failure_category = "NATIVE_BI5_SCHEMA_FAILURE"
+        status.error = str(exc)[:500]
+        status.provider_call_outcome = "PROVIDER_CALL_SCHEMA_FAILURE"
+        return status
+    if not (
+        checks["monotonic_timestamps"]
+        and checks["timestamps_in_requested_day"]
+        and checks["ohlc_valid"]
+    ):
+        status.failure_category = "NATIVE_BI5_SCHEMA_FAILURE"
+        status.error = "native BI5 structural validation failed"
+        status.provider_call_outcome = "PROVIDER_CALL_SCHEMA_FAILURE"
+        return status
+    calendar_category = classify_failure("", year, month, day, 0)
+    if not rows:
+        if calendar_category in (
+            FailureCategory.MARKET_CLOSED_WEEKEND,
+            FailureCategory.MARKET_CLOSED_HOLIDAY,
+        ):
+            status.status = "market_closed"
+            status.failure_category = calendar_category.value
+            status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_EMPTY_MARKET_CLOSED"
+            return status
+        status.failure_category = FailureCategory.NO_PROVIDER_DATA.value
+        status.error = "No native BI5 rows on open-market day"
+        status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_EMPTY_OPEN_MARKET"
+        return status
+    day_dir = _day_dir(raw_dir, pair, side, year, month, day)
+    day_dir.mkdir(parents=True, exist_ok=True)
+    output = day_dir / "data.json"
+    tmp = output.with_suffix(".tmp")
+    tmp.write_text(json.dumps(rows))
+    os.replace(str(tmp), str(output))
+    status.status = "complete"
+    status.rows = len(rows)
+    status.checksum = _compute_checksum(output)
+    status.file_size = output.stat().st_size
+    status.completed_at = datetime.now(timezone.utc).isoformat()
+    status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_COMPLETE"
+    status.raw_hash = fetch.checksum
+    status.parsed_row_hash = _compute_checksum(output)
+    status.timestamp_set_hash = timestamp_checksum(rows)
+    status.raw_ohlc_hash = raw_ohlc_checksum(rows)
+    status.volume_hash = hashlib.sha256(
+        json.dumps([row["volume"] for row in rows], separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
     return status
 
 

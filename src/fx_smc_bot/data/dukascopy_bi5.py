@@ -19,13 +19,62 @@ from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-USDJPY_INTEGER_SCALE = 1000
+PARSER_VERSION = "DUKASCOPY_NATIVE_BI5_V1"
+RECORD_SIZE_BYTES = 24
+UTC_TIMEZONE = "UTC"
 DUKASCOPY_ROOT = "https://datafeed.dukascopy.com/datafeed"
 BROWSER_USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/126.0.0.0 Safari/537.36"
 )
+
+
+@dataclass(frozen=True, slots=True)
+class Bi5InstrumentMetadata:
+    """Frozen structural contract for one authorized Dukascopy instrument."""
+
+    pair: str
+    instrument_code: str
+    integer_scale: int
+    decimal_precision: int
+    timezone: str = UTC_TIMEZONE
+    candle_record_size: int = RECORD_SIZE_BYTES
+    endianness: str = "big"
+    volume_interpretation: str = "provider_float_volume"
+    flat_row_handling: str = "exclude_zero_volume"
+
+
+def _metadata(pair: str, integer_scale: int, decimal_precision: int) -> Bi5InstrumentMetadata:
+    return Bi5InstrumentMetadata(
+        pair=pair,
+        instrument_code=pair,
+        integer_scale=integer_scale,
+        decimal_precision=decimal_precision,
+    )
+
+
+BI5_INSTRUMENTS: dict[str, Bi5InstrumentMetadata] = {
+    "EURUSD": _metadata("EURUSD", 100_000, 5),
+    "GBPUSD": _metadata("GBPUSD", 100_000, 5),
+    "AUDUSD": _metadata("AUDUSD", 100_000, 5),
+    "USDJPY": _metadata("USDJPY", 1_000, 3),
+    "USDCAD": _metadata("USDCAD", 100_000, 5),
+    "USDCHF": _metadata("USDCHF", 100_000, 5),
+    "EURJPY": _metadata("EURJPY", 1_000, 3),
+    "GBPJPY": _metadata("GBPJPY", 1_000, 3),
+    "AUDJPY": _metadata("AUDJPY", 1_000, 3),
+}
+# Kept for older repair-gate imports; A0R2 callers use ``instrument_metadata``.
+USDJPY_INTEGER_SCALE = BI5_INSTRUMENTS["USDJPY"].integer_scale
+
+
+def instrument_metadata(pair: str) -> Bi5InstrumentMetadata:
+    """Return frozen metadata without inferring a scale from market values."""
+    try:
+        return BI5_INSTRUMENTS[pair.upper()]
+    except KeyError as exc:
+        raise ValueError(f"A0R2_UNAUTHORIZED_NATIVE_BI5_INSTRUMENT:{pair}") from exc
 
 
 @dataclass(slots=True)
@@ -80,8 +129,9 @@ def dukascopy_candle_url(
     side_upper = side.upper()
     if side_upper not in {"BID", "ASK"}:
         raise ValueError(f"Unsupported side: {side}")
+    metadata = instrument_metadata(pair)
     return (
-        f"{DUKASCOPY_ROOT}/{pair.upper()}/{day.year}/"
+        f"{DUKASCOPY_ROOT}/{metadata.instrument_code}/{day.year}/"
         f"{day.month - 1:02d}/{day.day:02d}/{side_upper}_candles_min_1.bi5"
     )
 
@@ -153,12 +203,21 @@ def parse_bi5_m1_candles(
     payload: bytes,
     day: date,
     *,
-    integer_scale: int = USDJPY_INTEGER_SCALE,
+    integer_scale: int | None = None,
+    pair: str | None = None,
     ignore_flats: bool = True,
 ) -> list[dict[str, Any]]:
     """Parse M1 candle BI5 bytes using dukascopy-node's field semantics."""
+    if pair is not None:
+        pair_scale = instrument_metadata(pair).integer_scale
+        if integer_scale is not None and integer_scale != pair_scale:
+            raise ValueError("A0R2_NATIVE_BI5_SCALE_CONTRACT_MISMATCH")
+        integer_scale = pair_scale
+    elif integer_scale is None:
+        # Compatibility path for the pre-A0R2 USDJPY repair tests only.
+        integer_scale = USDJPY_INTEGER_SCALE
     decompressed = lzma.decompress(payload, format=lzma.FORMAT_AUTO)
-    if len(decompressed) % 24 != 0:
+    if len(decompressed) % RECORD_SIZE_BYTES != 0:
         raise ValueError(
             f"Decompressed candle payload length is not divisible by 24: "
             f"{len(decompressed)}"
@@ -169,10 +228,10 @@ def parse_bi5_m1_candles(
         .timestamp() * 1000
     )
     rows: list[dict[str, Any]] = []
-    for offset in range(0, len(decompressed), 24):
+    for offset in range(0, len(decompressed), RECORD_SIZE_BYTES):
         sec, open_raw, close_raw, low_raw, high_raw, volume = struct.unpack(
             ">iiiii f",
-            decompressed[offset: offset + 24],
+            decompressed[offset: offset + RECORD_SIZE_BYTES],
         )
         if ignore_flats and volume == 0:
             continue
@@ -222,3 +281,24 @@ def rows_checksum(rows: list[dict[str, Any]]) -> str:
         separators=(",", ":"),
     ).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
+
+
+def raw_ohlc_checksum(rows: list[dict[str, Any]]) -> str:
+    """Hash raw provider integer candles without depending on float formatting."""
+    payload = [
+        [
+            int(row["timestamp"]),
+            int(row["open_raw"]),
+            int(row["high_raw"]),
+            int(row["low_raw"]),
+            int(row["close_raw"]),
+        ]
+        for row in rows
+    ]
+    return sha256_bytes(json.dumps(payload, separators=(",", ":")).encode("utf-8"))
+
+
+def timestamp_checksum(rows: list[dict[str, Any]]) -> str:
+    return sha256_bytes(
+        json.dumps([int(row["timestamp"]) for row in rows], separators=(",", ":")).encode("utf-8")
+    )
