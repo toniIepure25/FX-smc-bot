@@ -333,9 +333,7 @@ def sha256_bytes(payload: bytes) -> str:
 
 
 def sha256_json(payload: Any) -> str:
-    return sha256_bytes(
-        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
-    )
+    return sha256_bytes(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8"))
 
 
 def file_sha256(path: Path) -> str:
@@ -356,9 +354,7 @@ def read_json(path: Path) -> Any:
 def git_sha() -> str:
     import subprocess
 
-    return subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], cwd=repo_root(), text=True
-    ).strip()
+    return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo_root(), text=True).strip()
 
 
 def default_data_root() -> Path:
@@ -640,9 +636,7 @@ def create_op2_start_artifacts(data_root: Path, progress: dict[str, Any]) -> Non
         "checkpoint_counts": {
             "total_partitions": progress.get("total_partitions", 1080),
             "certified": progress.get("certified_partitions", 0),
-            "complete_pending_certification": progress.get(
-                "complete_pending_certification", 0
-            ),
+            "complete_pending_certification": progress.get("complete_pending_certification", 0),
             "planned": progress.get("planned_partitions", 0),
             "running": progress.get("running_partitions", 0),
             "retryable_failures": progress.get("retryable_failures", 0),
@@ -684,9 +678,7 @@ def create_op3_start_artifacts(data_root: Path, progress: dict[str, Any]) -> Non
         "checkpoint_counts": {
             "total_partitions": progress.get("total_partitions", 1080),
             "certified": progress.get("certified_partitions", 0),
-            "complete_pending_certification": progress.get(
-                "complete_pending_certification", 0
-            ),
+            "complete_pending_certification": progress.get("complete_pending_certification", 0),
             "planned": progress.get("planned_partitions", 0),
             "running": progress.get("running_partitions", 0),
             "retryable_failures": progress.get("retryable_failures", 0),
@@ -813,127 +805,165 @@ def materialize_family_config(record: dict[str, Any], idx: int) -> dict[str, Any
     cfg = base_config(record, idx)
     family = record["family_id"]
     if family == "F01_SESSION_OPENING_MOMENTUM_REVERSAL":
-        cfg.update({
-            "variant": pick(("opening_continuation", "opening_reversal"), idx),
-            "feature_list": ["session_label", "lagged_mid_return", "rolling_range"],
-            "required_inputs": ["M1 signed mid return", "session labels", "rolling range"],
-        })
+        cfg.update(
+            {
+                "variant": pick(("opening_continuation", "opening_reversal"), idx),
+                "feature_list": ["session_label", "lagged_mid_return", "rolling_range"],
+                "required_inputs": ["M1 signed mid return", "session labels", "rolling range"],
+            }
+        )
     elif family == "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION":
         tick_variant = idx % 4 in (0, 1)
-        cfg.update({
-            "variant": "quote_arrival_run" if tick_variant else "m1_mid_direction_run",
-            "feature_list": (
-                ["quote-arrival count", "bid-update count", "ask-update count"]
-                if tick_variant else ["M1 signed mid return", "rolling spread statistics"]
-            ),
-            "required_inputs": (
-                ["quote-arrival count", "bid-update count", "ask-update count"]
-                if tick_variant else ["M1 signed mid return", "rolling spread statistics"]
-            ),
-        })
+        cfg.update(
+            {
+                "variant": "quote_arrival_run" if tick_variant else "m1_mid_direction_run",
+                "feature_list": (
+                    ["quote-arrival count", "bid-update count", "ask-update count"]
+                    if tick_variant
+                    else ["M1 signed mid return", "rolling spread statistics"]
+                ),
+                "required_inputs": (
+                    ["quote-arrival count", "bid-update count", "ask-update count"]
+                    if tick_variant
+                    else ["M1 signed mid return", "rolling spread statistics"]
+                ),
+            }
+        )
     elif family == "F03_VOLATILITY_BREAKOUT":
-        cfg.update({
-            "variant": pick(("compression_breakout", "failed_breakout_reversal"), idx),
-            "feature_list": ["rolling realized variance", "rolling range", "M1 signed mid return"],
-            "required_inputs": [
-                "rolling realized variance",
-                "rolling range",
-                "M1 signed mid return",
-            ],
-        })
+        cfg.update(
+            {
+                "variant": pick(("compression_breakout", "failed_breakout_reversal"), idx),
+                "feature_list": [
+                    "rolling realized variance",
+                    "rolling range",
+                    "M1 signed mid return",
+                ],
+                "required_inputs": [
+                    "rolling realized variance",
+                    "rolling range",
+                    "M1 signed mid return",
+                ],
+            }
+        )
     elif family == "F04_LIQUIDITY_SHOCK_REVERSAL":
         tick_variant = idx % 3 == 0
-        cfg.update({
-            "variant": "true_quote_gap_shock" if tick_variant else "m1_spread_range_shock",
-            "feature_list": (
-                ["true quote-gap distribution", "raw individual quotes"]
-                if tick_variant else ["spread open/high/low/close", "rolling range"]
-            ),
-            "required_inputs": (
-                ["true quote-gap distribution", "raw individual quotes"]
-                if tick_variant else ["spread open/high/low/close", "rolling range"]
-            ),
-        })
+        cfg.update(
+            {
+                "variant": "true_quote_gap_shock" if tick_variant else "m1_spread_range_shock",
+                "feature_list": (
+                    ["true quote-gap distribution", "raw individual quotes"]
+                    if tick_variant
+                    else ["spread open/high/low/close", "rolling range"]
+                ),
+                "required_inputs": (
+                    ["true quote-gap distribution", "raw individual quotes"]
+                    if tick_variant
+                    else ["spread open/high/low/close", "rolling range"]
+                ),
+            }
+        )
     elif family == "F05_SPREAD_AWARE_EXECUTION_GATING":
-        cfg.update({
-            "variant": pick(("directional_plus_spread_gate", "execution_alpha_gate"), idx),
-            "feature_list": ["spread open/high/low/close", "rolling spread statistics"],
-            "required_inputs": ["spread open/high/low/close", "rolling spread statistics"],
-            "spread_forecaster": "train_only_rolling_spread_quantile",
-        })
+        cfg.update(
+            {
+                "variant": pick(("directional_plus_spread_gate", "execution_alpha_gate"), idx),
+                "feature_list": ["spread open/high/low/close", "rolling spread statistics"],
+                "required_inputs": ["spread open/high/low/close", "rolling spread statistics"],
+                "spread_forecaster": "train_only_rolling_spread_quantile",
+            }
+        )
     elif family == "F06_CROSS_PAIR_LEAD_LAG":
         leader = pick(INSTRUMENTS, idx + 1)
-        cfg.update({
-            "variant": "lagged_cross_pair_return",
-            "feature_list": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
-            "required_inputs": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
-            "cross_pair_edge": {"leader": leader, "lag_minutes": pick((1, 2, 5, 15), idx)},
-        })
+        cfg.update(
+            {
+                "variant": "lagged_cross_pair_return",
+                "feature_list": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
+                "required_inputs": [
+                    "lagged cross-pair synchronized returns",
+                    "M1 signed mid return",
+                ],
+                "cross_pair_edge": {"leader": leader, "lag_minutes": pick((1, 2, 5, 15), idx)},
+            }
+        )
     elif family == "F07_CURRENCY_FACTOR_RESIDUALS":
-        cfg.update({
-            "variant": pick(("residual_continuation", "residual_reversal"), idx),
-            "feature_list": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
-            "required_inputs": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
-        })
+        cfg.update(
+            {
+                "variant": pick(("residual_continuation", "residual_reversal"), idx),
+                "feature_list": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
+                "required_inputs": [
+                    "M1 signed mid return",
+                    "lagged cross-pair synchronized returns",
+                ],
+            }
+        )
     elif family == "F08_TRIANGULAR_CONSISTENCY_RESIDUALS":
-        cfg.update({
-            "variant": pick(("single_leg_executable_convergence", "three_leg_basket"), idx),
-            "feature_list": ["mid open/high/low/close", "spread open/high/low/close"],
-            "required_inputs": ["mid open/high/low/close", "spread open/high/low/close"],
-            "triangle": pick(("EURUSD_USDJPY_EURJPY", "GBPUSD_USDJPY_GBPJPY"), idx),
-        })
+        cfg.update(
+            {
+                "variant": pick(("single_leg_executable_convergence", "three_leg_basket"), idx),
+                "feature_list": ["mid open/high/low/close", "spread open/high/low/close"],
+                "required_inputs": ["mid open/high/low/close", "spread open/high/low/close"],
+                "triangle": pick(("EURUSD_USDJPY_EURJPY", "GBPUSD_USDJPY_GBPJPY"), idx),
+            }
+        )
     elif family == "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL":
-        cfg.update({
-            "variant": pick(("cross_sectional_momentum", "cross_sectional_reversal"), idx),
-            "feature_list": ["M1 signed mid return", "rolling realized variance"],
-            "required_inputs": ["M1 signed mid return", "rolling realized variance"],
-            "neutrality_constraint": pick(("usd_neutral", "vol_neutral", "equal_weight"), idx),
-        })
+        cfg.update(
+            {
+                "variant": pick(("cross_sectional_momentum", "cross_sectional_reversal"), idx),
+                "feature_list": ["M1 signed mid return", "rolling realized variance"],
+                "required_inputs": ["M1 signed mid return", "rolling realized variance"],
+                "neutrality_constraint": pick(("usd_neutral", "vol_neutral", "equal_weight"), idx),
+            }
+        )
     elif family == "F10_INTRADAY_SEASONALITY":
-        cfg.update({
-            "variant": "out_of_year_intraday_seasonality",
-            "feature_list": ["session labels", "M1 signed mid return"],
-            "required_inputs": ["session labels", "M1 signed mid return"],
-        })
+        cfg.update(
+            {
+                "variant": "out_of_year_intraday_seasonality",
+                "feature_list": ["session labels", "M1 signed mid return"],
+                "required_inputs": ["session labels", "M1 signed mid return"],
+            }
+        )
     elif family == "F11_REGIME_CONDITIONED_TREND_REVERSAL":
-        cfg.update({
-            "variant": pick(("regime_filtered_trend", "regime_filtered_reversal"), idx),
-            "feature_list": [
-                "rolling realized variance",
-                "rolling spread statistics",
-                "M1 signed mid return",
-            ],
-            "required_inputs": [
-                "rolling realized variance",
-                "rolling spread statistics",
-                "M1 signed mid return",
-            ],
-            "regime_model": "train_only_hmm_proxy_quantile_state",
-            "regime_component_count": pick((2, 3), idx),
-        })
+        cfg.update(
+            {
+                "variant": pick(("regime_filtered_trend", "regime_filtered_reversal"), idx),
+                "feature_list": [
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "M1 signed mid return",
+                ],
+                "required_inputs": [
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "M1 signed mid return",
+                ],
+                "regime_model": "train_only_hmm_proxy_quantile_state",
+                "regime_component_count": pick((2, 3), idx),
+            }
+        )
     elif family == "F12_COST_SENSITIVE_ML_ABSTENTION":
-        cfg.update({
-            "variant": "cost_sensitive_abstention",
-            "feature_list": [
-                "M1 signed mid return",
-                "rolling realized variance",
-                "rolling spread statistics",
-                "session labels",
-            ],
-            "required_inputs": [
-                "M1 signed mid return",
-                "rolling realized variance",
-                "rolling spread statistics",
-                "session labels",
-            ],
-            "model_class": pick(("logistic_regression", "hist_gradient_boosting"), idx),
-            "model_hyperparameters": {
-                "max_iter": 200,
-                "l2": round(0.1 + (idx % 5) * 0.1, 3),
-                "max_leaf_nodes": pick((7, 15, 31), idx),
-            },
-            "abstention_threshold": round(0.50 + (idx % 10) * 0.025, 3),
-        })
+        cfg.update(
+            {
+                "variant": "cost_sensitive_abstention",
+                "feature_list": [
+                    "M1 signed mid return",
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "session labels",
+                ],
+                "required_inputs": [
+                    "M1 signed mid return",
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "session labels",
+                ],
+                "model_class": pick(("logistic_regression", "hist_gradient_boosting"), idx),
+                "model_hyperparameters": {
+                    "max_iter": 200,
+                    "l2": round(0.1 + (idx % 5) * 0.1, 3),
+                    "max_leaf_nodes": pick((7, 15, 31), idx),
+                },
+                "abstention_threshold": round(0.50 + (idx % 10) * 0.025, 3),
+            }
+        )
     else:
         raise ValueError(f"Unsupported family: {family}")
     return cfg
@@ -955,14 +985,16 @@ def materialize_family_config_v2(
             "holding_periods": mixed_pick(axes["holding_periods"], family_idx, 16),
             "variants": mixed_pick(axes["variants"], family_idx, 64),
         }
-        cfg.update({
-            "variant": categories["variants"],
-            "session_anchor": categories["anchors"],
-            "lookback": categories["lookbacks"],
-            "holding_horizon": categories["holding_periods"],
-            "feature_list": ["session labels", "M1 signed mid return", "rolling range"],
-            "required_inputs": ["session labels", "M1 signed mid return", "rolling range"],
-        })
+        cfg.update(
+            {
+                "variant": categories["variants"],
+                "session_anchor": categories["anchors"],
+                "lookback": categories["lookbacks"],
+                "holding_horizon": categories["holding_periods"],
+                "feature_list": ["session labels", "M1 signed mid return", "rolling range"],
+                "required_inputs": ["session labels", "M1 signed mid return", "rolling range"],
+            }
+        )
     elif family == "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION":
         categories = {
             "horizons": mixed_pick(axes["horizons"], family_idx),
@@ -970,159 +1002,195 @@ def materialize_family_config_v2(
             "variants": mixed_pick(axes["variants"], family_idx, 8),
         }
         tick_only = categories["data_variants"] == "tick-only quote-arrival"
-        cfg.update({
-            "variant": categories["variants"],
-            "holding_horizon": categories["horizons"],
-            "feature_list": (
-                ["quote-arrival count", "bid-update count", "ask-update count"]
-                if tick_only else ["M1 signed mid return", "rolling spread statistics"]
-            ),
-            "required_inputs": (
-                ["quote-arrival count", "bid-update count", "ask-update count"]
-                if tick_only else ["M1 signed mid return", "rolling spread statistics"]
-            ),
-        })
+        cfg.update(
+            {
+                "variant": categories["variants"],
+                "holding_horizon": categories["horizons"],
+                "feature_list": (
+                    ["quote-arrival count", "bid-update count", "ask-update count"]
+                    if tick_only
+                    else ["M1 signed mid return", "rolling spread statistics"]
+                ),
+                "required_inputs": (
+                    ["quote-arrival count", "bid-update count", "ask-update count"]
+                    if tick_only
+                    else ["M1 signed mid return", "rolling spread statistics"]
+                ),
+            }
+        )
     elif family == "F03_VOLATILITY_BREAKOUT":
         categories = {
             "variants": mixed_pick(axes["variants"], family_idx),
             "volatility_concepts": mixed_pick(axes["volatility_concepts"], family_idx, 2),
         }
-        cfg.update({
-            "variant": categories["variants"],
-            "feature_list": ["rolling realized variance", "rolling range", "M1 signed mid return"],
-            "required_inputs": [
-                "rolling realized variance",
-                "rolling range",
-                "M1 signed mid return",
-            ],
-        })
+        cfg.update(
+            {
+                "variant": categories["variants"],
+                "feature_list": [
+                    "rolling realized variance",
+                    "rolling range",
+                    "M1 signed mid return",
+                ],
+                "required_inputs": [
+                    "rolling realized variance",
+                    "rolling range",
+                    "M1 signed mid return",
+                ],
+            }
+        )
     elif family == "F04_LIQUIDITY_SHOCK_REVERSAL":
         categories = {"shock_concepts": mixed_pick(axes["shock_concepts"], family_idx)}
         tick_only = categories["shock_concepts"] in (
             "true quote-arrival drought",
             "true quote-gap shock",
         )
-        cfg.update({
-            "variant": categories["shock_concepts"],
-            "feature_list": (
-                ["raw individual quotes", "true quote-gap distribution"]
-                if tick_only else ["spread open/high/low/close", "rolling range"]
-            ),
-            "required_inputs": (
-                ["raw individual quotes", "true quote-gap distribution"]
-                if tick_only else ["spread open/high/low/close", "rolling range"]
-            ),
-        })
+        cfg.update(
+            {
+                "variant": categories["shock_concepts"],
+                "feature_list": (
+                    ["raw individual quotes", "true quote-gap distribution"]
+                    if tick_only
+                    else ["spread open/high/low/close", "rolling range"]
+                ),
+                "required_inputs": (
+                    ["raw individual quotes", "true quote-gap distribution"]
+                    if tick_only
+                    else ["spread open/high/low/close", "rolling range"]
+                ),
+            }
+        )
     elif family == "F05_SPREAD_AWARE_EXECUTION_GATING":
         categories = {
             "spread_forecasters": mixed_pick(axes["spread_forecasters"], family_idx),
             "alpha_reports": mixed_pick(axes["alpha_reports"], family_idx, 4),
         }
-        cfg.update({
-            "variant": categories["alpha_reports"],
-            "spread_forecaster": categories["spread_forecasters"],
-            "feature_list": ["spread open/high/low/close", "rolling spread statistics"],
-            "required_inputs": ["spread open/high/low/close", "rolling spread statistics"],
-        })
+        cfg.update(
+            {
+                "variant": categories["alpha_reports"],
+                "spread_forecaster": categories["spread_forecasters"],
+                "feature_list": ["spread open/high/low/close", "rolling spread statistics"],
+                "required_inputs": ["spread open/high/low/close", "rolling spread statistics"],
+            }
+        )
     elif family == "F06_CROSS_PAIR_LEAD_LAG":
         edge = mixed_pick(axes["directed_relationships"], family_idx)
         lag = mixed_pick(axes["lags"], family_idx, 6)
         categories = {"directed_relationships": edge, "lags": lag}
-        cfg.update({
-            "variant": "lagged_cross_pair_return",
-            "cross_pair_edge": {"leader": edge[0], "target": edge[1], "lag_minutes": lag},
-            "instrument_or_portfolio_scope": edge[1],
-            "feature_list": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
-            "required_inputs": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
-        })
+        cfg.update(
+            {
+                "variant": "lagged_cross_pair_return",
+                "cross_pair_edge": {"leader": edge[0], "target": edge[1], "lag_minutes": lag},
+                "instrument_or_portfolio_scope": edge[1],
+                "feature_list": ["lagged cross-pair synchronized returns", "M1 signed mid return"],
+                "required_inputs": [
+                    "lagged cross-pair synchronized returns",
+                    "M1 signed mid return",
+                ],
+            }
+        )
     elif family == "F07_CURRENCY_FACTOR_RESIDUALS":
         categories = {
             "variants": mixed_pick(axes["variants"], family_idx),
             "estimation": mixed_pick(axes["estimation"], family_idx, 2),
         }
-        cfg.update({
-            "variant": categories["variants"],
-            "training_window": categories["estimation"],
-            "feature_list": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
-            "required_inputs": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
-        })
+        cfg.update(
+            {
+                "variant": categories["variants"],
+                "training_window": categories["estimation"],
+                "feature_list": ["M1 signed mid return", "lagged cross-pair synchronized returns"],
+                "required_inputs": [
+                    "M1 signed mid return",
+                    "lagged cross-pair synchronized returns",
+                ],
+            }
+        )
     elif family == "F08_TRIANGULAR_CONSISTENCY_RESIDUALS":
         categories = {
             "triangles": mixed_pick(axes["triangles"], family_idx),
             "variants": mixed_pick(axes["variants"], family_idx, 3),
         }
-        cfg.update({
-            "variant": categories["variants"],
-            "triangle": categories["triangles"],
-            "feature_list": ["mid open/high/low/close", "spread open/high/low/close"],
-            "required_inputs": ["mid open/high/low/close", "spread open/high/low/close"],
-        })
+        cfg.update(
+            {
+                "variant": categories["variants"],
+                "triangle": categories["triangles"],
+                "feature_list": ["mid open/high/low/close", "spread open/high/low/close"],
+                "required_inputs": ["mid open/high/low/close", "spread open/high/low/close"],
+            }
+        )
     elif family == "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL":
         categories = {"neutrality": mixed_pick(axes["neutrality"], family_idx)}
-        cfg.update({
-            "variant": "cross_sectional_intraday_momentum_reversal",
-            "neutrality_constraint": categories["neutrality"],
-            "feature_list": ["M1 signed mid return", "rolling realized variance"],
-            "required_inputs": ["M1 signed mid return", "rolling realized variance"],
-        })
+        cfg.update(
+            {
+                "variant": "cross_sectional_intraday_momentum_reversal",
+                "neutrality_constraint": categories["neutrality"],
+                "feature_list": ["M1 signed mid return", "rolling realized variance"],
+                "required_inputs": ["M1 signed mid return", "rolling realized variance"],
+            }
+        )
     elif family == "F10_INTRADAY_SEASONALITY":
         categories = {"seasonality": mixed_pick(axes["seasonality"], family_idx)}
-        cfg.update({
-            "variant": categories["seasonality"],
-            "training_window": "prior_year_only",
-            "feature_list": ["session labels", "M1 signed mid return"],
-            "required_inputs": ["session labels", "M1 signed mid return"],
-        })
+        cfg.update(
+            {
+                "variant": categories["seasonality"],
+                "training_window": "prior_year_only",
+                "feature_list": ["session labels", "M1 signed mid return"],
+                "required_inputs": ["session labels", "M1 signed mid return"],
+            }
+        )
     elif family == "F11_REGIME_CONDITIONED_TREND_REVERSAL":
         categories = {
             "regime_classes": mixed_pick(axes["regime_classes"], family_idx),
             "state_count_rule": mixed_pick(axes["state_count_rule"], family_idx, 3),
         }
-        cfg.update({
-            "variant": "regime_conditioned_trend_reversal",
-            "regime_model": categories["regime_classes"],
-            "regime_component_count": categories["state_count_rule"],
-            "regime_state_use": "filtered_states_only",
-            "feature_list": [
-                "rolling realized variance",
-                "rolling spread statistics",
-                "M1 signed mid return",
-            ],
-            "required_inputs": [
-                "rolling realized variance",
-                "rolling spread statistics",
-                "M1 signed mid return",
-            ],
-        })
+        cfg.update(
+            {
+                "variant": "regime_conditioned_trend_reversal",
+                "regime_model": categories["regime_classes"],
+                "regime_component_count": categories["state_count_rule"],
+                "regime_state_use": "filtered_states_only",
+                "feature_list": [
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "M1 signed mid return",
+                ],
+                "required_inputs": [
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "M1 signed mid return",
+                ],
+            }
+        )
     elif family == "F12_COST_SENSITIVE_ML_ABSTENTION":
         categories = {
             "model_classes": mixed_pick(axes["model_classes"], family_idx),
             "targets": mixed_pick(axes["targets"], family_idx, 6),
             "horizons": mixed_pick(axes["horizons"], family_idx, 18),
         }
-        cfg.update({
-            "variant": "cost_sensitive_abstention",
-            "model_class": categories["model_classes"],
-            "target_horizon": categories["horizons"],
-            "target": categories["targets"],
-            "abstention_threshold": round(0.50 + (family_idx % 10) * 0.025, 3),
-            "model_hyperparameters": {
-                "seed": record["random_seed"],
-                "fixed_regularization": "frozen_single_default",
-            },
-            "feature_list": [
-                "M1 signed mid return",
-                "rolling realized variance",
-                "rolling spread statistics",
-                "session labels",
-            ],
-            "required_inputs": [
-                "M1 signed mid return",
-                "rolling realized variance",
-                "rolling spread statistics",
-                "session labels",
-            ],
-        })
+        cfg.update(
+            {
+                "variant": "cost_sensitive_abstention",
+                "model_class": categories["model_classes"],
+                "target_horizon": categories["horizons"],
+                "target": categories["targets"],
+                "abstention_threshold": round(0.50 + (family_idx % 10) * 0.025, 3),
+                "model_hyperparameters": {
+                    "seed": record["random_seed"],
+                    "fixed_regularization": "frozen_single_default",
+                },
+                "feature_list": [
+                    "M1 signed mid return",
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "session labels",
+                ],
+                "required_inputs": [
+                    "M1 signed mid return",
+                    "rolling realized variance",
+                    "rolling spread statistics",
+                    "session labels",
+                ],
+            }
+        )
     else:
         raise ValueError(f"Unsupported family: {family}")
 
@@ -1356,14 +1424,16 @@ def capability_matrix_for(
         fam = item["family_id"]
         by_family.setdefault(fam, {"EXECUTABLE": 0, "INVALID_PROTOCOL_DATA_CAPABILITY": 0})
         by_family[fam][status] += 1
-        rows.append({
-            "trial_id": item["trial_id"],
-            "family_id": fam,
-            "required_inputs": required,
-            "missing_inputs": missing,
-            "status": status,
-            "candidate_equivalent_weight": item["candidate_equivalent_weight"],
-        })
+        rows.append(
+            {
+                "trial_id": item["trial_id"],
+                "family_id": fam,
+                "required_inputs": required,
+                "missing_inputs": missing,
+                "status": status,
+                "candidate_equivalent_weight": item["candidate_equivalent_weight"],
+            }
+        )
     return {
         "artifact_id": f"A0R2_TRIAL_DATA_CAPABILITY{artifact_suffix}_MATRIX_V1",
         "gate_id": GATE_ID,
@@ -1596,11 +1666,13 @@ def update_lease_heartbeat(
     lease = read_lease(data_root)
     if not lease:
         return
-    lease.update({
-        "heartbeat_timestamp": datetime.now(timezone.utc).isoformat(),
-        "current_partition_ids": current_partitions,
-        "graceful_shutdown": graceful_shutdown,
-    })
+    lease.update(
+        {
+            "heartbeat_timestamp": datetime.now(timezone.utc).isoformat(),
+            "current_partition_ids": current_partitions,
+            "graceful_shutdown": graceful_shutdown,
+        }
+    )
     write_json(lease_path(data_root), lease)
 
 
@@ -1668,9 +1740,7 @@ def partition_id_from_values(pair: str, year: int, month: int, side: str) -> str
     return f"{year:04d}-{month:02d}:{pair}:{side}"
 
 
-def manifest_failure_evidence(
-    part: Partition, manifest: MonthManifest | None
-) -> dict[str, Any]:
+def manifest_failure_evidence(part: Partition, manifest: MonthManifest | None) -> dict[str, Any]:
     if manifest is None:
         reason = "MONTH_MANIFEST_MISSING"
         counts: dict[str, int] = {}
@@ -1805,14 +1875,16 @@ def reconcile_partition_state(
         status = inferred
     result = {**persisted_state, "state": status}
     if manifest is not None:
-        result.update({
-            "pair": manifest.pair,
-            "year": manifest.year,
-            "month": manifest.month,
-            "side": manifest.side,
-            "rows": manifest.compacted_rows,
-            "checksum": manifest.compacted_checksum,
-        })
+        result.update(
+            {
+                "pair": manifest.pair,
+                "year": manifest.year,
+                "month": manifest.month,
+                "side": manifest.side,
+                "rows": manifest.compacted_rows,
+                "checksum": manifest.compacted_checksum,
+            }
+        )
     for field in FAILURE_EVIDENCE_FIELDS:
         if field in persisted_state:
             result[field] = persisted_state[field]
@@ -1983,14 +2055,16 @@ def recover_orphaned_running(data_root: Path, explicit: bool) -> dict[str, Any]:
             "orphan_recovered_at_utc": datetime.now(timezone.utc).isoformat(),
         }
         state["partitions"][part.key] = updated
-        rows.append({
-            "partition_id": part.key,
-            "previous_state": "RUNNING",
-            "new_state": new_state,
-            "attempts_preserved": int(item.get("attempts") or 0),
-            "failure_category": category,
-            "manifest_status": manifest_status,
-        })
+        rows.append(
+            {
+                "partition_id": part.key,
+                "previous_state": "RUNNING",
+                "new_state": new_state,
+                "attempts_preserved": int(item.get("attempts") or 0),
+                "failure_category": category,
+                "manifest_status": manifest_status,
+            }
+        )
     if rows:
         save_state(data_root, state)
     payload = {
@@ -2078,9 +2152,7 @@ def run_provider_scratch_location_audit(data_root: Path) -> dict[str, Any]:
     cache = provider_cache_dir(data_root)
     controls = provider_controls_dir(data_root)
     local_patterns = ("_tmp_download*", ".cache", "dukascopy_provider_calls")
-    local_payloads = sum(
-        1 for pattern in local_patterns for _ in TOOL_DIR.glob(pattern)
-    )
+    local_payloads = sum(1 for pattern in local_patterns for _ in TOOL_DIR.glob(pattern))
     payload = {
         "artifact_id": "A0R2_PROVIDER_SCRATCH_LOCATION_AUDIT_V1",
         "gate_id": GATE_ID,
@@ -2088,7 +2160,9 @@ def run_provider_scratch_location_audit(data_root: Path) -> dict[str, Any]:
         "repository_local_a0r2_provider_payloads": local_payloads,
         "repository_local_a0r2_provider_cache_files": sum(
             1 for _ in (TOOL_DIR / ".cache").rglob("*")
-        ) if (TOOL_DIR / ".cache").exists() else 0,
+        )
+        if (TOOL_DIR / ".cache").exists()
+        else 0,
         "clean_room_provider_scratch": "PASS" if scratch.is_dir() and controls.is_dir() else "FAIL",
         "clean_room_provider_cache": "PASS" if cache.is_dir() else "FAIL",
         "checked_patterns": list(local_patterns),
@@ -2149,9 +2223,7 @@ def native_control_row(
     data_root: Path, pair: str, side: str, requested: date, label: str
 ) -> dict[str, Any]:
     raw_path = native_scratch_dir(data_root) / "controls" / label / "candles.bi5"
-    fetched = fetch_bi5_day(
-        dukascopy_candle_url(pair, requested, side), raw_path, retries=2
-    )
+    fetched = fetch_bi5_day(dukascopy_candle_url(pair, requested, side), raw_path, retries=2)
     if fetched.status != "PASS":
         return {
             "control": label,
@@ -2179,9 +2251,9 @@ def native_control_row(
             "content_length": fetched.content_length,
             "error_fingerprint": failure_fingerprint(str(exc)),
         }
-    passed = bool(rows) and all(checks[key] for key in (
-        "monotonic_timestamps", "timestamps_in_requested_day", "ohlc_valid"
-    ))
+    passed = bool(rows) and all(
+        checks[key] for key in ("monotonic_timestamps", "timestamps_in_requested_day", "ohlc_valid")
+    )
     return {
         "control": label,
         "pair": pair,
@@ -2247,31 +2319,46 @@ def append_native_health_history(data_root: Path, payload: dict[str, Any]) -> No
     runner_sha = git_sha()
     records = []
     for row in payload["controls"]:
-        records.append({
-            "timestamp": row["control_completed_at"],
+        records.append(
+            {
+                "timestamp": row["control_completed_at"],
+                "transport": "NATIVE_BI5_TRANSPORT",
+                "record_type": "HEALTH_CONTROL",
+                "health_run_id": run_id,
+                "health_run_started_at": started_at,
+                "health_run_completed_at": completed_at,
+                "control_started_at": row["control_started_at"],
+                "control_completed_at": row["control_completed_at"],
+                "duration_ms": row["duration_ms"],
+                "control_id": row["control"],
+                "pair": row["pair"],
+                "side": row["side"],
+                "date": row["date"],
+                "result": row["status"],
+                "http_status": row.get("http_status"),
+                "failure_category": row.get("failure_category", ""),
+                "error_fingerprint": row.get("error_fingerprint", ""),
+                "content_length": row.get("content_length", 0),
+                "row_count": row.get("row_count", 0),
+                "parser_result": row["status"],
+                "runner_sha": runner_sha,
+            }
+        )
+    records.append(
+        {
+            "record_type": "HEALTH_RUN_SUMMARY",
+            "health_run_id": run_id,
+            "timestamp": completed_at,
             "transport": "NATIVE_BI5_TRANSPORT",
-            "record_type": "HEALTH_CONTROL", "health_run_id": run_id,
-            "health_run_started_at": started_at, "health_run_completed_at": completed_at,
-            "control_started_at": row["control_started_at"],
-            "control_completed_at": row["control_completed_at"],
-            "duration_ms": row["duration_ms"],
-            "control_id": row["control"], "pair": row["pair"], "side": row["side"],
-            "date": row["date"], "result": row["status"],
-            "http_status": row.get("http_status"),
-            "failure_category": row.get("failure_category", ""),
-            "error_fingerprint": row.get("error_fingerprint", ""),
-            "content_length": row.get("content_length", 0),
-            "row_count": row.get("row_count", 0), "parser_result": row["status"],
+            "status": run_status,
+            "control_sequence": ["A", "B"],
+            "control_results": {row["control"]: row["status"] for row in payload["controls"]},
+            "duration_ms": payload["duration_ms"],
+            "started_at": started_at,
+            "completed_at": completed_at,
             "runner_sha": runner_sha,
-        })
-    records.append({
-        "record_type": "HEALTH_RUN_SUMMARY", "health_run_id": run_id,
-        "timestamp": completed_at, "transport": "NATIVE_BI5_TRANSPORT",
-        "status": run_status, "control_sequence": ["A", "B"],
-        "control_results": {row["control"]: row["status"] for row in payload["controls"]},
-        "duration_ms": payload["duration_ms"], "started_at": started_at,
-        "completed_at": completed_at, "runner_sha": runner_sha,
-    })
+        }
+    )
     with NATIVE_HEALTH_HISTORY_LOCK:
         with history.open("a", encoding="utf-8") as handle:
             for record in records:
@@ -2307,6 +2394,7 @@ def write_provider_health_summary(data_root: Path) -> dict[str, Any]:
             continue
         runs.append({**row, "control_results": expected})
     results = [str(row["status"]) for row in runs]
+
     def trailing(value: str) -> int:
         count = 0
         for result in reversed(results):
@@ -2314,23 +2402,39 @@ def write_provider_health_summary(data_root: Path) -> dict[str, Any]:
                 break
             count += 1
         return count
+
     categories = Counter(
-        str(row.get("failure_category", ""))
-        for row in controls if row.get("failure_category")
+        str(row.get("failure_category", "")) for row in controls if row.get("failure_category")
     )
-    last_pass = next((row.get("completed_at", row.get("timestamp")) for row in reversed(runs)
-                      if row.get("status") == "PASS"), None)
-    last_fail = next((row.get("completed_at", row.get("timestamp")) for row in reversed(runs)
-                      if row.get("status") == "FAIL"), None)
+    last_pass = next(
+        (
+            row.get("completed_at", row.get("timestamp"))
+            for row in reversed(runs)
+            if row.get("status") == "PASS"
+        ),
+        None,
+    )
+    last_fail = next(
+        (
+            row.get("completed_at", row.get("timestamp"))
+            for row in reversed(runs)
+            if row.get("status") == "FAIL"
+        ),
+        None,
+    )
     latest = runs[-1] if runs else None
     latest_status = str(latest["status"]) if latest else None
     summary = {
         "artifact_id": "A0R2_PROVIDER_HEALTH_SUMMARY_V1",
         "gate_id": GATE_ID,
         "transport": "NATIVE_BI5_TRANSPORT",
-        "status": ("PASS" if latest_status == "PASS" else
-                   "PROVIDER_COOLDOWN_REQUIRED" if latest_status == "FAIL" else
-                   "NO_HEALTH_EVIDENCE"),
+        "status": (
+            "PASS"
+            if latest_status == "PASS"
+            else "PROVIDER_COOLDOWN_REQUIRED"
+            if latest_status == "FAIL"
+            else "NO_HEALTH_EVIDENCE"
+        ),
         "latest_run_id": latest.get("health_run_id") if latest else None,
         "latest_status": latest_status,
         "latest_control_results": latest["control_results"] if latest else {},
@@ -2341,9 +2445,7 @@ def write_provider_health_summary(data_root: Path) -> dict[str, Any]:
         "complete_health_run_count": len(runs),
         "consecutive_passing_runs": trailing("PASS"),
         "consecutive_failing_runs": trailing("FAIL"),
-        "control_pass_count": sum(
-            row.get("result") == "PASS" for row in controls
-        ),
+        "control_pass_count": sum(row.get("result") == "PASS" for row in controls),
         "control_fail_count": sum(row.get("result") == "FAIL" for row in controls),
         "legacy_ungrouped_control_count": sum(
             row.get("record_type") != "HEALTH_RUN_SUMMARY" and not row.get("health_run_id")
@@ -2370,13 +2472,17 @@ def run_native_health_watch(
     if max_attempts < 1 or interval_seconds < 0 or required_consecutive_passes < 1:
         raise ValueError("A0R2_NATIVE_HEALTH_WATCH_ARGUMENT_INVALID")
     state_path = native_health_watch_state_path(data_root)
-    state: dict[str, Any] = read_json(state_path) if state_path.exists() else {
-        "artifact_id": "A0R2_NATIVE_HEALTH_WATCH_STATE_V1",
-        "gate_id": GATE_ID,
-        "attempts_completed": 0,
-        "consecutive_passing_runs": 0,
-        "history": [],
-    }
+    state: dict[str, Any] = (
+        read_json(state_path)
+        if state_path.exists()
+        else {
+            "artifact_id": "A0R2_NATIVE_HEALTH_WATCH_STATE_V1",
+            "gate_id": GATE_ID,
+            "attempts_completed": 0,
+            "consecutive_passing_runs": 0,
+            "history": [],
+        }
+    )
     attempts_this_watch = 0
     while attempts_this_watch < max_attempts:
         attempts_this_watch += 1
@@ -2387,12 +2493,14 @@ def run_native_health_watch(
         state["consecutive_passing_runs"] = (
             int(state.get("consecutive_passing_runs", 0)) + 1 if passed else 0
         )
-        state["history"].append({
-            "attempt": state["attempts_completed"],
-            "status": summary.get("status"),
-            "latest_status": summary.get("latest_status"),
-            "latest_run_id": summary.get("latest_run_id"),
-        })
+        state["history"].append(
+            {
+                "attempt": state["attempts_completed"],
+                "status": summary.get("status"),
+                "latest_status": summary.get("latest_status"),
+                "latest_run_id": summary.get("latest_run_id"),
+            }
+        )
         state["required_consecutive_health_passes"] = required_consecutive_passes
         state["max_attempts_this_watch"] = max_attempts
         state["interval_seconds"] = interval_seconds
@@ -2424,6 +2532,124 @@ def run_native_health_watch(
     return artifact
 
 
+PARITY_PANEL_DATES = (
+    (date(2010, 1, 4), "first_eligible_year_trading_interval"),
+    (date(2011, 3, 14), "DST_transition_interval"),
+    (date(2014, 6, 16), "ordinary_eligible_trading_interval"),
+)
+
+
+def frozen_parity_panel() -> dict[str, Any]:
+    units = []
+    for pair in INSTRUMENTS:
+        for side in SIDES:
+            for requested, selection_class in PARITY_PANEL_DATES:
+                units.append(
+                    {
+                        "parity_unit_id": f"{pair}:{side}:{requested.isoformat()}",
+                        "pair": pair,
+                        "side": side,
+                        "date": requested.isoformat(),
+                        "selection_class": selection_class,
+                    }
+                )
+    return {
+        "artifact_id": "A0R2_STRATIFIED_PARITY_PANEL_FREEZE_V1",
+        "gate_id": GATE_ID,
+        "panel_id": "A0R2_STRATIFIED_PARITY_PANEL_V1",
+        "status": "FROZEN_BEFORE_ADDITIONAL_PARITY_DATA",
+        "selection_rules": [
+            "all authorized pairs and both sides in frozen instrument order",
+            "calendar-only dates within the authorized 2010-2014 interval",
+            "includes first eligible year, DST transition, and ordinary intervals",
+            "no price, return, or provider-behavior inputs",
+        ],
+        "ordered_parity_unit_ids": [unit["parity_unit_id"] for unit in units],
+        "units": units,
+        "panel_sha256": sha256_json(units),
+        "pre_additional_parity_data_sha256": sha256_json(
+            {
+                "dual_transport_amendment": file_sha256(
+                    results_dir() / "dual_transport_amendment.json"
+                ),
+                "stratified_parity_clarification": file_sha256(
+                    results_dir() / "stratified_parity_clarification.json"
+                ),
+                "prior_parity_certification": file_sha256(
+                    results_dir() / "dual_transport_parity_certification.json"
+                ),
+            }
+        ),
+    }
+
+
+def freeze_parity_panel() -> dict[str, Any]:
+    panel = frozen_parity_panel()
+    write_json(results_dir() / "stratified_parity_panel_freeze.json", panel)
+    return panel
+
+
+def parity_queue_path(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "a0r2_parity_work_queue.json"
+
+
+def parity_events_path(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "a0r2_parity_events.jsonl"
+
+
+def initialize_parity_queue(data_root: Path) -> dict[str, Any]:
+    panel_path = results_dir() / "stratified_parity_panel_freeze.json"
+    if not panel_path.exists():
+        raise ValueError("A0R2_PARITY_PANEL_NOT_FROZEN")
+    path = parity_queue_path(data_root)
+    if path.exists():
+        return read_json(path)
+    panel = read_json(panel_path)
+    units = []
+    for source in panel["units"]:
+        unit = dict(source)
+        unit.update(
+            {
+                "node_reference_available": unit["pair"] != "AUDJPY",
+                "raw_payload_state": "PLANNED",
+                "raw_sha256": None,
+                "python_parser_state": "PLANNED",
+                "javascript_parser_state": "PLANNED",
+                "node_reference_comparison_state": "PLANNED",
+                "source_integrity_state": "PLANNED",
+                "attempts": 0,
+                "latest_failure_category": None,
+                "overall_state": "PLANNED",
+            }
+        )
+        units.append(unit)
+    queue = {
+        "artifact_id": "A0R2_PARITY_WORK_QUEUE_V1",
+        "gate_id": GATE_ID,
+        "panel_id": panel["panel_id"],
+        "panel_sha256": panel["panel_sha256"],
+        "status": "READY",
+        "units": units,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    (native_raw_dir(data_root) / "parity").mkdir(parents=True, exist_ok=True)
+    write_json(path, queue)
+    return queue
+
+
+def parity_queue_status(data_root: Path) -> dict[str, Any]:
+    queue = initialize_parity_queue(data_root)
+    states = Counter(str(unit["overall_state"]) for unit in queue["units"])
+    return {
+        "artifact_id": "A0R2_PARITY_QUEUE_STATUS_V1",
+        "gate_id": GATE_ID,
+        "status": queue["status"],
+        "panel_sha256": queue["panel_sha256"],
+        "unit_count": len(queue["units"]),
+        "state_distribution": dict(sorted(states.items())),
+    }
+
+
 def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
     """Select immutable existing Node daily units deterministically."""
     selected: list[dict[str, Any]] = []
@@ -2438,14 +2664,25 @@ def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[s
                         continue
                     for item in sorted(manifest.days, key=lambda day: day.day):
                         path = (
-                            raw_dir(data_root) / pair / f"price={side}" / f"year={year}"
-                            / f"month={month:02d}" / f"day={item.day:02d}" / "data.json"
+                            raw_dir(data_root)
+                            / pair
+                            / f"price={side}"
+                            / f"year={year}"
+                            / f"month={month:02d}"
+                            / f"day={item.day:02d}"
+                            / "data.json"
                         )
                         if item.status == "complete" and item.rows > 0 and path.exists():
-                            candidates.append({
-                                "pair": pair, "side": side, "year": year,
-                                "month": month, "day": item.day, "path": path,
-                            })
+                            candidates.append(
+                                {
+                                    "pair": pair,
+                                    "side": side,
+                                    "year": year,
+                                    "month": month,
+                                    "day": item.day,
+                                    "path": path,
+                                }
+                            )
             if len(candidates) < 3:
                 missing.append(f"{pair}:{side}:need_3_have_{len(candidates)}")
                 continue
@@ -2485,22 +2722,33 @@ def run_native_parity_certification(data_root: Path) -> dict[str, Any]:
         for unit in references:
             requested = date(unit["year"], unit["month"], unit["day"])
             native_path = (
-                native_scratch_dir(data_root) / "parity" / unit["pair"]
-                / f"price={unit['side']}" / requested.isoformat() / "candles.bi5"
+                native_scratch_dir(data_root)
+                / "parity"
+                / unit["pair"]
+                / f"price={unit['side']}"
+                / requested.isoformat()
+                / "candles.bi5"
             )
             fetched = fetch_bi5_day(
                 dukascopy_candle_url(unit["pair"], requested, unit["side"]),
-                native_path, retries=2,
+                native_path,
+                retries=2,
             )
             reference_rows = read_json(unit["path"])
             reference = _node_row_hashes(reference_rows, unit["pair"])
             row: dict[str, Any] = {
-                "pair": unit["pair"], "side": unit["side"],
-                "date": requested.isoformat(), "reference_transport": "DUKASCOPY_NODE_1_46_4",
-                "native_transport": "DUKASCOPY_NATIVE_BI5_V1", **reference,
-                "native_row_count": 0, "native_timestamp_set_sha256": "",
-                "native_integer_ohlc_sha256": "", "native_normalized_ohlc_sha256": "",
-                "native_volume_sha256": "", "parity": "FAIL",
+                "pair": unit["pair"],
+                "side": unit["side"],
+                "date": requested.isoformat(),
+                "reference_transport": "DUKASCOPY_NODE_1_46_4",
+                "native_transport": "DUKASCOPY_NATIVE_BI5_V1",
+                **reference,
+                "native_row_count": 0,
+                "native_timestamp_set_sha256": "",
+                "native_integer_ohlc_sha256": "",
+                "native_normalized_ohlc_sha256": "",
+                "native_volume_sha256": "",
+                "parity": "FAIL",
             }
             if fetched.status == "PASS":
                 native_rows = parse_bi5_m1_candles(
@@ -2524,13 +2772,18 @@ def run_native_parity_certification(data_root: Path) -> dict[str, Any]:
                     ),
                 }
                 row.update(native)
-                row["parity"] = "PASS" if (
-                    reference["row_count"] == native["native_row_count"]
-                    and reference["timestamp_set_sha256"] == native["native_timestamp_set_sha256"]
-                    and reference["integer_ohlc_sha256"] == native["native_integer_ohlc_sha256"]
-                    and reference["volume_sha256"] == native["native_volume_sha256"]
-                    and not native["native_out_of_range_rows"]
-                ) else "FAIL"
+                row["parity"] = (
+                    "PASS"
+                    if (
+                        reference["row_count"] == native["native_row_count"]
+                        and reference["timestamp_set_sha256"]
+                        == native["native_timestamp_set_sha256"]
+                        and reference["integer_ohlc_sha256"] == native["native_integer_ohlc_sha256"]
+                        and reference["volume_sha256"] == native["native_volume_sha256"]
+                        and not native["native_out_of_range_rows"]
+                    )
+                    else "FAIL"
+                )
             panel.append(row)
     passed = len(panel) == 54 and not missing and all(row["parity"] == "PASS" for row in panel)
     decision = (
@@ -2581,19 +2834,27 @@ def run_existing_data_reuse_audit(data_root: Path) -> dict[str, Any]:
             if item.status not in {"complete", "market_closed"}:
                 continue
             if item.status == "market_closed":
-                units.append({
-                    "pair": part.pair, "side": part.side,
-                    "date": f"{part.year:04d}-{part.month:02d}-{item.day:02d}",
-                    "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
-                    "transport_id": "DUKASCOPY_NODE_1_46_4",
-                    "transport_version": "1.46.4",
-                    "certification_status": "CERTIFIED_MARKET_CLOSED",
-                })
+                units.append(
+                    {
+                        "pair": part.pair,
+                        "side": part.side,
+                        "date": f"{part.year:04d}-{part.month:02d}-{item.day:02d}",
+                        "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+                        "transport_id": "DUKASCOPY_NODE_1_46_4",
+                        "transport_version": "1.46.4",
+                        "certification_status": "CERTIFIED_MARKET_CLOSED",
+                    }
+                )
                 reused += 1
                 continue
             path = (
-                raw_dir(data_root) / part.pair / f"price={part.side}" / f"year={part.year}"
-                / f"month={part.month:02d}" / f"day={item.day:02d}" / "data.json"
+                raw_dir(data_root)
+                / part.pair
+                / f"price={part.side}"
+                / f"year={part.year}"
+                / f"month={part.month:02d}"
+                / f"day={item.day:02d}"
+                / "data.json"
             )
             if not path.exists():
                 invalid += 1
@@ -2603,7 +2864,8 @@ def run_existing_data_reuse_audit(data_root: Path) -> dict[str, Any]:
             start = int(
                 datetime(
                     requested.year, requested.month, requested.day, tzinfo=timezone.utc
-                ).timestamp() * 1000
+                ).timestamp()
+                * 1000
             )
             end = start + 86_400_000
             scale = instrument_metadata(part.pair).integer_scale
@@ -2627,21 +2889,28 @@ def run_existing_data_reuse_audit(data_root: Path) -> dict[str, Any]:
                 for row in rows
             ]
             raw_hash = file_sha256(path)
-            units.append({
-                "pair": part.pair, "side": part.side, "date": requested.isoformat(),
-                "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
-                "transport_id": "DUKASCOPY_NODE_1_46_4", "transport_version": "1.46.4",
-                "request_identity_hash": sha256_json(
-                    [part.pair, part.side, requested.isoformat(), "M1"]
-                ),
-                "request_url_hash": "NODE_BRIDGE_REQUEST_IDENTITY_ONLY",
-                "raw_sha256": raw_hash, "parsed_rows_sha256": raw_hash,
-                "timestamp_set_sha256": sha256_json([row[0] for row in integer_rows]),
-                "integer_ohlc_sha256": sha256_json(integer_rows),
-                "volume_sha256": sha256_json([float(row.get("volume", 0.0)) for row in rows]),
-                "parser_version": "DUKASCOPY_NODE_1_46_4", "row_count": len(rows),
-                "certification_status": "CERTIFIED_OPEN_MARKET_DATA",
-            })
+            units.append(
+                {
+                    "pair": part.pair,
+                    "side": part.side,
+                    "date": requested.isoformat(),
+                    "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+                    "transport_id": "DUKASCOPY_NODE_1_46_4",
+                    "transport_version": "1.46.4",
+                    "request_identity_hash": sha256_json(
+                        [part.pair, part.side, requested.isoformat(), "M1"]
+                    ),
+                    "request_url_hash": "NODE_BRIDGE_REQUEST_IDENTITY_ONLY",
+                    "raw_sha256": raw_hash,
+                    "parsed_rows_sha256": raw_hash,
+                    "timestamp_set_sha256": sha256_json([row[0] for row in integer_rows]),
+                    "integer_ohlc_sha256": sha256_json(integer_rows),
+                    "volume_sha256": sha256_json([float(row.get("volume", 0.0)) for row in rows]),
+                    "parser_version": "DUKASCOPY_NODE_1_46_4",
+                    "row_count": len(rows),
+                    "certification_status": "CERTIFIED_OPEN_MARKET_DATA",
+                }
+            )
             reused += 1
             bytes_reused += path.stat().st_size
             if not manifest.compacted:
@@ -2681,20 +2950,27 @@ def run_health_controls(data_root: Path) -> dict[str, Any]:
     rows = []
     for worker, (pair, instrument, date_from, date_to, side) in enumerate(requests):
         result = _download_single_day_result(
-            instrument, date_from, date_to, side,
-            scratch_root=scratch, cache_root=cache, worker_id=worker,
+            instrument,
+            date_from,
+            date_to,
+            side,
+            scratch_root=scratch,
+            cache_root=cache,
+            worker_id=worker,
         )
         category = classify_provider_diagnostic(result)
-        rows.append({
-            "control": "A" if worker == 0 else "B",
-            "pair": pair,
-            "side": side,
-            "result": "PASS" if result.succeeded and bool(result.rows) else "FAIL",
-            "provider_category": category,
-            "row_count": len(result.rows),
-            "duration_ms": result.duration_ms,
-            "error_fingerprint": result.stack_fingerprint or result.stderr_fingerprint,
-        })
+        rows.append(
+            {
+                "control": "A" if worker == 0 else "B",
+                "pair": pair,
+                "side": side,
+                "result": "PASS" if result.succeeded and bool(result.rows) else "FAIL",
+                "provider_category": category,
+                "row_count": len(result.rows),
+                "duration_ms": result.duration_ms,
+                "error_fingerprint": result.stack_fingerprint or result.stderr_fingerprint,
+            }
+        )
     passed = all(row["result"] == "PASS" for row in rows)
     payload = {
         "artifact_id": "A0R2_PROVIDER_HEALTH_CONTROLS_V1",
@@ -2724,8 +3000,7 @@ def analyze_retryable_failures_v4(data_root: Path) -> dict[str, Any]:
         outcome = manifest.last_provider_call_outcome if manifest else ""
         category = item.get("failure_category", "OTHER_STRUCTURED_FAILURE")
         if outcome == "PROVIDER_CALL_SUCCESS_PARTIAL" or (
-            any(day.status == "complete" and day.rows > 0 for day in days)
-            and bool(missing)
+            any(day.status == "complete" and day.rows > 0 for day in days) and bool(missing)
         ):
             category = "SUCCESSFUL_PARTIAL_MONTH"
         elif outcome == "PROVIDER_CALL_TRANSPORT_FAILURE":
@@ -2816,18 +3091,18 @@ def refresh_state_from_manifests(data_root: Path, write_state: bool = True) -> d
         if reconciled.get("state") == "FAILED_RETRYABLE" and attempts >= MAX_PARTITION_ATTEMPTS:
             evidence = manifest_failure_evidence(part, manifest)
             now = datetime.now(timezone.utc).isoformat()
-            reconciled.update({
-                "state": "FAILED_TERMINAL",
-                "failure_category": "RETRY_ATTEMPTS_EXHAUSTED",
-                "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
-                "latest_failure_timestamp": reconciled.get(
-                    "latest_failure_timestamp", now
-                ),
-                "error": reconciled.get("error") or evidence["structured_reason"],
-                "error_fingerprint": reconciled.get("error_fingerprint")
-                or evidence["error_fingerprint"],
-                "failure_evidence": evidence,
-            })
+            reconciled.update(
+                {
+                    "state": "FAILED_TERMINAL",
+                    "failure_category": "RETRY_ATTEMPTS_EXHAUSTED",
+                    "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
+                    "latest_failure_timestamp": reconciled.get("latest_failure_timestamp", now),
+                    "error": reconciled.get("error") or evidence["structured_reason"],
+                    "error_fingerprint": reconciled.get("error_fingerprint")
+                    or evidence["error_fingerprint"],
+                    "failure_evidence": evidence,
+                }
+            )
         state["partitions"][part.key] = reconciled
     if write_state:
         save_state(data_root, state)
@@ -2907,9 +3182,7 @@ def acquisition_summary(data_root: Path, write_progress: bool = True) -> dict[st
         "adaptive_one_worker_reductions": int(
             previous_progress.get("adaptive_one_worker_reductions", 0)
         ),
-        "circuit_breaker_activations": int(
-            previous_progress.get("circuit_breaker_activations", 0)
-        ),
+        "circuit_breaker_activations": int(previous_progress.get("circuit_breaker_activations", 0)),
         "provider_throttling_observations": (
             "RECORDED" if throttling_count else "NO_THROTTLING_RECORDED"
         ),
@@ -3030,8 +3303,13 @@ def acquire_one_native(
         if max_day_requests is not None and requested >= max_day_requests:
             break
         result = download_native_day_with_checkpoint(
-            part.pair, part.side, part.year, part.month, day,
-            raw_dir(data_root), native_raw_dir(data_root),
+            part.pair,
+            part.side,
+            part.year,
+            part.month,
+            day,
+            raw_dir(data_root),
+            native_raw_dir(data_root),
         )
         _replace_manifest_day(manifest, result)
         requested += 1
@@ -3044,13 +3322,22 @@ def acquire_one_native(
     save_month_manifest(raw_dir(data_root), manifest)
     state = "COMPLETE_PENDING_CERTIFICATION" if manifest.compacted else "FAILED_RETRYABLE"
     return {
-        "ts": datetime.now(timezone.utc).isoformat(), "partition": part.key,
-        "pair": part.pair, "year": part.year, "month": part.month, "side": part.side,
-        "state": state, "rows": manifest.compacted_rows, "checksum": manifest.compacted_checksum,
-        "requested_transport": "native", "selected_transport": "native",
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "partition": part.key,
+        "pair": part.pair,
+        "year": part.year,
+        "month": part.month,
+        "side": part.side,
+        "state": state,
+        "rows": manifest.compacted_rows,
+        "checksum": manifest.compacted_checksum,
+        "requested_transport": "native",
+        "selected_transport": "native",
         "selection_reason": "NATIVE_PARITY_AND_HEALTH_CERTIFIED",
-        "native_daily_requests": requested, "native_daily_successes": successful,
-        "native_daily_failures": failures, "native_transport_attempts": requested,
+        "native_daily_requests": requested,
+        "native_daily_successes": successful,
+        "native_daily_failures": failures,
+        "native_transport_attempts": requested,
         "attempts": (
             load_state(data_root).get("partitions", {}).get(part.key, {}).get("attempts", 0)
         ),
@@ -3104,10 +3391,12 @@ def acquire_one(
     with STATE_LOCK:
         state = load_state(data_root)
         state["partitions"].setdefault(part.key, {})
-        state["partitions"][part.key].update({
-            **event_base,
-            "state": "RUNNING",
-        })
+        state["partitions"][part.key].update(
+            {
+                **event_base,
+                "state": "RUNNING",
+            }
+        )
         save_state(data_root, state)
     append_event(data_root, {**event_base, "state": "RUNNING"})
     try:
@@ -3115,7 +3404,11 @@ def acquire_one(
         cache = provider_cache_dir(data_root)
         if repair_missing_days_only and manifest is not None:
             manifest = repair_missing_days(
-                part.pair, part.side, part.year, part.month, raw_dir(data_root),
+                part.pair,
+                part.side,
+                part.year,
+                part.month,
+                raw_dir(data_root),
                 find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month),
                 max_day_requests=max_day_requests,
                 scratch_root=scratch,
@@ -3124,10 +3417,17 @@ def acquire_one(
             )
         else:
             manifest = acquire_month_bulk(
-                part.pair, part.side, part.year, part.month, raw_dir(data_root),
-                timeframe="m1", batch_size=30, retries=5,
+                part.pair,
+                part.side,
+                part.year,
+                part.month,
+                raw_dir(data_root),
+                timeframe="m1",
+                batch_size=30,
+                retries=5,
                 pause_between_batches_ms=200,
-                scratch_root=scratch, cache_root=cache,
+                scratch_root=scratch,
+                cache_root=cache,
                 worker_id=threading.get_ident(),
                 max_day_requests=max_day_requests,
             )
@@ -3146,9 +3446,7 @@ def acquire_one(
             "error_fingerprint": failure_fingerprint(error),
             "first_failure_timestamp": current.get("first_failure_timestamp", now),
             "latest_failure_timestamp": now,
-            "next_eligible_retry_timestamp": (
-                now if failure_state == "FAILED_RETRYABLE" else None
-            ),
+            "next_eligible_retry_timestamp": (now if failure_state == "FAILED_RETRYABLE" else None),
             "terminal_reason": category if failure_state == "FAILED_TERMINAL" else None,
         }
         append_event(data_root, failure)
@@ -3174,26 +3472,26 @@ def acquire_one(
         if attempt_number >= MAX_PARTITION_ATTEMPTS and category != "SUCCESSFUL_PARTIAL_MONTH":
             result["state"] = "FAILED_TERMINAL"
             category = "RETRY_ATTEMPTS_EXHAUSTED"
-        result.update({
-            "error": error,
-            "failure_category": category,
-            "error_fingerprint": evidence["error_fingerprint"],
-            "first_failure_timestamp": current.get(
-                "first_failure_timestamp", datetime.now(timezone.utc).isoformat()
-            ),
-            "latest_failure_timestamp": datetime.now(timezone.utc).isoformat(),
-            "next_eligible_retry_timestamp": (
-                datetime.now(timezone.utc).isoformat()
-                if result["state"] == "FAILED_RETRYABLE"
-                else None
-            ),
-            "terminal_reason": (
-                "RETRY_ATTEMPTS_EXHAUSTED"
-                if result["state"] == "FAILED_TERMINAL"
-                else None
-            ),
-            "failure_evidence": evidence,
-        })
+        result.update(
+            {
+                "error": error,
+                "failure_category": category,
+                "error_fingerprint": evidence["error_fingerprint"],
+                "first_failure_timestamp": current.get(
+                    "first_failure_timestamp", datetime.now(timezone.utc).isoformat()
+                ),
+                "latest_failure_timestamp": datetime.now(timezone.utc).isoformat(),
+                "next_eligible_retry_timestamp": (
+                    datetime.now(timezone.utc).isoformat()
+                    if result["state"] == "FAILED_RETRYABLE"
+                    else None
+                ),
+                "terminal_reason": (
+                    "RETRY_ATTEMPTS_EXHAUSTED" if result["state"] == "FAILED_TERMINAL" else None
+                ),
+                "failure_evidence": evidence,
+            }
+        )
         append_failure(data_root, result)
     append_event(data_root, result)
     return result
@@ -3328,8 +3626,7 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                         time.sleep(10)
                     if (
                         len(recent_success) == CIRCUIT_BREAKER_WINDOW
-                        and sum(1 for ok in recent_success if not ok)
-                        >= CIRCUIT_BREAKER_FAILURES
+                        and sum(1 for ok in recent_success if not ok) >= CIRCUIT_BREAKER_FAILURES
                     ):
                         circuit_activations += 1
                         runnable.clear()
@@ -3526,17 +3823,19 @@ def run_certification(data_root: Path) -> dict[str, Any]:
     for part in partition_queue():
         existing = state["partitions"].get(part.key, {})
         if existing.get("state") == "FAILED_TERMINAL":
-            rows.append({
-                "partition": part.key,
-                "pair": part.pair,
-                "year": part.year,
-                "month": part.month,
-                "side": part.side,
-                "status": "FAILED_TERMINAL",
-                "rows": existing.get("rows", 0),
-                "checksum": existing.get("checksum", ""),
-                "checks": {"terminal_state_preserved": True},
-            })
+            rows.append(
+                {
+                    "partition": part.key,
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "status": "FAILED_TERMINAL",
+                    "rows": existing.get("rows", 0),
+                    "checksum": existing.get("checksum", ""),
+                    "checks": {"terminal_state_preserved": True},
+                }
+            )
             continue
         manifest = load_month_manifest(raw, part.pair, part.side, part.year, part.month)
         if manifest is not None:
@@ -3545,11 +3844,13 @@ def run_certification(data_root: Path) -> dict[str, Any]:
         rows.append(cert)
         state["partitions"].setdefault(part.key, {})
         if cert["status"] == "CERTIFIED":
-            state["partitions"][part.key].update({
-                "state": "CERTIFIED",
-                "rows": cert["rows"],
-                "checksum": cert.get("checksum", ""),
-            })
+            state["partitions"][part.key].update(
+                {
+                    "state": "CERTIFIED",
+                    "rows": cert["rows"],
+                    "checksum": cert.get("checksum", ""),
+                }
+            )
         elif state["partitions"][part.key].get("state") != "CERTIFIED":
             reconciled = reconcile_partition_state(
                 {
@@ -3600,22 +3901,22 @@ def analyze_retryable_failures(data_root: Path) -> dict[str, Any]:
         normalization_required = bool(manifest and not manifest.compacted)
         attempts = authoritative_attempt_count(data_root, part, item, manifest)
         evidence = manifest_failure_evidence(part, manifest)
-        rows.append({
-            "partition_id": part.key,
-            "pair": part.pair,
-            "year": part.year,
-            "month": part.month,
-            "side": part.side,
-            "failure_category": item.get("failure_category")
-            or evidence["structured_reason"],
-            "attempt_count": attempts,
-            "error_fingerprint": item.get("error_fingerprint")
-            or evidence["error_fingerprint"],
-            "partial_data_exists": partial_data,
-            "manifest_normalization_required": normalization_required,
-            "retry_authorized": attempts < MAX_PARTITION_ATTEMPTS,
-            "evidence": evidence,
-        })
+        rows.append(
+            {
+                "partition_id": part.key,
+                "pair": part.pair,
+                "year": part.year,
+                "month": part.month,
+                "side": part.side,
+                "failure_category": item.get("failure_category") or evidence["structured_reason"],
+                "attempt_count": attempts,
+                "error_fingerprint": item.get("error_fingerprint") or evidence["error_fingerprint"],
+                "partial_data_exists": partial_data,
+                "manifest_normalization_required": normalization_required,
+                "retry_authorized": attempts < MAX_PARTITION_ATTEMPTS,
+                "evidence": evidence,
+            }
+        )
     payload = {
         "artifact_id": "A0R2_RETRYABLE_FAILURE_ANALYSIS_V1",
         "gate_id": GATE_ID,
@@ -3720,22 +4021,24 @@ def build_features_from_m1(parquet_path: Path, out_path: Path) -> str:
     df = df.sort_values("timestamp").reset_index(drop=True)
     mid_close = (df["bid_close"] + df["ask_close"]) / 2.0
     spread_close = df["ask_close"] - df["bid_close"]
-    out = pd.DataFrame({
-        "timestamp": df["timestamp"],
-        "mid_open": (df["bid_open"] + df["ask_open"]) / 2.0,
-        "mid_high": (df["bid_high"] + df["ask_high"]) / 2.0,
-        "mid_low": (df["bid_low"] + df["ask_low"]) / 2.0,
-        "mid_close": mid_close,
-        "spread_open": df["ask_open"] - df["bid_open"],
-        "spread_high": df["ask_high"] - df["bid_high"],
-        "spread_low": df["ask_low"] - df["bid_low"],
-        "spread_close": spread_close,
-        "m1_signed_mid_return": mid_close.diff().fillna(0.0),
-        "rolling_realized_variance_30": mid_close.diff().fillna(0.0).rolling(30).var(),
-        "rolling_range_30": ((df["bid_high"] + df["ask_high"]) / 2.0).rolling(30).max()
-        - ((df["bid_low"] + df["ask_low"]) / 2.0).rolling(30).min(),
-        "rolling_spread_median_30": spread_close.rolling(30).median(),
-    })
+    out = pd.DataFrame(
+        {
+            "timestamp": df["timestamp"],
+            "mid_open": (df["bid_open"] + df["ask_open"]) / 2.0,
+            "mid_high": (df["bid_high"] + df["ask_high"]) / 2.0,
+            "mid_low": (df["bid_low"] + df["ask_low"]) / 2.0,
+            "mid_close": mid_close,
+            "spread_open": df["ask_open"] - df["bid_open"],
+            "spread_high": df["ask_high"] - df["bid_high"],
+            "spread_low": df["ask_low"] - df["bid_low"],
+            "spread_close": spread_close,
+            "m1_signed_mid_return": mid_close.diff().fillna(0.0),
+            "rolling_realized_variance_30": mid_close.diff().fillna(0.0).rolling(30).var(),
+            "rolling_range_30": ((df["bid_high"] + df["ask_high"]) / 2.0).rolling(30).max()
+            - ((df["bid_low"] + df["ask_low"]) / 2.0).rolling(30).min(),
+            "rolling_spread_median_30": spread_close.rolling(30).median(),
+        }
+    )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     tmp = out_path.with_suffix(".tmp")
     out.to_parquet(tmp, index=False, engine="pyarrow")
@@ -3762,9 +4065,7 @@ def previous_partition_hashes(path: Path) -> dict[tuple[str, int, int], str]:
     hashes: dict[tuple[str, int, int], str] = {}
     for row in rows:
         if row.get("pair") and row.get("year") and row.get("month") and row.get("sha256"):
-            hashes[(str(row["pair"]), int(row["year"]), int(row["month"]))] = str(
-                row["sha256"]
-            )
+            hashes[(str(row["pair"]), int(row["year"]), int(row["month"]))] = str(row["sha256"])
     return hashes
 
 
@@ -3884,27 +4185,33 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                     and valid_existing_parquet(m5_path, prior_m5.get(key))
                     and valid_existing_parquet(feat_path, prior_feature.get(key))
                 ):
-                    m1_rows.append({
-                        "pair": pair,
-                        "year": year,
-                        "month": month,
-                        "sha256": prior_m1[key],
-                        "reused_valid_partition": True,
-                    })
-                    m5_rows.append({
-                        "pair": pair,
-                        "year": year,
-                        "month": month,
-                        "sha256": prior_m5[key],
-                        "reused_valid_partition": True,
-                    })
-                    feature_rows.append({
-                        "pair": pair,
-                        "year": year,
-                        "month": month,
-                        "sha256": prior_feature[key],
-                        "reused_valid_partition": True,
-                    })
+                    m1_rows.append(
+                        {
+                            "pair": pair,
+                            "year": year,
+                            "month": month,
+                            "sha256": prior_m1[key],
+                            "reused_valid_partition": True,
+                        }
+                    )
+                    m5_rows.append(
+                        {
+                            "pair": pair,
+                            "year": year,
+                            "month": month,
+                            "sha256": prior_m5[key],
+                            "reused_valid_partition": True,
+                        }
+                    )
+                    feature_rows.append(
+                        {
+                            "pair": pair,
+                            "year": year,
+                            "month": month,
+                            "sha256": prior_feature[key],
+                            "reused_valid_partition": True,
+                        }
+                    )
                     reused_valid += 1
                     continue
                 existed_before = m1_path.exists() or m5_path.exists() or feat_path.exists()
@@ -3952,16 +4259,18 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                 m1_hash = parquet_sha(out)
                 newly_built += 0 if existed_before else 1
                 rebuilt_invalid += 1 if existed_before else 0
-                m1_rows.append({
-                    "pair": pair,
-                    "year": year,
-                    "month": month,
-                    "joined_rows": report["joined_rows"],
-                    "bid_only": report["bid_only"],
-                    "ask_only": report["ask_only"],
-                    "negative_spread_count": report["negative_spread_count"],
-                    "sha256": m1_hash,
-                })
+                m1_rows.append(
+                    {
+                        "pair": pair,
+                        "year": year,
+                        "month": month,
+                        "joined_rows": report["joined_rows"],
+                        "bid_only": report["bid_only"],
+                        "ask_only": report["ask_only"],
+                        "negative_spread_count": report["negative_spread_count"],
+                        "sha256": m1_hash,
+                    }
+                )
                 bid_checksum = state["partitions"].get(bid_key, {}).get("checksum", "")
                 ask_checksum = state["partitions"].get(ask_key, {}).get("checksum", "")
                 write_canonical_sidecar(
@@ -3990,13 +4299,15 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                     row_count=len(m5),
                     layer="M5",
                 )
-                m5_rows.append({
-                    "pair": pair,
-                    "year": year,
-                    "month": month,
-                    "rows": len(m5),
-                    "sha256": m5_hash,
-                })
+                m5_rows.append(
+                    {
+                        "pair": pair,
+                        "year": year,
+                        "month": month,
+                        "rows": len(m5),
+                        "sha256": m5_hash,
+                    }
+                )
                 feat_hash = build_features_from_m1(out, feat_path)
                 feat_rows = len(pd.read_parquet(feat_path))
                 write_canonical_sidecar(
@@ -4010,12 +4321,14 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
                     row_count=feat_rows,
                     layer="FEATURE_M1",
                 )
-                feature_rows.append({
-                    "pair": pair,
-                    "year": year,
-                    "month": month,
-                    "sha256": feat_hash,
-                })
+                feature_rows.append(
+                    {
+                        "pair": pair,
+                        "year": year,
+                        "month": month,
+                        "sha256": feat_hash,
+                    }
+                )
     m1_manifest = {
         "artifact_id": "A0R2_M1_ALIGNMENT_CERTIFICATION_V1",
         "gate_id": GATE_ID,
@@ -4065,7 +4378,8 @@ def run_canonicalize(data_root: Path) -> dict[str, Any]:
         "artifact_id": "A0R2_M1_M5_DETERMINISM_V1",
         "gate_id": GATE_ID,
         "status": "NOT_REACHED_FULL_REPLAY_REQUIRES_COMPLETE_DATASET"
-        if len(m1_rows) < 540 else "PASS",
+        if len(m1_rows) < 540
+        else "PASS",
         "sample_policy": [
             "first month",
             "ordinary middle month",
@@ -4117,25 +4431,23 @@ def _write_bidask_parquet(
     series: BidAskBarSeries, root: Path, timeframe: str, year: int, month: int
 ) -> Path:
     out_dir = (
-        root
-        / series.pair.value
-        / f"timeframe={timeframe}"
-        / f"year={year}"
-        / f"month={month:02d}"
+        root / series.pair.value / f"timeframe={timeframe}" / f"year={year}" / f"month={month:02d}"
     )
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / "part.parquet"
-    df = pd.DataFrame({
-        "timestamp": pd.to_datetime(series.timestamps, utc=True),
-        "bid_open": series.bid_open,
-        "bid_high": series.bid_high,
-        "bid_low": series.bid_low,
-        "bid_close": series.bid_close,
-        "ask_open": series.ask_open,
-        "ask_high": series.ask_high,
-        "ask_low": series.ask_low,
-        "ask_close": series.ask_close,
-    })
+    df = pd.DataFrame(
+        {
+            "timestamp": pd.to_datetime(series.timestamps, utc=True),
+            "bid_open": series.bid_open,
+            "bid_high": series.bid_high,
+            "bid_low": series.bid_low,
+            "bid_close": series.bid_close,
+            "ask_open": series.ask_open,
+            "ask_high": series.ask_high,
+            "ask_low": series.ask_low,
+            "ask_close": series.ask_close,
+        }
+    )
     tmp = out_file.with_suffix(".tmp")
     df.to_parquet(tmp, index=False, engine="pyarrow")
     tmp.replace(out_file)
@@ -4172,6 +4484,8 @@ def parse_args() -> argparse.Namespace:
             "native-metadata",
             "native-health-controls",
             "native-health-watch",
+            "parity-panel-freeze",
+            "parity-queue-status",
             "provider-health-summary",
             "native-parity",
             "existing-data-reuse",
@@ -4233,9 +4547,7 @@ def main() -> int:
     if args.required_consecutive_health_passes < 1:
         raise ValueError("A0R2_NATIVE_HEALTH_WATCH_ARGUMENT_INVALID")
     stage = (
-        "operational-cycle"
-        if args.operational_cycle
-        else ("status" if args.status else args.stage)
+        "operational-cycle" if args.operational_cycle else ("status" if args.status else args.stage)
     )
     if stage == "op1-start":
         progress = run_status(data_root)
@@ -4285,6 +4597,10 @@ def main() -> int:
             interval_seconds=args.health_interval_seconds,
             required_consecutive_passes=args.required_consecutive_health_passes,
         )
+    elif stage == "parity-panel-freeze":
+        result = freeze_parity_panel()
+    elif stage == "parity-queue-status":
+        result = parity_queue_status(data_root)
     elif stage == "provider-health-summary":
         result = write_provider_health_summary(data_root)
     elif stage == "native-parity":
@@ -4294,9 +4610,7 @@ def main() -> int:
     elif stage == "engine-coverage":
         result = audit_discovery_engine_configuration_coverage()
     elif stage == "recover-orphaned-running":
-        result = recover_orphaned_running(
-            data_root, explicit=args.recover_orphaned_running
-        )
+        result = recover_orphaned_running(data_root, explicit=args.recover_orphaned_running)
     else:
         result = {}
     if stage in ("inheritance", "prepare", "all"):

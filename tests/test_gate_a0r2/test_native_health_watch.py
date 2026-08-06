@@ -158,3 +158,31 @@ def test_native_health_watch_is_bounded_and_resumes(
     assert (
         runner.read_json(runner.native_health_watch_state_path(tmp_path))["attempts_completed"] == 3
     )
+
+
+def test_parity_panel_is_deterministic_and_queue_reuses_existing_state(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(runner, "results_dir", lambda: tmp_path / "results")
+    for name in (
+        "dual_transport_amendment.json",
+        "stratified_parity_clarification.json",
+        "dual_transport_parity_certification.json",
+    ):
+        runner.write_json(tmp_path / "results" / name, {"fixture": name})
+    first = runner.freeze_parity_panel()
+    second = runner.frozen_parity_panel()
+
+    assert len(first["units"]) == 54
+    assert first["panel_sha256"] == second["panel_sha256"]
+    assert first["units"][0]["selection_class"] == "first_eligible_year_trading_interval"
+    assert {unit["pair"] for unit in first["units"]} == set(runner.INSTRUMENTS)
+
+    queue = runner.initialize_parity_queue(tmp_path)
+    queue["units"][0]["overall_state"] = "COMPLETE"
+    runner.write_json(runner.parity_queue_path(tmp_path), queue)
+
+    resumed = runner.initialize_parity_queue(tmp_path)
+
+    assert resumed["units"][0]["overall_state"] == "COMPLETE"
+    assert runner.parity_queue_status(tmp_path)["state_distribution"]["PLANNED"] == 53

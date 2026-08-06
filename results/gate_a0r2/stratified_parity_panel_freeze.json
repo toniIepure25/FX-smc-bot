@@ -1,0 +1,450 @@
+{
+  "artifact_id": "A0R2_STRATIFIED_PARITY_PANEL_FREEZE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "panel_id": "A0R2_STRATIFIED_PARITY_PANEL_V1",
+  "status": "FROZEN_BEFORE_ADDITIONAL_PARITY_DATA",
+  "selection_rules": [
+    "all authorized pairs and both sides in frozen instrument order",
+    "calendar-only dates within the authorized 2010-2014 interval",
+    "includes first eligible year, DST transition, and ordinary intervals",
+    "no price, return, or provider-behavior inputs"
+  ],
+  "ordered_parity_unit_ids": [
+    "EURUSD:bid:2010-01-04",
+    "EURUSD:bid:2011-03-14",
+    "EURUSD:bid:2014-06-16",
+    "EURUSD:ask:2010-01-04",
+    "EURUSD:ask:2011-03-14",
+    "EURUSD:ask:2014-06-16",
+    "GBPUSD:bid:2010-01-04",
+    "GBPUSD:bid:2011-03-14",
+    "GBPUSD:bid:2014-06-16",
+    "GBPUSD:ask:2010-01-04",
+    "GBPUSD:ask:2011-03-14",
+    "GBPUSD:ask:2014-06-16",
+    "AUDUSD:bid:2010-01-04",
+    "AUDUSD:bid:2011-03-14",
+    "AUDUSD:bid:2014-06-16",
+    "AUDUSD:ask:2010-01-04",
+    "AUDUSD:ask:2011-03-14",
+    "AUDUSD:ask:2014-06-16",
+    "USDJPY:bid:2010-01-04",
+    "USDJPY:bid:2011-03-14",
+    "USDJPY:bid:2014-06-16",
+    "USDJPY:ask:2010-01-04",
+    "USDJPY:ask:2011-03-14",
+    "USDJPY:ask:2014-06-16",
+    "USDCAD:bid:2010-01-04",
+    "USDCAD:bid:2011-03-14",
+    "USDCAD:bid:2014-06-16",
+    "USDCAD:ask:2010-01-04",
+    "USDCAD:ask:2011-03-14",
+    "USDCAD:ask:2014-06-16",
+    "USDCHF:bid:2010-01-04",
+    "USDCHF:bid:2011-03-14",
+    "USDCHF:bid:2014-06-16",
+    "USDCHF:ask:2010-01-04",
+    "USDCHF:ask:2011-03-14",
+    "USDCHF:ask:2014-06-16",
+    "EURJPY:bid:2010-01-04",
+    "EURJPY:bid:2011-03-14",
+    "EURJPY:bid:2014-06-16",
+    "EURJPY:ask:2010-01-04",
+    "EURJPY:ask:2011-03-14",
+    "EURJPY:ask:2014-06-16",
+    "GBPJPY:bid:2010-01-04",
+    "GBPJPY:bid:2011-03-14",
+    "GBPJPY:bid:2014-06-16",
+    "GBPJPY:ask:2010-01-04",
+    "GBPJPY:ask:2011-03-14",
+    "GBPJPY:ask:2014-06-16",
+    "AUDJPY:bid:2010-01-04",
+    "AUDJPY:bid:2011-03-14",
+    "AUDJPY:bid:2014-06-16",
+    "AUDJPY:ask:2010-01-04",
+    "AUDJPY:ask:2011-03-14",
+    "AUDJPY:ask:2014-06-16"
+  ],
+  "units": [
+    {
+      "parity_unit_id": "EURUSD:bid:2010-01-04",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "EURUSD:bid:2011-03-14",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "EURUSD:bid:2014-06-16",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "EURUSD:ask:2010-01-04",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "EURUSD:ask:2011-03-14",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "EURUSD:ask:2014-06-16",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPUSD:bid:2010-01-04",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPUSD:bid:2011-03-14",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "GBPUSD:bid:2014-06-16",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPUSD:ask:2010-01-04",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPUSD:ask:2011-03-14",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "GBPUSD:ask:2014-06-16",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDUSD:bid:2010-01-04",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDUSD:bid:2011-03-14",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "AUDUSD:bid:2014-06-16",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDUSD:ask:2010-01-04",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDUSD:ask:2011-03-14",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "AUDUSD:ask:2014-06-16",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDJPY:bid:2010-01-04",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDJPY:bid:2011-03-14",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "USDJPY:bid:2014-06-16",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDJPY:ask:2010-01-04",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDJPY:ask:2011-03-14",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "USDJPY:ask:2014-06-16",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCAD:bid:2010-01-04",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCAD:bid:2011-03-14",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "USDCAD:bid:2014-06-16",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCAD:ask:2010-01-04",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCAD:ask:2011-03-14",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "USDCAD:ask:2014-06-16",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCHF:bid:2010-01-04",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCHF:bid:2011-03-14",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "USDCHF:bid:2014-06-16",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCHF:ask:2010-01-04",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "USDCHF:ask:2011-03-14",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "USDCHF:ask:2014-06-16",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "EURJPY:bid:2010-01-04",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "EURJPY:bid:2011-03-14",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "EURJPY:bid:2014-06-16",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "EURJPY:ask:2010-01-04",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "EURJPY:ask:2011-03-14",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "EURJPY:ask:2014-06-16",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPJPY:bid:2010-01-04",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPJPY:bid:2011-03-14",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "GBPJPY:bid:2014-06-16",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPJPY:ask:2010-01-04",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "GBPJPY:ask:2011-03-14",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "GBPJPY:ask:2014-06-16",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDJPY:bid:2010-01-04",
+      "pair": "AUDJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDJPY:bid:2011-03-14",
+      "pair": "AUDJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "AUDJPY:bid:2014-06-16",
+      "pair": "AUDJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDJPY:ask:2010-01-04",
+      "pair": "AUDJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "selection_class": "first_eligible_year_trading_interval"
+    },
+    {
+      "parity_unit_id": "AUDJPY:ask:2011-03-14",
+      "pair": "AUDJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "selection_class": "DST_transition_interval"
+    },
+    {
+      "parity_unit_id": "AUDJPY:ask:2014-06-16",
+      "pair": "AUDJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "selection_class": "ordinary_eligible_trading_interval"
+    }
+  ],
+  "panel_sha256": "17ed8751b40495d998b5c7eed6fbb4b4e4fba249e332cf8faeae3457a197b6f5",
+  "pre_additional_parity_data_sha256": "056d64b3c64992b9a20e8bb4cd0cc8a527598be036ff44c09c0696481e4542f7"
+}
