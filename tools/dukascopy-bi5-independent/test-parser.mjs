@@ -31,7 +31,10 @@ for (const pair of [
   const result = aggregateBi5Payload(payload, pair, "2011-03-14");
   assert.equal(result.row_count, 2);
   assert.equal(result.zero_volume_excluded_count, 1);
+  assert.equal(result.negative_zero_excluded_count, 0);
   assert.equal(result.out_of_range_count, 0);
+  assert.equal(result.timestamps_monotonic, true);
+  assert.equal(result.ohlc_invariants_pass, true);
   assert.equal(result.decompression_status, "PASS");
 }
 assert.throws(() => aggregateBi5Payload(payload, "NZDUSD", "2011-03-14"));

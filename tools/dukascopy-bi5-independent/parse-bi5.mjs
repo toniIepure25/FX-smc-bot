@@ -7,8 +7,8 @@ const lzma = require("lzma-purejs-requirejs");
 const RECORD_SIZE = 24;
 const PARSER_ID = "DUKASCOPY_BI5_JAVASCRIPT_INDEPENDENT_PARSER_V1";
 const SCALES = Object.freeze({
-  EURUSD: 100000, GBPUSD: 100000, AUDUSD: 100000, USDJPY: 1000,
-  USDCAD: 100000, USDCHF: 100000, EURJPY: 1000, GBPJPY: 1000, AUDJPY: 1000,
+  EURUSD: [100000, 5], GBPUSD: [100000, 5], AUDUSD: [100000, 5], USDJPY: [1000, 3],
+  USDCAD: [100000, 5], USDCHF: [100000, 5], EURJPY: [1000, 3], GBPJPY: [1000, 3], AUDJPY: [1000, 3],
 });
 
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
@@ -24,10 +24,17 @@ export function parseBi5Payload(payload, pair, isoDate) {
   const anchor = utcAnchor(isoDate);
   const records = [];
   let zeroVolumeExcluded = 0;
+  let negativeZeroExcluded = 0;
+  let nonFiniteVolume = 0;
   for (let offset = 0; offset < decompressed.length; offset += RECORD_SIZE) {
     const volume = decompressed.readFloatBE(offset + 20);
+    if (!Number.isFinite(volume)) {
+      nonFiniteVolume += 1;
+      throw new Error("A0R2_BI5_NON_FINITE_VOLUME");
+    }
     if (volume === 0) {
       zeroVolumeExcluded += 1;
+      negativeZeroExcluded += Number(Object.is(volume, -0));
       continue;
     }
     records.push({
@@ -39,7 +46,7 @@ export function parseBi5Payload(payload, pair, isoDate) {
       volumeBits: Buffer.from(decompressed.subarray(offset + 20, offset + 24)),
     });
   }
-  return { records, zeroVolumeExcluded, decompressedLength: decompressed.length };
+  return { records, zeroVolumeExcluded, negativeZeroExcluded, nonFiniteVolume, decompressedLength: decompressed.length };
 }
 
 export function aggregateBi5Payload(payload, pair, isoDate) {
@@ -50,6 +57,7 @@ export function aggregateBi5Payload(payload, pair, isoDate) {
   ]);
   const anchor = utcAnchor(isoDate);
   const inRange = timestamps.filter((timestamp) => timestamp < anchor || timestamp >= anchor + 86400000).length;
+  const ohlcInvariantsPass = parsed.records.every((record) => record.high >= Math.max(record.open, record.close) && record.low <= Math.min(record.open, record.close));
   return {
     parser_id: PARSER_ID,
     raw_sha256: sha256(Buffer.from(payload)),
@@ -62,6 +70,12 @@ export function aggregateBi5Payload(payload, pair, isoDate) {
     duplicate_count: timestamps.length - new Set(timestamps).size,
     out_of_range_count: inRange,
     zero_volume_excluded_count: parsed.zeroVolumeExcluded,
+    negative_zero_excluded_count: parsed.negativeZeroExcluded,
+    non_finite_volume_count: parsed.nonFiniteVolume,
+    integer_scale: SCALES[pair][0],
+    decimal_precision: SCALES[pair][1],
+    timestamps_monotonic: timestamps.every((value, index) => index === 0 || timestamps[index - 1] <= value),
+    ohlc_invariants_pass: ohlcInvariantsPass,
     decompression_status: "PASS",
     record_length_status: "PASS",
   };
