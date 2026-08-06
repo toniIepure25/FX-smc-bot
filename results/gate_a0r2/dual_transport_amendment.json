@@ -1,0 +1,24 @@
+{
+  "artifact_id": "A0R2_DUAL_TRANSPORT_AMENDMENT_V1",
+  "amendment_id": "A0R2_PRE_OUTCOME_DUKASCOPY_DUAL_TRANSPORT_AMENDMENT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "FROZEN_BEFORE_EMPIRICAL_OUTCOMES",
+  "a0r2_dual_transport_pre_access_sha": "c6f739bf6b0cd3506d2206cd73ebc9adf01306ce",
+  "source_identity": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+  "transport_a": "DUKASCOPY_NODE_1_46_4",
+  "transport_b": "DUKASCOPY_NATIVE_BI5_V1",
+  "market_data_acquisition_metadata_observed": true,
+  "market_price_rows_used_for_transport_certification": true,
+  "strategy_returns_observed": false,
+  "trial_performance_observed": false,
+  "economic_selection_influenced_amendment": false,
+  "frozen_rules": {
+    "same_provider_source_with_different_transport": "allowed after parity certification",
+    "transport_mixing_inside_monthly_partition": "allowed only at daily boundaries with full daily provenance",
+    "transport_selection_from_economic_results": "prohibited",
+    "transport_selection_from_health_and_structural_certification": "allowed",
+    "existing_certified_node_data": "preserved",
+    "native_replacement_of_valid_certified_data": "prohibited unless corruption is proven",
+    "native_repair_of_missing_days": "allowed after parity certification"
+  }
+}

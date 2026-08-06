@@ -1,0 +1,17 @@
+{
+  "artifact_id": "A0R2OP5_STARTING_STATE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "operational_continuation": "A0R2-OP5",
+  "status": "PASS",
+  "expected_starting_sha": "c6f739bf6b0cd3506d2206cd73ebc9adf01306ce",
+  "observed_sha": "c6f739bf6b0cd3506d2206cd73ebc9adf01306ce",
+  "materialization_id": "A0R2_EXACT_TRIAL_CONFIGURATION_MATERIALIZATION_V2",
+  "materialization_v2_sha256": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1",
+  "checkpoint_counts": {
+    "total_partitions": 1080,
+    "certified": 49,
+    "planned": 1000,
+    "retryable": 31,
+    "terminal": 0
+  }
+}
