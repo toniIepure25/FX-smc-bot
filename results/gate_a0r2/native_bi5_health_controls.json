@@ -2,29 +2,33 @@
   "artifact_id": "A0R2_NATIVE_BI5_HEALTH_CONTROLS_V1",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "transport_id": "NATIVE_BI5_TRANSPORT",
-  "status": "PROVIDER_COOLDOWN_REQUIRED",
+  "status": "PASS",
   "controls": [
     {
       "control": "A",
       "pair": "EURUSD",
       "side": "bid",
       "date": "2010-01-04",
-      "status": "FAIL",
-      "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
-      "http_status": null,
-      "content_length": 0,
-      "error_fingerprint": "93c4eccc6c991c57"
+      "status": "PASS",
+      "failure_category": "",
+      "http_status": 200,
+      "content_length": 10975,
+      "row_count": 1440,
+      "raw_sha256": "a0b8e2a41b89cffaaa2e286f956180627277c01168a84e9d1f1203738baeec91",
+      "parsed_row_hash": "c41463036fab0225cf657afc17f41a17e89745274a6e915f22f8e681edd0261d"
     },
     {
       "control": "B",
       "pair": "USDJPY",
       "side": "ask",
       "date": "2010-01-05",
-      "status": "FAIL",
-      "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
-      "http_status": null,
-      "content_length": 0,
-      "error_fingerprint": "287437803801c038"
+      "status": "PASS",
+      "failure_category": "",
+      "http_status": 200,
+      "content_length": 9789,
+      "row_count": 1440,
+      "raw_sha256": "a4bdd5f605d6a1b2caabc569711ab9f8b33188272c5f85dec19602a15fedc2d4",
+      "parsed_row_hash": "5c54c49ff788630a97f33ad7ce34d929076c2225660c4f3ef437910275bbd226"
     }
   ],
   "rolling_calls": 20,
