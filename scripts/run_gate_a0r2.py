@@ -102,6 +102,7 @@ SIDES = ("bid", "ask")
 YEARS = range(2010, 2015)
 MONTHS = range(1, 13)
 MAX_PROVIDER_WORKERS = 2
+NATIVE_HEALTH_HISTORY_LOCK = threading.Lock()
 
 FAMILY_LABELS = {
     "F01_SESSION_OPENING_MOMENTUM_REVERSAL": "session_opening_momentum_reversal",
@@ -2197,10 +2198,21 @@ def native_control_row(
 
 
 def run_native_health_controls(data_root: Path) -> dict[str, Any]:
-    rows = [
-        native_control_row(data_root, "EURUSD", "bid", date(2010, 1, 4), "A"),
-        native_control_row(data_root, "USDJPY", "ask", date(2010, 1, 5), "B"),
-    ]
+    started_at = datetime.now(timezone.utc).isoformat()
+    started_monotonic = time.monotonic()
+    rows = []
+    for pair, side, requested, label in (
+        ("EURUSD", "bid", date(2010, 1, 4), "A"),
+        ("USDJPY", "ask", date(2010, 1, 5), "B"),
+    ):
+        control_started_at = datetime.now(timezone.utc).isoformat()
+        control_started_monotonic = time.monotonic()
+        row = native_control_row(data_root, pair, side, requested, label)
+        row["control_started_at"] = control_started_at
+        row["control_completed_at"] = datetime.now(timezone.utc).isoformat()
+        row["duration_ms"] = round((time.monotonic() - control_started_monotonic) * 1000)
+        rows.append(row)
+    completed_at = datetime.now(timezone.utc).isoformat()
     passed = all(row["status"] == "PASS" for row in rows)
     payload = {
         "artifact_id": "A0R2_NATIVE_BI5_HEALTH_CONTROLS_V1",
@@ -2211,6 +2223,9 @@ def run_native_health_controls(data_root: Path) -> dict[str, Any]:
         "rolling_calls": 20,
         "failure_trigger": 5,
         "partition_attempts_consumed": 0,
+        "health_run_started_at": started_at,
+        "health_run_completed_at": completed_at,
+        "duration_ms": round((time.monotonic() - started_monotonic) * 1000),
     }
     write_json(results_dir() / "native_bi5_health_controls.json", payload)
     append_native_health_history(data_root, payload)
@@ -2223,75 +2238,190 @@ def native_health_history_path(data_root: Path) -> Path:
 
 
 def append_native_health_history(data_root: Path, payload: dict[str, Any]) -> None:
-    timestamp = datetime.now(timezone.utc).isoformat()
     run_id = f"native-{uuid.uuid4().hex}"
     history = native_health_history_path(data_root)
     history.parent.mkdir(parents=True, exist_ok=True)
-    with history.open("a", encoding="utf-8") as handle:
-        for row in payload["controls"]:
-            record = {
-                "timestamp": timestamp, "transport": "NATIVE_BI5_TRANSPORT",
-                "record_type": "HEALTH_CONTROL", "health_run_id": run_id,
-                "health_run_started_at": timestamp, "health_run_completed_at": timestamp,
-                "control_id": row["control"], "pair": row["pair"], "side": row["side"],
-                "date": row["date"], "result": row["status"],
-                "http_status": row.get("http_status"),
-                "failure_category": row.get("failure_category", ""),
-                "error_fingerprint": row.get("error_fingerprint", ""),
-                "content_length": row.get("content_length", 0),
-                "row_count": row.get("row_count", 0), "parser_result": row["status"],
-                "runner_sha": git_sha(),
-            }
-            handle.write(json.dumps(record, sort_keys=True) + "\n")
-        handle.write(json.dumps({
-            "record_type": "HEALTH_RUN_SUMMARY", "health_run_id": run_id,
-            "timestamp": timestamp, "transport": "NATIVE_BI5_TRANSPORT",
-            "status": payload["status"], "control_sequence": ["A", "B"],
-            "runner_sha": git_sha(),
-        }, sort_keys=True) + "\n")
-        handle.flush()
-        os.fsync(handle.fileno())
+    started_at = str(payload["health_run_started_at"])
+    completed_at = str(payload["health_run_completed_at"])
+    run_status = "PASS" if payload["status"] == "PASS" else "FAIL"
+    runner_sha = git_sha()
+    records = []
+    for row in payload["controls"]:
+        records.append({
+            "timestamp": row["control_completed_at"],
+            "transport": "NATIVE_BI5_TRANSPORT",
+            "record_type": "HEALTH_CONTROL", "health_run_id": run_id,
+            "health_run_started_at": started_at, "health_run_completed_at": completed_at,
+            "control_started_at": row["control_started_at"],
+            "control_completed_at": row["control_completed_at"],
+            "duration_ms": row["duration_ms"],
+            "control_id": row["control"], "pair": row["pair"], "side": row["side"],
+            "date": row["date"], "result": row["status"],
+            "http_status": row.get("http_status"),
+            "failure_category": row.get("failure_category", ""),
+            "error_fingerprint": row.get("error_fingerprint", ""),
+            "content_length": row.get("content_length", 0),
+            "row_count": row.get("row_count", 0), "parser_result": row["status"],
+            "runner_sha": runner_sha,
+        })
+    records.append({
+        "record_type": "HEALTH_RUN_SUMMARY", "health_run_id": run_id,
+        "timestamp": completed_at, "transport": "NATIVE_BI5_TRANSPORT",
+        "status": run_status, "control_sequence": ["A", "B"],
+        "control_results": {row["control"]: row["status"] for row in payload["controls"]},
+        "duration_ms": payload["duration_ms"], "started_at": started_at,
+        "completed_at": completed_at, "runner_sha": runner_sha,
+    })
+    with NATIVE_HEALTH_HISTORY_LOCK:
+        with history.open("a", encoding="utf-8") as handle:
+            for record in records:
+                handle.write(json.dumps(record, sort_keys=True) + "\n")
+            handle.flush()
+            os.fsync(handle.fileno())
 
 
 def write_provider_health_summary(data_root: Path) -> dict[str, Any]:
     path = native_health_history_path(data_root)
     records = read_jsonl_records(path)
     native = [row for row in records if row.get("transport") == "NATIVE_BI5_TRANSPORT"]
-    runs = [row for row in native if row.get("record_type") == "HEALTH_RUN_SUMMARY"]
     controls = [row for row in native if row.get("record_type") == "HEALTH_CONTROL"]
-    results = ["PASS" if row.get("status") == "PASS" else "FAIL" for row in runs]
+    controls_by_run: dict[str, dict[str, dict[str, Any]]] = {}
+    for row in controls:
+        run_id = row.get("health_run_id")
+        control_id = row.get("control_id")
+        if isinstance(run_id, str) and control_id in {"A", "B"}:
+            controls_by_run.setdefault(run_id, {})[str(control_id)] = row
+    runs = []
+    for row in native:
+        if row.get("record_type") != "HEALTH_RUN_SUMMARY":
+            continue
+        run_id = row.get("health_run_id")
+        grouped = controls_by_run.get(str(run_id), {})
+        if set(grouped) != {"A", "B"}:
+            continue
+        expected = {key: str(grouped[key].get("result")) for key in ("A", "B")}
+        if row.get("control_results") not in (None, expected):
+            continue
+        computed_status = "PASS" if all(v == "PASS" for v in expected.values()) else "FAIL"
+        if str(row.get("status")) != computed_status:
+            continue
+        runs.append({**row, "control_results": expected})
+    results = [str(row["status"]) for row in runs]
+    def trailing(value: str) -> int:
+        count = 0
+        for result in reversed(results):
+            if result != value:
+                break
+            count += 1
+        return count
     categories = Counter(
         str(row.get("failure_category", ""))
         for row in controls if row.get("failure_category")
     )
-    last_pass = next(
-        (row["timestamp"] for row in reversed(runs) if row.get("status") == "PASS"), None
-    )
-    last_fail = next(
-        (row["timestamp"] for row in reversed(runs) if row.get("status") != "PASS"), None
-    )
+    last_pass = next((row.get("completed_at", row.get("timestamp")) for row in reversed(runs)
+                      if row.get("status") == "PASS"), None)
+    last_fail = next((row.get("completed_at", row.get("timestamp")) for row in reversed(runs)
+                      if row.get("status") == "FAIL"), None)
+    latest = runs[-1] if runs else None
+    latest_status = str(latest["status"]) if latest else None
     summary = {
         "artifact_id": "A0R2_PROVIDER_HEALTH_SUMMARY_V1",
         "gate_id": GATE_ID,
         "transport": "NATIVE_BI5_TRANSPORT",
-        "latest_run_id": runs[-1].get("health_run_id") if runs else None,
-        "latest_status": (
-            "PASS" if results[-2:] == ["PASS", "PASS"] else "PROVIDER_COOLDOWN_REQUIRED"
-        ),
-        "latest_control_results": results[-1:] if runs else [],
+        "status": ("PASS" if latest_status == "PASS" else
+                   "PROVIDER_COOLDOWN_REQUIRED" if latest_status == "FAIL" else
+                   "NO_HEALTH_EVIDENCE"),
+        "latest_run_id": latest.get("health_run_id") if latest else None,
+        "latest_status": latest_status,
+        "latest_control_results": latest["control_results"] if latest else {},
         "last_full_pass_timestamp": last_pass,
         "last_full_fail_timestamp": last_fail,
         "full_pass_run_count": results.count("PASS"),
         "full_fail_run_count": results.count("FAIL"),
+        "complete_health_run_count": len(runs),
+        "consecutive_passing_runs": trailing("PASS"),
+        "consecutive_failing_runs": trailing("FAIL"),
         "control_pass_count": sum(
             row.get("result") == "PASS" for row in controls
         ),
         "control_fail_count": sum(row.get("result") == "FAIL" for row in controls),
-        "legacy_ungrouped_control_count": sum("health_run_id" not in row for row in native),
+        "legacy_ungrouped_control_count": sum(
+            row.get("record_type") != "HEALTH_RUN_SUMMARY" and not row.get("health_run_id")
+            for row in native
+        ),
         "failure_category_distribution": dict(categories),
     }
     write_json(results_dir() / "provider_health_summary.json", summary)
     return summary
+
+
+def native_health_watch_state_path(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "native_health_watch_state.json"
+
+
+def run_native_health_watch(
+    data_root: Path,
+    *,
+    max_attempts: int,
+    interval_seconds: int,
+    required_consecutive_passes: int,
+) -> dict[str, Any]:
+    """Run a finite, restartable health probe without touching partition state."""
+    if max_attempts < 1 or interval_seconds < 0 or required_consecutive_passes < 1:
+        raise ValueError("A0R2_NATIVE_HEALTH_WATCH_ARGUMENT_INVALID")
+    state_path = native_health_watch_state_path(data_root)
+    state: dict[str, Any] = read_json(state_path) if state_path.exists() else {
+        "artifact_id": "A0R2_NATIVE_HEALTH_WATCH_STATE_V1",
+        "gate_id": GATE_ID,
+        "attempts_completed": 0,
+        "consecutive_passing_runs": 0,
+        "history": [],
+    }
+    attempts_this_watch = 0
+    while attempts_this_watch < max_attempts:
+        attempts_this_watch += 1
+        run_native_health_controls(data_root)
+        summary = write_provider_health_summary(data_root)
+        passed = summary.get("latest_status") == "PASS"
+        state["attempts_completed"] = int(state.get("attempts_completed", 0)) + 1
+        state["consecutive_passing_runs"] = (
+            int(state.get("consecutive_passing_runs", 0)) + 1 if passed else 0
+        )
+        state["history"].append({
+            "attempt": state["attempts_completed"],
+            "status": summary.get("status"),
+            "latest_status": summary.get("latest_status"),
+            "latest_run_id": summary.get("latest_run_id"),
+        })
+        state["required_consecutive_health_passes"] = required_consecutive_passes
+        state["max_attempts_this_watch"] = max_attempts
+        state["interval_seconds"] = interval_seconds
+        state["partition_attempts_consumed"] = 0
+        state["updated_at"] = datetime.now(timezone.utc).isoformat()
+        if state["consecutive_passing_runs"] >= required_consecutive_passes:
+            state["status"] = "NATIVE_HEALTH_READY"
+            write_json(state_path, state)
+            break
+        write_json(state_path, state)
+        if attempts_this_watch < max_attempts and interval_seconds:
+            time.sleep(interval_seconds)
+    else:
+        state["status"] = "NATIVE_HEALTH_WATCH_EXHAUSTED"
+        state["updated_at"] = datetime.now(timezone.utc).isoformat()
+        write_json(state_path, state)
+    artifact = {
+        "artifact_id": "A0R2_NATIVE_HEALTH_WATCH_V1",
+        "gate_id": GATE_ID,
+        "status": state["status"],
+        "attempts_this_watch": attempts_this_watch,
+        "attempts_completed": state["attempts_completed"],
+        "required_consecutive_health_passes": required_consecutive_passes,
+        "consecutive_passing_runs": state["consecutive_passing_runs"],
+        "latest_health_status": state["history"][-1]["latest_status"] if state["history"] else None,
+        "partition_attempts_consumed": 0,
+    }
+    write_json(results_dir() / "native_health_watch.json", artifact)
+    return artifact
 
 
 def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
@@ -4041,6 +4171,7 @@ def parse_args() -> argparse.Namespace:
             "health-controls",
             "native-metadata",
             "native-health-controls",
+            "native-health-watch",
             "provider-health-summary",
             "native-parity",
             "existing-data-reuse",
@@ -4075,6 +4206,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--native-workers", type=int, default=4)
     parser.add_argument("--max-months", type=int, default=None)
     parser.add_argument("--max-day-requests", type=int, default=None)
+    parser.add_argument("--max-health-attempts", type=int, default=30)
+    parser.add_argument("--health-interval-seconds", type=int, default=60)
+    parser.add_argument("--required-consecutive-health-passes", type=int, default=2)
     parser.add_argument("--certify-only", action="store_true")
     parser.add_argument("--execute-trials-only", action="store_true")
     parser.add_argument("--status", action="store_true")
@@ -4094,6 +4228,10 @@ def main() -> int:
         raise ValueError("A0R2_MAX_OPERATIONAL_CYCLES_MUST_BE_POSITIVE")
     if args.max_day_requests is not None and args.max_day_requests < 1:
         raise ValueError("A0R2_MAX_DAY_REQUESTS_MUST_BE_POSITIVE")
+    if args.max_health_attempts < 1 or args.health_interval_seconds < 0:
+        raise ValueError("A0R2_NATIVE_HEALTH_WATCH_ARGUMENT_INVALID")
+    if args.required_consecutive_health_passes < 1:
+        raise ValueError("A0R2_NATIVE_HEALTH_WATCH_ARGUMENT_INVALID")
     stage = (
         "operational-cycle"
         if args.operational_cycle
@@ -4140,6 +4278,13 @@ def main() -> int:
         result = certify_native_metadata()
     elif stage == "native-health-controls":
         result = run_native_health_controls(data_root)
+    elif stage == "native-health-watch":
+        result = run_native_health_watch(
+            data_root,
+            max_attempts=args.max_health_attempts,
+            interval_seconds=args.health_interval_seconds,
+            required_consecutive_passes=args.required_consecutive_health_passes,
+        )
     elif stage == "provider-health-summary":
         result = write_provider_health_summary(data_root)
     elif stage == "native-parity":
