@@ -1,0 +1,13 @@
+{
+  "artifact_id": "A0R2_DUAL_TRANSPORT_PARITY_CERTIFICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "FAIL",
+  "decision": "BLOCKED_BY_A0R2_DUAL_TRANSPORT_PROVENANCE",
+  "parity_units": 0,
+  "required_units": 54,
+  "missing_reference_coverage": [
+    "AUDJPY:bid:need_3_have_0",
+    "AUDJPY:ask:need_3_have_0"
+  ],
+  "failed_units": 0
+}

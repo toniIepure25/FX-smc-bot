@@ -31,6 +31,7 @@ from fx_smc_bot.data.dukascopy_node_provider import (
     PAIR_TO_INSTRUMENT,
     _compute_checksum,
     _download_month_bulk_result,
+    _download_single_day,
     _download_single_day_result,
 )
 from fx_smc_bot.data.failure_categories import (
@@ -239,15 +240,23 @@ def download_day_with_checkpoint(
     last_err = ""
     for attempt in range(max_retries):
         status.attempts += 1
-        call = _download_single_day_result(
-            instrument, date_str, next_str, side,
-            timeframe, batch_size, retries,
-            pause_between_batches_ms=pause_between_batches_ms,
-            scratch_root=scratch_root,
-            cache_root=cache_root,
-            worker_id=worker_id,
-        )
-        data, err = call.rows, call.legacy_error()
+        if scratch_root is None and cache_root is None and worker_id is None:
+            # Preserve the legacy seam used by existing checkpoint consumers.
+            data, err = _download_single_day(
+                instrument, date_str, next_str, side,
+                timeframe, batch_size, retries,
+                pause_between_batches_ms=pause_between_batches_ms,
+            )
+        else:
+            call = _download_single_day_result(
+                instrument, date_str, next_str, side,
+                timeframe, batch_size, retries,
+                pause_between_batches_ms=pause_between_batches_ms,
+                scratch_root=scratch_root,
+                cache_root=cache_root,
+                worker_id=worker_id,
+            )
+            data, err = call.rows, call.legacy_error()
         last_err = err
 
         if not err and data:

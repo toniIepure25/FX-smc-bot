@@ -1,0 +1,12 @@
+{
+  "artifact_id": "A0R2_EXISTING_DATA_REUSE_AUDIT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "existing_daily_units_reused": 1718,
+  "existing_daily_units_invalid": 0,
+  "certified_monthly_sides_preserved": 49,
+  "partial_month_days_preserved": 199,
+  "bytes_reused": 208747128,
+  "provider_requests_avoided": 1718,
+  "daily_provenance_sidecar": "clean_room/manifests/native_bi5/existing_node_daily_provenance.json"
+}

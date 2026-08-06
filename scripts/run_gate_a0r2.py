@@ -33,19 +33,26 @@ from fx_smc_bot.config import Timeframe, TradingPair
 from fx_smc_bot.data.bidask import BidAskBarSeries
 from fx_smc_bot.data.bidask_resampling import resample_bidask
 from fx_smc_bot.data.daily_checkpoint import (
+    DayStatus,
     MonthManifest,
     acquire_month_bulk,
+    compact_month,
+    download_native_day_with_checkpoint,
     find_missing_days,
     load_month_manifest,
     normalize_month_manifest_for_repair,
     repair_missing_days,
+    save_month_manifest,
 )
 from fx_smc_bot.data.dukascopy_bi5 import (
     BI5_INSTRUMENTS,
     dukascopy_candle_url,
     fetch_bi5_day,
+    instrument_metadata,
     parse_bi5_m1_candles,
+    raw_ohlc_checksum,
     rows_checksum,
+    timestamp_checksum,
     validate_m1_rows,
 )
 from fx_smc_bot.data.dukascopy_bi5 import (
@@ -2208,6 +2215,252 @@ def run_native_health_controls(data_root: Path) -> dict[str, Any]:
     return payload
 
 
+def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
+    """Select immutable existing Node daily units deterministically."""
+    selected: list[dict[str, Any]] = []
+    missing: list[str] = []
+    for pair in INSTRUMENTS:
+        for side in SIDES:
+            candidates: list[dict[str, Any]] = []
+            for year in YEARS:
+                for month in MONTHS:
+                    manifest = load_month_manifest(raw_dir(data_root), pair, side, year, month)
+                    if manifest is None:
+                        continue
+                    for item in sorted(manifest.days, key=lambda day: day.day):
+                        path = (
+                            raw_dir(data_root) / pair / f"price={side}" / f"year={year}"
+                            / f"month={month:02d}" / f"day={item.day:02d}" / "data.json"
+                        )
+                        if item.status == "complete" and item.rows > 0 and path.exists():
+                            candidates.append({
+                                "pair": pair, "side": side, "year": year,
+                                "month": month, "day": item.day, "path": path,
+                            })
+            if len(candidates) < 3:
+                missing.append(f"{pair}:{side}:need_3_have_{len(candidates)}")
+                continue
+            selected.extend(candidates[:3])
+    return selected, missing
+
+
+def _node_row_hashes(rows: list[dict[str, Any]], pair: str) -> dict[str, Any]:
+    scale = instrument_metadata(pair).integer_scale
+    integer_rows = [
+        [
+            int(row["timestamp"]),
+            int(round(float(row["open"]) * scale)),
+            int(round(float(row["high"]) * scale)),
+            int(round(float(row["low"]) * scale)),
+            int(round(float(row["close"]) * scale)),
+        ]
+        for row in rows
+    ]
+    volumes = [float(row.get("volume", 0.0)) for row in rows]
+    return {
+        "row_count": len(rows),
+        "timestamp_set_sha256": sha256_json([row[0] for row in integer_rows]),
+        "integer_ohlc_sha256": sha256_json(integer_rows),
+        "normalized_ohlc_sha256": sha256_json(integer_rows),
+        "volume_sha256": sha256_json(volumes),
+        "duplicate_count": len({row[0] for row in integer_rows}) != len(integer_rows),
+        "flat_row_count": sum(value == 0.0 for value in volumes),
+    }
+
+
+def run_native_parity_certification(data_root: Path) -> dict[str, Any]:
+    """Certify native BI5 solely against immutable Node checkpoints."""
+    references, missing = _node_reference_units(data_root)
+    panel: list[dict[str, Any]] = []
+    if not missing:
+        for unit in references:
+            requested = date(unit["year"], unit["month"], unit["day"])
+            native_path = (
+                native_scratch_dir(data_root) / "parity" / unit["pair"]
+                / f"price={unit['side']}" / requested.isoformat() / "candles.bi5"
+            )
+            fetched = fetch_bi5_day(
+                dukascopy_candle_url(unit["pair"], requested, unit["side"]),
+                native_path, retries=2,
+            )
+            reference_rows = read_json(unit["path"])
+            reference = _node_row_hashes(reference_rows, unit["pair"])
+            row: dict[str, Any] = {
+                "pair": unit["pair"], "side": unit["side"],
+                "date": requested.isoformat(), "reference_transport": "DUKASCOPY_NODE_1_46_4",
+                "native_transport": "DUKASCOPY_NATIVE_BI5_V1", **reference,
+                "native_row_count": 0, "native_timestamp_set_sha256": "",
+                "native_integer_ohlc_sha256": "", "native_normalized_ohlc_sha256": "",
+                "native_volume_sha256": "", "parity": "FAIL",
+            }
+            if fetched.status == "PASS":
+                native_rows = parse_bi5_m1_candles(
+                    native_path.read_bytes(), requested, pair=unit["pair"]
+                )
+                structural = validate_m1_rows(native_rows, requested)
+                native = {
+                    "native_row_count": len(native_rows),
+                    "native_timestamp_set_sha256": timestamp_checksum(native_rows),
+                    "native_integer_ohlc_sha256": raw_ohlc_checksum(native_rows),
+                    "native_normalized_ohlc_sha256": raw_ohlc_checksum(native_rows),
+                    "native_volume_sha256": sha256_json(
+                        [float(item["volume"]) for item in native_rows]
+                    ),
+                    "native_duplicate_count": (
+                        len({item["timestamp"] for item in native_rows}) != len(native_rows)
+                    ),
+                    "native_out_of_range_rows": not structural["timestamps_in_requested_day"],
+                    "native_flat_row_count": sum(
+                        float(item["volume"]) == 0.0 for item in native_rows
+                    ),
+                }
+                row.update(native)
+                row["parity"] = "PASS" if (
+                    reference["row_count"] == native["native_row_count"]
+                    and reference["timestamp_set_sha256"] == native["native_timestamp_set_sha256"]
+                    and reference["integer_ohlc_sha256"] == native["native_integer_ohlc_sha256"]
+                    and reference["volume_sha256"] == native["native_volume_sha256"]
+                    and not native["native_out_of_range_rows"]
+                ) else "FAIL"
+            panel.append(row)
+    passed = len(panel) == 54 and not missing and all(row["parity"] == "PASS" for row in panel)
+    decision = (
+        "NATIVE_BI5_CERTIFIED_AS_PRIMARY_TRANSPORT"
+        if passed
+        else "BLOCKED_BY_A0R2_DUAL_TRANSPORT_PROVENANCE"
+    )
+    panel_payload = {
+        "artifact_id": "A0R2_DUAL_TRANSPORT_PARITY_PANEL_V1",
+        "gate_id": GATE_ID,
+        "required_units": 54,
+        "actual_units": len(panel),
+        "missing_reference_coverage": missing,
+        "rows": panel,
+    }
+    certification = {
+        "artifact_id": "A0R2_DUAL_TRANSPORT_PARITY_CERTIFICATION_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if passed else "FAIL",
+        "decision": decision,
+        "parity_units": len(panel),
+        "required_units": 54,
+        "missing_reference_coverage": missing,
+        "failed_units": sum(row["parity"] != "PASS" for row in panel),
+    }
+    write_json(results_dir() / "dual_transport_parity_panel.json", panel_payload)
+    write_json(results_dir() / "dual_transport_parity_certification.json", certification)
+    return certification
+
+
+def run_existing_data_reuse_audit(data_root: Path) -> dict[str, Any]:
+    """Reconstruct transport-neutral provenance for the declared A0R2 root only."""
+    units: list[dict[str, Any]] = []
+    reused = 0
+    invalid = 0
+    bytes_reused = 0
+    certified_months = 0
+    partial_days = 0
+    for part in partition_queue():
+        manifest = load_month_manifest(
+            raw_dir(data_root), part.pair, part.side, part.year, part.month
+        )
+        if manifest is None:
+            continue
+        if manifest.compacted:
+            certified_months += 1
+        for item in manifest.days:
+            if item.status not in {"complete", "market_closed"}:
+                continue
+            if item.status == "market_closed":
+                units.append({
+                    "pair": part.pair, "side": part.side,
+                    "date": f"{part.year:04d}-{part.month:02d}-{item.day:02d}",
+                    "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+                    "transport_id": "DUKASCOPY_NODE_1_46_4",
+                    "transport_version": "1.46.4",
+                    "certification_status": "CERTIFIED_MARKET_CLOSED",
+                })
+                reused += 1
+                continue
+            path = (
+                raw_dir(data_root) / part.pair / f"price={part.side}" / f"year={part.year}"
+                / f"month={part.month:02d}" / f"day={item.day:02d}" / "data.json"
+            )
+            if not path.exists():
+                invalid += 1
+                continue
+            rows = read_json(path)
+            requested = date(part.year, part.month, item.day)
+            start = int(
+                datetime(
+                    requested.year, requested.month, requested.day, tzinfo=timezone.utc
+                ).timestamp() * 1000
+            )
+            end = start + 86_400_000
+            scale = instrument_metadata(part.pair).integer_scale
+            valid = bool(rows) and all(
+                start <= int(row["timestamp"]) < end
+                and float(row["high"]) >= max(float(row["open"]), float(row["close"]))
+                and float(row["low"]) <= min(float(row["open"]), float(row["close"]))
+                for row in rows
+            )
+            if not valid:
+                invalid += 1
+                continue
+            integer_rows = [
+                [
+                    int(row["timestamp"]),
+                    int(round(float(row["open"]) * scale)),
+                    int(round(float(row["high"]) * scale)),
+                    int(round(float(row["low"]) * scale)),
+                    int(round(float(row["close"]) * scale)),
+                ]
+                for row in rows
+            ]
+            raw_hash = file_sha256(path)
+            units.append({
+                "pair": part.pair, "side": part.side, "date": requested.isoformat(),
+                "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+                "transport_id": "DUKASCOPY_NODE_1_46_4", "transport_version": "1.46.4",
+                "request_identity_hash": sha256_json(
+                    [part.pair, part.side, requested.isoformat(), "M1"]
+                ),
+                "request_url_hash": "NODE_BRIDGE_REQUEST_IDENTITY_ONLY",
+                "raw_sha256": raw_hash, "parsed_rows_sha256": raw_hash,
+                "timestamp_set_sha256": sha256_json([row[0] for row in integer_rows]),
+                "integer_ohlc_sha256": sha256_json(integer_rows),
+                "volume_sha256": sha256_json([float(row.get("volume", 0.0)) for row in rows]),
+                "parser_version": "DUKASCOPY_NODE_1_46_4", "row_count": len(rows),
+                "certification_status": "CERTIFIED_OPEN_MARKET_DATA",
+            })
+            reused += 1
+            bytes_reused += path.stat().st_size
+            if not manifest.compacted:
+                partial_days += 1
+    sidecar = {
+        "artifact_id": "A0R2_DAILY_MARKET_UNIT_PROVENANCE_V1",
+        "gate_id": GATE_ID,
+        "units": units,
+    }
+    write_json(native_manifest_dir(data_root) / "existing_node_daily_provenance.json", sidecar)
+    payload = {
+        "artifact_id": "A0R2_EXISTING_DATA_REUSE_AUDIT_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if invalid == 0 else "INCOMPLETE",
+        "existing_daily_units_reused": reused,
+        "existing_daily_units_invalid": invalid,
+        "certified_monthly_sides_preserved": certified_months,
+        "partial_month_days_preserved": partial_days,
+        "bytes_reused": bytes_reused,
+        "provider_requests_avoided": reused,
+        "daily_provenance_sidecar": (
+            "clean_room/manifests/native_bi5/existing_node_daily_provenance.json"
+        ),
+    }
+    write_json(results_dir() / "existing_data_reuse_audit.json", payload)
+    return payload
+
+
 def run_health_controls(data_root: Path) -> dict[str, Any]:
     """Two independent, non-partition controls gate retry attempt consumption."""
     scratch = provider_controls_dir(data_root)
@@ -2511,6 +2764,90 @@ def last_completed_partition(data_root: Path) -> dict[str, Any] | None:
     return None
 
 
+def transport_artifact_status(name: str) -> str:
+    path = results_dir() / name
+    return str(read_json(path).get("status", "MISSING")) if path.exists() else "MISSING"
+
+
+def select_transport(requested: str) -> tuple[str, str, dict[str, str]]:
+    """Choose a transport from structural certification, never price behavior."""
+    health = {
+        "native": transport_artifact_status("native_bi5_health_controls.json"),
+        "node": transport_artifact_status("provider_health_controls.json"),
+        "parity": transport_artifact_status("dual_transport_parity_certification.json"),
+    }
+    native_ready = health["native"] == "PASS" and health["parity"] == "PASS"
+    node_ready = health["node"] == "PASS"
+    if requested == "native":
+        if not native_ready:
+            raise ValueError("A0R2_NATIVE_TRANSPORT_REQUIRES_HEALTH_AND_PARITY")
+        return "native", "EXPLICIT_NATIVE_CERTIFIED", health
+    if requested == "node":
+        if not node_ready:
+            raise ValueError("A0R2_NODE_TRANSPORT_HEALTH_UNAVAILABLE")
+        return "node", "EXPLICIT_NODE_HEALTHY", health
+    if native_ready:
+        return "native", "AUTO_NATIVE_HEALTH_AND_PARITY", health
+    if node_ready:
+        return "node", "AUTO_NODE_HEALTHY", health
+    raise ValueError("A0R2_NO_CERTIFIED_HEALTHY_TRANSPORT")
+
+
+def _replace_manifest_day(manifest: MonthManifest, replacement: DayStatus) -> None:
+    for index, item in enumerate(manifest.days):
+        if item.day == replacement.day:
+            manifest.days[index] = replacement
+            return
+    manifest.days.append(replacement)
+
+
+def acquire_one_native(
+    data_root: Path,
+    part: Partition,
+    *,
+    max_day_requests: int | None,
+) -> dict[str, Any]:
+    """Acquire only missing native daily units, preserving Node partition attempts."""
+    manifest = load_month_manifest(raw_dir(data_root), part.pair, part.side, part.year, part.month)
+    manifest = manifest or MonthManifest(
+        pair=part.pair, side=part.side, year=part.year, month=part.month
+    )
+    manifest = normalize_month_manifest_for_repair(raw_dir(data_root), manifest)
+    missing = find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month)
+    requested = 0
+    successful = 0
+    failures = 0
+    for day in missing:
+        if max_day_requests is not None and requested >= max_day_requests:
+            break
+        result = download_native_day_with_checkpoint(
+            part.pair, part.side, part.year, part.month, day,
+            raw_dir(data_root), native_raw_dir(data_root),
+        )
+        _replace_manifest_day(manifest, result)
+        requested += 1
+        successful += int(result.status in {"complete", "market_closed"})
+        failures += int(result.status == "failed")
+        save_month_manifest(raw_dir(data_root), manifest)
+        if result.status == "failed":
+            break
+    compact_month(raw_dir(data_root), manifest)
+    save_month_manifest(raw_dir(data_root), manifest)
+    state = "COMPLETE_PENDING_CERTIFICATION" if manifest.compacted else "FAILED_RETRYABLE"
+    return {
+        "ts": datetime.now(timezone.utc).isoformat(), "partition": part.key,
+        "pair": part.pair, "year": part.year, "month": part.month, "side": part.side,
+        "state": state, "rows": manifest.compacted_rows, "checksum": manifest.compacted_checksum,
+        "requested_transport": "native", "selected_transport": "native",
+        "selection_reason": "NATIVE_PARITY_AND_HEALTH_CERTIFIED",
+        "native_daily_requests": requested, "native_daily_successes": successful,
+        "native_daily_failures": failures, "native_transport_attempts": requested,
+        "attempts": (
+            load_state(data_root).get("partitions", {}).get(part.key, {}).get("attempts", 0)
+        ),
+    }
+
+
 def acquire_one(
     data_root: Path,
     part: Partition,
@@ -2655,13 +2992,26 @@ def acquire_one(
 
 def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]:
     recertify_clean_room(data_root)
+    requested_transport = getattr(args, "transport", None)
+    if requested_transport is None:
+        selected_transport = "node"
+        selection_reason = "LEGACY_NODE_COMPATIBILITY"
+        transport_health: dict[str, str] = {}
+    else:
+        selected_transport, selection_reason, transport_health = select_transport(
+            requested_transport
+        )
     lease = read_lease(data_root)
     if lease_is_live(lease):
         raise ValueError("A0R2_ACTIVE_LEASE_PREVENTS_COMPETING_RUNNER")
     if getattr(args, "recover_orphaned_running", False):
         recover_orphaned_running(data_root, explicit=True)
     if args.retry_failed:
-        controls = run_health_controls(data_root)
+        controls = (
+            run_native_health_controls(data_root)
+            if selected_transport == "native"
+            else run_health_controls(data_root)
+        )
         if controls["status"] != "PASS":
             progress = acquisition_summary(data_root)
             progress["status"] = "PROVIDER_COOLDOWN_REQUIRED"
@@ -2687,8 +3037,13 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                 break
             runnable.append(part)
             scheduled_keys.add(part.key)
-    workers = min(max(1, args.max_workers), MAX_PROVIDER_WORKERS)
-    max_in_flight = min(MAX_IN_FLIGHT_FUTURES, workers * 2)
+    workers = (
+        min(max(1, getattr(args, "native_workers", 4)), 6)
+        if selected_transport == "native"
+        else min(max(1, args.max_workers), MAX_PROVIDER_WORKERS)
+    )
+    max_in_flight_limit = 12 if selected_transport == "native" else MAX_IN_FLIGHT_FUTURES
+    max_in_flight = min(max_in_flight_limit, workers * 2)
     adaptive_reductions = 0
     recent_success: deque[bool] = deque(maxlen=CIRCUIT_BREAKER_WINDOW)
     circuit_activations = 0
@@ -2724,7 +3079,14 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                     break
                 while runnable and len(futures) < max_in_flight:
                     part = runnable.popleft()
-                    if getattr(args, "repair_missing_days", False):
+                    if selected_transport == "native":
+                        future = pool.submit(
+                            acquire_one_native,
+                            data_root,
+                            part,
+                            max_day_requests=getattr(args, "max_day_requests", None),
+                        )
+                    elif getattr(args, "repair_missing_days", False):
                         future = pool.submit(
                             acquire_one,
                             data_root,
@@ -2739,6 +3101,10 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                 for future in as_completed(list(futures.keys())):
                     part = futures.pop(future)
                     result = future.result()
+                    result.setdefault("requested_transport", requested_transport or "node")
+                    result.setdefault("selected_transport", selected_transport)
+                    result.setdefault("selection_reason", selection_reason)
+                    result.setdefault("transport_health_at_selection", transport_health)
                     recent_success.append(
                         result.get("state") == "COMPLETE_PENDING_CERTIFICATION"
                         or result.get("failure_category") == "SUCCESSFUL_PARTIAL_MONTH"
@@ -3596,6 +3962,8 @@ def parse_args() -> argparse.Namespace:
             "health-controls",
             "native-metadata",
             "native-health-controls",
+            "native-parity",
+            "existing-data-reuse",
             "provider-diagnostic",
             "engine-coverage",
             "recover-orphaned-running",
@@ -3692,6 +4060,10 @@ def main() -> int:
         result = certify_native_metadata()
     elif stage == "native-health-controls":
         result = run_native_health_controls(data_root)
+    elif stage == "native-parity":
+        result = run_native_parity_certification(data_root)
+    elif stage == "existing-data-reuse":
+        result = run_existing_data_reuse_audit(data_root)
     elif stage == "engine-coverage":
         result = audit_discovery_engine_configuration_coverage()
     elif stage == "recover-orphaned-running":

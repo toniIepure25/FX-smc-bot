@@ -1,0 +1,12 @@
+{
+  "artifact_id": "A0R2_REPOSITORY_TEMP_HYGIENE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PERMISSION_BLOCKED",
+  "scope": "exactly the ten OP5R1 repository-local test-temporary directories",
+  "attempted_removal": true,
+  "take_ownership_attempted": true,
+  "removed_count": 0,
+  "remaining_count": 10,
+  "market_data_paths_touched": false,
+  "note": "The execution identity was denied ownership and removal access; no alternative directory was inspected or modified."
+}
