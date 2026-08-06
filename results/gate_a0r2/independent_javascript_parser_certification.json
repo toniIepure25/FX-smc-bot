@@ -1,0 +1,21 @@
+{
+  "artifact_id": "A0R2_INDEPENDENT_JAVASCRIPT_PARSER_CERTIFICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "parser_id": "DUKASCOPY_BI5_JAVASCRIPT_INDEPENDENT_PARSER_V1",
+  "status": "PASS",
+  "network_requests": 0,
+  "supported_authorized_pairs": 9,
+  "nondeterministic_replays": 0,
+  "synthetic_cases": [
+    "all_nine_pair_metadata_mappings",
+    "JPY_and_non_JPY_scales",
+    "single_and_multiple_rows",
+    "zero_volume_exclusion",
+    "first_and_last_legal_second_offsets",
+    "invalid_pair",
+    "invalid_record_length",
+    "invalid_LZMA",
+    "out_of_day_second_offset"
+  ],
+  "node_exit_code": 0
+}

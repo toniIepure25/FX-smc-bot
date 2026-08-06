@@ -1,0 +1,12 @@
+{
+  "name": "a0r2-dukascopy-bi5-independent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test-parser.mjs"
+  },
+  "dependencies": {
+    "lzma-purejs-requirejs": "1.0.0"
+  }
+}

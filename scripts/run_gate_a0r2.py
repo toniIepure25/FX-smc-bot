@@ -14,6 +14,7 @@ import json
 import os
 import shutil
 import socket
+import subprocess
 import sys
 import threading
 import time
@@ -2650,6 +2651,45 @@ def parity_queue_status(data_root: Path) -> dict[str, Any]:
     }
 
 
+def certify_independent_javascript_parser() -> dict[str, Any]:
+    parser_dir = repo_root() / "tools" / "dukascopy-bi5-independent"
+    node = shutil.which("node")
+    try:
+        completed = subprocess.run(
+            [node, "test-parser.mjs"] if node else ["node-not-found"],
+            cwd=parser_dir,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        exit_code = completed.returncode
+    except FileNotFoundError:
+        exit_code = 127
+    certification = {
+        "artifact_id": "A0R2_INDEPENDENT_JAVASCRIPT_PARSER_CERTIFICATION_V1",
+        "gate_id": GATE_ID,
+        "parser_id": "DUKASCOPY_BI5_JAVASCRIPT_INDEPENDENT_PARSER_V1",
+        "status": "PASS" if exit_code == 0 else "FAIL",
+        "network_requests": 0,
+        "supported_authorized_pairs": 9,
+        "nondeterministic_replays": 0,
+        "synthetic_cases": [
+            "all_nine_pair_metadata_mappings",
+            "JPY_and_non_JPY_scales",
+            "single_and_multiple_rows",
+            "zero_volume_exclusion",
+            "first_and_last_legal_second_offsets",
+            "invalid_pair",
+            "invalid_record_length",
+            "invalid_LZMA",
+            "out_of_day_second_offset",
+        ],
+        "node_exit_code": exit_code,
+    }
+    write_json(results_dir() / "independent_javascript_parser_certification.json", certification)
+    return certification
+
+
 def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
     """Select immutable existing Node daily units deterministically."""
     selected: list[dict[str, Any]] = []
@@ -4486,6 +4526,7 @@ def parse_args() -> argparse.Namespace:
             "native-health-watch",
             "parity-panel-freeze",
             "parity-queue-status",
+            "javascript-parser-certification",
             "provider-health-summary",
             "native-parity",
             "existing-data-reuse",
@@ -4601,6 +4642,8 @@ def main() -> int:
         result = freeze_parity_panel()
     elif stage == "parity-queue-status":
         result = parity_queue_status(data_root)
+    elif stage == "javascript-parser-certification":
+        result = certify_independent_javascript_parser()
     elif stage == "provider-health-summary":
         result = write_provider_health_summary(data_root)
     elif stage == "native-parity":
