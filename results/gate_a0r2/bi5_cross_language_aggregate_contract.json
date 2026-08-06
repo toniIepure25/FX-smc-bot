@@ -1,0 +1,16 @@
+{
+  "artifact_id": "A0R2_BI5_CROSS_LANGUAGE_AGGREGATE_CONTRACT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "contract_id": "A0R2_BI5_CROSS_LANGUAGE_AGGREGATE_CONTRACT_V1",
+  "status": "FROZEN_BEFORE_LIVE_SAME_PAYLOAD_COMPARISON",
+  "raw_sha256": "SHA-256 over original compressed BI5 bytes",
+  "ordered_timestamp_sha256": "SHA-256 over compact UTF-8 JSON array of integer Unix milliseconds",
+  "integer_ohlc_sha256": "SHA-256 over compact UTF-8 JSON rows [timestamp_ms,open_raw,high_raw,low_raw,close_raw]",
+  "volume_bits_sha256": "SHA-256 over concatenated original four-byte big-endian IEEE-754 volume fields for included rows",
+  "included_row": "finite volume that is neither +0.0 nor -0.0",
+  "negative_zero": "excluded and counted separately",
+  "non_finite_volume": "rejected",
+  "second_offset_outside_day": "retained for structural reporting and counted as out_of_range",
+  "non_monotonic_second_offsets": "retained for structural reporting and timestamps_monotonic=false",
+  "invalid_ohlc_raw_integers": "retained for structural reporting and ohlc_invariants_pass=false"
+}

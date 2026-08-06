@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import lzma
+import math
 import os
 import struct
 import time
@@ -103,6 +104,27 @@ class NativeFetchResult:
             "raw_path": self.raw_path,
             "checksum": self.checksum,
         }
+
+
+@dataclass(frozen=True, slots=True)
+class Bi5Aggregate:
+    """Aggregate-only BI5 identity for cross-language transport certification."""
+
+    raw_sha256: str
+    row_count: int
+    ordered_timestamp_sha256: str
+    integer_ohlc_sha256: str
+    volume_bits_sha256: str
+    first_timestamp: int | None
+    last_timestamp: int | None
+    duplicate_count: int
+    out_of_range_count: int
+    zero_volume_excluded_count: int
+    negative_zero_excluded_count: int
+    timestamps_monotonic: bool
+    ohlc_invariants_pass: bool
+    decompression_status: str
+    record_length_status: str
 
 
 def sha256_bytes(payload: bytes) -> str:
@@ -248,6 +270,71 @@ def parse_bi5_m1_candles(
             "close_raw": close_raw,
         })
     return rows
+
+
+def aggregate_bi5_payload(
+    payload: bytes,
+    *,
+    pair: str,
+    requested_date: date,
+) -> Bi5Aggregate:
+    """Hash a BI5 payload directly from its record bytes, without float formatting."""
+    instrument_metadata(pair)
+    decompressed = lzma.decompress(payload, format=lzma.FORMAT_AUTO)
+    if len(decompressed) % RECORD_SIZE_BYTES != 0:
+        raise ValueError("A0R2_BI5_INVALID_RECORD_LENGTH")
+    start_ms = int(datetime(
+        requested_date.year, requested_date.month, requested_date.day, tzinfo=timezone.utc
+    ).timestamp() * 1000)
+    end_ms = start_ms + 86_400_000
+    timestamps: list[int] = []
+    ohlc: list[list[int]] = []
+    volume_bytes: list[bytes] = []
+    zero_excluded = 0
+    negative_zero_excluded = 0
+    out_of_range = 0
+    ohlc_valid = True
+    for offset in range(0, len(decompressed), RECORD_SIZE_BYTES):
+        second, open_raw, close_raw, low_raw, high_raw = struct.unpack(
+            ">iiiii", decompressed[offset: offset + 20]
+        )
+        bits = decompressed[offset + 20: offset + 24]
+        volume = struct.unpack(">f", bits)[0]
+        if not math.isfinite(volume):
+            raise ValueError("A0R2_BI5_NON_FINITE_VOLUME")
+        if volume == 0.0:
+            zero_excluded += 1
+            negative_zero_excluded += int(bits == b"\x80\x00\x00\x00")
+            continue
+        timestamp = start_ms + second * 1000
+        timestamps.append(timestamp)
+        ohlc.append([timestamp, open_raw, high_raw, low_raw, close_raw])
+        volume_bytes.append(bits)
+        out_of_range += int(timestamp < start_ms or timestamp >= end_ms)
+        ohlc_valid = ohlc_valid and (
+            high_raw >= max(open_raw, close_raw) and low_raw <= min(open_raw, close_raw)
+        )
+    return Bi5Aggregate(
+        raw_sha256=sha256_bytes(payload),
+        row_count=len(timestamps),
+        ordered_timestamp_sha256=sha256_bytes(
+            json.dumps(timestamps, separators=(",", ":")).encode("utf-8")
+        ),
+        integer_ohlc_sha256=sha256_bytes(
+            json.dumps(ohlc, separators=(",", ":")).encode("utf-8")
+        ),
+        volume_bits_sha256=sha256_bytes(b"".join(volume_bytes)),
+        first_timestamp=timestamps[0] if timestamps else None,
+        last_timestamp=timestamps[-1] if timestamps else None,
+        duplicate_count=len(timestamps) - len(set(timestamps)),
+        out_of_range_count=out_of_range,
+        zero_volume_excluded_count=zero_excluded,
+        negative_zero_excluded_count=negative_zero_excluded,
+        timestamps_monotonic=timestamps == sorted(timestamps),
+        ohlc_invariants_pass=ohlc_valid,
+        decompression_status="PASS",
+        record_length_status="PASS",
+    )
 
 
 def validate_m1_rows(rows: list[dict[str, Any]], day: date) -> dict[str, Any]:
