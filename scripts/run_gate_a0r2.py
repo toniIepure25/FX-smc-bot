@@ -2212,7 +2212,63 @@ def run_native_health_controls(data_root: Path) -> dict[str, Any]:
         "partition_attempts_consumed": 0,
     }
     write_json(results_dir() / "native_bi5_health_controls.json", payload)
+    append_native_health_history(data_root, payload)
+    write_provider_health_summary(data_root)
     return payload
+
+
+def native_health_history_path(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "provider_health_history.jsonl"
+
+
+def append_native_health_history(data_root: Path, payload: dict[str, Any]) -> None:
+    timestamp = datetime.now(timezone.utc).isoformat()
+    history = native_health_history_path(data_root)
+    history.parent.mkdir(parents=True, exist_ok=True)
+    with history.open("a", encoding="utf-8") as handle:
+        for row in payload["controls"]:
+            record = {
+                "timestamp": timestamp, "transport": "NATIVE_BI5_TRANSPORT",
+                "control_id": row["control"], "pair": row["pair"], "side": row["side"],
+                "date": row["date"], "result": row["status"],
+                "http_status": row.get("http_status"),
+                "failure_category": row.get("failure_category", ""),
+                "error_fingerprint": row.get("error_fingerprint", ""),
+                "content_length": row.get("content_length", 0),
+                "row_count": row.get("row_count", 0), "parser_result": row["status"],
+                "runner_sha": git_sha(),
+            }
+            handle.write(json.dumps(record, sort_keys=True) + "\n")
+
+
+def write_provider_health_summary(data_root: Path) -> dict[str, Any]:
+    path = native_health_history_path(data_root)
+    records = read_jsonl_records(path)
+    native = [row for row in records if row.get("transport") == "NATIVE_BI5_TRANSPORT"]
+    results = [row.get("result") for row in native]
+    categories = Counter(
+        str(row.get("failure_category", ""))
+        for row in native if row.get("failure_category")
+    )
+    last_pass = next(
+        (row["timestamp"] for row in reversed(native) if row.get("result") == "PASS"), None
+    )
+    last_fail = next(
+        (row["timestamp"] for row in reversed(native) if row.get("result") == "FAIL"), None
+    )
+    summary = {
+        "artifact_id": "A0R2_PROVIDER_HEALTH_SUMMARY_V1",
+        "gate_id": GATE_ID,
+        "transport": "NATIVE_BI5_TRANSPORT",
+        "latest_status": (
+            "PASS" if results[-2:] == ["PASS", "PASS"] else "PROVIDER_COOLDOWN_REQUIRED"
+        ),
+        "latest_two_control_result": results[-2:], "last_passing_timestamp": last_pass,
+        "last_failing_timestamp": last_fail, "pass_count": results.count("PASS"),
+        "fail_count": results.count("FAIL"), "failure_category_distribution": dict(categories),
+    }
+    write_json(results_dir() / "provider_health_summary.json", summary)
+    return summary
 
 
 def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
@@ -3962,6 +4018,7 @@ def parse_args() -> argparse.Namespace:
             "health-controls",
             "native-metadata",
             "native-health-controls",
+            "provider-health-summary",
             "native-parity",
             "existing-data-reuse",
             "provider-diagnostic",
@@ -4060,6 +4117,8 @@ def main() -> int:
         result = certify_native_metadata()
     elif stage == "native-health-controls":
         result = run_native_health_controls(data_root)
+    elif stage == "provider-health-summary":
+        result = write_provider_health_summary(data_root)
     elif stage == "native-parity":
         result = run_native_parity_certification(data_root)
     elif stage == "existing-data-reuse":
