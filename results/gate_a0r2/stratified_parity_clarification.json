@@ -1,0 +1,9 @@
+{
+  "artifact_id": "A0R2_STRATIFIED_TRANSPORT_PARITY_CLARIFICATION_V1",
+  "amendment_id": "A0R2_PRE_OUTCOME_STRATIFIED_TRANSPORT_PARITY_CLARIFICATION_V1",
+  "status": "FROZEN_BEFORE_EMPIRICAL_OUTCOMES",
+  "strategy_returns_observed": false,
+  "trial_performance_observed": false,
+  "reason": "ALL_OR_NOTHING_REFERENCE_SELECTION_PREVENTED_AVAILABLE_PARITY_EVIDENCE",
+  "certifications": ["existing Node-reference parity", "independent same-payload parser parity", "source-transport integrity"]
+}
