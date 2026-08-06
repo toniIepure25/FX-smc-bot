@@ -1,0 +1,456 @@
+{
+  "artifact_id": "A0R2_IMMUTABLE_NODE_REFERENCE_PANEL_FREEZE_V2",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "panel_id": "A0R2_IMMUTABLE_NODE_REFERENCE_PANEL_V2",
+  "status": "FROZEN_BEFORE_NEW_REFERENCE_PARITY_REQUESTS",
+  "selection_algorithm": [
+    "earliest valid certified open-market daily unit",
+    "middle valid certified open-market daily unit by chronological index",
+    "latest valid certified open-market daily unit",
+    "availability and chronological order only"
+  ],
+  "ordered_reference_unit_ids": [
+    "EURUSD:bid:2010-01-17:earliest",
+    "EURUSD:bid:2010-04-08:middle",
+    "EURUSD:bid:2010-05-31:latest",
+    "EURUSD:ask:2010-01-17:earliest",
+    "EURUSD:ask:2010-04-18:middle",
+    "EURUSD:ask:2010-05-31:latest",
+    "GBPUSD:bid:2010-01-01:earliest",
+    "GBPUSD:bid:2010-04-06:middle",
+    "GBPUSD:bid:2010-05-31:latest",
+    "GBPUSD:ask:2010-01-01:earliest",
+    "GBPUSD:ask:2010-03-28:middle",
+    "GBPUSD:ask:2010-05-31:latest",
+    "AUDUSD:bid:2010-01-10:earliest",
+    "AUDUSD:bid:2010-03-16:middle",
+    "AUDUSD:bid:2010-05-31:latest",
+    "AUDUSD:ask:2010-01-07:earliest",
+    "AUDUSD:ask:2010-03-21:middle",
+    "AUDUSD:ask:2010-05-31:latest",
+    "USDJPY:bid:2010-01-17:earliest",
+    "USDJPY:bid:2010-03-16:middle",
+    "USDJPY:bid:2010-05-31:latest",
+    "USDJPY:ask:2010-01-10:earliest",
+    "USDJPY:ask:2010-03-26:middle",
+    "USDJPY:ask:2010-05-31:latest",
+    "USDCAD:bid:2010-01-01:earliest",
+    "USDCAD:bid:2010-03-24:middle",
+    "USDCAD:bid:2010-04-30:latest",
+    "USDCAD:ask:2010-01-01:earliest",
+    "USDCAD:ask:2010-03-11:middle",
+    "USDCAD:ask:2010-04-30:latest",
+    "USDCHF:bid:2010-01-01:earliest",
+    "USDCHF:bid:2010-03-10:middle",
+    "USDCHF:bid:2010-04-30:latest",
+    "USDCHF:ask:2010-01-26:earliest",
+    "USDCHF:ask:2010-03-15:middle",
+    "USDCHF:ask:2010-04-30:latest",
+    "EURJPY:bid:2010-01-01:earliest",
+    "EURJPY:bid:2010-03-02:middle",
+    "EURJPY:bid:2010-04-30:latest",
+    "EURJPY:ask:2010-01-01:earliest",
+    "EURJPY:ask:2010-02-15:middle",
+    "EURJPY:ask:2010-04-30:latest",
+    "GBPJPY:bid:2010-01-01:earliest",
+    "GBPJPY:bid:2010-02-15:middle",
+    "GBPJPY:bid:2010-04-30:latest",
+    "GBPJPY:ask:2010-01-01:earliest",
+    "GBPJPY:ask:2010-03-02:middle",
+    "GBPJPY:ask:2010-04-30:latest"
+  ],
+  "units": [
+    {
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-01-17",
+      "source_daily_sha256": "4435eac862e3e4f6b4a9ffa3dc44d747f9c516e3c7c9540da19e2b1c67b73fb4",
+      "selection_role": "earliest",
+      "reference_unit_id": "EURUSD:bid:2010-01-17:earliest"
+    },
+    {
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-04-08",
+      "source_daily_sha256": "c5915c39a45d3ce097597661ea84aaeb0482176634e9495410951d517837c913",
+      "selection_role": "middle",
+      "reference_unit_id": "EURUSD:bid:2010-04-08:middle"
+    },
+    {
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-05-31",
+      "source_daily_sha256": "967fc5a10af4ca95f9c2768039fae524ddb4fd1e854c949aa3a6dcb0040808cf",
+      "selection_role": "latest",
+      "reference_unit_id": "EURUSD:bid:2010-05-31:latest"
+    },
+    {
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-01-17",
+      "source_daily_sha256": "5ca331ab9120389ebb6fc953379a1da12dcf2ed2c7975712a838617b5001a088",
+      "selection_role": "earliest",
+      "reference_unit_id": "EURUSD:ask:2010-01-17:earliest"
+    },
+    {
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-04-18",
+      "source_daily_sha256": "49f021f1901a26442d25e6c122a1ecbe9d617cc59ae4a88567ecd07132f2dddc",
+      "selection_role": "middle",
+      "reference_unit_id": "EURUSD:ask:2010-04-18:middle"
+    },
+    {
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-05-31",
+      "source_daily_sha256": "4a304db0772c3956c1f0cb663370adce64f0e7a243f2e2b009fc816a49397535",
+      "selection_role": "latest",
+      "reference_unit_id": "EURUSD:ask:2010-05-31:latest"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-01-01",
+      "source_daily_sha256": "d6f08328679c5c382c4aef4a3a8bcb21244d90f634581041faf751c3c0a5af65",
+      "selection_role": "earliest",
+      "reference_unit_id": "GBPUSD:bid:2010-01-01:earliest"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-04-06",
+      "source_daily_sha256": "d507e61460df574c66735f709ec7178ce5b0b1b67ef56ff3f69182391d84777c",
+      "selection_role": "middle",
+      "reference_unit_id": "GBPUSD:bid:2010-04-06:middle"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-05-31",
+      "source_daily_sha256": "1ec5248062df626f40412591abb74260a7d9b0c5dff40d51a3fcc2eec6b0c3fc",
+      "selection_role": "latest",
+      "reference_unit_id": "GBPUSD:bid:2010-05-31:latest"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-01-01",
+      "source_daily_sha256": "96f0e7a3f90e0513ae2754277a2875035dd56610c76bf3b92f5883e4c16f1390",
+      "selection_role": "earliest",
+      "reference_unit_id": "GBPUSD:ask:2010-01-01:earliest"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-03-28",
+      "source_daily_sha256": "d805f39120bac693dbdb9e97a04a66fbb4f7a11898ad52618859b0f1b822e3df",
+      "selection_role": "middle",
+      "reference_unit_id": "GBPUSD:ask:2010-03-28:middle"
+    },
+    {
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-05-31",
+      "source_daily_sha256": "1681c1af7d9a476f892e963a12e353ce7ad8406b24db74d8de833b8ae0b90bd9",
+      "selection_role": "latest",
+      "reference_unit_id": "GBPUSD:ask:2010-05-31:latest"
+    },
+    {
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-01-10",
+      "source_daily_sha256": "05101662b9cb0866dfa4b343bfcd16bb910e874529f3078d47fee111fe1367d4",
+      "selection_role": "earliest",
+      "reference_unit_id": "AUDUSD:bid:2010-01-10:earliest"
+    },
+    {
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-03-16",
+      "source_daily_sha256": "c216a6ca6e35830213fc75b2adcf8a88040413f8656f5b2f59d0cb9d743c09f9",
+      "selection_role": "middle",
+      "reference_unit_id": "AUDUSD:bid:2010-03-16:middle"
+    },
+    {
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-05-31",
+      "source_daily_sha256": "2650de46a15b449f94cdf863de433765699a9407ed5f6d5be5ad9cafe79de203",
+      "selection_role": "latest",
+      "reference_unit_id": "AUDUSD:bid:2010-05-31:latest"
+    },
+    {
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-01-07",
+      "source_daily_sha256": "72d64309cfd7795c58bb953faf81941d862473d39a81c9e36d09352c182d53e5",
+      "selection_role": "earliest",
+      "reference_unit_id": "AUDUSD:ask:2010-01-07:earliest"
+    },
+    {
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-03-21",
+      "source_daily_sha256": "efcd6bb2e0974cd768f320f2ab092685ab597ce418933f4630f08ff16bb9149d",
+      "selection_role": "middle",
+      "reference_unit_id": "AUDUSD:ask:2010-03-21:middle"
+    },
+    {
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-05-31",
+      "source_daily_sha256": "f71d3f2b7a02b98442b58690646ee68e73b4da730e64d26d639cefe9202a6ee6",
+      "selection_role": "latest",
+      "reference_unit_id": "AUDUSD:ask:2010-05-31:latest"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-01-17",
+      "source_daily_sha256": "d76952d0ed5b93129dc8524cc1c113c91e58aac6f3fe5f4dded2d0c4bf94311a",
+      "selection_role": "earliest",
+      "reference_unit_id": "USDJPY:bid:2010-01-17:earliest"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-03-16",
+      "source_daily_sha256": "204ae8f9a1afc07d2bb6a1258ce8aa2da1e6bce2caa88429b017211116286bc5",
+      "selection_role": "middle",
+      "reference_unit_id": "USDJPY:bid:2010-03-16:middle"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-05-31",
+      "source_daily_sha256": "8c1df4546c24a736c9a8b7c9b3f1e07cd44bc5f2db5decacc97d805ee71406b3",
+      "selection_role": "latest",
+      "reference_unit_id": "USDJPY:bid:2010-05-31:latest"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-01-10",
+      "source_daily_sha256": "3462a66f46d73031a38c58e529301e6eb68f7dc73c8e90407d053ebf2f3c430a",
+      "selection_role": "earliest",
+      "reference_unit_id": "USDJPY:ask:2010-01-10:earliest"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-03-26",
+      "source_daily_sha256": "6cfbf052e6eed75494f7c7e2a57a11153cec4b968941c3d252cc87fad0a66f4a",
+      "selection_role": "middle",
+      "reference_unit_id": "USDJPY:ask:2010-03-26:middle"
+    },
+    {
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-05-31",
+      "source_daily_sha256": "4027c90d0c592999b726bfd10efb12ff658372927ee8c8335f65c226b1e51ac3",
+      "selection_role": "latest",
+      "reference_unit_id": "USDJPY:ask:2010-05-31:latest"
+    },
+    {
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-01-01",
+      "source_daily_sha256": "81d416cb5ff83e61bf1874dc8038374cd024d9cafabace65f1c6dffbabc43184",
+      "selection_role": "earliest",
+      "reference_unit_id": "USDCAD:bid:2010-01-01:earliest"
+    },
+    {
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-03-24",
+      "source_daily_sha256": "6b9856242345c790d6d25309fda67ca6f8734d72fc60ed1f49d580b753c7d98a",
+      "selection_role": "middle",
+      "reference_unit_id": "USDCAD:bid:2010-03-24:middle"
+    },
+    {
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-04-30",
+      "source_daily_sha256": "e9915cd2c952074914c7dc4f83c1a76f8a22558a8a3dd6868e29fc3b5626e2db",
+      "selection_role": "latest",
+      "reference_unit_id": "USDCAD:bid:2010-04-30:latest"
+    },
+    {
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-01-01",
+      "source_daily_sha256": "24f198abdba07073031e3c8f3225398ab5f1d98f40e2d5c82108724060587420",
+      "selection_role": "earliest",
+      "reference_unit_id": "USDCAD:ask:2010-01-01:earliest"
+    },
+    {
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-03-11",
+      "source_daily_sha256": "f5b7d0b887fc5cb7890828d03f9f00d77971f6cc88ec9b81d7eef56565cf41d9",
+      "selection_role": "middle",
+      "reference_unit_id": "USDCAD:ask:2010-03-11:middle"
+    },
+    {
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-04-30",
+      "source_daily_sha256": "f3b5c856fc74955a930479372f4fdf728d3af50a6163da65f93d7fec57896474",
+      "selection_role": "latest",
+      "reference_unit_id": "USDCAD:ask:2010-04-30:latest"
+    },
+    {
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-01-01",
+      "source_daily_sha256": "fc1e203be7d17e457991f75ee3f573237632abca24bb33cbb8f7f8c26c3ebefb",
+      "selection_role": "earliest",
+      "reference_unit_id": "USDCHF:bid:2010-01-01:earliest"
+    },
+    {
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-03-10",
+      "source_daily_sha256": "cfafd86521e7230084962da97cc04bf361d61ddda587ef2e5c6a26c64a2daaf4",
+      "selection_role": "middle",
+      "reference_unit_id": "USDCHF:bid:2010-03-10:middle"
+    },
+    {
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-04-30",
+      "source_daily_sha256": "fae8a6950ef7f2b9da229f632b5d7c2ed6980bd8b79ca08e9c0842456934a829",
+      "selection_role": "latest",
+      "reference_unit_id": "USDCHF:bid:2010-04-30:latest"
+    },
+    {
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-01-26",
+      "source_daily_sha256": "86cbda218d4f7de7ba81eadad69b99c5c4c1655e6848434a80d857b383a3ad41",
+      "selection_role": "earliest",
+      "reference_unit_id": "USDCHF:ask:2010-01-26:earliest"
+    },
+    {
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-03-15",
+      "source_daily_sha256": "1add2812bb50635cc2d6f09d6395fd2b7e848bb86e9623a05abce9dcfa0699c0",
+      "selection_role": "middle",
+      "reference_unit_id": "USDCHF:ask:2010-03-15:middle"
+    },
+    {
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-04-30",
+      "source_daily_sha256": "68624763f26e3f2c01312ae96257d2e55458686ee2b0ee5ddd87250f7cbb2683",
+      "selection_role": "latest",
+      "reference_unit_id": "USDCHF:ask:2010-04-30:latest"
+    },
+    {
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-01-01",
+      "source_daily_sha256": "ecf62d4046fc95fa2c972e2b0d82bc60320fe31df2feef9b5b729a568ac7a171",
+      "selection_role": "earliest",
+      "reference_unit_id": "EURJPY:bid:2010-01-01:earliest"
+    },
+    {
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-03-02",
+      "source_daily_sha256": "6332d0d3cc9945402965d9c901079bda1d0a7516eba55c9cc29cfe55e9e53c2f",
+      "selection_role": "middle",
+      "reference_unit_id": "EURJPY:bid:2010-03-02:middle"
+    },
+    {
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-04-30",
+      "source_daily_sha256": "3e4c05d81e2f24ab7c908c132e1897899f591b32c699b9ee32771e6943a77ef9",
+      "selection_role": "latest",
+      "reference_unit_id": "EURJPY:bid:2010-04-30:latest"
+    },
+    {
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-01-01",
+      "source_daily_sha256": "704f0c8a6a0f86fcac1fc945d758813ef0b577bc2778911587a717336df66206",
+      "selection_role": "earliest",
+      "reference_unit_id": "EURJPY:ask:2010-01-01:earliest"
+    },
+    {
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-02-15",
+      "source_daily_sha256": "3ebffebe0783116d1242fc31d0410fb0b5843742e6dd0f6fedf1d8ec2df7d836",
+      "selection_role": "middle",
+      "reference_unit_id": "EURJPY:ask:2010-02-15:middle"
+    },
+    {
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-04-30",
+      "source_daily_sha256": "cec88b6eab693ca685a7bf30971d00b527de1a2be1d15a038dd7bb5cee6af7c0",
+      "selection_role": "latest",
+      "reference_unit_id": "EURJPY:ask:2010-04-30:latest"
+    },
+    {
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-01-01",
+      "source_daily_sha256": "7e0753df1e39f480043738290cde5b39b2938ec4017d666ad5398a09b1d1dee0",
+      "selection_role": "earliest",
+      "reference_unit_id": "GBPJPY:bid:2010-01-01:earliest"
+    },
+    {
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-02-15",
+      "source_daily_sha256": "ee2b4650880a037fca6c5d5f8af0d96a22464ac46b6d169558833e0ef1167b98",
+      "selection_role": "middle",
+      "reference_unit_id": "GBPJPY:bid:2010-02-15:middle"
+    },
+    {
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-04-30",
+      "source_daily_sha256": "9601d9f7d3b24b8275bdbd59eae986aa8229aa4ab668383fa465e233cf33e814",
+      "selection_role": "latest",
+      "reference_unit_id": "GBPJPY:bid:2010-04-30:latest"
+    },
+    {
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-01-01",
+      "source_daily_sha256": "0de5c40a5602b0587b4586b43a897c7d2ef39df60af2e08b68561cb08e228adc",
+      "selection_role": "earliest",
+      "reference_unit_id": "GBPJPY:ask:2010-01-01:earliest"
+    },
+    {
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-03-02",
+      "source_daily_sha256": "f40220e7ce44b55f31376700580461564fed90d9b84927bda0b5d5e13ed7332d",
+      "selection_role": "middle",
+      "reference_unit_id": "GBPJPY:ask:2010-03-02:middle"
+    },
+    {
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-04-30",
+      "source_daily_sha256": "5ac88a1a03b6434044361a9b9f16fb09be8f0796f2fc5968929988fa3680e0c4",
+      "selection_role": "latest",
+      "reference_unit_id": "GBPJPY:ask:2010-04-30:latest"
+    }
+  ],
+  "source_daily_provenance_sha256": "f60ba9a3ace170bd83cf40c0b07ef63bf970c2fdacc56d7da43ee357101bf500",
+  "panel_sha256": "4350703db5f16877c52cc0c155f85c7f3d9f0c551e541bb150a19f9151cd1c51",
+  "software_git_sha": "42fbf430605b8b38c3ddaaa1d3c0251d045e733a",
+  "audjpy_missing_reference": {
+    "bid": "NO_IMMUTABLE_NODE_REFERENCE",
+    "ask": "NO_IMMUTABLE_NODE_REFERENCE"
+  },
+  "missing_reference_coverage": []
+}

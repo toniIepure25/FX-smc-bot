@@ -1,0 +1,12 @@
+{
+  "artifact_id": "A0R2_SAME_PAYLOAD_PANEL_GIT_PROVENANCE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "panel_freeze_commit": "d0e7104",
+  "first_commit_containing_frozen_panel": "d0e7104",
+  "current_panel_file_sha256": "3d979082b4415b1e9d49dc68c3489ff5b45640fa0457335124523bed774f6d39",
+  "ordered_unit_hash": "2dfb7e98bd02cf90d30d37c0c0defed496b0906209b653359ee6f69d863fb8d2",
+  "panel_id": "A0R2_STRATIFIED_PARITY_PANEL_V1",
+  "panel_sha256": "17ed8751b40495d998b5c7eed6fbb4b4e4fba249e332cf8faeae3457a197b6f5",
+  "no_live_parity_payloads_existed_before_panel_freeze": true,
+  "pre_additional_parity_data_is_not_git_commit": true
+}

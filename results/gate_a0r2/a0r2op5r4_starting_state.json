@@ -1,0 +1,7 @@
+{
+  "artifact_id": "A0R2OP5R4_STARTING_STATE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "expected_starting_sha": "42fbf430605b8b38c3ddaaa1d3c0251d045e733a",
+  "observed_sha": "42fbf430605b8b38c3ddaaa1d3c0251d045e733a",
+  "status": "PASS"
+}

@@ -2730,6 +2730,98 @@ def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[s
     return selected, missing
 
 
+def freeze_node_reference_panel_v2(data_root: Path) -> dict[str, Any]:
+    """Freeze 48 immutable Node references by availability alone, before BI5 parity."""
+    selected: list[dict[str, Any]] = []
+    missing: list[str] = []
+    for pair in INSTRUMENTS:
+        for side in SIDES:
+            if pair == "AUDJPY":
+                continue
+            candidates: list[dict[str, Any]] = []
+            for year in YEARS:
+                for month in MONTHS:
+                    manifest = load_month_manifest(raw_dir(data_root), pair, side, year, month)
+                    if manifest is None:
+                        continue
+                    for item in manifest.days:
+                        path = (
+                            raw_dir(data_root)
+                            / pair
+                            / f"price={side}"
+                            / f"year={year}"
+                            / f"month={month:02d}"
+                            / f"day={item.day:02d}"
+                            / "data.json"
+                        )
+                        if item.status == "complete" and item.rows > 0 and path.exists():
+                            candidates.append({
+                                "pair": pair,
+                                "side": side,
+                                "date": date(year, month, item.day).isoformat(),
+                                "source_daily_sha256": file_sha256(path),
+                            })
+            candidates.sort(key=lambda item: str(item["date"]))
+            if len(candidates) < 3:
+                missing.append(f"{pair}:{side}:need_3_have_{len(candidates)}")
+                continue
+            for index, role in ((0, "earliest"), (len(candidates) // 2, "middle"), (-1, "latest")):
+                unit = dict(candidates[index])
+                unit["selection_role"] = role
+                unit["reference_unit_id"] = (
+                    f"{unit['pair']}:{unit['side']}:{unit['date']}:{role}"
+                )
+                selected.append(unit)
+    provenance = [
+        {key: unit[key] for key in ("pair", "side", "date", "source_daily_sha256")}
+        for unit in selected
+    ]
+    panel = {
+        "artifact_id": "A0R2_IMMUTABLE_NODE_REFERENCE_PANEL_FREEZE_V2",
+        "gate_id": GATE_ID,
+        "panel_id": "A0R2_IMMUTABLE_NODE_REFERENCE_PANEL_V2",
+        "status": "FROZEN_BEFORE_NEW_REFERENCE_PARITY_REQUESTS"
+        if len(selected) == 48 and not missing else "INCOMPLETE_EXISTING_REFERENCE_COVERAGE",
+        "selection_algorithm": [
+            "earliest valid certified open-market daily unit",
+            "middle valid certified open-market daily unit by chronological index",
+            "latest valid certified open-market daily unit",
+            "availability and chronological order only",
+        ],
+        "ordered_reference_unit_ids": [unit["reference_unit_id"] for unit in selected],
+        "units": selected,
+        "source_daily_provenance_sha256": sha256_json(provenance),
+        "panel_sha256": sha256_json(selected),
+        "software_git_sha": git_sha(),
+        "audjpy_missing_reference": {
+            "bid": "NO_IMMUTABLE_NODE_REFERENCE",
+            "ask": "NO_IMMUTABLE_NODE_REFERENCE",
+        },
+        "missing_reference_coverage": missing,
+    }
+    write_json(results_dir() / "node_reference_panel_freeze_v2.json", panel)
+    return panel
+
+
+def write_same_payload_panel_provenance() -> dict[str, Any]:
+    panel_path = results_dir() / "stratified_parity_panel_freeze.json"
+    panel = read_json(panel_path)
+    provenance = {
+        "artifact_id": "A0R2_SAME_PAYLOAD_PANEL_GIT_PROVENANCE_V1",
+        "gate_id": GATE_ID,
+        "panel_freeze_commit": "d0e7104",
+        "first_commit_containing_frozen_panel": "d0e7104",
+        "current_panel_file_sha256": file_sha256(panel_path),
+        "ordered_unit_hash": sha256_json(panel["ordered_parity_unit_ids"]),
+        "panel_id": panel["panel_id"],
+        "panel_sha256": panel["panel_sha256"],
+        "no_live_parity_payloads_existed_before_panel_freeze": True,
+        "pre_additional_parity_data_is_not_git_commit": True,
+    }
+    write_json(results_dir() / "parity_panel_git_provenance.json", provenance)
+    return provenance
+
+
 def _node_row_hashes(rows: list[dict[str, Any]], pair: str) -> dict[str, Any]:
     scale = instrument_metadata(pair).integer_scale
     integer_rows = [
@@ -4525,6 +4617,8 @@ def parse_args() -> argparse.Namespace:
             "native-health-controls",
             "native-health-watch",
             "parity-panel-freeze",
+            "parity-panel-provenance",
+            "node-reference-panel-freeze-v2",
             "parity-queue-status",
             "javascript-parser-certification",
             "provider-health-summary",
@@ -4640,6 +4734,10 @@ def main() -> int:
         )
     elif stage == "parity-panel-freeze":
         result = freeze_parity_panel()
+    elif stage == "parity-panel-provenance":
+        result = write_same_payload_panel_provenance()
+    elif stage == "node-reference-panel-freeze-v2":
+        result = freeze_node_reference_panel_v2(data_root)
     elif stage == "parity-queue-status":
         result = parity_queue_status(data_root)
     elif stage == "javascript-parser-certification":
