@@ -1,0 +1,69 @@
+{
+  "artifact_id": "A0R2_PRE_OUTCOME_EXHAUSTED_REQUEST_TRANSPORT_DIAGNOSTIC_AMENDMENT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "FROZEN_BEFORE_DIAGNOSTIC_NETWORK_ACCESS",
+  "purpose": "diagnose four already-terminal frozen parity requests using independent transport clients",
+  "scope": {
+    "request_identity_changed": false,
+    "pair_changed": false,
+    "side_changed": false,
+    "date_changed": false,
+    "source_changed": false,
+    "timeframe_changed": false,
+    "panel_membership_changed": false,
+    "trial_universe_changed": false,
+    "strategy_configuration_changed": false
+  },
+  "terminal_requests": [
+    {
+      "request_id": "aa12132b681fb627",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-03-24",
+      "original_outer_attempts": 5,
+      "original_state": "FAILED_TERMINAL"
+    },
+    {
+      "request_id": "ac2607bebadb2089",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "original_outer_attempts": 5,
+      "original_state": "FAILED_TERMINAL"
+    },
+    {
+      "request_id": "ad76c69617516259",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-04-30",
+      "original_outer_attempts": 5,
+      "original_state": "FAILED_TERMINAL"
+    },
+    {
+      "request_id": "b8696e7d7488e95e",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-04-30",
+      "original_outer_attempts": 5,
+      "original_state": "FAILED_TERMINAL"
+    }
+  ],
+  "pre_outcome_safeguards": {
+    "empirical_strategy_outcomes_observed": false,
+    "dataset_frozen": false,
+    "scientific_trials_executed": 0,
+    "original_parity_attempts_remain_terminal": true,
+    "diagnostic_requests_reset_original_outer_attempts": false,
+    "diagnostic_requests_increment_original_outer_attempts": false,
+    "diagnostic_results_can_choose_replacement_dates": false
+  },
+  "allowed_clients": [
+    "curl.exe",
+    "independent Node built-in fetch/https client",
+    "pinned dukascopy-node 1.46.4 availability diagnostic"
+  ],
+  "disallowed_clients": [
+    "Python urllib for independent raw transport diagnostic"
+  ],
+  "created_at_utc": "2026-08-07T00:00:00+00:00"
+}
