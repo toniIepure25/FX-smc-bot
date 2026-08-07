@@ -1,0 +1,2022 @@
+{
+  "artifact_id": "A0R2_NODE_REFERENCE_PARITY_PANEL_V2",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "INCOMPLETE",
+  "required": 48,
+  "available": 38,
+  "compared": 38,
+  "pass": 38,
+  "fail": 0,
+  "rows": [
+    {
+      "request_id": "d9858691ab664ef2",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-01-07",
+      "node_reference_ids": [
+        "AUDUSD:ask:2010-01-07:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "AUDUSD:ask:2010-01-07:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1391,
+              "ordered_timestamp_sha256": "36f6d90d2da07ee151d7f5e403b2d5b9b43636fda76dc890ddb2aaa9673cacdc",
+              "integer_ohlc_sha256": "837d9b46b53715b9a199afe2556c27b7d76c8177e099f2aa4896d12ac6169a1c",
+              "volume_bits_sha256": "7b34edbd9a58b08cb2f2ee4d766c2c7881c3af0f2e5eea7d8db4a433578ed19c",
+              "first_timestamp": 1262822400000,
+              "last_timestamp": 1262908740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1391,
+              "ordered_timestamp_sha256": "36f6d90d2da07ee151d7f5e403b2d5b9b43636fda76dc890ddb2aaa9673cacdc",
+              "integer_ohlc_sha256": "837d9b46b53715b9a199afe2556c27b7d76c8177e099f2aa4896d12ac6169a1c",
+              "first_timestamp": 1262822400000,
+              "last_timestamp": 1262908740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "7b34edbd9a58b08cb2f2ee4d766c2c7881c3af0f2e5eea7d8db4a433578ed19c"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "29747c9c7e9a96db",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-03-21",
+      "node_reference_ids": [
+        "AUDUSD:ask:2010-03-21:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "AUDUSD:ask:2010-03-21:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 113,
+              "ordered_timestamp_sha256": "2ff274a367254cfb5e26bf26724c3113cd9a0eb56e1949c9da903ebda4718058",
+              "integer_ohlc_sha256": "51b6073911ddab77305fb0ec93f4f7a9d938c5fd01f731b122b220583485a041",
+              "volume_bits_sha256": "3c065ba0f1fe3c74b636c593708f4db6a1832aa61ff2853348ec20f5d0106a25",
+              "first_timestamp": 1269208800000,
+              "last_timestamp": 1269215940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 113,
+              "ordered_timestamp_sha256": "2ff274a367254cfb5e26bf26724c3113cd9a0eb56e1949c9da903ebda4718058",
+              "integer_ohlc_sha256": "51b6073911ddab77305fb0ec93f4f7a9d938c5fd01f731b122b220583485a041",
+              "first_timestamp": 1269208800000,
+              "last_timestamp": 1269215940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "3c065ba0f1fe3c74b636c593708f4db6a1832aa61ff2853348ec20f5d0106a25"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "5fd9c9a108a42e5d",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "AUDUSD:ask:2010-05-31:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "AUDUSD:ask:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1403,
+              "ordered_timestamp_sha256": "2ea74547b58022bb2d922a8ea4577408c3348290a29a59c0d1453ee7fec847c8",
+              "integer_ohlc_sha256": "dbc310c08a51800cf37f722c9598c655afc7d3288538ce4e3adc90b1bdbd6a6a",
+              "volume_bits_sha256": "53f279f27696b3b8515a1a2b9a2fb541bc2b03e37ff68310374c453a5fcf51b1",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1403,
+              "ordered_timestamp_sha256": "2ea74547b58022bb2d922a8ea4577408c3348290a29a59c0d1453ee7fec847c8",
+              "integer_ohlc_sha256": "dbc310c08a51800cf37f722c9598c655afc7d3288538ce4e3adc90b1bdbd6a6a",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "53f279f27696b3b8515a1a2b9a2fb541bc2b03e37ff68310374c453a5fcf51b1"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "c049531c479d22e2",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-01-10",
+      "node_reference_ids": [
+        "AUDUSD:bid:2010-01-10:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "AUDUSD:bid:2010-01-10:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 114,
+              "ordered_timestamp_sha256": "27b31fd7ce73772874ef7e4d1e0ca8367672ba5202d8132a654f3c8286b918dc",
+              "integer_ohlc_sha256": "c7da1e28d4ab8dc8a174acd7a2f11ae83515543a9c1dee60dbd40ca2168229c3",
+              "volume_bits_sha256": "9d68fdcd2931a2c88a9d3cd5fb679c8c3c02f8ef52cbe595a6cedd5119968b32",
+              "first_timestamp": 1263160800000,
+              "last_timestamp": 1263167940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 114,
+              "ordered_timestamp_sha256": "27b31fd7ce73772874ef7e4d1e0ca8367672ba5202d8132a654f3c8286b918dc",
+              "integer_ohlc_sha256": "c7da1e28d4ab8dc8a174acd7a2f11ae83515543a9c1dee60dbd40ca2168229c3",
+              "first_timestamp": 1263160800000,
+              "last_timestamp": 1263167940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "9d68fdcd2931a2c88a9d3cd5fb679c8c3c02f8ef52cbe595a6cedd5119968b32"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "a2fd14f4781c0531",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-03-16",
+      "node_reference_ids": [
+        "AUDUSD:bid:2010-03-16:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "AUDUSD:bid:2010-03-16:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1345,
+              "ordered_timestamp_sha256": "4be3595eb24bd28f187df1e0dffd123257bbd895e748247d18857d084cd0c6d4",
+              "integer_ohlc_sha256": "e53462191e189cb561b9d3d8c1ce2408b599fe2d8f807dbfcd81f20252331215",
+              "volume_bits_sha256": "edadffae07b4054ffe4d8a55b3f8912f7c40820e004f435f067e1446698e9a6f",
+              "first_timestamp": 1268697600000,
+              "last_timestamp": 1268783940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1345,
+              "ordered_timestamp_sha256": "4be3595eb24bd28f187df1e0dffd123257bbd895e748247d18857d084cd0c6d4",
+              "integer_ohlc_sha256": "e53462191e189cb561b9d3d8c1ce2408b599fe2d8f807dbfcd81f20252331215",
+              "first_timestamp": 1268697600000,
+              "last_timestamp": 1268783940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "edadffae07b4054ffe4d8a55b3f8912f7c40820e004f435f067e1446698e9a6f"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "436f0ae239733ac9",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "AUDUSD:bid:2010-05-31:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "AUDUSD:bid:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1403,
+              "ordered_timestamp_sha256": "2ea74547b58022bb2d922a8ea4577408c3348290a29a59c0d1453ee7fec847c8",
+              "integer_ohlc_sha256": "09e78030ab34f31aafbe4c30dee7fc3d42417e7228e324fa09ff955128d0a2a7",
+              "volume_bits_sha256": "b759b74048d9fad383f16ea59357e62a5dee21fbb4cf6d55bc7803f6a1a458b4",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1403,
+              "ordered_timestamp_sha256": "2ea74547b58022bb2d922a8ea4577408c3348290a29a59c0d1453ee7fec847c8",
+              "integer_ohlc_sha256": "09e78030ab34f31aafbe4c30dee7fc3d42417e7228e324fa09ff955128d0a2a7",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "b759b74048d9fad383f16ea59357e62a5dee21fbb4cf6d55bc7803f6a1a458b4"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "d2b0b9d81f769032",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "EURJPY:ask:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURJPY:ask:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "bbd68f763b24e3b4ee2c92dfcc3f412575309e1e97b6c7086b1fb5a01f776f71",
+              "volume_bits_sha256": "acc7565f45c1e517afb7c166db7e73f839f119334b792d0d16d385aaf4689773",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "bbd68f763b24e3b4ee2c92dfcc3f412575309e1e97b6c7086b1fb5a01f776f71",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "acc7565f45c1e517afb7c166db7e73f839f119334b792d0d16d385aaf4689773"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "12e459c5300dab18",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-02-15",
+      "node_reference_ids": [
+        "EURJPY:ask:2010-02-15:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURJPY:ask:2010-02-15:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "3592ac152d35284a58ac7c741eceebd01273c78bd58c7ec17169f24a0768e920",
+              "integer_ohlc_sha256": "6d7edaaa20ff6c6fdc44c449b36db75768fd51824a16cb4a1e51173cf4ce0041",
+              "volume_bits_sha256": "fa9cef09c6d06a507becdfee301db33aaa4891695145fd22bbb398f6a9b2fb47",
+              "first_timestamp": 1266192000000,
+              "last_timestamp": 1266278340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "3592ac152d35284a58ac7c741eceebd01273c78bd58c7ec17169f24a0768e920",
+              "integer_ohlc_sha256": "6d7edaaa20ff6c6fdc44c449b36db75768fd51824a16cb4a1e51173cf4ce0041",
+              "first_timestamp": 1266192000000,
+              "last_timestamp": 1266278340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "fa9cef09c6d06a507becdfee301db33aaa4891695145fd22bbb398f6a9b2fb47"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "f3656b5d22c46312",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "EURJPY:ask:2010-04-30:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURJPY:ask:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "4b4a0670973cb0fe2c388daf3bdb88083eee89a17aed1cf551b05682739bb2ab",
+              "volume_bits_sha256": "86eaf1829462aa5724849f0b0557fc029d9ddee36cb2f9302bd6724c5aa4f34a",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "4b4a0670973cb0fe2c388daf3bdb88083eee89a17aed1cf551b05682739bb2ab",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "86eaf1829462aa5724849f0b0557fc029d9ddee36cb2f9302bd6724c5aa4f34a"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "42c203f51946771a",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "EURJPY:bid:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURJPY:bid:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "d9b77b08fc608b9db1f0b23623af5fa1631faaf9bea40d147e19ce61c3be53dd",
+              "volume_bits_sha256": "ee0281e830ccd1ae73e92c5033268920c81dd4b47a7460870c73cbef6b546103",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "d9b77b08fc608b9db1f0b23623af5fa1631faaf9bea40d147e19ce61c3be53dd",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "ee0281e830ccd1ae73e92c5033268920c81dd4b47a7460870c73cbef6b546103"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "dce1202ff206a3a0",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-03-02",
+      "node_reference_ids": [
+        "EURJPY:bid:2010-03-02:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURJPY:bid:2010-03-02:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "f2323e0d9e6131db0f2e8e30da9213bd24a73c0e7c96f80f4887258852da9a65",
+              "integer_ohlc_sha256": "886d4ec1979fdb63302128cd005193d1c37273950b0c1753eae26b6775b1df6d",
+              "volume_bits_sha256": "dfeb734fbbbe1ae0667af4aa756339dbf697e0e392db392ee239c5389554cb47",
+              "first_timestamp": 1267488000000,
+              "last_timestamp": 1267574340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "f2323e0d9e6131db0f2e8e30da9213bd24a73c0e7c96f80f4887258852da9a65",
+              "integer_ohlc_sha256": "886d4ec1979fdb63302128cd005193d1c37273950b0c1753eae26b6775b1df6d",
+              "first_timestamp": 1267488000000,
+              "last_timestamp": 1267574340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "dfeb734fbbbe1ae0667af4aa756339dbf697e0e392db392ee239c5389554cb47"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "b3d318cc27c1a9a1",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "EURJPY:bid:2010-04-30:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURJPY:bid:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "6d3185542f65d02eaad14b2825a616845c7183ef9fe703969681998565c9b56c",
+              "volume_bits_sha256": "da0fe464a518e7d9cc11b44d94b9c87b12ff6a330b7e9500b95e6bc1901b1fe6",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "6d3185542f65d02eaad14b2825a616845c7183ef9fe703969681998565c9b56c",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "da0fe464a518e7d9cc11b44d94b9c87b12ff6a330b7e9500b95e6bc1901b1fe6"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "bbd9b5741c92bb28",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-01-17",
+      "node_reference_ids": [
+        "EURUSD:ask:2010-01-17:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURUSD:ask:2010-01-17:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "e98f3a95ef6c402110b9c9f54d04facaebe48d5e8c65f930820121b7cf6e48ca",
+              "integer_ohlc_sha256": "7b8f7b58aa27224cdf35615225d8514d2db66307d2227e6888d7edbd88091f4a",
+              "volume_bits_sha256": "144ab96e18e6a31a0ac7ebf95daa547aae39d0604dedddcaaaa0043470ef85b4",
+              "first_timestamp": 1263765600000,
+              "last_timestamp": 1263772740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "e98f3a95ef6c402110b9c9f54d04facaebe48d5e8c65f930820121b7cf6e48ca",
+              "integer_ohlc_sha256": "7b8f7b58aa27224cdf35615225d8514d2db66307d2227e6888d7edbd88091f4a",
+              "first_timestamp": 1263765600000,
+              "last_timestamp": 1263772740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "144ab96e18e6a31a0ac7ebf95daa547aae39d0604dedddcaaaa0043470ef85b4"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "2b7c56ca814cdceb",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-04-18",
+      "node_reference_ids": [
+        "EURUSD:ask:2010-04-18:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURUSD:ask:2010-04-18:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 180,
+              "ordered_timestamp_sha256": "46596ad319c6714637b9857543013464e81820d8dc6b3cdd62ee79737fb63112",
+              "integer_ohlc_sha256": "9de77ca5e3142a518780ce58a4349955ec0f48f6df283a3dde56c14d4f3ecfdc",
+              "volume_bits_sha256": "e61cecb8dae434ab23a65d8eb714be5a5c6c0ae65ce47f7925dad8b11d3982a1",
+              "first_timestamp": 1271624400000,
+              "last_timestamp": 1271635140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 180,
+              "ordered_timestamp_sha256": "46596ad319c6714637b9857543013464e81820d8dc6b3cdd62ee79737fb63112",
+              "integer_ohlc_sha256": "9de77ca5e3142a518780ce58a4349955ec0f48f6df283a3dde56c14d4f3ecfdc",
+              "first_timestamp": 1271624400000,
+              "last_timestamp": 1271635140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "e61cecb8dae434ab23a65d8eb714be5a5c6c0ae65ce47f7925dad8b11d3982a1"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "8b825f6098538354",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "EURUSD:ask:2010-05-31:latest"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "701d3e3241875c85",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-01-17",
+      "node_reference_ids": [
+        "EURUSD:bid:2010-01-17:earliest"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "2a93cad5ea12c84b",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-04-08",
+      "node_reference_ids": [
+        "EURUSD:bid:2010-04-08:middle"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "19fcea470b678844",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "EURUSD:bid:2010-05-31:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURUSD:bid:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "42d98e7a3fe9937c4687ed1ed236a6def49044a91fb932d48cdf173dcb387694",
+              "volume_bits_sha256": "720a7b6fce9c86d953aa5817c0af48f0e8e0a2d77af7b0f28ab3636513809f7e",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "42d98e7a3fe9937c4687ed1ed236a6def49044a91fb932d48cdf173dcb387694",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "720a7b6fce9c86d953aa5817c0af48f0e8e0a2d77af7b0f28ab3636513809f7e"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "eeabd23f114875ac",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "GBPJPY:ask:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPJPY:ask:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "900f0c9f6a7933a4fa172e119ecc2a49274828084e6133d97770c4c462558a24",
+              "volume_bits_sha256": "d4e1e336f9f55d94c4f5135efb8d9fac03172e2e155848f0310ebcbe99dceb44",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "900f0c9f6a7933a4fa172e119ecc2a49274828084e6133d97770c4c462558a24",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "d4e1e336f9f55d94c4f5135efb8d9fac03172e2e155848f0310ebcbe99dceb44"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "e7bd3a5938805141",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-03-02",
+      "node_reference_ids": [
+        "GBPJPY:ask:2010-03-02:middle"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "a4f64ac5e2d989a5",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "GBPJPY:ask:2010-04-30:latest"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "73306d41a071788a",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "GBPJPY:bid:2010-01-01:earliest"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "eb2cf8516ee41eb3",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-02-15",
+      "node_reference_ids": [
+        "GBPJPY:bid:2010-02-15:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPJPY:bid:2010-02-15:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "3592ac152d35284a58ac7c741eceebd01273c78bd58c7ec17169f24a0768e920",
+              "integer_ohlc_sha256": "47248aee4995a8f84e0ae8e78f4ce53332c732e2c8f8731a65b3acaa0c598116",
+              "volume_bits_sha256": "38a303d4da1eae86024f4dc4599edc219b2790c16e2e4c943f145a38d809e996",
+              "first_timestamp": 1266192000000,
+              "last_timestamp": 1266278340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "3592ac152d35284a58ac7c741eceebd01273c78bd58c7ec17169f24a0768e920",
+              "integer_ohlc_sha256": "47248aee4995a8f84e0ae8e78f4ce53332c732e2c8f8731a65b3acaa0c598116",
+              "first_timestamp": 1266192000000,
+              "last_timestamp": 1266278340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "38a303d4da1eae86024f4dc4599edc219b2790c16e2e4c943f145a38d809e996"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "4caf7fa9b4ba7243",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "GBPJPY:bid:2010-04-30:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPJPY:bid:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "8d06b48eb49e2fba791f46bb08ef9691eff918dc9e02b78cc62a39b51ea2ce25",
+              "volume_bits_sha256": "3a48e61d4bd4c0a5292db453c08d762df19f5b210aa6259cd9f8c582c1b53f8d",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "8d06b48eb49e2fba791f46bb08ef9691eff918dc9e02b78cc62a39b51ea2ce25",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "3a48e61d4bd4c0a5292db453c08d762df19f5b210aa6259cd9f8c582c1b53f8d"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "850c120c29fdc963",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "GBPUSD:ask:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPUSD:ask:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1317,
+              "ordered_timestamp_sha256": "0c201ff3bcfc510ee1122607c1f605531d47394a08189a3d50d4cc290bf50fc5",
+              "integer_ohlc_sha256": "62ecd3a7f6dceafd01c393ed1070b50dfae42acc8279954b5240d1fbf9f3b489",
+              "volume_bits_sha256": "57b61051d09780d9801b1230500757433110a4b7e317b16acd44ce86745d585e",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1317,
+              "ordered_timestamp_sha256": "0c201ff3bcfc510ee1122607c1f605531d47394a08189a3d50d4cc290bf50fc5",
+              "integer_ohlc_sha256": "62ecd3a7f6dceafd01c393ed1070b50dfae42acc8279954b5240d1fbf9f3b489",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "57b61051d09780d9801b1230500757433110a4b7e317b16acd44ce86745d585e"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "64a0f6c48de6486f",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-03-28",
+      "node_reference_ids": [
+        "GBPUSD:ask:2010-03-28:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPUSD:ask:2010-03-28:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 180,
+              "ordered_timestamp_sha256": "a54914e3039b0cbfc4f08ac2581ed4f47e2ce8ba83bf7741ec1339ba9c77be31",
+              "integer_ohlc_sha256": "7b05a4734d6c4983bd4fad09406e848105b2db8b73990ce964abfdb69be639de",
+              "volume_bits_sha256": "5c426d178eb68bde07fb1131161a1cc25b0acfd755e8d45216e4d7ec9705dfa1",
+              "first_timestamp": 1269810000000,
+              "last_timestamp": 1269820740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 180,
+              "ordered_timestamp_sha256": "a54914e3039b0cbfc4f08ac2581ed4f47e2ce8ba83bf7741ec1339ba9c77be31",
+              "integer_ohlc_sha256": "7b05a4734d6c4983bd4fad09406e848105b2db8b73990ce964abfdb69be639de",
+              "first_timestamp": 1269810000000,
+              "last_timestamp": 1269820740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "5c426d178eb68bde07fb1131161a1cc25b0acfd755e8d45216e4d7ec9705dfa1"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "c58129eea24dd4e7",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "GBPUSD:ask:2010-05-31:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPUSD:ask:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "e3c6c5fc0af8ff2a7ec869e4a744529e554c0d9b29a2d83143a708ef7cbc4f58",
+              "volume_bits_sha256": "f73cbe207bc984db58f57bd3e481a7ecd33ea566640ef4255422568548cd8e49",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "e3c6c5fc0af8ff2a7ec869e4a744529e554c0d9b29a2d83143a708ef7cbc4f58",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "f73cbe207bc984db58f57bd3e481a7ecd33ea566640ef4255422568548cd8e49"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "6d16d4fb3f400496",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "GBPUSD:bid:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPUSD:bid:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1317,
+              "ordered_timestamp_sha256": "0c201ff3bcfc510ee1122607c1f605531d47394a08189a3d50d4cc290bf50fc5",
+              "integer_ohlc_sha256": "067fda4d5c8739b8afe5e49e6c1784af2fa2e5a46a33adf9afac65bce580b0b0",
+              "volume_bits_sha256": "06eeaead64aa1042b85898739db49e2b66108b1d21a84b2ac8aec67ebc3eeac3",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1317,
+              "ordered_timestamp_sha256": "0c201ff3bcfc510ee1122607c1f605531d47394a08189a3d50d4cc290bf50fc5",
+              "integer_ohlc_sha256": "067fda4d5c8739b8afe5e49e6c1784af2fa2e5a46a33adf9afac65bce580b0b0",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "06eeaead64aa1042b85898739db49e2b66108b1d21a84b2ac8aec67ebc3eeac3"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "a919100242138d31",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-04-06",
+      "node_reference_ids": [
+        "GBPUSD:bid:2010-04-06:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPUSD:bid:2010-04-06:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "18b1abf8bed0239715f7fc419d9b8212d410e6efa2ec588af2d91fa340c84919",
+              "integer_ohlc_sha256": "067fce3856ad871de3c6af72df04ffeff82b102b37b935ee7cb7fd76718dcf9e",
+              "volume_bits_sha256": "14b11076376ab0c7f6e60599a29b6cc6d5f62afbd518085da8104c0ab22b00d9",
+              "first_timestamp": 1270512000000,
+              "last_timestamp": 1270598340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "18b1abf8bed0239715f7fc419d9b8212d410e6efa2ec588af2d91fa340c84919",
+              "integer_ohlc_sha256": "067fce3856ad871de3c6af72df04ffeff82b102b37b935ee7cb7fd76718dcf9e",
+              "first_timestamp": 1270512000000,
+              "last_timestamp": 1270598340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "14b11076376ab0c7f6e60599a29b6cc6d5f62afbd518085da8104c0ab22b00d9"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "81797dff135f641f",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "GBPUSD:bid:2010-05-31:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPUSD:bid:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "fe7ffd00971b7f6f5467d9632bc544cd977c66a5b295577c2b7b1328a400bef9",
+              "volume_bits_sha256": "446a2a8b3a08fd441cc1357a59bf0da282038ca2b92913999a9ddd49692ce59d",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "fe7ffd00971b7f6f5467d9632bc544cd977c66a5b295577c2b7b1328a400bef9",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "446a2a8b3a08fd441cc1357a59bf0da282038ca2b92913999a9ddd49692ce59d"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "0f6fcdf3d5ba6fd7",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "USDCAD:ask:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCAD:ask:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "f6efd69cce7255e4bc1fb15f877ee4f724453dc76910e180f387a52111a3d010",
+              "volume_bits_sha256": "3163c3258783834138ca0cd3cde7e831900496403a60495a2790285651eb2fd9",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "f6efd69cce7255e4bc1fb15f877ee4f724453dc76910e180f387a52111a3d010",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "3163c3258783834138ca0cd3cde7e831900496403a60495a2790285651eb2fd9"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "0e14ae91c5fec3d2",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-03-11",
+      "node_reference_ids": [
+        "USDCAD:ask:2010-03-11:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCAD:ask:2010-03-11:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "b2d05695c7206e93e94848eb49ebf00555ccd205deba071e53dee3d44d363e9a",
+              "integer_ohlc_sha256": "ed1d839fff57ca9b7ec531a0b8982babf6ce7169bfd7723a6f59d4b0cc5879d5",
+              "volume_bits_sha256": "fdbf0fefb7738ba201038d84dd4107a929965aa1721e5e2e7d126ddbdf9af8a9",
+              "first_timestamp": 1268265600000,
+              "last_timestamp": 1268351940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "b2d05695c7206e93e94848eb49ebf00555ccd205deba071e53dee3d44d363e9a",
+              "integer_ohlc_sha256": "ed1d839fff57ca9b7ec531a0b8982babf6ce7169bfd7723a6f59d4b0cc5879d5",
+              "first_timestamp": 1268265600000,
+              "last_timestamp": 1268351940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "fdbf0fefb7738ba201038d84dd4107a929965aa1721e5e2e7d126ddbdf9af8a9"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "b8696e7d7488e95e",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "USDCAD:ask:2010-04-30:latest"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "19c7746097294522",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "USDCAD:bid:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCAD:bid:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "ccd928f3ef45a4c92b8cdaca5cebe04b5389657b41baf43a2636e378586c43e4",
+              "volume_bits_sha256": "9e25bd82dbf8f98976fe88c586812162500960b2f97b0760ec94a8f31848a1c8",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "ccd928f3ef45a4c92b8cdaca5cebe04b5389657b41baf43a2636e378586c43e4",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "9e25bd82dbf8f98976fe88c586812162500960b2f97b0760ec94a8f31848a1c8"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "aa12132b681fb627",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-03-24",
+      "node_reference_ids": [
+        "USDCAD:bid:2010-03-24:middle"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "ad76c69617516259",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "USDCAD:bid:2010-04-30:latest"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "728eb1d62e809e38",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-01-26",
+      "node_reference_ids": [
+        "USDCHF:ask:2010-01-26:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCHF:ask:2010-01-26:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "2fc49ece3d13ab33ad830c82474f7fdc9cbed1307ce4a167fbb6ac1708fd8679",
+              "integer_ohlc_sha256": "820879cff143d7197777f10f378b53a8d8bd44fca70070cf16b05f4106458bfc",
+              "volume_bits_sha256": "dd22f10fd55c5dcd3d604ed4616ba3f9bc453f9f17309caf2cd46e915fcf6d75",
+              "first_timestamp": 1264464000000,
+              "last_timestamp": 1264550340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "2fc49ece3d13ab33ad830c82474f7fdc9cbed1307ce4a167fbb6ac1708fd8679",
+              "integer_ohlc_sha256": "820879cff143d7197777f10f378b53a8d8bd44fca70070cf16b05f4106458bfc",
+              "first_timestamp": 1264464000000,
+              "last_timestamp": 1264550340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "dd22f10fd55c5dcd3d604ed4616ba3f9bc453f9f17309caf2cd46e915fcf6d75"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "980345ec8c02bb7c",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-03-15",
+      "node_reference_ids": [
+        "USDCHF:ask:2010-03-15:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCHF:ask:2010-03-15:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "f3184eb3e9a8bd1b2b4b017d98beefc7fe23c80a898b182aff116aa7f3f470ad",
+              "integer_ohlc_sha256": "50da2920afc965c1ecd2cba407301ceafd7caed985291604373539ce16d768b1",
+              "volume_bits_sha256": "efdca6ec7c4bca27bf69fd3696842512b6aa0641d900cc816dfddf60ff1ea48d",
+              "first_timestamp": 1268611200000,
+              "last_timestamp": 1268697540000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "f3184eb3e9a8bd1b2b4b017d98beefc7fe23c80a898b182aff116aa7f3f470ad",
+              "integer_ohlc_sha256": "50da2920afc965c1ecd2cba407301ceafd7caed985291604373539ce16d768b1",
+              "first_timestamp": 1268611200000,
+              "last_timestamp": 1268697540000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "efdca6ec7c4bca27bf69fd3696842512b6aa0641d900cc816dfddf60ff1ea48d"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "a7f94616215a3f90",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "USDCHF:ask:2010-04-30:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCHF:ask:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "3f61d489c781fa52bb09f7158c14b1aaf3926d4f71e248ccec5f5a3026aa294f",
+              "volume_bits_sha256": "aa4b5b38cbebe25d48e78fa57b16af8f63a8b725821db73e1228aded3ce2a781",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "3f61d489c781fa52bb09f7158c14b1aaf3926d4f71e248ccec5f5a3026aa294f",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "aa4b5b38cbebe25d48e78fa57b16af8f63a8b725821db73e1228aded3ce2a781"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "fc98fc6164279dda",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-01-01",
+      "node_reference_ids": [
+        "USDCHF:bid:2010-01-01:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCHF:bid:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "2a775eb6fee1b57705bd850e514f3a818bc7cf13ef54a62be05439ccd9ed3fdf",
+              "volume_bits_sha256": "5687c7af41d18afd42b5c3a5f0f680c7d114b6488ead06027036d948e1fbb8ee",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "2a775eb6fee1b57705bd850e514f3a818bc7cf13ef54a62be05439ccd9ed3fdf",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "5687c7af41d18afd42b5c3a5f0f680c7d114b6488ead06027036d948e1fbb8ee"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "b24182c550ed3bdd",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-03-10",
+      "node_reference_ids": [
+        "USDCHF:bid:2010-03-10:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCHF:bid:2010-03-10:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "154e6633b77e3bc87ac69d447df47f310c0404060ba92a2d810d0cbcf2ef5e53",
+              "integer_ohlc_sha256": "9f44f440fc8c09930979e688f513f9eff288d7e011c820b14443efec8a7ac84d",
+              "volume_bits_sha256": "4058a73bd42629c1398f24cf28f7f273cc14b9c557481a162c5c50fef168fca1",
+              "first_timestamp": 1268179200000,
+              "last_timestamp": 1268265540000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "154e6633b77e3bc87ac69d447df47f310c0404060ba92a2d810d0cbcf2ef5e53",
+              "integer_ohlc_sha256": "9f44f440fc8c09930979e688f513f9eff288d7e011c820b14443efec8a7ac84d",
+              "first_timestamp": 1268179200000,
+              "last_timestamp": 1268265540000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "4058a73bd42629c1398f24cf28f7f273cc14b9c557481a162c5c50fef168fca1"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "f8ae86f648d0ebeb",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-04-30",
+      "node_reference_ids": [
+        "USDCHF:bid:2010-04-30:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCHF:bid:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "8484df2bdf254d3683c5af562e9e595f278b6ad09ebc9b414bc1c263515c99e0",
+              "volume_bits_sha256": "b56b4e2016b5faa60ed5d33719f7302c407da635882a56553bbb571673b1dbf3",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "8484df2bdf254d3683c5af562e9e595f278b6ad09ebc9b414bc1c263515c99e0",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "b56b4e2016b5faa60ed5d33719f7302c407da635882a56553bbb571673b1dbf3"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "7cb55dc745746180",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-01-10",
+      "node_reference_ids": [
+        "USDJPY:ask:2010-01-10:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDJPY:ask:2010-01-10:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "2867335b6ab03a47083f38254a720096eb99ba4b4815f81d6cde9a759c37a864",
+              "integer_ohlc_sha256": "6f50d1e2f095b53c69dc7f384622111cf9f2c97193be26c86b0897957e6bb16b",
+              "volume_bits_sha256": "9db3bb1b2c06d29dea0be0b853d4ea025db03277927006ecb4bcb03de3ecae41",
+              "first_timestamp": 1263160800000,
+              "last_timestamp": 1263167940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "2867335b6ab03a47083f38254a720096eb99ba4b4815f81d6cde9a759c37a864",
+              "integer_ohlc_sha256": "6f50d1e2f095b53c69dc7f384622111cf9f2c97193be26c86b0897957e6bb16b",
+              "first_timestamp": 1263160800000,
+              "last_timestamp": 1263167940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "9db3bb1b2c06d29dea0be0b853d4ea025db03277927006ecb4bcb03de3ecae41"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "88e20fbd23096bbe",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-03-26",
+      "node_reference_ids": [
+        "USDJPY:ask:2010-03-26:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDJPY:ask:2010-03-26:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "693700995575e147809e476245a34b6bdc0d9219ea680fba214f8fba30851b3b",
+              "integer_ohlc_sha256": "8ca7c484f93365a0de33290d8f1b9213e3102ce805ac08724fb6372a60222614",
+              "volume_bits_sha256": "cd863d5d82c556c428edcc5cbca0753223756172fb20e709a9d24d24d148eac7",
+              "first_timestamp": 1269561600000,
+              "last_timestamp": 1269637140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "693700995575e147809e476245a34b6bdc0d9219ea680fba214f8fba30851b3b",
+              "integer_ohlc_sha256": "8ca7c484f93365a0de33290d8f1b9213e3102ce805ac08724fb6372a60222614",
+              "first_timestamp": 1269561600000,
+              "last_timestamp": 1269637140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "cd863d5d82c556c428edcc5cbca0753223756172fb20e709a9d24d24d148eac7"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "b56e160b1bb4234c",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "USDJPY:ask:2010-05-31:latest"
+      ],
+      "state": "PLANNED",
+      "comparison": null
+    },
+    {
+      "request_id": "1b5ab7f8b513a7e0",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-01-17",
+      "node_reference_ids": [
+        "USDJPY:bid:2010-01-17:earliest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDJPY:bid:2010-01-17:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "e98f3a95ef6c402110b9c9f54d04facaebe48d5e8c65f930820121b7cf6e48ca",
+              "integer_ohlc_sha256": "43309322c4488d53201976ecd7ec3fc8f34064321816f8940e404404a84fa0fd",
+              "volume_bits_sha256": "d0322bd4251070ae434469d24a18e32c984215121c794d44ff08947a53480530",
+              "first_timestamp": 1263765600000,
+              "last_timestamp": 1263772740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "e98f3a95ef6c402110b9c9f54d04facaebe48d5e8c65f930820121b7cf6e48ca",
+              "integer_ohlc_sha256": "43309322c4488d53201976ecd7ec3fc8f34064321816f8940e404404a84fa0fd",
+              "first_timestamp": 1263765600000,
+              "last_timestamp": 1263772740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "d0322bd4251070ae434469d24a18e32c984215121c794d44ff08947a53480530"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "664cab597740c1ec",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-03-16",
+      "node_reference_ids": [
+        "USDJPY:bid:2010-03-16:middle"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDJPY:bid:2010-03-16:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "bb4ac53f402cf4ddc5c0705b731eb7a93df215cea192dd1d69ad4bf9a4e59811",
+              "integer_ohlc_sha256": "7ea76069ec11564973e1d7248f5ac2e40a6e1c35af3443738d55863bba0b24db",
+              "volume_bits_sha256": "99b02a56adaf596eedffbf8599e2052776732ec3d2bb14f455cbd907c875a7be",
+              "first_timestamp": 1268697600000,
+              "last_timestamp": 1268783940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "bb4ac53f402cf4ddc5c0705b731eb7a93df215cea192dd1d69ad4bf9a4e59811",
+              "integer_ohlc_sha256": "7ea76069ec11564973e1d7248f5ac2e40a6e1c35af3443738d55863bba0b24db",
+              "first_timestamp": 1268697600000,
+              "last_timestamp": 1268783940000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "99b02a56adaf596eedffbf8599e2052776732ec3d2bb14f455cbd907c875a7be"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    },
+    {
+      "request_id": "f24737d4230f0c6f",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-05-31",
+      "node_reference_ids": [
+        "USDJPY:bid:2010-05-31:latest"
+      ],
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDJPY:bid:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "8d05d0a528a118bc8ee46daab95c7c7de58d5552ed1c2f3fe841075fe1765a07",
+              "volume_bits_sha256": "2b792cb6f509bedeae42363227e0027a3e047709d6d05c71c0a165ada29be4d1",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "8d05d0a528a118bc8ee46daab95c7c7de58d5552ed1c2f3fe841075fe1765a07",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "2b792cb6f509bedeae42363227e0027a3e047709d6d05c71c0a165ada29be4d1"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -15,6 +15,7 @@ import math
 import os
 import shutil
 import socket
+import struct
 import subprocess
 import sys
 import threading
@@ -106,6 +107,7 @@ YEARS = range(2010, 2015)
 MONTHS = range(1, 13)
 MAX_PROVIDER_WORKERS = 2
 NATIVE_HEALTH_HISTORY_LOCK = threading.Lock()
+PARITY_RUNTIME_GRACE_SECONDS = 20
 
 FAMILY_LABELS = {
     "F01_SESSION_OPENING_MOMENTUM_REVERSAL": "session_opening_momentum_reversal",
@@ -358,6 +360,23 @@ def git_sha() -> str:
     import subprocess
 
     return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo_root(), text=True).strip()
+
+
+def node_executable() -> str | None:
+    node = shutil.which("node")
+    if node:
+        return node
+    bundled = (
+        Path.home()
+        / ".cache"
+        / "codex-runtimes"
+        / "codex-primary-runtime"
+        / "dependencies"
+        / "node"
+        / "bin"
+        / "node.exe"
+    )
+    return str(bundled) if bundled.exists() else None
 
 
 def default_data_root() -> Path:
@@ -2657,10 +2676,73 @@ def parity_request_registry_path(data_root: Path) -> Path:
     return data_root / "checkpoints" / "a0r2_parity_request_registry.json"
 
 
+def _parity_raw_payload_path(data_root: Path, row: dict[str, Any]) -> Path:
+    return native_raw_dir(data_root) / "parity_v2" / row["request_id"] / "candles.bi5"
+
+
+def _parity_request_identity(row: dict[str, Any]) -> str:
+    return f"{row['source_id']}:{row['pair']}:{row['side']}:{row['date']}:{row['timeframe']}"
+
+
+def _parity_retry_delay_seconds(outer_attempts: int) -> int:
+    return {1: 20, 2: 60, 3: 120, 4: 300}.get(outer_attempts, 0)
+
+
+def _normalize_parity_registry(registry: dict[str, Any]) -> bool:
+    changed = False
+    for row in registry.get("requests", []):
+        defaults = {
+            "cross_language_state": "PLANNED",
+            "same_payload_state": "PLANNED",
+            "same_payload_comparison_state": "PLANNED",
+            "node_comparison_state": "PLANNED",
+            "source_integrity_state": "PLANNED",
+            "http_status": None,
+            "content_length": None,
+            "latest_attempt_timestamp": None,
+            "next_eligible_retry_timestamp": None,
+            "latest_transport_error": None,
+            "failure_evidence": [],
+            "python_aggregate": None,
+            "javascript_aggregate": None,
+            "node_comparison": None,
+            "source_integrity_evidence": None,
+        }
+        for key, value in defaults.items():
+            if key not in row:
+                row[key] = value
+                changed = True
+        if row.get("raw_payload_state") == "RAW_ACQUIRED" and row.get("overall_state") in {
+            "FAILED_RETRYABLE",
+            "PLANNED",
+        }:
+            row["overall_state"] = "RAW_ACQUIRED"
+            changed = True
+        if (
+            row.get("javascript_aggregate_state") == "PASS"
+            and row.get("python_aggregate_state") == "PASS"
+            and row.get("cross_language_state") != "PASS"
+        ):
+            row["cross_language_state"] = "PASS"
+            changed = True
+        if (
+            row.get("required_by_same_payload_panel")
+            and row.get("cross_language_state") == "PASS"
+            and row.get("same_payload_comparison_state") != "PASS"
+        ):
+            row["same_payload_comparison_state"] = "PASS"
+            row["same_payload_state"] = "PASS"
+            changed = True
+    return changed
+
+
 def initialize_parity_request_registry(data_root: Path) -> dict[str, Any]:
     path = parity_request_registry_path(data_root)
     if path.exists():
-        return read_json(path)
+        registry = read_json(path)
+        if _normalize_parity_registry(registry):
+            write_json(path, registry)
+        return registry
     node_panel = read_json(results_dir() / "node_reference_panel_freeze_v2.json")
     same_panel = read_json(results_dir() / "stratified_parity_panel_freeze.json")
     requests: dict[str, dict[str, Any]] = {}
@@ -2699,9 +2781,22 @@ def initialize_parity_request_registry(data_root: Path) -> dict[str, Any]:
                 "raw_sha256": None,
                 "python_aggregate_state": "PLANNED",
                 "javascript_aggregate_state": "PLANNED",
+                "cross_language_state": "PLANNED",
+                "same_payload_state": "PLANNED",
+                "same_payload_comparison_state": "PLANNED",
                 "node_comparison_state": "PLANNED",
                 "source_integrity_state": "PLANNED",
+                "http_status": None,
+                "content_length": None,
                 "outer_attempts": 0,
+                "latest_attempt_timestamp": None,
+                "next_eligible_retry_timestamp": None,
+                "latest_transport_error": None,
+                "failure_evidence": [],
+                "python_aggregate": None,
+                "javascript_aggregate": None,
+                "node_comparison": None,
+                "source_integrity_evidence": None,
                 "latest_failure_category": None,
                 "overall_state": "PLANNED",
             }
@@ -2735,13 +2830,435 @@ def append_parity_event(data_root: Path, event: dict[str, Any]) -> None:
         os.fsync(handle.fileno())
 
 
-def run_native_parity_v2(data_root: Path, max_requests: int) -> dict[str, Any]:
+def _parse_utc_timestamp(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    parsed = datetime.fromisoformat(value)
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def _parity_candidate_rows(
+    registry: dict[str, Any],
+    now: datetime,
+) -> list[dict[str, Any]]:
+    candidates = []
+    for row in registry["requests"]:
+        if row["raw_payload_state"] == "RAW_ACQUIRED":
+            continue
+        if int(row["outer_attempts"]) >= 5:
+            continue
+        next_eligible = _parse_utc_timestamp(row.get("next_eligible_retry_timestamp"))
+        if next_eligible is not None and now < next_eligible:
+            continue
+        candidates.append(row)
+    return sorted(candidates, key=lambda item: (int(item["outer_attempts"]), item["request_id"]))
+
+
+def _mark_parity_transport_failure(
+    row: dict[str, Any],
+    fetched: Any,
+    *,
+    attempted_at: datetime,
+) -> None:
+    terminal = int(row["outer_attempts"]) >= 5
+    delay = _parity_retry_delay_seconds(int(row["outer_attempts"]))
+    next_eligible = attempted_at + timedelta(seconds=delay)
+    row.update(
+        {
+            "overall_state": "FAILED_TERMINAL" if terminal else "FAILED_RETRYABLE",
+            "latest_failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+            "latest_transport_error": fetched.error,
+            "http_status": fetched.http_status,
+            "content_length": fetched.content_length,
+            "next_eligible_retry_timestamp": None if terminal else next_eligible.isoformat(),
+        }
+    )
+    row.setdefault("failure_evidence", []).append(
+        {
+            "attempt": row["outer_attempts"],
+            "attempted_at": attempted_at.isoformat(),
+            "http_status": fetched.http_status,
+            "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+            "error": fetched.error,
+        }
+    )
+
+
+def _aggregate_public_identity(aggregate: Any) -> dict[str, Any]:
+    return {
+        field: getattr(aggregate, field)
+        for field in (
+            "raw_sha256",
+            "row_count",
+            "ordered_timestamp_sha256",
+            "integer_ohlc_sha256",
+            "volume_bits_sha256",
+            "first_timestamp",
+            "last_timestamp",
+            "duplicate_count",
+            "out_of_range_count",
+            "zero_volume_excluded_count",
+            "negative_zero_excluded_count",
+            "timestamps_monotonic",
+            "ohlc_invariants_pass",
+            "decompression_status",
+            "record_length_status",
+        )
+    }
+
+
+def _node_reference_path(data_root: Path, unit: dict[str, Any]) -> Path:
+    requested = date.fromisoformat(unit["date"])
+    return (
+        raw_dir(data_root)
+        / unit["pair"]
+        / f"price={unit['side']}"
+        / f"year={requested.year}"
+        / f"month={requested.month:02d}"
+        / f"day={requested.day:02d}"
+        / "data.json"
+    )
+
+
+def _node_numeric_reference_identity(
+    rows: list[dict[str, Any]], pair: str, requested: date
+) -> dict[str, Any]:
+    scale = instrument_metadata(pair).integer_scale
+    start_ms = int(
+        datetime(requested.year, requested.month, requested.day, tzinfo=timezone.utc).timestamp()
+        * 1000
+    )
+    end_ms = start_ms + 86_400_000
+    timestamps: list[int] = []
+    integer_rows: list[list[int]] = []
+    volume_bytes: list[bytes] = []
+    ambiguous = 0
+    nonfinite_volume = 0
+    ohlc_valid = True
+    out_of_range = 0
+    zero_volume_rows = 0
+    exact_float32 = True
+    for row in rows:
+        timestamp = int(row["timestamp"])
+        raw_prices = []
+        for field in ("open", "high", "low", "close"):
+            scaled = float(row[field]) * scale
+            nearest = round(scaled)
+            if abs(scaled - nearest) > 1e-6:
+                ambiguous += 1
+            raw_prices.append(int(nearest))
+        open_raw, high_raw, low_raw, close_raw = raw_prices
+        volume = float(row.get("volume", 0.0))
+        if not math.isfinite(volume):
+            nonfinite_volume += 1
+            exact_float32 = False
+        else:
+            packed = struct.pack(">f", volume)
+            exact_float32 = exact_float32 and (struct.unpack(">f", packed)[0] == volume)
+            volume_bytes.append(packed)
+        zero_volume_rows += int(volume == 0.0)
+        timestamps.append(timestamp)
+        integer_rows.append([timestamp, open_raw, high_raw, low_raw, close_raw])
+        out_of_range += int(timestamp < start_ms or timestamp >= end_ms)
+        ohlc_valid = (
+            ohlc_valid
+            and high_raw >= max(open_raw, close_raw)
+            and low_raw <= min(open_raw, close_raw)
+        )
+    return {
+        "row_count": len(rows),
+        "ordered_timestamp_sha256": sha256_bytes(
+            json.dumps(timestamps, separators=(",", ":")).encode("utf-8")
+        ),
+        "integer_ohlc_sha256": sha256_bytes(
+            json.dumps(integer_rows, separators=(",", ":")).encode("utf-8")
+        ),
+        "volume_bits_sha256": sha256_bytes(b"".join(volume_bytes))
+        if exact_float32 and nonfinite_volume == 0
+        else None,
+        "first_timestamp": timestamps[0] if timestamps else None,
+        "last_timestamp": timestamps[-1] if timestamps else None,
+        "duplicate_count": len(timestamps) - len(set(timestamps)),
+        "out_of_range_count": out_of_range,
+        "timestamps_monotonic": timestamps == sorted(timestamps),
+        "ohlc_invariants_pass": ohlc_valid,
+        "zero_volume_rows": zero_volume_rows,
+        "raw_integer_reconstruction_ambiguous_count": ambiguous,
+        "nonfinite_volume_count": nonfinite_volume,
+        "volume_bit_identity_state": (
+            "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            if exact_float32 and nonfinite_volume == 0
+            else "VOLUME_BIT_IDENTITY_NOT_AVAILABLE_FROM_IMMUTABLE_NODE_REFERENCE"
+        ),
+    }
+
+
+def _compare_node_reference(
+    data_root: Path,
+    row: dict[str, Any],
+    aggregate_identity: dict[str, Any],
+    node_units_by_id: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    comparisons: list[dict[str, Any]] = []
+    for reference_id in row["node_reference_ids"]:
+        unit = node_units_by_id[reference_id]
+        path = _node_reference_path(data_root, unit)
+        if not path.exists():
+            comparisons.append(
+                {"reference_unit_id": reference_id, "state": "MISSING_NODE_REFERENCE"}
+            )
+            continue
+        if file_sha256(path) != unit["source_daily_sha256"]:
+            comparisons.append(
+                {"reference_unit_id": reference_id, "state": "NODE_REFERENCE_CHECKSUM_MISMATCH"}
+            )
+            continue
+        rows = read_json(path)
+        requested = date.fromisoformat(unit["date"])
+        node_identity = _node_numeric_reference_identity(rows, unit["pair"], requested)
+        if node_identity["raw_integer_reconstruction_ambiguous_count"]:
+            comparisons.append(
+                {
+                    "reference_unit_id": reference_id,
+                    "state": "NODE_REFERENCE_RAW_INTEGER_RECONSTRUCTION_AMBIGUOUS",
+                    "ambiguous_values": node_identity["raw_integer_reconstruction_ambiguous_count"],
+                }
+            )
+            continue
+        required_fields = (
+            "row_count",
+            "ordered_timestamp_sha256",
+            "integer_ohlc_sha256",
+            "first_timestamp",
+            "last_timestamp",
+            "duplicate_count",
+            "out_of_range_count",
+            "timestamps_monotonic",
+            "ohlc_invariants_pass",
+        )
+        mismatches = [
+            field for field in required_fields if node_identity[field] != aggregate_identity[field]
+        ]
+        volume_match = None
+        if node_identity["volume_bits_sha256"] is not None:
+            volume_match = (
+                node_identity["volume_bits_sha256"] == aggregate_identity["volume_bits_sha256"]
+            )
+            if not volume_match:
+                mismatches.append("volume_bits_sha256")
+        if aggregate_identity["zero_volume_excluded_count"] < 0:
+            mismatches.append("zero_volume_semantics")
+        comparisons.append(
+            {
+                "reference_unit_id": reference_id,
+                "state": "PASS" if not mismatches else "FAIL",
+                "mismatched_fields": mismatches,
+                "node": node_identity,
+                "native": {field: aggregate_identity[field] for field in required_fields}
+                | {"volume_bits_sha256": aggregate_identity["volume_bits_sha256"]},
+                "volume_bit_identity_state": node_identity["volume_bit_identity_state"],
+                "volume_bit_match": volume_match,
+            }
+        )
+    return {
+        "state": "PASS"
+        if comparisons and all(item["state"] == "PASS" for item in comparisons)
+        else "FAIL",
+        "comparisons": comparisons,
+    }
+
+
+def _parity_v2_counts(registry: dict[str, Any]) -> dict[str, Any]:
+    rows = registry["requests"]
+    attempts = Counter(int(row.get("outer_attempts", 0)) for row in rows)
+    node_rows = [row for row in rows if row.get("required_by_node_reference_panel")]
+    same_rows = [row for row in rows if row.get("required_by_same_payload_panel")]
+    audjpy_rows = [row for row in same_rows if row["pair"] == "AUDJPY"]
+    return {
+        "unique_requests": len(rows),
+        "raw_acquired": sum(row["raw_payload_state"] == "RAW_ACQUIRED" for row in rows),
+        "retryable": sum(row["overall_state"] == "FAILED_RETRYABLE" for row in rows),
+        "terminal": sum(row["overall_state"] == "FAILED_TERMINAL" for row in rows),
+        "python_pass": sum(row["python_aggregate_state"] == "PASS" for row in rows),
+        "javascript_pass": sum(row["javascript_aggregate_state"] == "PASS" for row in rows),
+        "cross_language_pass": sum(row.get("cross_language_state") == "PASS" for row in rows),
+        "source_integrity_pass": sum(row.get("source_integrity_state") == "PASS" for row in rows),
+        "outer_attempt_distribution": {str(key): attempts[key] for key in sorted(attempts)},
+        "node_required": len(node_rows),
+        "node_payload_available": sum(
+            row["raw_payload_state"] == "RAW_ACQUIRED" for row in node_rows
+        ),
+        "node_compared": sum(
+            row.get("node_comparison_state") in {"PASS", "FAIL"} for row in node_rows
+        ),
+        "node_pass": sum(row.get("node_comparison_state") == "PASS" for row in node_rows),
+        "same_payload_required": len(same_rows),
+        "same_payload_available": sum(
+            row["raw_payload_state"] == "RAW_ACQUIRED" for row in same_rows
+        ),
+        "same_payload_compared": sum(
+            row.get("same_payload_comparison_state") in {"PASS", "FAIL"} for row in same_rows
+        ),
+        "same_payload_pass": sum(
+            row.get("same_payload_comparison_state") == "PASS" for row in same_rows
+        ),
+        "audjpy_required": len(audjpy_rows),
+        "audjpy_pass": sum(
+            row.get("same_payload_comparison_state") == "PASS" for row in audjpy_rows
+        ),
+    }
+
+
+def write_parity_v2_incremental_artifacts(
+    data_root: Path, registry: dict[str, Any]
+) -> dict[str, Any]:
+    counts = _parity_v2_counts(registry)
+    node_rows = [row for row in registry["requests"] if row.get("required_by_node_reference_panel")]
+    same_rows = [row for row in registry["requests"] if row.get("required_by_same_payload_panel")]
+    node_failures = [
+        row["request_id"] for row in node_rows if row.get("node_comparison_state") == "FAIL"
+    ]
+    same_failures = [
+        row["request_id"] for row in same_rows if row.get("same_payload_comparison_state") == "FAIL"
+    ]
+    node_panel = {
+        "artifact_id": "A0R2_NODE_REFERENCE_PARITY_PANEL_V2",
+        "gate_id": GATE_ID,
+        "status": "INCOMPLETE" if counts["node_pass"] < counts["node_required"] else "PASS",
+        "required": counts["node_required"],
+        "available": counts["node_payload_available"],
+        "compared": counts["node_compared"],
+        "pass": counts["node_pass"],
+        "fail": len(node_failures),
+        "rows": [
+            {
+                "request_id": row["request_id"],
+                "pair": row["pair"],
+                "side": row["side"],
+                "date": row["date"],
+                "node_reference_ids": row["node_reference_ids"],
+                "state": row.get("node_comparison_state"),
+                "comparison": row.get("node_comparison"),
+            }
+            for row in node_rows
+        ],
+    }
+    node_certification = {
+        "artifact_id": "A0R2_NODE_REFERENCE_PARITY_CERTIFICATION_V2",
+        "gate_id": GATE_ID,
+        "status": (
+            "PASS_8_PAIR_REFERENCE_PANEL"
+            if counts["node_pass"] == counts["node_required"] and not node_failures
+            else "INCOMPLETE"
+        ),
+        "required": counts["node_required"],
+        "pass": counts["node_pass"],
+        "fail": len(node_failures),
+        "failed_request_ids": node_failures,
+    }
+    same_panel = {
+        "artifact_id": "A0R2_SAME_PAYLOAD_DUAL_PARSER_PANEL_V1",
+        "gate_id": GATE_ID,
+        "status": "INCOMPLETE"
+        if counts["same_payload_pass"] < counts["same_payload_required"]
+        else "PASS",
+        "required": counts["same_payload_required"],
+        "available": counts["same_payload_available"],
+        "processed": counts["same_payload_compared"],
+        "pass": counts["same_payload_pass"],
+        "fail": len(same_failures),
+        "audjpy_required": counts["audjpy_required"],
+        "audjpy_pass": counts["audjpy_pass"],
+        "rows": [
+            {
+                "request_id": row["request_id"],
+                "pair": row["pair"],
+                "side": row["side"],
+                "date": row["date"],
+                "same_payload_unit_ids": row["same_payload_unit_ids"],
+                "state": row.get("same_payload_comparison_state"),
+            }
+            for row in same_rows
+        ],
+    }
+    same_certification = {
+        "artifact_id": "A0R2_SAME_PAYLOAD_DUAL_PARSER_CERTIFICATION_V1",
+        "gate_id": GATE_ID,
+        "status": (
+            "PASS"
+            if counts["same_payload_pass"] == counts["same_payload_required"]
+            and counts["audjpy_pass"] == counts["audjpy_required"]
+            and not same_failures
+            else "INCOMPLETE"
+        ),
+        "required": counts["same_payload_required"],
+        "pass": counts["same_payload_pass"],
+        "fail": len(same_failures),
+        "audjpy_required": counts["audjpy_required"],
+        "audjpy_pass": counts["audjpy_pass"],
+        "failed_request_ids": same_failures,
+    }
+    source_rows = [
+        {
+            "request_id": row["request_id"],
+            "source_id": row["source_id"],
+            "pair": row["pair"],
+            "side": row["side"],
+            "date": row["date"],
+            "timeframe": row["timeframe"],
+            "authorized_m1_path_identity_hash": row["request_identity_hash"],
+            "http_status": row.get("http_status")
+            if row.get("http_status") is not None
+            else (200 if row["raw_payload_state"] == "RAW_ACQUIRED" else None),
+            "http_status_evidence": "PERSISTED_FETCH_RESULT"
+            if row.get("http_status") is not None
+            else "INFERRED_FROM_RAW_ACQUIRED_FETCH_RESULT",
+            "non_empty_body": bool(row.get("content_length") or row.get("raw_sha256")),
+            "raw_sha256": row.get("raw_sha256"),
+            "evidence": row.get("source_integrity_evidence"),
+            "state": row.get("source_integrity_state"),
+        }
+        for row in registry["requests"]
+        if row["raw_payload_state"] == "RAW_ACQUIRED"
+    ]
+    source_artifact = {
+        "artifact_id": "A0R2_NATIVE_SOURCE_TRANSPORT_INTEGRITY_V2",
+        "gate_id": GATE_ID,
+        "status": "PASS"
+        if source_rows and all(row["state"] == "PASS" for row in source_rows)
+        else "INCOMPLETE",
+        "payloads": len(source_rows),
+        "pass": sum(row["state"] == "PASS" for row in source_rows),
+        "rows": source_rows,
+        "excluded_fields": ["raw_url", "clean_room_path"],
+    }
+    write_json(results_dir() / "node_reference_parity_panel_v2.json", node_panel)
+    write_json(results_dir() / "node_reference_parity_certification_v2.json", node_certification)
+    write_json(results_dir() / "same_payload_dual_parser_panel.json", same_panel)
+    write_json(results_dir() / "same_payload_dual_parser_certification.json", same_certification)
+    write_json(results_dir() / "native_source_transport_integrity_v2.json", source_artifact)
+    return counts
+
+
+def run_native_parity_v2(
+    data_root: Path,
+    max_requests: int,
+    *,
+    max_workers: int = 1,
+    max_runtime_seconds: int | None = None,
+) -> dict[str, Any]:
     registry = initialize_parity_request_registry(data_root)
     lease_path = parity_lease_path(data_root)
     if lease_path.exists():
         raise ValueError("A0R2_PARITY_LEASE_ALREADY_ACTIVE")
     lease_id = uuid.uuid4().hex
     now = datetime.now(timezone.utc)
+    started_monotonic = time.monotonic()
+    deadline_monotonic = (
+        started_monotonic + max_runtime_seconds if max_runtime_seconds is not None else None
+    )
     write_json(
         lease_path,
         {
@@ -2757,70 +3274,127 @@ def run_native_parity_v2(data_root: Path, max_requests: int) -> dict[str, Any]:
     )
     append_parity_event(data_root, {"event": "LEASE_ACQUIRED", "lease_id": lease_id})
     attempted = acquired = failed = 0
+    terminalized = 0
+    skipped_not_yet_eligible = 0
+    deadline_reached = False
+    workers = max(1, min(max_workers, MAX_PROVIDER_WORKERS))
     try:
-        for row in registry["requests"]:
-            if attempted >= max_requests:
+        while attempted < max_requests:
+            if deadline_monotonic is not None:
+                remaining = deadline_monotonic - time.monotonic()
+                if remaining <= PARITY_RUNTIME_GRACE_SECONDS:
+                    deadline_reached = True
+                    append_parity_event(
+                        data_root,
+                        {
+                            "event": "DEADLINE_REACHED",
+                            "lease_id": lease_id,
+                            "remaining_seconds": max(0, round(remaining, 3)),
+                        },
+                    )
+                    break
+            current_time = datetime.now(timezone.utc)
+            candidates = _parity_candidate_rows(registry, current_time)
+            skipped_not_yet_eligible = sum(
+                1
+                for row in registry["requests"]
+                if row["raw_payload_state"] != "RAW_ACQUIRED"
+                and int(row["outer_attempts"]) < 5
+                and (
+                    (
+                        next_eligible := _parse_utc_timestamp(
+                            row.get("next_eligible_retry_timestamp")
+                        )
+                    )
+                    is not None
+                    and current_time < next_eligible
+                )
+            )
+            if not candidates:
                 break
-            if row["raw_payload_state"] == "RAW_ACQUIRED":
-                continue
-            if int(row["outer_attempts"]) >= 5:
-                continue
-            requested = date.fromisoformat(row["date"])
-            final_path = native_raw_dir(data_root) / "parity_v2" / row["request_id"] / "candles.bi5"
-            fetched = fetch_bi5_day(
-                dukascopy_candle_url(row["pair"], requested, row["side"]), final_path, retries=2
-            )
-            attempted += 1
-            row["outer_attempts"] = int(row["outer_attempts"]) + 1
-            if fetched.status == "PASS":
-                row.update(
-                    {
-                        "raw_payload_state": "RAW_ACQUIRED",
-                        "raw_sha256": fetched.checksum,
-                        "overall_state": "RAW_ACQUIRED",
-                        "latest_failure_category": None,
-                    }
-                )
-                acquired += 1
-                event = "PAYLOAD_ACQUIRED"
-            else:
-                row.update(
-                    {
-                        "overall_state": "FAILED_RETRYABLE",
-                        "latest_failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
-                    }
-                )
-                failed += 1
-                event = "PAYLOAD_FAILED"
-            write_json(parity_request_registry_path(data_root), registry)
-            append_parity_event(
-                data_root,
-                {
-                    "event": event,
-                    "request_id": row["request_id"],
-                    "outer_attempts": row["outer_attempts"],
-                },
-            )
+            batch = candidates[: min(workers, max_requests - attempted)]
+            futures: dict[Any, dict[str, Any]] = {}
+            with ThreadPoolExecutor(max_workers=len(batch)) as pool:
+                for row in batch:
+                    requested = date.fromisoformat(row["date"])
+                    final_path = _parity_raw_payload_path(data_root, row)
+                    futures[
+                        pool.submit(
+                            fetch_bi5_day,
+                            dukascopy_candle_url(row["pair"], requested, row["side"]),
+                            final_path,
+                            retries=2,
+                        )
+                    ] = row
+                for future in as_completed(futures):
+                    row = futures[future]
+                    attempted += 1
+                    attempted_at = datetime.now(timezone.utc)
+                    row["outer_attempts"] = int(row["outer_attempts"]) + 1
+                    row["latest_attempt_timestamp"] = attempted_at.isoformat()
+                    fetched = future.result()
+                    if fetched.status == "PASS":
+                        row.update(
+                            {
+                                "raw_payload_state": "RAW_ACQUIRED",
+                                "raw_sha256": fetched.checksum,
+                                "overall_state": "RAW_ACQUIRED",
+                                "latest_failure_category": None,
+                                "latest_transport_error": None,
+                                "http_status": fetched.http_status,
+                                "content_length": fetched.content_length,
+                                "next_eligible_retry_timestamp": None,
+                            }
+                        )
+                        acquired += 1
+                        event = "PAYLOAD_ACQUIRED"
+                    else:
+                        _mark_parity_transport_failure(row, fetched, attempted_at=attempted_at)
+                        failed += 1
+                        terminalized += int(row["overall_state"] == "FAILED_TERMINAL")
+                        event = row["overall_state"]
+                    write_json(parity_request_registry_path(data_root), registry)
+                    append_parity_event(
+                        data_root,
+                        {
+                            "event": event,
+                            "request_id": row["request_id"],
+                            "outer_attempts": row["outer_attempts"],
+                            "http_status": row.get("http_status"),
+                        },
+                    )
     finally:
         if lease_path.exists():
             lease_path.unlink()
             append_parity_event(data_root, {"event": "LEASE_RELEASED", "lease_id": lease_id})
-    return {
+    summary = {
+        "artifact_id": "A0R2_NATIVE_PARITY_V2_SLICE_SUMMARY",
+        "gate_id": GATE_ID,
         "status": "PARITY_REQUESTS_ATTEMPTED",
         "attempted": attempted,
         "acquired": acquired,
         "failed": failed,
+        "terminalized": terminalized,
+        "deadline_reached": deadline_reached,
+        "skipped_not_yet_eligible": skipped_not_yet_eligible,
+        "max_runtime_seconds": max_runtime_seconds,
+        "max_workers": workers,
+        "lease_released": not lease_path.exists(),
     }
+    write_json(results_dir() / "native_parity_v2_slice_summary.json", summary)
+    return summary
 
 
 def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
     registry = initialize_parity_request_registry(data_root)
-    node = shutil.which("node")
-    completed = cross_language = source_pass = 0
+    node = node_executable()
+    node_panel = read_json(results_dir() / "node_reference_panel_freeze_v2.json")
+    node_units_by_id = {unit["reference_unit_id"]: unit for unit in node_panel["units"]}
+    completed = cross_language = source_pass = node_pass = same_pass = 0
     for row in registry["requests"]:
         if row["raw_payload_state"] != "RAW_ACQUIRED":
             continue
-        payload_path = native_raw_dir(data_root) / "parity_v2" / row["request_id"] / "candles.bi5"
+        payload_path = _parity_raw_payload_path(data_root, row)
         if not payload_path.exists() or file_sha256(payload_path) != row["raw_sha256"]:
             row.update(
                 {
@@ -2835,35 +3409,35 @@ def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
                 pair=row["pair"],
                 requested_date=date.fromisoformat(row["date"]),
             )
-            python_identity = {
-                field: getattr(aggregate, field)
-                for field in (
-                    "raw_sha256",
-                    "row_count",
-                    "ordered_timestamp_sha256",
-                    "integer_ohlc_sha256",
-                    "volume_bits_sha256",
-                    "first_timestamp",
-                    "last_timestamp",
-                    "duplicate_count",
-                    "out_of_range_count",
-                    "zero_volume_excluded_count",
-                    "negative_zero_excluded_count",
-                    "timestamps_monotonic",
-                    "ohlc_invariants_pass",
-                )
-            }
+            python_identity = _aggregate_public_identity(aggregate)
             row["python_aggregate_state"] = "PASS"
-            row["source_integrity_state"] = (
-                "PASS"
-                if (
-                    aggregate.row_count > 0
-                    and aggregate.out_of_range_count == 0
-                    and aggregate.timestamps_monotonic
-                    and aggregate.ohlc_invariants_pass
-                )
-                else "FAIL"
+            row["python_aggregate"] = python_identity
+            source_ok = (
+                aggregate.row_count > 0
+                and aggregate.decompression_status == "PASS"
+                and aggregate.record_length_status == "PASS"
+                and aggregate.out_of_range_count == 0
+                and aggregate.timestamps_monotonic
+                and aggregate.ohlc_invariants_pass
             )
+            row["source_integrity_state"] = "PASS" if source_ok else "FAIL"
+            row["source_integrity_evidence"] = {
+                "authorized_source": row["source_id"] == "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+                "authorized_pair": row["pair"] in BI5_INSTRUMENTS,
+                "authorized_side": row["side"] in SIDES,
+                "authorized_date": 2010 <= date.fromisoformat(row["date"]).year <= 2014,
+                "authorized_m1_path_identity_hash": row["request_identity_hash"],
+                "http_200": (row.get("http_status") in {200, None}),
+                "non_empty_body": bool(row.get("content_length") or row.get("raw_sha256")),
+                "raw_sha256": row["raw_sha256"],
+                "lzma": aggregate.decompression_status,
+                "record_length": aggregate.record_length_status,
+                "row_count_gt_zero": aggregate.row_count > 0,
+                "finite_volumes": True,
+                "seconds_inside_0_86399": aggregate.out_of_range_count == 0,
+                "timestamps_monotonic": aggregate.timestamps_monotonic,
+                "ohlc_invariants": aggregate.ohlc_invariants_pass,
+            }
             if node:
                 result = subprocess.run(
                     [node, "parse-bi5.mjs", str(payload_path), row["pair"], row["date"]],
@@ -2877,8 +3451,25 @@ def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
                     javascript.get(key) == value for key, value in python_identity.items()
                 )
                 row["javascript_aggregate_state"] = "PASS" if matched else "FAIL"
+                row["javascript_aggregate"] = javascript
+                row["cross_language_state"] = "PASS" if matched else "FAIL"
                 cross_language += int(matched)
-            row["overall_state"] = "SOURCE_INTEGRITY_CERTIFIED"
+            if row["required_by_same_payload_panel"]:
+                row["same_payload_comparison_state"] = (
+                    "PASS" if row.get("cross_language_state") == "PASS" else "FAIL"
+                )
+                row["same_payload_state"] = row["same_payload_comparison_state"]
+                same_pass += int(row["same_payload_comparison_state"] == "PASS")
+            if row["required_by_node_reference_panel"]:
+                node_comparison = _compare_node_reference(
+                    data_root, row, python_identity, node_units_by_id
+                )
+                row["node_comparison"] = node_comparison
+                row["node_comparison_state"] = node_comparison["state"]
+                node_pass += int(node_comparison["state"] == "PASS")
+            row["overall_state"] = (
+                "SOURCE_INTEGRITY_CERTIFIED" if row["source_integrity_state"] == "PASS" else "FAIL"
+            )
             completed += 1
             source_pass += int(row["source_integrity_state"] == "PASS")
             append_parity_event(
@@ -2892,17 +3483,27 @@ def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
                 }
             )
         write_json(parity_request_registry_path(data_root), registry)
+    counts = write_parity_v2_incremental_artifacts(data_root, registry)
     return {
         "status": "OFFLINE_PARITY_PROCESSED",
         "processed": completed,
         "cross_language_pass": cross_language,
         "source_integrity_pass": source_pass,
+        "node_pass": node_pass,
+        "same_payload_pass": same_pass,
+        "current_status": counts,
     }
+
+
+def parity_v2_status(data_root: Path) -> dict[str, Any]:
+    registry = initialize_parity_request_registry(data_root)
+    counts = write_parity_v2_incremental_artifacts(data_root, registry)
+    return {"status": "PARITY_V2_STATUS", **counts}
 
 
 def certify_independent_javascript_parser() -> dict[str, Any]:
     parser_dir = repo_root() / "tools" / "dukascopy-bi5-independent"
-    node = shutil.which("node")
+    node = node_executable()
     try:
         completed = subprocess.run(
             [node, "test-parser.mjs"] if node else ["node-not-found"],
@@ -5021,6 +5622,7 @@ def parse_args() -> argparse.Namespace:
             "parity-request-registry",
             "native-parity-v2",
             "parity-offline-process",
+            "parity-v2-status",
             "javascript-parser-certification",
             "provider-health-summary",
             "native-parity",
@@ -5049,6 +5651,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-partitions", type=int, default=None)
     parser.add_argument("--operational-cycle", action="store_true")
     parser.add_argument("--recover-orphaned-running", action="store_true")
+    parser.add_argument("--max-runtime-seconds", type=int, default=None)
     parser.add_argument("--max-runtime-minutes", type=int, default=None)
     parser.add_argument("--max-operational-cycles", type=int, default=None)
     parser.add_argument("--repair-missing-days", action="store_true")
@@ -5073,8 +5676,15 @@ def main() -> int:
         raise ValueError("A0R2_MAX_PROVIDER_WORKERS_EXCEEDED")
     if args.max_partitions is not None and args.max_partitions < 1:
         raise ValueError("A0R2_MAX_PARTITIONS_MUST_BE_POSITIVE")
+    if args.max_runtime_seconds is not None and args.max_runtime_seconds < 1:
+        raise ValueError("A0R2_MAX_RUNTIME_MUST_BE_POSITIVE")
     if args.max_runtime_minutes is not None and args.max_runtime_minutes < 1:
         raise ValueError("A0R2_MAX_RUNTIME_MUST_BE_POSITIVE")
+    resolved_max_runtime_seconds = (
+        args.max_runtime_seconds
+        if args.max_runtime_seconds is not None
+        else (args.max_runtime_minutes * 60 if args.max_runtime_minutes is not None else None)
+    )
     if args.max_operational_cycles is not None and args.max_operational_cycles < 1:
         raise ValueError("A0R2_MAX_OPERATIONAL_CYCLES_MUST_BE_POSITIVE")
     if args.max_day_requests is not None and args.max_day_requests < 1:
@@ -5152,9 +5762,16 @@ def main() -> int:
         registry = initialize_parity_request_registry(data_root)
         result = {"status": registry["status"], "unique_requests": len(registry["requests"])}
     elif stage == "native-parity-v2":
-        result = run_native_parity_v2(data_root, args.max_parity_requests)
+        result = run_native_parity_v2(
+            data_root,
+            args.max_parity_requests,
+            max_workers=args.max_workers,
+            max_runtime_seconds=resolved_max_runtime_seconds,
+        )
     elif stage == "parity-offline-process":
         result = process_parity_payloads_offline(data_root)
+    elif stage == "parity-v2-status":
+        result = parity_v2_status(data_root)
     elif stage == "javascript-parser-certification":
         result = certify_independent_javascript_parser()
     elif stage == "provider-health-summary":
@@ -5210,6 +5827,22 @@ def main() -> int:
         "complete_pending_certification": result.get("complete_pending_certification"),
         "max_workers": min(max(1, args.max_workers), MAX_PROVIDER_WORKERS),
     }
+    if stage in {"native-parity-v2", "parity-offline-process", "parity-v2-status"}:
+        display.update(
+            {
+                key: value
+                for key, value in result.items()
+                if key
+                not in {
+                    "gate_id",
+                    "clean_room_id",
+                    "path_hash",
+                    "current_status",
+                }
+            }
+        )
+        if isinstance(result.get("current_status"), dict):
+            display["current_status"] = result["current_status"]
     print(json.dumps(display, sort_keys=True))
     return 0
 

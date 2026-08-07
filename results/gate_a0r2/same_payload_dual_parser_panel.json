@@ -1,0 +1,554 @@
+{
+  "artifact_id": "A0R2_SAME_PAYLOAD_DUAL_PARSER_PANEL_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "INCOMPLETE",
+  "required": 54,
+  "available": 44,
+  "processed": 44,
+  "pass": 44,
+  "fail": 0,
+  "audjpy_required": 6,
+  "audjpy_pass": 4,
+  "rows": [
+    {
+      "request_id": "c790ab4e3df2a3ca",
+      "pair": "AUDJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "AUDJPY:ask:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "fe2545c3153e730d",
+      "pair": "AUDJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "AUDJPY:ask:2011-03-14"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "c524fcf6a07690f7",
+      "pair": "AUDJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "AUDJPY:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "2805d29bf3d29667",
+      "pair": "AUDJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "AUDJPY:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "bfaa89e73abd4012",
+      "pair": "AUDJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "AUDJPY:bid:2011-03-14"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "bfbb7032ec4945ab",
+      "pair": "AUDJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "AUDJPY:bid:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "be800035680b5d6e",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "AUDUSD:ask:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "9a5d70050b4b9b33",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "AUDUSD:ask:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "3be801448a5a1fcf",
+      "pair": "AUDUSD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "AUDUSD:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "23dc301529bdecc7",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "AUDUSD:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "6bac92ff5b34ce15",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "AUDUSD:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "a9bdfe31edf99ee6",
+      "pair": "AUDUSD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "AUDUSD:bid:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "8a405bdeb9a8abe9",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "EURJPY:ask:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "0fa1a48c022053fe",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "EURJPY:ask:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "49f21a0e587aadc8",
+      "pair": "EURJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "EURJPY:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "788ab6331e3defc3",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "EURJPY:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "fe026ca1dc1a2c64",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "EURJPY:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "6fb076cdb3ca295e",
+      "pair": "EURJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "EURJPY:bid:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "f58042c083fb650a",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "EURUSD:ask:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "eaedecfe9fa8c609",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "EURUSD:ask:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "d141b05a3548f580",
+      "pair": "EURUSD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "EURUSD:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "e0fe49874e043cc0",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "EURUSD:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "0b1dfaa20511a1de",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "EURUSD:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "42ad42b10aabd0b7",
+      "pair": "EURUSD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "EURUSD:bid:2014-06-16"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "a8e1b13a8f0e9b72",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "GBPJPY:ask:2010-01-04"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "e2aab9b26320d67b",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "GBPJPY:ask:2011-03-14"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "317a133e4123be5c",
+      "pair": "GBPJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "GBPJPY:ask:2014-06-16"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "0f6e559a8658a322",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "GBPJPY:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "1c86f3c0a3e8d5d4",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "GBPJPY:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "c851801c6e591029",
+      "pair": "GBPJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "GBPJPY:bid:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "00ad9eba590d06ee",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "GBPUSD:ask:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "18c2ede1cb58837e",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "GBPUSD:ask:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "7979de6ca825faf7",
+      "pair": "GBPUSD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "GBPUSD:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "ac24db5357e20d74",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "GBPUSD:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "4a89812f17c6c0ca",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "GBPUSD:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "3c3ff1c6f1aabce1",
+      "pair": "GBPUSD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "GBPUSD:bid:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "effa729bdcc613d9",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "USDCAD:ask:2010-01-04"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "2cff922416e035c9",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "USDCAD:ask:2011-03-14"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "64f6e223e0dada2c",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "USDCAD:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "ac2607bebadb2089",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "USDCAD:bid:2010-01-04"
+      ],
+      "state": "PLANNED"
+    },
+    {
+      "request_id": "3a947ed6f2c88aa9",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "USDCAD:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "19a524380620a975",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "USDCAD:bid:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "9b321238c94c87ea",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "USDCHF:ask:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "d91161c55cc3bb15",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "USDCHF:ask:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "99e882f5ee73ff66",
+      "pair": "USDCHF",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "USDCHF:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "5aba5c20be724af1",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "USDCHF:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "4ef47b0768873b28",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "USDCHF:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "15f6b3c8f46da4f9",
+      "pair": "USDCHF",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "USDCHF:bid:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "06c155498d2f83ad",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "USDJPY:ask:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "1946c88eb268467f",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "USDJPY:ask:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "0de3ac38ac0445d1",
+      "pair": "USDJPY",
+      "side": "ask",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "USDJPY:ask:2014-06-16"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "7d8ca3a403b56b56",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2010-01-04",
+      "same_payload_unit_ids": [
+        "USDJPY:bid:2010-01-04"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "648c24cdbbc23dfb",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2011-03-14",
+      "same_payload_unit_ids": [
+        "USDJPY:bid:2011-03-14"
+      ],
+      "state": "PASS"
+    },
+    {
+      "request_id": "837a600d0a26f126",
+      "pair": "USDJPY",
+      "side": "bid",
+      "date": "2014-06-16",
+      "same_payload_unit_ids": [
+        "USDJPY:bid:2014-06-16"
+      ],
+      "state": "PLANNED"
+    }
+  ]
+}

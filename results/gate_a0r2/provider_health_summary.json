@@ -2,24 +2,24 @@
   "artifact_id": "A0R2_PROVIDER_HEALTH_SUMMARY_V1",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "transport": "NATIVE_BI5_TRANSPORT",
-  "status": "PASS",
-  "latest_run_id": "native-7569eff70d4b446badd5faaf897521ff",
-  "latest_status": "PASS",
+  "status": "PROVIDER_COOLDOWN_REQUIRED",
+  "latest_run_id": "native-5d575ebb49564315b5462ce275e9737c",
+  "latest_status": "FAIL",
   "latest_control_results": {
-    "A": "PASS",
-    "B": "PASS"
+    "A": "FAIL",
+    "B": "FAIL"
   },
-  "last_full_pass_timestamp": "2026-08-07T13:02:12.435645+00:00",
-  "last_full_fail_timestamp": "2026-08-06T16:58:35.921738+00:00",
-  "full_pass_run_count": 5,
-  "full_fail_run_count": 6,
-  "complete_health_run_count": 11,
-  "consecutive_passing_runs": 3,
-  "consecutive_failing_runs": 0,
-  "control_pass_count": 13,
-  "control_fail_count": 9,
+  "last_full_pass_timestamp": "2026-08-07T16:51:57.276529+00:00",
+  "last_full_fail_timestamp": "2026-08-07T16:55:59.837366+00:00",
+  "full_pass_run_count": 12,
+  "full_fail_run_count": 16,
+  "complete_health_run_count": 28,
+  "consecutive_passing_runs": 0,
+  "consecutive_failing_runs": 4,
+  "control_pass_count": 32,
+  "control_fail_count": 24,
   "legacy_ungrouped_control_count": 0,
   "failure_category_distribution": {
-    "NATIVE_BI5_TRANSPORT_FAILURE": 9
+    "NATIVE_BI5_TRANSPORT_FAILURE": 24
   }
 }

@@ -1,0 +1,11 @@
+{
+  "artifact_id": "A0R2_SAME_PAYLOAD_DUAL_PARSER_CERTIFICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "INCOMPLETE",
+  "required": 54,
+  "pass": 44,
+  "fail": 0,
+  "audjpy_required": 6,
+  "audjpy_pass": 4,
+  "failed_request_ids": []
+}

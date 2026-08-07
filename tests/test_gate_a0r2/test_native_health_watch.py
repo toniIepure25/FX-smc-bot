@@ -186,3 +186,40 @@ def test_parity_panel_is_deterministic_and_queue_reuses_existing_state(
 
     assert resumed["units"][0]["overall_state"] == "COMPLETE"
     assert runner.parity_queue_status(tmp_path)["state_distribution"]["PLANNED"] == 53
+
+
+def test_native_parity_v2_deadline_persists_registry_and_releases_lease(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(runner, "results_dir", lambda: tmp_path / "results")
+    runner.write_json(
+        tmp_path / "results" / "node_reference_panel_freeze_v2.json",
+        {"units": [], "panel_sha256": "fixture"},
+    )
+    runner.write_json(
+        tmp_path / "results" / "stratified_parity_panel_freeze.json",
+        {
+            "panel_id": "A0R2_STRATIFIED_PARITY_PANEL_V1",
+            "panel_sha256": "fixture",
+            "units": [
+                {
+                    "parity_unit_id": "EURUSD:bid:2010-01-04",
+                    "pair": "EURUSD",
+                    "side": "bid",
+                    "date": "2010-01-04",
+                }
+            ],
+        },
+    )
+
+    result = runner.run_native_parity_v2(
+        tmp_path, max_requests=1, max_workers=1, max_runtime_seconds=1
+    )
+    events = runner.parity_event_path(tmp_path).read_text(encoding="utf-8")
+
+    assert result["deadline_reached"] is True
+    assert result["attempted"] == 0
+    assert runner.parity_request_registry_path(tmp_path).exists()
+    assert not runner.parity_lease_path(tmp_path).exists()
+    assert "DEADLINE_REACHED" in events
+    assert "LEASE_RELEASED" in events
