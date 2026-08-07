@@ -11,6 +11,7 @@ import argparse
 import calendar
 import hashlib
 import json
+import lzma
 import math
 import os
 import shutil
@@ -3540,6 +3541,87 @@ def certify_independent_javascript_parser() -> dict[str, Any]:
     return certification
 
 
+def certify_cross_language_synthetic_parser_v2(data_root: Path) -> dict[str, Any]:
+    requested = date(2011, 3, 14)
+    anchor = int(datetime(2011, 3, 14, tzinfo=timezone.utc).timestamp() * 1000)
+    volume_a = struct.pack(">f", 1.5)
+    volume_b = struct.pack(">f", 2.25)
+    negative_zero = b"\x80\x00\x00\x00"
+    raw = b"".join(
+        (
+            struct.pack(">iiiii", 0, 100, 102, 99, 103) + volume_a,
+            struct.pack(">iiiii", 86_399, 102, 101, 100, 104) + volume_b,
+            struct.pack(">iiiii", 60, 1, 1, 1, 1) + negative_zero,
+        )
+    )
+    payload = lzma.compress(raw, format=lzma.FORMAT_ALONE)
+    oracle = {
+        "raw_sha256": sha256_bytes(payload),
+        "row_count": 2,
+        "ordered_timestamp_sha256": sha256_bytes(
+            json.dumps([anchor, anchor + 86_399_000], separators=(",", ":")).encode("utf-8")
+        ),
+        "integer_ohlc_sha256": sha256_bytes(
+            json.dumps(
+                [[anchor, 100, 103, 99, 102], [anchor + 86_399_000, 102, 104, 100, 101]],
+                separators=(",", ":"),
+            ).encode("utf-8")
+        ),
+        "volume_bits_sha256": sha256_bytes(volume_a + volume_b),
+        "first_timestamp": anchor,
+        "last_timestamp": anchor + 86_399_000,
+        "duplicate_count": 0,
+        "out_of_range_count": 0,
+        "zero_volume_excluded_count": 1,
+        "negative_zero_excluded_count": 1,
+        "timestamps_monotonic": True,
+        "ohlc_invariants_pass": True,
+        "decompression_status": "PASS",
+        "record_length_status": "PASS",
+    }
+    python_identity = _aggregate_public_identity(
+        aggregate_bi5_payload(payload, pair="EURUSD", requested_date=requested)
+    )
+    python_pass = python_identity == oracle
+    node = node_executable()
+    javascript_pass = False
+    python_javascript_pass = False
+    node_exit_code = 127
+    if node:
+        scratch = data_root / "checkpoints" / "synthetic_parser_v2"
+        scratch.mkdir(parents=True, exist_ok=True)
+        payload_path = scratch / "golden.bi5"
+        payload_path.write_bytes(payload)
+        completed = subprocess.run(
+            [node, "parse-bi5.mjs", str(payload_path), "EURUSD", requested.isoformat()],
+            cwd=repo_root() / "tools" / "dukascopy-bi5-independent",
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        node_exit_code = completed.returncode
+        javascript_identity = json.loads(completed.stdout) if completed.returncode == 0 else {}
+        javascript_pass = all(
+            javascript_identity.get(key) == value for key, value in oracle.items()
+        )
+        python_javascript_pass = all(
+            javascript_identity.get(key) == value for key, value in python_identity.items()
+        )
+    artifact = {
+        "artifact_id": "A0R2_CROSS_LANGUAGE_SYNTHETIC_PARSER_CERTIFICATION_V2",
+        "gate_id": GATE_ID,
+        "status": "PASS" if python_pass and javascript_pass and python_javascript_pass else "FAIL",
+        "network_requests": 0,
+        "python_vs_oracle": "PASS" if python_pass else "FAIL",
+        "javascript_vs_oracle": "PASS" if javascript_pass else "FAIL",
+        "python_vs_javascript": "PASS" if python_javascript_pass else "FAIL",
+        "node_exit_code": node_exit_code,
+        "cases": ["lzma_two_rows_plus_negative_zero_volume_exclusion"],
+    }
+    write_json(results_dir() / "cross_language_synthetic_parser_certification_v2.json", artifact)
+    return artifact
+
+
 def _node_reference_units(data_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
     """Select immutable existing Node daily units deterministically."""
     selected: list[dict[str, Any]] = []
@@ -5624,6 +5706,7 @@ def parse_args() -> argparse.Namespace:
             "parity-offline-process",
             "parity-v2-status",
             "javascript-parser-certification",
+            "cross-language-synthetic-parser-certification-v2",
             "provider-health-summary",
             "native-parity",
             "existing-data-reuse",
@@ -5774,6 +5857,8 @@ def main() -> int:
         result = parity_v2_status(data_root)
     elif stage == "javascript-parser-certification":
         result = certify_independent_javascript_parser()
+    elif stage == "cross-language-synthetic-parser-certification-v2":
+        result = certify_cross_language_synthetic_parser_v2(data_root)
     elif stage == "provider-health-summary":
         result = write_provider_health_summary(data_root)
     elif stage == "native-parity":
