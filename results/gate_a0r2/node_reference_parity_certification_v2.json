@@ -3,7 +3,7 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "INCOMPLETE",
   "required": 48,
-  "pass": 38,
+  "pass": 45,
   "fail": 0,
   "failed_request_ids": []
 }

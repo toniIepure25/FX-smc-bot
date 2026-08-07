@@ -3,7 +3,7 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "NATIVE_HEALTH_READY",
   "attempts_this_watch": 1,
-  "attempts_completed": 22,
+  "attempts_completed": 45,
   "required_consecutive_health_passes": 2,
   "consecutive_passing_runs": 3,
   "latest_health_status": "PASS",

@@ -3,9 +3,9 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "INCOMPLETE",
   "required": 48,
-  "available": 38,
-  "compared": 38,
-  "pass": 38,
+  "available": 45,
+  "compared": 45,
+  "pass": 45,
   "fail": 0,
   "rows": [
     {
@@ -716,8 +716,47 @@
       "node_reference_ids": [
         "EURUSD:ask:2010-05-31:latest"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURUSD:ask:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "80e5e244ae23c6f6afbf14d1f1d5fc1fb863d23112148eec898f36e7f1111f1c",
+              "volume_bits_sha256": "0985c056613ce170e9f5bfe5447549c314b2f2eac203857c473676b69d1d98b1",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "80e5e244ae23c6f6afbf14d1f1d5fc1fb863d23112148eec898f36e7f1111f1c",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "0985c056613ce170e9f5bfe5447549c314b2f2eac203857c473676b69d1d98b1"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "701d3e3241875c85",
@@ -727,8 +766,47 @@
       "node_reference_ids": [
         "EURUSD:bid:2010-01-17:earliest"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURUSD:bid:2010-01-17:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "e98f3a95ef6c402110b9c9f54d04facaebe48d5e8c65f930820121b7cf6e48ca",
+              "integer_ohlc_sha256": "925c72b1bb61041a85e87f980cdd0b219e9a70005e5b83cda60783a6faf20378",
+              "volume_bits_sha256": "0f1250bd3eac7ada3dd22c27a6947dbb8f36aa001acc94f196d2e3e79e4750ed",
+              "first_timestamp": 1263765600000,
+              "last_timestamp": 1263772740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 120,
+              "ordered_timestamp_sha256": "e98f3a95ef6c402110b9c9f54d04facaebe48d5e8c65f930820121b7cf6e48ca",
+              "integer_ohlc_sha256": "925c72b1bb61041a85e87f980cdd0b219e9a70005e5b83cda60783a6faf20378",
+              "first_timestamp": 1263765600000,
+              "last_timestamp": 1263772740000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "0f1250bd3eac7ada3dd22c27a6947dbb8f36aa001acc94f196d2e3e79e4750ed"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "2a93cad5ea12c84b",
@@ -738,8 +816,47 @@
       "node_reference_ids": [
         "EURUSD:bid:2010-04-08:middle"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "EURUSD:bid:2010-04-08:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "49972e3ec77a9f713c6dcb3d237c7505afe27a9f7e8de0540de45636c2f6cd54",
+              "integer_ohlc_sha256": "0cb8a8688dd0570953e9fed7e8445ca99418cca1bde40e5c2dc1dca04f9d0f19",
+              "volume_bits_sha256": "fdf2442969218815ee4f1335865e17f9897fb8983ee2381fea10c170f0b5fa40",
+              "first_timestamp": 1270684800000,
+              "last_timestamp": 1270771140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "49972e3ec77a9f713c6dcb3d237c7505afe27a9f7e8de0540de45636c2f6cd54",
+              "integer_ohlc_sha256": "0cb8a8688dd0570953e9fed7e8445ca99418cca1bde40e5c2dc1dca04f9d0f19",
+              "first_timestamp": 1270684800000,
+              "last_timestamp": 1270771140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "fdf2442969218815ee4f1335865e17f9897fb8983ee2381fea10c170f0b5fa40"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "19fcea470b678844",
@@ -849,8 +966,47 @@
       "node_reference_ids": [
         "GBPJPY:ask:2010-03-02:middle"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPJPY:ask:2010-03-02:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "f2323e0d9e6131db0f2e8e30da9213bd24a73c0e7c96f80f4887258852da9a65",
+              "integer_ohlc_sha256": "7586c2bef4d9e2a8007815d73d244a064a95d5c7df2a2f60fb2a48b59a5562a0",
+              "volume_bits_sha256": "2c0dc08fbbb4840e5706ed01bf29aa75f91fa50f2fc86161c8db8fbac915cdfb",
+              "first_timestamp": 1267488000000,
+              "last_timestamp": 1267574340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "f2323e0d9e6131db0f2e8e30da9213bd24a73c0e7c96f80f4887258852da9a65",
+              "integer_ohlc_sha256": "7586c2bef4d9e2a8007815d73d244a064a95d5c7df2a2f60fb2a48b59a5562a0",
+              "first_timestamp": 1267488000000,
+              "last_timestamp": 1267574340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "2c0dc08fbbb4840e5706ed01bf29aa75f91fa50f2fc86161c8db8fbac915cdfb"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "a4f64ac5e2d989a5",
@@ -860,8 +1016,47 @@
       "node_reference_ids": [
         "GBPJPY:ask:2010-04-30:latest"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPJPY:ask:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "5f76192973c604aa6b019ca5fdcf697fb7608fb9bd1940527cf9807771609e63",
+              "volume_bits_sha256": "257dde962367dad5610378e775dbda9fe03ace6a1a0b92e3e117371c1fae9332",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "5f76192973c604aa6b019ca5fdcf697fb7608fb9bd1940527cf9807771609e63",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "257dde962367dad5610378e775dbda9fe03ace6a1a0b92e3e117371c1fae9332"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "73306d41a071788a",
@@ -871,8 +1066,47 @@
       "node_reference_ids": [
         "GBPJPY:bid:2010-01-01:earliest"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "GBPJPY:bid:2010-01-01:earliest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "0af927924be7079f3d3a014887fb876cc0a4b997e93243a49df197f9c6918f55",
+              "volume_bits_sha256": "451b142a14802a31e6c9f9fc3c7be260f9727be8319288085dc670d4418de7f0",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1320,
+              "ordered_timestamp_sha256": "fe62f333c9e3fdb53e9b22035a07bea9e7188a593d1e279e11ec72396fc43481",
+              "integer_ohlc_sha256": "0af927924be7079f3d3a014887fb876cc0a4b997e93243a49df197f9c6918f55",
+              "first_timestamp": 1262304000000,
+              "last_timestamp": 1262383140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "451b142a14802a31e6c9f9fc3c7be260f9727be8319288085dc670d4418de7f0"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "eb2cf8516ee41eb3",
@@ -1865,8 +2099,47 @@
       "node_reference_ids": [
         "USDJPY:ask:2010-05-31:latest"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDJPY:ask:2010-05-31:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "ec9cb5b9730a17a2191bfe7abb7a80cf7cb9795356076a31e51d8aa62bb162c2",
+              "volume_bits_sha256": "242a92cfbeb4c293168a14af62cd2736c053ecdfe514e7f3bb07c4ff9836ffc5",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "93ef3b48cf1a0cb035c5f9d0d6caed2f531874e03ea05a8352da44ca6ad10e15",
+              "integer_ohlc_sha256": "ec9cb5b9730a17a2191bfe7abb7a80cf7cb9795356076a31e51d8aa62bb162c2",
+              "first_timestamp": 1275264000000,
+              "last_timestamp": 1275350340000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "242a92cfbeb4c293168a14af62cd2736c053ecdfe514e7f3bb07c4ff9836ffc5"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "1b5ab7f8b513a7e0",

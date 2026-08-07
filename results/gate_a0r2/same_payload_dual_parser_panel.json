@@ -3,12 +3,12 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "INCOMPLETE",
   "required": 54,
-  "available": 44,
-  "processed": 44,
-  "pass": 44,
+  "available": 53,
+  "processed": 53,
+  "pass": 53,
   "fail": 0,
   "audjpy_required": 6,
-  "audjpy_pass": 4,
+  "audjpy_pass": 6,
   "rows": [
     {
       "request_id": "c790ab4e3df2a3ca",
@@ -28,7 +28,7 @@
       "same_payload_unit_ids": [
         "AUDJPY:ask:2011-03-14"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "c524fcf6a07690f7",
@@ -58,7 +58,7 @@
       "same_payload_unit_ids": [
         "AUDJPY:bid:2011-03-14"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "bfbb7032ec4945ab",
@@ -248,7 +248,7 @@
       "same_payload_unit_ids": [
         "EURUSD:bid:2014-06-16"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "a8e1b13a8f0e9b72",
@@ -258,7 +258,7 @@
       "same_payload_unit_ids": [
         "GBPJPY:ask:2010-01-04"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "e2aab9b26320d67b",
@@ -268,7 +268,7 @@
       "same_payload_unit_ids": [
         "GBPJPY:ask:2011-03-14"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "317a133e4123be5c",
@@ -278,7 +278,7 @@
       "same_payload_unit_ids": [
         "GBPJPY:ask:2014-06-16"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "0f6e559a8658a322",
@@ -378,7 +378,7 @@
       "same_payload_unit_ids": [
         "USDCAD:ask:2010-01-04"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "2cff922416e035c9",
@@ -388,7 +388,7 @@
       "same_payload_unit_ids": [
         "USDCAD:ask:2011-03-14"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "64f6e223e0dada2c",
@@ -548,7 +548,7 @@
       "same_payload_unit_ids": [
         "USDJPY:bid:2014-06-16"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     }
   ]
 }

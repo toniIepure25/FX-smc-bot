@@ -3499,7 +3499,110 @@ def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
 def parity_v2_status(data_root: Path) -> dict[str, Any]:
     registry = initialize_parity_request_registry(data_root)
     counts = write_parity_v2_incremental_artifacts(data_root, registry)
+    if counts["terminal"]:
+        write_parity_request_exhaustion_evidence(data_root, registry)
     return {"status": "PARITY_V2_STATUS", **counts}
+
+
+def _normalized_failure_fingerprint(error: str | None) -> str:
+    if not error:
+        return ""
+    normalized = " ".join(str(error).split())
+    if "HTTP 503" in normalized:
+        return "HTTP_503_SERVICE_UNAVAILABLE"
+    if "WinError 10060" in normalized or "timed out" in normalized:
+        return "PROVIDER_TIMEOUT"
+    if "WinError 10054" in normalized or "forcibly closed" in normalized:
+        return "REMOTE_CONNECTION_CLOSED"
+    return failure_fingerprint(normalized)
+
+
+def _nearest_health_summary(
+    summaries: list[dict[str, Any]], attempted_at: str | None
+) -> dict[str, Any] | None:
+    attempted = _parse_utc_timestamp(attempted_at)
+    if attempted is None:
+        return None
+    eligible = [
+        summary
+        for summary in summaries
+        if (
+            summary_time := _parse_utc_timestamp(
+                summary.get("completed_at") or summary.get("timestamp")
+            )
+        )
+        is not None
+        and summary_time <= attempted
+    ]
+    if not eligible:
+        return None
+    return max(
+        eligible,
+        key=lambda summary: (
+            _parse_utc_timestamp(summary.get("completed_at") or summary.get("timestamp"))
+            or datetime.min.replace(tzinfo=timezone.utc)
+        ),
+    )
+
+
+def write_parity_request_exhaustion_evidence(
+    data_root: Path, registry: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    registry = registry or initialize_parity_request_registry(data_root)
+    health_records = read_jsonl_records(native_health_history_path(data_root))
+    summaries = [
+        record
+        for record in health_records
+        if record.get("record_type") == "HEALTH_RUN_SUMMARY"
+        and record.get("transport") == "NATIVE_BI5_TRANSPORT"
+    ]
+    terminal_rows = [
+        row for row in registry["requests"] if row.get("overall_state") == "FAILED_TERMINAL"
+    ]
+    exhausted = []
+    for row in sorted(terminal_rows, key=lambda item: item["request_id"]):
+        attempts = []
+        for evidence in row.get("failure_evidence", []):
+            health = _nearest_health_summary(summaries, evidence.get("attempted_at"))
+            attempts.append(
+                {
+                    "attempt": evidence.get("attempt"),
+                    "attempted_at": evidence.get("attempted_at"),
+                    "http_status": evidence.get("http_status"),
+                    "failure_category": evidence.get("failure_category"),
+                    "normalized_failure_fingerprint": _normalized_failure_fingerprint(
+                        evidence.get("error")
+                    ),
+                    "health_run_id": health.get("health_run_id") if health else None,
+                    "health_status": health.get("status") if health else None,
+                    "health_completed_at": health.get("completed_at") if health else None,
+                }
+            )
+        exhausted.append(
+            {
+                "request_id": row["request_id"],
+                "pair": row["pair"],
+                "side": row["side"],
+                "date": row["date"],
+                "required_by_node_reference_panel": row["required_by_node_reference_panel"],
+                "required_by_same_payload_panel": row["required_by_same_payload_panel"],
+                "outer_attempts": row["outer_attempts"],
+                "latest_failure_category": row["latest_failure_category"],
+                "attempts": attempts,
+            }
+        )
+    artifact = {
+        "artifact_id": "A0R2_PARITY_REQUEST_EXHAUSTION_EVIDENCE_V1",
+        "gate_id": GATE_ID,
+        "status": "BLOCKED_BY_A0R2_PARITY_REQUEST_EXHAUSTION"
+        if exhausted
+        else "NO_EXHAUSTED_PARITY_REQUESTS",
+        "exhausted_request_count": len(exhausted),
+        "requests": exhausted,
+        "excluded_fields": ["raw_url", "clean_room_path"],
+    }
+    write_json(results_dir() / "parity_request_exhaustion_evidence.json", artifact)
+    return artifact
 
 
 def certify_independent_javascript_parser() -> dict[str, Any]:
@@ -3543,80 +3646,194 @@ def certify_independent_javascript_parser() -> dict[str, Any]:
 
 def certify_cross_language_synthetic_parser_v2(data_root: Path) -> dict[str, Any]:
     requested = date(2011, 3, 14)
-    anchor = int(datetime(2011, 3, 14, tzinfo=timezone.utc).timestamp() * 1000)
-    volume_a = struct.pack(">f", 1.5)
-    volume_b = struct.pack(">f", 2.25)
-    negative_zero = b"\x80\x00\x00\x00"
-    raw = b"".join(
+
+    def record(
+        second: int,
+        open_raw: int,
+        close_raw: int,
+        low_raw: int,
+        high_raw: int,
+        volume_bits: bytes,
+    ) -> bytes:
+        return struct.pack(">iiiii", second, open_raw, close_raw, low_raw, high_raw) + volume_bits
+
+    def payload(records: list[bytes], *, valid_lzma: bool = True) -> bytes:
+        raw_payload = b"".join(records)
+        if not valid_lzma:
+            return b"not-lzma"
+        return lzma.compress(raw_payload, format=lzma.FORMAT_ALONE)
+
+    def oracle_for(payload_bytes: bytes, pair: str) -> dict[str, Any]:
+        return _aggregate_public_identity(
+            aggregate_bi5_payload(payload_bytes, pair=pair, requested_date=requested)
+        )
+
+    finite_a = struct.pack(">f", 1.5)
+    finite_b = struct.pack(">f", 2.25)
+    plus_zero = b"\x00\x00\x00\x00"
+    minus_zero = b"\x80\x00\x00\x00"
+    nan_bits = b"\x7f\xc0\x00\x00"
+    pos_inf_bits = b"\x7f\x80\x00\x00"
+    neg_inf_bits = b"\xff\x80\x00\x00"
+
+    valid_records = [
+        record(0, 100, 102, 99, 103, finite_a),
+        record(86_399, 102, 101, 100, 104, finite_b),
+    ]
+    cases: list[dict[str, Any]] = []
+    for pair in INSTRUMENTS:
+        case_payload = payload(valid_records)
+        cases.append(
+            {
+                "case_id": f"authorized_pair_mapping_{pair}",
+                "pair": pair,
+                "payload": case_payload,
+                "expected": oracle_for(case_payload, pair),
+                "expect_error": None,
+            }
+        )
+    case_specs = [
         (
-            struct.pack(">iiiii", 0, 100, 102, 99, 103) + volume_a,
-            struct.pack(">iiiii", 86_399, 102, 101, 100, 104) + volume_b,
-            struct.pack(">iiiii", 60, 1, 1, 1, 1) + negative_zero,
+            "+0.0",
+            "EURUSD",
+            payload(valid_records + [record(60, 1, 1, 1, 1, plus_zero)]),
+            None,
+        ),
+        (
+            "-0.0",
+            "EURUSD",
+            payload(valid_records + [record(60, 1, 1, 1, 1, minus_zero)]),
+            None,
+        ),
+        (
+            "duplicate_timestamp",
+            "EURUSD",
+            payload(
+                [record(0, 100, 101, 99, 102, finite_a), record(0, 101, 102, 100, 103, finite_b)]
+            ),
+            None,
+        ),
+        (
+            "non_monotonic_timestamp",
+            "EURUSD",
+            payload(
+                [record(120, 100, 101, 99, 102, finite_a), record(60, 101, 102, 100, 103, finite_b)]
+            ),
+            None,
+        ),
+        (
+            "out_of_day_offset",
+            "EURUSD",
+            payload([record(86_400, 100, 101, 99, 102, finite_a)]),
+            None,
+        ),
+        (
+            "invalid_high_invariant",
+            "EURUSD",
+            payload([record(0, 100, 102, 99, 101, finite_a)]),
+            None,
+        ),
+        (
+            "invalid_low_invariant",
+            "EURUSD",
+            payload([record(0, 100, 102, 101, 103, finite_a)]),
+            None,
+        ),
+        ("invalid_lzma", "EURUSD", payload([], valid_lzma=False), "error"),
+        ("invalid_record_length", "EURUSD", lzma.compress(b"x", format=lzma.FORMAT_ALONE), "error"),
+        ("NaN", "EURUSD", payload([record(0, 1, 1, 1, 1, nan_bits)]), "error"),
+        ("+infinity", "EURUSD", payload([record(0, 1, 1, 1, 1, pos_inf_bits)]), "error"),
+        ("-infinity", "EURUSD", payload([record(0, 1, 1, 1, 1, neg_inf_bits)]), "error"),
+        ("unauthorized_pair", "NZDUSD", payload(valid_records), "error"),
+    ]
+    for case_id, pair, case_payload, expect_error in case_specs:
+        expected = None
+        if expect_error is None:
+            expected = oracle_for(case_payload, pair)
+        cases.append(
+            {
+                "case_id": case_id,
+                "pair": pair,
+                "payload": case_payload,
+                "expected": expected,
+                "expect_error": expect_error,
+            }
         )
-    )
-    payload = lzma.compress(raw, format=lzma.FORMAT_ALONE)
-    oracle = {
-        "raw_sha256": sha256_bytes(payload),
-        "row_count": 2,
-        "ordered_timestamp_sha256": sha256_bytes(
-            json.dumps([anchor, anchor + 86_399_000], separators=(",", ":")).encode("utf-8")
-        ),
-        "integer_ohlc_sha256": sha256_bytes(
-            json.dumps(
-                [[anchor, 100, 103, 99, 102], [anchor + 86_399_000, 102, 104, 100, 101]],
-                separators=(",", ":"),
-            ).encode("utf-8")
-        ),
-        "volume_bits_sha256": sha256_bytes(volume_a + volume_b),
-        "first_timestamp": anchor,
-        "last_timestamp": anchor + 86_399_000,
-        "duplicate_count": 0,
-        "out_of_range_count": 0,
-        "zero_volume_excluded_count": 1,
-        "negative_zero_excluded_count": 1,
-        "timestamps_monotonic": True,
-        "ohlc_invariants_pass": True,
-        "decompression_status": "PASS",
-        "record_length_status": "PASS",
-    }
-    python_identity = _aggregate_public_identity(
-        aggregate_bi5_payload(payload, pair="EURUSD", requested_date=requested)
-    )
-    python_pass = python_identity == oracle
+
     node = node_executable()
-    javascript_pass = False
-    python_javascript_pass = False
-    node_exit_code = 127
-    if node:
-        scratch = data_root / "checkpoints" / "synthetic_parser_v2"
-        scratch.mkdir(parents=True, exist_ok=True)
-        payload_path = scratch / "golden.bi5"
-        payload_path.write_bytes(payload)
-        completed = subprocess.run(
-            [node, "parse-bi5.mjs", str(payload_path), "EURUSD", requested.isoformat()],
-            cwd=repo_root() / "tools" / "dukascopy-bi5-independent",
-            check=False,
-            capture_output=True,
-            text=True,
-        )
-        node_exit_code = completed.returncode
-        javascript_identity = json.loads(completed.stdout) if completed.returncode == 0 else {}
-        javascript_pass = all(
-            javascript_identity.get(key) == value for key, value in oracle.items()
-        )
-        python_javascript_pass = all(
-            javascript_identity.get(key) == value for key, value in python_identity.items()
+    scratch = data_root / "checkpoints" / "synthetic_parser_v2"
+    scratch.mkdir(parents=True, exist_ok=True)
+    rows = []
+    python_vs_oracle_pass = True
+    javascript_vs_oracle_pass = True
+    python_vs_javascript_pass = True
+    for index, case in enumerate(cases):
+        python_error = None
+        javascript_error = None
+        python_identity: dict[str, Any] = {}
+        javascript_identity: dict[str, Any] = {}
+        try:
+            python_identity = oracle_for(case["payload"], case["pair"])
+        except Exception as exc:
+            python_error = type(exc).__name__
+        node_exit_code = 127
+        if node:
+            payload_path = scratch / f"{index:02d}_{case['case_id']}.bi5"
+            payload_path.write_bytes(case["payload"])
+            completed = subprocess.run(
+                [node, "parse-bi5.mjs", str(payload_path), case["pair"], requested.isoformat()],
+                cwd=repo_root() / "tools" / "dukascopy-bi5-independent",
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            node_exit_code = completed.returncode
+            if completed.returncode == 0:
+                javascript_identity = json.loads(completed.stdout)
+            else:
+                javascript_error = completed.stderr.strip() or completed.stdout.strip()
+        if case["expect_error"]:
+            python_ok = python_error is not None
+            javascript_ok = javascript_error is not None or node_exit_code != 0
+            cross_ok = python_ok and javascript_ok
+        else:
+            expected = case["expected"]
+            python_ok = python_identity == expected
+            javascript_ok = all(
+                javascript_identity.get(key) == value for key, value in expected.items()
+            )
+            cross_ok = all(
+                javascript_identity.get(key) == value for key, value in python_identity.items()
+            )
+        python_vs_oracle_pass = python_vs_oracle_pass and python_ok
+        javascript_vs_oracle_pass = javascript_vs_oracle_pass and javascript_ok
+        python_vs_javascript_pass = python_vs_javascript_pass and cross_ok
+        rows.append(
+            {
+                "case_id": case["case_id"],
+                "pair": case["pair"],
+                "expect_error": bool(case["expect_error"]),
+                "python_vs_oracle": "PASS" if python_ok else "FAIL",
+                "javascript_vs_oracle": "PASS" if javascript_ok else "FAIL",
+                "python_vs_javascript": "PASS" if cross_ok else "FAIL",
+                "python_error": python_error,
+                "javascript_error": javascript_error,
+                "node_exit_code": node_exit_code,
+            }
         )
     artifact = {
         "artifact_id": "A0R2_CROSS_LANGUAGE_SYNTHETIC_PARSER_CERTIFICATION_V2",
         "gate_id": GATE_ID,
-        "status": "PASS" if python_pass and javascript_pass and python_javascript_pass else "FAIL",
+        "status": "PASS"
+        if python_vs_oracle_pass and javascript_vs_oracle_pass and python_vs_javascript_pass
+        else "FAIL",
         "network_requests": 0,
-        "python_vs_oracle": "PASS" if python_pass else "FAIL",
-        "javascript_vs_oracle": "PASS" if javascript_pass else "FAIL",
-        "python_vs_javascript": "PASS" if python_javascript_pass else "FAIL",
-        "node_exit_code": node_exit_code,
-        "cases": ["lzma_two_rows_plus_negative_zero_volume_exclusion"],
+        "case_count": len(rows),
+        "python_vs_oracle": "PASS" if python_vs_oracle_pass else "FAIL",
+        "javascript_vs_oracle": "PASS" if javascript_vs_oracle_pass else "FAIL",
+        "python_vs_javascript": "PASS" if python_vs_javascript_pass else "FAIL",
+        "cases": [row["case_id"] for row in rows],
+        "case_results": rows,
     }
     write_json(results_dir() / "cross_language_synthetic_parser_certification_v2.json", artifact)
     return artifact

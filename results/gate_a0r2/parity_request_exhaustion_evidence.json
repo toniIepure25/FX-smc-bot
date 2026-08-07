@@ -1,0 +1,220 @@
+{
+  "artifact_id": "A0R2_PARITY_REQUEST_EXHAUSTION_EVIDENCE_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "BLOCKED_BY_A0R2_PARITY_REQUEST_EXHAUSTION",
+  "exhausted_request_count": 4,
+  "requests": [
+    {
+      "request_id": "aa12132b681fb627",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-03-24",
+      "required_by_node_reference_panel": true,
+      "required_by_same_payload_panel": false,
+      "outer_attempts": 5,
+      "latest_failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "attempts": [
+        {
+          "attempt": 2,
+          "attempted_at": "2026-08-07T16:47:54.897159+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-d7a89ac7ea944f8485904473b7b874c8",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T16:43:33.557235+00:00"
+        },
+        {
+          "attempt": 3,
+          "attempted_at": "2026-08-07T18:51:28.297686+00:00",
+          "http_status": null,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "PROVIDER_TIMEOUT",
+          "health_run_id": "native-b3a2cb6cfa9c40d394a70f2a13c7e234",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T18:49:37.845258+00:00"
+        },
+        {
+          "attempt": 4,
+          "attempted_at": "2026-08-07T19:04:04.930746+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-b6236eff50d64cac95e5b231b60d56e5",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:02:49.473600+00:00"
+        },
+        {
+          "attempt": 5,
+          "attempted_at": "2026-08-07T19:10:46.411142+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-9e957384278a4b3b924c66202f04bf5a",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:06:50.585410+00:00"
+        }
+      ]
+    },
+    {
+      "request_id": "ac2607bebadb2089",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "required_by_node_reference_panel": false,
+      "required_by_same_payload_panel": true,
+      "outer_attempts": 5,
+      "latest_failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "attempts": [
+        {
+          "attempt": 2,
+          "attempted_at": "2026-08-07T16:47:24.816764+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-d7a89ac7ea944f8485904473b7b874c8",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T16:43:33.557235+00:00"
+        },
+        {
+          "attempt": 3,
+          "attempted_at": "2026-08-07T18:51:28.310685+00:00",
+          "http_status": null,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "PROVIDER_TIMEOUT",
+          "health_run_id": "native-b3a2cb6cfa9c40d394a70f2a13c7e234",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T18:49:37.845258+00:00"
+        },
+        {
+          "attempt": 4,
+          "attempted_at": "2026-08-07T19:04:34.900096+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "PROVIDER_TIMEOUT",
+          "health_run_id": "native-b6236eff50d64cac95e5b231b60d56e5",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:02:49.473600+00:00"
+        },
+        {
+          "attempt": 5,
+          "attempted_at": "2026-08-07T19:10:45.293062+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-9e957384278a4b3b924c66202f04bf5a",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:06:50.585410+00:00"
+        }
+      ]
+    },
+    {
+      "request_id": "ad76c69617516259",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-04-30",
+      "required_by_node_reference_panel": true,
+      "required_by_same_payload_panel": false,
+      "outer_attempts": 5,
+      "latest_failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "attempts": [
+        {
+          "attempt": 2,
+          "attempted_at": "2026-08-07T16:47:56.314824+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-d7a89ac7ea944f8485904473b7b874c8",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T16:43:33.557235+00:00"
+        },
+        {
+          "attempt": 3,
+          "attempted_at": "2026-08-07T18:52:12.980542+00:00",
+          "http_status": null,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "REMOTE_CONNECTION_CLOSED",
+          "health_run_id": "native-b3a2cb6cfa9c40d394a70f2a13c7e234",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T18:49:37.845258+00:00"
+        },
+        {
+          "attempt": 4,
+          "attempted_at": "2026-08-07T19:05:08.854054+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-b6236eff50d64cac95e5b231b60d56e5",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:02:49.473600+00:00"
+        },
+        {
+          "attempt": 5,
+          "attempted_at": "2026-08-07T19:10:47.752371+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-9e957384278a4b3b924c66202f04bf5a",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:06:50.585410+00:00"
+        }
+      ]
+    },
+    {
+      "request_id": "b8696e7d7488e95e",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-04-30",
+      "required_by_node_reference_panel": true,
+      "required_by_same_payload_panel": false,
+      "outer_attempts": 5,
+      "latest_failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "attempts": [
+        {
+          "attempt": 2,
+          "attempted_at": "2026-08-07T16:47:58.008937+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-d7a89ac7ea944f8485904473b7b874c8",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T16:43:33.557235+00:00"
+        },
+        {
+          "attempt": 3,
+          "attempted_at": "2026-08-07T18:54:04.294504+00:00",
+          "http_status": null,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "REMOTE_CONNECTION_CLOSED",
+          "health_run_id": "native-4316205d88fd484fa7c2a08a49af189f",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T18:53:13.352044+00:00"
+        },
+        {
+          "attempt": 4,
+          "attempted_at": "2026-08-07T19:04:52.931451+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-b6236eff50d64cac95e5b231b60d56e5",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:02:49.473600+00:00"
+        },
+        {
+          "attempt": 5,
+          "attempted_at": "2026-08-07T19:10:47.766000+00:00",
+          "http_status": 503,
+          "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "normalized_failure_fingerprint": "HTTP_503_SERVICE_UNAVAILABLE",
+          "health_run_id": "native-9e957384278a4b3b924c66202f04bf5a",
+          "health_status": "PASS",
+          "health_completed_at": "2026-08-07T19:06:50.585410+00:00"
+        }
+      ]
+    }
+  ],
+  "excluded_fields": [
+    "raw_url",
+    "clean_room_path"
+  ]
+}
