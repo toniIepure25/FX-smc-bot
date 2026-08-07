@@ -23,7 +23,7 @@ import uuid
 from collections import Counter, deque
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -49,6 +49,7 @@ from fx_smc_bot.data.daily_checkpoint import (
 )
 from fx_smc_bot.data.dukascopy_bi5 import (
     BI5_INSTRUMENTS,
+    aggregate_bi5_payload,
     dukascopy_candle_url,
     fetch_bi5_day,
     instrument_metadata,
@@ -2652,6 +2653,253 @@ def parity_queue_status(data_root: Path) -> dict[str, Any]:
     }
 
 
+def parity_request_registry_path(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "a0r2_parity_request_registry.json"
+
+
+def initialize_parity_request_registry(data_root: Path) -> dict[str, Any]:
+    path = parity_request_registry_path(data_root)
+    if path.exists():
+        return read_json(path)
+    node_panel = read_json(results_dir() / "node_reference_panel_freeze_v2.json")
+    same_panel = read_json(results_dir() / "stratified_parity_panel_freeze.json")
+    requests: dict[str, dict[str, Any]] = {}
+    for unit in node_panel["units"]:
+        identity = (
+            f"DUKASCOPY_DATAFEED_M1_CANDLES_V1:{unit['pair']}:{unit['side']}:{unit['date']}:M1"
+        )
+        requests.setdefault(
+            identity,
+            {"request_identity": identity, "node_reference_ids": [], "same_payload_unit_ids": []},
+        )["node_reference_ids"].append(unit["reference_unit_id"])
+    for unit in same_panel["units"]:
+        identity = (
+            f"DUKASCOPY_DATAFEED_M1_CANDLES_V1:{unit['pair']}:{unit['side']}:{unit['date']}:M1"
+        )
+        requests.setdefault(
+            identity,
+            {"request_identity": identity, "node_reference_ids": [], "same_payload_unit_ids": []},
+        )["same_payload_unit_ids"].append(unit["parity_unit_id"])
+    rows = []
+    for identity, row in sorted(requests.items()):
+        _, pair, side, requested, timeframe = identity.split(":")
+        rows.append(
+            {
+                **row,
+                "request_id": sha256_json(identity)[:16],
+                "request_identity_hash": sha256_json(identity),
+                "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+                "pair": pair,
+                "side": side,
+                "date": requested,
+                "timeframe": timeframe,
+                "required_by_node_reference_panel": bool(row["node_reference_ids"]),
+                "required_by_same_payload_panel": bool(row["same_payload_unit_ids"]),
+                "raw_payload_state": "PLANNED",
+                "raw_sha256": None,
+                "python_aggregate_state": "PLANNED",
+                "javascript_aggregate_state": "PLANNED",
+                "node_comparison_state": "PLANNED",
+                "source_integrity_state": "PLANNED",
+                "outer_attempts": 0,
+                "latest_failure_category": None,
+                "overall_state": "PLANNED",
+            }
+        )
+    registry = {
+        "artifact_id": "A0R2_PARITY_REQUEST_REGISTRY_V1",
+        "gate_id": GATE_ID,
+        "status": "READY",
+        "requests": rows,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    (native_raw_dir(data_root) / "parity_v2").mkdir(parents=True, exist_ok=True)
+    write_json(path, registry)
+    return registry
+
+
+def parity_event_path(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "a0r2_parity_request_events.jsonl"
+
+
+def parity_lease_path(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "a0r2_parity_lease.json"
+
+
+def append_parity_event(data_root: Path, event: dict[str, Any]) -> None:
+    path = parity_event_path(data_root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(event, sort_keys=True) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def run_native_parity_v2(data_root: Path, max_requests: int) -> dict[str, Any]:
+    registry = initialize_parity_request_registry(data_root)
+    lease_path = parity_lease_path(data_root)
+    if lease_path.exists():
+        raise ValueError("A0R2_PARITY_LEASE_ALREADY_ACTIVE")
+    lease_id = uuid.uuid4().hex
+    now = datetime.now(timezone.utc)
+    write_json(
+        lease_path,
+        {
+            "lease_id": lease_id,
+            "owner_pid": os.getpid(),
+            "owner_host_hash": sha256_json(socket.gethostname()),
+            "runner_sha": git_sha(),
+            "started_at": now.isoformat(),
+            "heartbeat_at": now.isoformat(),
+            "expires_at": (now + timedelta(minutes=5)).isoformat(),
+            "purpose": "native-parity-v2",
+        },
+    )
+    append_parity_event(data_root, {"event": "LEASE_ACQUIRED", "lease_id": lease_id})
+    attempted = acquired = failed = 0
+    try:
+        for row in registry["requests"]:
+            if attempted >= max_requests:
+                break
+            if row["raw_payload_state"] == "RAW_ACQUIRED":
+                continue
+            if int(row["outer_attempts"]) >= 5:
+                continue
+            requested = date.fromisoformat(row["date"])
+            final_path = native_raw_dir(data_root) / "parity_v2" / row["request_id"] / "candles.bi5"
+            fetched = fetch_bi5_day(
+                dukascopy_candle_url(row["pair"], requested, row["side"]), final_path, retries=2
+            )
+            attempted += 1
+            row["outer_attempts"] = int(row["outer_attempts"]) + 1
+            if fetched.status == "PASS":
+                row.update(
+                    {
+                        "raw_payload_state": "RAW_ACQUIRED",
+                        "raw_sha256": fetched.checksum,
+                        "overall_state": "RAW_ACQUIRED",
+                        "latest_failure_category": None,
+                    }
+                )
+                acquired += 1
+                event = "PAYLOAD_ACQUIRED"
+            else:
+                row.update(
+                    {
+                        "overall_state": "FAILED_RETRYABLE",
+                        "latest_failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+                    }
+                )
+                failed += 1
+                event = "PAYLOAD_FAILED"
+            write_json(parity_request_registry_path(data_root), registry)
+            append_parity_event(
+                data_root,
+                {
+                    "event": event,
+                    "request_id": row["request_id"],
+                    "outer_attempts": row["outer_attempts"],
+                },
+            )
+    finally:
+        if lease_path.exists():
+            lease_path.unlink()
+            append_parity_event(data_root, {"event": "LEASE_RELEASED", "lease_id": lease_id})
+    return {
+        "status": "PARITY_REQUESTS_ATTEMPTED",
+        "attempted": attempted,
+        "acquired": acquired,
+        "failed": failed,
+    }
+
+
+def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
+    registry = initialize_parity_request_registry(data_root)
+    node = shutil.which("node")
+    completed = cross_language = source_pass = 0
+    for row in registry["requests"]:
+        if row["raw_payload_state"] != "RAW_ACQUIRED":
+            continue
+        payload_path = native_raw_dir(data_root) / "parity_v2" / row["request_id"] / "candles.bi5"
+        if not payload_path.exists() or file_sha256(payload_path) != row["raw_sha256"]:
+            row.update(
+                {
+                    "overall_state": "FAILED_RETRYABLE",
+                    "latest_failure_category": "PARITY_PAYLOAD_HASH_MISMATCH",
+                }
+            )
+            continue
+        try:
+            aggregate = aggregate_bi5_payload(
+                payload_path.read_bytes(),
+                pair=row["pair"],
+                requested_date=date.fromisoformat(row["date"]),
+            )
+            python_identity = {
+                field: getattr(aggregate, field)
+                for field in (
+                    "raw_sha256",
+                    "row_count",
+                    "ordered_timestamp_sha256",
+                    "integer_ohlc_sha256",
+                    "volume_bits_sha256",
+                    "first_timestamp",
+                    "last_timestamp",
+                    "duplicate_count",
+                    "out_of_range_count",
+                    "zero_volume_excluded_count",
+                    "negative_zero_excluded_count",
+                    "timestamps_monotonic",
+                    "ohlc_invariants_pass",
+                )
+            }
+            row["python_aggregate_state"] = "PASS"
+            row["source_integrity_state"] = (
+                "PASS"
+                if (
+                    aggregate.row_count > 0
+                    and aggregate.out_of_range_count == 0
+                    and aggregate.timestamps_monotonic
+                    and aggregate.ohlc_invariants_pass
+                )
+                else "FAIL"
+            )
+            if node:
+                result = subprocess.run(
+                    [node, "parse-bi5.mjs", str(payload_path), row["pair"], row["date"]],
+                    cwd=repo_root() / "tools" / "dukascopy-bi5-independent",
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                javascript = json.loads(result.stdout) if result.returncode == 0 else {}
+                matched = all(
+                    javascript.get(key) == value for key, value in python_identity.items()
+                )
+                row["javascript_aggregate_state"] = "PASS" if matched else "FAIL"
+                cross_language += int(matched)
+            row["overall_state"] = "SOURCE_INTEGRITY_CERTIFIED"
+            completed += 1
+            source_pass += int(row["source_integrity_state"] == "PASS")
+            append_parity_event(
+                data_root, {"event": "OFFLINE_AGGREGATED", "request_id": row["request_id"]}
+            )
+        except (OSError, ValueError, json.JSONDecodeError):
+            row.update(
+                {
+                    "overall_state": "FAILED_RETRYABLE",
+                    "latest_failure_category": "PARITY_OFFLINE_PROCESSING_FAILURE",
+                }
+            )
+        write_json(parity_request_registry_path(data_root), registry)
+    return {
+        "status": "OFFLINE_PARITY_PROCESSED",
+        "processed": completed,
+        "cross_language_pass": cross_language,
+        "source_integrity_pass": source_pass,
+    }
+
+
 def certify_independent_javascript_parser() -> dict[str, Any]:
     parser_dir = repo_root() / "tools" / "dukascopy-bi5-independent"
     node = shutil.which("node")
@@ -2756,12 +3004,14 @@ def freeze_node_reference_panel_v2(data_root: Path) -> dict[str, Any]:
                             / "data.json"
                         )
                         if item.status == "complete" and item.rows > 0 and path.exists():
-                            candidates.append({
-                                "pair": pair,
-                                "side": side,
-                                "date": date(year, month, item.day).isoformat(),
-                                "source_daily_sha256": file_sha256(path),
-                            })
+                            candidates.append(
+                                {
+                                    "pair": pair,
+                                    "side": side,
+                                    "date": date(year, month, item.day).isoformat(),
+                                    "source_daily_sha256": file_sha256(path),
+                                }
+                            )
             candidates.sort(key=lambda item: str(item["date"]))
             if len(candidates) < 3:
                 missing.append(f"{pair}:{side}:need_3_have_{len(candidates)}")
@@ -2769,9 +3019,7 @@ def freeze_node_reference_panel_v2(data_root: Path) -> dict[str, Any]:
             for index, role in ((0, "earliest"), (len(candidates) // 2, "middle"), (-1, "latest")):
                 unit = dict(candidates[index])
                 unit["selection_role"] = role
-                unit["reference_unit_id"] = (
-                    f"{unit['pair']}:{unit['side']}:{unit['date']}:{role}"
-                )
+                unit["reference_unit_id"] = f"{unit['pair']}:{unit['side']}:{unit['date']}:{role}"
                 selected.append(unit)
     provenance = [
         {key: unit[key] for key in ("pair", "side", "date", "source_daily_sha256")}
@@ -2782,7 +3030,8 @@ def freeze_node_reference_panel_v2(data_root: Path) -> dict[str, Any]:
         "gate_id": GATE_ID,
         "panel_id": "A0R2_IMMUTABLE_NODE_REFERENCE_PANEL_V2",
         "status": "FROZEN_BEFORE_NEW_REFERENCE_PARITY_REQUESTS"
-        if len(selected) == 48 and not missing else "INCOMPLETE_EXISTING_REFERENCE_COVERAGE",
+        if len(selected) == 48 and not missing
+        else "INCOMPLETE_EXISTING_REFERENCE_COVERAGE",
         "selection_algorithm": [
             "earliest valid certified open-market daily unit",
             "middle valid certified open-market daily unit by chronological index",
@@ -2830,17 +3079,19 @@ def audit_node_reference_panel_validity(data_root: Path) -> dict[str, Any]:
     for unit in panel["units"]:
         requested = date.fromisoformat(unit["date"])
         path = (
-            raw_dir(data_root) / unit["pair"] / f"price={unit['side']}"
-            / f"year={requested.year}" / f"month={requested.month:02d}"
-            / f"day={requested.day:02d}" / "data.json"
+            raw_dir(data_root)
+            / unit["pair"]
+            / f"price={unit['side']}"
+            / f"year={requested.year}"
+            / f"month={requested.month:02d}"
+            / f"day={requested.day:02d}"
+            / "data.json"
         )
         manifest = load_month_manifest(
             raw_dir(data_root), unit["pair"], unit["side"], requested.year, requested.month
         )
         manifest_days = manifest.days if manifest else []
-        day_status = next(
-            (item for item in manifest_days if item.day == requested.day), None
-        )
+        day_status = next((item for item in manifest_days if item.day == requested.day), None)
         categories: list[str] = []
         if not path.exists():
             categories.append("MISSING_SOURCE_DAILY_FILE")
@@ -2850,9 +3101,12 @@ def audit_node_reference_panel_validity(data_root: Path) -> dict[str, Any]:
             categories.append("MANIFEST_NOT_COMPLETE")
         if path.exists():
             rows = read_json(path)
-            start_ms = int(datetime(
-                requested.year, requested.month, requested.day, tzinfo=timezone.utc
-            ).timestamp() * 1000)
+            start_ms = int(
+                datetime(
+                    requested.year, requested.month, requested.day, tzinfo=timezone.utc
+                ).timestamp()
+                * 1000
+            )
             end_ms = start_ms + 86_400_000
             timestamps = [int(row["timestamp"]) for row in rows]
             if not rows:
@@ -2872,10 +3126,12 @@ def audit_node_reference_panel_validity(data_root: Path) -> dict[str, Any]:
         if categories:
             for category in categories:
                 counters[category] += 1
-            failures.append({
-                "reference_unit_id": unit["reference_unit_id"],
-                "categories": ",".join(categories),
-            })
+            failures.append(
+                {
+                    "reference_unit_id": unit["reference_unit_id"],
+                    "categories": ",".join(categories),
+                }
+            )
     artifact = {
         "artifact_id": "A0R2_NODE_REFERENCE_PANEL_VALIDITY_AUDIT_V1",
         "gate_id": GATE_ID,
@@ -2887,7 +3143,8 @@ def audit_node_reference_panel_validity(data_root: Path) -> dict[str, Any]:
         "market_closed_references": counters["MANIFEST_NOT_COMPLETE"],
         "empty_references": counters["EMPTY_REFERENCE"],
         "status": (
-            "PASS" if not failures and len(panel["units"]) == 48
+            "PASS"
+            if not failures and len(panel["units"]) == 48
             else "BLOCKED_BY_A0R2_NODE_REFERENCE_PANEL_VALIDITY"
         ),
         "failures": failures,
@@ -4761,6 +5018,9 @@ def parse_args() -> argparse.Namespace:
             "cross-language-contract-certification",
             "op5r4c-frozen-input-integrity",
             "parity-queue-status",
+            "parity-request-registry",
+            "native-parity-v2",
+            "parity-offline-process",
             "javascript-parser-certification",
             "provider-health-summary",
             "native-parity",
@@ -4796,6 +5056,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--native-workers", type=int, default=4)
     parser.add_argument("--max-months", type=int, default=None)
     parser.add_argument("--max-day-requests", type=int, default=None)
+    parser.add_argument("--max-parity-requests", type=int, default=120)
     parser.add_argument("--max-health-attempts", type=int, default=30)
     parser.add_argument("--health-interval-seconds", type=int, default=60)
     parser.add_argument("--required-consecutive-health-passes", type=int, default=2)
@@ -4887,6 +5148,13 @@ def main() -> int:
         result = audit_op5r4c_frozen_inputs()
     elif stage == "parity-queue-status":
         result = parity_queue_status(data_root)
+    elif stage == "parity-request-registry":
+        registry = initialize_parity_request_registry(data_root)
+        result = {"status": registry["status"], "unique_requests": len(registry["requests"])}
+    elif stage == "native-parity-v2":
+        result = run_native_parity_v2(data_root, args.max_parity_requests)
+    elif stage == "parity-offline-process":
+        result = process_parity_payloads_offline(data_root)
     elif stage == "javascript-parser-certification":
         result = certify_independent_javascript_parser()
     elif stage == "provider-health-summary":
