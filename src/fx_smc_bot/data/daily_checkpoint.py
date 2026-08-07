@@ -19,9 +19,10 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 from fx_smc_bot.data.dukascopy_bi5 import (
-    PARSER_VERSION,
+    HTTP_TRANSPORT_V2_ID,
+    HTTP_TRANSPORT_V2_VERSION,
     dukascopy_candle_url,
-    fetch_bi5_day,
+    fetch_bi5_day_http_v2,
     parse_bi5_m1_candles,
     raw_ohlc_checksum,
     timestamp_checksum,
@@ -334,15 +335,15 @@ def download_native_day_with_checkpoint(
         native_raw_dir / pair / f"price={side}" / f"year={year}"
         / f"month={month:02d}" / f"day={day:02d}" / "candles.bi5"
     )
-    fetch = fetch_bi5_day(
+    fetch = fetch_bi5_day_http_v2(
         dukascopy_candle_url(pair, requested_day, side), raw_path, retries=max_retries
     )
     status = DayStatus(
         pair=pair, side=side, year=year, month=month, day=day,
         status="failed", attempts=fetch.attempts,
         source_id="DUKASCOPY_DATAFEED_M1_CANDLES_V1",
-        transport_id="DUKASCOPY_NATIVE_BI5_V1",
-        transport_version=PARSER_VERSION,
+        transport_id=HTTP_TRANSPORT_V2_ID,
+        transport_version=HTTP_TRANSPORT_V2_VERSION,
     )
     if fetch.status != "PASS":
         status.failure_category = "NATIVE_BI5_TRANSPORT_FAILURE"

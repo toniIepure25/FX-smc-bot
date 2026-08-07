@@ -1,0 +1,74 @@
+{
+  "artifact_id": "A0R2_PARITY_QUEUE_INTEGRITY_AUDIT_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "strict_original_parity_v2": {
+    "raw_acquired": 98,
+    "required": 102,
+    "terminal_preserved": 4
+  },
+  "effective_transport_recovery_parity": {
+    "raw_acquired": 102,
+    "required": 102,
+    "raw_recovered": 4,
+    "retryable": 0,
+    "effective_terminal_blockers": 0
+  },
+  "counts": {
+    "unique_requests": 102,
+    "strict_raw_acquired": 98,
+    "raw_acquired": 102,
+    "raw_recovered": 4,
+    "retryable": 0,
+    "terminal": 4,
+    "python_pass": 102,
+    "javascript_pass": 102,
+    "cross_language_pass": 102,
+    "source_integrity_pass": 102,
+    "outer_attempt_distribution": {
+      "1": 56,
+      "2": 24,
+      "3": 15,
+      "4": 1,
+      "5": 6
+    },
+    "node_required": 48,
+    "node_payload_available": 48,
+    "node_compared": 48,
+    "node_pass": 48,
+    "same_payload_required": 54,
+    "same_payload_available": 54,
+    "same_payload_compared": 54,
+    "same_payload_pass": 54,
+    "audjpy_required": 6,
+    "audjpy_pass": 6
+  },
+  "checks": {
+    "unique_registry_requests": true,
+    "effective_raw_acquired": true,
+    "strict_original_v1_state_preserved": true,
+    "retryable_zero": true,
+    "effective_terminal_blockers_zero": true,
+    "python_pass": true,
+    "javascript_pass": true,
+    "cross_language_pass": true,
+    "source_integrity_pass": true,
+    "node_reference_pass": true,
+    "same_payload_pass": true,
+    "audjpy_same_payload_pass": true,
+    "active_parity_lease_absent": true,
+    "conflicting_raw_hashes_zero": true,
+    "valid_payload_reacquisitions_zero": true,
+    "scientific_partition_attempts_zero": true
+  },
+  "active_parity_lease": false,
+  "conflicting_raw_hashes": 0,
+  "valid_payload_reacquisitions": 0,
+  "scientific_partition_attempts_consumed": 0,
+  "recovered_request_ids": [
+    "b8696e7d7488e95e",
+    "ac2607bebadb2089",
+    "aa12132b681fb627",
+    "ad76c69617516259"
+  ]
+}

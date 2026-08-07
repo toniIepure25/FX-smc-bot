@@ -1,11 +1,11 @@
 {
   "artifact_id": "A0R2_SAME_PAYLOAD_DUAL_PARSER_PANEL_V1",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "INCOMPLETE",
+  "status": "PASS",
   "required": 54,
-  "available": 53,
-  "processed": 53,
-  "pass": 53,
+  "available": 54,
+  "processed": 54,
+  "pass": 54,
   "fail": 0,
   "audjpy_required": 6,
   "audjpy_pass": 6,
@@ -408,7 +408,7 @@
       "same_payload_unit_ids": [
         "USDCAD:bid:2010-01-04"
       ],
-      "state": "PLANNED"
+      "state": "PASS"
     },
     {
       "request_id": "3a947ed6f2c88aa9",

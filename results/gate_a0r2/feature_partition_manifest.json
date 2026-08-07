@@ -4,8 +4,8 @@
   "status": "INCOMPLETE",
   "expected_pair_month_partitions": 540,
   "certified_pair_month_partitions": 15,
-  "reused_valid_partitions": 7,
-  "newly_built_partitions": 8,
+  "reused_valid_partitions": 15,
+  "newly_built_partitions": 0,
   "rebuilt_invalid_partitions": 0,
   "canonicalization_failures": 5,
   "not_eligible_pair_months": 520,
@@ -14,13 +14,15 @@
       "pair": "EURUSD",
       "year": 2010,
       "month": 4,
-      "sha256": "58fa74b1b0794c6792d38b03652761622c686ad1f9194a6600a03c1f5b408961"
+      "sha256": "58fa74b1b0794c6792d38b03652761622c686ad1f9194a6600a03c1f5b408961",
+      "reused_valid_partition": true
     },
     {
       "pair": "EURUSD",
       "year": 2010,
       "month": 5,
-      "sha256": "62085f8d690bba4af02a800a3dead5c630b180f3e7db83978d5a684b2d7aa32b"
+      "sha256": "62085f8d690bba4af02a800a3dead5c630b180f3e7db83978d5a684b2d7aa32b",
+      "reused_valid_partition": true
     },
     {
       "pair": "GBPUSD",
@@ -33,13 +35,15 @@
       "pair": "GBPUSD",
       "year": 2010,
       "month": 4,
-      "sha256": "bab2314524bb8d37e1574219fcd7530ab11295bf28140744f5788350e5476314"
+      "sha256": "bab2314524bb8d37e1574219fcd7530ab11295bf28140744f5788350e5476314",
+      "reused_valid_partition": true
     },
     {
       "pair": "GBPUSD",
       "year": 2010,
       "month": 5,
-      "sha256": "584c7d4e46c6b410ceccd9c7f963c3b9655208e1ee691705cfc5c36c01100c5c"
+      "sha256": "584c7d4e46c6b410ceccd9c7f963c3b9655208e1ee691705cfc5c36c01100c5c",
+      "reused_valid_partition": true
     },
     {
       "pair": "USDCAD",
@@ -52,7 +56,8 @@
       "pair": "USDCAD",
       "year": 2010,
       "month": 4,
-      "sha256": "2238528e4e8486e47e0641cb06fc80d0ad1b5edc4ee8e951fc68363055e7fc77"
+      "sha256": "2238528e4e8486e47e0641cb06fc80d0ad1b5edc4ee8e951fc68363055e7fc77",
+      "reused_valid_partition": true
     },
     {
       "pair": "USDCHF",
@@ -65,7 +70,8 @@
       "pair": "USDCHF",
       "year": 2010,
       "month": 4,
-      "sha256": "f13f2d7957668fc146610f6533fc68b675fcd1926275c2819a1d8e7ad7e45f62"
+      "sha256": "f13f2d7957668fc146610f6533fc68b675fcd1926275c2819a1d8e7ad7e45f62",
+      "reused_valid_partition": true
     },
     {
       "pair": "EURJPY",
@@ -85,7 +91,8 @@
       "pair": "EURJPY",
       "year": 2010,
       "month": 4,
-      "sha256": "b2abd5a56011e5b5849885a1b03bf6832ecbbeadd539db80771469d289ef55ee"
+      "sha256": "b2abd5a56011e5b5849885a1b03bf6832ecbbeadd539db80771469d289ef55ee",
+      "reused_valid_partition": true
     },
     {
       "pair": "GBPJPY",
@@ -105,7 +112,8 @@
       "pair": "GBPJPY",
       "year": 2010,
       "month": 4,
-      "sha256": "8d9113a2f06589b78be71e202f703f4aafbe13037a7732ab8b47c68800230dee"
+      "sha256": "8d9113a2f06589b78be71e202f703f4aafbe13037a7732ab8b47c68800230dee",
+      "reused_valid_partition": true
     }
   ]
 }

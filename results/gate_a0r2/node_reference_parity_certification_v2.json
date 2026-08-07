@@ -1,9 +1,9 @@
 {
   "artifact_id": "A0R2_NODE_REFERENCE_PARITY_CERTIFICATION_V2",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "INCOMPLETE",
+  "status": "PASS_8_PAIR_REFERENCE_PANEL",
   "required": 48,
-  "pass": 45,
+  "pass": 48,
   "fail": 0,
   "failed_request_ids": []
 }

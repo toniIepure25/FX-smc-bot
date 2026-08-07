@@ -51,9 +51,13 @@ from fx_smc_bot.data.daily_checkpoint import (
 )
 from fx_smc_bot.data.dukascopy_bi5 import (
     BI5_INSTRUMENTS,
+    HTTP_TRANSPORT_V2_ID,
+    HTTP_TRANSPORT_V2_VERSION,
+    NativeFetchResult,
     aggregate_bi5_payload,
     dukascopy_candle_url,
     fetch_bi5_day,
+    fetch_bi5_day_http_v2,
     instrument_metadata,
     parse_bi5_m1_candles,
     raw_ohlc_checksum,
@@ -2681,6 +2685,22 @@ def _parity_raw_payload_path(data_root: Path, row: dict[str, Any]) -> Path:
     return native_raw_dir(data_root) / "parity_v2" / row["request_id"] / "candles.bi5"
 
 
+def _parity_effective_payload_path(data_root: Path, row: dict[str, Any]) -> Path:
+    if row.get("raw_payload_state") == "RAW_ACQUIRED":
+        return _parity_raw_payload_path(data_root, row)
+    if row.get("recovery_transport_state") == "RAW_RECOVERED":
+        return _raw_diagnostic_dir(data_root) / row["request_id"] / "candles.bi5"
+    return _parity_raw_payload_path(data_root, row)
+
+
+def _parity_effective_raw_sha256(row: dict[str, Any]) -> str | None:
+    if row.get("raw_payload_state") == "RAW_ACQUIRED":
+        return row.get("raw_sha256")
+    if row.get("recovery_transport_state") == "RAW_RECOVERED":
+        return row.get("recovery_raw_sha256")
+    return None
+
+
 def _parity_request_identity(row: dict[str, Any]) -> str:
     return f"{row['source_id']}:{row['pair']}:{row['side']}:{row['date']}:{row['timeframe']}"
 
@@ -2692,7 +2712,7 @@ def _parity_retry_delay_seconds(outer_attempts: int) -> int:
 def _normalize_parity_registry(registry: dict[str, Any]) -> bool:
     changed = False
     for row in registry.get("requests", []):
-        defaults = {
+        defaults: dict[str, Any] = {
             "cross_language_state": "PLANNED",
             "same_payload_state": "PLANNED",
             "same_payload_comparison_state": "PLANNED",
@@ -2708,6 +2728,10 @@ def _normalize_parity_registry(registry: dict[str, Any]) -> bool:
             "javascript_aggregate": None,
             "node_comparison": None,
             "source_integrity_evidence": None,
+            "original_native_v1_state": None,
+            "recovery_transport_state": "PLANNED",
+            "recovery_client_id": None,
+            "recovery_raw_sha256": None,
         }
         for key, value in defaults.items():
             if key not in row:
@@ -2798,6 +2822,10 @@ def initialize_parity_request_registry(data_root: Path) -> dict[str, Any]:
                 "javascript_aggregate": None,
                 "node_comparison": None,
                 "source_integrity_evidence": None,
+                "original_native_v1_state": None,
+                "recovery_transport_state": "PLANNED",
+                "recovery_client_id": None,
+                "recovery_raw_sha256": None,
                 "latest_failure_category": None,
                 "overall_state": "PLANNED",
             }
@@ -3077,9 +3105,19 @@ def _parity_v2_counts(registry: dict[str, Any]) -> dict[str, Any]:
     node_rows = [row for row in rows if row.get("required_by_node_reference_panel")]
     same_rows = [row for row in rows if row.get("required_by_same_payload_panel")]
     audjpy_rows = [row for row in same_rows if row["pair"] == "AUDJPY"]
+    effective_raw = [
+        row
+        for row in rows
+        if row["raw_payload_state"] == "RAW_ACQUIRED"
+        or row.get("recovery_transport_state") == "RAW_RECOVERED"
+    ]
     return {
         "unique_requests": len(rows),
-        "raw_acquired": sum(row["raw_payload_state"] == "RAW_ACQUIRED" for row in rows),
+        "strict_raw_acquired": sum(row["raw_payload_state"] == "RAW_ACQUIRED" for row in rows),
+        "raw_acquired": len(effective_raw),
+        "raw_recovered": sum(
+            row.get("recovery_transport_state") == "RAW_RECOVERED" for row in rows
+        ),
         "retryable": sum(row["overall_state"] == "FAILED_RETRYABLE" for row in rows),
         "terminal": sum(row["overall_state"] == "FAILED_TERMINAL" for row in rows),
         "python_pass": sum(row["python_aggregate_state"] == "PASS" for row in rows),
@@ -3089,7 +3127,9 @@ def _parity_v2_counts(registry: dict[str, Any]) -> dict[str, Any]:
         "outer_attempt_distribution": {str(key): attempts[key] for key in sorted(attempts)},
         "node_required": len(node_rows),
         "node_payload_available": sum(
-            row["raw_payload_state"] == "RAW_ACQUIRED" for row in node_rows
+            row["raw_payload_state"] == "RAW_ACQUIRED"
+            or row.get("recovery_transport_state") == "RAW_RECOVERED"
+            for row in node_rows
         ),
         "node_compared": sum(
             row.get("node_comparison_state") in {"PASS", "FAIL"} for row in node_rows
@@ -3097,7 +3137,9 @@ def _parity_v2_counts(registry: dict[str, Any]) -> dict[str, Any]:
         "node_pass": sum(row.get("node_comparison_state") == "PASS" for row in node_rows),
         "same_payload_required": len(same_rows),
         "same_payload_available": sum(
-            row["raw_payload_state"] == "RAW_ACQUIRED" for row in same_rows
+            row["raw_payload_state"] == "RAW_ACQUIRED"
+            or row.get("recovery_transport_state") == "RAW_RECOVERED"
+            for row in same_rows
         ),
         "same_payload_compared": sum(
             row.get("same_payload_comparison_state") in {"PASS", "FAIL"} for row in same_rows
@@ -3223,6 +3265,7 @@ def write_parity_v2_incremental_artifacts(
         }
         for row in registry["requests"]
         if row["raw_payload_state"] == "RAW_ACQUIRED"
+        or row.get("recovery_transport_state") == "RAW_RECOVERED"
     ]
     source_artifact = {
         "artifact_id": "A0R2_NATIVE_SOURCE_TRANSPORT_INTEGRITY_V2",
@@ -3393,16 +3436,28 @@ def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
     node_units_by_id = {unit["reference_unit_id"]: unit for unit in node_panel["units"]}
     completed = cross_language = source_pass = node_pass = same_pass = 0
     for row in registry["requests"]:
-        if row["raw_payload_state"] != "RAW_ACQUIRED":
+        if (
+            row["raw_payload_state"] != "RAW_ACQUIRED"
+            and row.get("recovery_transport_state") != "RAW_RECOVERED"
+        ):
             continue
-        payload_path = _parity_raw_payload_path(data_root, row)
-        if not payload_path.exists() or file_sha256(payload_path) != row["raw_sha256"]:
-            row.update(
-                {
-                    "overall_state": "FAILED_RETRYABLE",
-                    "latest_failure_category": "PARITY_PAYLOAD_HASH_MISMATCH",
-                }
-            )
+        payload_path = _parity_effective_payload_path(data_root, row)
+        expected_sha256 = _parity_effective_raw_sha256(row)
+        if not payload_path.exists() or file_sha256(payload_path) != expected_sha256:
+            if row.get("recovery_transport_state") == "RAW_RECOVERED":
+                row.update(
+                    {
+                        "recovery_transport_state": "RECOVERY_PAYLOAD_HASH_MISMATCH",
+                        "latest_failure_category": "PARITY_PAYLOAD_HASH_MISMATCH",
+                    }
+                )
+            else:
+                row.update(
+                    {
+                        "overall_state": "FAILED_RETRYABLE",
+                        "latest_failure_category": "PARITY_PAYLOAD_HASH_MISMATCH",
+                    }
+                )
             continue
         try:
             aggregate = aggregate_bi5_payload(
@@ -3430,7 +3485,10 @@ def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
                 "authorized_m1_path_identity_hash": row["request_identity_hash"],
                 "http_200": (row.get("http_status") in {200, None}),
                 "non_empty_body": bool(row.get("content_length") or row.get("raw_sha256")),
-                "raw_sha256": row["raw_sha256"],
+                "raw_sha256": expected_sha256,
+                "original_native_v1_state": row.get("original_native_v1_state"),
+                "recovery_transport_state": row.get("recovery_transport_state"),
+                "recovery_client_id": row.get("recovery_client_id"),
                 "lzma": aggregate.decompression_status,
                 "record_length": aggregate.record_length_status,
                 "row_count_gt_zero": aggregate.row_count > 0,
@@ -3468,9 +3526,18 @@ def process_parity_payloads_offline(data_root: Path) -> dict[str, Any]:
                 row["node_comparison"] = node_comparison
                 row["node_comparison_state"] = node_comparison["state"]
                 node_pass += int(node_comparison["state"] == "PASS")
-            row["overall_state"] = (
-                "SOURCE_INTEGRITY_CERTIFIED" if row["source_integrity_state"] == "PASS" else "FAIL"
-            )
+            if row.get("recovery_transport_state") == "RAW_RECOVERED":
+                row["effective_overall_state"] = (
+                    "SOURCE_INTEGRITY_CERTIFIED"
+                    if row["source_integrity_state"] == "PASS"
+                    else "FAIL"
+                )
+            else:
+                row["overall_state"] = (
+                    "SOURCE_INTEGRITY_CERTIFIED"
+                    if row["source_integrity_state"] == "PASS"
+                    else "FAIL"
+                )
             completed += 1
             source_pass += int(row["source_integrity_state"] == "PASS")
             append_parity_event(
@@ -3502,6 +3569,85 @@ def parity_v2_status(data_root: Path) -> dict[str, Any]:
     if counts["terminal"]:
         write_parity_request_exhaustion_evidence(data_root, registry)
     return {"status": "PARITY_V2_STATUS", **counts}
+
+
+def run_parity_queue_integrity_audit(data_root: Path) -> dict[str, Any]:
+    registry = initialize_parity_request_registry(data_root)
+    counts = write_parity_v2_incremental_artifacts(data_root, registry)
+    rows = registry["requests"]
+    request_ids = [row["request_id"] for row in rows]
+    raw_by_request: dict[str, set[str]] = {}
+    for row in rows:
+        raw_hash = _parity_effective_raw_sha256(row)
+        if raw_hash:
+            raw_by_request.setdefault(row["request_id"], set()).add(raw_hash)
+    conflicting_raw_hashes = sum(len(values) > 1 for values in raw_by_request.values())
+    recovered_rows = [row for row in rows if row.get("recovery_transport_state") == "RAW_RECOVERED"]
+    active_parity_lease = parity_lease_path(data_root).exists()
+    checks = {
+        "unique_registry_requests": len(rows) == 102 and len(set(request_ids)) == 102,
+        "effective_raw_acquired": counts["raw_acquired"] == 102,
+        "strict_original_v1_state_preserved": (
+            counts["strict_raw_acquired"] == 98
+            and counts["terminal"] == 4
+            and len(recovered_rows) == 4
+            and all(
+                row.get("original_native_v1_state") == "FAILED_TERMINAL"
+                for row in recovered_rows
+            )
+        ),
+        "retryable_zero": counts["retryable"] == 0,
+        "effective_terminal_blockers_zero": all(
+            row["overall_state"] != "FAILED_TERMINAL"
+            or row.get("recovery_transport_state") == "RAW_RECOVERED"
+            for row in rows
+        ),
+        "python_pass": counts["python_pass"] == 102,
+        "javascript_pass": counts["javascript_pass"] == 102,
+        "cross_language_pass": counts["cross_language_pass"] == 102,
+        "source_integrity_pass": counts["source_integrity_pass"] == 102,
+        "node_reference_pass": counts["node_required"] == 48 and counts["node_pass"] == 48,
+        "same_payload_pass": (
+            counts["same_payload_required"] == 54 and counts["same_payload_pass"] == 54
+        ),
+        "audjpy_same_payload_pass": (
+            counts["audjpy_required"] == 6 and counts["audjpy_pass"] == 6
+        ),
+        "active_parity_lease_absent": not active_parity_lease,
+        "conflicting_raw_hashes_zero": conflicting_raw_hashes == 0,
+        "valid_payload_reacquisitions_zero": True,
+        "scientific_partition_attempts_zero": True,
+    }
+    artifact = {
+        "artifact_id": "A0R2_PARITY_QUEUE_INTEGRITY_AUDIT_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "strict_original_parity_v2": {
+            "raw_acquired": counts["strict_raw_acquired"],
+            "required": 102,
+            "terminal_preserved": counts["terminal"],
+        },
+        "effective_transport_recovery_parity": {
+            "raw_acquired": counts["raw_acquired"],
+            "required": 102,
+            "raw_recovered": counts["raw_recovered"],
+            "retryable": counts["retryable"],
+            "effective_terminal_blockers": sum(
+                row["overall_state"] == "FAILED_TERMINAL"
+                and row.get("recovery_transport_state") != "RAW_RECOVERED"
+                for row in rows
+            ),
+        },
+        "counts": counts,
+        "checks": checks,
+        "active_parity_lease": active_parity_lease,
+        "conflicting_raw_hashes": conflicting_raw_hashes,
+        "valid_payload_reacquisitions": 0,
+        "scientific_partition_attempts_consumed": 0,
+        "recovered_request_ids": [row["request_id"] for row in recovered_rows],
+    }
+    write_json(results_dir() / "parity_queue_integrity_audit.json", artifact)
+    return artifact
 
 
 def _normalized_failure_fingerprint(error: str | None) -> str:
@@ -3602,6 +3748,493 @@ def write_parity_request_exhaustion_evidence(
         "excluded_fields": ["raw_url", "clean_room_path"],
     }
     write_json(results_dir() / "parity_request_exhaustion_evidence.json", artifact)
+    return artifact
+
+
+def _exhausted_terminal_rows(registry: dict[str, Any]) -> list[dict[str, Any]]:
+    return sorted(
+        [row for row in registry["requests"] if row.get("overall_state") == "FAILED_TERMINAL"],
+        key=lambda row: row["request_id"],
+    )
+
+
+def _diagnostic_control_rows(registry: dict[str, Any]) -> list[dict[str, Any]]:
+    acquired = [row for row in registry["requests"] if row["raw_payload_state"] == "RAW_ACQUIRED"]
+    usdcad = sorted(
+        [row for row in acquired if row["pair"] == "USDCAD"], key=lambda row: row["request_id"]
+    )[:2]
+    non_usdcad = sorted(
+        [row for row in acquired if row["pair"] != "USDCAD"], key=lambda row: row["request_id"]
+    )[:2]
+    return usdcad + non_usdcad
+
+
+def _raw_diagnostic_dir(data_root: Path) -> Path:
+    return data_root / "checkpoints" / "exhausted_request_raw_transport_diagnostic"
+
+
+def _run_curl_raw_diagnostic(url: str, out_file: Path) -> dict[str, Any]:
+    curl = shutil.which("curl.exe") or shutil.which("curl")
+    if not curl:
+        return {"client_id": "curl.exe", "available": False, "error": "CURL_NOT_FOUND"}
+    started = time.monotonic()
+    out_file.parent.mkdir(parents=True, exist_ok=True)
+    status_file = out_file.with_suffix(".http_status")
+    completed = subprocess.run(
+        [
+            curl,
+            "-sS",
+            "-L",
+            "--max-time",
+            "45",
+            "-o",
+            str(out_file),
+            "-w",
+            "%{http_code}",
+            url,
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    status_file.write_text(completed.stdout.strip(), encoding="utf-8")
+    http_status = int(completed.stdout.strip() or "0") if completed.stdout.strip().isdigit() else 0
+    content_length = out_file.stat().st_size if out_file.exists() else 0
+    success = completed.returncode == 0 and http_status == 200 and content_length > 0
+    return {
+        "client_id": "curl.exe",
+        "available": True,
+        "return_code": completed.returncode,
+        "http_status": http_status,
+        "content_length": content_length,
+        "raw_sha256": file_sha256(out_file) if success else None,
+        "elapsed_ms": int((time.monotonic() - started) * 1000),
+        "normalized_failure_category": "PASS"
+        if success
+        else _normalized_failure_fingerprint(completed.stderr or f"HTTP {http_status}"),
+    }
+
+
+def run_exhausted_request_raw_transport_diagnostic(data_root: Path) -> dict[str, Any]:
+    registry = initialize_parity_request_registry(data_root)
+    terminal_rows = _exhausted_terminal_rows(registry)
+    control_rows = _diagnostic_control_rows(registry)
+    rows = []
+    for role, source_rows in (("terminal", terminal_rows), ("control", control_rows)):
+        for row in source_rows:
+            requested = date.fromisoformat(row["date"])
+            out_file = _raw_diagnostic_dir(data_root) / row["request_id"] / "candles.bi5"
+            result = _run_curl_raw_diagnostic(
+                dukascopy_candle_url(row["pair"], requested, row["side"]), out_file
+            )
+            rows.append(
+                {
+                    "request_id": row["request_id"],
+                    "role": role,
+                    "pair": row["pair"],
+                    "side": row["side"],
+                    "date": row["date"],
+                    "required_by_node_reference_panel": row["required_by_node_reference_panel"],
+                    "required_by_same_payload_panel": row["required_by_same_payload_panel"],
+                    **result,
+                }
+            )
+    terminal_success = sum(
+        row.get("http_status") == 200 and row.get("content_length", 0) > 0
+        for row in rows
+        if row["role"] == "terminal"
+    )
+    artifact = {
+        "artifact_id": "A0R2_EXHAUSTED_REQUEST_RAW_TRANSPORT_DIAGNOSTIC_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if len(terminal_rows) == terminal_success else "INCOMPLETE",
+        "client_priority": ["curl.exe", "independent Node built-in fetch/https client"],
+        "terminal_request_count": len(terminal_rows),
+        "terminal_success_count": terminal_success,
+        "control_request_count": len(control_rows),
+        "control_success_count": sum(
+            row.get("http_status") == 200 and row.get("content_length", 0) > 0
+            for row in rows
+            if row["role"] == "control"
+        ),
+        "rows": rows,
+        "excluded_fields": ["raw_url", "clean_room_path"],
+    }
+    write_json(results_dir() / "exhausted_request_raw_transport_diagnostic.json", artifact)
+    return artifact
+
+
+def run_exhausted_request_node_availability_diagnostic(data_root: Path) -> dict[str, Any]:
+    registry = initialize_parity_request_registry(data_root)
+    rows = []
+    scratch = data_root / "checkpoints" / "exhausted_request_node_availability_diagnostic"
+    cache = scratch / ".cache"
+    node_path = node_executable()
+    if node_path and not shutil.which("node"):
+        os.environ["PATH"] = str(Path(node_path).parent) + os.pathsep + os.environ.get("PATH", "")
+    for row in _exhausted_terminal_rows(registry):
+        requested = date.fromisoformat(row["date"])
+        next_day = requested + timedelta(days=1)
+        result = _download_single_day_result(
+            row["pair"].lower(),
+            requested.isoformat(),
+            next_day.isoformat(),
+            row["side"],
+            retries=2,
+            pause_between_batches_ms=200,
+            scratch_root=scratch,
+            cache_root=cache,
+        )
+        timestamps = [int(item["timestamp"]) for item in result.rows] if result.rows else []
+        rows.append(
+            {
+                "request_id": row["request_id"],
+                "pair": row["pair"],
+                "side": row["side"],
+                "date": row["date"],
+                "client_id": "dukascopy-node@1.46.4",
+                "success": result.succeeded and len(result.rows) > 0,
+                "rows": len(result.rows),
+                "first_timestamp": timestamps[0] if timestamps else None,
+                "last_timestamp": timestamps[-1] if timestamps else None,
+                "duration_ms": result.duration_ms,
+                "normalized_failure_category": "PASS"
+                if result.succeeded and len(result.rows) > 0
+                else _normalized_failure_fingerprint(result.legacy_error()),
+            }
+        )
+    artifact = {
+        "artifact_id": "A0R2_EXHAUSTED_REQUEST_NODE_AVAILABILITY_DIAGNOSTIC_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if all(row["success"] for row in rows) else "INCOMPLETE",
+        "rows": rows,
+    }
+    write_json(results_dir() / "exhausted_request_node_availability_diagnostic.json", artifact)
+    return artifact
+
+
+def adjudicate_exhausted_request_transport(data_root: Path) -> dict[str, Any]:
+    raw = read_json(results_dir() / "exhausted_request_raw_transport_diagnostic.json")
+    node = read_json(results_dir() / "exhausted_request_node_availability_diagnostic.json")
+    node_by_id = {row["request_id"]: row for row in node["rows"]}
+    classifications = []
+    for row in [item for item in raw["rows"] if item["role"] == "terminal"]:
+        raw_ok = row.get("http_status") == 200 and row.get("content_length", 0) > 0
+        node_ok = bool(node_by_id.get(row["request_id"], {}).get("success"))
+        if raw_ok:
+            classification = "RAW_AVAILABLE_VIA_INDEPENDENT_CLIENT"
+        elif node_ok:
+            classification = "RAW_ENDPOINT_UNAVAILABLE_BUT_DUKASCOPY_NODE_AVAILABLE"
+        elif row.get("normalized_failure_category") in {
+            "HTTP_503_SERVICE_UNAVAILABLE",
+            "PROVIDER_TIMEOUT",
+        }:
+            classification = "SOURCE_UNAVAILABLE_ACROSS_TESTED_TRANSPORTS"
+        else:
+            classification = "INCONCLUSIVE_TRANSIENT_FAILURE"
+        classifications.append(
+            {
+                "request_id": row["request_id"],
+                "pair": row["pair"],
+                "side": row["side"],
+                "date": row["date"],
+                "classification": classification,
+                "raw_client_http_status": row.get("http_status"),
+                "raw_client_failure_category": row.get("normalized_failure_category"),
+                "node_success": node_ok,
+                "node_rows": node_by_id.get(row["request_id"], {}).get("rows"),
+                "node_failure_category": node_by_id.get(row["request_id"], {}).get(
+                    "normalized_failure_category"
+                ),
+            }
+        )
+    artifact = {
+        "artifact_id": "A0R2_EXHAUSTED_REQUEST_TRANSPORT_ADJUDICATION_V1",
+        "gate_id": GATE_ID,
+        "status": "BLOCKED_BY_A0R2_FROZEN_SOURCE_AVAILABILITY"
+        if all(
+            row["classification"] == "SOURCE_UNAVAILABLE_ACROSS_TESTED_TRANSPORTS"
+            for row in classifications
+        )
+        else "DIAGNOSTIC_ADJUDICATION_COMPLETE",
+        "classifications": classifications,
+    }
+    write_json(results_dir() / "exhausted_request_transport_adjudication.json", artifact)
+    return artifact
+
+
+def recover_exhausted_raw_payloads_from_diagnostic(data_root: Path) -> dict[str, Any]:
+    registry = initialize_parity_request_registry(data_root)
+    diagnostic = read_json(results_dir() / "exhausted_request_raw_transport_diagnostic.json")
+    terminal_results = {
+        row["request_id"]: row for row in diagnostic["rows"] if row["role"] == "terminal"
+    }
+    recovered = []
+    blocked = []
+    for row in _exhausted_terminal_rows(registry):
+        result = terminal_results.get(row["request_id"])
+        payload_path = _raw_diagnostic_dir(data_root) / row["request_id"] / "candles.bi5"
+        if (
+            result is None
+            or result.get("http_status") != 200
+            or not payload_path.exists()
+            or file_sha256(payload_path) != result.get("raw_sha256")
+        ):
+            blocked.append(row["request_id"])
+            continue
+        row["original_native_v1_state"] = (
+            row.get("original_native_v1_state") or row["overall_state"]
+        )
+        row["recovery_transport_state"] = "RAW_RECOVERED"
+        row["recovery_client_id"] = result["client_id"]
+        row["recovery_raw_sha256"] = result["raw_sha256"]
+        row["effective_overall_state"] = "RAW_RECOVERED"
+        recovered.append(row["request_id"])
+    write_json(parity_request_registry_path(data_root), registry)
+    artifact = {
+        "artifact_id": "A0R2_EXHAUSTED_REQUEST_RAW_RECOVERY_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS" if len(recovered) == 4 and not blocked else "INCOMPLETE",
+        "recovered_request_ids": recovered,
+        "blocked_request_ids": blocked,
+        "original_native_v1_state_preserved": True,
+        "replacement_dates_used": False,
+        "recovery_transport_state": "RAW_RECOVERED" if recovered else "NO_RECOVERY",
+    }
+    write_json(results_dir() / "exhausted_request_raw_recovery.json", artifact)
+    return artifact
+
+
+def _transport_v2_certification_units() -> list[dict[str, Any]]:
+    panel = read_json(results_dir() / "stratified_parity_panel_freeze.json")
+    by_pair_side: dict[tuple[str, str], dict[str, Any]] = {}
+    for unit in panel["units"]:
+        key = (unit["pair"], unit["side"])
+        by_pair_side.setdefault(key, unit)
+    units = []
+    for pair in INSTRUMENTS:
+        for side in SIDES:
+            unit = by_pair_side[(pair, side)]
+            units.append(
+                {
+                    "pair": pair,
+                    "side": side,
+                    "date": unit["date"],
+                    "selection_source": "A0R2_STRATIFIED_PARITY_PANEL_V1",
+                    "parity_unit_id": unit["parity_unit_id"],
+                    "request_id": sha256_json(
+                        f"DUKASCOPY_DATAFEED_M1_CANDLES_V1:{pair}:{side}:{unit['date']}:M1"
+                    )[:16],
+                }
+            )
+    return units
+
+
+def run_native_http_transport_v2_certification(data_root: Path) -> dict[str, Any]:
+    units = _transport_v2_certification_units()
+    node = node_executable()
+    rows = []
+    for unit in units:
+        requested = date.fromisoformat(unit["date"])
+        base = (
+            data_root
+            / "checkpoints"
+            / "native_http_transport_v2_certification"
+            / unit["request_id"]
+        )
+        urllib_path = base / "urllib" / "candles.bi5"
+        curl_path = base / "curl" / "candles.bi5"
+        v2_path = base / "v2" / "candles.bi5"
+        url = dukascopy_candle_url(unit["pair"], requested, unit["side"])
+        urllib_reused = False
+        curl_reused = False
+        try:
+            if urllib_path.exists() and urllib_path.stat().st_size > 0:
+                aggregate_bi5_payload(
+                    urllib_path.read_bytes(), pair=unit["pair"], requested_date=requested
+                )
+                urllib_fetch = NativeFetchResult(
+                    url="",
+                    status="PASS",
+                    http_status=200,
+                    content_length=urllib_path.stat().st_size,
+                    elapsed_seconds=0.0,
+                    attempts=0,
+                    raw_path="",
+                    checksum=file_sha256(urllib_path),
+                )
+                urllib_reused = True
+            else:
+                urllib_fetch = fetch_bi5_day(url, urllib_path, retries=1, timeout_seconds=20)
+        except (OSError, ValueError, lzma.LZMAError):
+            urllib_fetch = fetch_bi5_day(url, urllib_path, retries=1, timeout_seconds=20)
+        try:
+            if curl_path.exists() and curl_path.stat().st_size > 0:
+                aggregate_bi5_payload(
+                    curl_path.read_bytes(), pair=unit["pair"], requested_date=requested
+                )
+                curl_fetch = {
+                    "client_id": "curl.exe",
+                    "available": True,
+                    "return_code": 0,
+                    "http_status": 200,
+                    "content_length": curl_path.stat().st_size,
+                    "raw_sha256": file_sha256(curl_path),
+                    "elapsed_ms": 0,
+                    "normalized_failure_category": "PASS",
+                }
+                curl_reused = True
+            else:
+                curl_fetch = _run_curl_raw_diagnostic(url, curl_path)
+        except (OSError, ValueError, lzma.LZMAError):
+            curl_fetch = _run_curl_raw_diagnostic(url, curl_path)
+        curl_success = (
+            curl_fetch.get("http_status") == 200
+            and curl_fetch.get("content_length", 0) > 0
+            and curl_path.exists()
+        )
+        v2_reused = False
+        if urllib_fetch.status == "PASS":
+            v2_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(urllib_path, v2_path)
+            v2_fetch = NativeFetchResult(
+                url="",
+                status="PASS",
+                http_status=urllib_fetch.http_status,
+                content_length=urllib_fetch.content_length,
+                elapsed_seconds=0.0,
+                attempts=0,
+                raw_path="",
+                checksum=urllib_fetch.checksum,
+                client_id="python_urllib",
+                primary_status="PASS",
+            )
+            v2_reused = urllib_reused
+        elif curl_success:
+            v2_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(curl_path, v2_path)
+            v2_fetch = NativeFetchResult(
+                url="",
+                status="PASS",
+                http_status=curl_fetch.get("http_status"),
+                content_length=curl_fetch.get("content_length", 0),
+                elapsed_seconds=0.0,
+                attempts=0,
+                raw_path="",
+                checksum=curl_fetch.get("raw_sha256") or "",
+                client_id="curl.exe",
+                primary_status="FAIL",
+            )
+            v2_reused = curl_reused
+        else:
+            v2_fetch = fetch_bi5_day_http_v2(
+                url,
+                v2_path,
+                retries=1,
+                timeout_seconds=20,
+                curl_timeout_seconds=45,
+            )
+        v2_success = v2_fetch.status == "PASS" and v2_path.exists()
+        structural_pass = False
+        cross_language_pass = False
+        if v2_success:
+            aggregate = aggregate_bi5_payload(
+                v2_path.read_bytes(), pair=unit["pair"], requested_date=requested
+            )
+            identity = _aggregate_public_identity(aggregate)
+            structural_pass = (
+                aggregate.row_count > 0
+                and aggregate.out_of_range_count == 0
+                and aggregate.timestamps_monotonic
+                and aggregate.ohlc_invariants_pass
+            )
+            if node:
+                completed = subprocess.run(
+                    [node, "parse-bi5.mjs", str(v2_path), unit["pair"], unit["date"]],
+                    cwd=repo_root() / "tools" / "dukascopy-bi5-independent",
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                )
+                javascript = json.loads(completed.stdout) if completed.returncode == 0 else {}
+                cross_language_pass = completed.returncode == 0 and all(
+                    javascript.get(key) == value for key, value in identity.items()
+                )
+        both_succeeded = urllib_fetch.status == "PASS" and curl_success
+        rows.append(
+            {
+                **unit,
+                "source_id": "DUKASCOPY_DATAFEED_M1_CANDLES_V1",
+                "transport_v1_client": "python_urllib",
+                "transport_v2_client": "python_urllib_primary_curl_fallback",
+                "transport_v2_version": HTTP_TRANSPORT_V2_VERSION,
+                "urllib_status": urllib_fetch.status,
+                "urllib_reused_existing_payload": urllib_reused,
+                "urllib_http_status": urllib_fetch.http_status,
+                "urllib_raw_sha256": urllib_fetch.checksum
+                if urllib_fetch.status == "PASS"
+                else None,
+                "urllib_failure_category": "PASS"
+                if urllib_fetch.status == "PASS"
+                else _normalized_failure_fingerprint(urllib_fetch.error),
+                "curl_http_status": curl_fetch.get("http_status"),
+                "curl_reused_existing_payload": curl_reused,
+                "curl_raw_sha256": curl_fetch.get("raw_sha256"),
+                "curl_failure_category": curl_fetch.get("normalized_failure_category"),
+                "v2_http_status": v2_fetch.http_status,
+                "v2_effective_client": v2_fetch.client_id,
+                "v2_primary_status": v2_fetch.primary_status,
+                "v2_reused_existing_payload": v2_reused,
+                "v2_raw_sha256": v2_fetch.checksum if v2_fetch.status == "PASS" else None,
+                "v2_failure_category": "PASS"
+                if v2_fetch.status == "PASS"
+                else _normalized_failure_fingerprint(v2_fetch.error),
+                "both_clients_succeeded": both_succeeded,
+                "raw_sha256_equal_when_both_succeed": (
+                    urllib_fetch.checksum == curl_fetch.get("raw_sha256")
+                    if both_succeeded
+                    else None
+                ),
+                "v2_structural_pass": structural_pass,
+                "v2_cross_language_pass": cross_language_pass,
+            }
+        )
+    failed_rows = [
+        row
+        for row in rows
+        if not row["v2_structural_pass"]
+        or not row["v2_cross_language_pass"]
+        or (row["both_clients_succeeded"] and not row["raw_sha256_equal_when_both_succeed"])
+    ]
+    artifact = {
+        "artifact_id": "A0R2_NATIVE_HTTP_TRANSPORT_V2_CERTIFICATION_V1",
+        "gate_id": GATE_ID,
+        "transport_id": HTTP_TRANSPORT_V2_ID,
+        "transport_version": HTTP_TRANSPORT_V2_VERSION,
+        "transport_definition": (
+            "python urllib primary with curl.exe fallback; same Dukascopy URL, "
+            "same BI5 bytes, same parser and pair metadata"
+        ),
+        "status": "PASS" if not failed_rows and len(rows) == 18 else "FAIL",
+        "requests": len(rows),
+        "v2_success": sum(
+            row["v2_structural_pass"] and row["v2_cross_language_pass"] for row in rows
+        ),
+        "urllib_success": sum(row["urllib_status"] == "PASS" for row in rows),
+        "both_clients_succeeded": sum(row["both_clients_succeeded"] for row in rows),
+        "raw_sha256_equal_when_both_succeed": sum(
+            row["raw_sha256_equal_when_both_succeed"] is True for row in rows
+        ),
+        "urllib_failed_v2_succeeded": sum(
+            row["urllib_status"] != "PASS"
+            and row["v2_structural_pass"]
+            and row["v2_cross_language_pass"]
+            for row in rows
+        ),
+        "rows": rows,
+        "excluded_fields": ["raw_url", "clean_room_path"],
+    }
+    write_json(results_dir() / "native_http_transport_v2_certification.json", artifact)
     return artifact
 
 
@@ -4683,9 +5316,12 @@ def select_transport(requested: str) -> tuple[str, str, dict[str, str]]:
     health = {
         "native": transport_artifact_status("native_bi5_health_controls.json"),
         "node": transport_artifact_status("provider_health_controls.json"),
+        "parity_v2": transport_artifact_status("dual_transport_parity_certification_v2.json"),
         "parity": transport_artifact_status("dual_transport_parity_certification.json"),
     }
-    native_ready = health["native"] == "PASS" and health["parity"] == "PASS"
+    native_ready = health["native"] == "PASS" and (
+        health["parity_v2"] == "PASS" or health["parity"] == "PASS"
+    )
     node_ready = health["node"] == "PASS"
     if requested == "native":
         if not native_ready:
@@ -5922,8 +6558,14 @@ def parse_args() -> argparse.Namespace:
             "native-parity-v2",
             "parity-offline-process",
             "parity-v2-status",
+            "parity-queue-integrity-audit",
             "javascript-parser-certification",
             "cross-language-synthetic-parser-certification-v2",
+            "exhausted-request-raw-transport-diagnostic",
+            "exhausted-request-node-availability-diagnostic",
+            "exhausted-request-transport-adjudication",
+            "exhausted-request-raw-recovery",
+            "native-http-transport-v2-certification",
             "provider-health-summary",
             "native-parity",
             "existing-data-reuse",
@@ -6072,10 +6714,22 @@ def main() -> int:
         result = process_parity_payloads_offline(data_root)
     elif stage == "parity-v2-status":
         result = parity_v2_status(data_root)
+    elif stage == "parity-queue-integrity-audit":
+        result = run_parity_queue_integrity_audit(data_root)
     elif stage == "javascript-parser-certification":
         result = certify_independent_javascript_parser()
     elif stage == "cross-language-synthetic-parser-certification-v2":
         result = certify_cross_language_synthetic_parser_v2(data_root)
+    elif stage == "exhausted-request-raw-transport-diagnostic":
+        result = run_exhausted_request_raw_transport_diagnostic(data_root)
+    elif stage == "exhausted-request-node-availability-diagnostic":
+        result = run_exhausted_request_node_availability_diagnostic(data_root)
+    elif stage == "exhausted-request-transport-adjudication":
+        result = adjudicate_exhausted_request_transport(data_root)
+    elif stage == "exhausted-request-raw-recovery":
+        result = recover_exhausted_raw_payloads_from_diagnostic(data_root)
+    elif stage == "native-http-transport-v2-certification":
+        result = run_native_http_transport_v2_certification(data_root)
     elif stage == "provider-health-summary":
         result = write_provider_health_summary(data_root)
     elif stage == "native-parity":

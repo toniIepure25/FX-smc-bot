@@ -11,7 +11,9 @@ import json
 import lzma
 import math
 import os
+import shutil
 import struct
+import subprocess
 import time
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -21,6 +23,9 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 PARSER_VERSION = "DUKASCOPY_NATIVE_BI5_V1"
+HTTP_TRANSPORT_V1_ID = "DUKASCOPY_NATIVE_BI5_V1"
+HTTP_TRANSPORT_V2_ID = "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2"
+HTTP_TRANSPORT_V2_VERSION = "urllib-primary-curl-fallback-v1"
 RECORD_SIZE_BYTES = 24
 UTC_TIMEZONE = "UTC"
 DUKASCOPY_ROOT = "https://datafeed.dukascopy.com/datafeed"
@@ -91,6 +96,8 @@ class NativeFetchResult:
     error: str = ""
     raw_path: str = ""
     checksum: str = ""
+    client_id: str = "python_urllib"
+    primary_status: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -103,6 +110,8 @@ class NativeFetchResult:
             "error": self.error,
             "raw_path": self.raw_path,
             "checksum": self.checksum,
+            "client_id": self.client_id,
+            "primary_status": self.primary_status,
         }
 
 
@@ -137,6 +146,12 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def _write_bytes_atomically(out_file: Path, body: bytes) -> None:
+    tmp = out_file.with_suffix(out_file.suffix + ".tmp")
+    tmp.write_bytes(body)
+    os.replace(str(tmp), str(out_file))
 
 
 def dukascopy_candle_url(
@@ -184,9 +199,7 @@ def fetch_bi5_day(
             elif not body:
                 last_error = "empty provider response"
             else:
-                tmp = out_file.with_suffix(out_file.suffix + ".tmp")
-                tmp.write_bytes(body)
-                os.replace(str(tmp), str(out_file))
+                _write_bytes_atomically(out_file, body)
                 return NativeFetchResult(
                     url=url,
                     status="PASS",
@@ -219,6 +232,130 @@ def fetch_bi5_day(
         attempts=retries,
         error=last_error,
     )
+
+
+def fetch_bi5_day_curl(
+    url: str,
+    out_file: Path,
+    *,
+    retries: int = 3,
+    backoff_seconds: float = 1.0,
+    user_agent: str = BROWSER_USER_AGENT,
+    timeout_seconds: int = 45,
+) -> NativeFetchResult:
+    """Fetch one BI5 day through the OS curl client with atomic write."""
+    curl = shutil.which("curl.exe") or shutil.which("curl")
+    started = time.monotonic()
+    out_file.parent.mkdir(parents=True, exist_ok=True)
+    if not curl:
+        return NativeFetchResult(
+            url=url,
+            status="FAIL",
+            http_status=None,
+            content_length=0,
+            elapsed_seconds=time.monotonic() - started,
+            attempts=0,
+            error="CURL_NOT_FOUND",
+            client_id="curl.exe",
+        )
+
+    last_error = ""
+    http_status: int | None = None
+    tmp = out_file.with_suffix(out_file.suffix + ".curl_tmp")
+    for attempt in range(1, retries + 1):
+        if tmp.exists():
+            tmp.unlink()
+        completed = subprocess.run(
+            [
+                curl,
+                "-sS",
+                "-L",
+                "--max-time",
+                str(timeout_seconds),
+                "-A",
+                user_agent,
+                "-o",
+                str(tmp),
+                "-w",
+                "%{http_code}",
+                url,
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        http_text = completed.stdout.strip()
+        http_status = int(http_text) if http_text.isdigit() else 0
+        body = tmp.read_bytes() if tmp.exists() else b""
+        if completed.returncode == 0 and http_status == 200 and body:
+            _write_bytes_atomically(out_file, body)
+            if tmp.exists():
+                tmp.unlink()
+            return NativeFetchResult(
+                url=url,
+                status="PASS",
+                http_status=http_status,
+                content_length=len(body),
+                elapsed_seconds=time.monotonic() - started,
+                attempts=attempt,
+                raw_path=str(out_file),
+                checksum=sha256_bytes(body),
+                client_id="curl.exe",
+            )
+        last_error = completed.stderr.strip() or f"HTTP {http_status}"
+        if attempt < retries:
+            time.sleep(backoff_seconds * attempt)
+
+    if tmp.exists():
+        tmp.unlink()
+    return NativeFetchResult(
+        url=url,
+        status="FAIL",
+        http_status=http_status,
+        content_length=0,
+        elapsed_seconds=time.monotonic() - started,
+        attempts=retries,
+        error=last_error,
+        client_id="curl.exe",
+    )
+
+
+def fetch_bi5_day_http_v2(
+    url: str,
+    out_file: Path,
+    *,
+    retries: int = 3,
+    backoff_seconds: float = 1.0,
+    user_agent: str = BROWSER_USER_AGENT,
+    timeout_seconds: int = 30,
+    curl_timeout_seconds: int = 45,
+) -> NativeFetchResult:
+    """Production HTTP V2: urllib primary, curl fallback, same URL and bytes."""
+    primary = fetch_bi5_day(
+        url,
+        out_file,
+        retries=retries,
+        backoff_seconds=backoff_seconds,
+        user_agent=user_agent,
+        timeout_seconds=timeout_seconds,
+    )
+    primary.primary_status = primary.status
+    if primary.status == "PASS":
+        return primary
+
+    fallback = fetch_bi5_day_curl(
+        url,
+        out_file,
+        retries=retries,
+        backoff_seconds=backoff_seconds,
+        user_agent=user_agent,
+        timeout_seconds=curl_timeout_seconds,
+    )
+    fallback.attempts += primary.attempts
+    fallback.primary_status = primary.status
+    if fallback.status != "PASS":
+        fallback.error = f"primary={primary.error[:240]} fallback={fallback.error[:240]}"
+    return fallback
 
 
 def parse_bi5_m1_candles(

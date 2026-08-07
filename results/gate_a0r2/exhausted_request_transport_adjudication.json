@@ -1,0 +1,55 @@
+{
+  "artifact_id": "A0R2_EXHAUSTED_REQUEST_TRANSPORT_ADJUDICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "DIAGNOSTIC_ADJUDICATION_COMPLETE",
+  "classifications": [
+    {
+      "request_id": "aa12132b681fb627",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-03-24",
+      "classification": "RAW_AVAILABLE_VIA_INDEPENDENT_CLIENT",
+      "raw_client_http_status": 200,
+      "raw_client_failure_category": "PASS",
+      "node_success": false,
+      "node_rows": 0,
+      "node_failure_category": "2e3b0572264f8bda"
+    },
+    {
+      "request_id": "ac2607bebadb2089",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-01-04",
+      "classification": "RAW_AVAILABLE_VIA_INDEPENDENT_CLIENT",
+      "raw_client_http_status": 200,
+      "raw_client_failure_category": "PASS",
+      "node_success": false,
+      "node_rows": 0,
+      "node_failure_category": "2e3b0572264f8bda"
+    },
+    {
+      "request_id": "ad76c69617516259",
+      "pair": "USDCAD",
+      "side": "bid",
+      "date": "2010-04-30",
+      "classification": "RAW_AVAILABLE_VIA_INDEPENDENT_CLIENT",
+      "raw_client_http_status": 200,
+      "raw_client_failure_category": "PASS",
+      "node_success": false,
+      "node_rows": 0,
+      "node_failure_category": "2e3b0572264f8bda"
+    },
+    {
+      "request_id": "b8696e7d7488e95e",
+      "pair": "USDCAD",
+      "side": "ask",
+      "date": "2010-04-30",
+      "classification": "RAW_AVAILABLE_VIA_INDEPENDENT_CLIENT",
+      "raw_client_http_status": 200,
+      "raw_client_failure_category": "PASS",
+      "node_success": false,
+      "node_rows": 0,
+      "node_failure_category": "2e3b0572264f8bda"
+    }
+  ]
+}

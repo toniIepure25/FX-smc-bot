@@ -1,0 +1,74 @@
+﻿{
+    "artifact_id":  "A0R2_DUAL_TRANSPORT_PARITY_CERTIFICATION_V2",
+    "gate_id":  "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+    "status":  "PASS",
+    "decision":  "NATIVE_BI5_CERTIFIED_AS_PRIMARY_TRANSPORT_V2",
+    "certification_basis":  "transport-recovery certification with DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2; original strict parity V2 preserved as 98/102, not claimed as strict 102/102",
+    "transport_id":  "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
+    "transport_version":  "urllib-primary-curl-fallback-v1",
+    "strict_original_parity_v2":  {
+                                      "raw_acquired":  98,
+                                      "required":  102,
+                                      "terminal_preserved":  4
+                                  },
+    "effective_transport_recovery_parity":  {
+                                                "raw_acquired":  102,
+                                                "required":  102,
+                                                "raw_recovered":  4,
+                                                "retryable":  0,
+                                                "effective_terminal_blockers":  0
+                                            },
+    "node_panel":  {
+                       "pass":  48,
+                       "required":  48,
+                       "status":  "PASS_8_PAIR_REFERENCE_PANEL"
+                   },
+    "same_payload":  {
+                         "pass":  54,
+                         "required":  54,
+                         "status":  "PASS",
+                         "audjpy_pass":  6,
+                         "audjpy_required":  6
+                     },
+    "source_integrity":  {
+                             "pass":  102,
+                             "required":  null,
+                             "status":  "PASS"
+                         },
+    "golden_certification":  {
+                                 "status":  "PASS",
+                                 "case_count":  22,
+                                 "python_vs_oracle":  "PASS",
+                                 "javascript_vs_oracle":  "PASS",
+                                 "python_vs_javascript":  "PASS",
+                                 "network_requests":  0
+                             },
+    "parity_queue_integrity":  {
+                                   "status":  "PASS"
+                               },
+    "http_transport_v2":  {
+                              "status":  "PASS",
+                              "requests":  18,
+                              "v2_success":  18,
+                              "urllib_success":  14,
+                              "urllib_failed_v2_succeeded":  4,
+                              "both_clients_succeeded":  13,
+                              "raw_sha256_equal_when_both_succeed":  13
+                          },
+    "test_gate":  {
+                      "full_pytest":  "PASS: 1515 passed, 92 warnings",
+                      "ruff_changed_surface":  "PASS",
+                      "mypy_changed_surface":  "PASS",
+                      "independent_javascript_tests":  "PASS",
+                      "dukascopy_node_tests":  "PASS",
+                      "git_diff_check":  "PASS",
+                      "repo_wide_ruff":  "BASELINE_FAIL: 1375 existing findings outside A0R2 touched surface",
+                      "repo_wide_mypy":  "BASELINE_FAIL: 17 existing findings/stub gaps outside A0R2 touched surface"
+                  },
+    "fresh_health":  {
+                         "status":  "NATIVE_HEALTH_READY",
+                         "consecutive_passing_runs":  3,
+                         "attempts_this_watch":  1
+                     },
+    "activation_created_at":  "2026-08-07T21:21:29.7034476Z"
+}

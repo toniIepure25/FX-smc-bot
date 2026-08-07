@@ -1,0 +1,15 @@
+{
+  "artifact_id": "A0R2_EXHAUSTED_REQUEST_RAW_RECOVERY_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "recovered_request_ids": [
+    "aa12132b681fb627",
+    "ac2607bebadb2089",
+    "ad76c69617516259",
+    "b8696e7d7488e95e"
+  ],
+  "blocked_request_ids": [],
+  "original_native_v1_state_preserved": true,
+  "replacement_dates_used": false,
+  "recovery_transport_state": "RAW_RECOVERED"
+}

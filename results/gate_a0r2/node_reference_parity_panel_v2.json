@@ -1,11 +1,11 @@
 {
   "artifact_id": "A0R2_NODE_REFERENCE_PARITY_PANEL_V2",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "INCOMPLETE",
+  "status": "PASS",
   "required": 48,
-  "available": 45,
-  "compared": 45,
-  "pass": 45,
+  "available": 48,
+  "compared": 48,
+  "pass": 48,
   "fail": 0,
   "rows": [
     {
@@ -1616,8 +1616,47 @@
       "node_reference_ids": [
         "USDCAD:ask:2010-04-30:latest"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCAD:ask:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "63625930d1a3bbf505fa8469ace078eed882e96ba6cf2339bc557e25774ab23a",
+              "volume_bits_sha256": "f14d40fd35f8b77c1e10bdf4a24eaf86e4e77616afd5c20b624e2b6875f58838",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "63625930d1a3bbf505fa8469ace078eed882e96ba6cf2339bc557e25774ab23a",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "f14d40fd35f8b77c1e10bdf4a24eaf86e4e77616afd5c20b624e2b6875f58838"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "19c7746097294522",
@@ -1677,8 +1716,47 @@
       "node_reference_ids": [
         "USDCAD:bid:2010-03-24:middle"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCAD:bid:2010-03-24:middle",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "1adc5095c2026aa5802b0853ec9c54e59d3157820555447eba859a45f6710620",
+              "integer_ohlc_sha256": "f7880b1cc30841dcaf0f9c7207c88caf06cd9198a39048f7d75f7ad414a6a639",
+              "volume_bits_sha256": "9e21388ce6d61d053d3ad318e17453627a435db44d54664ab85bfde507226ea0",
+              "first_timestamp": 1269388800000,
+              "last_timestamp": 1269475140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1440,
+              "ordered_timestamp_sha256": "1adc5095c2026aa5802b0853ec9c54e59d3157820555447eba859a45f6710620",
+              "integer_ohlc_sha256": "f7880b1cc30841dcaf0f9c7207c88caf06cd9198a39048f7d75f7ad414a6a639",
+              "first_timestamp": 1269388800000,
+              "last_timestamp": 1269475140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "9e21388ce6d61d053d3ad318e17453627a435db44d54664ab85bfde507226ea0"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "ad76c69617516259",
@@ -1688,8 +1766,47 @@
       "node_reference_ids": [
         "USDCAD:bid:2010-04-30:latest"
       ],
-      "state": "PLANNED",
-      "comparison": null
+      "state": "PASS",
+      "comparison": {
+        "state": "PASS",
+        "comparisons": [
+          {
+            "reference_unit_id": "USDCAD:bid:2010-04-30:latest",
+            "state": "PASS",
+            "mismatched_fields": [],
+            "node": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "c8447d0b73a6e09071d6f8956480408f29d58db1e31da87c0f7672bcb0359e92",
+              "volume_bits_sha256": "1a28a38c4afbaf3b3ffba1fd8ac8c62c86ac5011a20daa293ab77a03cd78cef5",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "zero_volume_rows": 0,
+              "raw_integer_reconstruction_ambiguous_count": 0,
+              "nonfinite_volume_count": 0,
+              "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE"
+            },
+            "native": {
+              "row_count": 1260,
+              "ordered_timestamp_sha256": "49ea8cd4bc85fb8a31ffa91a682a757cfa397871f40d46aab1add0e9d178b260",
+              "integer_ohlc_sha256": "c8447d0b73a6e09071d6f8956480408f29d58db1e31da87c0f7672bcb0359e92",
+              "first_timestamp": 1272585600000,
+              "last_timestamp": 1272661140000,
+              "duplicate_count": 0,
+              "out_of_range_count": 0,
+              "timestamps_monotonic": true,
+              "ohlc_invariants_pass": true,
+              "volume_bits_sha256": "1a28a38c4afbaf3b3ffba1fd8ac8c62c86ac5011a20daa293ab77a03cd78cef5"
+            },
+            "volume_bit_identity_state": "EXACT_FLOAT32_ROUND_TRIP_AVAILABLE",
+            "volume_bit_match": true
+          }
+        ]
+      }
     },
     {
       "request_id": "728eb1d62e809e38",

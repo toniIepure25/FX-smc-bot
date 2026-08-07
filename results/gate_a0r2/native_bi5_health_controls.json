@@ -2,7 +2,7 @@
   "artifact_id": "A0R2_NATIVE_BI5_HEALTH_CONTROLS_V1",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "transport_id": "NATIVE_BI5_TRANSPORT",
-  "status": "PASS",
+  "status": "PROVIDER_COOLDOWN_REQUIRED",
   "controls": [
     {
       "control": "A",
@@ -16,31 +16,29 @@
       "row_count": 1440,
       "raw_sha256": "a0b8e2a41b89cffaaa2e286f956180627277c01168a84e9d1f1203738baeec91",
       "parsed_row_hash": "c41463036fab0225cf657afc17f41a17e89745274a6e915f22f8e681edd0261d",
-      "control_started_at": "2026-08-07T19:06:42.022754+00:00",
-      "control_completed_at": "2026-08-07T19:06:46.427174+00:00",
-      "duration_ms": 4404
+      "control_started_at": "2026-08-07T21:22:28.192010+00:00",
+      "control_completed_at": "2026-08-07T22:27:51.297404+00:00",
+      "duration_ms": 3923105
     },
     {
       "control": "B",
       "pair": "USDJPY",
       "side": "ask",
       "date": "2010-01-05",
-      "status": "PASS",
-      "failure_category": "",
-      "http_status": 200,
-      "content_length": 9789,
-      "row_count": 1440,
-      "raw_sha256": "a4bdd5f605d6a1b2caabc569711ab9f8b33188272c5f85dec19602a15fedc2d4",
-      "parsed_row_hash": "5c54c49ff788630a97f33ad7ce34d929076c2225660c4f3ef437910275bbd226",
-      "control_started_at": "2026-08-07T19:06:46.427200+00:00",
-      "control_completed_at": "2026-08-07T19:06:50.585386+00:00",
-      "duration_ms": 4158
+      "status": "FAIL",
+      "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "http_status": null,
+      "content_length": 0,
+      "error_fingerprint": "93c4eccc6c991c57",
+      "control_started_at": "2026-08-07T22:27:51.297487+00:00",
+      "control_completed_at": "2026-08-07T22:28:34.442815+00:00",
+      "duration_ms": 43145
     }
   ],
   "rolling_calls": 20,
   "failure_trigger": 5,
   "partition_attempts_consumed": 0,
-  "health_run_started_at": "2026-08-07T19:06:42.022724+00:00",
-  "health_run_completed_at": "2026-08-07T19:06:50.585410+00:00",
-  "duration_ms": 8563
+  "health_run_started_at": "2026-08-07T21:22:28.191978+00:00",
+  "health_run_completed_at": "2026-08-07T22:28:34.442834+00:00",
+  "duration_ms": 3966251
 }
