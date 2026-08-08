@@ -8,7 +8,7 @@
   "identity_compatible": true,
   "empirical_outcomes": "NONE",
   "authorized_end_date": "2014-12-31",
-  "free_bytes": 45612797952,
+  "free_bytes": 45553131520,
   "probe_reuse_policy": {
     "existing_probe_may_be_reused": true,
     "reuse_requirements": [

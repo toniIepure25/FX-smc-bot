@@ -1,29 +1,84 @@
-﻿{
-    "artifact_id":  "A0R2_ACQUISITION_THROUGHPUT_V3",
-    "gate_id":  "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-    "status":  "PROVIDER_COOLDOWN_REQUIRED",
-    "runtime_seconds":  315,
-    "day_requests":  8,
-    "urllib_successes":  7,
-    "urllib_failures":  1,
-    "curl_fallback_invocations":  1,
-    "curl_fallback_successes":  0,
-    "curl_fallback_failures":  1,
-    "failures":  1,
-    "bytes_downloaded":  58186,
-    "bytes_reused":  0,
-    "daily_units_completed_per_hour":  80,
-    "monthly_sides_certified_per_hour":  0,
-    "certified_before":  49,
-    "certified_after":  49,
-    "planned_before":  1000,
-    "planned_after":  1000,
-    "retryable_before":  31,
-    "retryable_after":  31,
-    "estimated_remaining_eligible_day_requests":  "ETA_UNSTABLE_PROVIDER_DEPENDENT",
-    "estimated_hours_remaining":  "ETA_UNSTABLE_PROVIDER_DEPENDENT",
-    "free_disk_bytes":  45612265472,
-    "latest_health":  "PROVIDER_COOLDOWN_REQUIRED",
-    "cooldown_events_after_canary":  1,
-    "next_resume_command":  "python scripts\\run_gate_a0r2.py --stage native-health-watch --max-health-attempts 8 --health-interval-seconds 20 --required-consecutive-health-passes 2"
+{
+  "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PROVIDER_COOLDOWN_REQUIRED",
+  "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
+  "updated_at": "2026-08-08T19:54:30Z",
+  "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
+  "transport_implementation": "urllib primary + curl.exe fallback",
+  "previous_canary": {
+    "day_requests": 8,
+    "successful_new_native_days": 7,
+    "failed_native_days": 1,
+    "bytes_downloaded": 58186
+  },
+  "prod2_session": {
+    "repair_slices_executed": 3,
+    "planned_slices_executed": 0,
+    "runtime_seconds_acquisition_only": 695,
+    "day_requests": 14,
+    "successful_native_days": 13,
+    "failed_native_days": 1,
+    "valid_existing_days_redownloaded": 0,
+    "new_valid_daily_units": 214,
+    "new_certified_monthly_sides": 1,
+    "urllib_requests": 14,
+    "urllib_successes": 11,
+    "urllib_failures": 3,
+    "curl_fallback_invocations": 3,
+    "curl_fallback_successes": 2,
+    "curl_fallback_failures": 1,
+    "same_bi5_identity_recovered_after_urllib_failure": 2,
+    "bytes_downloaded": 96769,
+    "bytes_reused": 0,
+    "cooldown_events": 1
+  },
+  "cumulative_observed_v2": {
+    "day_requests": 22,
+    "failed_native_days": 2,
+    "bytes_downloaded": 154955
+  },
+  "dataset": {
+    "certified_before": 49,
+    "certified_after": 50,
+    "planned_before": 1000,
+    "planned_after": 1000,
+    "retryable_before": 31,
+    "retryable_after": 30,
+    "terminal_before": 0,
+    "terminal_after": 0,
+    "running_before": 0,
+    "running_after": 0,
+    "valid_daily_units_before": 1524,
+    "valid_daily_units_after": 1738
+  },
+  "canonical": {
+    "m1_before": 15,
+    "m1_after": 15,
+    "m5_before": 15,
+    "m5_after": 15,
+    "features_before": 15,
+    "features_after": 15,
+    "known_canonical_failures": 5,
+    "new_canonical_failures": 0
+  },
+  "throughput": {
+    "daily_units_completed_per_hour": 1108,
+    "monthly_sides_certified_per_hour": 5,
+    "estimated_remaining_eligible_day_requests": "ETA_UNSTABLE_PROVIDER_DEPENDENT",
+    "estimated_hours_remaining": "ETA_UNSTABLE_PROVIDER_DEPENDENT"
+  },
+  "provider": {
+    "latest_health": "PROVIDER_COOLDOWN_REQUIRED",
+    "last_full_pass_timestamp": "2026-08-08T19:45:53.269554+00:00",
+    "last_full_fail_timestamp": "2026-08-08T19:53:25.161074+00:00",
+    "consecutive_passing_runs": 0,
+    "consecutive_failing_runs": 1
+  },
+  "storage": {
+    "free_disk_bytes": 45553131520,
+    "reserve_requirement_bytes": 10737418240,
+    "reserve_status": "PASS"
+  },
+  "next_resume_command": "python scripts\\run_gate_a0r2.py --stage native-health-watch --max-health-attempts 8 --health-interval-seconds 20 --required-consecutive-health-passes 2"
 }
