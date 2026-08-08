@@ -64,6 +64,11 @@ class DayStatus:
     source_id: str = "DUKASCOPY_DATAFEED_M1_CANDLES_V1"
     transport_id: str = "DUKASCOPY_NODE_1_46_4"
     transport_version: str = "1.46.4"
+    effective_http_client: str = ""
+    native_http_status: int | None = None
+    native_content_length: int = 0
+    native_http_attempts: int = 0
+    native_primary_status: str = ""
     raw_hash: str = ""
     parsed_row_hash: str = ""
     timestamp_set_hash: str = ""
@@ -81,6 +86,9 @@ class DailyMarketUnit:
     source_id: str
     transport_id: str
     transport_version: str
+    effective_http_client: str
+    native_http_status: int | None
+    native_content_length: int
     raw_hash: str
     parsed_row_hash: str
     row_count: int
@@ -340,10 +348,15 @@ def download_native_day_with_checkpoint(
     )
     status = DayStatus(
         pair=pair, side=side, year=year, month=month, day=day,
-        status="failed", attempts=fetch.attempts,
+        status="failed", attempts=1,
         source_id="DUKASCOPY_DATAFEED_M1_CANDLES_V1",
         transport_id=HTTP_TRANSPORT_V2_ID,
         transport_version=HTTP_TRANSPORT_V2_VERSION,
+        effective_http_client=fetch.client_id,
+        native_http_status=fetch.http_status,
+        native_content_length=fetch.content_length,
+        native_http_attempts=fetch.attempts,
+        native_primary_status=fetch.primary_status,
     )
     if fetch.status != "PASS":
         status.failure_category = "NATIVE_BI5_TRANSPORT_FAILURE"
@@ -376,6 +389,7 @@ def download_native_day_with_checkpoint(
             status.status = "market_closed"
             status.failure_category = calendar_category.value
             status.provider_call_outcome = "PROVIDER_CALL_SUCCESS_EMPTY_MARKET_CLOSED"
+            status.raw_hash = fetch.checksum
             return status
         status.failure_category = FailureCategory.NO_PROVIDER_DATA.value
         status.error = "No native BI5 rows on open-market day"

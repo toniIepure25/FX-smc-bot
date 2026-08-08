@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from fx_smc_bot.data import dukascopy_bi5
+from fx_smc_bot.data import daily_checkpoint, dukascopy_bi5
 from fx_smc_bot.data.dukascopy_bi5 import (
     BI5_INSTRUMENTS,
     NativeFetchResult,
@@ -117,3 +117,121 @@ def test_http_transport_v2_falls_back_to_curl(
     assert result.primary_status == "FAIL"
     assert result.attempts == 2
     assert result.checksum == sha256_bytes(payload)
+
+
+def test_http_transport_v2_preserves_url_for_curl_fallback(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    seen: list[str] = []
+
+    def failed_primary(url: str, _out_file: Path, **_kwargs: object) -> NativeFetchResult:
+        seen.append(f"primary:{url}")
+        return NativeFetchResult(
+            url=url,
+            status="FAIL",
+            http_status=503,
+            content_length=0,
+            elapsed_seconds=0.001,
+            attempts=1,
+            error="HTTP 503",
+            client_id="python_urllib",
+        )
+
+    def failed_curl(url: str, _out_file: Path, **_kwargs: object) -> NativeFetchResult:
+        seen.append(f"curl:{url}")
+        return NativeFetchResult(
+            url=url,
+            status="FAIL",
+            http_status=503,
+            content_length=0,
+            elapsed_seconds=0.001,
+            attempts=1,
+            error="HTTP 503",
+            client_id="curl.exe",
+        )
+
+    monkeypatch.setattr(dukascopy_bi5, "fetch_bi5_day", failed_primary)
+    monkeypatch.setattr(dukascopy_bi5, "fetch_bi5_day_curl", failed_curl)
+
+    result = dukascopy_bi5.fetch_bi5_day_http_v2("mock://same-url", tmp_path / "x.bi5")
+
+    assert result.status == "FAIL"
+    assert result.client_id == "curl.exe"
+    assert result.primary_status == "FAIL"
+    assert result.http_status == 503
+    assert seen == ["primary:mock://same-url", "curl:mock://same-url"]
+
+
+def test_native_checkpoint_records_http_v2_day_provenance(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    payload = b"synthetic-bi5"
+    requested = date(2010, 1, 4)
+    row = {
+        "timestamp": 1262563200000,
+        "open": 1.0,
+        "high": 1.1,
+        "low": 0.9,
+        "close": 1.05,
+        "volume": 1.0,
+        "open_raw": 100000,
+        "high_raw": 110000,
+        "low_raw": 90000,
+        "close_raw": 105000,
+    }
+
+    def fake_fetch(url: str, out_file: Path, **_kwargs: object) -> NativeFetchResult:
+        assert url.endswith("/EURUSD/2010/00/04/BID_candles_min_1.bi5")
+        out_file.parent.mkdir(parents=True, exist_ok=True)
+        out_file.write_bytes(payload)
+        return NativeFetchResult(
+            url=url,
+            status="PASS",
+            http_status=200,
+            content_length=len(payload),
+            elapsed_seconds=0.001,
+            attempts=2,
+            raw_path=str(out_file),
+            checksum=sha256_bytes(payload),
+            client_id="curl.exe",
+            primary_status="FAIL",
+        )
+
+    monkeypatch.setattr(daily_checkpoint, "fetch_bi5_day_http_v2", fake_fetch)
+    monkeypatch.setattr(
+        daily_checkpoint,
+        "parse_bi5_m1_candles",
+        lambda _payload, day, **_kwargs: [row] if day == requested else [],
+    )
+    monkeypatch.setattr(
+        daily_checkpoint,
+        "validate_m1_rows",
+        lambda _rows, _day: {
+            "row_count": 1,
+            "first_timestamp": row["timestamp"],
+            "last_timestamp": row["timestamp"],
+            "monotonic_timestamps": True,
+            "timestamps_in_requested_day": True,
+            "ohlc_valid": True,
+        },
+    )
+
+    status = daily_checkpoint.download_native_day_with_checkpoint(
+        "EURUSD",
+        "bid",
+        2010,
+        1,
+        4,
+        tmp_path / "raw",
+        tmp_path / "native",
+    )
+
+    assert status.status == "complete"
+    assert status.attempts == 1
+    assert status.transport_id == dukascopy_bi5.HTTP_TRANSPORT_V2_ID
+    assert status.effective_http_client == "curl.exe"
+    assert status.native_primary_status == "FAIL"
+    assert status.native_http_status == 200
+    assert status.native_content_length == len(payload)
+    assert status.native_http_attempts == 2
+    assert status.raw_hash == sha256_bytes(payload)

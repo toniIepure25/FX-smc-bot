@@ -5362,6 +5362,12 @@ def acquire_one_native(
     requested = 0
     successful = 0
     failures = 0
+    urllib_successes = 0
+    urllib_failures = 0
+    curl_fallback_invocations = 0
+    curl_fallback_successes = 0
+    curl_fallback_failures = 0
+    bytes_downloaded = 0
     for day in missing:
         if max_day_requests is not None and requested >= max_day_requests:
             break
@@ -5378,12 +5384,24 @@ def acquire_one_native(
         requested += 1
         successful += int(result.status in {"complete", "market_closed"})
         failures += int(result.status == "failed")
+        if result.native_primary_status == "PASS":
+            urllib_successes += 1
+        elif result.transport_id:
+            urllib_failures += 1
+        if result.effective_http_client == "curl.exe":
+            curl_fallback_invocations += 1
+            curl_fallback_successes += int(result.status in {"complete", "market_closed"})
+            curl_fallback_failures += int(result.status == "failed")
+        bytes_downloaded += int(result.native_content_length or 0)
         save_month_manifest(raw_dir(data_root), manifest)
         if result.status == "failed":
             break
     compact_month(raw_dir(data_root), manifest)
     save_month_manifest(raw_dir(data_root), manifest)
     state = "COMPLETE_PENDING_CERTIFICATION" if manifest.compacted else "FAILED_RETRYABLE"
+    previous_attempts = int(
+        load_state(data_root).get("partitions", {}).get(part.key, {}).get("attempts", 0)
+    )
     return {
         "ts": datetime.now(timezone.utc).isoformat(),
         "partition": part.key,
@@ -5401,9 +5419,13 @@ def acquire_one_native(
         "native_daily_successes": successful,
         "native_daily_failures": failures,
         "native_transport_attempts": requested,
-        "attempts": (
-            load_state(data_root).get("partitions", {}).get(part.key, {}).get("attempts", 0)
-        ),
+        "native_urllib_successes": urllib_successes,
+        "native_urllib_failures": urllib_failures,
+        "native_curl_fallback_invocations": curl_fallback_invocations,
+        "native_curl_fallback_successes": curl_fallback_successes,
+        "native_curl_fallback_failures": curl_fallback_failures,
+        "native_bytes_downloaded": bytes_downloaded,
+        "attempts": previous_attempts + int(requested > 0),
     }
 
 
@@ -5561,6 +5583,12 @@ def acquire_one(
 
 
 def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]:
+    started = time.monotonic()
+    max_runtime = float(
+        getattr(args, "max_runtime_seconds", None)
+        or (getattr(args, "max_runtime_minutes", None) or 0) * 60
+        or 0
+    )
     recertify_clean_room(data_root)
     requested_transport = getattr(args, "transport", None)
     if requested_transport is None:
@@ -5628,7 +5656,13 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     try:
         with ThreadPoolExecutor(max_workers=workers) as pool:
             futures: dict[Any, Partition] = {}
+            future_day_budgets: dict[Any, int] = {}
+            native_day_budget_used = 0
+            native_day_budget_reserved = 0
             while runnable or futures:
+                runtime_expired = bool(max_runtime and (time.monotonic() - started) >= max_runtime)
+                if runtime_expired and not futures:
+                    break
                 active_ids = [part.key for part in futures.values()]
                 update_lease_heartbeat(data_root, active_ids)
                 if (
@@ -5647,15 +5681,29 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                                 save_state(data_root, state)
                             break
                     break
-                while runnable and len(futures) < max_in_flight:
+                while runnable and len(futures) < max_in_flight and not runtime_expired:
+                    per_future_day_budget = getattr(args, "max_day_requests", None)
+                    if selected_transport == "native" and per_future_day_budget is not None:
+                        remaining_day_budget = (
+                            int(per_future_day_budget)
+                            - native_day_budget_used
+                            - native_day_budget_reserved
+                        )
+                        if remaining_day_budget <= 0:
+                            runnable.clear()
+                            break
+                        per_future_day_budget = remaining_day_budget
                     part = runnable.popleft()
                     if selected_transport == "native":
                         future = pool.submit(
                             acquire_one_native,
                             data_root,
                             part,
-                            max_day_requests=getattr(args, "max_day_requests", None),
+                            max_day_requests=per_future_day_budget,
                         )
+                        if per_future_day_budget is not None:
+                            future_day_budgets[future] = int(per_future_day_budget)
+                            native_day_budget_reserved += int(per_future_day_budget)
                     elif getattr(args, "repair_missing_days", False):
                         future = pool.submit(
                             acquire_one,
@@ -5671,6 +5719,9 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                 for future in as_completed(list(futures.keys())):
                     part = futures.pop(future)
                     result = future.result()
+                    if future in future_day_budgets:
+                        native_day_budget_reserved -= future_day_budgets.pop(future)
+                        native_day_budget_used += int(result.get("native_daily_requests", 0))
                     result.setdefault("requested_transport", requested_transport or "node")
                     result.setdefault("selected_transport", selected_transport)
                     result.setdefault("selection_reason", selection_reason)
@@ -5697,6 +5748,12 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     finally:
         close_lease(data_root)
     progress = acquisition_summary(data_root)
+    progress["runtime_seconds"] = int(time.monotonic() - started)
+    progress["native_day_request_budget_used"] = (
+        native_day_budget_used if "native_day_budget_used" in locals() else 0
+    )
+    if selected_transport == "native" and progress["native_day_request_budget_used"] > 0:
+        progress["status"] = "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS"
     if circuit_activations:
         progress["circuit_breaker_activations"] = circuit_activations
         progress["status"] = "PROVIDER_COOLDOWN_REQUIRED"
@@ -5716,7 +5773,11 @@ def run_operational_cycle(args: argparse.Namespace, data_root: Path) -> dict[str
     certification: dict[str, Any] = {"status": "NOT_RUN"}
     canonical: dict[str, Any] = {"status": "NOT_RUN"}
     max_cycles = getattr(args, "max_operational_cycles", None) or 1
-    max_runtime = (getattr(args, "max_runtime_minutes", None) or 0) * 60
+    max_runtime = float(
+        getattr(args, "max_runtime_seconds", None)
+        or (getattr(args, "max_runtime_minutes", None) or 0) * 60
+        or 0
+    )
     while completed_cycles < max_cycles:
         if max_runtime and (time.monotonic() - started) >= max_runtime:
             break
@@ -5744,6 +5805,11 @@ def run_operational_cycle(args: argparse.Namespace, data_root: Path) -> dict[str
         "canonicalization_rebuilt_invalid": canonical.get("rebuilt_invalid_partitions", 0),
         "canonicalization_failures": canonical.get("canonicalization_failures", 0),
     }
+    if (
+        acquisition.get("status")
+        == "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS"
+    ):
+        progress["status"] = "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS"
     write_json(progress_path(data_root), progress)
     return progress
 

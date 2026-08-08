@@ -1,4 +1,4 @@
-﻿{
+{
     "artifact_id":  "A0R2_DUAL_TRANSPORT_PARITY_CERTIFICATION_V2",
     "gate_id":  "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
     "status":  "PASS",
@@ -32,7 +32,7 @@
                      },
     "source_integrity":  {
                              "pass":  102,
-                             "required":  null,
+                             "required":  102,
                              "status":  "PASS"
                          },
     "golden_certification":  {
@@ -70,5 +70,13 @@
                          "consecutive_passing_runs":  3,
                          "attempts_this_watch":  1
                      },
-    "activation_created_at":  "2026-08-07T21:21:29.7034476Z"
+    "activation_created_at":  "2026-08-07T21:21:29.7034476Z",
+    "metadata_only_corrections":  [
+                                      {
+                                          "field":  "source_integrity.required",
+                                          "corrected_to":  102,
+                                          "reason":  "metadata-only correction; no certification result changed; no parity data changed; no activation decision changed",
+                                          "corrected_at":  "2026-08-08T13:01:03.3293468Z"
+                                      }
+                                  ]
 }

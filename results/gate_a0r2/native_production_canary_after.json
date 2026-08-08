@@ -1,0 +1,15 @@
+﻿{
+    "captured_at":  "2026-08-08T13:00:53.7921463Z",
+    "certified":  49,
+    "planned":  1000,
+    "retryable":  31,
+    "terminal":  0,
+    "running":  0,
+    "m1":  15,
+    "m5":  15,
+    "features":  15,
+    "valid_daily_units":  1524,
+    "raw_json_bytes":  392079740,
+    "native_bi5_bytes":  1070942,
+    "free_bytes":  45612265472
+}
