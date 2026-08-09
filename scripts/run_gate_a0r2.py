@@ -5643,7 +5643,7 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
             missing_days = len(
                 find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month)
             )
-            return (missing_days, cooling_down, int(item.get("attempts", 0)), part.key)
+            return (cooling_down, missing_days, int(item.get("attempts", 0)), part.key)
 
         candidates.sort(key=retryable_closure_key)
     if args.max_partitions is not None:

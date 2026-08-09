@@ -3,13 +3,20 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "INCOMPLETE",
   "expected_pair_month_partitions": 540,
-  "certified_pair_month_partitions": 15,
-  "reused_valid_partitions": 15,
+  "certified_pair_month_partitions": 18,
+  "reused_valid_partitions": 18,
   "newly_built_partitions": 0,
   "rebuilt_invalid_partitions": 0,
-  "canonicalization_failures": 5,
-  "not_eligible_pair_months": 520,
+  "canonicalization_failures": 8,
+  "not_eligible_pair_months": 514,
   "partitions": [
+    {
+      "pair": "EURUSD",
+      "year": 2010,
+      "month": 1,
+      "sha256": "0ece08bec602223c5cead211ac21188f5d289588dcebb3508d03c7ddd9332ff8",
+      "reused_valid_partition": true
+    },
     {
       "pair": "EURUSD",
       "year": 2010,
@@ -48,6 +55,13 @@
     {
       "pair": "USDCAD",
       "year": 2010,
+      "month": 2,
+      "sha256": "0910c0fab5834d867ef2a7c5e45048bd2857b22e1f7674c7c5beae2a95fc5e33",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "USDCAD",
+      "year": 2010,
       "month": 3,
       "sha256": "271ac6b3d600a89b6e690b789b4afa2e7cb6c398bfaff25ef839e2697f52e0e3",
       "reused_valid_partition": true
@@ -57,6 +71,13 @@
       "year": 2010,
       "month": 4,
       "sha256": "ca0609cc5c5c9939b8250fc9bc2548c30a3d5506aeeec73c6b4f5599f032a3a5",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "USDCHF",
+      "year": 2010,
+      "month": 2,
+      "sha256": "6de3df03a557aac87d00be89001f1319676858bf6247533b0856e58750b93083",
       "reused_valid_partition": true
     },
     {

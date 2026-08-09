@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -296,6 +297,107 @@ def test_retryable_repair_prioritizes_closure_missing_days(
     runner.run_acquisition(args, tmp_path)
 
     assert executed == [almost_done.key, middle.key]
+
+
+def test_retryable_repair_prefers_eligible_over_cooling_partition(
+    monkeypatch, tmp_path: Path
+) -> None:
+    cooling = runner.Partition("GBPUSD", 2010, 1, "bid")
+    eligible = runner.Partition("USDJPY", 2010, 1, "bid")
+    parts = [cooling, eligible]
+    future_retry = (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()
+    runner.save_state(
+        tmp_path,
+        {
+            "partitions": {
+                cooling.key: {
+                    "pair": cooling.pair,
+                    "year": cooling.year,
+                    "month": cooling.month,
+                    "side": cooling.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 1,
+                    "next_eligible_retry_timestamp": future_retry,
+                },
+                eligible.key: {
+                    "pair": eligible.pair,
+                    "year": eligible.year,
+                    "month": eligible.month,
+                    "side": eligible.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 1,
+                },
+            }
+        },
+    )
+
+    def save_manifest(part: runner.Partition, missing_days: int) -> None:
+        manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+        manifest.days = [
+            DayStatus(
+                part.pair,
+                part.side,
+                part.year,
+                part.month,
+                day,
+                "failed" if day <= missing_days else "complete",
+                rows=0 if day <= missing_days else 1,
+            )
+            for day in range(1, 32)
+        ]
+        save_month_manifest(runner.raw_dir(tmp_path), manifest)
+
+    save_manifest(cooling, 1)
+    save_manifest(eligible, 2)
+    executed: list[str] = []
+
+    def fake_acquire_native(
+        _data_root: Path, part: runner.Partition, max_day_requests: int | None = None
+    ) -> dict:
+        executed.append(part.key)
+        return {
+            "partition": part.key,
+            "pair": part.pair,
+            "year": part.year,
+            "month": part.month,
+            "side": part.side,
+            "state": "FAILED_RETRYABLE",
+            "attempts": 2,
+            "native_daily_requests": 0,
+        }
+
+    monkeypatch.setattr(runner, "recertify_clean_room", lambda *args, **kwargs: {})
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: parts)
+    monkeypatch.setattr(runner, "select_transport", lambda _transport: ("native", "test", {}))
+    monkeypatch.setattr(runner, "run_native_health_controls", lambda _root: {"status": "PASS"})
+    monkeypatch.setattr(
+        runner,
+        "refresh_state_from_manifests",
+        lambda data_root, **_kwargs: runner.load_state(data_root),
+    )
+    monkeypatch.setattr(runner, "acquire_one_native", fake_acquire_native)
+
+    args = argparse.Namespace(
+        recover_orphaned_running=False,
+        transport="native",
+        pair=None,
+        year=None,
+        month=None,
+        side=None,
+        retry_failed=True,
+        resume=True,
+        repair_missing_days=True,
+        max_workers=1,
+        native_workers=1,
+        max_partitions=1,
+        max_day_requests=10,
+        max_runtime_seconds=0,
+        max_runtime_minutes=0,
+    )
+
+    runner.run_acquisition(args, tmp_path)
+
+    assert executed == [eligible.key]
 
 
 def test_canonicalization_failure_identity_report(tmp_path: Path, monkeypatch) -> None:
