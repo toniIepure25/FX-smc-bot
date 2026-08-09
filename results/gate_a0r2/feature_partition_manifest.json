@@ -3,12 +3,12 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "INCOMPLETE",
   "expected_pair_month_partitions": 540,
-  "certified_pair_month_partitions": 18,
-  "reused_valid_partitions": 18,
+  "certified_pair_month_partitions": 19,
+  "reused_valid_partitions": 19,
   "newly_built_partitions": 0,
   "rebuilt_invalid_partitions": 0,
   "canonicalization_failures": 8,
-  "not_eligible_pair_months": 514,
+  "not_eligible_pair_months": 513,
   "partitions": [
     {
       "pair": "EURUSD",
@@ -36,6 +36,13 @@
       "year": 2010,
       "month": 1,
       "sha256": "e83ae538f96faf8f7b5084d7b621df924384ac6baacf2bcb718984e386053bb1",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2010,
+      "month": 3,
+      "sha256": "b96db92ab13d1abf2b98bd18658d2b10846e8ea4939f46f2dd26e230d467bc85",
       "reused_valid_partition": true
     },
     {

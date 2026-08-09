@@ -34,6 +34,13 @@
     {
       "pair": "GBPUSD",
       "year": 2010,
+      "month": 3,
+      "sha256": "ff12b37e5c4eda04615e10c5d5806bf346e6e4e72f3c9d3cff7ca0352c2e0165",
+      "reused_valid_partition": true
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2010,
       "month": 4,
       "sha256": "520cec7c8fa215f725c3f79f254b4587de02791f2cafdd52a593a8b1fdd38ad9",
       "reused_valid_partition": true

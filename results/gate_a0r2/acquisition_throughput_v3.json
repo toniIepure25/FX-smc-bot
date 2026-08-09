@@ -1,9 +1,9 @@
 {
   "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "NATIVE_HEALTH_WATCH_EXHAUSTED",
+  "status": "FRESH_HANDOFF_INITIAL_CIRCUIT_BREAKER",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-09T20:58:09Z",
+  "updated_at": "2026-08-09T21:59:52Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -269,55 +269,123 @@
     },
     "final_blocker": "NATIVE_HEALTH_WATCH_EXHAUSTED"
   },
-  "cumulative_v2_production": {
+  "prod7_session": {
+    "fresh_health_handoff_implemented": true,
+    "fresh_health_handoff_ttl_seconds": 60,
+    "health_watch_ready_events": 2,
+    "fresh_health_handoffs_consumed": 2,
+    "duplicate_preflight_controls_avoided": 2,
+    "direct_repair_health_gates": 0,
+    "repair_slices_executed": 2,
+    "repair_slices_with_provider_traffic": 2,
+    "planned_slices_executed": 0,
+    "planned_monthly_sides_started": 0,
+    "planned_monthly_sides_certified": 0,
+    "initial_handoff_breaker_activations": 1,
+    "normal_circuit_breaker_activations": 0,
     "network_metrics": {
-      "provider_operations": 215,
-      "successful_provider_operations": 208,
-      "failed_provider_operations": 7,
-      "bytes_downloaded": 1757897
+      "provider_operations": 20,
+      "successful_provider_operations": 14,
+      "failed_provider_operations": 6,
+      "urllib_requests": 20,
+      "urllib_successes": 6,
+      "urllib_failures": 14,
+      "curl_fallback_invocations": 14,
+      "curl_fallback_successes": 8,
+      "curl_fallback_failures": 6,
+      "same_bi5_identity_recovered_after_urllib_failure": 8,
+      "bytes_downloaded": 115897
     },
     "dataset_metrics": {
-      "newly_downloaded_valid_daily_units": 207,
+      "newly_downloaded_valid_daily_units": 14,
+      "existing_daily_units_reused": 0,
+      "existing_daily_units_reconciled_as_valid": 0,
+      "total_valid_daily_unit_delta": 14,
+      "monthly_sides_certified": 1,
+      "monthly_sides_terminal": 2
+    },
+    "failure_distribution": {
+      "by_pair": {
+        "AUDUSD": 2,
+        "EURUSD": 2,
+        "GBPUSD": 1,
+        "USDJPY": 1
+      },
+      "by_side": {
+        "ask": 3,
+        "bid": 3
+      },
+      "by_partition_state_category": {
+        "RETRY_ATTEMPTS_EXHAUSTED": 2,
+        "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP": 4
+      }
+    },
+    "health_accounting": {
+      "health_watch_ready_events": 2,
+      "health_watch_exhaustions": 0,
+      "fresh_health_handoffs_consumed": 2,
+      "direct_repair_health_gates": 0,
+      "provider_cooldown_transitions": 0,
+      "initial_handoff_breaker_activations": 1,
+      "normal_circuit_breaker_activations": 0,
+      "health_runs_pass_start": 57,
+      "health_runs_fail_start": 77,
+      "health_runs_pass_end": 63,
+      "health_runs_fail_end": 80,
+      "health_runs_pass_delta": 6,
+      "health_runs_fail_delta": 3
+    },
+    "final_blocker": "FRESH_HANDOFF_INITIAL_CIRCUIT_BREAKER"
+  },
+  "cumulative_v2_production": {
+    "network_metrics": {
+      "provider_operations": 235,
+      "successful_provider_operations": 222,
+      "failed_provider_operations": 13,
+      "bytes_downloaded": 1873794
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 221,
       "existing_daily_units_reused": 0,
       "existing_daily_units_reconciled_as_valid": 201,
-      "total_valid_daily_unit_delta": 408,
-      "monthly_sides_certified": 12
+      "total_valid_daily_unit_delta": 422,
+      "monthly_sides_certified": 13
     }
   },
   "dataset": {
     "certified_before_prod4": 50,
-    "certified_after": 61,
+    "certified_after": 62,
     "planned_before_prod4": 1000,
     "planned_after": 1000,
     "retryable_before_prod4": 30,
-    "retryable_after": 19,
-    "retryable_eligible_after": 19,
+    "retryable_after": 16,
+    "retryable_eligible_after": 16,
     "retryable_cooling_after": 0,
     "terminal_before_prod4": 0,
-    "terminal_after": 0,
+    "terminal_after": 2,
     "running_before_prod4": 0,
     "running_after": 0,
     "valid_daily_units_before_prod4": 1738,
-    "valid_daily_units_after": 1926
+    "valid_daily_units_after": 1940
   },
   "canonical": {
     "m1_before_prod4": 15,
-    "m1_after": 18,
+    "m1_after": 19,
     "m5_before_prod4": 15,
-    "m5_after": 18,
+    "m5_after": 19,
     "features_before_prod4": 15,
-    "features_after": 18,
+    "features_after": 19,
     "known_canonical_failures_before_prod4": 5,
     "canonicalization_failures_after": 8,
     "new_canonical_failures": 3
   },
   "provider": {
-    "latest_health_watch": "NATIVE_HEALTH_WATCH_EXHAUSTED",
+    "latest_health_watch": "NATIVE_HEALTH_READY",
     "latest_health": "PASS",
-    "latest_run_id": "native-68c00ed0d3a24fca9a7d71c86f9b27d3",
-    "last_full_pass_timestamp": "2026-08-09T20:58:09.215445+00:00",
-    "last_full_fail_timestamp": "2026-08-09T20:56:40.004387+00:00",
-    "consecutive_passing_runs": 1,
+    "latest_run_id": "native-a03318293b394cc1b8d644e000f68a62",
+    "last_full_pass_timestamp": "2026-08-09T21:59:04.660405+00:00",
+    "last_full_fail_timestamp": "2026-08-09T21:21:36.084673+00:00",
+    "consecutive_passing_runs": 4,
     "consecutive_failing_runs": 0,
     "latest_control_results": {
       "A": "PASS",
@@ -325,12 +393,12 @@
     },
     "health_watch_exhaustions": 3,
     "provider_cooldown_transitions": 6,
-    "circuit_breaker_activations": 1,
-    "health_runs_pass": 57,
-    "health_runs_fail": 77
+    "circuit_breaker_activations": 2,
+    "health_runs_pass": 63,
+    "health_runs_fail": 80
   },
   "storage": {
-    "free_disk_bytes": 45431644160,
+    "free_disk_bytes": 45028532224,
     "reserve_requirement_bytes": 10737418240,
     "reserve_status": "PASS"
   },

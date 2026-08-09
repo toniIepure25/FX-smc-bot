@@ -508,6 +508,62 @@ def test_fresh_native_handoff_first_two_failures_stop_without_third(
     assert progress["circuit_breaker_activations"] == 1
 
 
+def test_operational_cycle_reports_acquisition_health_handoff(
+    monkeypatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(runner, "refresh_state_from_manifests", lambda _root: {})
+    monkeypatch.setattr(
+        runner,
+        "run_acquisition",
+        lambda _args, _root: {
+            "status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
+            "health_gate_source": "FRESH_NATIVE_HEALTH_WATCH_HANDOFF",
+            "health_gate_reused": True,
+            "health_gate_age_seconds": 12.5,
+            "fresh_health_handoffs_consumed": 1,
+            "direct_repair_health_gates": 0,
+            "native_day_request_budget_used": 3,
+        },
+    )
+    monkeypatch.setattr(runner, "run_certification", lambda _root: {"status": "INCOMPLETE"})
+    monkeypatch.setattr(
+        runner,
+        "run_canonicalize",
+        lambda _root: {
+            "status": "INCOMPLETE",
+            "reused_valid_partitions": 0,
+            "newly_built_partitions": 0,
+            "rebuilt_invalid_partitions": 0,
+            "canonicalization_failures": 0,
+        },
+    )
+    monkeypatch.setattr(
+        runner,
+        "acquisition_summary",
+        lambda _root: {
+            "status": "A0R2_OPERATIONAL_CHECKPOINT_ACQUISITION_IN_PROGRESS",
+            "certified_partitions": 0,
+            "retryable_failures": 0,
+            "planned_partitions": 0,
+            "terminal_failures": 0,
+            "running_partitions": 0,
+        },
+    )
+
+    progress = runner.run_operational_cycle(
+        _native_retry_args(max_operational_cycles=1), tmp_path
+    )
+
+    assert progress["health_gate_source"] == "FRESH_NATIVE_HEALTH_WATCH_HANDOFF"
+    assert progress["health_gate_reused"] is True
+    assert progress["fresh_health_handoffs_consumed"] == 1
+    assert progress["direct_repair_health_gates"] == 0
+    assert progress["operational_cycle"]["health_gate_source"] == (
+        "FRESH_NATIVE_HEALTH_WATCH_HANDOFF"
+    )
+    assert progress["operational_cycle"]["native_day_request_budget_used"] == 3
+
+
 def test_retryable_repair_prioritizes_closure_missing_days(
     monkeypatch, tmp_path: Path
 ) -> None:

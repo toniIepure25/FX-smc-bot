@@ -5935,7 +5935,7 @@ def run_operational_cycle(args: argparse.Namespace, data_root: Path) -> dict[str
         if max_runtime and (time.monotonic() - started) >= max_runtime:
             break
     progress = acquisition_summary(data_root)
-    progress["operational_cycle"] = {
+    cycle_summary = {
         "status": "PASS",
         "retry_failed": bool(args.retry_failed),
         "max_partitions": args.max_partitions,
@@ -5949,6 +5949,21 @@ def run_operational_cycle(args: argparse.Namespace, data_root: Path) -> dict[str
         "canonicalization_rebuilt_invalid": canonical.get("rebuilt_invalid_partitions", 0),
         "canonicalization_failures": canonical.get("canonicalization_failures", 0),
     }
+    for key in (
+        "health_gate_source",
+        "health_gate_reused",
+        "health_gate_age_seconds",
+        "health_watch_updated_at",
+        "fresh_health_handoffs_consumed",
+        "direct_repair_health_gates",
+        "fresh_handoff_initial_circuit_breaker",
+        "provider_cooldown_transitions",
+        "native_day_request_budget_used",
+    ):
+        if key in acquisition:
+            cycle_summary[key] = acquisition[key]
+            progress[key] = acquisition[key]
+    progress["operational_cycle"] = cycle_summary
     if (
         acquisition.get("status")
         == "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS"

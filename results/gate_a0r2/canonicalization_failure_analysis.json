@@ -3,7 +3,7 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "INCOMPLETE",
   "failure_count": 8,
-  "not_eligible_pair_months": 514,
+  "not_eligible_pair_months": 513,
   "rows": [
     {
       "pair": "AUDUSD",
