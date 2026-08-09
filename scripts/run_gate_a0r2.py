@@ -205,6 +205,7 @@ FAILURE_EVIDENCE_FIELDS = (
 LEASE_STALE_SECONDS = 600
 CIRCUIT_BREAKER_WINDOW = 8
 CIRCUIT_BREAKER_FAILURES = 3
+NATIVE_HEALTH_HANDOFF_TTL_SECONDS = 60
 
 FROZEN_CATEGORIES: dict[str, dict[str, tuple[Any, ...]]] = {
     "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
@@ -1564,6 +1565,14 @@ def progress_path(data_root: Path) -> Path:
     return checkpoint_dir(data_root) / "a0r2_progress.json"
 
 
+def latest_progress_status(data_root: Path) -> str | None:
+    path = progress_path(data_root)
+    if not path.exists():
+        return None
+    payload = read_json(path)
+    return str(payload.get("status")) if payload.get("status") is not None else None
+
+
 def lease_path(data_root: Path) -> Path:
     return checkpoint_dir(data_root) / "a0r2_active_run_lease.json"
 
@@ -2488,6 +2497,62 @@ def native_health_watch_state_path(data_root: Path) -> Path:
     return data_root / "checkpoints" / "native_health_watch_state.json"
 
 
+def fresh_native_health_handoff(
+    data_root: Path,
+    *,
+    requested_transport: str | None,
+    selected_transport: str,
+    runner_id: str,
+    now: datetime | None = None,
+) -> dict[str, Any] | None:
+    if requested_transport != "native" or selected_transport != "native":
+        return None
+    state_path = native_health_watch_state_path(data_root)
+    if not state_path.exists():
+        return None
+    state = read_json(state_path)
+    if state.get("status") != "NATIVE_HEALTH_READY":
+        return None
+    required = int(state.get("required_consecutive_health_passes", 0) or 0)
+    if int(state.get("consecutive_passing_runs", 0) or 0) < required:
+        return None
+    updated_at = _parse_utc_timestamp(state.get("updated_at"))
+    if updated_at is None:
+        return None
+    checked_at = now or datetime.now(timezone.utc)
+    age_seconds = (checked_at - updated_at).total_seconds()
+    if age_seconds < 0 or age_seconds > NATIVE_HEALTH_HANDOFF_TTL_SECONDS:
+        return None
+    if int(state.get("partition_attempts_consumed", 0) or 0) != 0:
+        return None
+    latest_run_id = None
+    if state.get("history"):
+        latest_run_id = state["history"][-1].get("latest_run_id")
+    if not latest_run_id:
+        return None
+    if state.get("handoff_consumed_health_run_id") == latest_run_id:
+        return None
+    summary = write_provider_health_summary(data_root)
+    if summary.get("latest_run_id") != latest_run_id:
+        return None
+    if summary.get("latest_status") != "PASS" or summary.get("status") != "PASS":
+        return None
+    consumed_at = checked_at.isoformat()
+    state["handoff_consumed_at"] = consumed_at
+    state["handoff_consumed_by_runner_id"] = runner_id
+    state["handoff_consumed_health_run_id"] = latest_run_id
+    write_json(state_path, state)
+    return {
+        "health_gate_source": "FRESH_NATIVE_HEALTH_WATCH_HANDOFF",
+        "health_gate_reused": True,
+        "health_gate_age_seconds": round(age_seconds, 3),
+        "health_watch_updated_at": updated_at.isoformat(),
+        "handoff_consumed_at": consumed_at,
+        "handoff_consumed_by_runner_id": runner_id,
+        "handoff_consumed_health_run_id": latest_run_id,
+    }
+
+
 def run_native_health_watch(
     data_root: Path,
     *,
@@ -2554,6 +2619,7 @@ def run_native_health_watch(
         "consecutive_passing_runs": state["consecutive_passing_runs"],
         "latest_health_status": state["history"][-1]["latest_status"] if state["history"] else None,
         "partition_attempts_consumed": 0,
+        "updated_at": state.get("updated_at"),
     }
     write_json(results_dir() / "native_health_watch.json", artifact)
     return artifact
@@ -5584,6 +5650,7 @@ def acquire_one(
 
 def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]:
     started = time.monotonic()
+    run_id = sha256_bytes(f"{time.time()}:{os.getpid()}".encode())[:16]
     max_runtime = float(
         getattr(args, "max_runtime_seconds", None)
         or (getattr(args, "max_runtime_minutes", None) or 0) * 60
@@ -5604,18 +5671,41 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
         raise ValueError("A0R2_ACTIVE_LEASE_PREVENTS_COMPETING_RUNNER")
     if getattr(args, "recover_orphaned_running", False):
         recover_orphaned_running(data_root, explicit=True)
+    handoff_metadata: dict[str, Any] | None = None
+    direct_repair_health_gates = 0
+    provider_cooldown_transitions = 0
     if args.retry_failed:
-        controls = (
-            run_native_health_controls(data_root)
-            if selected_transport == "native"
-            else run_health_controls(data_root)
-        )
-        if controls["status"] != "PASS":
-            progress = acquisition_summary(data_root)
-            progress["status"] = "PROVIDER_COOLDOWN_REQUIRED"
-            progress["provider_health_controls"] = controls["status"]
-            write_json(progress_path(data_root), progress)
-            return progress
+        if selected_transport == "native":
+            handoff_metadata = fresh_native_health_handoff(
+                data_root,
+                requested_transport=requested_transport,
+                selected_transport=selected_transport,
+                runner_id=run_id,
+            )
+        if handoff_metadata is None:
+            direct_repair_health_gates = 1
+            controls = (
+                run_native_health_controls(data_root)
+                if selected_transport == "native"
+                else run_health_controls(data_root)
+            )
+            if controls["status"] != "PASS":
+                if latest_progress_status(data_root) != "PROVIDER_COOLDOWN_REQUIRED":
+                    provider_cooldown_transitions = 1
+                progress = acquisition_summary(data_root)
+                progress["status"] = "PROVIDER_COOLDOWN_REQUIRED"
+                progress["provider_health_controls"] = controls["status"]
+                progress["health_gate_source"] = (
+                    "DIRECT_NATIVE_REPAIR_HEALTH_GATE"
+                    if selected_transport == "native"
+                    else "DIRECT_NODE_REPAIR_HEALTH_GATE"
+                )
+                progress["health_gate_reused"] = False
+                progress["direct_repair_health_gates"] = direct_repair_health_gates
+                progress["fresh_health_handoffs_consumed"] = 0
+                progress["provider_cooldown_transitions"] = provider_cooldown_transitions
+                write_json(progress_path(data_root), progress)
+                return progress
     state = refresh_state_from_manifests(data_root)
     wanted = partition_queue(args.pair, args.year, args.month, args.side)
     candidates: list[Partition] = []
@@ -5659,7 +5749,9 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     adaptive_reductions = 0
     recent_success: deque[bool] = deque(maxlen=CIRCUIT_BREAKER_WINDOW)
     circuit_activations = 0
-    run_id = sha256_bytes(f"{time.time()}:{os.getpid()}".encode())[:16]
+    fresh_handoff_completed = 0
+    fresh_handoff_succeeded = False
+    fresh_handoff_initial_breaker = False
     write_lease(
         data_root,
         run_id=run_id,
@@ -5695,7 +5787,12 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                                 save_state(data_root, state)
                             break
                     break
-                while runnable and len(futures) < max_in_flight and not runtime_expired:
+                current_max_in_flight = max_in_flight
+                if handoff_metadata is not None and not fresh_handoff_succeeded:
+                    current_max_in_flight = min(
+                        current_max_in_flight, max(0, 2 - fresh_handoff_completed)
+                    )
+                while runnable and len(futures) < current_max_in_flight and not runtime_expired:
                     per_future_day_budget = getattr(args, "max_day_requests", None)
                     if selected_transport == "native" and per_future_day_budget is not None:
                         remaining_day_budget = (
@@ -5752,15 +5849,25 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                     result.setdefault("selected_transport", selected_transport)
                     result.setdefault("selection_reason", selection_reason)
                     result.setdefault("transport_health_at_selection", transport_health)
-                    recent_success.append(
+                    effective_success = (
                         result.get("state") == "COMPLETE_PENDING_CERTIFICATION"
                         or result.get("failure_category") == "SUCCESSFUL_PARTIAL_MONTH"
+                        or int(result.get("native_daily_successes", 0) or 0) > 0
+                        or int(result.get("native_curl_fallback_successes", 0) or 0) > 0
                     )
+                    recent_success.append(effective_success)
                     with STATE_LOCK:
                         state = load_state(data_root)
                         state["partitions"].setdefault(part.key, {})
                         state["partitions"][part.key].update(result)
                         save_state(data_root, state)
+                    if handoff_metadata is not None and not fresh_handoff_succeeded:
+                        fresh_handoff_completed += 1
+                        fresh_handoff_succeeded = effective_success
+                        if fresh_handoff_completed >= 2 and not fresh_handoff_succeeded:
+                            fresh_handoff_initial_breaker = True
+                            circuit_activations += 1
+                            runnable.clear()
                     if result.get("error") and "429" in result.get("error", ""):
                         adaptive_reductions += 1
                         time.sleep(10)
@@ -5778,11 +5885,22 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     progress["native_day_request_budget_used"] = (
         native_day_budget_used if "native_day_budget_used" in locals() else 0
     )
+    if handoff_metadata is not None:
+        progress.update(handoff_metadata)
+    else:
+        progress["health_gate_reused"] = False
+    progress["direct_repair_health_gates"] = direct_repair_health_gates
+    progress["fresh_health_handoffs_consumed"] = int(handoff_metadata is not None)
+    progress["provider_cooldown_transitions"] = provider_cooldown_transitions
     if selected_transport == "native" and progress["native_day_request_budget_used"] > 0:
         progress["status"] = "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS"
     if circuit_activations:
         progress["circuit_breaker_activations"] = circuit_activations
         progress["status"] = "PROVIDER_COOLDOWN_REQUIRED"
+        progress["fresh_handoff_initial_circuit_breaker"] = fresh_handoff_initial_breaker
+        progress["provider_cooldown_transitions"] = max(
+            int(progress.get("provider_cooldown_transitions", 0)), 1
+        )
         write_json(progress_path(data_root), progress)
     if adaptive_reductions:
         progress["adaptive_one_worker_reductions"] = (

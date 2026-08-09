@@ -38,6 +38,131 @@ def _state_with_running(tmp_path: Path, part: runner.Partition) -> None:
     )
 
 
+def _native_retry_args(**overrides) -> argparse.Namespace:
+    values = {
+        "recover_orphaned_running": False,
+        "transport": "native",
+        "pair": None,
+        "year": None,
+        "month": None,
+        "side": None,
+        "retry_failed": True,
+        "resume": True,
+        "repair_missing_days": True,
+        "max_workers": 1,
+        "native_workers": 1,
+        "max_partitions": 1,
+        "max_day_requests": 10,
+        "max_runtime_seconds": 0,
+        "max_runtime_minutes": 0,
+    }
+    values.update(overrides)
+    return argparse.Namespace(**values)
+
+
+def _write_ready_handoff_state(
+    tmp_path: Path,
+    *,
+    updated_at: datetime | None = None,
+    latest_run_id: str = "native-pass",
+    consumed: bool = False,
+) -> None:
+    payload = {
+        "artifact_id": "A0R2_NATIVE_HEALTH_WATCH_STATE_V1",
+        "gate_id": runner.GATE_ID,
+        "status": "NATIVE_HEALTH_READY",
+        "attempts_completed": 2,
+        "consecutive_passing_runs": 2,
+        "required_consecutive_health_passes": 2,
+        "partition_attempts_consumed": 0,
+        "updated_at": (updated_at or datetime.now(timezone.utc)).isoformat(),
+        "history": [
+            {
+                "attempt": 2,
+                "status": "PASS",
+                "latest_status": "PASS",
+                "latest_run_id": latest_run_id,
+            }
+        ],
+    }
+    if consumed:
+        payload["handoff_consumed_health_run_id"] = latest_run_id
+        payload["handoff_consumed_at"] = datetime.now(timezone.utc).isoformat()
+        payload["handoff_consumed_by_runner_id"] = "already-used"
+    runner.write_json(runner.native_health_watch_state_path(tmp_path), payload)
+
+
+def _save_missing_manifest(part: runner.Partition, tmp_path: Path, missing_days: int = 1) -> None:
+    manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+    manifest.days = [
+        DayStatus(
+            part.pair,
+            part.side,
+            part.year,
+            part.month,
+            day,
+            "failed" if day <= missing_days else "complete",
+            rows=0 if day <= missing_days else 1,
+        )
+        for day in range(1, 32)
+    ]
+    save_month_manifest(runner.raw_dir(tmp_path), manifest)
+
+
+def _prepare_native_retry(
+    monkeypatch,
+    tmp_path: Path,
+    parts: list[runner.Partition],
+    *,
+    summary_status: str = "PASS",
+    preflight_status: str = "PASS",
+) -> list[runner.Partition]:
+    runner.save_state(
+        tmp_path,
+        {
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 1,
+                }
+                for part in parts
+            }
+        },
+    )
+    for part in parts:
+        _save_missing_manifest(part, tmp_path)
+    monkeypatch.setattr(runner, "recertify_clean_room", lambda *args, **kwargs: {})
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: parts)
+    monkeypatch.setattr(runner, "select_transport", lambda _transport: ("native", "test", {}))
+    monkeypatch.setattr(
+        runner,
+        "refresh_state_from_manifests",
+        lambda data_root, **_kwargs: runner.load_state(data_root),
+    )
+    monkeypatch.setattr(runner, "results_dir", lambda: tmp_path / "results")
+    monkeypatch.setattr(
+        runner,
+        "write_provider_health_summary",
+        lambda _root: {
+            "status": summary_status,
+            "latest_status": summary_status,
+            "latest_run_id": "native-pass",
+        },
+    )
+    preflights: list[runner.Partition] = []
+
+    def fake_preflight(_root: Path) -> dict:
+        preflights.append(parts[0])
+        return {"status": preflight_status}
+
+    monkeypatch.setattr(runner, "run_native_health_controls", fake_preflight)
+    return preflights
+
+
 def test_orphaned_running_with_complete_manifest(tmp_path: Path, monkeypatch) -> None:
     part = _part()
     _state_with_running(tmp_path, part)
@@ -200,6 +325,186 @@ def test_circuit_breaker_trigger(monkeypatch, tmp_path: Path) -> None:
     )
     progress = runner.run_acquisition(args, tmp_path)
     assert progress["status"] == "PROVIDER_COOLDOWN_REQUIRED"
+    assert progress["circuit_breaker_activations"] == 1
+
+
+def test_fresh_native_health_handoff_skips_duplicate_preflight(
+    monkeypatch, tmp_path: Path
+) -> None:
+    part = runner.Partition("EURUSD", 2010, 1, "bid")
+    preflights = _prepare_native_retry(monkeypatch, tmp_path, [part])
+    _write_ready_handoff_state(tmp_path)
+    executed: list[str] = []
+
+    def fake_acquire_native(
+        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+    ) -> dict:
+        executed.append(queued.key)
+        return {
+            "partition": queued.key,
+            "pair": queued.pair,
+            "year": queued.year,
+            "month": queued.month,
+            "side": queued.side,
+            "state": "COMPLETE_PENDING_CERTIFICATION",
+            "attempts": 2,
+            "native_daily_requests": 1,
+            "native_daily_successes": 1,
+            "native_daily_failures": 0,
+        }
+
+    monkeypatch.setattr(runner, "acquire_one_native", fake_acquire_native)
+
+    progress = runner.run_acquisition(_native_retry_args(), tmp_path)
+    state = runner.read_json(runner.native_health_watch_state_path(tmp_path))
+
+    assert preflights == []
+    assert executed == [part.key]
+    assert progress["health_gate_source"] == "FRESH_NATIVE_HEALTH_WATCH_HANDOFF"
+    assert progress["health_gate_reused"] is True
+    assert progress["fresh_health_handoffs_consumed"] == 1
+    assert state["handoff_consumed_health_run_id"] == "native-pass"
+
+
+def test_stale_native_health_handoff_runs_normal_preflight(
+    monkeypatch, tmp_path: Path
+) -> None:
+    part = runner.Partition("EURUSD", 2010, 1, "bid")
+    preflights = _prepare_native_retry(monkeypatch, tmp_path, [part])
+    _write_ready_handoff_state(
+        tmp_path,
+        updated_at=datetime.now(timezone.utc) - timedelta(seconds=61),
+    )
+    executed: list[str] = []
+
+    def fake_acquire_native(
+        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+    ) -> dict:
+        executed.append(queued.key)
+        return {
+            "partition": queued.key,
+            "pair": queued.pair,
+            "year": queued.year,
+            "month": queued.month,
+            "side": queued.side,
+            "state": "COMPLETE_PENDING_CERTIFICATION",
+            "attempts": 2,
+            "native_daily_requests": 1,
+            "native_daily_successes": 1,
+            "native_daily_failures": 0,
+        }
+
+    monkeypatch.setattr(runner, "acquire_one_native", fake_acquire_native)
+
+    runner.run_acquisition(_native_retry_args(), tmp_path)
+
+    assert len(preflights) == 1
+    assert executed == [part.key]
+
+
+def test_fresh_native_handoff_with_fail_summary_runs_normal_preflight(
+    monkeypatch, tmp_path: Path
+) -> None:
+    part = runner.Partition("EURUSD", 2010, 1, "bid")
+    preflights = _prepare_native_retry(monkeypatch, tmp_path, [part], summary_status="FAIL")
+    _write_ready_handoff_state(tmp_path)
+    executed: list[str] = []
+
+    def fake_acquire_native(
+        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+    ) -> dict:
+        executed.append(queued.key)
+        return {
+            "partition": queued.key,
+            "pair": queued.pair,
+            "year": queued.year,
+            "month": queued.month,
+            "side": queued.side,
+            "state": "COMPLETE_PENDING_CERTIFICATION",
+            "attempts": 2,
+            "native_daily_requests": 1,
+            "native_daily_successes": 1,
+            "native_daily_failures": 0,
+        }
+
+    monkeypatch.setattr(runner, "acquire_one_native", fake_acquire_native)
+
+    runner.run_acquisition(_native_retry_args(), tmp_path)
+
+    assert len(preflights) == 1
+    assert executed == [part.key]
+
+
+def test_consumed_native_health_handoff_cannot_be_reused(
+    monkeypatch, tmp_path: Path
+) -> None:
+    part = runner.Partition("EURUSD", 2010, 1, "bid")
+    preflights = _prepare_native_retry(monkeypatch, tmp_path, [part])
+    _write_ready_handoff_state(tmp_path, consumed=True)
+    executed: list[str] = []
+    monkeypatch.setattr(
+        runner,
+        "acquire_one_native",
+        lambda _root, queued, max_day_requests=None: executed.append(queued.key)
+        or {
+            "partition": queued.key,
+            "pair": queued.pair,
+            "year": queued.year,
+            "month": queued.month,
+            "side": queued.side,
+            "state": "COMPLETE_PENDING_CERTIFICATION",
+            "attempts": 2,
+            "native_daily_requests": 1,
+            "native_daily_successes": 1,
+            "native_daily_failures": 0,
+        },
+    )
+
+    runner.run_acquisition(_native_retry_args(), tmp_path)
+
+    assert len(preflights) == 1
+    assert executed == [part.key]
+
+
+def test_fresh_native_handoff_first_two_failures_stop_without_third(
+    monkeypatch, tmp_path: Path
+) -> None:
+    parts = [runner.Partition("EURUSD", 2010, month, "bid") for month in range(1, 4)]
+    preflights = _prepare_native_retry(monkeypatch, tmp_path, parts)
+    _write_ready_handoff_state(tmp_path)
+    executed: list[str] = []
+
+    def fake_acquire_native(
+        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+    ) -> dict:
+        executed.append(queued.key)
+        return {
+            "partition": queued.key,
+            "pair": queued.pair,
+            "year": queued.year,
+            "month": queued.month,
+            "side": queued.side,
+            "state": "FAILED_RETRYABLE",
+            "attempts": 2,
+            "error": "HTTP 503",
+            "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+            "native_daily_requests": 1,
+            "native_daily_successes": 0,
+            "native_daily_failures": 1,
+            "native_curl_fallback_successes": 0,
+        }
+
+    monkeypatch.setattr(runner, "acquire_one_native", fake_acquire_native)
+
+    progress = runner.run_acquisition(
+        _native_retry_args(max_partitions=3, native_workers=2, max_day_requests=3), tmp_path
+    )
+
+    assert preflights == []
+    assert executed == [parts[0].key, parts[1].key]
+    assert runner.load_state(tmp_path)["partitions"][parts[2].key]["attempts"] == 1
+    assert progress["status"] == "PROVIDER_COOLDOWN_REQUIRED"
+    assert progress["fresh_handoff_initial_circuit_breaker"] is True
     assert progress["circuit_breaker_activations"] == 1
 
 
