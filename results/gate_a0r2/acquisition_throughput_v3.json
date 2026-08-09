@@ -3,7 +3,7 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "PROVIDER_COOLDOWN_REQUIRED",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-09T12:58:40Z",
+  "updated_at": "2026-08-09T15:10:09Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -165,11 +165,14 @@
     "final_blocker": "NATIVE_HEALTH_WATCH_EXHAUSTED"
   },
   "prod5_session": {
-    "offline_consistency_only": true,
+    "offline_consistency_only": false,
     "metadata_status_corrected": true,
     "quote_validity_coverage_updated": true,
     "acquisition_started": false,
-    "repair_slices_executed": 0,
+    "acquisition_start_blocked_by_health_gate": true,
+    "repair_slices_submitted": 2,
+    "repair_slices_executed": 2,
+    "repair_slices_with_provider_traffic": 0,
     "planned_slices_executed": 0,
     "planned_monthly_sides_started": 0,
     "planned_monthly_sides_certified": 0,
@@ -194,17 +197,25 @@
       "monthly_sides_certified": 0
     },
     "health_accounting": {
-      "health_watch_exhaustions": 1,
-      "provider_cooldown_transitions": 1,
+      "health_watch_ready": 1,
+      "health_watch_exhaustions": 0,
+      "provider_cooldown_transitions": 2,
+      "repair_health_gate_cooldowns": 2,
       "circuit_breaker_activations": 0,
-      "health_runs_pass_start": 47,
-      "health_runs_fail_start": 56,
-      "health_runs_pass_end": 49,
-      "health_runs_fail_end": 62,
-      "health_runs_pass_delta": 2,
-      "health_runs_fail_delta": 6
+      "health_runs_pass_start": 49,
+      "health_runs_fail_start": 62,
+      "health_runs_pass_end": 52,
+      "health_runs_fail_end": 66,
+      "health_runs_pass_delta": 3,
+      "health_runs_fail_delta": 4,
+      "latest_health_watch_status": "NATIVE_HEALTH_READY",
+      "latest_provider_health_status": "PROVIDER_COOLDOWN_REQUIRED",
+      "latest_control_results": {
+        "A": "FAIL",
+        "B": "FAIL"
+      }
     },
-    "final_blocker": "NATIVE_HEALTH_WATCH_EXHAUSTED"
+    "final_blocker": "PROVIDER_COOLDOWN_REQUIRED_AFTER_REPAIR_HEALTH_GATE"
   },
   "cumulative_v2_production": {
     "network_metrics": {
@@ -249,25 +260,25 @@
     "new_canonical_failures": 3
   },
   "provider": {
-    "latest_health_watch": "NATIVE_HEALTH_WATCH_EXHAUSTED",
+    "latest_health_watch": "NATIVE_HEALTH_READY",
     "latest_health": "PROVIDER_COOLDOWN_REQUIRED",
-    "latest_run_id": "native-8cf5f0e25b934dd58524c95d8f8133d9",
-    "last_full_pass_timestamp": "2026-08-09T12:57:12.190957+00:00",
-    "last_full_fail_timestamp": "2026-08-09T12:58:40.287297+00:00",
+    "latest_run_id": "native-537c058f14a14f1aa4a0640d3fe8ba4d",
+    "last_full_pass_timestamp": "2026-08-09T15:09:08.713547+00:00",
+    "last_full_fail_timestamp": "2026-08-09T15:10:09.094146+00:00",
     "consecutive_passing_runs": 0,
-    "consecutive_failing_runs": 2,
+    "consecutive_failing_runs": 1,
     "latest_control_results": {
       "A": "FAIL",
       "B": "FAIL"
     },
     "health_watch_exhaustions": 2,
-    "provider_cooldown_transitions": 4,
+    "provider_cooldown_transitions": 6,
     "circuit_breaker_activations": 1,
-    "health_runs_pass": 49,
-    "health_runs_fail": 62
+    "health_runs_pass": 52,
+    "health_runs_fail": 66
   },
   "storage": {
-    "free_disk_bytes": 45434781696,
+    "free_disk_bytes": 45431644160,
     "reserve_requirement_bytes": 10737418240,
     "reserve_status": "PASS"
   },

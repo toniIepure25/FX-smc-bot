@@ -3,23 +3,23 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "transport": "NATIVE_BI5_TRANSPORT",
   "status": "PROVIDER_COOLDOWN_REQUIRED",
-  "latest_run_id": "native-8cf5f0e25b934dd58524c95d8f8133d9",
+  "latest_run_id": "native-537c058f14a14f1aa4a0640d3fe8ba4d",
   "latest_status": "FAIL",
   "latest_control_results": {
     "A": "FAIL",
     "B": "FAIL"
   },
-  "last_full_pass_timestamp": "2026-08-09T12:57:12.190957+00:00",
-  "last_full_fail_timestamp": "2026-08-09T12:58:40.287297+00:00",
-  "full_pass_run_count": 49,
-  "full_fail_run_count": 62,
-  "complete_health_run_count": 111,
+  "last_full_pass_timestamp": "2026-08-09T15:09:08.713547+00:00",
+  "last_full_fail_timestamp": "2026-08-09T15:10:09.094146+00:00",
+  "full_pass_run_count": 52,
+  "full_fail_run_count": 66,
+  "complete_health_run_count": 118,
   "consecutive_passing_runs": 0,
-  "consecutive_failing_runs": 2,
-  "control_pass_count": 131,
-  "control_fail_count": 91,
+  "consecutive_failing_runs": 1,
+  "control_pass_count": 137,
+  "control_fail_count": 99,
   "legacy_ungrouped_control_count": 0,
   "failure_category_distribution": {
-    "NATIVE_BI5_TRANSPORT_FAILURE": 91
+    "NATIVE_BI5_TRANSPORT_FAILURE": 99
   }
 }
