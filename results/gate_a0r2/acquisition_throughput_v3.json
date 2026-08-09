@@ -2,8 +2,8 @@
   "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "PROVIDER_COOLDOWN_REQUIRED",
-  "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-09T11:55:52Z",
+  "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
+  "updated_at": "2026-08-09T12:58:40Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -58,7 +58,14 @@
       "total_valid_daily_unit_delta": 214,
       "monthly_sides_certified": 1
     },
-    "cooldown_events": 1
+    "health_accounting": {
+      "health_watch_exhaustions": 0,
+      "provider_cooldown_transitions": 1,
+      "circuit_breaker_activations": 0,
+      "health_runs_pass": null,
+      "health_runs_fail": null,
+      "legacy_event_count_preserved": 1
+    }
   },
   "prod3_session": {
     "repair_slices_executed": 1,
@@ -85,7 +92,14 @@
       "monthly_sides_certified": 0
     },
     "scheduling_fix_applied": "closure-first retryable repair ordering plus per-partition native day-budget reservation",
-    "cooldown_events": 1
+    "health_accounting": {
+      "health_watch_exhaustions": 0,
+      "provider_cooldown_transitions": 1,
+      "circuit_breaker_activations": 0,
+      "health_runs_pass": null,
+      "health_runs_fail": null,
+      "legacy_event_count_preserved": 1
+    }
   },
   "prod4_session": {
     "repair_slices_submitted": 5,
@@ -139,7 +153,57 @@
       }
     },
     "scheduling_fix_applied": "retryable repair now sorts eligible partitions before cooling partitions, then missing-day count, attempt count and partition key",
-    "cooldown_events": 3,
+    "health_accounting": {
+      "health_watch_exhaustions": 1,
+      "provider_cooldown_transitions": 3,
+      "circuit_breaker_activations": 1,
+      "health_runs_pass": 45,
+      "health_runs_fail": 50,
+      "legacy_event_count_preserved": 3,
+      "reconciliation_note": "The user-facing report's one final cooldown described the terminal PROD4 blocker; provider_cooldown_transitions counts all PROD4 submitted repair or health-refresh points that ended in cooldown."
+    },
+    "final_blocker": "NATIVE_HEALTH_WATCH_EXHAUSTED"
+  },
+  "prod5_session": {
+    "offline_consistency_only": true,
+    "metadata_status_corrected": true,
+    "quote_validity_coverage_updated": true,
+    "acquisition_started": false,
+    "repair_slices_executed": 0,
+    "planned_slices_executed": 0,
+    "planned_monthly_sides_started": 0,
+    "planned_monthly_sides_certified": 0,
+    "network_metrics": {
+      "provider_operations": 0,
+      "successful_provider_operations": 0,
+      "failed_provider_operations": 0,
+      "urllib_requests": 0,
+      "urllib_successes": 0,
+      "urllib_failures": 0,
+      "curl_fallback_invocations": 0,
+      "curl_fallback_successes": 0,
+      "curl_fallback_failures": 0,
+      "same_bi5_identity_recovered_after_urllib_failure": 0,
+      "bytes_downloaded": 0
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 0,
+      "existing_daily_units_reused": 0,
+      "existing_daily_units_reconciled_as_valid": 0,
+      "total_valid_daily_unit_delta": 0,
+      "monthly_sides_certified": 0
+    },
+    "health_accounting": {
+      "health_watch_exhaustions": 1,
+      "provider_cooldown_transitions": 1,
+      "circuit_breaker_activations": 0,
+      "health_runs_pass_start": 47,
+      "health_runs_fail_start": 56,
+      "health_runs_pass_end": 49,
+      "health_runs_fail_end": 62,
+      "health_runs_pass_delta": 2,
+      "health_runs_fail_delta": 6
+    },
     "final_blocker": "NATIVE_HEALTH_WATCH_EXHAUSTED"
   },
   "cumulative_v2_production": {
@@ -187,16 +251,20 @@
   "provider": {
     "latest_health_watch": "NATIVE_HEALTH_WATCH_EXHAUSTED",
     "latest_health": "PROVIDER_COOLDOWN_REQUIRED",
-    "latest_run_id": "native-4889f6f318ae4a8587a129291fd0390b",
-    "last_full_pass_timestamp": "2026-08-09T11:54:50.152523+00:00",
-    "last_full_fail_timestamp": "2026-08-09T11:55:52.839861+00:00",
+    "latest_run_id": "native-8cf5f0e25b934dd58524c95d8f8133d9",
+    "last_full_pass_timestamp": "2026-08-09T12:57:12.190957+00:00",
+    "last_full_fail_timestamp": "2026-08-09T12:58:40.287297+00:00",
     "consecutive_passing_runs": 0,
     "consecutive_failing_runs": 2,
     "latest_control_results": {
       "A": "FAIL",
       "B": "FAIL"
     },
-    "cooldown_events_this_session": 3
+    "health_watch_exhaustions": 2,
+    "provider_cooldown_transitions": 4,
+    "circuit_breaker_activations": 1,
+    "health_runs_pass": 49,
+    "health_runs_fail": 62
   },
   "storage": {
     "free_disk_bytes": 45434781696,

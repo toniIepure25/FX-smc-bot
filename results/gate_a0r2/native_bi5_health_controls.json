@@ -14,9 +14,9 @@
       "http_status": 503,
       "content_length": 0,
       "error_fingerprint": "54e522df706db712",
-      "control_started_at": "2026-08-09T11:55:32.834445+00:00",
-      "control_completed_at": "2026-08-09T11:55:37.463456+00:00",
-      "duration_ms": 4629
+      "control_started_at": "2026-08-09T12:57:59.495838+00:00",
+      "control_completed_at": "2026-08-09T12:58:30.780182+00:00",
+      "duration_ms": 31284
     },
     {
       "control": "B",
@@ -28,15 +28,15 @@
       "http_status": 503,
       "content_length": 0,
       "error_fingerprint": "54e522df706db712",
-      "control_started_at": "2026-08-09T11:55:37.463470+00:00",
-      "control_completed_at": "2026-08-09T11:55:52.839846+00:00",
-      "duration_ms": 15376
+      "control_started_at": "2026-08-09T12:58:30.780195+00:00",
+      "control_completed_at": "2026-08-09T12:58:40.287281+00:00",
+      "duration_ms": 9507
     }
   ],
   "rolling_calls": 20,
   "failure_trigger": 5,
   "partition_attempts_consumed": 0,
-  "health_run_started_at": "2026-08-09T11:55:32.834420+00:00",
-  "health_run_completed_at": "2026-08-09T11:55:52.839861+00:00",
-  "duration_ms": 20005
+  "health_run_started_at": "2026-08-09T12:57:59.495812+00:00",
+  "health_run_completed_at": "2026-08-09T12:58:40.287297+00:00",
+  "duration_ms": 40791
 }

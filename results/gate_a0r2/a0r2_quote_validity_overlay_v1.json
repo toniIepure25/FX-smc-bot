@@ -11,12 +11,18 @@
     "invalid_mandatory_flat_quote": "first subsequent valid side-correct quote plus integrity-breach flag"
   },
   "known_crossed_quote_months_preserved": [
+    "AUDUSD 2010-01",
+    "AUDUSD 2010-02",
     "AUDUSD 2010-03",
     "AUDUSD 2010-04",
     "USDJPY 2010-02",
     "USDJPY 2010-03",
-    "USDJPY 2010-04"
+    "USDJPY 2010-04",
+    "USDJPY 2010-05"
   ],
+  "known_crossed_quote_month_count": 8,
+  "coverage_semantics": "dynamic empirical coverage metadata; newly certified crossed quote months use the same frozen overlay rule",
+  "canonical_failure_semantics": "certified raw quote data; execution-validity overlay required",
   "implementation": "src/fx_smc_bot/research/a0r2_quote_validity_overlay.py",
   "tests": "tests/test_research/test_a0r2_quote_validity_overlay.py"
 }
