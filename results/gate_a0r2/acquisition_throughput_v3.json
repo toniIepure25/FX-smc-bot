@@ -3,82 +3,150 @@
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "PROVIDER_COOLDOWN_REQUIRED",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-08T19:54:30Z",
+  "updated_at": "2026-08-09T11:01:16Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
-  "previous_canary": {
-    "day_requests": 8,
-    "successful_new_native_days": 7,
-    "failed_native_days": 1,
-    "bytes_downloaded": 58186
+  "metric_semantics": {
+    "network_day_requests": "provider day fetch operations only",
+    "newly_downloaded_valid_daily_units": "new valid daily units attributable to successful provider day acquisitions",
+    "existing_daily_units_reused": "already-valid units reused without provider fetch",
+    "existing_daily_units_reconciled_as_valid": "already-present daily units newly recognized through manifest/state reconciliation",
+    "total_valid_daily_unit_delta": "net change in complete plus market_closed daily units"
+  },
+  "canary": {
+    "network_metrics": {
+      "provider_operations": 8,
+      "successful_provider_operations": 7,
+      "failed_provider_operations": 1,
+      "urllib_requests": 8,
+      "urllib_successes": 7,
+      "urllib_failures": 1,
+      "curl_fallback_invocations": 1,
+      "curl_fallback_successes": 0,
+      "curl_fallback_failures": 1,
+      "bytes_downloaded": 58186
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 6,
+      "existing_daily_units_reused": 0,
+      "existing_daily_units_reconciled_as_valid": 0,
+      "total_valid_daily_unit_delta": 6,
+      "monthly_sides_certified": 0
+    }
   },
   "prod2_session": {
     "repair_slices_executed": 3,
     "planned_slices_executed": 0,
     "runtime_seconds_acquisition_only": 695,
-    "day_requests": 14,
-    "successful_native_days": 13,
-    "failed_native_days": 1,
-    "valid_existing_days_redownloaded": 0,
-    "new_valid_daily_units": 214,
-    "new_certified_monthly_sides": 1,
-    "urllib_requests": 14,
-    "urllib_successes": 11,
-    "urllib_failures": 3,
-    "curl_fallback_invocations": 3,
-    "curl_fallback_successes": 2,
-    "curl_fallback_failures": 1,
-    "same_bi5_identity_recovered_after_urllib_failure": 2,
-    "bytes_downloaded": 96769,
-    "bytes_reused": 0,
+    "network_metrics": {
+      "provider_operations": 14,
+      "successful_provider_operations": 13,
+      "failed_provider_operations": 1,
+      "urllib_requests": 14,
+      "urllib_successes": 11,
+      "urllib_failures": 3,
+      "curl_fallback_invocations": 3,
+      "curl_fallback_successes": 2,
+      "curl_fallback_failures": 1,
+      "same_bi5_identity_recovered_after_urllib_failure": 2,
+      "bytes_downloaded": 96769
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 13,
+      "existing_daily_units_reused": 0,
+      "existing_daily_units_reconciled_as_valid": 201,
+      "total_valid_daily_unit_delta": 214,
+      "monthly_sides_certified": 1
+    },
     "cooldown_events": 1
   },
-  "cumulative_observed_v2": {
-    "day_requests": 22,
-    "failed_native_days": 2,
-    "bytes_downloaded": 154955
+  "prod3_session": {
+    "repair_slices_executed": 1,
+    "planned_slices_executed": 0,
+    "runtime_seconds_acquisition_only": 76,
+    "network_metrics": {
+      "provider_operations": 0,
+      "successful_provider_operations": 0,
+      "failed_provider_operations": 0,
+      "urllib_requests": 0,
+      "urllib_successes": 0,
+      "urllib_failures": 0,
+      "curl_fallback_invocations": 0,
+      "curl_fallback_successes": 0,
+      "curl_fallback_failures": 0,
+      "same_bi5_identity_recovered_after_urllib_failure": 0,
+      "bytes_downloaded": 0
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 0,
+      "existing_daily_units_reused": 0,
+      "existing_daily_units_reconciled_as_valid": 0,
+      "total_valid_daily_unit_delta": 0,
+      "monthly_sides_certified": 0
+    },
+    "scheduling_fix_applied": "closure-first retryable repair ordering plus per-partition native day-budget reservation",
+    "cooldown_events": 1
+  },
+  "cumulative_v2_production": {
+    "network_metrics": {
+      "provider_operations": 22,
+      "successful_provider_operations": 20,
+      "failed_provider_operations": 2,
+      "bytes_downloaded": 154955
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 19,
+      "existing_daily_units_reused": 0,
+      "existing_daily_units_reconciled_as_valid": 201,
+      "total_valid_daily_unit_delta": 220,
+      "monthly_sides_certified": 1
+    }
   },
   "dataset": {
-    "certified_before": 49,
+    "certified_before_prod3": 50,
     "certified_after": 50,
-    "planned_before": 1000,
+    "planned_before_prod3": 1000,
     "planned_after": 1000,
-    "retryable_before": 31,
+    "retryable_before_prod3": 30,
     "retryable_after": 30,
-    "terminal_before": 0,
+    "terminal_before_prod3": 0,
     "terminal_after": 0,
-    "running_before": 0,
+    "running_before_prod3": 0,
     "running_after": 0,
-    "valid_daily_units_before": 1524,
+    "valid_daily_units_before_prod3": 1738,
     "valid_daily_units_after": 1738
   },
   "canonical": {
-    "m1_before": 15,
+    "m1_before_prod3": 15,
     "m1_after": 15,
-    "m5_before": 15,
+    "m5_before_prod3": 15,
     "m5_after": 15,
-    "features_before": 15,
+    "features_before_prod3": 15,
     "features_after": 15,
     "known_canonical_failures": 5,
     "new_canonical_failures": 0
   },
-  "throughput": {
-    "daily_units_completed_per_hour": 1108,
-    "monthly_sides_certified_per_hour": 5,
-    "estimated_remaining_eligible_day_requests": "ETA_UNSTABLE_PROVIDER_DEPENDENT",
-    "estimated_hours_remaining": "ETA_UNSTABLE_PROVIDER_DEPENDENT"
-  },
   "provider": {
     "latest_health": "PROVIDER_COOLDOWN_REQUIRED",
-    "last_full_pass_timestamp": "2026-08-08T19:45:53.269554+00:00",
-    "last_full_fail_timestamp": "2026-08-08T19:53:25.161074+00:00",
+    "latest_run_id": "native-56547341451644a69b70594efc73796a",
+    "last_full_pass_timestamp": "2026-08-09T10:44:19.284318+00:00",
+    "last_full_fail_timestamp": "2026-08-09T11:01:16.125587+00:00",
     "consecutive_passing_runs": 0,
-    "consecutive_failing_runs": 1
+    "consecutive_failing_runs": 1,
+    "latest_control_results": {
+      "A": "FAIL",
+      "B": "PASS"
+    },
+    "cooldown_events_this_session": 1
   },
   "storage": {
-    "free_disk_bytes": 45553131520,
+    "free_disk_bytes": 45555666944,
     "reserve_requirement_bytes": 10737418240,
     "reserve_status": "PASS"
+  },
+  "throughput": {
+    "estimated_remaining_eligible_day_requests": "ETA_UNSTABLE_PROVIDER_DEPENDENT",
+    "estimated_hours_remaining": "ETA_UNSTABLE_PROVIDER_DEPENDENT"
   },
   "next_resume_command": "python scripts\\run_gate_a0r2.py --stage native-health-watch --max-health-attempts 8 --health-interval-seconds 20 --required-consecutive-health-passes 2"
 }

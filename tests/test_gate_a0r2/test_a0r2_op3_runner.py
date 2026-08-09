@@ -202,6 +202,102 @@ def test_circuit_breaker_trigger(monkeypatch, tmp_path: Path) -> None:
     assert progress["circuit_breaker_activations"] == 1
 
 
+def test_retryable_repair_prioritizes_closure_missing_days(
+    monkeypatch, tmp_path: Path
+) -> None:
+    large = runner.Partition("EURUSD", 2010, 1, "bid")
+    almost_done = runner.Partition("GBPUSD", 2010, 1, "bid")
+    middle = runner.Partition("USDJPY", 2010, 1, "bid")
+    parts = [large, middle, almost_done]
+
+    runner.save_state(
+        tmp_path,
+        {
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 1,
+                }
+                for part in parts
+            }
+        },
+    )
+
+    def save_manifest(part: runner.Partition, missing_days: int) -> None:
+        manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+        manifest.days = [
+            DayStatus(
+                part.pair,
+                part.side,
+                part.year,
+                part.month,
+                day,
+                "failed" if day <= missing_days else "complete",
+                rows=0 if day <= missing_days else 1,
+            )
+            for day in range(1, 32)
+        ]
+        save_month_manifest(runner.raw_dir(tmp_path), manifest)
+
+    save_manifest(large, 20)
+    save_manifest(middle, 5)
+    save_manifest(almost_done, 2)
+
+    executed: list[str] = []
+
+    def fake_acquire_native(
+        _data_root: Path, part: runner.Partition, max_day_requests: int | None = None
+    ) -> dict:
+        executed.append(part.key)
+        return {
+            "partition": part.key,
+            "pair": part.pair,
+            "year": part.year,
+            "month": part.month,
+            "side": part.side,
+            "state": "FAILED_RETRYABLE",
+            "attempts": 2,
+            "native_daily_requests": 0,
+        }
+
+    monkeypatch.setattr(runner, "recertify_clean_room", lambda *args, **kwargs: {})
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: parts)
+    monkeypatch.setattr(runner, "select_transport", lambda _transport: ("native", "test", {}))
+    monkeypatch.setattr(runner, "run_native_health_controls", lambda _root: {"status": "PASS"})
+    monkeypatch.setattr(
+        runner,
+        "refresh_state_from_manifests",
+        lambda data_root, **_kwargs: runner.load_state(data_root),
+    )
+    monkeypatch.setattr(runner, "acquire_one_native", fake_acquire_native)
+
+    args = argparse.Namespace(
+        recover_orphaned_running=False,
+        transport="native",
+        pair=None,
+        year=None,
+        month=None,
+        side=None,
+        retry_failed=True,
+        resume=True,
+        repair_missing_days=True,
+        max_workers=1,
+        native_workers=1,
+        max_partitions=2,
+        max_day_requests=10,
+        max_runtime_seconds=0,
+        max_runtime_minutes=0,
+    )
+
+    runner.run_acquisition(args, tmp_path)
+
+    assert executed == [almost_done.key, middle.key]
+
+
 def test_canonicalization_failure_identity_report(tmp_path: Path, monkeypatch) -> None:
     pair = "EURUSD"
     year = 2010

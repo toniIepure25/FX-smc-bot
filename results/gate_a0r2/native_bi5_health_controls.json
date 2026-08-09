@@ -14,9 +14,9 @@
       "http_status": 503,
       "content_length": 0,
       "error_fingerprint": "54e522df706db712",
-      "control_started_at": "2026-08-08T19:52:29.236204+00:00",
-      "control_completed_at": "2026-08-08T19:53:09.488878+00:00",
-      "duration_ms": 40253
+      "control_started_at": "2026-08-09T11:00:53.720687+00:00",
+      "control_completed_at": "2026-08-09T11:00:55.248912+00:00",
+      "duration_ms": 1528
     },
     {
       "control": "B",
@@ -30,15 +30,15 @@
       "row_count": 1440,
       "raw_sha256": "a4bdd5f605d6a1b2caabc569711ab9f8b33188272c5f85dec19602a15fedc2d4",
       "parsed_row_hash": "5c54c49ff788630a97f33ad7ce34d929076c2225660c4f3ef437910275bbd226",
-      "control_started_at": "2026-08-08T19:53:09.488893+00:00",
-      "control_completed_at": "2026-08-08T19:53:25.161055+00:00",
-      "duration_ms": 15672
+      "control_started_at": "2026-08-09T11:00:55.248942+00:00",
+      "control_completed_at": "2026-08-09T11:01:16.125541+00:00",
+      "duration_ms": 20877
     }
   ],
   "rolling_calls": 20,
   "failure_trigger": 5,
   "partition_attempts_consumed": 0,
-  "health_run_started_at": "2026-08-08T19:52:29.236184+00:00",
-  "health_run_completed_at": "2026-08-08T19:53:25.161074+00:00",
-  "duration_ms": 55925
+  "health_run_started_at": "2026-08-09T11:00:53.720655+00:00",
+  "health_run_completed_at": "2026-08-09T11:01:16.125587+00:00",
+  "duration_ms": 22405
 }

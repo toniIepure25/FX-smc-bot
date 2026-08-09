@@ -1,0 +1,22 @@
+{
+  "artifact_id": "A0R2_EXECUTABLE_M1_QUOTE_VALIDITY_OVERLAY_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "IMPLEMENTED_AND_TESTED",
+  "raw_price_values_modified": false,
+  "forward_fill_allowed": false,
+  "synthetic_spread_allowed": false,
+  "rules": {
+    "invalid_entry_quote": "no fill",
+    "invalid_ordinary_exit_quote": "first later valid side-correct quote with actual adverse movement",
+    "invalid_mandatory_flat_quote": "first subsequent valid side-correct quote plus integrity-breach flag"
+  },
+  "known_crossed_quote_months_preserved": [
+    "AUDUSD 2010-03",
+    "AUDUSD 2010-04",
+    "USDJPY 2010-02",
+    "USDJPY 2010-03",
+    "USDJPY 2010-04"
+  ],
+  "implementation": "src/fx_smc_bot/research/a0r2_quote_validity_overlay.py",
+  "tests": "tests/test_research/test_a0r2_quote_validity_overlay.py"
+}

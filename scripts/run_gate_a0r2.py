@@ -5618,7 +5618,7 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
             return progress
     state = refresh_state_from_manifests(data_root)
     wanted = partition_queue(args.pair, args.year, args.month, args.side)
-    runnable: deque[Partition] = deque()
+    candidates: list[Partition] = []
     scheduled_keys: set[str] = set()
     for part in wanted:
         item = state["partitions"].get(part.key, {})
@@ -5631,10 +5631,24 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
         ):
             if part.key in scheduled_keys:
                 continue
-            if args.max_partitions is not None and len(runnable) >= args.max_partitions:
-                break
-            runnable.append(part)
+            candidates.append(part)
             scheduled_keys.add(part.key)
+    if args.retry_failed and getattr(args, "repair_missing_days", False):
+        now = datetime.now(timezone.utc)
+
+        def retryable_closure_key(part: Partition) -> tuple[int, int, int, str]:
+            item = state["partitions"].get(part.key, {})
+            next_eligible = _parse_utc_timestamp(item.get("next_eligible_retry_timestamp"))
+            cooling_down = int(next_eligible is not None and now < next_eligible)
+            missing_days = len(
+                find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month)
+            )
+            return (missing_days, cooling_down, int(item.get("attempts", 0)), part.key)
+
+        candidates.sort(key=retryable_closure_key)
+    if args.max_partitions is not None:
+        candidates = candidates[: args.max_partitions]
+    runnable: deque[Partition] = deque(candidates)
     workers = (
         min(max(1, getattr(args, "native_workers", 4)), 6)
         if selected_transport == "native"
@@ -5692,7 +5706,19 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                         if remaining_day_budget <= 0:
                             runnable.clear()
                             break
-                        per_future_day_budget = remaining_day_budget
+                        missing_day_budget = len(
+                            find_missing_days(
+                                raw_dir(data_root),
+                                runnable[0].pair,
+                                runnable[0].side,
+                                runnable[0].year,
+                                runnable[0].month,
+                            )
+                        )
+                        per_future_day_budget = min(remaining_day_budget, missing_day_budget)
+                        if per_future_day_budget <= 0:
+                            runnable.popleft()
+                            continue
                     part = runnable.popleft()
                     if selected_transport == "native":
                         future = pool.submit(
