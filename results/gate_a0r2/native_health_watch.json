@@ -1,11 +1,12 @@
 {
   "artifact_id": "A0R2_NATIVE_HEALTH_WATCH_V1",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "NATIVE_HEALTH_READY",
-  "attempts_this_watch": 1,
-  "attempts_completed": 105,
+  "status": "NATIVE_HEALTH_WATCH_EXHAUSTED",
+  "attempts_this_watch": 8,
+  "attempts_completed": 121,
   "required_consecutive_health_passes": 2,
-  "consecutive_passing_runs": 3,
+  "consecutive_passing_runs": 1,
   "latest_health_status": "PASS",
-  "partition_attempts_consumed": 0
+  "partition_attempts_consumed": 0,
+  "updated_at": "2026-08-09T20:58:09.302586+00:00"
 }

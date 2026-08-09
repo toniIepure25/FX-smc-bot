@@ -1,9 +1,9 @@
 {
   "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "PROVIDER_COOLDOWN_REQUIRED",
+  "status": "NATIVE_HEALTH_WATCH_EXHAUSTED",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-09T15:10:09Z",
+  "updated_at": "2026-08-09T20:58:09Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -217,6 +217,58 @@
     },
     "final_blocker": "PROVIDER_COOLDOWN_REQUIRED_AFTER_REPAIR_HEALTH_GATE"
   },
+  "prod6_session": {
+    "fresh_health_handoff_implemented": true,
+    "fresh_health_handoff_ttl_seconds": 60,
+    "health_watch_result": "NATIVE_HEALTH_WATCH_EXHAUSTED",
+    "health_watch_attempts": 8,
+    "health_watch_latest_status": "PASS",
+    "health_watch_consecutive_passing_runs": 1,
+    "required_consecutive_health_passes": 2,
+    "fresh_health_handoffs_consumed": 0,
+    "duplicate_preflight_controls_avoided": 0,
+    "direct_repair_health_gates": 0,
+    "repair_slices_executed": 0,
+    "repair_slices_with_provider_traffic": 0,
+    "planned_slices_executed": 0,
+    "planned_monthly_sides_started": 0,
+    "planned_monthly_sides_certified": 0,
+    "network_metrics": {
+      "provider_operations": 0,
+      "successful_provider_operations": 0,
+      "failed_provider_operations": 0,
+      "urllib_requests": 0,
+      "urllib_successes": 0,
+      "urllib_failures": 0,
+      "curl_fallback_invocations": 0,
+      "curl_fallback_successes": 0,
+      "curl_fallback_failures": 0,
+      "same_bi5_identity_recovered_after_urllib_failure": 0,
+      "bytes_downloaded": 0
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 0,
+      "existing_daily_units_reused": 0,
+      "existing_daily_units_reconciled_as_valid": 0,
+      "total_valid_daily_unit_delta": 0,
+      "monthly_sides_certified": 0
+    },
+    "health_accounting": {
+      "health_watch_ready_events": 0,
+      "health_watch_exhaustions": 1,
+      "fresh_health_handoffs_consumed": 0,
+      "direct_repair_health_gates": 0,
+      "provider_cooldown_transitions": 0,
+      "circuit_breaker_activations": 0,
+      "health_runs_pass_start": 54,
+      "health_runs_fail_start": 72,
+      "health_runs_pass_end": 57,
+      "health_runs_fail_end": 77,
+      "health_runs_pass_delta": 3,
+      "health_runs_fail_delta": 5
+    },
+    "final_blocker": "NATIVE_HEALTH_WATCH_EXHAUSTED"
+  },
   "cumulative_v2_production": {
     "network_metrics": {
       "provider_operations": 215,
@@ -260,22 +312,22 @@
     "new_canonical_failures": 3
   },
   "provider": {
-    "latest_health_watch": "NATIVE_HEALTH_READY",
-    "latest_health": "PROVIDER_COOLDOWN_REQUIRED",
-    "latest_run_id": "native-537c058f14a14f1aa4a0640d3fe8ba4d",
-    "last_full_pass_timestamp": "2026-08-09T15:09:08.713547+00:00",
-    "last_full_fail_timestamp": "2026-08-09T15:10:09.094146+00:00",
-    "consecutive_passing_runs": 0,
-    "consecutive_failing_runs": 1,
+    "latest_health_watch": "NATIVE_HEALTH_WATCH_EXHAUSTED",
+    "latest_health": "PASS",
+    "latest_run_id": "native-68c00ed0d3a24fca9a7d71c86f9b27d3",
+    "last_full_pass_timestamp": "2026-08-09T20:58:09.215445+00:00",
+    "last_full_fail_timestamp": "2026-08-09T20:56:40.004387+00:00",
+    "consecutive_passing_runs": 1,
+    "consecutive_failing_runs": 0,
     "latest_control_results": {
-      "A": "FAIL",
-      "B": "FAIL"
+      "A": "PASS",
+      "B": "PASS"
     },
-    "health_watch_exhaustions": 2,
+    "health_watch_exhaustions": 3,
     "provider_cooldown_transitions": 6,
     "circuit_breaker_activations": 1,
-    "health_runs_pass": 52,
-    "health_runs_fail": 66
+    "health_runs_pass": 57,
+    "health_runs_fail": 77
   },
   "storage": {
     "free_disk_bytes": 45431644160,
