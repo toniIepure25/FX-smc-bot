@@ -27,6 +27,7 @@ def test_failed_terminal_survives_manifest_refresh() -> None:
         "side": part.side,
         "state": "FAILED_TERMINAL",
         "attempts": 5,
+        "outer_failure_attempts": 5,
         "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
         "error_fingerprint": "abc",
     }
@@ -79,6 +80,7 @@ def test_attempt_five_becomes_terminal(tmp_path: Path, monkeypatch) -> None:
                 "side": part.side,
                 "state": "FAILED_RETRYABLE",
                 "attempts": 5,
+                "outer_failure_attempts": 5,
             }
         },
     }
@@ -87,6 +89,203 @@ def test_attempt_five_becomes_terminal(tmp_path: Path, monkeypatch) -> None:
     item = refreshed["partitions"][part.key]
     assert item["state"] == "FAILED_TERMINAL"
     assert item["terminal_reason"] == "RETRY_ATTEMPTS_EXHAUSTED"
+
+
+def test_native_partial_progress_does_not_terminalize_at_legacy_five(
+    tmp_path: Path, monkeypatch
+) -> None:
+    part = _one_part()
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: [part])
+    manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+    manifest.days = [
+        DayStatus(part.pair, part.side, part.year, part.month, day, "failed")
+        for day in range(1, 15)
+    ]
+    save_month_manifest(runner.raw_dir(tmp_path), manifest)
+    runner.save_state(
+        tmp_path,
+        {
+            "gate_id": runner.GATE_ID,
+            "queue_order": "test",
+            "total_partitions": 1,
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 4,
+                    "outer_failure_attempts": 1,
+                }
+            },
+        },
+    )
+    outcomes = ["complete"] * 13 + ["failed"]
+
+    def fake_download(*_args, **_kwargs) -> DayStatus:
+        day = len(outcomes) - outcomes.count("complete") - outcomes.count("failed") + 1
+        status = outcomes.pop(0)
+        return DayStatus(
+            part.pair,
+            part.side,
+            part.year,
+            part.month,
+            day,
+            status,
+            rows=1 if status == "complete" else 0,
+            native_primary_status="PASS" if status == "complete" else "FAIL",
+            effective_http_client="python_urllib" if status == "complete" else "curl.exe",
+            native_content_length=10,
+        )
+
+    monkeypatch.setattr(runner, "download_native_day_with_checkpoint", fake_download)
+    result = runner.acquire_one_native(tmp_path, part, max_day_requests=14)
+    assert result["attempts"] == 5
+    assert result["outer_failure_attempts"] == 1
+    assert result["outer_failure_attempt_increment"] == 0
+    assert result["failure_category"] == "SUCCESSFUL_PARTIAL_MONTH"
+    assert result["state"] == "FAILED_RETRYABLE"
+
+
+def test_five_successful_partial_cycles_do_not_terminalize(
+    tmp_path: Path, monkeypatch
+) -> None:
+    part = _one_part()
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: [part])
+    manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+    manifest.days = [DayStatus(part.pair, part.side, part.year, part.month, 1, "failed")]
+    save_month_manifest(runner.raw_dir(tmp_path), manifest)
+    runner.save_state(
+        tmp_path,
+        {
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 5,
+                    "partition_cycles": 5,
+                    "outer_failure_attempts": 0,
+                    "failure_category": "SUCCESSFUL_PARTIAL_MONTH",
+                }
+            }
+        },
+    )
+    refreshed = runner.refresh_state_from_manifests(tmp_path)
+    assert refreshed["partitions"][part.key]["state"] == "FAILED_RETRYABLE"
+    assert refreshed["partitions"][part.key]["outer_failure_attempts"] == 0
+
+
+def test_four_outer_failures_plus_successful_partial_cycle_remain_retryable(
+    tmp_path: Path, monkeypatch
+) -> None:
+    part = _one_part()
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: [part])
+    manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+    manifest.days = [DayStatus(part.pair, part.side, part.year, part.month, 1, "failed")]
+    save_month_manifest(runner.raw_dir(tmp_path), manifest)
+    runner.save_state(
+        tmp_path,
+        {
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 5,
+                    "outer_failure_attempts": 4,
+                    "failure_category": "SUCCESSFUL_PARTIAL_MONTH",
+                }
+            }
+        },
+    )
+    refreshed = runner.refresh_state_from_manifests(tmp_path)
+    item = refreshed["partitions"][part.key]
+    assert item["state"] == "FAILED_RETRYABLE"
+    assert item["outer_failure_attempts"] == 4
+
+
+def test_day_attempts_above_cap_do_not_terminalize_partition(
+    tmp_path: Path, monkeypatch
+) -> None:
+    part = _one_part()
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: [part])
+    manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+    manifest.days = [
+        DayStatus(part.pair, part.side, part.year, part.month, 1, "failed", attempts=6)
+    ]
+    save_month_manifest(runner.raw_dir(tmp_path), manifest)
+    runner.save_state(
+        tmp_path,
+        {
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 0,
+                    "outer_failure_attempts": 0,
+                }
+            }
+        },
+    )
+    refreshed = runner.refresh_state_from_manifests(tmp_path)
+    item = refreshed["partitions"][part.key]
+    assert item["state"] == "FAILED_RETRYABLE"
+    assert item["outer_failure_attempts"] == 0
+
+
+def test_legacy_misterminalized_state_is_corrected_with_history_preserved(
+    tmp_path: Path, monkeypatch
+) -> None:
+    part = _one_part()
+    monkeypatch.setattr(runner, "partition_queue", lambda *args, **kwargs: [part])
+    manifest = MonthManifest(part.pair, part.side, part.year, part.month)
+    manifest.days = [DayStatus(part.pair, part.side, part.year, part.month, 1, "failed")]
+    save_month_manifest(runner.raw_dir(tmp_path), manifest)
+    for attempt in (1, 2):
+        runner.append_event(
+            tmp_path,
+            {
+                "partition": part.key,
+                "state": "FAILED_RETRYABLE",
+                "attempts": attempt,
+                "failure_category": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+            },
+        )
+    runner.save_state(
+        tmp_path,
+        {
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_TERMINAL",
+                    "attempts": 5,
+                    "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
+                }
+            }
+        },
+    )
+    refreshed = runner.refresh_state_from_manifests(tmp_path)
+    item = refreshed["partitions"][part.key]
+    assert item["state"] == "FAILED_RETRYABLE"
+    assert item["legacy_partition_attempt_count"] == 5
+    assert item["outer_failure_attempts"] == 2
+    assert item["attempt_accounting_correction"]["correction_id"] == (
+        runner.ATTEMPT_ACCOUNTING_CORRECTION_ID
+    )
+    events = runner.read_jsonl_records(runner.events_path(tmp_path))
+    assert any(row.get("event_type") == runner.ATTEMPT_ACCOUNTING_CORRECTION_ID for row in events)
 
 
 def test_empty_provider_error_produces_structured_evidence(
@@ -179,29 +378,29 @@ def test_operational_cycle_invokes_acquire_certify_and_canonicalize(
     tmp_path: Path, monkeypatch
 ) -> None:
     calls: list[str] = []
-    monkeypatch.setattr(runner, "refresh_state_from_manifests", lambda data_root: {})
-    monkeypatch.setattr(
-        runner,
-        "run_acquisition",
-        lambda args, data_root: calls.append("acquire") or {"status": "PASS"},
-    )
-    monkeypatch.setattr(
-        runner,
-        "run_certification",
-        lambda data_root: calls.append("certify") or {"status": "INCOMPLETE"},
-    )
-    monkeypatch.setattr(
-        runner,
-        "run_canonicalize",
-        lambda data_root: calls.append("canonicalize")
-        or {
+
+    def fake_run_acquisition(args, data_root):
+        calls.append("acquire")
+        return {"status": "PASS"}
+
+    def fake_run_certification(data_root):
+        calls.append("certify")
+        return {"status": "INCOMPLETE"}
+
+    def fake_run_canonicalize(data_root):
+        calls.append("canonicalize")
+        return {
             "status": "INCOMPLETE",
             "reused_valid_partitions": 0,
             "newly_built_partitions": 0,
             "rebuilt_invalid_partitions": 0,
             "canonicalization_failures": 0,
-        },
-    )
+        }
+
+    monkeypatch.setattr(runner, "refresh_state_from_manifests", lambda data_root: {})
+    monkeypatch.setattr(runner, "run_acquisition", fake_run_acquisition)
+    monkeypatch.setattr(runner, "run_certification", fake_run_certification)
+    monkeypatch.setattr(runner, "run_canonicalize", fake_run_canonicalize)
     monkeypatch.setattr(runner, "acquisition_summary", lambda data_root: {"status": "PASS"})
     args = argparse.Namespace(retry_failed=False, max_partitions=48)
     runner.run_operational_cycle(args, tmp_path)

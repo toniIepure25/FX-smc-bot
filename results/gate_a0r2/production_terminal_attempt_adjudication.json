@@ -1,0 +1,371 @@
+{
+  "artifact_id": "A0R2_PRODUCTION_TERMINAL_ATTEMPT_ADJUDICATION_V1",
+  "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
+  "status": "PASS",
+  "generated_at": "2026-08-10T09:30:21.002039+00:00",
+  "accounting_semantics": {
+    "old_behavior": "native repair used attempts = previous_attempts + int(requested > 0)",
+    "new_behavior": "terminal retry exhaustion uses outer_failure_attempts only",
+    "outer_failure_definition": "one completed partition-level acquisition cycle that ends without valid daily progress; successful partial native repairs, day attempts, urllib retries, and curl fallback attempts do not increment it"
+  },
+  "terminal_adjudication": [
+    {
+      "partition": "2010-01:USDJPY:ask",
+      "legacy_attempts": 5,
+      "reconstructed_qualifying_outer_failures": 3,
+      "classification": "MIS_TERMINALIZED_ATTEMPT_ACCOUNTING",
+      "corrected_state": "FAILED_RETRYABLE",
+      "manifest_day_status_counts": {
+        "complete": 15,
+        "failed": 13,
+        "market_closed": 3
+      },
+      "history": [
+        {
+          "timestamp": "2026-08-03T20:07:12.965353+00:00",
+          "runner_or_cycle": "partition_events:14",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "RUNNING",
+          "recorded_attempts": 0,
+          "qualifying_outer_failure": false,
+          "reason": "running marker, not a completed outer failure"
+        },
+        {
+          "timestamp": "2026-08-04T11:42:07.197995+00:00",
+          "runner_or_cycle": "partition_events:25",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "RUNNING",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": false,
+          "reason": "running marker, not a completed outer failure"
+        },
+        {
+          "timestamp": "2026-08-04T11:42:07.197995+00:00",
+          "runner_or_cycle": "partition_events:26",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T11:42:07.197995+00:00",
+          "runner_or_cycle": "provider_failures:6",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T17:14:56.547253+00:00",
+          "runner_or_cycle": "partition_events:79",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "RUNNING",
+          "recorded_attempts": 2,
+          "qualifying_outer_failure": false,
+          "reason": "running marker, not a completed outer failure"
+        },
+        {
+          "timestamp": "2026-08-04T17:14:56.547253+00:00",
+          "runner_or_cycle": "partition_events:80",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 2,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T17:14:56.547253+00:00",
+          "runner_or_cycle": "provider_failures:22",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 2,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T19:39:39.687961+00:00",
+          "runner_or_cycle": "partition_events:157",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "RUNNING",
+          "recorded_attempts": 3,
+          "qualifying_outer_failure": false,
+          "reason": "running marker, not a completed outer failure"
+        },
+        {
+          "timestamp": "2026-08-04T19:39:39.687961+00:00",
+          "runner_or_cycle": "partition_events:158",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 3,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T19:39:39.687961+00:00",
+          "runner_or_cycle": "provider_failures:44",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 3,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-10T09:30:21.181414+00:00",
+          "runner_or_cycle": "partition_events:221",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "FAILED_RETRYABLE",
+          "recorded_attempts": 0,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        }
+      ]
+    },
+    {
+      "partition": "2010-02:GBPUSD:bid",
+      "legacy_attempts": 5,
+      "reconstructed_qualifying_outer_failures": 3,
+      "classification": "MIS_TERMINALIZED_ATTEMPT_ACCOUNTING",
+      "corrected_state": "FAILED_RETRYABLE",
+      "manifest_day_status_counts": {
+        "complete": 10,
+        "failed": 16,
+        "market_closed": 2
+      },
+      "history": [
+        {
+          "timestamp": "2026-08-04T12:12:10.998895+00:00",
+          "runner_or_cycle": "partition_events:58",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "RUNNING",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": false,
+          "reason": "running marker, not a completed outer failure"
+        },
+        {
+          "timestamp": "2026-08-04T12:12:10.998895+00:00",
+          "runner_or_cycle": "partition_events:61",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T12:12:10.998895+00:00",
+          "runner_or_cycle": "provider_failures:16",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T17:14:56.970325+00:00",
+          "runner_or_cycle": "partition_events:89",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "RUNNING",
+          "recorded_attempts": 3,
+          "qualifying_outer_failure": false,
+          "reason": "running marker, not a completed outer failure"
+        },
+        {
+          "timestamp": "2026-08-04T17:14:56.970325+00:00",
+          "runner_or_cycle": "partition_events:90",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 3,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T17:14:56.970325+00:00",
+          "runner_or_cycle": "provider_failures:27",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 3,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-10T09:30:21.457472+00:00",
+          "runner_or_cycle": "partition_events:222",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "FAILED_RETRYABLE",
+          "recorded_attempts": 0,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        }
+      ]
+    },
+    {
+      "partition": "2010-05:AUDUSD:bid",
+      "legacy_attempts": 5,
+      "reconstructed_qualifying_outer_failures": 1,
+      "classification": "MIS_TERMINALIZED_ATTEMPT_ACCOUNTING",
+      "corrected_state": "FAILED_RETRYABLE",
+      "manifest_day_status_counts": {
+        "complete": 22,
+        "failed": 5,
+        "market_closed": 4
+      },
+      "history": [
+        {
+          "timestamp": "2026-08-04T19:47:32.590369+00:00",
+          "runner_or_cycle": "partition_events:212",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "RUNNING",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": false,
+          "reason": "running marker, not a completed outer failure"
+        },
+        {
+          "timestamp": "2026-08-04T19:47:32.590369+00:00",
+          "runner_or_cycle": "partition_events:217",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-04T19:47:32.590369+00:00",
+          "runner_or_cycle": "provider_failures:52",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "UNKNOWN_RETRYABLE_FAILURE_BEFORE_ATTEMPT_CAP",
+          "recorded_attempts": 1,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        },
+        {
+          "timestamp": "2026-08-10T09:30:22.664284+00:00",
+          "runner_or_cycle": "partition_events:223",
+          "transport": "unknown",
+          "provider_operations": 0,
+          "successful_daily_units": 0,
+          "failed_daily_units": 0,
+          "cycle_outcome": "FAILED_RETRYABLE",
+          "recorded_attempts": 0,
+          "qualifying_outer_failure": true,
+          "reason": "completed failed outer acquisition cycle"
+        }
+      ]
+    }
+  ],
+  "retryable_audit": {
+    "retryables_inspected": 17,
+    "inflated_accounting_cases": 5,
+    "corrected_outer_failure_attempts": [
+      {
+        "partition": "2010-01:USDJPY:ask",
+        "legacy_partition_attempt_count": 5,
+        "outer_failure_attempts": 3
+      },
+      {
+        "partition": "2010-02:GBPUSD:bid",
+        "legacy_partition_attempt_count": 5,
+        "outer_failure_attempts": 3
+      },
+      {
+        "partition": "2010-03:EURJPY:ask",
+        "legacy_partition_attempt_count": 1,
+        "outer_failure_attempts": 0
+      },
+      {
+        "partition": "2010-03:GBPJPY:bid",
+        "legacy_partition_attempt_count": 1,
+        "outer_failure_attempts": 0
+      },
+      {
+        "partition": "2010-05:AUDUSD:bid",
+        "legacy_partition_attempt_count": 5,
+        "outer_failure_attempts": 1
+      }
+    ],
+    "partitions_currently_at_genuine_failure_cap": []
+  },
+  "corrections": [
+    {
+      "partition": "2010-01:USDJPY:ask",
+      "legacy_partition_attempt_count": 5,
+      "outer_failure_attempts": 3,
+      "corrected_state": "FAILED_RETRYABLE"
+    },
+    {
+      "partition": "2010-02:GBPUSD:bid",
+      "legacy_partition_attempt_count": 5,
+      "outer_failure_attempts": 3,
+      "corrected_state": "FAILED_RETRYABLE"
+    },
+    {
+      "partition": "2010-05:AUDUSD:bid",
+      "legacy_partition_attempt_count": 5,
+      "outer_failure_attempts": 1,
+      "corrected_state": "FAILED_RETRYABLE"
+    }
+  ]
+}

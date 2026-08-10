@@ -193,6 +193,11 @@ STATE_PRECEDENCE = {
 
 FAILURE_EVIDENCE_FIELDS = (
     "attempts",
+    "legacy_partition_attempt_count",
+    "partition_cycles",
+    "outer_failure_attempts",
+    "outer_failure_attempt_increment",
+    "partition_cycle_increment",
     "first_failure_timestamp",
     "latest_failure_timestamp",
     "failure_category",
@@ -201,6 +206,8 @@ FAILURE_EVIDENCE_FIELDS = (
     "next_eligible_retry_timestamp",
     "error",
 )
+
+ATTEMPT_ACCOUNTING_CORRECTION_ID = "ATTEMPT_ACCOUNTING_CORRECTION_V1"
 
 LEASE_STALE_SECONDS = 600
 CIRCUIT_BREAKER_WINDOW = 8
@@ -1867,6 +1874,88 @@ def history_attempt_count(data_root: Path, part: Partition) -> int:
     return max(counts, default=0)
 
 
+def _partition_history_rows(data_root: Path, part: Partition) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for source, path in (
+        ("partition_events", events_path(data_root)),
+        ("provider_failures", failures_path(data_root)),
+    ):
+        for index, row in enumerate(read_jsonl_records(path), 1):
+            if row.get("partition") == part.key or row.get("partition_id") == part.key:
+                rows.append({"source": source, "source_index": index, **row})
+    return sorted(
+        rows,
+        key=lambda row: (
+            str(row.get("ts") or row.get("timestamp") or row.get("latest_failure_timestamp") or ""),
+            str(row.get("source") or ""),
+            int(row.get("source_index") or 0),
+        ),
+    )
+
+
+def _int_field(row: dict[str, Any], field: str) -> int:
+    try:
+        return int(row.get(field) or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
+def _native_valid_progress(row: dict[str, Any]) -> bool:
+    return (
+        _int_field(row, "native_daily_successes") > 0
+        or _int_field(row, "native_curl_fallback_successes") > 0
+        or str(row.get("state") or "") in {"COMPLETE_PENDING_CERTIFICATION", "CERTIFIED"}
+    )
+
+
+def qualifying_outer_failure(row: dict[str, Any]) -> tuple[bool, str]:
+    """Return whether a row documents one qualifying outer partition failure.
+
+    Outer failures are partition-level acquisition cycles that end without valid
+    daily progress. Native day retries, curl fallback attempts, and successful
+    partial month repairs are recorded separately and never multiply the outer
+    failure count.
+    """
+
+    state = str(row.get("state") or "")
+    category = str(row.get("failure_category") or "")
+    if _int_field(row, "outer_failure_attempt_increment") > 0:
+        return True, "explicit_outer_failure_attempt_increment"
+    if state == "RUNNING":
+        return False, "running marker, not a completed outer failure"
+    if state in {"CERTIFIED", "COMPLETE_PENDING_CERTIFICATION", "MARKET_CLOSED_VALID"}:
+        return False, "successful completed/certified partition state"
+    if category == "SUCCESSFUL_PARTIAL_MONTH":
+        return False, "successful partial month does not consume an outer failure"
+    native_requested = _int_field(row, "native_daily_requests")
+    native_failures = _int_field(row, "native_daily_failures")
+    if native_requested:
+        if _native_valid_progress(row):
+            return False, "native cycle made valid daily progress"
+        if native_failures:
+            return True, "native cycle ended with no valid daily progress"
+    if state in {"FAILED_RETRYABLE", "FAILED_TERMINAL"}:
+        if category == "RETRY_ATTEMPTS_EXHAUSTED" and native_requested == 0:
+            return False, "terminal marker is not independent outer failure evidence"
+        return True, "completed failed outer acquisition cycle"
+    return False, "non-failure row"
+
+
+def reconstructed_outer_failure_attempts(data_root: Path, part: Partition) -> int:
+    count = 0
+    for row in _partition_history_rows(data_root, part):
+        explicit = _int_field(row, "outer_failure_attempts")
+        if explicit:
+            count = max(count, explicit)
+            continue
+        qualifies, _reason = qualifying_outer_failure(row)
+        if not qualifies:
+            continue
+        recorded_attempts = _int_field(row, "attempts") or _int_field(row, "attempt_count")
+        count = max(count, recorded_attempts or count + 1)
+    return count
+
+
 def manifest_attempt_count(manifest: MonthManifest | None) -> int:
     if manifest is None:
         return 0
@@ -1879,11 +1968,101 @@ def authoritative_attempt_count(
     persisted: dict[str, Any],
     manifest: MonthManifest | None,
 ) -> int:
+    del manifest
     return max(
         int(persisted.get("attempts") or 0),
         history_attempt_count(data_root, part),
-        manifest_attempt_count(manifest),
     )
+
+
+def authoritative_outer_failure_attempt_count(
+    data_root: Path,
+    part: Partition,
+    persisted: dict[str, Any],
+) -> int:
+    return max(
+        int(persisted.get("outer_failure_attempts") or 0),
+        reconstructed_outer_failure_attempts(data_root, part),
+    )
+
+
+def _correction_already_recorded(item: dict[str, Any]) -> bool:
+    correction = item.get("attempt_accounting_correction")
+    return (
+        isinstance(correction, dict)
+        and correction.get("correction_id") == ATTEMPT_ACCOUNTING_CORRECTION_ID
+    )
+
+
+def apply_attempt_accounting_correction(
+    data_root: Path,
+    part: Partition,
+    item: dict[str, Any],
+    *,
+    legacy_attempts: int,
+    outer_failures: int,
+    append_history: bool,
+) -> dict[str, Any]:
+    if (
+        item.get("state") != "FAILED_TERMINAL"
+        or item.get("terminal_reason") != "RETRY_ATTEMPTS_EXHAUSTED"
+    ):
+        return item
+    if outer_failures >= MAX_PARTITION_ATTEMPTS:
+        return item
+    now = datetime.now(timezone.utc).isoformat()
+    original = {
+        key: item.get(key)
+        for key in (
+            "partition",
+            "state",
+            "attempts",
+            "terminal_reason",
+            "failure_category",
+            "first_failure_timestamp",
+            "latest_failure_timestamp",
+            "error_fingerprint",
+            "ts",
+        )
+        if key in item
+    }
+    corrected = {
+        **item,
+        "state": "FAILED_RETRYABLE",
+        "failure_category": (
+            "ATTEMPT_ACCOUNTING_CORRECTED_RETRYABLE"
+            if item.get("failure_category") == "RETRY_ATTEMPTS_EXHAUSTED"
+            else item.get("failure_category")
+        ),
+        "terminal_reason": None,
+        "next_eligible_retry_timestamp": item.get("next_eligible_retry_timestamp") or now,
+        "legacy_partition_attempt_count": legacy_attempts,
+        "outer_failure_attempts": outer_failures,
+        "attempt_accounting_correction": {
+            "correction_id": ATTEMPT_ACCOUNTING_CORRECTION_ID,
+            "corrected_at": now,
+            "classification": "MIS_TERMINALIZED_ATTEMPT_ACCOUNTING",
+            "legacy_partition_attempt_count": legacy_attempts,
+            "reconstructed_qualifying_outer_failures": outer_failures,
+            "original_terminal_event": original,
+        },
+    }
+    if append_history and not _correction_already_recorded(item):
+        event = {
+            "ts": now,
+            "event_type": ATTEMPT_ACCOUNTING_CORRECTION_ID,
+            "partition": part.key,
+            "pair": part.pair,
+            "year": part.year,
+            "month": part.month,
+            "side": part.side,
+            "state": "FAILED_RETRYABLE",
+            "legacy_partition_attempt_count": legacy_attempts,
+            "outer_failure_attempts": outer_failures,
+            "original_terminal_event": original,
+        }
+        append_event(data_root, event)
+    return corrected
 
 
 def reconcile_partition_state(
@@ -5131,9 +5310,12 @@ def analyze_retryable_failures_v4(data_root: Path) -> dict[str, Any]:
             category = "SUCCESSFUL_PARTIAL_MONTH"
         elif outcome == "PROVIDER_CALL_TRANSPORT_FAILURE":
             category = "PROVIDER_DNS_OR_NETWORK"
+        outer_failures = authoritative_outer_failure_attempt_count(data_root, part, item)
         row = {
             "partition_id": part.key,
             "partition_cycle_count": manifest.partition_cycle_count if manifest else 0,
+            "legacy_partition_attempt_count": int(item.get("attempts", 0) or 0),
+            "outer_failure_attempts": outer_failures,
             "missing_open_market_days": len(missing),
             "completed_days": sum(day.status == "complete" for day in days),
             "market_closed_days": sum(day.status == "market_closed" for day in days),
@@ -5143,7 +5325,7 @@ def analyze_retryable_failures_v4(data_root: Path) -> dict[str, Any]:
             "dns_network_failures": int(category == "PROVIDER_DNS_OR_NETWORK"),
             "next_repair_day": min(missing) if missing else None,
             "remaining_repair_requests": len(missing),
-            "terminal_risk": int(item.get("attempts", 0)) >= MAX_PARTITION_ATTEMPTS,
+            "terminal_risk": outer_failures >= MAX_PARTITION_ATTEMPTS,
         }
         groups.setdefault(category, []).append(row)
     payload = {
@@ -5157,6 +5339,149 @@ def analyze_retryable_failures_v4(data_root: Path) -> dict[str, Any]:
         ],
     }
     write_json(results_dir() / "retryable_failure_analysis_v4.json", payload)
+    return payload
+
+
+def _manifest_day_status_counts(manifest: MonthManifest | None) -> dict[str, int]:
+    if manifest is None:
+        return {}
+    return dict(sorted(Counter(day.status for day in manifest.days).items()))
+
+
+def _history_table(data_root: Path, part: Partition) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for row in _partition_history_rows(data_root, part):
+        qualifies, reason = qualifying_outer_failure(row)
+        rows.append(
+            {
+                "timestamp": row.get("ts")
+                or row.get("timestamp")
+                or row.get("latest_failure_timestamp")
+                or "",
+                "runner_or_cycle": f"{row.get('source')}:{row.get('source_index')}",
+                "transport": row.get("selected_transport")
+                or row.get("requested_transport")
+                or ("native" if row.get("native_daily_requests") is not None else "unknown"),
+                "provider_operations": _int_field(row, "native_daily_requests"),
+                "successful_daily_units": _int_field(row, "native_daily_successes"),
+                "failed_daily_units": _int_field(row, "native_daily_failures"),
+                "cycle_outcome": row.get("failure_category") or row.get("state") or "",
+                "recorded_attempts": _int_field(row, "attempts"),
+                "qualifying_outer_failure": qualifies,
+                "reason": reason,
+            }
+        )
+    return rows
+
+
+def adjudicate_terminal_attempt_accounting(
+    data_root: Path, *, write_corrections: bool = True
+) -> dict[str, Any]:
+    state = load_state(data_root)
+    terminal_rows: list[dict[str, Any]] = []
+    corrections: list[dict[str, Any]] = []
+    retryable_rows: list[dict[str, Any]] = []
+    now = datetime.now(timezone.utc).isoformat()
+
+    for part in partition_queue():
+        item = state.get("partitions", {}).get(part.key, {})
+        manifest = load_month_manifest(
+            raw_dir(data_root), part.pair, part.side, part.year, part.month
+        )
+        if manifest is not None:
+            manifest = normalize_month_manifest_for_repair(raw_dir(data_root), manifest)
+        legacy_attempts = authoritative_attempt_count(data_root, part, item, manifest)
+        outer_failures = authoritative_outer_failure_attempt_count(data_root, part, item)
+        inflated = legacy_attempts > outer_failures
+        if (
+            item.get("state") == "FAILED_TERMINAL"
+            and item.get("terminal_reason") == "RETRY_ATTEMPTS_EXHAUSTED"
+        ):
+            classification = (
+                "VALID_TERMINAL_FIVE_OUTER_FAILURES"
+                if outer_failures >= MAX_PARTITION_ATTEMPTS
+                else "MIS_TERMINALIZED_ATTEMPT_ACCOUNTING"
+            )
+            corrected_state = item.get("state")
+            if classification == "MIS_TERMINALIZED_ATTEMPT_ACCOUNTING":
+                corrected = apply_attempt_accounting_correction(
+                    data_root,
+                    part,
+                    item,
+                    legacy_attempts=legacy_attempts,
+                    outer_failures=outer_failures,
+                    append_history=write_corrections,
+                )
+                corrected_state = corrected["state"]
+                state["partitions"][part.key] = corrected
+                corrections.append(
+                    {
+                        "partition": part.key,
+                        "legacy_partition_attempt_count": legacy_attempts,
+                        "outer_failure_attempts": outer_failures,
+                        "corrected_state": corrected_state,
+                    }
+                )
+            terminal_rows.append(
+                {
+                    "partition": part.key,
+                    "legacy_attempts": legacy_attempts,
+                    "reconstructed_qualifying_outer_failures": outer_failures,
+                    "classification": classification,
+                    "corrected_state": corrected_state,
+                    "manifest_day_status_counts": _manifest_day_status_counts(manifest),
+                    "history": _history_table(data_root, part),
+                }
+            )
+        if item.get("state") == "FAILED_RETRYABLE" or part.key in {
+            row["partition"] for row in corrections
+        }:
+            retryable_rows.append(
+                {
+                    "partition": part.key,
+                    "legacy_partition_attempt_count": legacy_attempts,
+                    "outer_failure_attempts": outer_failures,
+                    "inflated_legacy_attempts": inflated,
+                    "genuine_failure_cap": outer_failures >= MAX_PARTITION_ATTEMPTS,
+                }
+            )
+
+    if write_corrections:
+        save_state(data_root, state)
+    inflated_rows = [row for row in retryable_rows if row["inflated_legacy_attempts"]]
+    payload = {
+        "artifact_id": "A0R2_PRODUCTION_TERMINAL_ATTEMPT_ADJUDICATION_V1",
+        "gate_id": GATE_ID,
+        "status": "PASS",
+        "generated_at": now,
+        "accounting_semantics": {
+            "old_behavior": "native repair used attempts = previous_attempts + int(requested > 0)",
+            "new_behavior": "terminal retry exhaustion uses outer_failure_attempts only",
+            "outer_failure_definition": (
+                "one completed partition-level acquisition cycle that ends without valid daily "
+                "progress; successful partial native repairs, day attempts, urllib retries, "
+                "and curl fallback attempts do not increment it"
+            ),
+        },
+        "terminal_adjudication": terminal_rows,
+        "retryable_audit": {
+            "retryables_inspected": len(retryable_rows),
+            "inflated_accounting_cases": len(inflated_rows),
+            "corrected_outer_failure_attempts": [
+                {
+                    "partition": row["partition"],
+                    "legacy_partition_attempt_count": row["legacy_partition_attempt_count"],
+                    "outer_failure_attempts": row["outer_failure_attempts"],
+                }
+                for row in inflated_rows
+            ],
+            "partitions_currently_at_genuine_failure_cap": [
+                row["partition"] for row in retryable_rows if row["genuine_failure_cap"]
+            ],
+        },
+        "corrections": corrections,
+    }
+    write_json(results_dir() / "production_terminal_attempt_adjudication.json", payload)
     return payload
 
 
@@ -5212,14 +5537,35 @@ def refresh_state_from_manifests(data_root: Path, write_state: bool = True) -> d
         }
         reconciled = reconcile_partition_state(base, manifest)
         attempts = authoritative_attempt_count(data_root, part, reconciled, manifest)
+        outer_failures = authoritative_outer_failure_attempt_count(data_root, part, reconciled)
         if attempts:
             reconciled["attempts"] = attempts
-        if reconciled.get("state") == "FAILED_RETRYABLE" and attempts >= MAX_PARTITION_ATTEMPTS:
+        if outer_failures:
+            reconciled["outer_failure_attempts"] = outer_failures
+        if (
+            reconciled.get("state") == "FAILED_TERMINAL"
+            and reconciled.get("terminal_reason") == "RETRY_ATTEMPTS_EXHAUSTED"
+            and outer_failures < MAX_PARTITION_ATTEMPTS
+        ):
+            reconciled = apply_attempt_accounting_correction(
+                data_root,
+                part,
+                reconciled,
+                legacy_attempts=attempts,
+                outer_failures=outer_failures,
+                append_history=write_state,
+            )
+        if (
+            reconciled.get("state") == "FAILED_RETRYABLE"
+            and outer_failures >= MAX_PARTITION_ATTEMPTS
+        ):
             evidence = manifest_failure_evidence(part, manifest)
             now = datetime.now(timezone.utc).isoformat()
             reconciled.update(
                 {
                     "state": "FAILED_TERMINAL",
+                    "attempts": attempts,
+                    "outer_failure_attempts": outer_failures,
                     "failure_category": "RETRY_ATTEMPTS_EXHAUSTED",
                     "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
                     "latest_failure_timestamp": reconciled.get("latest_failure_timestamp", now),
@@ -5465,10 +5811,18 @@ def acquire_one_native(
     compact_month(raw_dir(data_root), manifest)
     save_month_manifest(raw_dir(data_root), manifest)
     state = "COMPLETE_PENDING_CERTIFICATION" if manifest.compacted else "FAILED_RETRYABLE"
-    previous_attempts = int(
-        load_state(data_root).get("partitions", {}).get(part.key, {}).get("attempts", 0)
+    current = load_state(data_root).get("partitions", {}).get(part.key, {})
+    previous_attempts = int(current.get("attempts", 0) or 0)
+    previous_cycles = int(current.get("partition_cycles", previous_attempts) or 0)
+    previous_outer_failures = authoritative_outer_failure_attempt_count(data_root, part, current)
+    partition_cycle_increment = int(requested > 0)
+    outer_failure_attempt_increment = int(
+        requested > 0 and failures > 0 and successful == 0 and not manifest.compacted
     )
-    return {
+    failure_evidence = (
+        manifest_failure_evidence(part, manifest) if state == "FAILED_RETRYABLE" else None
+    )
+    acquisition_result = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "partition": part.key,
         "pair": part.pair,
@@ -5492,7 +5846,29 @@ def acquire_one_native(
         "native_curl_fallback_failures": curl_fallback_failures,
         "native_bytes_downloaded": bytes_downloaded,
         "attempts": previous_attempts + int(requested > 0),
+        "legacy_partition_attempt_count": previous_attempts + partition_cycle_increment,
+        "partition_cycles": previous_cycles + partition_cycle_increment,
+        "partition_cycle_increment": partition_cycle_increment,
+        "outer_failure_attempts": previous_outer_failures + outer_failure_attempt_increment,
+        "outer_failure_attempt_increment": outer_failure_attempt_increment,
     }
+    if state == "FAILED_RETRYABLE" and failure_evidence is not None:
+        category = (
+            "SUCCESSFUL_PARTIAL_MONTH"
+            if successful > 0
+            else failure_evidence["structured_reason"]
+            if failures == 0
+            else "NATIVE_BI5_TRANSPORT_FAILURE"
+        )
+        acquisition_result.update(
+            {
+                "failure_category": category,
+                "error": failure_evidence["structured_reason"],
+                "error_fingerprint": failure_evidence["error_fingerprint"],
+                "failure_evidence": failure_evidence,
+            }
+        )
+    return acquisition_result
 
 
 def acquire_one(
@@ -5505,7 +5881,8 @@ def acquire_one(
     manifest = load_month_manifest(raw_dir(data_root), part.pair, part.side, part.year, part.month)
     current = load_state(data_root).get("partitions", {}).get(part.key, {})
     current_attempts = authoritative_attempt_count(data_root, part, current, manifest)
-    if current_attempts >= MAX_PARTITION_ATTEMPTS:
+    current_outer_failures = authoritative_outer_failure_attempt_count(data_root, part, current)
+    if current_outer_failures >= MAX_PARTITION_ATTEMPTS:
         evidence = manifest_failure_evidence(part, manifest)
         now = datetime.now(timezone.utc).isoformat()
         terminal = {
@@ -5516,6 +5893,7 @@ def acquire_one(
             "month": part.month,
             "side": part.side,
             "attempts": current_attempts,
+            "outer_failure_attempts": current_outer_failures,
             "state": "FAILED_TERMINAL",
             "failure_category": "RETRY_ATTEMPTS_EXHAUSTED",
             "terminal_reason": "RETRY_ATTEMPTS_EXHAUSTED",
@@ -5529,7 +5907,7 @@ def acquire_one(
         append_event(data_root, terminal)
         append_failure(data_root, terminal)
         return terminal
-    attempt_number = current_attempts + 1
+    attempt_number = current_outer_failures + 1
     event_base = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "partition": part.key,
@@ -5538,6 +5916,7 @@ def acquire_one(
         "month": part.month,
         "side": part.side,
         "attempts": attempt_number,
+        "partition_cycle_increment": 1,
     }
     with STATE_LOCK:
         state = load_state(data_root)
@@ -5595,6 +5974,8 @@ def acquire_one(
             "error": error,
             "failure_category": category,
             "error_fingerprint": failure_fingerprint(error),
+            "outer_failure_attempts": attempt_number,
+            "outer_failure_attempt_increment": 1,
             "first_failure_timestamp": current.get("first_failure_timestamp", now),
             "latest_failure_timestamp": now,
             "next_eligible_retry_timestamp": (now if failure_state == "FAILED_RETRYABLE" else None),
@@ -5616,10 +5997,16 @@ def acquire_one(
         if manifest.last_provider_call_outcome == "PROVIDER_CALL_SUCCESS_PARTIAL":
             category = "SUCCESSFUL_PARTIAL_MONTH"
             result["attempts"] = current_attempts
+            result["outer_failure_attempts"] = current_outer_failures
+            result["outer_failure_attempt_increment"] = 0
         elif manifest.last_provider_call_outcome == "PROVIDER_CALL_TRANSPORT_FAILURE":
             category = "PROVIDER_DNS_OR_NETWORK"
+            result["outer_failure_attempts"] = attempt_number
+            result["outer_failure_attempt_increment"] = 1
         else:
             _, category = classify_provider_failure(error, attempt_number)
+            result["outer_failure_attempts"] = attempt_number
+            result["outer_failure_attempt_increment"] = 1
         if attempt_number >= MAX_PARTITION_ATTEMPTS and category != "SUCCESSFUL_PARTIAL_MONTH":
             result["state"] = "FAILED_TERMINAL"
             category = "RETRY_ATTEMPTS_EXHAUSTED"
@@ -5733,7 +6120,10 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
             missing_days = len(
                 find_missing_days(raw_dir(data_root), part.pair, part.side, part.year, part.month)
             )
-            return (cooling_down, missing_days, int(item.get("attempts", 0)), part.key)
+            outer_failures = int(
+                item.get("outer_failure_attempts") or item.get("attempts") or 0
+            )
+            return (cooling_down, missing_days, outer_failures, part.key)
 
         candidates.sort(key=retryable_closure_key)
     if args.max_partitions is not None:
@@ -6188,6 +6578,7 @@ def analyze_retryable_failures(data_root: Path) -> dict[str, Any]:
         partial_data = bool(manifest and (manifest.days or manifest.compacted_rows))
         normalization_required = bool(manifest and not manifest.compacted)
         attempts = authoritative_attempt_count(data_root, part, item, manifest)
+        outer_failures = authoritative_outer_failure_attempt_count(data_root, part, item)
         evidence = manifest_failure_evidence(part, manifest)
         rows.append(
             {
@@ -6198,10 +6589,11 @@ def analyze_retryable_failures(data_root: Path) -> dict[str, Any]:
                 "side": part.side,
                 "failure_category": item.get("failure_category") or evidence["structured_reason"],
                 "attempt_count": attempts,
+                "outer_failure_attempts": outer_failures,
                 "error_fingerprint": item.get("error_fingerprint") or evidence["error_fingerprint"],
                 "partial_data_exists": partial_data,
                 "manifest_normalization_required": normalization_required,
-                "retry_authorized": attempts < MAX_PARTITION_ATTEMPTS,
+                "retry_authorized": outer_failures < MAX_PARTITION_ATTEMPTS,
                 "evidence": evidence,
             }
         )
@@ -6246,6 +6638,7 @@ def analyze_retryable_failures_v3(data_root: Path) -> dict[str, Any]:
             manifest = normalize_month_manifest_for_repair(raw_dir(data_root), manifest)
         evidence = manifest_failure_evidence(part, manifest)
         attempts = authoritative_attempt_count(data_root, part, item, manifest)
+        outer_failures = authoritative_outer_failure_attempt_count(data_root, part, item)
         category = str(item.get("failure_category") or evidence["structured_reason"])
         row = {
             "partition_id": part.key,
@@ -6254,6 +6647,7 @@ def analyze_retryable_failures_v3(data_root: Path) -> dict[str, Any]:
             "month": part.month,
             "side": part.side,
             "attempt_count": attempts,
+            "outer_failure_attempts": outer_failures,
             "failure_category": category,
             "error_code": item.get("error_code", ""),
             "stack_fingerprint": item.get("stack_fingerprint", ""),
@@ -6265,7 +6659,7 @@ def analyze_retryable_failures_v3(data_root: Path) -> dict[str, Any]:
                 if evidence["partial_daily_files_exist"]
                 else "none"
             ),
-            "retry_authorized": attempts < MAX_PARTITION_ATTEMPTS,
+            "retry_authorized": outer_failures < MAX_PARTITION_ATTEMPTS,
             "evidence": evidence,
         }
         group_key = "|".join(
@@ -6767,6 +7161,7 @@ def parse_args() -> argparse.Namespace:
             "retryable-analysis-v2",
             "retryable-analysis-v3",
             "retryable-analysis-v4",
+            "terminal-attempt-adjudication",
             "provider-scratch-audit",
             "health-controls",
             "native-metadata",
@@ -6894,6 +7289,8 @@ def main() -> int:
         result = analyze_retryable_failures_v3(data_root)
     elif stage == "retryable-analysis-v4":
         result = analyze_retryable_failures_v4(data_root)
+    elif stage == "terminal-attempt-adjudication":
+        result = adjudicate_terminal_attempt_accounting(data_root)
     elif stage == "provider-diagnostic":
         result = run_provider_diagnostic_control(data_root)
     elif stage == "provider-scratch-audit":

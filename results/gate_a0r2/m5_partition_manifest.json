@@ -4,8 +4,8 @@
   "status": "INCOMPLETE",
   "expected_pair_month_partitions": 540,
   "certified_pair_month_partitions": 20,
-  "reused_valid_partitions": 19,
-  "newly_built_partitions": 1,
+  "reused_valid_partitions": 20,
+  "newly_built_partitions": 0,
   "rebuilt_invalid_partitions": 0,
   "canonicalization_failures": 8,
   "not_eligible_pair_months": 512,
@@ -21,8 +21,8 @@
       "pair": "EURUSD",
       "year": 2010,
       "month": 3,
-      "rows": 6636,
-      "sha256": "5d904dd67adb8dcf6b274fdc79433d82bb5586a7cf21e28c183962e0aa04dc67"
+      "sha256": "5d904dd67adb8dcf6b274fdc79433d82bb5586a7cf21e28c183962e0aa04dc67",
+      "reused_valid_partition": true
     },
     {
       "pair": "EURUSD",
