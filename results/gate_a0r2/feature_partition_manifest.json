@@ -7,8 +7,8 @@
   "reused_valid_partitions": 20,
   "newly_built_partitions": 0,
   "rebuilt_invalid_partitions": 0,
-  "canonicalization_failures": 8,
-  "not_eligible_pair_months": 512,
+  "canonicalization_failures": 10,
+  "not_eligible_pair_months": 510,
   "partitions": [
     {
       "pair": "EURUSD",

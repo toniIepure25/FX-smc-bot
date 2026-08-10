@@ -1917,6 +1917,8 @@ def qualifying_outer_failure(row: dict[str, Any]) -> tuple[bool, str]:
     failure count.
     """
 
+    if row.get("event_type") == ATTEMPT_ACCOUNTING_CORRECTION_ID:
+        return False, "attempt accounting correction marker, not a new outer failure"
     state = str(row.get("state") or "")
     category = str(row.get("failure_category") or "")
     if _int_field(row, "outer_failure_attempt_increment") > 0:
@@ -1942,18 +1944,23 @@ def qualifying_outer_failure(row: dict[str, Any]) -> tuple[bool, str]:
 
 
 def reconstructed_outer_failure_attempts(data_root: Path, part: Partition) -> int:
-    count = 0
+    documented_cycles: set[tuple[str, str, str, str, str, str, str, str]] = set()
     for row in _partition_history_rows(data_root, part):
-        explicit = _int_field(row, "outer_failure_attempts")
-        if explicit:
-            count = max(count, explicit)
-            continue
         qualifies, _reason = qualifying_outer_failure(row)
         if not qualifies:
             continue
-        recorded_attempts = _int_field(row, "attempts") or _int_field(row, "attempt_count")
-        count = max(count, recorded_attempts or count + 1)
-    return count
+        cycle_key = (
+            str(row.get("ts") or row.get("timestamp") or row.get("latest_failure_timestamp") or ""),
+            str(row.get("attempts") or row.get("attempt_count") or ""),
+            str(row.get("outer_failure_attempt_increment") or ""),
+            str(row.get("native_daily_requests") or ""),
+            str(row.get("native_daily_successes") or ""),
+            str(row.get("native_daily_failures") or ""),
+            str(row.get("failure_category") or ""),
+            str(row.get("error_fingerprint") or ""),
+        )
+        documented_cycles.add(cycle_key)
+    return len(documented_cycles)
 
 
 def manifest_attempt_count(manifest: MonthManifest | None) -> int:
@@ -1980,10 +1987,8 @@ def authoritative_outer_failure_attempt_count(
     part: Partition,
     persisted: dict[str, Any],
 ) -> int:
-    return max(
-        int(persisted.get("outer_failure_attempts") or 0),
-        reconstructed_outer_failure_attempts(data_root, part),
-    )
+    del persisted
+    return reconstructed_outer_failure_attempts(data_root, part)
 
 
 def _correction_already_recorded(item: dict[str, Any]) -> bool:
@@ -5868,6 +5873,8 @@ def acquire_one_native(
                 "failure_evidence": failure_evidence,
             }
         )
+        append_failure(data_root, acquisition_result)
+    append_event(data_root, acquisition_result)
     return acquisition_result
 
 

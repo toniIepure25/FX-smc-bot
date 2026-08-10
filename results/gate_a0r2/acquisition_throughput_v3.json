@@ -1,9 +1,9 @@
 {
   "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "NATIVE_OUTER_ATTEMPT_ACCOUNTING_CORRECTED_LIVE_VALIDATED",
+  "status": "A0R2_PROD10_REPAIR_ADVANCED_FALSE_TERMINALIZATION_FIXED",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-10T09:50:59Z",
+  "updated_at": "2026-08-10T16:53:09Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -544,36 +544,146 @@
     },
     "final_blocker": "BOUNDED_REPAIR_SLICE_STOPPED_AFTER_NORMAL_CIRCUIT_BREAKER"
   },
-  "cumulative_v2_production": {
+  "prod10_session": {
+    "starting_sha": "39052e1898a0b3d087b1739183187a9423a4aee8",
+    "repair_slices_executed": 2,
+    "repair_slices_with_provider_traffic": 2,
+    "planned_slices_executed": 0,
+    "planned_monthly_sides_started": 0,
+    "planned_monthly_sides_certified": 0,
+    "health_watch": {
+      "status": "NATIVE_HEALTH_READY",
+      "attempts_this_watch": 1,
+      "consecutive_passing_runs": 3,
+      "latest_health_status": "PASS",
+      "fresh_handoffs_consumed": 1,
+      "direct_repair_health_gates": 1
+    },
     "network_metrics": {
-      "provider_operations": 268,
-      "successful_provider_operations": 252,
-      "failed_provider_operations": 16,
-      "bytes_downloaded": 2144392
+      "provider_operations": 24,
+      "successful_provider_operations": 19,
+      "failed_provider_operations": 5,
+      "urllib_requests": 24,
+      "urllib_successes": 16,
+      "urllib_failures": 8,
+      "curl_fallback_invocations": 8,
+      "curl_fallback_successes": 3,
+      "curl_fallback_failures": 5,
+      "same_bi5_identity_recovered_after_urllib_failure": 3,
+      "bytes_downloaded": 145855
     },
     "dataset_metrics": {
-      "newly_downloaded_valid_daily_units": 251,
+      "certified_before": 63,
+      "certified_after": 65,
+      "retryable_before": 17,
+      "retryable_after": 15,
+      "planned_before": 1000,
+      "planned_after": 1000,
+      "terminal_before": 0,
+      "terminal_after": 0,
+      "running_after": 0,
+      "newly_downloaded_valid_daily_units": 19,
+      "valid_daily_units_before": 1970,
+      "valid_daily_units_after": 1989,
+      "monthly_sides_certified": 2
+    },
+    "attempt_accounting_live": {
+      "false_terminalizations_detected": 1,
+      "false_terminalizations_after_correction": 0,
+      "terminal_attempt_adjudication_artifact": "results/gate_a0r2/production_terminal_attempt_adjudication.json",
+      "code_fix": "terminal exhaustion now uses documented unique qualifying outer failure cycles and ignores correction markers as failure evidence",
+      "touched_partitions": [
+        {
+          "partition": "2010-05:AUDUSD:bid",
+          "final_state": "CERTIFIED",
+          "partition_cycles": "7 -> 8",
+          "outer_failure_attempts": "1 -> 1",
+          "successful_daily_units": 1,
+          "failed_daily_units": 0
+        },
+        {
+          "partition": "2010-02:GBPUSD:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "5 -> 6",
+          "outer_failure_attempts": "3 -> 2",
+          "successful_daily_units": 4,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-01:USDJPY:ask",
+          "final_state": "CERTIFIED",
+          "partition_cycles": "7 -> 8",
+          "outer_failure_attempts": "3 -> 3",
+          "successful_daily_units": 9,
+          "failed_daily_units": 0
+        },
+        {
+          "partition": "2010-01:USDCHF:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "3 -> 4",
+          "outer_failure_attempts": "3 -> 3",
+          "successful_daily_units": 2,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-01:USDCAD:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "4 -> 5",
+          "outer_failure_attempts": "4 -> 4",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1,
+          "adjudication": "terminal state corrected because only four unique qualifying outer failures were documented"
+        }
+      ]
+    },
+    "canonical": {
+      "m1_pair_months_before": 20,
+      "m1_pair_months_after": 20,
+      "m5_pair_months_before": 20,
+      "m5_pair_months_after": 20,
+      "feature_pair_months_before": 20,
+      "feature_pair_months_after": 20,
+      "canonicalization_failures_after": 10,
+      "negative_spread_affected_months_after": 10
+    },
+    "bytes": {
+      "raw_bytes_before": 511850399,
+      "raw_bytes_after": 525105352,
+      "raw_byte_delta": 13254953,
+      "free_disk_bytes_after": 45795622912
+    },
+    "final_blocker": "FALSE_TERMINALIZATION_REGRESSION_FIXED_PROVIDER_TRAFFIC_STOPPED"
+  },
+  "cumulative_v2_production": {
+    "network_metrics": {
+      "provider_operations": 292,
+      "successful_provider_operations": 271,
+      "failed_provider_operations": 21,
+      "bytes_downloaded": 2290247
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 270,
       "existing_daily_units_reused": 0,
       "existing_daily_units_reconciled_as_valid": 201,
-      "total_valid_daily_unit_delta": 452,
-      "monthly_sides_certified": 14
+      "total_valid_daily_unit_delta": 471,
+      "monthly_sides_certified": 16
     }
   },
   "dataset": {
     "certified_before_prod4": 50,
-    "certified_after": 63,
+    "certified_after": 65,
     "planned_before_prod4": 1000,
     "planned_after": 1000,
     "retryable_before_prod4": 30,
-    "retryable_after": 17,
-    "retryable_eligible_after": 17,
+    "retryable_after": 15,
+    "retryable_eligible_after": 15,
     "retryable_cooling_after": 0,
     "terminal_before_prod4": 0,
     "terminal_after": 0,
     "running_before_prod4": 0,
     "running_after": 0,
     "valid_daily_units_before_prod4": 1738,
-    "valid_daily_units_after": 1970
+    "valid_daily_units_after": 1989
   },
   "canonical": {
     "m1_before_prod4": 15,
@@ -583,16 +693,16 @@
     "features_before_prod4": 15,
     "features_after": 20,
     "known_canonical_failures_before_prod4": 5,
-    "canonicalization_failures_after": 8,
-    "new_canonical_failures": 3
+    "canonicalization_failures_after": 10,
+    "new_canonical_failures": 5
   },
   "provider": {
     "latest_health_watch": "NATIVE_HEALTH_READY",
     "latest_health": "PASS",
-    "latest_run_id": "native-4e0dd7a56b6143778d59a77cdd1c6180",
-    "last_full_pass_timestamp": "2026-08-10T09:39:22.209211+00:00",
+    "latest_run_id": "native-627dd927ec31492b88c3ff8129968ad9",
+    "last_full_pass_timestamp": "2026-08-10T16:43:30.168288+00:00",
     "last_full_fail_timestamp": "2026-08-10T09:38:30.767218+00:00",
-    "consecutive_passing_runs": 2,
+    "consecutive_passing_runs": 4,
     "consecutive_failing_runs": 0,
     "latest_control_results": {
       "A": "PASS",
@@ -601,11 +711,11 @@
     "health_watch_exhaustions": 4,
     "provider_cooldown_transitions": 7,
     "circuit_breaker_activations": 3,
-    "health_runs_pass": 71,
+    "health_runs_pass": 73,
     "health_runs_fail": 103
   },
   "storage": {
-    "free_disk_bytes": 45424603136,
+    "free_disk_bytes": 45795622912,
     "reserve_requirement_bytes": 10737418240,
     "reserve_status": "PASS"
   },
