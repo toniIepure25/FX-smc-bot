@@ -13,6 +13,16 @@
     {
       "pair": "EURUSD",
       "year": 2010,
+      "month": 3,
+      "joined_rows": 33179,
+      "bid_only": 0,
+      "ask_only": 0,
+      "negative_spread_count": 0,
+      "sha256": "081b9aa0514aa8e50c71f700d8581509bfd6cd33790bdaaedf3ec5d396f8b358"
+    },
+    {
+      "pair": "EURUSD",
+      "year": 2010,
       "month": 4,
       "sha256": "428a652b053adcef0672a42c6d66771d52a47fb594c7000628df2d6a49a742aa",
       "reused_valid_partition": true
