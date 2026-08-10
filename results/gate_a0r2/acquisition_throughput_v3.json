@@ -1,9 +1,9 @@
 {
   "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "A0R2_PROD11_REPAIR_PROGRESS_PROVIDER_COOLDOWN",
+  "status": "A0R2_PROD12_PLANNED_STARTED_HOST_LIMIT_AFTER_PERSISTED_PROGRESS",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-10T17:40:05Z",
+  "updated_at": "2026-08-10T18:52:54Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -748,68 +748,272 @@
     },
     "final_blocker": "PROVIDER_COOLDOWN_REQUIRED_AFTER_SECOND_REPAIR_GATE"
   },
-  "cumulative_v2_production": {
+  "prod12_session": {
+    "starting_sha": "ce54cda9d2fedaf48415bf6500de5f23d6e14e7c",
+    "state_verification": {
+      "terminal_before_network": 0,
+      "running_before_network": 0,
+      "state_sum": 1080,
+      "retryable_accounting_checked": true,
+      "planned_queue_order": "frozen deterministic year-month-instrument-side queue"
+    },
+    "health_watch": {
+      "initial_persisted_ready_was_stale": true,
+      "initial_watch_status": "NATIVE_HEALTH_READY",
+      "initial_watch_attempts_this_watch": 4,
+      "safety_watch_after_planned_503_cluster": "NATIVE_HEALTH_READY",
+      "safety_watch_attempts_completed_end": 183,
+      "latest_provider_health_status": "PASS",
+      "latest_provider_run_id": "native-1b5d056524df492b9ddeee23d385d6b2",
+      "latest_provider_full_pass_timestamp": "2026-08-10T18:27:06.392770+00:00",
+      "latest_provider_full_fail_timestamp": "2026-08-10T18:25:24.630362+00:00",
+      "fresh_handoffs_consumed_observed": 2,
+      "direct_repair_health_gates": 0,
+      "initial_handoff_breaker_activations": 0,
+      "normal_circuit_breaker_activations": 1
+    },
+    "repair": {
+      "repair_slices_executed": 2,
+      "repair_slices_with_provider_traffic": 2,
+      "repair_process_host_limit_stop_after_persisted_progress": true,
+      "provider_operations": 46,
+      "successful_provider_operations": 38,
+      "failed_provider_operations": 8,
+      "urllib_requests": 46,
+      "urllib_successes": 26,
+      "urllib_failures": 20,
+      "curl_fallback_invocations": 20,
+      "curl_fallback_successes": 12,
+      "curl_fallback_failures": 8,
+      "same_bi5_identity_recovered_after_urllib_failure": 12,
+      "bytes_downloaded": 325993,
+      "monthly_sides_certified": 1,
+      "touched_partitions": [
+        {
+          "partition": "2010-02:GBPUSD:bid",
+          "final_state": "CERTIFIED",
+          "partition_cycles": "8 -> 9",
+          "outer_failure_attempts": "2 -> 2",
+          "successful_daily_units": 7,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-01:USDCHF:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "6 -> 7",
+          "outer_failure_attempts": "3 -> 3",
+          "successful_daily_units": 8,
+          "failed_daily_units": 2
+        },
+        {
+          "partition": "2010-05:USDCAD:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "1 -> 2",
+          "outer_failure_attempts": "0 -> 1",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-05:USDCAD:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "1 -> 2",
+          "outer_failure_attempts": "0 -> 1",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-01:USDCAD:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "5 -> 6",
+          "outer_failure_attempts": "4 -> 4",
+          "successful_daily_units": 7,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-02:AUDJPY:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "1 -> 2",
+          "outer_failure_attempts": "1 -> 2",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-02:AUDJPY:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "1 -> 2",
+          "outer_failure_attempts": "1 -> 1",
+          "successful_daily_units": 16,
+          "failed_daily_units": 1
+        }
+      ]
+    },
+    "planned": {
+      "planned_slices_executed": 1,
+      "planned_slices_with_provider_traffic": 1,
+      "planned_before": 1000,
+      "planned_after": 996,
+      "planned_monthly_sides_started": 4,
+      "planned_monthly_sides_certified": 0,
+      "provider_operations": 28,
+      "successful_provider_operations": 24,
+      "failed_provider_operations": 4,
+      "urllib_requests": 28,
+      "urllib_successes": 23,
+      "urllib_failures": 5,
+      "curl_fallback_invocations": 5,
+      "curl_fallback_successes": 1,
+      "curl_fallback_failures": 4,
+      "same_bi5_identity_recovered_after_urllib_failure": 1,
+      "bytes_downloaded": 193607,
+      "touched_partitions": [
+        {
+          "partition": "2010-05:USDCAD:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "0 -> 1",
+          "outer_failure_attempts": "0 -> 0",
+          "successful_daily_units": 13,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-05:USDCAD:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "0 -> 1",
+          "outer_failure_attempts": "0 -> 0",
+          "successful_daily_units": 11,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-05:USDCHF:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "0 -> 1",
+          "outer_failure_attempts": "0 -> 1",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-05:USDCHF:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "0 -> 1",
+          "outer_failure_attempts": "0 -> 1",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1
+        }
+      ]
+    },
     "network_metrics": {
-      "provider_operations": 304,
-      "successful_provider_operations": 281,
-      "failed_provider_operations": 23,
-      "bytes_downloaded": 2392194
+      "provider_operations": 74,
+      "successful_provider_operations": 62,
+      "failed_provider_operations": 12,
+      "urllib_requests": 74,
+      "urllib_successes": 49,
+      "urllib_failures": 25,
+      "curl_fallback_invocations": 25,
+      "curl_fallback_successes": 13,
+      "curl_fallback_failures": 12,
+      "same_bi5_identity_recovered_after_urllib_failure": 13,
+      "bytes_downloaded": 519600
+    },
+    "attempt_accounting": {
+      "new_genuine_outer_failures": 5,
+      "new_terminal_states": 0,
+      "false_terminalizations": 0,
+      "partial_progress_outer_failure_increment_violations": 0
     },
     "dataset_metrics": {
-      "newly_downloaded_valid_daily_units": 280,
+      "certified_before": 65,
+      "certified_after": 66,
+      "retryable_before": 15,
+      "retryable_after": 18,
+      "planned_before": 1000,
+      "planned_after": 996,
+      "terminal_before": 0,
+      "terminal_after": 0,
+      "running_after": 0,
+      "newly_downloaded_valid_daily_units": 62,
+      "valid_daily_units_before": 1999,
+      "valid_daily_units_after": 2061,
+      "monthly_sides_certified": 1
+    },
+    "canonical": {
+      "m1_pair_months_before": 20,
+      "m1_pair_months_after": 21,
+      "m5_pair_months_before": 20,
+      "m5_pair_months_after": 21,
+      "feature_pair_months_before": 20,
+      "feature_pair_months_after": 21,
+      "negative_spread_affected_months_after": 10,
+      "other_failures_after": 0
+    },
+    "bytes": {
+      "raw_bytes_before": 527728316,
+      "raw_bytes_after": 545714941,
+      "raw_byte_delta": 17986625,
+      "free_disk_bytes_after": 45470142464
+    },
+    "final_blocker": "HOST_LIMIT_STUCK_REPAIR_PROCESS_AFTER_PERSISTED_PROGRESS"
+  },
+  "cumulative_v2_production": {
+    "network_metrics": {
+      "provider_operations": 378,
+      "successful_provider_operations": 343,
+      "failed_provider_operations": 35,
+      "bytes_downloaded": 2911794
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 342,
       "existing_daily_units_reused": 0,
       "existing_daily_units_reconciled_as_valid": 201,
-      "total_valid_daily_unit_delta": 481,
-      "monthly_sides_certified": 16
+      "total_valid_daily_unit_delta": 543,
+      "monthly_sides_certified": 17
     }
   },
   "dataset": {
     "certified_before_prod4": 50,
-    "certified_after": 65,
+    "certified_after": 66,
     "planned_before_prod4": 1000,
-    "planned_after": 1000,
+    "planned_after": 996,
     "retryable_before_prod4": 30,
-    "retryable_after": 15,
-    "retryable_eligible_after": 15,
+    "retryable_after": 18,
+    "retryable_eligible_after": 18,
     "retryable_cooling_after": 0,
     "terminal_before_prod4": 0,
     "terminal_after": 0,
     "running_before_prod4": 0,
     "running_after": 0,
     "valid_daily_units_before_prod4": 1738,
-    "valid_daily_units_after": 1999
+    "valid_daily_units_after": 2061
   },
   "canonical": {
     "m1_before_prod4": 15,
-    "m1_after": 20,
+    "m1_after": 21,
     "m5_before_prod4": 15,
-    "m5_after": 20,
+    "m5_after": 21,
     "features_before_prod4": 15,
-    "features_after": 20,
+    "features_after": 21,
     "known_canonical_failures_before_prod4": 5,
     "canonicalization_failures_after": 10,
     "new_canonical_failures": 5
   },
   "provider": {
     "latest_health_watch": "NATIVE_HEALTH_READY",
-    "latest_health": "PROVIDER_COOLDOWN_REQUIRED",
-    "latest_run_id": "native-6b01e598166d402ab17fac529e9ae4f6",
-    "last_full_pass_timestamp": "2026-08-10T17:28:05.072672+00:00",
-    "last_full_fail_timestamp": "2026-08-10T17:36:52.573863+00:00",
-    "consecutive_passing_runs": 0,
-    "consecutive_failing_runs": 1,
+    "latest_health": "PASS",
+    "latest_run_id": "native-1b5d056524df492b9ddeee23d385d6b2",
+    "last_full_pass_timestamp": "2026-08-10T18:27:06.392770+00:00",
+    "last_full_fail_timestamp": "2026-08-10T18:25:24.630362+00:00",
+    "consecutive_passing_runs": 2,
+    "consecutive_failing_runs": 0,
     "latest_control_results": {
-      "A": "FAIL",
+      "A": "PASS",
       "B": "PASS"
     },
     "health_watch_exhaustions": 4,
     "provider_cooldown_transitions": 8,
-    "circuit_breaker_activations": 3,
-    "health_runs_pass": 78,
-    "health_runs_fail": 111
+    "circuit_breaker_activations": 4,
+    "health_runs_pass": 83,
+    "health_runs_fail": 115
   },
   "storage": {
-    "free_disk_bytes": 45594935296,
+    "free_disk_bytes": 45470142464,
     "reserve_requirement_bytes": 10737418240,
     "reserve_status": "PASS"
   },

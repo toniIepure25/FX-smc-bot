@@ -41,6 +41,16 @@
     {
       "pair": "GBPUSD",
       "year": 2010,
+      "month": 2,
+      "joined_rows": 28800,
+      "bid_only": 0,
+      "ask_only": 0,
+      "negative_spread_count": 0,
+      "sha256": "326b7d41df01e534310f8eb175af208d1b3262544b2455ee6fb2f4d921aa6afb"
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2010,
       "month": 3,
       "sha256": "ff12b37e5c4eda04615e10c5d5806bf346e6e4e72f3c9d3cff7ca0352c2e0165",
       "reused_valid_partition": true
