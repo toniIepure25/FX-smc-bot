@@ -1,9 +1,9 @@
 {
   "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "A0R2_PROD13_HEALTH_WATCH_EXHAUSTED_NO_ACQUISITION",
+  "status": "A0R2_PROD14_REPAIR_PROGRESS_GENUINE_TERMINAL_HOST_LIMIT",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-10T19:33:33Z",
+  "updated_at": "2026-08-10T20:54:48Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -1052,18 +1052,174 @@
     },
     "final_blocker": "NATIVE_HEALTH_WATCH_EXHAUSTED"
   },
-  "cumulative_v2_production": {
+  "prod14_session": {
+    "starting_sha": "4f3d374bc2562703215c19fe78d2684c11b55235",
+    "preflight": {
+      "local_head_verified": "4f3d374bc2562703215c19fe78d2684c11b55235",
+      "remote_head_verified": "4f3d374bc2562703215c19fe78d2684c11b55235",
+      "persisted_manual_ready_was_stale": true,
+      "state_sum": 1080,
+      "terminal_before_network": 0,
+      "running_before_network": 0,
+      "active_lease_before_network": false,
+      "a0r2_process_active_before_network": false
+    },
+    "health_watch": {
+      "single_bounded_watch_executed_after_stale_ready": true,
+      "status": "NATIVE_HEALTH_READY",
+      "attempts_this_watch": 1,
+      "attempts_completed": 201,
+      "required_consecutive_health_passes": 2,
+      "consecutive_passing_runs": 3,
+      "latest_health_status": "PASS",
+      "fresh_handoffs_consumed": 1,
+      "handoff_consumed_at": "2026-08-10T20:46:24.652699+00:00",
+      "handoff_consumed_by_runner_id": "6aaf75b8a33b6b48",
+      "direct_repair_health_gates": 0,
+      "initial_handoff_breaker_activations": 0
+    },
+    "repair": {
+      "repair_slices_executed": 1,
+      "repair_slices_with_provider_traffic": 1,
+      "repair_command_shell_timeout_observed": true,
+      "repair_process_host_limit_stop_after_persisted_progress": true,
+      "orphaned_lease_removed_after_pid_dead": true,
+      "provider_operations": 9,
+      "successful_provider_operations": 4,
+      "failed_provider_operations": 5,
+      "urllib_requests": 9,
+      "urllib_successes": 3,
+      "urllib_failures": 6,
+      "curl_fallback_invocations": 6,
+      "curl_fallback_successes": 1,
+      "curl_fallback_failures": 5,
+      "same_bi5_identity_recovered_after_urllib_failure": 1,
+      "bytes_downloaded": 34118,
+      "monthly_sides_certified": 0,
+      "touched_partitions": [
+        {
+          "partition": "2010-01:USDCHF:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "7 -> 8",
+          "outer_failure_attempts": "3 -> 3",
+          "successful_daily_units": 1,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-02:AUDJPY:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "2 -> 3",
+          "outer_failure_attempts": "1 -> 1",
+          "successful_daily_units": 1,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-05:USDCAD:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "2 -> 3",
+          "outer_failure_attempts": "1 -> 2",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-01:USDCAD:bid",
+          "final_state": "FAILED_TERMINAL",
+          "partition_cycles": "6 -> 7",
+          "outer_failure_attempts": "4 -> 5",
+          "successful_daily_units": 0,
+          "failed_daily_units": 1,
+          "terminal_adjudication": "VALID_TERMINAL_FIVE_OUTER_FAILURES"
+        },
+        {
+          "partition": "2010-05:USDCAD:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "2 -> 3",
+          "outer_failure_attempts": "1 -> 1",
+          "successful_daily_units": 2,
+          "failed_daily_units": 1
+        }
+      ]
+    },
+    "planned": {
+      "planned_slices_executed": 0,
+      "planned_slices_with_provider_traffic": 0,
+      "planned_monthly_sides_started": 0,
+      "planned_monthly_sides_certified": 0,
+      "provider_operations": 0,
+      "successful_provider_operations": 0,
+      "failed_provider_operations": 0,
+      "bytes_downloaded": 0,
+      "blocked_before_planned_by": "HOST_LIMIT_STUCK_REPAIR_PROCESS_AFTER_503_TIMEOUT_RESET_CLUSTER"
+    },
     "network_metrics": {
-      "provider_operations": 378,
-      "successful_provider_operations": 343,
-      "failed_provider_operations": 35,
-      "bytes_downloaded": 2911794
+      "provider_operations": 9,
+      "successful_provider_operations": 4,
+      "failed_provider_operations": 5,
+      "urllib_requests": 9,
+      "urllib_successes": 3,
+      "urllib_failures": 6,
+      "curl_fallback_invocations": 6,
+      "curl_fallback_successes": 1,
+      "curl_fallback_failures": 5,
+      "same_bi5_identity_recovered_after_urllib_failure": 1,
+      "bytes_downloaded": 34118
+    },
+    "attempt_accounting": {
+      "new_genuine_outer_failures": 2,
+      "new_terminal_states": 1,
+      "false_terminalizations": 0,
+      "partial_progress_outer_failure_increment_violations": 0,
+      "terminal_attempt_adjudication": {
+        "partition": "2010-01:USDCAD:bid",
+        "reconstructed_qualifying_outer_failures": 5,
+        "classification": "VALID_TERMINAL_FIVE_OUTER_FAILURES"
+      }
     },
     "dataset_metrics": {
-      "newly_downloaded_valid_daily_units": 342,
+      "certified_before": 66,
+      "certified_after": 66,
+      "retryable_before": 18,
+      "retryable_after": 17,
+      "planned_before": 996,
+      "planned_after": 996,
+      "terminal_before": 0,
+      "terminal_after": 1,
+      "running_after": 0,
+      "newly_downloaded_valid_daily_units": 4,
+      "valid_daily_units_before": 2061,
+      "valid_daily_units_after": 2065,
+      "monthly_sides_certified": 0
+    },
+    "canonical": {
+      "m1_pair_months_before": 21,
+      "m1_pair_months_after": 21,
+      "m5_pair_months_before": 21,
+      "m5_pair_months_after": 21,
+      "feature_pair_months_before": 21,
+      "feature_pair_months_after": 21,
+      "negative_spread_affected_months_after": 10,
+      "other_failures_after": 0
+    },
+    "bytes": {
+      "raw_bytes_before": 545714941,
+      "raw_bytes_after": 547958239,
+      "raw_byte_delta": 2243298,
+      "free_disk_bytes_after": 45141565440
+    },
+    "final_blocker": "HOST_LIMIT_STUCK_REPAIR_PROCESS_AFTER_503_TIMEOUT_RESET_CLUSTER"
+  },
+  "cumulative_v2_production": {
+    "network_metrics": {
+      "provider_operations": 387,
+      "successful_provider_operations": 347,
+      "failed_provider_operations": 40,
+      "bytes_downloaded": 2945912
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 346,
       "existing_daily_units_reused": 0,
       "existing_daily_units_reconciled_as_valid": 201,
-      "total_valid_daily_unit_delta": 543,
+      "total_valid_daily_unit_delta": 547,
       "monthly_sides_certified": 17
     }
   },
@@ -1073,15 +1229,15 @@
     "planned_before_prod4": 1000,
     "planned_after": 996,
     "retryable_before_prod4": 30,
-    "retryable_after": 18,
-    "retryable_eligible_after": 18,
+    "retryable_after": 17,
+    "retryable_eligible_after": 17,
     "retryable_cooling_after": 0,
     "terminal_before_prod4": 0,
-    "terminal_after": 0,
+    "terminal_after": 1,
     "running_before_prod4": 0,
     "running_after": 0,
     "valid_daily_units_before_prod4": 1738,
-    "valid_daily_units_after": 2061
+    "valid_daily_units_after": 2065
   },
   "canonical": {
     "m1_before_prod4": 15,
@@ -1095,12 +1251,12 @@
     "new_canonical_failures": 5
   },
   "provider": {
-    "latest_health_watch": "NATIVE_HEALTH_WATCH_EXHAUSTED",
+    "latest_health_watch": "NATIVE_HEALTH_READY",
     "latest_health": "PASS",
-    "latest_run_id": "native-f120d914251849db86ed4def8fa23381",
-    "last_full_pass_timestamp": "2026-08-10T19:31:18.666800+00:00",
-    "last_full_fail_timestamp": "2026-08-10T19:30:41.028604+00:00",
-    "consecutive_passing_runs": 1,
+    "latest_run_id": "native-f89896e7eccb4d73997c620714c6dc8b",
+    "last_full_pass_timestamp": "2026-08-10T20:45:59.854717+00:00",
+    "last_full_fail_timestamp": "2026-08-10T20:45:34.174841+00:00",
+    "consecutive_passing_runs": 3,
     "consecutive_failing_runs": 0,
     "latest_control_results": {
       "A": "PASS",
@@ -1109,11 +1265,11 @@
     "health_watch_exhaustions": 5,
     "provider_cooldown_transitions": 8,
     "circuit_breaker_activations": 4,
-    "health_runs_pass": 87,
+    "health_runs_pass": 89,
     "health_runs_fail": 123
   },
   "storage": {
-    "free_disk_bytes": 45470142464,
+    "free_disk_bytes": 45141565440,
     "reserve_requirement_bytes": 10737418240,
     "reserve_status": "PASS"
   },

@@ -2,7 +2,7 @@
   "artifact_id": "A0R2_PRODUCTION_TERMINAL_ATTEMPT_ADJUDICATION_V1",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
   "status": "PASS",
-  "generated_at": "2026-08-10T16:51:02.265795+00:00",
+  "generated_at": "2026-08-10T20:54:04.911178+00:00",
   "accounting_semantics": {
     "old_behavior": "native repair used attempts = previous_attempts + int(requested > 0)",
     "new_behavior": "terminal retry exhaustion uses outer_failure_attempts only",
@@ -11,14 +11,14 @@
   "terminal_adjudication": [
     {
       "partition": "2010-01:USDCAD:bid",
-      "legacy_attempts": 5,
-      "reconstructed_qualifying_outer_failures": 4,
-      "classification": "MIS_TERMINALIZED_ATTEMPT_ACCOUNTING",
-      "corrected_state": "FAILED_RETRYABLE",
+      "legacy_attempts": 7,
+      "reconstructed_qualifying_outer_failures": 5,
+      "classification": "VALID_TERMINAL_FIVE_OUTER_FAILURES",
+      "corrected_state": "FAILED_TERMINAL",
       "manifest_day_status_counts": {
-        "complete": 3,
-        "failed": 26,
-        "market_closed": 2
+        "complete": 9,
+        "failed": 19,
+        "market_closed": 3
       },
       "history": [
         {
@@ -164,28 +164,71 @@
           "recorded_attempts": 0,
           "qualifying_outer_failure": false,
           "reason": "attempt accounting correction marker, not a new outer failure"
+        },
+        {
+          "timestamp": "2026-08-10T18:35:06.132710+00:00",
+          "runner_or_cycle": "partition_events:242",
+          "transport": "native",
+          "provider_operations": 8,
+          "successful_daily_units": 7,
+          "failed_daily_units": 1,
+          "cycle_outcome": "SUCCESSFUL_PARTIAL_MONTH",
+          "recorded_attempts": 6,
+          "qualifying_outer_failure": false,
+          "reason": "successful partial month does not consume an outer failure"
+        },
+        {
+          "timestamp": "2026-08-10T18:35:06.132710+00:00",
+          "runner_or_cycle": "provider_failures:68",
+          "transport": "native",
+          "provider_operations": 8,
+          "successful_daily_units": 7,
+          "failed_daily_units": 1,
+          "cycle_outcome": "SUCCESSFUL_PARTIAL_MONTH",
+          "recorded_attempts": 6,
+          "qualifying_outer_failure": false,
+          "reason": "successful partial month does not consume an outer failure"
+        },
+        {
+          "timestamp": "2026-08-10T20:47:19.472768+00:00",
+          "runner_or_cycle": "partition_events:248",
+          "transport": "native",
+          "provider_operations": 1,
+          "successful_daily_units": 0,
+          "failed_daily_units": 1,
+          "cycle_outcome": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "recorded_attempts": 7,
+          "qualifying_outer_failure": true,
+          "reason": "explicit_outer_failure_attempt_increment"
+        },
+        {
+          "timestamp": "2026-08-10T20:47:19.472768+00:00",
+          "runner_or_cycle": "provider_failures:74",
+          "transport": "native",
+          "provider_operations": 1,
+          "successful_daily_units": 0,
+          "failed_daily_units": 1,
+          "cycle_outcome": "NATIVE_BI5_TRANSPORT_FAILURE",
+          "recorded_attempts": 7,
+          "qualifying_outer_failure": true,
+          "reason": "explicit_outer_failure_attempt_increment"
         }
       ]
     }
   ],
   "retryable_audit": {
-    "retryables_inspected": 15,
-    "inflated_accounting_cases": 5,
+    "retryables_inspected": 17,
+    "inflated_accounting_cases": 6,
     "corrected_outer_failure_attempts": [
       {
-        "partition": "2010-01:USDCAD:bid",
-        "legacy_partition_attempt_count": 5,
-        "outer_failure_attempts": 4
-      },
-      {
         "partition": "2010-01:USDCHF:ask",
-        "legacy_partition_attempt_count": 4,
+        "legacy_partition_attempt_count": 8,
         "outer_failure_attempts": 3
       },
       {
-        "partition": "2010-02:GBPUSD:bid",
-        "legacy_partition_attempt_count": 6,
-        "outer_failure_attempts": 2
+        "partition": "2010-02:AUDJPY:ask",
+        "legacy_partition_attempt_count": 3,
+        "outer_failure_attempts": 1
       },
       {
         "partition": "2010-03:EURJPY:ask",
@@ -196,16 +239,19 @@
         "partition": "2010-03:GBPJPY:bid",
         "legacy_partition_attempt_count": 1,
         "outer_failure_attempts": 0
+      },
+      {
+        "partition": "2010-05:USDCAD:bid",
+        "legacy_partition_attempt_count": 3,
+        "outer_failure_attempts": 2
+      },
+      {
+        "partition": "2010-05:USDCAD:ask",
+        "legacy_partition_attempt_count": 3,
+        "outer_failure_attempts": 1
       }
     ],
     "partitions_currently_at_genuine_failure_cap": []
   },
-  "corrections": [
-    {
-      "partition": "2010-01:USDCAD:bid",
-      "legacy_partition_attempt_count": 5,
-      "outer_failure_attempts": 4,
-      "corrected_state": "FAILED_RETRYABLE"
-    }
-  ]
+  "corrections": []
 }
