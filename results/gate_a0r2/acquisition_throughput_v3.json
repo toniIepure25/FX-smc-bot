@@ -1,9 +1,9 @@
 {
   "artifact_id": "A0R2_ACQUISITION_THROUGHPUT_V3",
   "gate_id": "A0R2_FULL_ACQUISITION_AND_ALPHA_DISCOVERY_V1",
-  "status": "A0R2_PROD10_REPAIR_ADVANCED_FALSE_TERMINALIZATION_FIXED",
+  "status": "A0R2_PROD11_REPAIR_PROGRESS_PROVIDER_COOLDOWN",
   "operational_status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
-  "updated_at": "2026-08-10T16:53:09Z",
+  "updated_at": "2026-08-10T17:40:05Z",
   "transport_id": "DUKASCOPY_NATIVE_BI5_HTTP_TRANSPORT_V2",
   "transport_implementation": "urllib primary + curl.exe fallback",
   "metric_semantics": {
@@ -654,18 +654,112 @@
     },
     "final_blocker": "FALSE_TERMINALIZATION_REGRESSION_FIXED_PROVIDER_TRAFFIC_STOPPED"
   },
-  "cumulative_v2_production": {
-    "network_metrics": {
-      "provider_operations": 292,
-      "successful_provider_operations": 271,
-      "failed_provider_operations": 21,
-      "bytes_downloaded": 2290247
+  "prod11_session": {
+    "starting_sha": "0d8b769ff91aaa6394e99a31453e11e9516703a1",
+    "state_verification": {
+      "terminal_before_network": 0,
+      "running_before_network": 0,
+      "state_sum": 1080,
+      "retryable_accounting_checked": true
+    },
+    "health_watch": {
+      "status": "NATIVE_HEALTH_READY",
+      "attempts_this_watch": 4,
+      "latest_health_status": "PASS",
+      "consecutive_passing_runs": 2,
+      "fresh_handoffs_consumed": 1
+    },
+    "repair": {
+      "repair_slices_executed": 2,
+      "repair_slices_with_provider_traffic": 1,
+      "direct_repair_health_gate_cooldowns": 1,
+      "provider_operations": 12,
+      "successful_provider_operations": 10,
+      "failed_provider_operations": 2,
+      "urllib_requests": 12,
+      "urllib_successes": 7,
+      "urllib_failures": 5,
+      "curl_fallback_invocations": 5,
+      "curl_fallback_successes": 3,
+      "curl_fallback_failures": 2,
+      "same_bi5_identity_recovered_after_urllib_failure": 3,
+      "bytes_downloaded": 101947,
+      "monthly_sides_certified": 0,
+      "touched_partitions": [
+        {
+          "partition": "2010-01:USDCHF:ask",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "4 -> 5",
+          "outer_failure_attempts": "3 -> 3",
+          "successful_daily_units": 5,
+          "failed_daily_units": 1
+        },
+        {
+          "partition": "2010-02:GBPUSD:bid",
+          "final_state": "FAILED_RETRYABLE",
+          "partition_cycles": "6 -> 7",
+          "outer_failure_attempts": "2 -> 2",
+          "successful_daily_units": 5,
+          "failed_daily_units": 1
+        }
+      ]
+    },
+    "attempt_accounting": {
+      "new_genuine_outer_failures": 0,
+      "new_terminal_states": 0,
+      "false_terminalizations": 0,
+      "partial_progress_outer_failure_increment_violations": 0
+    },
+    "planned": {
+      "planned_slices_executed": 0,
+      "planned_monthly_sides_started": 0,
+      "planned_monthly_sides_certified": 0,
+      "blocked_before_planned_by": "PROVIDER_COOLDOWN_REQUIRED"
     },
     "dataset_metrics": {
-      "newly_downloaded_valid_daily_units": 270,
+      "certified_before": 65,
+      "certified_after": 65,
+      "retryable_before": 15,
+      "retryable_after": 15,
+      "planned_before": 1000,
+      "planned_after": 1000,
+      "terminal_before": 0,
+      "terminal_after": 0,
+      "running_after": 0,
+      "newly_downloaded_valid_daily_units": 10,
+      "valid_daily_units_before": 1989,
+      "valid_daily_units_after": 1999
+    },
+    "canonical": {
+      "m1_pair_months_before": 20,
+      "m1_pair_months_after": 20,
+      "m5_pair_months_before": 20,
+      "m5_pair_months_after": 20,
+      "feature_pair_months_before": 20,
+      "feature_pair_months_after": 20,
+      "negative_spread_affected_months_after": 10,
+      "other_failures_after": 0
+    },
+    "bytes": {
+      "raw_bytes_before": 525105352,
+      "raw_bytes_after": 527728316,
+      "raw_byte_delta": 2622964,
+      "free_disk_bytes_after": 45594935296
+    },
+    "final_blocker": "PROVIDER_COOLDOWN_REQUIRED_AFTER_SECOND_REPAIR_GATE"
+  },
+  "cumulative_v2_production": {
+    "network_metrics": {
+      "provider_operations": 304,
+      "successful_provider_operations": 281,
+      "failed_provider_operations": 23,
+      "bytes_downloaded": 2392194
+    },
+    "dataset_metrics": {
+      "newly_downloaded_valid_daily_units": 280,
       "existing_daily_units_reused": 0,
       "existing_daily_units_reconciled_as_valid": 201,
-      "total_valid_daily_unit_delta": 471,
+      "total_valid_daily_unit_delta": 481,
       "monthly_sides_certified": 16
     }
   },
@@ -683,7 +777,7 @@
     "running_before_prod4": 0,
     "running_after": 0,
     "valid_daily_units_before_prod4": 1738,
-    "valid_daily_units_after": 1989
+    "valid_daily_units_after": 1999
   },
   "canonical": {
     "m1_before_prod4": 15,
@@ -698,24 +792,24 @@
   },
   "provider": {
     "latest_health_watch": "NATIVE_HEALTH_READY",
-    "latest_health": "PASS",
-    "latest_run_id": "native-627dd927ec31492b88c3ff8129968ad9",
-    "last_full_pass_timestamp": "2026-08-10T16:43:30.168288+00:00",
-    "last_full_fail_timestamp": "2026-08-10T09:38:30.767218+00:00",
-    "consecutive_passing_runs": 4,
-    "consecutive_failing_runs": 0,
+    "latest_health": "PROVIDER_COOLDOWN_REQUIRED",
+    "latest_run_id": "native-6b01e598166d402ab17fac529e9ae4f6",
+    "last_full_pass_timestamp": "2026-08-10T17:28:05.072672+00:00",
+    "last_full_fail_timestamp": "2026-08-10T17:36:52.573863+00:00",
+    "consecutive_passing_runs": 0,
+    "consecutive_failing_runs": 1,
     "latest_control_results": {
-      "A": "PASS",
+      "A": "FAIL",
       "B": "PASS"
     },
     "health_watch_exhaustions": 4,
-    "provider_cooldown_transitions": 7,
+    "provider_cooldown_transitions": 8,
     "circuit_breaker_activations": 3,
-    "health_runs_pass": 73,
-    "health_runs_fail": 103
+    "health_runs_pass": 78,
+    "health_runs_fail": 111
   },
   "storage": {
-    "free_disk_bytes": 45795622912,
+    "free_disk_bytes": 45594935296,
     "reserve_requirement_bytes": 10737418240,
     "reserve_status": "PASS"
   },
