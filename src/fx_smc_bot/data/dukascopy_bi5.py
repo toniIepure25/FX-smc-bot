@@ -34,6 +34,9 @@ BROWSER_USER_AGENT = (
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/126.0.0.0 Safari/537.36"
 )
+RUNTIME_BUDGET_EXHAUSTED = "RUNTIME_BUDGET_EXHAUSTED"
+RUNNER_DEADLINE_RESERVE_SECONDS = 8.0
+MIN_DEADLINE_OPERATION_SECONDS = 0.5
 
 
 @dataclass(frozen=True, slots=True)
@@ -98,6 +101,7 @@ class NativeFetchResult:
     checksum: str = ""
     client_id: str = "python_urllib"
     primary_status: str = ""
+    failure_category: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -112,6 +116,7 @@ class NativeFetchResult:
             "checksum": self.checksum,
             "client_id": self.client_id,
             "primary_status": self.primary_status,
+            "failure_category": self.failure_category,
         }
 
 
@@ -154,6 +159,59 @@ def _write_bytes_atomically(out_file: Path, body: bytes) -> None:
     os.replace(str(tmp), str(out_file))
 
 
+def _remaining_usable_budget(
+    runner_deadline_monotonic: float | None,
+    *,
+    reserve_seconds: float = RUNNER_DEADLINE_RESERVE_SECONDS,
+) -> float | None:
+    if runner_deadline_monotonic is None:
+        return None
+    return runner_deadline_monotonic - time.monotonic() - reserve_seconds
+
+
+def _bounded_operation_timeout(
+    requested_timeout_seconds: float,
+    runner_deadline_monotonic: float | None,
+) -> float | None:
+    usable = _remaining_usable_budget(runner_deadline_monotonic)
+    if usable is None:
+        return float(requested_timeout_seconds)
+    if usable < MIN_DEADLINE_OPERATION_SECONDS:
+        return None
+    return min(float(requested_timeout_seconds), usable)
+
+
+def _sleep_with_deadline(delay_seconds: float, runner_deadline_monotonic: float | None) -> bool:
+    usable = _remaining_usable_budget(runner_deadline_monotonic)
+    if usable is not None and usable < delay_seconds:
+        return False
+    time.sleep(delay_seconds)
+    return True
+
+
+def _runtime_budget_result(
+    url: str,
+    *,
+    started: float,
+    attempts: int,
+    client_id: str,
+    primary_status: str = "",
+    error: str = RUNTIME_BUDGET_EXHAUSTED,
+) -> NativeFetchResult:
+    return NativeFetchResult(
+        url=url,
+        status="FAIL",
+        http_status=None,
+        content_length=0,
+        elapsed_seconds=time.monotonic() - started,
+        attempts=attempts,
+        error=error,
+        client_id=client_id,
+        primary_status=primary_status,
+        failure_category=RUNTIME_BUDGET_EXHAUSTED,
+    )
+
+
 def dukascopy_candle_url(
     pair: str,
     day: date,
@@ -181,6 +239,7 @@ def fetch_bi5_day(
     backoff_seconds: float = 1.0,
     user_agent: str = BROWSER_USER_AGENT,
     timeout_seconds: int = 30,
+    runner_deadline_monotonic: float | None = None,
 ) -> NativeFetchResult:
     """Fetch one BI5 day with browser UA and atomic write."""
     started = time.monotonic()
@@ -189,9 +248,19 @@ def fetch_bi5_day(
     http_status: int | None = None
 
     for attempt in range(1, retries + 1):
+        attempt_timeout = _bounded_operation_timeout(
+            timeout_seconds, runner_deadline_monotonic
+        )
+        if attempt_timeout is None:
+            return _runtime_budget_result(
+                url,
+                started=started,
+                attempts=attempt - 1,
+                client_id="python_urllib",
+            )
         try:
             req = Request(url, headers={"User-Agent": user_agent})
-            with urlopen(req, timeout=timeout_seconds) as response:
+            with urlopen(req, timeout=attempt_timeout) as response:
                 http_status = getattr(response, "status", None)
                 body = response.read()
             if http_status != 200:
@@ -221,7 +290,13 @@ def fetch_bi5_day(
             last_error = f"{type(exc).__name__}: {exc}"
 
         if attempt < retries:
-            time.sleep(backoff_seconds * attempt)
+            if not _sleep_with_deadline(backoff_seconds * attempt, runner_deadline_monotonic):
+                return _runtime_budget_result(
+                    url,
+                    started=started,
+                    attempts=attempt,
+                    client_id="python_urllib",
+                )
 
     return NativeFetchResult(
         url=url,
@@ -242,6 +317,7 @@ def fetch_bi5_day_curl(
     backoff_seconds: float = 1.0,
     user_agent: str = BROWSER_USER_AGENT,
     timeout_seconds: int = 45,
+    runner_deadline_monotonic: float | None = None,
 ) -> NativeFetchResult:
     """Fetch one BI5 day through the OS curl client with atomic write."""
     curl = shutil.which("curl.exe") or shutil.which("curl")
@@ -263,27 +339,67 @@ def fetch_bi5_day_curl(
     http_status: int | None = None
     tmp = out_file.with_suffix(out_file.suffix + ".curl_tmp")
     for attempt in range(1, retries + 1):
+        attempt_timeout = _bounded_operation_timeout(
+            timeout_seconds, runner_deadline_monotonic
+        )
+        if attempt_timeout is None:
+            return _runtime_budget_result(
+                url,
+                started=started,
+                attempts=attempt - 1,
+                client_id="curl.exe",
+            )
         if tmp.exists():
             tmp.unlink()
-        completed = subprocess.run(
-            [
-                curl,
-                "-sS",
-                "-L",
-                "--max-time",
-                str(timeout_seconds),
-                "-A",
-                user_agent,
-                "-o",
-                str(tmp),
-                "-w",
-                "%{http_code}",
-                url,
-            ],
-            check=False,
-            capture_output=True,
-            text=True,
+        budget_limited = (
+            runner_deadline_monotonic is not None
+            and attempt_timeout < float(timeout_seconds)
         )
+        try:
+            completed = subprocess.run(
+                [
+                    curl,
+                    "-sS",
+                    "-L",
+                    "--max-time",
+                    f"{attempt_timeout:.3f}",
+                    "-A",
+                    user_agent,
+                    "-o",
+                    str(tmp),
+                    "-w",
+                    "%{http_code}",
+                    url,
+                ],
+                check=False,
+                capture_output=True,
+                text=True,
+                timeout=attempt_timeout,
+            )
+        except subprocess.TimeoutExpired:
+            if tmp.exists():
+                tmp.unlink()
+            if budget_limited:
+                return _runtime_budget_result(
+                    url,
+                    started=started,
+                    attempts=attempt,
+                    client_id="curl.exe",
+                )
+            last_error = "curl subprocess timeout"
+            http_status = None
+            if attempt < retries:
+                if not _sleep_with_deadline(
+                    backoff_seconds * attempt, runner_deadline_monotonic
+                ):
+                    return _runtime_budget_result(
+                        url,
+                        started=started,
+                        attempts=attempt,
+                        client_id="curl.exe",
+                    )
+                continue
+            break
         http_text = completed.stdout.strip()
         http_status = int(http_text) if http_text.isdigit() else 0
         body = tmp.read_bytes() if tmp.exists() else b""
@@ -304,7 +420,13 @@ def fetch_bi5_day_curl(
             )
         last_error = completed.stderr.strip() or f"HTTP {http_status}"
         if attempt < retries:
-            time.sleep(backoff_seconds * attempt)
+            if not _sleep_with_deadline(backoff_seconds * attempt, runner_deadline_monotonic):
+                return _runtime_budget_result(
+                    url,
+                    started=started,
+                    attempts=attempt,
+                    client_id="curl.exe",
+                )
 
     if tmp.exists():
         tmp.unlink()
@@ -329,6 +451,7 @@ def fetch_bi5_day_http_v2(
     user_agent: str = BROWSER_USER_AGENT,
     timeout_seconds: int = 30,
     curl_timeout_seconds: int = 45,
+    runner_deadline_monotonic: float | None = None,
 ) -> NativeFetchResult:
     """Production HTTP V2: urllib primary, curl fallback, same URL and bytes."""
     primary = fetch_bi5_day(
@@ -338,10 +461,23 @@ def fetch_bi5_day_http_v2(
         backoff_seconds=backoff_seconds,
         user_agent=user_agent,
         timeout_seconds=timeout_seconds,
+        runner_deadline_monotonic=runner_deadline_monotonic,
     )
     primary.primary_status = primary.status
     if primary.status == "PASS":
         return primary
+    if primary.failure_category == RUNTIME_BUDGET_EXHAUSTED:
+        return primary
+
+    if _bounded_operation_timeout(curl_timeout_seconds, runner_deadline_monotonic) is None:
+        return _runtime_budget_result(
+            url,
+            started=time.monotonic(),
+            attempts=primary.attempts,
+            client_id="curl.exe",
+            primary_status=primary.status,
+            error=f"primary={primary.error[:240]} fallback={RUNTIME_BUDGET_EXHAUSTED}",
+        )
 
     fallback = fetch_bi5_day_curl(
         url,
@@ -350,6 +486,7 @@ def fetch_bi5_day_http_v2(
         backoff_seconds=backoff_seconds,
         user_agent=user_agent,
         timeout_seconds=curl_timeout_seconds,
+        runner_deadline_monotonic=runner_deadline_monotonic,
     )
     fallback.attempts += primary.attempts
     fallback.primary_status = primary.status

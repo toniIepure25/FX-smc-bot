@@ -21,6 +21,7 @@ from pathlib import Path
 from fx_smc_bot.data.dukascopy_bi5 import (
     HTTP_TRANSPORT_V2_ID,
     HTTP_TRANSPORT_V2_VERSION,
+    RUNTIME_BUDGET_EXHAUSTED,
     dukascopy_candle_url,
     fetch_bi5_day_http_v2,
     parse_bi5_m1_candles,
@@ -327,6 +328,7 @@ def download_native_day_with_checkpoint(
     native_raw_dir: Path,
     *,
     max_retries: int = 3,
+    runner_deadline_monotonic: float | None = None,
 ) -> DayStatus:
     """Fetch a missing daily unit from native BI5 without replacing valid data."""
     existing = _day_dir(raw_dir, pair, side, year, month, day) / "data.json"
@@ -344,11 +346,14 @@ def download_native_day_with_checkpoint(
         / f"month={month:02d}" / f"day={day:02d}" / "candles.bi5"
     )
     fetch = fetch_bi5_day_http_v2(
-        dukascopy_candle_url(pair, requested_day, side), raw_path, retries=max_retries
+        dukascopy_candle_url(pair, requested_day, side),
+        raw_path,
+        retries=max_retries,
+        runner_deadline_monotonic=runner_deadline_monotonic,
     )
     status = DayStatus(
         pair=pair, side=side, year=year, month=month, day=day,
-        status="failed", attempts=1,
+        status="failed", attempts=int(fetch.attempts > 0),
         source_id="DUKASCOPY_DATAFEED_M1_CANDLES_V1",
         transport_id=HTTP_TRANSPORT_V2_ID,
         transport_version=HTTP_TRANSPORT_V2_VERSION,
@@ -359,9 +364,17 @@ def download_native_day_with_checkpoint(
         native_primary_status=fetch.primary_status,
     )
     if fetch.status != "PASS":
-        status.failure_category = "NATIVE_BI5_TRANSPORT_FAILURE"
+        status.failure_category = (
+            RUNTIME_BUDGET_EXHAUSTED
+            if fetch.failure_category == RUNTIME_BUDGET_EXHAUSTED
+            else "NATIVE_BI5_TRANSPORT_FAILURE"
+        )
         status.error = fetch.error[:500]
-        status.provider_call_outcome = "PROVIDER_CALL_TRANSPORT_FAILURE"
+        status.provider_call_outcome = (
+            RUNTIME_BUDGET_EXHAUSTED
+            if fetch.failure_category == RUNTIME_BUDGET_EXHAUSTED
+            else "PROVIDER_CALL_TRANSPORT_FAILURE"
+        )
         return status
     try:
         rows = parse_bi5_m1_candles(raw_path.read_bytes(), requested_day, pair=pair)

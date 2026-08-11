@@ -53,6 +53,8 @@ from fx_smc_bot.data.dukascopy_bi5 import (
     BI5_INSTRUMENTS,
     HTTP_TRANSPORT_V2_ID,
     HTTP_TRANSPORT_V2_VERSION,
+    RUNNER_DEADLINE_RESERVE_SECONDS,
+    RUNTIME_BUDGET_EXHAUSTED,
     NativeFetchResult,
     aggregate_bi5_payload,
     dukascopy_candle_url,
@@ -362,7 +364,14 @@ def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    tmp.replace(path)
+    for attempt in range(5):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError:
+            if attempt == 4:
+                raise
+            time.sleep(0.05 * (attempt + 1))
 
 
 def read_json(path: Path) -> Any:
@@ -1921,6 +1930,8 @@ def qualifying_outer_failure(row: dict[str, Any]) -> tuple[bool, str]:
         return False, "attempt accounting correction marker, not a new outer failure"
     state = str(row.get("state") or "")
     category = str(row.get("failure_category") or "")
+    if category == RUNTIME_BUDGET_EXHAUSTED:
+        return False, "runtime budget exhaustion is not provider failure evidence"
     if _int_field(row, "outer_failure_attempt_increment") > 0:
         return True, "explicit_outer_failure_attempt_increment"
     if state == "RUNNING":
@@ -5763,11 +5774,20 @@ def _replace_manifest_day(manifest: MonthManifest, replacement: DayStatus) -> No
     manifest.days.append(replacement)
 
 
+def _runner_budget_usable(runner_deadline_monotonic: float | None) -> bool:
+    if runner_deadline_monotonic is None:
+        return True
+    return (
+        runner_deadline_monotonic - time.monotonic() - RUNNER_DEADLINE_RESERVE_SECONDS
+    ) > 0
+
+
 def acquire_one_native(
     data_root: Path,
     part: Partition,
     *,
     max_day_requests: int | None,
+    runner_deadline_monotonic: float | None = None,
 ) -> dict[str, Any]:
     """Acquire only missing native daily units, preserving Node partition attempts."""
     manifest = load_month_manifest(raw_dir(data_root), part.pair, part.side, part.year, part.month)
@@ -5785,8 +5805,12 @@ def acquire_one_native(
     curl_fallback_successes = 0
     curl_fallback_failures = 0
     bytes_downloaded = 0
+    runtime_budget_exhaustions = 0
     for day in missing:
         if max_day_requests is not None and requested >= max_day_requests:
+            break
+        if not _runner_budget_usable(runner_deadline_monotonic):
+            runtime_budget_exhaustions += 1
             break
         result = download_native_day_with_checkpoint(
             part.pair,
@@ -5796,19 +5820,23 @@ def acquire_one_native(
             day,
             raw_dir(data_root),
             native_raw_dir(data_root),
+            runner_deadline_monotonic=runner_deadline_monotonic,
         )
-        _replace_manifest_day(manifest, result)
-        requested += 1
+        if result.attempts > 0 or result.failure_category != RUNTIME_BUDGET_EXHAUSTED:
+            _replace_manifest_day(manifest, result)
+            requested += 1
         successful += int(result.status in {"complete", "market_closed"})
-        failures += int(result.status == "failed")
+        runtime_exhausted_day = result.failure_category == RUNTIME_BUDGET_EXHAUSTED
+        runtime_budget_exhaustions += int(runtime_exhausted_day)
+        failures += int(result.status == "failed" and not runtime_exhausted_day)
         if result.native_primary_status == "PASS":
             urllib_successes += 1
-        elif result.transport_id:
+        elif result.transport_id and not runtime_exhausted_day:
             urllib_failures += 1
         if result.effective_http_client == "curl.exe":
             curl_fallback_invocations += 1
             curl_fallback_successes += int(result.status in {"complete", "market_closed"})
-            curl_fallback_failures += int(result.status == "failed")
+            curl_fallback_failures += int(result.status == "failed" and not runtime_exhausted_day)
         bytes_downloaded += int(result.native_content_length or 0)
         save_month_manifest(raw_dir(data_root), manifest)
         if result.status == "failed":
@@ -5822,7 +5850,11 @@ def acquire_one_native(
     previous_outer_failures = authoritative_outer_failure_attempt_count(data_root, part, current)
     partition_cycle_increment = int(requested > 0)
     outer_failure_attempt_increment = int(
-        requested > 0 and failures > 0 and successful == 0 and not manifest.compacted
+        requested > 0
+        and failures > 0
+        and successful == 0
+        and runtime_budget_exhaustions == 0
+        and not manifest.compacted
     )
     failure_evidence = (
         manifest_failure_evidence(part, manifest) if state == "FAILED_RETRYABLE" else None
@@ -5850,6 +5882,7 @@ def acquire_one_native(
         "native_curl_fallback_successes": curl_fallback_successes,
         "native_curl_fallback_failures": curl_fallback_failures,
         "native_bytes_downloaded": bytes_downloaded,
+        "runtime_budget_exhaustions": runtime_budget_exhaustions,
         "attempts": previous_attempts + int(requested > 0),
         "legacy_partition_attempt_count": previous_attempts + partition_cycle_increment,
         "partition_cycles": previous_cycles + partition_cycle_increment,
@@ -5859,21 +5892,34 @@ def acquire_one_native(
     }
     if state == "FAILED_RETRYABLE" and failure_evidence is not None:
         category = (
+            RUNTIME_BUDGET_EXHAUSTED
+            if runtime_budget_exhaustions
+            else (
             "SUCCESSFUL_PARTIAL_MONTH"
             if successful > 0
             else failure_evidence["structured_reason"]
             if failures == 0
             else "NATIVE_BI5_TRANSPORT_FAILURE"
+            )
         )
         acquisition_result.update(
             {
                 "failure_category": category,
-                "error": failure_evidence["structured_reason"],
-                "error_fingerprint": failure_evidence["error_fingerprint"],
+                "error": (
+                    RUNTIME_BUDGET_EXHAUSTED
+                    if category == RUNTIME_BUDGET_EXHAUSTED
+                    else failure_evidence["structured_reason"]
+                ),
+                "error_fingerprint": (
+                    failure_fingerprint(RUNTIME_BUDGET_EXHAUSTED)
+                    if category == RUNTIME_BUDGET_EXHAUSTED
+                    else failure_evidence["error_fingerprint"]
+                ),
                 "failure_evidence": failure_evidence,
             }
         )
-        append_failure(data_root, acquisition_result)
+        if category != RUNTIME_BUDGET_EXHAUSTED:
+            append_failure(data_root, acquisition_result)
     append_event(data_root, acquisition_result)
     return acquisition_result
 
@@ -6050,6 +6096,7 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
         or (getattr(args, "max_runtime_minutes", None) or 0) * 60
         or 0
     )
+    runner_deadline_monotonic = started + max_runtime if max_runtime else None
     recertify_clean_room(data_root)
     requested_transport = getattr(args, "transport", None)
     if requested_transport is None:
@@ -6149,6 +6196,7 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     fresh_handoff_completed = 0
     fresh_handoff_succeeded = False
     fresh_handoff_initial_breaker = False
+    runtime_budget_exhaustions = 0
     write_lease(
         data_root,
         run_id=run_id,
@@ -6215,11 +6263,15 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                             continue
                     part = runnable.popleft()
                     if selected_transport == "native":
+                        if not _runner_budget_usable(runner_deadline_monotonic):
+                            runnable.clear()
+                            break
                         future = pool.submit(
                             acquire_one_native,
                             data_root,
                             part,
                             max_day_requests=per_future_day_budget,
+                            runner_deadline_monotonic=runner_deadline_monotonic,
                         )
                         if per_future_day_budget is not None:
                             future_day_budgets[future] = int(per_future_day_budget)
@@ -6252,19 +6304,33 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
                         or int(result.get("native_daily_successes", 0) or 0) > 0
                         or int(result.get("native_curl_fallback_successes", 0) or 0) > 0
                     )
-                    recent_success.append(effective_success)
+                    runtime_budget_exhausted = (
+                        result.get("failure_category") == RUNTIME_BUDGET_EXHAUSTED
+                    )
+                    if runtime_budget_exhausted:
+                        runtime_budget_exhaustions += int(
+                            result.get("runtime_budget_exhaustions", 1) or 1
+                        )
+                    else:
+                        recent_success.append(effective_success)
                     with STATE_LOCK:
                         state = load_state(data_root)
                         state["partitions"].setdefault(part.key, {})
                         state["partitions"][part.key].update(result)
                         save_state(data_root, state)
-                    if handoff_metadata is not None and not fresh_handoff_succeeded:
+                    if (
+                        handoff_metadata is not None
+                        and not fresh_handoff_succeeded
+                        and not runtime_budget_exhausted
+                    ):
                         fresh_handoff_completed += 1
                         fresh_handoff_succeeded = effective_success
                         if fresh_handoff_completed >= 2 and not fresh_handoff_succeeded:
                             fresh_handoff_initial_breaker = True
                             circuit_activations += 1
                             runnable.clear()
+                    if runtime_budget_exhausted:
+                        runnable.clear()
                     if result.get("error") and "429" in result.get("error", ""):
                         adaptive_reductions += 1
                         time.sleep(10)
@@ -6289,6 +6355,9 @@ def run_acquisition(args: argparse.Namespace, data_root: Path) -> dict[str, Any]
     progress["direct_repair_health_gates"] = direct_repair_health_gates
     progress["fresh_health_handoffs_consumed"] = int(handoff_metadata is not None)
     progress["provider_cooldown_transitions"] = provider_cooldown_transitions
+    if runtime_budget_exhaustions:
+        progress["runtime_budget_exhaustions"] = runtime_budget_exhaustions
+        progress["runtime_budget_failure_category"] = RUNTIME_BUDGET_EXHAUSTED
     if selected_transport == "native" and progress["native_day_request_budget_used"] > 0:
         progress["status"] = "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS"
     if circuit_activations:
@@ -6324,6 +6393,8 @@ def run_operational_cycle(args: argparse.Namespace, data_root: Path) -> dict[str
             break
         refresh_state_from_manifests(data_root)
         acquisition = run_acquisition(args, data_root)
+        if max_runtime and (time.monotonic() - started) >= max_runtime:
+            break
         certification = run_certification(data_root)
         canonical = run_canonicalize(data_root)
         completed_cycles += 1

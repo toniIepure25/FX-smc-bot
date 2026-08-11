@@ -8,6 +8,7 @@ from pathlib import Path
 import pandas as pd
 
 from fx_smc_bot.data.daily_checkpoint import DayStatus, MonthManifest, save_month_manifest
+from fx_smc_bot.data.dukascopy_bi5 import RUNTIME_BUDGET_EXHAUSTED
 from scripts import run_gate_a0r2 as runner
 
 
@@ -197,6 +198,77 @@ def test_native_partial_progress_does_not_terminalize_at_legacy_five(
     assert events[-1]["outer_failure_attempt_increment"] == 0
     assert failures[-1]["partition"] == part.key
     assert failures[-1]["failure_category"] == "SUCCESSFUL_PARTIAL_MONTH"
+
+
+def test_runtime_budget_exhaustion_preserves_partial_progress_without_outer_failure(
+    tmp_path: Path, monkeypatch
+) -> None:
+    part = _one_part()
+    _append_outer_failure_cycles(tmp_path, part, 2)
+    runner.save_state(
+        tmp_path,
+        {
+            "gate_id": runner.GATE_ID,
+            "queue_order": "test",
+            "total_partitions": 1,
+            "partitions": {
+                part.key: {
+                    "pair": part.pair,
+                    "year": part.year,
+                    "month": part.month,
+                    "side": part.side,
+                    "state": "FAILED_RETRYABLE",
+                    "attempts": 4,
+                    "outer_failure_attempts": 2,
+                }
+            },
+        },
+    )
+    outcomes = [
+        DayStatus(
+            part.pair,
+            part.side,
+            part.year,
+            part.month,
+            1,
+            "complete",
+            rows=1,
+            native_primary_status="PASS",
+            effective_http_client="python_urllib",
+            native_content_length=10,
+            attempts=1,
+        ),
+        DayStatus(
+            part.pair,
+            part.side,
+            part.year,
+            part.month,
+            2,
+            "failed",
+            failure_category=RUNTIME_BUDGET_EXHAUSTED,
+            error=RUNTIME_BUDGET_EXHAUSTED,
+            provider_call_outcome=RUNTIME_BUDGET_EXHAUSTED,
+            attempts=0,
+        ),
+    ]
+
+    def fake_download(*_args, **_kwargs) -> DayStatus:
+        return outcomes.pop(0)
+
+    monkeypatch.setattr(runner, "download_native_day_with_checkpoint", fake_download)
+
+    result = runner.acquire_one_native(tmp_path, part, max_day_requests=2)
+
+    assert result["state"] == "FAILED_RETRYABLE"
+    assert result["failure_category"] == RUNTIME_BUDGET_EXHAUSTED
+    assert result["native_daily_requests"] == 1
+    assert result["native_daily_successes"] == 1
+    assert result["native_daily_failures"] == 0
+    assert result["runtime_budget_exhaustions"] == 1
+    assert result["outer_failure_attempts"] == 2
+    assert result["outer_failure_attempt_increment"] == 0
+    assert runner.reconstructed_outer_failure_attempts(tmp_path, part) == 2
+    assert runner.read_jsonl_records(runner.failures_path(tmp_path)) == []
 
 
 def test_five_successful_partial_cycles_do_not_terminalize(

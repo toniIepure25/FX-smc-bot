@@ -7,8 +7,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
 from fx_smc_bot.data.daily_checkpoint import DayStatus, MonthManifest, save_month_manifest
+from fx_smc_bot.data.dukascopy_bi5 import RUNTIME_BUDGET_EXHAUSTED
 from fx_smc_bot.data.dukascopy_node_provider import ProviderCallResult
 from scripts import run_gate_a0r2 as runner
 
@@ -337,7 +339,10 @@ def test_fresh_native_health_handoff_skips_duplicate_preflight(
     executed: list[str] = []
 
     def fake_acquire_native(
-        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+        _data_root: Path,
+        queued: runner.Partition,
+        max_day_requests: int | None = None,
+        runner_deadline_monotonic: float | None = None,
     ) -> dict:
         executed.append(queued.key)
         return {
@@ -378,7 +383,10 @@ def test_stale_native_health_handoff_runs_normal_preflight(
     executed: list[str] = []
 
     def fake_acquire_native(
-        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+        _data_root: Path,
+        queued: runner.Partition,
+        max_day_requests: int | None = None,
+        runner_deadline_monotonic: float | None = None,
     ) -> dict:
         executed.append(queued.key)
         return {
@@ -411,7 +419,10 @@ def test_fresh_native_handoff_with_fail_summary_runs_normal_preflight(
     executed: list[str] = []
 
     def fake_acquire_native(
-        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+        _data_root: Path,
+        queued: runner.Partition,
+        max_day_requests: int | None = None,
+        runner_deadline_monotonic: float | None = None,
     ) -> dict:
         executed.append(queued.key)
         return {
@@ -445,7 +456,9 @@ def test_consumed_native_health_handoff_cannot_be_reused(
     monkeypatch.setattr(
         runner,
         "acquire_one_native",
-        lambda _root, queued, max_day_requests=None: executed.append(queued.key)
+        lambda _root, queued, max_day_requests=None, runner_deadline_monotonic=None: (
+            executed.append(queued.key)
+        )
         or {
             "partition": queued.key,
             "pair": queued.pair,
@@ -475,7 +488,10 @@ def test_fresh_native_handoff_first_two_failures_stop_without_third(
     executed: list[str] = []
 
     def fake_acquire_native(
-        _data_root: Path, queued: runner.Partition, max_day_requests: int | None = None
+        _data_root: Path,
+        queued: runner.Partition,
+        max_day_requests: int | None = None,
+        runner_deadline_monotonic: float | None = None,
     ) -> dict:
         executed.append(queued.key)
         return {
@@ -506,6 +522,61 @@ def test_fresh_native_handoff_first_two_failures_stop_without_third(
     assert progress["status"] == "PROVIDER_COOLDOWN_REQUIRED"
     assert progress["fresh_handoff_initial_circuit_breaker"] is True
     assert progress["circuit_breaker_activations"] == 1
+
+
+def test_runtime_budget_exhaustion_releases_lease_without_provider_cooldown(
+    monkeypatch, tmp_path: Path
+) -> None:
+    parts = [runner.Partition("EURUSD", 2010, month, "bid") for month in range(1, 3)]
+    _prepare_native_retry(monkeypatch, tmp_path, parts)
+    _write_ready_handoff_state(tmp_path)
+    executed: list[str] = []
+
+    def fake_acquire_native(
+        _data_root: Path,
+        queued: runner.Partition,
+        max_day_requests: int | None = None,
+        runner_deadline_monotonic: float | None = None,
+    ) -> dict:
+        executed.append(queued.key)
+        assert runner_deadline_monotonic is not None
+        return {
+            "partition": queued.key,
+            "pair": queued.pair,
+            "year": queued.year,
+            "month": queued.month,
+            "side": queued.side,
+            "state": "FAILED_RETRYABLE",
+            "attempts": 2,
+            "outer_failure_attempts": 0,
+            "outer_failure_attempt_increment": 0,
+            "error": RUNTIME_BUDGET_EXHAUSTED,
+            "failure_category": RUNTIME_BUDGET_EXHAUSTED,
+            "runtime_budget_exhaustions": 1,
+            "native_daily_requests": 0,
+            "native_daily_successes": 0,
+            "native_daily_failures": 0,
+            "native_curl_fallback_successes": 0,
+        }
+
+    monkeypatch.setattr(runner, "acquire_one_native", fake_acquire_native)
+
+    progress = runner.run_acquisition(
+        _native_retry_args(max_partitions=2, max_runtime_seconds=60), tmp_path
+    )
+
+    assert executed == [part.key for part in parts]
+    assert not runner.lease_path(tmp_path).exists()
+    assert progress["runtime_budget_exhaustions"] == 2
+    assert progress["status"] != "PROVIDER_COOLDOWN_REQUIRED"
+    assert "fresh_handoff_initial_circuit_breaker" not in progress
+    state = runner.load_state(tmp_path)["partitions"]
+    for part in parts:
+        item = state[part.key]
+        assert item["state"] == "FAILED_RETRYABLE"
+        assert item["failure_category"] == RUNTIME_BUDGET_EXHAUSTED
+        assert item["outer_failure_attempt_increment"] == 0
+    assert runner.read_jsonl_records(runner.failures_path(tmp_path)) == []
 
 
 def test_operational_cycle_reports_acquisition_health_handoff(
@@ -564,6 +635,55 @@ def test_operational_cycle_reports_acquisition_health_handoff(
     assert progress["operational_cycle"]["native_day_request_budget_used"] == 3
 
 
+def test_operational_cycle_skips_certification_after_runtime_deadline(
+    monkeypatch, tmp_path: Path
+) -> None:
+    clock = {"now": 0.0}
+    monkeypatch.setattr(runner.time, "monotonic", lambda: clock["now"])
+    monkeypatch.setattr(runner, "refresh_state_from_manifests", lambda _root: {})
+
+    def fake_acquisition(_args: argparse.Namespace, _root: Path) -> dict:
+        clock["now"] = 61.0
+        return {
+            "status": "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS",
+            "native_day_request_budget_used": 1,
+        }
+
+    monkeypatch.setattr(runner, "run_acquisition", fake_acquisition)
+    monkeypatch.setattr(
+        runner,
+        "run_certification",
+        lambda _root: pytest.fail("certification should not run after deadline"),
+    )
+    monkeypatch.setattr(
+        runner,
+        "run_canonicalize",
+        lambda _root: pytest.fail("canonicalization should not run after deadline"),
+    )
+    monkeypatch.setattr(
+        runner,
+        "acquisition_summary",
+        lambda _root: {
+            "status": "A0R2_OPERATIONAL_CHECKPOINT_ACQUISITION_IN_PROGRESS",
+            "certified_partitions": 0,
+            "retryable_failures": 0,
+            "planned_partitions": 0,
+            "terminal_failures": 0,
+            "running_partitions": 0,
+        },
+    )
+
+    progress = runner.run_operational_cycle(
+        _native_retry_args(max_runtime_seconds=60, max_operational_cycles=1), tmp_path
+    )
+
+    assert progress["operational_cycle"]["acquisition_status"] == (
+        "A0R2_OPERATIONAL_CHECKPOINT_NATIVE_ACQUISITION_IN_PROGRESS"
+    )
+    assert progress["operational_cycle"]["certification_status"] == "NOT_RUN"
+    assert progress["operational_cycle"]["canonicalization_status"] == "NOT_RUN"
+
+
 def test_retryable_repair_prioritizes_closure_missing_days(
     monkeypatch, tmp_path: Path
 ) -> None:
@@ -612,7 +732,10 @@ def test_retryable_repair_prioritizes_closure_missing_days(
     executed: list[str] = []
 
     def fake_acquire_native(
-        _data_root: Path, part: runner.Partition, max_day_requests: int | None = None
+        _data_root: Path,
+        part: runner.Partition,
+        max_day_requests: int | None = None,
+        runner_deadline_monotonic: float | None = None,
     ) -> dict:
         executed.append(part.key)
         return {
@@ -713,7 +836,10 @@ def test_retryable_repair_prefers_eligible_over_cooling_partition(
     executed: list[str] = []
 
     def fake_acquire_native(
-        _data_root: Path, part: runner.Partition, max_day_requests: int | None = None
+        _data_root: Path,
+        part: runner.Partition,
+        max_day_requests: int | None = None,
+        runner_deadline_monotonic: float | None = None,
     ) -> dict:
         executed.append(part.key)
         return {

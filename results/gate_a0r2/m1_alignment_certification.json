@@ -4,8 +4,8 @@
   "status": "INCOMPLETE",
   "expected_pair_month_partitions": 540,
   "certified_pair_month_partitions": 21,
-  "reused_valid_partitions": 20,
-  "newly_built_partitions": 1,
+  "reused_valid_partitions": 21,
+  "newly_built_partitions": 0,
   "rebuilt_invalid_partitions": 0,
   "canonicalization_failures": 10,
   "not_eligible_pair_months": 509,
@@ -49,11 +49,8 @@
       "pair": "GBPUSD",
       "year": 2010,
       "month": 2,
-      "joined_rows": 28800,
-      "bid_only": 0,
-      "ask_only": 0,
-      "negative_spread_count": 0,
-      "sha256": "326b7d41df01e534310f8eb175af208d1b3262544b2455ee6fb2f4d921aa6afb"
+      "sha256": "326b7d41df01e534310f8eb175af208d1b3262544b2455ee6fb2f4d921aa6afb",
+      "reused_valid_partition": true
     },
     {
       "pair": "GBPUSD",
