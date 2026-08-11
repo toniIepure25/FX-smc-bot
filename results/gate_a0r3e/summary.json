@@ -1,0 +1,26 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "a0r3d_regression_status": "PASS",
+  "artifact_id": "A0R3E_SUMMARY_V1",
+  "blocked_trials": 78,
+  "certified_executable_trials": 8,
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "corrected_trials_run": 8,
+  "cost_stress_1_5x_survivors": 0,
+  "cost_stress_2_0x_survivors": 0,
+  "created_at": "2026-08-11T22:31:13.852714+00:00",
+  "gate_id": "A0R3E_PRE_OUTCOME_SEMANTIC_CLOSURE_V1",
+  "hansen_spa_p": 1.0,
+  "newly_certified_trials": [
+    "A0R1-02-0017",
+    "A0R1-02-0035"
+  ],
+  "next_gate": "A0R3F_REMAINING_SEMANTICS_OR_NO_2018_CONFIRMATION_WITHOUT_SURVIVOR",
+  "pbo": "NOT_APPLICABLE",
+  "review_ranking_size": 8,
+  "scientific_survivor_count": 0,
+  "starting_a0r3d_certified_trials": 6,
+  "status": "PASS",
+  "summary_hash": "9b5ede6c89481ae59aee58b7f71b8327820dd3a3f9f4db4b802c1bec19e7cdc2",
+  "white_reality_check_p": 0.995991984
+}

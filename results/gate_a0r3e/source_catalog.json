@@ -1,0 +1,36 @@
+{
+  "artifact_id": "A0R3E_PRE_OUTCOME_SOURCE_CATALOG_V1",
+  "gate_id": "A0R3E_PRE_OUTCOME_SEMANTIC_CLOSURE_V1",
+  "outcome_sources_used": false,
+  "sources": {
+    "a0_hypothesis_registry": {
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\results\\gate_a0\\hypothesis_registry.json",
+      "sha256": "47d1e92d39b8ae024be59168f83fc5873f3e5ef26442f8d4b51fc56c09f1f54c"
+    },
+    "a0_search_space_freeze": {
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\results\\gate_a0\\search_space_freeze.json",
+      "sha256": "68a236052452f3e8f2aea7404cf832189ac5ebc9e80d1bfa3d94f2572b2523d0"
+    },
+    "a0_search_space_yaml": {
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\configs\\research\\fx_intraday_alpha_search_v1.yaml",
+      "sha256": "462334a7dbe445ef2dfc87210fdfc8552d909cd3eea69ada2022968a6d57d8e4"
+    },
+    "a0_target_registry": {
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\results\\gate_a0\\target_registry.json",
+      "sha256": "e82cb8a36ebe825ea79d18061aa5f920ce839caacead8c42ee3bd09ae4688eb6"
+    },
+    "a0r2_configuration_v2_audit": {
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\results\\gate_a0r2\\trial_configuration_v2_audit.json",
+      "sha256": "1db579ce898f672b14c84f2f8ce9e6620fd31f524c6cfb6c31724f223dfa3eff"
+    },
+    "a0r2_materialization_v2": {
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\results\\gate_a0r2\\trial_materialization_v2.jsonl",
+      "sha256": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1"
+    },
+    "a0r3_pre_a0r3b_source": {
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\src\\fx_smc_bot\\research\\a0r3_existing_data.py",
+      "sha256": "1bfa2e762a7b5367ab2c57f6b8af1f15fbb761a7112c8cd55f33f9ab3b7361e8"
+    }
+  },
+  "status": "PASS"
+}

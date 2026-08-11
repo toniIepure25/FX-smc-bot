@@ -1,0 +1,4025 @@
+[
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "session-opening momentum/reversal state signal",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "execution_contract",
+    "semantic_definition": "side-correct bid/ask event state machine with one completed M1 latency",
+    "source_path_or_artifact": "results/gate_a0*/execution_certification.json",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cost_contract",
+    "semantic_definition": "actual bid/ask spread in fills plus 0.10 bps commission/slippage per fill; stress scales executable spread-plus-slippage overlay",
+    "source_path_or_artifact": "A0 target/execution labels and A0R3B frozen evaluator constant",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_class",
+    "semantic_definition": "no trainable model path for deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_hyperparameters",
+    "semantic_definition": "empty model hyperparameters",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "training_window",
+    "semantic_definition": "no model fit; expanding/rolling label is not behaviorally active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "normalization_rule",
+    "semantic_definition": "no train-only normalization used by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "purging_rule",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "embargo",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "walk_forward_folds",
+    "semantic_definition": "no fitted model or fold selection in certified F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "random_seed",
+    "semantic_definition": "deterministic non-random signal and execution path",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "frozen_categories",
+    "semantic_definition": "redundant category axes match explicit consumed fields",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "lookback",
+    "semantic_definition": "consumed by F01 signal/execution: 15",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F01 signal/execution: 0.3",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "variant",
+    "semantic_definition": "consumed by F01 signal/execution: 'continuation'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "session_anchor",
+    "semantic_definition": "consumed by F01 signal/execution: 'London open'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F01 signal/execution: 15",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F01 without target/stop",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "position_sizing",
+    "semantic_definition": "candidate-equivalent per-unit bps accounting; no capital allocation ranking in exploratory rerun",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "abstention_threshold",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cross_pair_edge",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "neutrality_constraint",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_component_count",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "spread_forecaster",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "triangle",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0011"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "session-opening momentum/reversal state signal",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "execution_contract",
+    "semantic_definition": "side-correct bid/ask event state machine with one completed M1 latency",
+    "source_path_or_artifact": "results/gate_a0*/execution_certification.json",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cost_contract",
+    "semantic_definition": "actual bid/ask spread in fills plus 0.10 bps commission/slippage per fill; stress scales executable spread-plus-slippage overlay",
+    "source_path_or_artifact": "A0 target/execution labels and A0R3B frozen evaluator constant",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_class",
+    "semantic_definition": "no trainable model path for deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_hyperparameters",
+    "semantic_definition": "empty model hyperparameters",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "training_window",
+    "semantic_definition": "no model fit; expanding/rolling label is not behaviorally active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "normalization_rule",
+    "semantic_definition": "no train-only normalization used by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "purging_rule",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "embargo",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "walk_forward_folds",
+    "semantic_definition": "no fitted model or fold selection in certified F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "random_seed",
+    "semantic_definition": "deterministic non-random signal and execution path",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "frozen_categories",
+    "semantic_definition": "redundant category axes match explicit consumed fields",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "lookback",
+    "semantic_definition": "consumed by F01 signal/execution: 15",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F01 signal/execution: 0.6",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "variant",
+    "semantic_definition": "consumed by F01 signal/execution: 'continuation'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "session_anchor",
+    "semantic_definition": "consumed by F01 signal/execution: 'London 16:00 fixing window'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F01 signal/execution: 30",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F01 without target/stop",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "position_sizing",
+    "semantic_definition": "candidate-equivalent per-unit bps accounting; no capital allocation ranking in exploratory rerun",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "abstention_threshold",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cross_pair_edge",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "neutrality_constraint",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_component_count",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "spread_forecaster",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "triangle",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0038"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "session-opening momentum/reversal state signal",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "execution_contract",
+    "semantic_definition": "side-correct bid/ask event state machine with one completed M1 latency",
+    "source_path_or_artifact": "results/gate_a0*/execution_certification.json",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cost_contract",
+    "semantic_definition": "actual bid/ask spread in fills plus 0.10 bps commission/slippage per fill; stress scales executable spread-plus-slippage overlay",
+    "source_path_or_artifact": "A0 target/execution labels and A0R3B frozen evaluator constant",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_class",
+    "semantic_definition": "no trainable model path for deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_hyperparameters",
+    "semantic_definition": "empty model hyperparameters",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "training_window",
+    "semantic_definition": "no model fit; expanding/rolling label is not behaviorally active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "normalization_rule",
+    "semantic_definition": "no train-only normalization used by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "purging_rule",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "embargo",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "walk_forward_folds",
+    "semantic_definition": "no fitted model or fold selection in certified F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "random_seed",
+    "semantic_definition": "deterministic non-random signal and execution path",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "frozen_categories",
+    "semantic_definition": "redundant category axes match explicit consumed fields",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "lookback",
+    "semantic_definition": "consumed by F01 signal/execution: 90",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F01 signal/execution: 0.75",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "variant",
+    "semantic_definition": "consumed by F01 signal/execution: 'continuation'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "session_anchor",
+    "semantic_definition": "consumed by F01 signal/execution: 'New York open'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F01 signal/execution: 60",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F01 without target/stop",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "position_sizing",
+    "semantic_definition": "candidate-equivalent per-unit bps accounting; no capital allocation ranking in exploratory rerun",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "abstention_threshold",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cross_pair_edge",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "neutrality_constraint",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_component_count",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "spread_forecaster",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "triangle",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0056"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "session-opening momentum/reversal state signal",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "execution_contract",
+    "semantic_definition": "side-correct bid/ask event state machine with one completed M1 latency",
+    "source_path_or_artifact": "results/gate_a0*/execution_certification.json",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cost_contract",
+    "semantic_definition": "actual bid/ask spread in fills plus 0.10 bps commission/slippage per fill; stress scales executable spread-plus-slippage overlay",
+    "source_path_or_artifact": "A0 target/execution labels and A0R3B frozen evaluator constant",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_class",
+    "semantic_definition": "no trainable model path for deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_hyperparameters",
+    "semantic_definition": "empty model hyperparameters",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "training_window",
+    "semantic_definition": "no model fit; expanding/rolling label is not behaviorally active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "normalization_rule",
+    "semantic_definition": "no train-only normalization used by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "purging_rule",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "embargo",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "walk_forward_folds",
+    "semantic_definition": "no fitted model or fold selection in certified F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "random_seed",
+    "semantic_definition": "deterministic non-random signal and execution path",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "frozen_categories",
+    "semantic_definition": "redundant category axes match explicit consumed fields",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "lookback",
+    "semantic_definition": "consumed by F01 signal/execution: 15",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F01 signal/execution: 0.45",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "variant",
+    "semantic_definition": "consumed by F01 signal/execution: 'reversal'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "session_anchor",
+    "semantic_definition": "consumed by F01 signal/execution: 'Tokyo open'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F01 signal/execution: 15",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F01 without target/stop",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "position_sizing",
+    "semantic_definition": "candidate-equivalent per-unit bps accounting; no capital allocation ranking in exploratory rerun",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "abstention_threshold",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cross_pair_edge",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "neutrality_constraint",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_component_count",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "spread_forecaster",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "triangle",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0083"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "session-opening momentum/reversal state signal",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "execution_contract",
+    "semantic_definition": "side-correct bid/ask event state machine with one completed M1 latency",
+    "source_path_or_artifact": "results/gate_a0*/execution_certification.json",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cost_contract",
+    "semantic_definition": "actual bid/ask spread in fills plus 0.10 bps commission/slippage per fill; stress scales executable spread-plus-slippage overlay",
+    "source_path_or_artifact": "A0 target/execution labels and A0R3B frozen evaluator constant",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_class",
+    "semantic_definition": "no trainable model path for deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_hyperparameters",
+    "semantic_definition": "empty model hyperparameters",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "training_window",
+    "semantic_definition": "no model fit; expanding/rolling label is not behaviorally active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "normalization_rule",
+    "semantic_definition": "no train-only normalization used by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "purging_rule",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "embargo",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "walk_forward_folds",
+    "semantic_definition": "no fitted model or fold selection in certified F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "random_seed",
+    "semantic_definition": "deterministic non-random signal and execution path",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "frozen_categories",
+    "semantic_definition": "redundant category axes match explicit consumed fields",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "lookback",
+    "semantic_definition": "consumed by F01 signal/execution: 60",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F01 signal/execution: 0.6",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "variant",
+    "semantic_definition": "consumed by F01 signal/execution: 'reversal'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "session_anchor",
+    "semantic_definition": "consumed by F01 signal/execution: 'London 16:00 fixing window'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F01 signal/execution: 30",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F01 without target/stop",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "position_sizing",
+    "semantic_definition": "candidate-equivalent per-unit bps accounting; no capital allocation ranking in exploratory rerun",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "abstention_threshold",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cross_pair_edge",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "neutrality_constraint",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_component_count",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "spread_forecaster",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "triangle",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0101"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "session-opening momentum/reversal state signal",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "execution_contract",
+    "semantic_definition": "side-correct bid/ask event state machine with one completed M1 latency",
+    "source_path_or_artifact": "results/gate_a0*/execution_certification.json",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cost_contract",
+    "semantic_definition": "actual bid/ask spread in fills plus 0.10 bps commission/slippage per fill; stress scales executable spread-plus-slippage overlay",
+    "source_path_or_artifact": "A0 target/execution labels and A0R3B frozen evaluator constant",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_class",
+    "semantic_definition": "no trainable model path for deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "model_hyperparameters",
+    "semantic_definition": "empty model hyperparameters",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "training_window",
+    "semantic_definition": "no model fit; expanding/rolling label is not behaviorally active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "normalization_rule",
+    "semantic_definition": "no train-only normalization used by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "purging_rule",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "embargo",
+    "semantic_definition": "no training labels consumed by deterministic F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "walk_forward_folds",
+    "semantic_definition": "no fitted model or fold selection in certified F01",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "random_seed",
+    "semantic_definition": "deterministic non-random signal and execution path",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "frozen_categories",
+    "semantic_definition": "redundant category axes match explicit consumed fields",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "lookback",
+    "semantic_definition": "consumed by F01 signal/execution: 90",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F01 signal/execution: 0.3",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "variant",
+    "semantic_definition": "consumed by F01 signal/execution: 'reversal'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "session_anchor",
+    "semantic_definition": "consumed by F01 signal/execution: 'London open'",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F01 signal/execution: 60",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "USED",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F01 without target/stop",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "position_sizing",
+    "semantic_definition": "candidate-equivalent per-unit bps accounting; no capital allocation ranking in exploratory rerun",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "abstention_threshold",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "cross_pair_edge",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "neutrality_constraint",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_component_count",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "spread_forecaster",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "triangle",
+    "semantic_definition": "null in materialized configuration",
+    "source_path_or_artifact": "A0R2 materialization V2",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-01-0110"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0119"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-01-0119"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "required_inputs",
+    "semantic_definition": "tick-only quote-arrival/update-count semantics are unavailable in frozen M1 PASS strata",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 30",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.6",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'continuation'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 60",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0008"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "family",
+    "semantic_definition": "M1-compatible direction-run uses signed M1 mid-return run length",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml; src/fx_smc_bot/research/a0r3_existing_data.py",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "frozen_categories",
+    "semantic_definition": "data_variants/horizons/variants map to M1 direction run, holding_horizon and continuation/exhaustion",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 240",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.45",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'continuation'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 5",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0017"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "family",
+    "semantic_definition": "M1-compatible direction-run uses signed M1 mid-return run length",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml; src/fx_smc_bot/research/a0r3_existing_data.py",
+    "status": "USED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "frozen_categories",
+    "semantic_definition": "data_variants/horizons/variants map to M1 direction run, holding_horizon and continuation/exhaustion",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 30",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.3",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'exhaustion'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 15",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0026"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "family",
+    "semantic_definition": "M1-compatible direction-run uses signed M1 mid-return run length",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml; src/fx_smc_bot/research/a0r3_existing_data.py",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "frozen_categories",
+    "semantic_definition": "data_variants/horizons/variants map to M1 direction run, holding_horizon and continuation/exhaustion",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 240",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.75",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'continuation'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 30",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0035"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "family",
+    "semantic_definition": "M1-compatible direction-run uses signed M1 mid-return run length",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml; src/fx_smc_bot/research/a0r3_existing_data.py",
+    "status": "USED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "frozen_categories",
+    "semantic_definition": "data_variants/horizons/variants map to M1 direction run, holding_horizon and continuation/exhaustion",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 30",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.6",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'exhaustion'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 60",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0044"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "required_inputs",
+    "semantic_definition": "tick-only quote-arrival/update-count semantics are unavailable in frozen M1 PASS strata",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 240",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.45",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'continuation'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 5",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0053"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "required_inputs",
+    "semantic_definition": "tick-only quote-arrival/update-count semantics are unavailable in frozen M1 PASS strata",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 30",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.3",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'exhaustion'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 15",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0062"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "required_inputs",
+    "semantic_definition": "tick-only quote-arrival/update-count semantics are unavailable in frozen M1 PASS strata",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 240",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.75",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'continuation'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 30",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0071"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "required_inputs",
+    "semantic_definition": "tick-only quote-arrival/update-count semantics are unavailable in frozen M1 PASS strata",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "no stop path active",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 30",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.6",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'exhaustion'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 60",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0080"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "family",
+    "semantic_definition": "M1-compatible direction-run uses signed M1 mid-return run length",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml; src/fx_smc_bot/research/a0r3_existing_data.py",
+    "status": "USED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "frozen_categories",
+    "semantic_definition": "data_variants/horizons/variants map to M1 direction run, holding_horizon and continuation/exhaustion",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "USED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "exit_rule",
+    "semantic_definition": "time_exit closes at first valid bar after holding_horizon",
+    "source_path_or_artifact": "results/gate_a0/search_space_freeze.json",
+    "status": "USED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "lookback",
+    "semantic_definition": "consumed by F02 direction-run signal: 240",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "entry_threshold",
+    "semantic_definition": "consumed by F02 direction-run signal: 0.45",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "variant",
+    "semantic_definition": "consumed by F02 direction-run signal: 'exhaustion'",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "holding_horizon",
+    "semantic_definition": "consumed by F02 direction-run signal: 5",
+    "source_path_or_artifact": "A0R2 V2",
+    "status": "USED",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "session_anchor",
+    "semantic_definition": "F02 frozen family has no session-anchor axis; materialized generic field is inert",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "target_horizon",
+    "semantic_definition": "not behaviorally active for deterministic time_exit F02 without target/stop",
+    "source_path_or_artifact": "results/gate_a0/target_registry.json",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": true,
+    "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "field": "model_class",
+    "semantic_definition": "deterministic non-ML F02",
+    "source_path_or_artifact": "A0 hypothesis/search-space freeze",
+    "status": "DOCUMENTED_INERT",
+    "trial_id": "A0R1-02-0089"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F03_VOLATILITY_BREAKOUT",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-03-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0005"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0032"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0032"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0041"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0041"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0050"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0077"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0077"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0086"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0086"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-04-0095"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0008"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0008"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0008"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0017"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0017"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0026"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0026"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0026"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0035"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0035"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0035"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0044"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0044"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0053"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0053"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0053"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0062"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0062"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0071"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0071"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0071"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0080"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0080"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "field": "spread_forecaster",
+    "semantic_definition": "forecaster class is named but fit/threshold/execution-gate semantics are not fully executable",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-05-0080"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0005"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0005"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0005"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0014"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0014"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0023"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0023"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0023"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0032"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0032"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0041"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0041"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0041"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0050"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0050"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0050"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0059"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0059"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0068"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0068"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0068"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0077"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F10_INTRADAY_SEASONALITY",
+    "field": "training_window",
+    "semantic_definition": "prior-year-only cell estimates require eligible prior PASS strata absent for GBPUSD 2017",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-10-0077"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "field": "regime_model",
+    "semantic_definition": "regime model class/state-count is named but no deterministic fit/filter specification is complete",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-11-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0002"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0011"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0020"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0029"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0038"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0047"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0056"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0065"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0074"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0083"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0092"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0101"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0110"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0110"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0110"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "family",
+    "semantic_definition": "no exact executable pre-outcome signal formula recovered for A0R3E",
+    "source_path_or_artifact": "results/gate_a0/hypothesis_registry.json and configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0119"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "stop_rule",
+    "semantic_definition": "ATR stop construction lacks exact pre-outcome ATR definition for this factory",
+    "source_path_or_artifact": "A0/A0R2 artifacts",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0119"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "model_class",
+    "semantic_definition": "ML target/features/normalization/walk-forward/abstention path not fully certified",
+    "source_path_or_artifact": "configs/research/fx_intraday_alpha_search_v1.yaml",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0119"
+  },
+  {
+    "executable_without_interpretation": false,
+    "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+    "field": "abstention_threshold",
+    "semantic_definition": "threshold is materialized but no certified model probability/score mapping is available",
+    "source_path_or_artifact": "results/gate_a0r2/trial_materialization_v2.jsonl",
+    "status": "BLOCKED",
+    "trial_id": "A0R1-12-0119"
+  }
+]
