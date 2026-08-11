@@ -1,0 +1,12 @@
+{
+  "artifact_id": "A0R3C_CORRECTED_RERUN_MANIFEST_V1",
+  "certification_status": "FAIL",
+  "gate_id": "A0R3C_FORENSIC_EVALUATOR_CERTIFICATION_V1",
+  "no_new_hypotheses": true,
+  "no_performance_informed_tuning": true,
+  "opened_2018_plus_market_or_outcome_files": [],
+  "reason": "EVALUATOR_CERTIFICATION_FAILED",
+  "same_1200_trial_universe_preserved": true,
+  "same_pass_strata_preserved": true,
+  "status": "NOT_RUN"
+}

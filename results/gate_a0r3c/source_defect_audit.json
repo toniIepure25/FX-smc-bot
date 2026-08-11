@@ -1,0 +1,34 @@
+{
+  "artifact_id": "A0R3C_SOURCE_DEFECT_AUDIT_V1",
+  "defects": [
+    {
+      "defect": "SURROGATE_MID_RETURN_EXECUTION",
+      "evidence": "execution_components_bps uses mid.pct_change() for gross PnL",
+      "required_fix": "use side-correct ask/bid entry and exit fills"
+    },
+    {
+      "defect": "SYNTHETIC_HALF_SPREAD_COST_APPROXIMATION",
+      "evidence": "costs subtract half-spread approximation rather than fill prices",
+      "required_fix": "compute execution prices directly from bid/ask fills"
+    },
+    {
+      "defect": "SYNTHETIC_STATISTICS_IMPORT",
+      "evidence": "A0R3B imports a0r2_statistics synthetic-only interfaces",
+      "required_fix": "replace with certified deterministic bootstrap/statistical methods"
+    },
+    {
+      "defect": "A0R2_STATISTICS_MARKED_SYNTHETIC_ONLY",
+      "evidence": "a0r2_statistics.py module docstring says synthetic-only",
+      "required_fix": "do not use these outputs for scientific claims"
+    },
+    {
+      "defect": "FROZEN_HORIZONS_NOT_EXECUTED",
+      "evidence": "A0R3B source has no certified holding/target horizon state machine",
+      "required_fix": "implement frozen holding/exit semantics before rerun"
+    }
+  ],
+  "evaluator_source_sha256": "94594a9aaf318519ae98ee2fac3a5c58e5344358768f07c404e411aecb502d3f",
+  "gate_id": "A0R3C_FORENSIC_EVALUATOR_CERTIFICATION_V1",
+  "statistics_source_sha256": "d9c48aa9128312e3cb1eedd721753f0ef7fd4b214c67c67da6f864c43a49068f",
+  "status": "FAIL"
+}

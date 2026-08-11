@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -18,6 +19,12 @@ from fx_smc_bot.research.a0r3b_pass_strata import (
     pass_strata_trial_eligibility,
     required_pairs_for_trial,
     topology_units,
+)
+from fx_smc_bot.research.a0r3c_evaluator_certification import (
+    AuditPaths,
+    build_consumption_matrix,
+    certification_artifact,
+    source_defect_audit,
 )
 
 
@@ -171,3 +178,120 @@ def test_a0r3b_single_unit_gets_single_stratum_label() -> None:
     }
 
     assert evidence_tier(row) == "SINGLE_STRATUM_EXPLORATORY_LEAD"
+
+
+def test_a0r3c_blocks_varying_ignored_materialized_dimension(tmp_path: Path) -> None:
+    trials = tmp_path / "trials.jsonl"
+    a0r3b = tmp_path / "a0r3b"
+    a0r3b.mkdir()
+    configs = []
+    for idx, horizon in enumerate([15, 60], start=1):
+        configs.append(
+            {
+                "trial_id": f"T{idx}",
+                "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+                "candidate_equivalent_weight": 1,
+                "full_configuration": {
+                    "entry_threshold": 0.5,
+                    "holding_horizon": horizon,
+                    "instrument_or_portfolio_scope": "GBPUSD",
+                    "lookback": 30,
+                    "required_inputs": ["M1 signed mid return"],
+                },
+            }
+        )
+    trials.write_text("\n".join(json.dumps(row) for row in configs), encoding="utf-8")
+    (a0r3b / "trial_eligibility.json").write_text(
+        json.dumps(
+            {
+                "rows": [
+                    {"trial_id": "T1", "status": "ELIGIBLE"},
+                    {"trial_id": "T2", "status": "ELIGIBLE"},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    paths = AuditPaths(
+        repo=tmp_path,
+        results=tmp_path / "results",
+        docs=tmp_path / "docs",
+        trials=trials,
+        a0r3b_results=a0r3b,
+        evaluator_source=tmp_path / "eval.py",
+        statistics_source=tmp_path / "stats.py",
+    )
+
+    matrix = build_consumption_matrix(paths)
+
+    assert matrix["status"] == "FAIL"
+    assert matrix["blockers"] == [
+        {
+            "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+            "field": "holding_horizon",
+            "reason": "varies_within_evaluated_trials_but_not_used",
+        }
+    ]
+
+
+def test_a0r3c_source_audit_detects_surrogate_execution_and_synthetic_stats(
+    tmp_path: Path,
+) -> None:
+    evaluator = tmp_path / "eval.py"
+    statistics = tmp_path / "stats.py"
+    evaluator.write_text(
+        "from fx_smc_bot.research.a0r2_statistics import white_reality_check\n"
+        "gross = previous * mid.pct_change().fillna(0.0)\n"
+        "costs = spread_bps / 2.0\n",
+        encoding="utf-8",
+    )
+    statistics.write_text('"""Synthetic-only A0R2 multiple-testing interfaces."""\n')
+    paths = AuditPaths(
+        repo=tmp_path,
+        results=tmp_path / "results",
+        docs=tmp_path / "docs",
+        trials=tmp_path / "trials.jsonl",
+        a0r3b_results=tmp_path / "a0r3b",
+        evaluator_source=evaluator,
+        statistics_source=statistics,
+    )
+
+    audit = source_defect_audit(paths)
+
+    assert audit["status"] == "FAIL"
+    assert {row["defect"] for row in audit["defects"]} >= {
+        "SURROGATE_MID_RETURN_EXECUTION",
+        "SYNTHETIC_HALF_SPREAD_COST_APPROXIMATION",
+        "SYNTHETIC_STATISTICS_IMPORT",
+        "A0R2_STATISTICS_MARKED_SYNTHETIC_ONLY",
+    }
+
+
+def test_a0r3c_certification_does_not_allow_corrected_rerun(tmp_path: Path) -> None:
+    a0r3b = tmp_path / "a0r3b"
+    a0r3b.mkdir()
+    trials = tmp_path / "trials.jsonl"
+    trials.write_text("registered\n", encoding="utf-8")
+    (a0r3b / "summary.json").write_text(
+        json.dumps({"frozen_dataset_sha256": "freeze", "evaluated_trials": 1}),
+        encoding="utf-8",
+    )
+    paths = AuditPaths(
+        repo=tmp_path,
+        results=tmp_path / "results",
+        docs=tmp_path / "docs",
+        trials=trials,
+        a0r3b_results=a0r3b,
+        evaluator_source=tmp_path / "eval.py",
+        statistics_source=tmp_path / "stats.py",
+    )
+
+    cert = certification_artifact(
+        paths,
+        {"status": "FAIL", "blockers": [{"family_id": "F01", "field": "holding_horizon"}]},
+        {"status": "FAIL", "defects": [{"defect": "SURROGATE_MID_RETURN_EXECUTION"}]},
+    )
+
+    assert cert["status"] == "FAIL"
+    assert cert["corrected_rerun_status"] == "NOT_RUN_CERTIFICATION_FAILED"
+    assert cert["market_data_files_opened_by_a0r3c"] == 0

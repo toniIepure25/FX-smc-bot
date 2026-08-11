@@ -1,0 +1,3745 @@
+{
+  "artifact_id": "A0R3C_CONFIGURATION_CONSUMPTION_MATRIX_V1",
+  "blockers": [
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "feature_list",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "variant",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "spread_forecaster",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "variant",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "variant",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "abstention_threshold",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "model_class",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "model_hyperparameters",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "target",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    }
+  ],
+  "evaluated_families": [
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "F03_VOLATILITY_BREAKOUT",
+    "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "F10_INTRADAY_SEASONALITY",
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "F12_COST_SENSITIVE_ML_ABSTENTION"
+  ],
+  "evaluated_trial_count": 86,
+  "family_summary": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
+      "evaluated_trials": 14,
+      "field_status_counts": {
+        "IGNORED": 20,
+        "UNSPECIFIED": 8,
+        "USED": 6
+      }
+    },
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": {
+      "evaluated_trials": 10,
+      "field_status_counts": {
+        "IGNORED": 21,
+        "UNSPECIFIED": 8,
+        "USED": 5
+      }
+    },
+    "F03_VOLATILITY_BREAKOUT": {
+      "evaluated_trials": 11,
+      "field_status_counts": {
+        "IGNORED": 21,
+        "UNSPECIFIED": 8,
+        "USED": 5
+      }
+    },
+    "F04_LIQUIDITY_SHOCK_REVERSAL": {
+      "evaluated_trials": 7,
+      "field_status_counts": {
+        "IGNORED": 22,
+        "UNSPECIFIED": 8,
+        "USED": 4
+      }
+    },
+    "F05_SPREAD_AWARE_EXECUTION_GATING": {
+      "evaluated_trials": 9,
+      "field_status_counts": {
+        "IGNORED": 22,
+        "UNSPECIFIED": 8,
+        "USED": 4
+      }
+    },
+    "F10_INTRADAY_SEASONALITY": {
+      "evaluated_trials": 9,
+      "field_status_counts": {
+        "IGNORED": 22,
+        "UNSPECIFIED": 8,
+        "USED": 4
+      }
+    },
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": {
+      "evaluated_trials": 12,
+      "field_status_counts": {
+        "IGNORED": 23,
+        "UNSPECIFIED": 8,
+        "USED": 4
+      }
+    },
+    "F12_COST_SENSITIVE_ML_ABSTENTION": {
+      "evaluated_trials": 14,
+      "field_status_counts": {
+        "IGNORED": 23,
+        "UNSPECIFIED": 8,
+        "USED": 4
+      }
+    }
+  },
+  "gate_id": "A0R3C_FORENSIC_EVALUATOR_CERTIFICATION_V1",
+  "rows": [
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F01_SESSION_OPENING_MOMENTUM_REVERSAL\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "feature_list",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"session labels\",\"M1 signed mid return\",\"rolling range\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 14,
+      "values_sample": [
+        "{\"anchors\":\"London 16:00 fixing window\",\"holding_periods\":120,\"lookbacks\":30,\"variants\":\"continuation\"}",
+        "{\"anchors\":\"London 16:00 fixing window\",\"holding_periods\":30,\"lookbacks\":15,\"variants\":\"continuation\"}",
+        "{\"anchors\":\"London 16:00 fixing window\",\"holding_periods\":30,\"lookbacks\":60,\"variants\":\"reversal\"}",
+        "{\"anchors\":\"London open\",\"holding_periods\":15,\"lookbacks\":15,\"variants\":\"continuation\"}",
+        "{\"anchors\":\"London open\",\"holding_periods\":15,\"lookbacks\":60,\"variants\":\"reversal\"}",
+        "{\"anchors\":\"London open\",\"holding_periods\":60,\"lookbacks\":30,\"variants\":\"continuation\"}",
+        "{\"anchors\":\"London open\",\"holding_periods\":60,\"lookbacks\":90,\"variants\":\"reversal\"}",
+        "{\"anchors\":\"New York open\",\"holding_periods\":120,\"lookbacks\":30,\"variants\":\"reversal\"}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 4,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "lookback",
+      "unique_value_count": 4,
+      "values_sample": [
+        "15",
+        "30",
+        "60",
+        "90"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "model_class",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"none\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "random_seed",
+      "unique_value_count": 14,
+      "values_sample": [
+        "11730",
+        "11739",
+        "11748",
+        "11757",
+        "11766",
+        "11775",
+        "11784",
+        "11793"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"session labels\",\"M1 signed mid return\",\"rolling range\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "session_mask",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"London 16:00 fixing window\"",
+        "\"London open\"",
+        "\"New York open\"",
+        "\"Tokyo open\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "training_window",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"expanding\"",
+        "\"rolling_12m\"",
+        "\"rolling_6m\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "continuation/reversal polarity branch",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "variant",
+      "unique_value_count": 2,
+      "values_sample": [
+        "\"continuation\"",
+        "\"reversal\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F02_QUOTE_RUN_CONTINUATION_EXHAUSTION\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "feature_list",
+      "unique_value_count": 2,
+      "values_sample": [
+        "[\"M1 signed mid return\",\"rolling spread statistics\"]",
+        "[\"quote-arrival count\",\"bid-update count\",\"ask-update count\"]"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 10,
+      "values_sample": [
+        "{\"data_variants\":\"M1-compatible direction-run\",\"horizons\":15,\"variants\":\"exhaustion\"}",
+        "{\"data_variants\":\"M1-compatible direction-run\",\"horizons\":30,\"variants\":\"continuation\"}",
+        "{\"data_variants\":\"M1-compatible direction-run\",\"horizons\":5,\"variants\":\"continuation\"}",
+        "{\"data_variants\":\"M1-compatible direction-run\",\"horizons\":5,\"variants\":\"exhaustion\"}",
+        "{\"data_variants\":\"M1-compatible direction-run\",\"horizons\":60,\"variants\":\"exhaustion\"}",
+        "{\"data_variants\":\"tick-only quote-arrival\",\"horizons\":15,\"variants\":\"exhaustion\"}",
+        "{\"data_variants\":\"tick-only quote-arrival\",\"horizons\":30,\"variants\":\"continuation\"}",
+        "{\"data_variants\":\"tick-only quote-arrival\",\"horizons\":5,\"variants\":\"continuation\"}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 4,
+      "values_sample": [
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "lookback",
+      "unique_value_count": 2,
+      "values_sample": [
+        "240",
+        "30"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "model_class",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"none\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "random_seed",
+      "unique_value_count": 10,
+      "values_sample": [
+        "21736",
+        "21745",
+        "21754",
+        "21763",
+        "21772",
+        "21781",
+        "21790",
+        "21799"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 2,
+      "values_sample": [
+        "[\"M1 signed mid return\",\"rolling spread statistics\"]",
+        "[\"quote-arrival count\",\"bid-update count\",\"ask-update count\"]"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"london\"",
+        "\"london_new_york_overlap\"",
+        "\"new_york\"",
+        "\"tokyo\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "training_window",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"expanding\"",
+        "\"rolling_12m\"",
+        "\"rolling_6m\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "continuation/exhaustion polarity branch",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "variant",
+      "unique_value_count": 2,
+      "values_sample": [
+        "\"continuation\"",
+        "\"exhaustion\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F03_VOLATILITY_BREAKOUT\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "feature_list",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"rolling realized variance\",\"rolling range\",\"M1 signed mid return\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 4,
+      "values_sample": [
+        "{\"variants\":\"breakout\",\"volatility_concepts\":\"range compression\"}",
+        "{\"variants\":\"breakout\",\"volatility_concepts\":\"realized variance compression\"}",
+        "{\"variants\":\"failed breakout\",\"volatility_concepts\":\"range compression\"}",
+        "{\"variants\":\"failed breakout\",\"volatility_concepts\":\"realized variance compression\"}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "lookback",
+      "unique_value_count": 2,
+      "values_sample": [
+        "240",
+        "30"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "model_class",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"none\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "random_seed",
+      "unique_value_count": 11,
+      "values_sample": [
+        "31730",
+        "31739",
+        "31748",
+        "31757",
+        "31766",
+        "31775",
+        "31784",
+        "31793"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"rolling realized variance\",\"rolling range\",\"M1 signed mid return\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"london\"",
+        "\"london_new_york_overlap\"",
+        "\"new_york\"",
+        "\"tokyo\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "training_window",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"expanding\"",
+        "\"rolling_12m\"",
+        "\"rolling_6m\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "failed-breakout polarity branch",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "variant",
+      "unique_value_count": 2,
+      "values_sample": [
+        "\"breakout\"",
+        "\"failed breakout\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F04_LIQUIDITY_SHOCK_REVERSAL\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "feature_list",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"spread open/high/low/close\",\"rolling range\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 3,
+      "values_sample": [
+        "{\"shock_concepts\":\"bar discontinuity shock\"}",
+        "{\"shock_concepts\":\"range expansion\"}",
+        "{\"shock_concepts\":\"spread widening\"}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 4,
+      "values_sample": [
+        "120",
+        "15",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "lookback",
+      "unique_value_count": 2,
+      "values_sample": [
+        "240",
+        "30"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "model_class",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"none\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "random_seed",
+      "unique_value_count": 7,
+      "values_sample": [
+        "41733",
+        "41760",
+        "41769",
+        "41778",
+        "41805",
+        "41814",
+        "41823"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"spread open/high/low/close\",\"rolling range\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"london\"",
+        "\"london_new_york_overlap\"",
+        "\"new_york\"",
+        "\"tokyo\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 4,
+      "values_sample": [
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "training_window",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"expanding\"",
+        "\"rolling_12m\"",
+        "\"rolling_6m\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "variant",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"bar discontinuity shock\"",
+        "\"range expansion\"",
+        "\"spread widening\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F05_SPREAD_AWARE_EXECUTION_GATING\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "feature_list",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"spread open/high/low/close\",\"rolling spread statistics\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 4,
+      "values_sample": [
+        "{\"alpha_reports\":\"combined alpha\",\"spread_forecasters\":\"elastic net\"}",
+        "{\"alpha_reports\":\"directional alpha\",\"spread_forecasters\":\"gradient-boosted trees\"}",
+        "{\"alpha_reports\":\"directional alpha\",\"spread_forecasters\":\"seasonal median\"}",
+        "{\"alpha_reports\":\"execution alpha\",\"spread_forecasters\":\"HAR-style linear\"}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "lookback",
+      "unique_value_count": 2,
+      "values_sample": [
+        "240",
+        "30"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "model_class",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"none\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "random_seed",
+      "unique_value_count": 9,
+      "values_sample": [
+        "51736",
+        "51745",
+        "51754",
+        "51763",
+        "51772",
+        "51781",
+        "51790",
+        "51799"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"spread open/high/low/close\",\"rolling spread statistics\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"london\"",
+        "\"london_new_york_overlap\"",
+        "\"new_york\"",
+        "\"tokyo\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"HAR-style linear\"",
+        "\"elastic net\"",
+        "\"gradient-boosted trees\"",
+        "\"seasonal median\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "training_window",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"expanding\"",
+        "\"rolling_12m\"",
+        "\"rolling_6m\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "variant",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"combined alpha\"",
+        "\"directional alpha\"",
+        "\"execution alpha\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F10_INTRADAY_SEASONALITY\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "feature_list",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"session labels\",\"M1 signed mid return\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 7,
+      "values_sample": [
+        "{\"seasonality\":\"day of week\"}",
+        "{\"seasonality\":\"hour of session\"}",
+        "{\"seasonality\":\"minute of session\"}",
+        "{\"seasonality\":\"month-end\"}",
+        "{\"seasonality\":\"post-holiday\"}",
+        "{\"seasonality\":\"pre-holiday\"}",
+        "{\"seasonality\":\"quarter-end\"}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "lookback",
+      "unique_value_count": 2,
+      "values_sample": [
+        "240",
+        "30"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "model_class",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"none\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "random_seed",
+      "unique_value_count": 9,
+      "values_sample": [
+        "101733",
+        "101742",
+        "101751",
+        "101760",
+        "101769",
+        "101778",
+        "101787",
+        "101796"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"session labels\",\"M1 signed mid return\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"london\"",
+        "\"london_new_york_overlap\"",
+        "\"new_york\"",
+        "\"tokyo\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "training_window",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"prior_year_only\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "variant",
+      "unique_value_count": 7,
+      "values_sample": [
+        "\"day of week\"",
+        "\"hour of session\"",
+        "\"minute of session\"",
+        "\"month-end\"",
+        "\"post-holiday\"",
+        "\"pre-holiday\"",
+        "\"quarter-end\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F11_REGIME_CONDITIONED_TREND_REVERSAL\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "feature_list",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"rolling realized variance\",\"rolling spread statistics\",\"M1 signed mid return\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"regime_classes\":\"hidden Markov model\",\"state_count_rule\":2}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "lookback",
+      "unique_value_count": 2,
+      "values_sample": [
+        "240",
+        "30"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "model_class",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"none\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "random_seed",
+      "unique_value_count": 12,
+      "values_sample": [
+        "111730",
+        "111739",
+        "111748",
+        "111757",
+        "111766",
+        "111775",
+        "111784",
+        "111793"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "2"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"hidden Markov model\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "regime_state_use",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"filtered_states_only\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"rolling realized variance\",\"rolling spread statistics\",\"M1 signed mid return\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"london\"",
+        "\"london_new_york_overlap\"",
+        "\"new_york\"",
+        "\"tokyo\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "training_window",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"expanding\"",
+        "\"rolling_12m\"",
+        "\"rolling_6m\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "variant",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"regime_conditioned_trend_reversal\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "abstention_threshold",
+      "unique_value_count": 10,
+      "values_sample": [
+        "0.5",
+        "0.525",
+        "0.55",
+        "0.575",
+        "0.6",
+        "0.625",
+        "0.65",
+        "0.675"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "frozen commission/slippage labels not resolved to certified values",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "cost_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"commission\":\"frozen_A0_base\",\"slippage\":\"frozen_A0_base\",\"spread\":\"side_correct_bid_ask\",\"stress_1\":\"frozen_A0_stress_1\",\"stress_2\":\"frozen_A0_stress_2\"}"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "cross_pair_edge",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "embargo",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"frozen_A0_embargo\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "trial_signal threshold gate",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "entry_threshold",
+      "unique_value_count": 4,
+      "values_sample": [
+        "0.3",
+        "0.45",
+        "0.6",
+        "0.75"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "partially referenced; side-correct fills not implemented",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "execution_contract",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"entry_latency\":\"one_completed_M1_bar\",\"long_entry\":\"ask\",\"long_exit\":\"bid\",\"mandatory_flat\":\"16:45 America/New_York\",\"new_entries_resume\":\"17:30 America/Ne..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "exit_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"time_exit\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "registry identity, not a runtime dimension",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "family",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"F12_COST_SENSITIVE_ML_ABSTENTION\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "feature_lags",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[1,2,5,15]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "feature_list",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"M1 signed mid return\",\"rolling realized variance\",\"rolling spread statistics\",\"session labels\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "frozen_categories",
+      "unique_value_count": 10,
+      "values_sample": [
+        "{\"horizons\":120,\"model_classes\":\"gradient-boosted trees\",\"targets\":\"net executable return\"}",
+        "{\"horizons\":120,\"model_classes\":\"ridge regression\",\"targets\":\"net executable return sign\"}",
+        "{\"horizons\":15,\"model_classes\":\"gradient-boosted trees\",\"targets\":\"net executable return\"}",
+        "{\"horizons\":15,\"model_classes\":\"ridge regression\",\"targets\":\"net executable return sign\"}",
+        "{\"horizons\":30,\"model_classes\":\"gradient-boosted trees\",\"targets\":\"net executable return\"}",
+        "{\"horizons\":30,\"model_classes\":\"ridge regression\",\"targets\":\"net executable return sign\"}",
+        "{\"horizons\":5,\"model_classes\":\"gradient-boosted trees\",\"targets\":\"net executable return\"}",
+        "{\"horizons\":5,\"model_classes\":\"ridge regression\",\"targets\":\"net executable return sign\"}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "holding_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "fixed-parameter rules not executed",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "implementation_fixed_parameters",
+      "unique_value_count": 1,
+      "values_sample": [
+        "{\"ml_threshold_rule\":\"deterministic seed/index allocation before outcomes\",\"non_axis_parameters\":\"single deterministic defaults, not optimized\",\"regime_state..."
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "provenance only",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "implementation_mapping_version",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"A0R2_BALANCED_MIXED_RADIX_MAPPING_V2\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "pass-strata topology eligibility/evaluation pair",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "instrument_or_portfolio_scope",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"GBPUSD\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "rolling feature construction",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "lookback",
+      "unique_value_count": 2,
+      "values_sample": [
+        "240",
+        "30"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "model_class",
+      "unique_value_count": 2,
+      "values_sample": [
+        "\"gradient-boosted trees\"",
+        "\"ridge regression\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "model_hyperparameters",
+      "unique_value_count": 14,
+      "values_sample": [
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121730}",
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121739}",
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121748}",
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121757}",
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121766}",
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121775}",
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121784}",
+        "{\"fixed_regularization\":\"frozen_single_default\",\"seed\":121793}"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "null in evaluated trials; no runtime semantics certified",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "neutrality_constraint",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "normalization_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"train_only_expanding_or_rolling_as_configured\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "position_sizing",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"fixed_fraction_vol_scaled_10bp_risk_cap\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "purging_rule",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"drop_overlapping_label_windows\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "random_seed",
+      "unique_value_count": 14,
+      "values_sample": [
+        "121730",
+        "121739",
+        "121748",
+        "121757",
+        "121766",
+        "121775",
+        "121784",
+        "121793"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "regime_component_count",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "regime_model",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "USED",
+      "evaluator_implementation": "structural eligibility filter",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "required_inputs",
+      "unique_value_count": 1,
+      "values_sample": [
+        "[\"M1 signed mid return\",\"rolling realized variance\",\"rolling spread statistics\",\"session labels\"]"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "session_anchor",
+      "unique_value_count": 4,
+      "values_sample": [
+        "\"london\"",
+        "\"london_new_york_overlap\"",
+        "\"new_york\"",
+        "\"tokyo\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "spread_forecaster",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "stop_rule",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"none\"",
+        "\"one_atr_adverse\"",
+        "\"two_atr_adverse\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "target",
+      "unique_value_count": 2,
+      "values_sample": [
+        "\"net executable return sign\"",
+        "\"net executable return\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "target_horizon",
+      "unique_value_count": 5,
+      "values_sample": [
+        "120",
+        "15",
+        "30",
+        "5",
+        "60"
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "certification_blocker": "VARYING_CONFIGURATION_FIELD_NOT_CONSUMED",
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "training_window",
+      "unique_value_count": 3,
+      "values_sample": [
+        "\"expanding\"",
+        "\"rolling_12m\"",
+        "\"rolling_6m\""
+      ],
+      "varies_within_evaluated_trials": true
+    },
+    {
+      "consumption_status": "UNSPECIFIED",
+      "evaluator_implementation": "topology code exists but no evaluated A0R3B trials exercised it",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "triangle",
+      "unique_value_count": 1,
+      "values_sample": [
+        "null"
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "variant",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"cost_sensitive_abstention\""
+      ],
+      "varies_within_evaluated_trials": false
+    },
+    {
+      "consumption_status": "IGNORED",
+      "evaluator_implementation": "no certified A0R3B implementation consumes this field",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "materialized_field": "walk_forward_folds",
+      "unique_value_count": 1,
+      "values_sample": [
+        "\"purged_expanding_2011_2014\""
+      ],
+      "varies_within_evaluated_trials": false
+    }
+  ],
+  "source": "A0R3B eligible registered trial configurations; no market data opened",
+  "status": "FAIL"
+}

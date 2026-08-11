@@ -1,0 +1,393 @@
+{
+  "a0r3b_evaluated_trials": 86,
+  "a0r3b_freeze_hash": "c8207b7e49eccfdc03542855b7f9a34a948241c9eee43fa01f632641e9467510",
+  "artifact_id": "A0R3C_EVALUATOR_CERTIFICATION_V1",
+  "blockers": [
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "feature_list",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "field": "variant",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "spread_forecaster",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "field": "variant",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "field": "variant",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "abstention_threshold",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "frozen_categories",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "holding_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "model_class",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "model_hyperparameters",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "random_seed",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "session_anchor",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "stop_rule",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "target",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "target_horizon",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "field": "training_window",
+      "reason": "varies_within_evaluated_trials_but_not_used"
+    },
+    {
+      "defect": "SURROGATE_MID_RETURN_EXECUTION",
+      "evidence": "execution_components_bps uses mid.pct_change() for gross PnL",
+      "required_fix": "use side-correct ask/bid entry and exit fills"
+    },
+    {
+      "defect": "SYNTHETIC_HALF_SPREAD_COST_APPROXIMATION",
+      "evidence": "costs subtract half-spread approximation rather than fill prices",
+      "required_fix": "compute execution prices directly from bid/ask fills"
+    },
+    {
+      "defect": "SYNTHETIC_STATISTICS_IMPORT",
+      "evidence": "A0R3B imports a0r2_statistics synthetic-only interfaces",
+      "required_fix": "replace with certified deterministic bootstrap/statistical methods"
+    },
+    {
+      "defect": "A0R2_STATISTICS_MARKED_SYNTHETIC_ONLY",
+      "evidence": "a0r2_statistics.py module docstring says synthetic-only",
+      "required_fix": "do not use these outputs for scientific claims"
+    },
+    {
+      "defect": "FROZEN_HORIZONS_NOT_EXECUTED",
+      "evidence": "A0R3B source has no certified holding/target horizon state machine",
+      "required_fix": "implement frozen holding/exit semantics before rerun"
+    },
+    {
+      "defect": "CERTIFIED_GOLDEN_TESTS_MISSING",
+      "reason": "long/short/flip/flat/rollover/delayed-exit golden tests absent"
+    },
+    {
+      "defect": "CORRECTED_STATISTICS_NOT_CERTIFIED",
+      "reason": "bootstrap WRC/SPA/Romano-Wolf/PSR/DSR/PBO replacements absent"
+    }
+  ],
+  "certified_truly_executable_by_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 0,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 0,
+    "F03_VOLATILITY_BREAKOUT": 0,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 0,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 0,
+    "F10_INTRADAY_SEASONALITY": 0,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 0,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 0
+  },
+  "claim": "A0R3B_NUMERICAL_RESULTS_NOT_ELIGIBLE_FOR_SCIENTIFIC_NO_GO",
+  "corrected_rerun_status": "NOT_RUN_CERTIFICATION_FAILED",
+  "created_at": "2026-08-11T20:07:54.008510+00:00",
+  "deterministic_seed_sha256": "c6e9c5018f667c7f04a598ebf12ee307000783de4f85c0415c3244a69be510c8",
+  "differences_versus_a0r3b": [
+    "A0R3B numerical outcomes are not superseded by corrected outcomes because certification failed.",
+    "A0R3B used surrogate mid-return execution instead of actual side-correct fills.",
+    "A0R3B used synthetic-only statistical approximations from a0r2_statistics.py.",
+    "A0R3B ignored or left unspecified materialized dimensions before outcome computation."
+  ],
+  "gate_id": "A0R3C_FORENSIC_EVALUATOR_CERTIFICATION_V1",
+  "market_data_files_opened_by_a0r3c": 0,
+  "opened_2018_plus_market_or_outcome_files": [],
+  "precert_a0r3b_evaluated_by_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 14,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 10,
+    "F03_VOLATILITY_BREAKOUT": 11,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 7,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 9,
+    "F10_INTRADAY_SEASONALITY": 9,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 12,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 14
+  },
+  "registered_trial_universe_count": 1200,
+  "registered_trial_universe_sha256": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1",
+  "requirements": {
+    "deterministic_regression_golden_tests": false,
+    "exact_side_correct_fill_semantics": false,
+    "no_silently_ignored_materialized_dimensions": false,
+    "synthetic_statistics_replaced": false,
+    "zero_2018_plus_reads": true
+  },
+  "status": "FAIL"
+}

@@ -1,0 +1,40 @@
+{
+  "a0r3b_evaluated_trials": 86,
+  "any_2018_plus_market_or_outcome_data_accessed": false,
+  "artifact_hashes": {
+    "certification": "e795857260c36dab94af2d29a8fddc960baa5b08449b84b06958478421d158e7",
+    "configuration_consumption_matrix": "f8497554d667ef4f8d109bce9bbc2abdb1f3e01f0b842b35c4df59a150690b6b",
+    "corrected_rerun_manifest": "f4f9182dd948bcc570d9e33a10009842621fc776c991f226baec85c89095c84f",
+    "source_defect_audit": "dc63090b5922a5330db7cb2daf2633a5d40a9e4e449dbf3cbd0b08eec5f0f89c"
+  },
+  "artifact_id": "A0R3C_SUMMARY_V1",
+  "certified_truly_executable_by_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 0,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 0,
+    "F03_VOLATILITY_BREAKOUT": 0,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 0,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 0,
+    "F10_INTRADAY_SEASONALITY": 0,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 0,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 0
+  },
+  "configuration_blocker_count": 62,
+  "corrected_rerun_status": "NOT_RUN",
+  "evaluator_certification_verdict": "FAIL",
+  "gate_id": "A0R3C_FORENSIC_EVALUATOR_CERTIFICATION_V1",
+  "opened_2018_plus_market_or_outcome_files": [],
+  "precert_a0r3b_evaluated_by_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 14,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 10,
+    "F03_VOLATILITY_BREAKOUT": 11,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 7,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 9,
+    "F10_INTRADAY_SEASONALITY": 9,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 12,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 14
+  },
+  "provider_acquisition_run": false,
+  "registered_trial_universe_count": 1200,
+  "source_defect_count": 5,
+  "status": "FAIL"
+}
