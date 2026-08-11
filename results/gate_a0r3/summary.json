@@ -1,0 +1,23 @@
+{
+  "any_2018_plus_market_or_outcome_data_accessed": false,
+  "artifact_hashes": {
+    "amendment": "74f39877b8d688fc242e7d9fcee7d2ab904534bb7bf77f45efb1cd501671c13a",
+    "cost_stress": "79e0b552b4202c286b6a3626f6db3d47a915ad31bd179f3a6ace1e8fe5ed90c4",
+    "eligibility": "37465b7ed5a16d7b5d46babf77c54d9ea4b17ae7df981a854e3c47f11d039fd1",
+    "freeze": "49fc93cd06b44a993aa1d45600abeacd2c93f9369c82a6962a2dcb0b22681977",
+    "inventory": "cbe15344e27598901412492d1a64297627c0695b38d8e6175526fce3811c4946",
+    "multiple_testing": "c482270221c6b564663cf7e464c86ccdc74e79d477a0f153f801641fa2b7dd17",
+    "results": "b59cc22d0443bd8a0c715742c791a62332c22043d2837ba52517bf2be6d19e97",
+    "shortlist": "8202cf695bbf35c97b1545232e5318ad43e65c31aadfb331e9c052d18fb68816",
+    "trial_eligibility": "d5b8e45f2262819ce9b1cee8e3f7b25b0fd1f463fc4ac0714accee0f664f055f"
+  },
+  "artifact_id": "A0R3_SUMMARY_V1",
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "evaluated_trials": 0,
+  "frozen_dataset_sha256": "700874a50eb53c701edcafd061683f17bf54e40fbf7ce00a1f7f4381f8bad069",
+  "gate_id": "A0R3_EXISTING_DATA_EXPLORATORY_DISCOVERY_V1",
+  "mode": "EXPLORATORY_EXISTING_DATA_ONLY",
+  "raw_market_data_modified": false,
+  "shortlist_size": 0,
+  "status": "BLOCKED"
+}

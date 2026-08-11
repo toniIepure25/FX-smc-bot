@@ -1,0 +1,57 @@
+{
+  "access_policy": {
+    "confirmation_not_run": true,
+    "forbidden_market_or_outcome_years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "metadata_only_years": [
+      2018,
+      2019
+    ],
+    "price_data_loaded_years": [
+      2015,
+      2016,
+      2017
+    ],
+    "validation_not_run": true
+  },
+  "artifact_id": "A0R3_PROSPECTIVE_SPLIT_AMENDMENT_V1",
+  "boundaries": {
+    "exploratory_discovery": [
+      "2015-01-01",
+      "2017-12-31"
+    ],
+    "external_validation": [
+      "2019-01-01",
+      "2019-12-31"
+    ],
+    "internal_confirmation": [
+      "2018-01-01",
+      "2018-12-31"
+    ],
+    "quarantine": [
+      "2023-01-01",
+      "2025-12-31"
+    ],
+    "replication": [
+      "2020-01-01",
+      "2022-12-31"
+    ]
+  },
+  "claim_boundary": "exploratory_only_not_confirmed_alpha",
+  "created_at": "2026-08-11T18:37:15.558430+00:00",
+  "gate_id": "A0R3_EXISTING_DATA_EXPLORATORY_DISCOVERY_V1",
+  "mode": "EXPLORATORY_EXISTING_DATA_ONLY",
+  "self_hash": "6f14d82c153198446ce2459c3a049e69091c98f1d148d27f877a1942b8b35aa1",
+  "source_hashes": {
+    "a0r2_trial_materialization_v2_jsonl": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1"
+  },
+  "status": "PASS"
+}
