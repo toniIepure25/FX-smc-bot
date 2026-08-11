@@ -1,0 +1,32 @@
+{
+  "artifact_id": "A0R3D_MULTIPLE_TESTING_RESULTS_V1",
+  "block_length_days": 5,
+  "bootstrap_iterations": 499,
+  "evaluated_trials": 6,
+  "gate_id": "A0R3D_CERTIFIED_EXECUTABLE_SUBSET_V1",
+  "hansen_spa_p": 1.0,
+  "methods": [
+    "White Reality Check stationary bootstrap",
+    "Hansen SPA stationary bootstrap",
+    "Romano-Wolf stepdown stationary bootstrap",
+    "Holm",
+    "BH-FDR",
+    "PSR with sample size/skew/kurtosis",
+    "DSR with registered trial denominator",
+    "PBO/CSCV when enough independent strata exist"
+  ],
+  "pbo": "NOT_APPLICABLE",
+  "pbo_not_applicable_reason": "fewer_than_four_independent_strata_or_folds_in_certified_subset",
+  "registered_candidate_equivalent_denominator": 1200,
+  "romano_wolf_stepdown_p": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.995991984,
+    1.0
+  ],
+  "seed": 4023787639,
+  "status": "PASS",
+  "white_reality_check_p": 0.995991984
+}

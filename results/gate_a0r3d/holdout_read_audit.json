@@ -1,0 +1,224 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "artifact_id": "A0R3D_HOLDOUT_READ_AUDIT_V1",
+  "gate_id": "A0R3D_CERTIFIED_EXECUTABLE_SUBSET_V1",
+  "opened_2018_plus_market_or_outcome_files": [],
+  "opened_files": [
+    {
+      "bytes": 3999892,
+      "month": 1,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=01\\data.json",
+      "sha256": "30f77d75bd3e91faf0479f54fc8a5f95ea7a60bbf0681932afd544e145103732",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3997590,
+      "month": 1,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=01\\data.json",
+      "sha256": "997b0b4682bbd11edb43a2b77cb44260f223af9023ae3d4f7e9aafdb4c5daadd",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3627067,
+      "month": 2,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=02\\data.json",
+      "sha256": "b3fe5a098626791ece430bb16b956fb00f7fd7da8fddf06a9a5a2f97c546f09f",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3628772,
+      "month": 2,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=02\\data.json",
+      "sha256": "3cc341dd7f7db0a3f08de7e5c7b774973815567d8920da813b62f305544c3716",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4155360,
+      "month": 3,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=03\\data.json",
+      "sha256": "aebff394be40df769966124edc1ffd48cc5ab51d2ba03d00c57370cf787bdbb9",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4154323,
+      "month": 3,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=03\\data.json",
+      "sha256": "57d20468b21eec553a5f7a7083f3f8d4b83cd087b3a28e2e44216f983e919551",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3649770,
+      "month": 4,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=04\\data.json",
+      "sha256": "2fae8e1fea18d03d038e02c7a6b4c766f6ea16d0b894cdd350aff10615281670",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3651576,
+      "month": 4,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=04\\data.json",
+      "sha256": "f0ee09330c3d4f43c43c4ab41afc447fd81cd2b74def8a369084ef205191d66b",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4174241,
+      "month": 5,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=05\\data.json",
+      "sha256": "4b96ade42f25e5433acc84d2ff52b947a7f05995a05138892f64a78d01a31abe",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4173364,
+      "month": 5,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=05\\data.json",
+      "sha256": "aebb7fbcf9593e58ef34a32631cb2b3173d2a9ceef0dc88b7f8101e512e54286",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3963564,
+      "month": 6,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=06\\data.json",
+      "sha256": "8052e829ef94870232b39d329159929faf431af83b162928337fe85fab51c9ac",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3962477,
+      "month": 6,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=06\\data.json",
+      "sha256": "36f2c6b028d64d68b83d5674f4577cea1908025a4ad13a0f43a461e173210b28",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3814618,
+      "month": 7,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=07\\data.json",
+      "sha256": "76d28940afe9df2f9c2dd4af417f27d825339ad97ac5c4fae839ad02e71b8f36",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3819333,
+      "month": 7,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=07\\data.json",
+      "sha256": "408f0ee70ea25d2919526f69b468e8193ce979f9f8ed8be855c85656e2d68cd4",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4156867,
+      "month": 8,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=08\\data.json",
+      "sha256": "6eb05b83020c5a13a333f0d575f47ca2b2e75d4342cd063eb1d720aa35f47c9b",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4160911,
+      "month": 8,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=08\\data.json",
+      "sha256": "5beb6cd81dad92f4c55592b0424123ee8204fdadd748f982b93a42b9982a9a9d",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3781543,
+      "month": 9,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=09\\data.json",
+      "sha256": "fe7f4551721d34336d85d611f813c60cdde375b49885f6dc776b3214d9bfe210",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3783873,
+      "month": 9,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=09\\data.json",
+      "sha256": "f7f61749ddb7b0256f46a8616c45a6616f049067d3f961f6ace90bc85e36caf7",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4010966,
+      "month": 10,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=10\\data.json",
+      "sha256": "4e2e31a935d80ea133398ae1a46e835b19dec4a3c09bb2417faa536d6f749299",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4012150,
+      "month": 10,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=10\\data.json",
+      "sha256": "9f8fd7eef06b3a61b467f62ac8eb1ff23fa334e78021d644e66ad365edb1c342",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3989365,
+      "month": 11,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=11\\data.json",
+      "sha256": "71338cddf05c19da0e39d4002e520ec1d7825bb5d8adc41e372ba45d320e007a",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3989877,
+      "month": 11,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=11\\data.json",
+      "sha256": "9990c0a86a3d7736d2160c67a78fae73742e24e46de755d46644493e62fd9570",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3673923,
+      "month": 12,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=12\\data.json",
+      "sha256": "5bba87624bda0f979f06cfd5c17074e5cb4a69182adb2fc0478d6951f1dd9105",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3672242,
+      "month": 12,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=12\\data.json",
+      "sha256": "4670080f56e4976d98ac20941bc50581697cf441abed36656fffda8676a26057",
+      "side": "ask",
+      "year": 2017
+    }
+  ]
+}

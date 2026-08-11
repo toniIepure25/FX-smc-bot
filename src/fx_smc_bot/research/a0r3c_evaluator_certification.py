@@ -276,10 +276,13 @@ def certification_artifact(
             },
         ]
     )
-    precert_by_family = {
-        family: int(summary["evaluated_trials"])
-        for family, summary in matrix["family_summary"].items()
-    }
+    family_summary = matrix.get("family_summary", {})
+    if family_summary:
+        precert_by_family = {
+            family: int(summary["evaluated_trials"]) for family, summary in family_summary.items()
+        }
+    else:
+        precert_by_family = {"UNSPECIFIED": int(a0r3b_summary["evaluated_trials"])}
     certified_by_family = {
         family: 0 if blockers else count for family, count in precert_by_family.items()
     }

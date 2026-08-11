@@ -1,0 +1,55 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "a0r3b_numerics_superseded_for_trials": [
+    "A0R1-01-0002",
+    "A0R1-01-0020",
+    "A0R1-01-0047",
+    "A0R1-01-0065",
+    "A0R1-01-0092",
+    "A0R1-01-0110"
+  ],
+  "artifact_id": "A0R3D_SUMMARY_V1",
+  "blocked_trials": 80,
+  "by_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
+      "CERTIFIED_EXECUTABLE": 6,
+      "IMPLEMENTATION_BLOCKED": 8
+    },
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": {
+      "IMPLEMENTATION_BLOCKED": 10
+    },
+    "F03_VOLATILITY_BREAKOUT": {
+      "IMPLEMENTATION_BLOCKED": 11
+    },
+    "F04_LIQUIDITY_SHOCK_REVERSAL": {
+      "IMPLEMENTATION_BLOCKED": 7
+    },
+    "F05_SPREAD_AWARE_EXECUTION_GATING": {
+      "IMPLEMENTATION_BLOCKED": 9
+    },
+    "F10_INTRADAY_SEASONALITY": {
+      "IMPLEMENTATION_BLOCKED": 9
+    },
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": {
+      "IMPLEMENTATION_BLOCKED": 12
+    },
+    "F12_COST_SENSITIVE_ML_ABSTENTION": {
+      "IMPLEMENTATION_BLOCKED": 14
+    }
+  },
+  "certified_executable_trials": 6,
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "corrected_trials_run": 6,
+  "cost_stress_1_5x_survivors": 0,
+  "cost_stress_2_0x_survivors": 0,
+  "created_at": "2026-08-11T20:40:42.598456+00:00",
+  "gate_id": "A0R3D_CERTIFIED_EXECUTABLE_SUBSET_V1",
+  "hansen_spa_p": 1.0,
+  "next_gate": "A0R3E_REMAINING_SEMANTICS_OR_2018_CONFIRMATION_ONLY_AFTER_REVIEW",
+  "pass_strata_freeze_sha256": "b56c053defd62077147264bdf3b7068ef1e4d6ae0f87eaa10f92aaa92ac156f2",
+  "pbo": "NOT_APPLICABLE",
+  "shortlist_size": 6,
+  "status": "PASS",
+  "summary_hash": "e388c217fe918d0195969b65403e4d745707fb8f63c560dc27fcce22903e68d4",
+  "white_reality_check_p": 0.995991984
+}

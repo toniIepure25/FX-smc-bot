@@ -1,0 +1,610 @@
+{
+  "artifact_id": "A0R3D_SHORTLIST_V1",
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "gate_id": "A0R3D_CERTIFIED_EXECUTABLE_SUBSET_V1",
+  "rows": [
+    {
+      "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+      "configuration_sha256": "e51a0bcd7b22e057ffaf919cf66e3e60f3b93fba754b6a027f31a7a8ea654de6",
+      "corrected_significance": {
+        "bh_fdr_p": 1.0,
+        "dsr": 0.0,
+        "holm_p": 1.0,
+        "kurtosis": 4.063422144,
+        "psr": 0.002311431,
+        "raw_daily_mean_p": 0.566005234,
+        "romano_wolf_p": 0.995991984,
+        "skew": 0.131669756
+      },
+      "cost_stress": {
+        "survival_rate_1_5x": 0.0,
+        "survival_rate_2_0x": 0.0,
+        "survives_1_5x": false,
+        "survives_2_0x": false
+      },
+      "cross_stratum_stability": 0.0,
+      "eligible_topology_units": [
+        {
+          "evaluation_pair": "GBPUSD",
+          "legs": [
+            "GBPUSD"
+          ],
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ],
+      "evidence_tier": "SINGLE_STRATUM_EXPLORATORY_LEAD",
+      "execution_engine": "A0R3D_SIDE_CORRECT_EVENT_STATE_MACHINE",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "primary_equal_weight": {
+        "cost_bps": 207.2,
+        "daily_sharpe": -0.163951,
+        "days": 259,
+        "gross_bps": 153.249513,
+        "hit_rate": 0.501931,
+        "max_drawdown_bps": -264.851252,
+        "net_bps": -53.950487,
+        "net_bps_per_trade": -0.05207576,
+        "trade_count": 1036,
+        "turnover": 3108.0
+      },
+      "status": "CORRECTED_EXPLORATORY_COMPLETED",
+      "synthetic_fills_used": 0,
+      "topology_unit_count": 1,
+      "trade_count": 1036,
+      "trial_id": "A0R1-01-0092",
+      "unit_results": [
+        {
+          "legs": [
+            "GBPUSD"
+          ],
+          "metrics": {
+            "cost_bps": 207.2,
+            "daily_mean_bps": -0.208303039,
+            "daily_sharpe": -0.163951,
+            "days": 259,
+            "gross_bps": 153.249513,
+            "hit_rate": 0.501931,
+            "max_drawdown_bps": -264.851252,
+            "net_bps": -53.950487,
+            "net_bps_per_trade": -0.05207576,
+            "trade_count": 1036,
+            "turnover": 3108.0
+          },
+          "pair": "GBPUSD",
+          "stress_1_5x": {
+            "cost_bps": 583.521322,
+            "daily_mean_bps": -1.661281116,
+            "daily_sharpe": -1.30599,
+            "days": 259,
+            "gross_bps": 153.249513,
+            "hit_rate": 0.483591,
+            "max_drawdown_bps": -528.86552,
+            "net_bps": -430.271809,
+            "net_bps_per_trade": -0.415320279,
+            "trade_count": 1036,
+            "turnover": 3108.0
+          },
+          "stress_2_0x": {
+            "cost_bps": 959.842644,
+            "daily_mean_bps": -3.114259194,
+            "daily_sharpe": -2.443456,
+            "days": 259,
+            "gross_bps": 153.249513,
+            "hit_rate": 0.469112,
+            "max_drawdown_bps": -873.097481,
+            "net_bps": -806.593131,
+            "net_bps_per_trade": -0.778564798,
+            "trade_count": 1036,
+            "turnover": 3108.0
+          },
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ]
+    },
+    {
+      "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+      "configuration_sha256": "014428ac2a4c94465d442221f5ce1bc3f3dc42974389c3f090014771d4197c3a",
+      "corrected_significance": {
+        "bh_fdr_p": 1.0,
+        "dsr": 0.0,
+        "holm_p": 1.0,
+        "kurtosis": 4.760392732,
+        "psr": 0.0,
+        "raw_daily_mean_p": 0.968528763,
+        "romano_wolf_p": 1.0,
+        "skew": 0.02222484
+      },
+      "cost_stress": {
+        "survival_rate_1_5x": 0.0,
+        "survival_rate_2_0x": 0.0,
+        "survives_1_5x": false,
+        "survives_2_0x": false
+      },
+      "cross_stratum_stability": 0.0,
+      "eligible_topology_units": [
+        {
+          "evaluation_pair": "GBPUSD",
+          "legs": [
+            "GBPUSD"
+          ],
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ],
+      "evidence_tier": "SINGLE_STRATUM_EXPLORATORY_LEAD",
+      "execution_engine": "A0R3D_SIDE_CORRECT_EVENT_STATE_MACHINE",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "primary_equal_weight": {
+        "cost_bps": 155.4,
+        "daily_sharpe": -1.834296,
+        "days": 259,
+        "gross_bps": -574.37647,
+        "hit_rate": 0.45045,
+        "max_drawdown_bps": -865.931427,
+        "net_bps": -729.77647,
+        "net_bps_per_trade": -0.939223256,
+        "trade_count": 777,
+        "turnover": 2331.0
+      },
+      "status": "CORRECTED_EXPLORATORY_COMPLETED",
+      "synthetic_fills_used": 0,
+      "topology_unit_count": 1,
+      "trade_count": 777,
+      "trial_id": "A0R1-01-0047",
+      "unit_results": [
+        {
+          "legs": [
+            "GBPUSD"
+          ],
+          "metrics": {
+            "cost_bps": 155.4,
+            "daily_mean_bps": -2.817669769,
+            "daily_sharpe": -1.834296,
+            "days": 259,
+            "gross_bps": -574.37647,
+            "hit_rate": 0.45045,
+            "max_drawdown_bps": -865.931427,
+            "net_bps": -729.77647,
+            "net_bps_per_trade": -0.939223256,
+            "trade_count": 777,
+            "turnover": 2331.0
+          },
+          "pair": "GBPUSD",
+          "stress_1_5x": {
+            "cost_bps": 444.923509,
+            "daily_mean_bps": -3.935521155,
+            "daily_sharpe": -2.560549,
+            "days": 259,
+            "gross_bps": -574.37647,
+            "hit_rate": 0.441441,
+            "max_drawdown_bps": -1103.419293,
+            "net_bps": -1019.299979,
+            "net_bps_per_trade": -1.311840385,
+            "trade_count": 777,
+            "turnover": 2331.0
+          },
+          "stress_2_0x": {
+            "cost_bps": 734.447018,
+            "daily_mean_bps": -5.053372542,
+            "daily_sharpe": -3.284996,
+            "days": 259,
+            "gross_bps": -574.37647,
+            "hit_rate": 0.431145,
+            "max_drawdown_bps": -1351.079572,
+            "net_bps": -1308.823488,
+            "net_bps_per_trade": -1.684457514,
+            "trade_count": 777,
+            "turnover": 2331.0
+          },
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ]
+    },
+    {
+      "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+      "configuration_sha256": "4d5488da39e5860a772cdf37c639a758de0ca6232e9c3157066751599a03e775",
+      "corrected_significance": {
+        "bh_fdr_p": 1.0,
+        "dsr": 0.0,
+        "holm_p": 1.0,
+        "kurtosis": 5.491053328,
+        "psr": 0.0,
+        "raw_daily_mean_p": 0.996759387,
+        "romano_wolf_p": 1.0,
+        "skew": -0.131747922
+      },
+      "cost_stress": {
+        "survival_rate_1_5x": 0.0,
+        "survival_rate_2_0x": 0.0,
+        "survives_1_5x": false,
+        "survives_2_0x": false
+      },
+      "cross_stratum_stability": 0.0,
+      "eligible_topology_units": [
+        {
+          "evaluation_pair": "GBPUSD",
+          "legs": [
+            "GBPUSD"
+          ],
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ],
+      "evidence_tier": "SINGLE_STRATUM_EXPLORATORY_LEAD",
+      "execution_engine": "A0R3D_SIDE_CORRECT_EVENT_STATE_MACHINE",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "primary_equal_weight": {
+        "cost_bps": 207.2,
+        "daily_sharpe": -2.685346,
+        "days": 259,
+        "gross_bps": -708.323717,
+        "hit_rate": 0.444981,
+        "max_drawdown_bps": -976.031108,
+        "net_bps": -915.523717,
+        "net_bps_per_trade": -0.883710151,
+        "trade_count": 1036,
+        "turnover": 3108.0
+      },
+      "status": "CORRECTED_EXPLORATORY_COMPLETED",
+      "synthetic_fills_used": 0,
+      "topology_unit_count": 1,
+      "trade_count": 1036,
+      "trial_id": "A0R1-01-0020",
+      "unit_results": [
+        {
+          "legs": [
+            "GBPUSD"
+          ],
+          "metrics": {
+            "cost_bps": 207.2,
+            "daily_mean_bps": -3.534840606,
+            "daily_sharpe": -2.685346,
+            "days": 259,
+            "gross_bps": -708.323717,
+            "hit_rate": 0.444981,
+            "max_drawdown_bps": -976.031108,
+            "net_bps": -915.523717,
+            "net_bps_per_trade": -0.883710151,
+            "trade_count": 1036,
+            "turnover": 3108.0
+          },
+          "pair": "GBPUSD",
+          "stress_1_5x": {
+            "cost_bps": 581.162681,
+            "daily_mean_bps": -4.978711962,
+            "daily_sharpe": -3.772453,
+            "days": 259,
+            "gross_bps": -708.323717,
+            "hit_rate": 0.432432,
+            "max_drawdown_bps": -1325.23784,
+            "net_bps": -1289.486398,
+            "net_bps_per_trade": -1.24467799,
+            "trade_count": 1036,
+            "turnover": 3108.0
+          },
+          "stress_2_0x": {
+            "cost_bps": 955.125362,
+            "daily_mean_bps": -6.422583317,
+            "daily_sharpe": -4.851538,
+            "days": 259,
+            "gross_bps": -708.323717,
+            "hit_rate": 0.416023,
+            "max_drawdown_bps": -1675.940156,
+            "net_bps": -1663.449079,
+            "net_bps_per_trade": -1.605645829,
+            "trade_count": 1036,
+            "turnover": 3108.0
+          },
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ]
+    },
+    {
+      "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+      "configuration_sha256": "55410890efcd184bb3992e66c7d7305374e3d04bd8c3f3dbce37df83ec2135e8",
+      "corrected_significance": {
+        "bh_fdr_p": 1.0,
+        "dsr": 0.0,
+        "holm_p": 1.0,
+        "kurtosis": 5.343418891,
+        "psr": 0.0,
+        "raw_daily_mean_p": 0.999425003,
+        "romano_wolf_p": 1.0,
+        "skew": -0.111685107
+      },
+      "cost_stress": {
+        "survival_rate_1_5x": 0.0,
+        "survival_rate_2_0x": 0.0,
+        "survives_1_5x": false,
+        "survives_2_0x": false
+      },
+      "cross_stratum_stability": 0.0,
+      "eligible_topology_units": [
+        {
+          "evaluation_pair": "GBPUSD",
+          "legs": [
+            "GBPUSD"
+          ],
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ],
+      "evidence_tier": "SINGLE_STRATUM_EXPLORATORY_LEAD",
+      "execution_engine": "A0R3D_SIDE_CORRECT_EVENT_STATE_MACHINE",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "primary_equal_weight": {
+        "cost_bps": 155.6,
+        "daily_sharpe": -3.200595,
+        "days": 260,
+        "gross_bps": -1074.415967,
+        "hit_rate": 0.434447,
+        "max_drawdown_bps": -1312.135561,
+        "net_bps": -1230.015967,
+        "net_bps_per_trade": -1.580997387,
+        "trade_count": 778,
+        "turnover": 2334.0
+      },
+      "status": "CORRECTED_EXPLORATORY_COMPLETED",
+      "synthetic_fills_used": 0,
+      "topology_unit_count": 1,
+      "trade_count": 778,
+      "trial_id": "A0R1-01-0110",
+      "unit_results": [
+        {
+          "legs": [
+            "GBPUSD"
+          ],
+          "metrics": {
+            "cost_bps": 155.6,
+            "daily_mean_bps": -4.730830642,
+            "daily_sharpe": -3.200595,
+            "days": 260,
+            "gross_bps": -1074.415967,
+            "hit_rate": 0.434447,
+            "max_drawdown_bps": -1312.135561,
+            "net_bps": -1230.015967,
+            "net_bps_per_trade": -1.580997387,
+            "trade_count": 778,
+            "turnover": 2334.0
+          },
+          "pair": "GBPUSD",
+          "stress_1_5x": {
+            "cost_bps": 463.485547,
+            "daily_mean_bps": -5.915005821,
+            "daily_sharpe": -4.000713,
+            "days": 260,
+            "gross_bps": -1074.415967,
+            "hit_rate": 0.422879,
+            "max_drawdown_bps": -1607.609114,
+            "net_bps": -1537.901513,
+            "net_bps_per_trade": -1.976737164,
+            "trade_count": 778,
+            "turnover": 2334.0
+          },
+          "stress_2_0x": {
+            "cost_bps": 771.371093,
+            "daily_mean_bps": -7.099181,
+            "daily_sharpe": -4.79986,
+            "days": 260,
+            "gross_bps": -1074.415967,
+            "hit_rate": 0.407455,
+            "max_drawdown_bps": -1904.130798,
+            "net_bps": -1845.78706,
+            "net_bps_per_trade": -2.372476941,
+            "trade_count": 778,
+            "turnover": 2334.0
+          },
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ]
+    },
+    {
+      "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+      "configuration_sha256": "0a4dc76c3c2d3b6df4c01afb10b1e491c3c9438f3f75b16b26475e5d20662927",
+      "corrected_significance": {
+        "bh_fdr_p": 1.0,
+        "dsr": 0.0,
+        "holm_p": 1.0,
+        "kurtosis": 4.65909629,
+        "psr": 0.0,
+        "raw_daily_mean_p": 1.0,
+        "romano_wolf_p": 1.0,
+        "skew": 0.408601268
+      },
+      "cost_stress": {
+        "survival_rate_1_5x": 0.0,
+        "survival_rate_2_0x": 0.0,
+        "survives_1_5x": false,
+        "survives_2_0x": false
+      },
+      "cross_stratum_stability": 0.0,
+      "eligible_topology_units": [
+        {
+          "evaluation_pair": "GBPUSD",
+          "legs": [
+            "GBPUSD"
+          ],
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ],
+      "evidence_tier": "SINGLE_STRATUM_EXPLORATORY_LEAD",
+      "execution_engine": "A0R3D_SIDE_CORRECT_EVENT_STATE_MACHINE",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "primary_equal_weight": {
+        "cost_bps": 622.4,
+        "daily_sharpe": -6.07365,
+        "days": 260,
+        "gross_bps": -1754.212446,
+        "hit_rate": 0.422237,
+        "max_drawdown_bps": -2348.270375,
+        "net_bps": -2376.612446,
+        "net_bps_per_trade": -0.763692946,
+        "trade_count": 3112,
+        "turnover": 9336.0
+      },
+      "status": "CORRECTED_EXPLORATORY_COMPLETED",
+      "synthetic_fills_used": 0,
+      "topology_unit_count": 1,
+      "trade_count": 3112,
+      "trial_id": "A0R1-01-0002",
+      "unit_results": [
+        {
+          "legs": [
+            "GBPUSD"
+          ],
+          "metrics": {
+            "cost_bps": 622.4,
+            "daily_mean_bps": -9.140817102,
+            "daily_sharpe": -6.07365,
+            "days": 260,
+            "gross_bps": -1754.212446,
+            "hit_rate": 0.422237,
+            "max_drawdown_bps": -2348.270375,
+            "net_bps": -2376.612446,
+            "net_bps_per_trade": -0.763692946,
+            "trade_count": 3112,
+            "turnover": 9336.0
+          },
+          "pair": "GBPUSD",
+          "stress_1_5x": {
+            "cost_bps": 1849.734767,
+            "daily_mean_bps": -13.861335437,
+            "daily_sharpe": -9.180064,
+            "days": 260,
+            "gross_bps": -1754.212446,
+            "hit_rate": 0.391388,
+            "max_drawdown_bps": -3560.2,
+            "net_bps": -3603.947214,
+            "net_bps_per_trade": -1.158080724,
+            "trade_count": 3112,
+            "turnover": 9336.0
+          },
+          "stress_2_0x": {
+            "cost_bps": 3077.069534,
+            "daily_mean_bps": -18.581853772,
+            "daily_sharpe": -12.248641,
+            "days": 260,
+            "gross_bps": -1754.212446,
+            "hit_rate": 0.363111,
+            "max_drawdown_bps": -4772.129625,
+            "net_bps": -4831.281981,
+            "net_bps_per_trade": -1.552468503,
+            "trade_count": 3112,
+            "turnover": 9336.0
+          },
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ]
+    },
+    {
+      "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+      "configuration_sha256": "1907b9ed776656cc25ff3a70cc287ef9e4c9901121779b0b2ddb88f384b0fa9c",
+      "corrected_significance": {
+        "bh_fdr_p": 1.0,
+        "dsr": 8.3e-08,
+        "holm_p": 1.0,
+        "kurtosis": 47.877016388,
+        "psr": 8.3e-08,
+        "raw_daily_mean_p": 1.0,
+        "romano_wolf_p": 1.0,
+        "skew": -4.521466228
+      },
+      "cost_stress": {
+        "survival_rate_1_5x": 0.0,
+        "survival_rate_2_0x": 0.0,
+        "survives_1_5x": false,
+        "survives_2_0x": false
+      },
+      "cross_stratum_stability": 0.0,
+      "eligible_topology_units": [
+        {
+          "evaluation_pair": "GBPUSD",
+          "legs": [
+            "GBPUSD"
+          ],
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ],
+      "evidence_tier": "SINGLE_STRATUM_EXPLORATORY_LEAD",
+      "execution_engine": "A0R3D_SIDE_CORRECT_EVENT_STATE_MACHINE",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "primary_equal_weight": {
+        "cost_bps": 623.6,
+        "daily_sharpe": -12.023631,
+        "days": 260,
+        "gross_bps": -2214.883566,
+        "hit_rate": 0.370109,
+        "max_drawdown_bps": -2803.976918,
+        "net_bps": -2838.483566,
+        "net_bps_per_trade": -0.910353934,
+        "trade_count": 3118,
+        "turnover": 9354.0
+      },
+      "status": "CORRECTED_EXPLORATORY_COMPLETED",
+      "synthetic_fills_used": 0,
+      "topology_unit_count": 1,
+      "trade_count": 3118,
+      "trial_id": "A0R1-01-0065",
+      "unit_results": [
+        {
+          "legs": [
+            "GBPUSD"
+          ],
+          "metrics": {
+            "cost_bps": 623.6,
+            "daily_mean_bps": -10.917244483,
+            "daily_sharpe": -12.023631,
+            "days": 260,
+            "gross_bps": -2214.883566,
+            "hit_rate": 0.370109,
+            "max_drawdown_bps": -2803.976918,
+            "net_bps": -2838.483566,
+            "net_bps_per_trade": -0.910353934,
+            "trade_count": 3118,
+            "turnover": 9354.0
+          },
+          "pair": "GBPUSD",
+          "stress_1_5x": {
+            "cost_bps": 2138.036033,
+            "daily_mean_bps": -16.741998456,
+            "daily_sharpe": -14.790115,
+            "days": 260,
+            "gross_bps": -2214.883566,
+            "hit_rate": 0.305965,
+            "max_drawdown_bps": -4302.071263,
+            "net_bps": -4352.919599,
+            "net_bps_per_trade": -1.396061449,
+            "trade_count": 3118,
+            "turnover": 9354.0
+          },
+          "stress_2_0x": {
+            "cost_bps": 3652.472066,
+            "daily_mean_bps": -22.56675243,
+            "daily_sharpe": -16.266504,
+            "days": 260,
+            "gross_bps": -2214.883566,
+            "hit_rate": 0.241822,
+            "max_drawdown_bps": -5800.165608,
+            "net_bps": -5867.355632,
+            "net_bps_per_trade": -1.881768965,
+            "trade_count": 3118,
+            "turnover": 9354.0
+          },
+          "topology_id": "GBPUSD:2017",
+          "year": 2017
+        }
+      ]
+    }
+  ],
+  "selection_rule": "corrected evidence, net economics, cost robustness, support and stability; never raw Sharpe alone",
+  "shortlist_size": 6,
+  "status": "PASS"
+}
