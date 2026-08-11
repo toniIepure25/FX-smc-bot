@@ -1,0 +1,1169 @@
+{
+  "artifact_id": "A0R3B_PASS_STRATA_DATASET_FREEZE_V1",
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "excluded_failed_strata": [
+    {
+      "pair": "EURUSD",
+      "year": 2016
+    },
+    {
+      "pair": "EURUSD",
+      "year": 2017
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2015
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2016
+    }
+  ],
+  "freeze_hash_inputs_hash": "ff9113c3a8a0a0a5175fe694486c19dacab480015b13aa50963dba63a05cfa9a",
+  "frozen_dataset_sha256": "c8207b7e49eccfdc03542855b7f9a34a948241c9eee43fa01f632641e9467510",
+  "gate_id": "A0R3B_PASS_STRATA_EXPLORATORY_DISCOVERY_V1",
+  "no_2018_plus_market_or_outcome_data_opened": true,
+  "no_imputation": true,
+  "no_synthetic_fills": true,
+  "pass_strata": [
+    {
+      "invalid_ohlc_rows": 0,
+      "m1_canonical_hash": "1bec582fb8af051154521a5183bba014d577ee1822aec77fb91cc7de82ad39f0",
+      "m5_canonical_hash": "5dd64a14a54bcde1ec5201f6502a1c9c7966c5eb88d3c1c44941d5a2eb1ac1d6",
+      "negative_spreads": 0,
+      "pair": "EURUSD",
+      "rows_m1": 359813,
+      "rows_m5": 72070,
+      "source_file_sha256_set_hash": "9dfa31ddddd7d2a29b83bb05e83fddc5100e7d7182f00b9af0b4fdfb1b4ecd50",
+      "year": 2015
+    },
+    {
+      "invalid_ohlc_rows": 0,
+      "m1_canonical_hash": "6579ae4579100172410af6462f8298acb7db8043db1a6ebc75e71a922bef2de0",
+      "m5_canonical_hash": "8900f92e6f7274b066847dbeb65ae8fb37dd34023adffdcbb5561b0cd16d215a",
+      "negative_spreads": 0,
+      "pair": "GBPUSD",
+      "rows_m1": 373252,
+      "rows_m5": 74694,
+      "source_file_sha256_set_hash": "691ec9130f4c30b77e1f700a9caaed52bc7cec5d7065ca2c19ebb491e24b2380",
+      "year": 2017
+    },
+    {
+      "invalid_ohlc_rows": 0,
+      "m1_canonical_hash": "56958856f4ef1641cecc475355682e6b89b28ad5d459af2e730ca78d47b5e7b1",
+      "m5_canonical_hash": "b9bd7f470bb517fb887a4c18261b75227c7c80b7633a0ad998424bd88b148b53",
+      "negative_spreads": 0,
+      "pair": "USDJPY",
+      "rows_m1": 372807,
+      "rows_m5": 74698,
+      "source_file_sha256_set_hash": "54d1d7c7719c163eae1b8fbcbc042008541f845a4d60b68a27ffaada16931d70",
+      "year": 2015
+    },
+    {
+      "invalid_ohlc_rows": 0,
+      "m1_canonical_hash": "d0f1c6ed53ddf778aec74ea8cd6c8beafaee57497b4d04c5c765e3d4ff62a307",
+      "m5_canonical_hash": "82ce9b32fb8d7ea6f52f480d341e81b0908271c845c4aa270907680abc00f6cc",
+      "negative_spreads": 0,
+      "pair": "USDJPY",
+      "rows_m1": 373768,
+      "rows_m5": 74873,
+      "source_file_sha256_set_hash": "5040feeb8ca0c53291d6b500742f9f4d6c2dd6c989fcce108a16c22dd0833ab1",
+      "year": 2016
+    },
+    {
+      "invalid_ohlc_rows": 0,
+      "m1_canonical_hash": "5f5f71ca19bb7923fa1d3c47ccd83bdd90c76df43e1d0448bfde9e902f2754f1",
+      "m5_canonical_hash": "e17fcb9b2e37cdb9478460ba434bb74ccde899ba71406324ae1330492e14017e",
+      "negative_spreads": 0,
+      "pair": "USDJPY",
+      "rows_m1": 372641,
+      "rows_m5": 74667,
+      "source_file_sha256_set_hash": "86976af14b61a9138aac67f999dd62f3421f50929aa0c65ea866df6d87acf06f",
+      "year": 2017
+    }
+  ],
+  "raw_root": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node",
+  "source_files": [
+    {
+      "bytes": 3805206,
+      "month": 1,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=01\\data.json",
+      "sha256": "c17b89fed9bd9c12fa49422fd8c553ff0333530521cd62a627e0d3ecbe19b51c",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3625617,
+      "month": 1,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=01\\data.json",
+      "sha256": "4554e7823b48934477a5a25b73613f377ed923a45db7df706745fa6e1b3e23d1",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3617139,
+      "month": 2,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=02\\data.json",
+      "sha256": "f750769a643c473f3c5c8c04b8c5759721fc1a686a270d493f0de01d421b6860",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3436069,
+      "month": 2,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=02\\data.json",
+      "sha256": "2e2ebc0fc09512d40b18a385f6e8033c600c7be21e04dda525ca9db5eed5dbfe",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 4006402,
+      "month": 3,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=03\\data.json",
+      "sha256": "540b94797c51f0d46f7c4856c8571ce722bc41f897fa0d2db3a25882051638ec",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 4006427,
+      "month": 3,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=03\\data.json",
+      "sha256": "1e4634273edcd1fc2e91d7f5edfcd8d876b51588d434e4c675f5526df6d61b5f",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3797159,
+      "month": 4,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=04\\data.json",
+      "sha256": "ea95999a7bc4a13e1534f35c0ac39f065712f81a1f15c023df73c6fa2b0f542c",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3978837,
+      "month": 4,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=04\\data.json",
+      "sha256": "afa45a8c1953721ad03f82ec21674fd76c77daa10ad07c84ebae3aa635887372",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3784112,
+      "month": 5,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=05\\data.json",
+      "sha256": "8b288e2a35cb54dac3adb709d1120137fb94761a7f57c3ad093c0af04110f4fb",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3787374,
+      "month": 5,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=05\\data.json",
+      "sha256": "bdcdc5c7854b1702c1ea47b2e7cecf917173bd06da1431d3bb59e7a8d01c3cd2",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3982409,
+      "month": 6,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=06\\data.json",
+      "sha256": "1effdcee74112a712e7464a3548eec04ced4f16f6f45faca8b19d627ec7b47d0",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3599112,
+      "month": 6,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=06\\data.json",
+      "sha256": "8a46022dc9a01f4e79a15a35fdce356cdbcb2131973d36f3769ded05c582cd82",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 4137059,
+      "month": 7,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=07\\data.json",
+      "sha256": "e1f8440734b7e08ae0d36057ca06e1347d063abd68e93afedd6736350317f4c1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 4138709,
+      "month": 7,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=07\\data.json",
+      "sha256": "b0f6cabd92350b50808d713aa494fd9c6584beaf66326a170315f9a51b6fd56e",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3817512,
+      "month": 8,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=08\\data.json",
+      "sha256": "e67a78daefe1874fb1489c2b4d6e48b418a8aa93a834ecd99be7619b18c61b21",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3819767,
+      "month": 8,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=08\\data.json",
+      "sha256": "a63aee0130bcd8d4566b9c8725f6dabc6756c7f6fff46f8fdecc1eb84a806650",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3984197,
+      "month": 9,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=09\\data.json",
+      "sha256": "cf60c1bca88580ebacac2a4f800a8fb3b31c95d52b54a7dd36ecf7cb5ec5ba6b",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3981767,
+      "month": 9,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=09\\data.json",
+      "sha256": "179379b70f6c7d4c1561c73063131df6bcf3f5f36879c45229b2f504a0325d8d",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3959638,
+      "month": 10,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=10\\data.json",
+      "sha256": "58e9057fce47221e8fdee5048b5c4f742519d7842e829e48fcfbe0a37b331acf",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3961929,
+      "month": 10,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=10\\data.json",
+      "sha256": "b90642136bfbcfb0e583a77e4dff55c9cc89265f2c881468bbe5a2d02e769c2d",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3809136,
+      "month": 11,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=11\\data.json",
+      "sha256": "183bdf62f7cf7374e49572a6d0718a1982ab455d7d4c78f48755558076ec629b",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3804066,
+      "month": 11,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=11\\data.json",
+      "sha256": "49b783c71f6babe369a14ef34012086216d27fe67b66d694aedb9681834e631a",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3664713,
+      "month": 12,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=12\\data.json",
+      "sha256": "cb843611689d8bb13f1e28d9102ccca3e7c64061ac9770f0030a920634bbe3d1",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3664338,
+      "month": 12,
+      "pair": "EURUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=ask\\year=2015\\month=12\\data.json",
+      "sha256": "20ca1984f1f366582f26e0b6a07c28e6d3aeb75a701e1cfd103d2484a5c0b802",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3999892,
+      "month": 1,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=01\\data.json",
+      "sha256": "30f77d75bd3e91faf0479f54fc8a5f95ea7a60bbf0681932afd544e145103732",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3997590,
+      "month": 1,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=01\\data.json",
+      "sha256": "997b0b4682bbd11edb43a2b77cb44260f223af9023ae3d4f7e9aafdb4c5daadd",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3627067,
+      "month": 2,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=02\\data.json",
+      "sha256": "b3fe5a098626791ece430bb16b956fb00f7fd7da8fddf06a9a5a2f97c546f09f",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3628772,
+      "month": 2,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=02\\data.json",
+      "sha256": "3cc341dd7f7db0a3f08de7e5c7b774973815567d8920da813b62f305544c3716",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4155360,
+      "month": 3,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=03\\data.json",
+      "sha256": "aebff394be40df769966124edc1ffd48cc5ab51d2ba03d00c57370cf787bdbb9",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4154323,
+      "month": 3,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=03\\data.json",
+      "sha256": "57d20468b21eec553a5f7a7083f3f8d4b83cd087b3a28e2e44216f983e919551",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3649770,
+      "month": 4,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=04\\data.json",
+      "sha256": "2fae8e1fea18d03d038e02c7a6b4c766f6ea16d0b894cdd350aff10615281670",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3651576,
+      "month": 4,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=04\\data.json",
+      "sha256": "f0ee09330c3d4f43c43c4ab41afc447fd81cd2b74def8a369084ef205191d66b",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4174241,
+      "month": 5,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=05\\data.json",
+      "sha256": "4b96ade42f25e5433acc84d2ff52b947a7f05995a05138892f64a78d01a31abe",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4173364,
+      "month": 5,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=05\\data.json",
+      "sha256": "aebb7fbcf9593e58ef34a32631cb2b3173d2a9ceef0dc88b7f8101e512e54286",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3963564,
+      "month": 6,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=06\\data.json",
+      "sha256": "8052e829ef94870232b39d329159929faf431af83b162928337fe85fab51c9ac",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3962477,
+      "month": 6,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=06\\data.json",
+      "sha256": "36f2c6b028d64d68b83d5674f4577cea1908025a4ad13a0f43a461e173210b28",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3814618,
+      "month": 7,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=07\\data.json",
+      "sha256": "76d28940afe9df2f9c2dd4af417f27d825339ad97ac5c4fae839ad02e71b8f36",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3819333,
+      "month": 7,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=07\\data.json",
+      "sha256": "408f0ee70ea25d2919526f69b468e8193ce979f9f8ed8be855c85656e2d68cd4",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4156867,
+      "month": 8,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=08\\data.json",
+      "sha256": "6eb05b83020c5a13a333f0d575f47ca2b2e75d4342cd063eb1d720aa35f47c9b",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4160911,
+      "month": 8,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=08\\data.json",
+      "sha256": "5beb6cd81dad92f4c55592b0424123ee8204fdadd748f982b93a42b9982a9a9d",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3781543,
+      "month": 9,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=09\\data.json",
+      "sha256": "fe7f4551721d34336d85d611f813c60cdde375b49885f6dc776b3214d9bfe210",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3783873,
+      "month": 9,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=09\\data.json",
+      "sha256": "f7f61749ddb7b0256f46a8616c45a6616f049067d3f961f6ace90bc85e36caf7",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4010966,
+      "month": 10,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=10\\data.json",
+      "sha256": "4e2e31a935d80ea133398ae1a46e835b19dec4a3c09bb2417faa536d6f749299",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4012150,
+      "month": 10,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=10\\data.json",
+      "sha256": "9f8fd7eef06b3a61b467f62ac8eb1ff23fa334e78021d644e66ad365edb1c342",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3989365,
+      "month": 11,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=11\\data.json",
+      "sha256": "71338cddf05c19da0e39d4002e520ec1d7825bb5d8adc41e372ba45d320e007a",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3989877,
+      "month": 11,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=11\\data.json",
+      "sha256": "9990c0a86a3d7736d2160c67a78fae73742e24e46de755d46644493e62fd9570",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3673923,
+      "month": 12,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=bid\\year=2017\\month=12\\data.json",
+      "sha256": "5bba87624bda0f979f06cfd5c17074e5cb4a69182adb2fc0478d6951f1dd9105",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3672242,
+      "month": 12,
+      "pair": "GBPUSD",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\GBPUSD\\price=ask\\year=2017\\month=12\\data.json",
+      "sha256": "4670080f56e4976d98ac20941bc50581697cf441abed36656fffda8676a26057",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3807085,
+      "month": 1,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=01\\data.json",
+      "sha256": "d9f7aa12acd180e09c872cd6c98fd535ce3f0bd6d2f85417dc91d075f3bc4a51",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3809811,
+      "month": 1,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=01\\data.json",
+      "sha256": "42299e8e8f4fa4f3290e6adb0d311aae1f72833e23fe4d7056c4cc232291e270",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3618798,
+      "month": 2,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=02\\data.json",
+      "sha256": "181f2a43ea8a021358853881b10c6ca1bc2edcba92aa3e1b5a6f1f75c194840c",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3622718,
+      "month": 2,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=02\\data.json",
+      "sha256": "7422a86ed3fd6ec390c4176c766134ca571b1f02185a446be0952b0eb11722ef",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 4003495,
+      "month": 3,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=03\\data.json",
+      "sha256": "a14955f6e1b8a0b387b8ca94aa2031b4d783f03aafe9272f8935b7372823bea5",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 4003387,
+      "month": 3,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=03\\data.json",
+      "sha256": "0c57ba9444de74a7df62e26726b548aa17042994f6e21d3b07e21fbe2f9d6335",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3968465,
+      "month": 4,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=04\\data.json",
+      "sha256": "44467c53f89bf2733927f7cba9dab30b324a33d7298dd86da422b0fbc9646faa",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3968274,
+      "month": 4,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=04\\data.json",
+      "sha256": "981090a90b7fd96a27ce9eb15baa64a440e3344e4d43579c82d469ca0a6ad98c",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3774113,
+      "month": 5,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=05\\data.json",
+      "sha256": "422a55ffce82d129b9bfc1f2776705c4159c9fc512e17e3a6cfeeba2cf7919c2",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3774155,
+      "month": 5,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=05\\data.json",
+      "sha256": "cf9279d29e08bd261744a7a4db33676b5d5ce215eaf4cec4da0019b85df08907",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3969023,
+      "month": 6,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=06\\data.json",
+      "sha256": "956eccee63a69e0148b8c2a8fc1b31dfadd92dae96492241833ef23e6a2facd0",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3969260,
+      "month": 6,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=06\\data.json",
+      "sha256": "52ddc9d2e4e5cccc8d2144b25793d3ba66385c869cc06fe63997cc1fee521a6b",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 4103829,
+      "month": 7,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=07\\data.json",
+      "sha256": "c323be405dfe371c8722cb26b471f3a244a2fbaac5285fe319836db85df36781",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 4106232,
+      "month": 7,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=07\\data.json",
+      "sha256": "cd13acaf28604f8812425ccc6f1d60c3a84ab9311935362a00c75115a393651b",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3799476,
+      "month": 8,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=08\\data.json",
+      "sha256": "e72db1ec2426ef2ac8051b8cab37c8acdeb856a70fe7ea99d923eee892ff3765",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3798959,
+      "month": 8,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=08\\data.json",
+      "sha256": "3130d85316b5e410f58798d558947b7830b1abf35ae128f1a72bdbf51c76443a",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3987749,
+      "month": 9,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=09\\data.json",
+      "sha256": "ba68a61c0141917dc3a0487038839d6faa51b0d4a1426e8fbf9f939fe851b7a0",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3986847,
+      "month": 9,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=09\\data.json",
+      "sha256": "6f3d5ba633ba59491d7f520ce93286b2280030a74dfa95667e1891a39c8271fd",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3967676,
+      "month": 10,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=10\\data.json",
+      "sha256": "21fd9807edd1e2b7c42bbe898b3cfee5289bf9d99b45b0a3d7f0d7066cd63349",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3967167,
+      "month": 10,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=10\\data.json",
+      "sha256": "f1f97c6178ec2fada481fe68aef57543a8b5919e16c473d4d44574ceda0021f9",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3825978,
+      "month": 11,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=11\\data.json",
+      "sha256": "26e8e559be2c961d8d3eae76daee3d28dbbaa395d4bb2f4b09b604edff69bf4e",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 3822435,
+      "month": 11,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=11\\data.json",
+      "sha256": "257cfa88e5883251b81da856051887fbece8ae28184fbf4649a9d5d0bd1467c9",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 4033741,
+      "month": 12,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2015\\month=12\\data.json",
+      "sha256": "029962d08449fa95b6079e0d4b407d8ec03c7fdb339751ef6d73a9ee04eb6718",
+      "side": "bid",
+      "year": 2015
+    },
+    {
+      "bytes": 4022268,
+      "month": 12,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2015\\month=12\\data.json",
+      "sha256": "1d50556d8726e1bdd8e695e2cf466acd186380b4b0e4264115c1202dfc2ab8f6",
+      "side": "ask",
+      "year": 2015
+    },
+    {
+      "bytes": 3651633,
+      "month": 1,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=01\\data.json",
+      "sha256": "f6d3a91b64fbcb434109bec905a644d94f31992ce31f845737c060a6a54a58b7",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3650396,
+      "month": 1,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=01\\data.json",
+      "sha256": "f9406addbd850f548fe8bf4aa4589c78e7deb606a2fe4d1cff31a2f3e90c54d2",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3822084,
+      "month": 2,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=02\\data.json",
+      "sha256": "18595bd96a211fc86682e9d09a4310990a173116d42a74b519838936b6244d90",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3819448,
+      "month": 2,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=02\\data.json",
+      "sha256": "f2f60b2c108bcbe03e91639d4355814841784465c7c9433a120e48a584c16597",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 4173593,
+      "month": 3,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=03\\data.json",
+      "sha256": "5c7aa33aa2dd45a6327bf34900b07da4266103f7c204a08165de2f8f45789543",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 4170245,
+      "month": 3,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=03\\data.json",
+      "sha256": "3eb06378636a61fac3a426f5e3e5c6890585fc76bb794a5853962d386174948c",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3791741,
+      "month": 4,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=04\\data.json",
+      "sha256": "ed618a20b3162f3e6ecf86e42462ee9279e0d46ec022b7b3effa86cf44036d66",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3791305,
+      "month": 4,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=04\\data.json",
+      "sha256": "d4da2e79ae08655fe4ec363530701001a50775d7c9a310af8531a51fbc19d847",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 4008509,
+      "month": 5,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=05\\data.json",
+      "sha256": "b95d0e6f4a6fa1e2fcb0a6e08ce661035a17f754d58bf867b00be3e606ced900",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 4008785,
+      "month": 5,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=05\\data.json",
+      "sha256": "c530eb357cb17ddc87df0cdeb96af1227c77f559af901d166bebc0d65907f6d5",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3990016,
+      "month": 6,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=06\\data.json",
+      "sha256": "f2bb0892458e78ccc3043fe763ee556f219b62adb51c3a2397017caf135df2e6",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3987650,
+      "month": 6,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=06\\data.json",
+      "sha256": "8e6debe657f601948dfbf36959edc4cbec0bec987499529f8f440951c841a996",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3807674,
+      "month": 7,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=07\\data.json",
+      "sha256": "1f1f35fca33afd89ebc91a8d7648ca2853042329b6ca28707ed22872d67aa89f",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3805654,
+      "month": 7,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=07\\data.json",
+      "sha256": "a3c77d4946febae3ce4651ca3620b5042eec01713b125660d2432ffde79758f9",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 4172364,
+      "month": 8,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=08\\data.json",
+      "sha256": "7aaae426643e2567873d5336f990fb4358d6f8a03d7e66e8d40651e41474ace0",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 4170143,
+      "month": 8,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=08\\data.json",
+      "sha256": "19bcb0628dc3f4386bfe8791359bbb01aa2a3d6bd4d6e2cb18566b7fe9c9536d",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3967593,
+      "month": 9,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=09\\data.json",
+      "sha256": "b843b3c05dfcd6eeb070bfd43bb9f30539c91bf8b3485683e68439602ed873e1",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3967891,
+      "month": 9,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=09\\data.json",
+      "sha256": "d0d7899b760c57c93697bc486df127d30f90712666113a5481092d13563d79ae",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3831761,
+      "month": 10,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=10\\data.json",
+      "sha256": "7d56ca1606a58810d8737633315d19b087ae8f768e359064a1c4d0d9c55aa648",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3831531,
+      "month": 10,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=10\\data.json",
+      "sha256": "8eb0d1a229263f0e0b7f5fd2db2133cd2994ab4c975ce37aa2e037159b03d1ca",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3991792,
+      "month": 11,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=11\\data.json",
+      "sha256": "0d38fc9cbb4b239d71d9b37ce159dd5362924aab2c77d153fcb1107e1cbfc87f",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3992430,
+      "month": 11,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=11\\data.json",
+      "sha256": "c677367f5823a65c87ac1ba6d77addeb7e9bd4e9162307368341eb804e335c40",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3954586,
+      "month": 12,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2016\\month=12\\data.json",
+      "sha256": "9bc33bc387ad507bf6c335286a2bd2d236d125a4b15d3cd6b1c315d01693574c",
+      "side": "bid",
+      "year": 2016
+    },
+    {
+      "bytes": 3953759,
+      "month": 12,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2016\\month=12\\data.json",
+      "sha256": "6660ac70d5aec77692f42cb2b5249548915695f89b6fea9769af05a175e9ec59",
+      "side": "ask",
+      "year": 2016
+    },
+    {
+      "bytes": 3969760,
+      "month": 1,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=01\\data.json",
+      "sha256": "3c9bfb5cc7f9fe4da56110b573ae118de43e583a7476c5c495675d83e663c726",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3969957,
+      "month": 1,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=01\\data.json",
+      "sha256": "abbd65267479a47e1065c0d87f41c0f47619573ce04bdb668c4a58f508c20a5d",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3636688,
+      "month": 2,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=02\\data.json",
+      "sha256": "4b938956e4f54894aa65c3fcc91b4da5b129c2982c085abcfd30f85082eb0761",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3635926,
+      "month": 2,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=02\\data.json",
+      "sha256": "2cb9a673809596fdaa9c82aa6788fce1ed05f6b0917cb8a328af53bc1430f2f5",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4163300,
+      "month": 3,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=03\\data.json",
+      "sha256": "64781dc62469bef0ab058c82c13c2b9b5fff34aa3aed7322c1937d05e01483c9",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4164506,
+      "month": 3,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=03\\data.json",
+      "sha256": "2b2e4aadf7e08e0dc72d5433e85c9d77f5eb6b603d1213706541e529eb642b05",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3653888,
+      "month": 4,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=04\\data.json",
+      "sha256": "007055852ca3d9a0e9d4019f06b5c7ee8e1d70c74ed7aaade11b58679b530f8b",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3653505,
+      "month": 4,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=04\\data.json",
+      "sha256": "7f3bd9acf512948671db84e7dbdd12773f06cfda073fa03dab7746f77cf6c01a",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4179081,
+      "month": 5,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=05\\data.json",
+      "sha256": "2dd47a471d1e63807eafab84bc5ed32bf16d8f9f6e8f45720a64570295d4b21a",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4178196,
+      "month": 5,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=05\\data.json",
+      "sha256": "decc5312c216ac70fd1759e92b8146e194306b4fd8fae929773defee966db08c",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3971123,
+      "month": 6,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=06\\data.json",
+      "sha256": "6efb591c918f991f445a1a5724297b8a0e7cc818664c703be5a016c9807417a4",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3971258,
+      "month": 6,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=06\\data.json",
+      "sha256": "1f9384b09cd843bd6e7424e778fbe36d35b874a74948e8c183990a9307847da4",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3832980,
+      "month": 7,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=07\\data.json",
+      "sha256": "7e9029c30bb7a8cce0942dd69fbad346bf856f9c74fe88f28db9242163e880e5",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3832166,
+      "month": 7,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=07\\data.json",
+      "sha256": "33d43f17e3ff245b79016e47395a48581104150f42da7a9b87bc5a3220198756",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4176073,
+      "month": 8,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=08\\data.json",
+      "sha256": "090f7facd404a92b48940f294ae678cde842877713f54008b879cf00c15eee15",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4177075,
+      "month": 8,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=08\\data.json",
+      "sha256": "e02422668d03d1f15ade497ca2a885d31498db9ca885efb5994145cbdfa69890",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3793168,
+      "month": 9,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=09\\data.json",
+      "sha256": "0b2258cb6cb46b019621b21a0b51612565cee7e80afcf063be502824c2259efd",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3791906,
+      "month": 9,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=09\\data.json",
+      "sha256": "317e569c907278a83899d82dad6e01e1cc86b1dd376a1372d3fe984b179bc87d",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 4015354,
+      "month": 10,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=10\\data.json",
+      "sha256": "06ec7d214df224f410ab87038abe1d1e80040ab1f5c729256e1fea0605f2c6d0",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 4015019,
+      "month": 10,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=10\\data.json",
+      "sha256": "b7e60c98757304e32c51793a9a736a77a7feeb96253df9ba97e028463fdcf09d",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3992054,
+      "month": 11,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=11\\data.json",
+      "sha256": "694e4b4effc885df1d44b7c092f2f558ac04aaacec11f4182a7feb971f2651ff",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3990465,
+      "month": 11,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=11\\data.json",
+      "sha256": "19d97aebd2d7a7284c9811bd13a30d4b278d005c2d75c0e4da534cf3ccaa3f8c",
+      "side": "ask",
+      "year": 2017
+    },
+    {
+      "bytes": 3674324,
+      "month": 12,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=bid\\year=2017\\month=12\\data.json",
+      "sha256": "75de0c9d3e0923ad417565654ab4f0e64af97548203379a2f785e8bb3dccbdb2",
+      "side": "bid",
+      "year": 2017
+    },
+    {
+      "bytes": 3674118,
+      "month": 12,
+      "pair": "USDJPY",
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\USDJPY\\price=ask\\year=2017\\month=12\\data.json",
+      "sha256": "34dfdef8298cae72dc5a1a61987cf63d5e6ab3f33f46a67b30cb98b9c8ded960",
+      "side": "ask",
+      "year": 2017
+    }
+  ],
+  "status": "PASS"
+}

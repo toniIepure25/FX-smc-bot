@@ -1,0 +1,869 @@
+{
+  "artifact_id": "A0R3B_COST_STRESS_RESULTS_V1",
+  "gate_id": "A0R3B_PASS_STRATA_EXPLORATORY_DISCOVERY_V1",
+  "rows": [
+    {
+      "base_net_bps": -5336.066646,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0002"
+    },
+    {
+      "base_net_bps": -3314.431014,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0011"
+    },
+    {
+      "base_net_bps": -3143.774164,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0020"
+    },
+    {
+      "base_net_bps": -2970.954513,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0029"
+    },
+    {
+      "base_net_bps": -3659.99451,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0038"
+    },
+    {
+      "base_net_bps": -2539.087981,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0047"
+    },
+    {
+      "base_net_bps": -2289.430412,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0056"
+    },
+    {
+      "base_net_bps": -5556.499405,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0065"
+    },
+    {
+      "base_net_bps": -2522.614681,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0074"
+    },
+    {
+      "base_net_bps": -3773.999745,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0083"
+    },
+    {
+      "base_net_bps": -1059.983584,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0092"
+    },
+    {
+      "base_net_bps": -4163.538139,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0101"
+    },
+    {
+      "base_net_bps": -2445.957928,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0110"
+    },
+    {
+      "base_net_bps": -2529.728554,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-01-0119"
+    },
+    {
+      "base_net_bps": -21781.629056,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0008"
+    },
+    {
+      "base_net_bps": -8928.727088,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0017"
+    },
+    {
+      "base_net_bps": -23218.995307,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0026"
+    },
+    {
+      "base_net_bps": -6388.825851,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0035"
+    },
+    {
+      "base_net_bps": -18312.818758,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0044"
+    },
+    {
+      "base_net_bps": -8928.727088,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0053"
+    },
+    {
+      "base_net_bps": -23218.995307,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0062"
+    },
+    {
+      "base_net_bps": -6388.825851,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0071"
+    },
+    {
+      "base_net_bps": -18312.818758,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0080"
+    },
+    {
+      "base_net_bps": -8211.356798,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-02-0089"
+    },
+    {
+      "base_net_bps": -6140.097189,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0002"
+    },
+    {
+      "base_net_bps": -1902.059445,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0011"
+    },
+    {
+      "base_net_bps": -6184.688497,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0020"
+    },
+    {
+      "base_net_bps": -1862.836463,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0029"
+    },
+    {
+      "base_net_bps": -6140.097189,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0038"
+    },
+    {
+      "base_net_bps": -1902.059445,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0047"
+    },
+    {
+      "base_net_bps": -6184.688497,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0056"
+    },
+    {
+      "base_net_bps": -1862.836463,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0065"
+    },
+    {
+      "base_net_bps": -6140.097189,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0074"
+    },
+    {
+      "base_net_bps": -1902.059445,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0083"
+    },
+    {
+      "base_net_bps": -6184.688497,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-03-0092"
+    },
+    {
+      "base_net_bps": -9904.569774,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-04-0005"
+    },
+    {
+      "base_net_bps": -23806.728797,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-04-0032"
+    },
+    {
+      "base_net_bps": -9904.569774,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-04-0041"
+    },
+    {
+      "base_net_bps": -24037.958988,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-04-0050"
+    },
+    {
+      "base_net_bps": -9904.569774,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-04-0077"
+    },
+    {
+      "base_net_bps": -24037.958988,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-04-0086"
+    },
+    {
+      "base_net_bps": -9870.509215,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-04-0095"
+    },
+    {
+      "base_net_bps": -60232.776472,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0008"
+    },
+    {
+      "base_net_bps": -42350.150169,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0017"
+    },
+    {
+      "base_net_bps": -62605.283044,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0026"
+    },
+    {
+      "base_net_bps": -41695.042657,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0035"
+    },
+    {
+      "base_net_bps": -60232.776472,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0044"
+    },
+    {
+      "base_net_bps": -42350.150169,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0053"
+    },
+    {
+      "base_net_bps": -62605.283044,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0062"
+    },
+    {
+      "base_net_bps": -41695.042657,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0071"
+    },
+    {
+      "base_net_bps": -60232.776472,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-05-0080"
+    },
+    {
+      "base_net_bps": -8998.339231,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0005"
+    },
+    {
+      "base_net_bps": -29109.556491,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0014"
+    },
+    {
+      "base_net_bps": -2593.316855,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0023"
+    },
+    {
+      "base_net_bps": -6970.054224,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0032"
+    },
+    {
+      "base_net_bps": -8998.339231,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0041"
+    },
+    {
+      "base_net_bps": -29109.556491,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0050"
+    },
+    {
+      "base_net_bps": -2593.316855,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0059"
+    },
+    {
+      "base_net_bps": -6970.054224,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0068"
+    },
+    {
+      "base_net_bps": -8998.339231,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-10-0077"
+    },
+    {
+      "base_net_bps": -32760.857408,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0002"
+    },
+    {
+      "base_net_bps": -12392.953358,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0011"
+    },
+    {
+      "base_net_bps": -32569.916389,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0020"
+    },
+    {
+      "base_net_bps": -12226.251932,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0029"
+    },
+    {
+      "base_net_bps": -32760.857408,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0038"
+    },
+    {
+      "base_net_bps": -12392.953358,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0047"
+    },
+    {
+      "base_net_bps": -32569.916389,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0056"
+    },
+    {
+      "base_net_bps": -12226.251932,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0065"
+    },
+    {
+      "base_net_bps": -32760.857408,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0074"
+    },
+    {
+      "base_net_bps": -12392.953358,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0083"
+    },
+    {
+      "base_net_bps": -32569.916389,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0092"
+    },
+    {
+      "base_net_bps": -12226.251932,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-11-0101"
+    },
+    {
+      "base_net_bps": -34617.913163,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0002"
+    },
+    {
+      "base_net_bps": -12659.190688,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0011"
+    },
+    {
+      "base_net_bps": -33607.208209,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0020"
+    },
+    {
+      "base_net_bps": -12719.369174,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0029"
+    },
+    {
+      "base_net_bps": -34617.913163,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0038"
+    },
+    {
+      "base_net_bps": -12659.190688,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0047"
+    },
+    {
+      "base_net_bps": -33607.208209,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0056"
+    },
+    {
+      "base_net_bps": -12719.369174,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0065"
+    },
+    {
+      "base_net_bps": -34617.913163,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0074"
+    },
+    {
+      "base_net_bps": -12659.190688,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0083"
+    },
+    {
+      "base_net_bps": -33607.208209,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0092"
+    },
+    {
+      "base_net_bps": -12719.369174,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0101"
+    },
+    {
+      "base_net_bps": -34617.913163,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0110"
+    },
+    {
+      "base_net_bps": -12659.190688,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "stress_1_5_survives_all_units": false,
+      "stress_2_0_survives_all_units": false,
+      "survival_rate_1_5x": 0.0,
+      "survival_rate_2_0x": 0.0,
+      "topology_unit_count": 1,
+      "trial_id": "A0R1-12-0119"
+    }
+  ],
+  "status": "PASS",
+  "survivors_1_5x": 0,
+  "survivors_2_0x": 0
+}

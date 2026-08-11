@@ -1,0 +1,10 @@
+{
+  "artifact_id": "A0R3B_EXPLORATORY_SHORTLIST_V1",
+  "cap": 24,
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "gate_id": "A0R3B_PASS_STRATA_EXPLORATORY_DISCOVERY_V1",
+  "rows": [],
+  "selection_rule": "corrected_significance_then_cost_robustness_then_sample_support_then_stability_then_net_economics",
+  "shortlist_size": 0,
+  "status": "PASS"
+}

@@ -1,0 +1,21 @@
+{
+  "artifact_id": "A0R3B_MULTIPLE_TESTING_RESULTS_V1",
+  "evaluated_trials": 86,
+  "gate_id": "A0R3B_PASS_STRATA_EXPLORATORY_DISCOVERY_V1",
+  "hansen_spa_p": 0.0,
+  "methods": [
+    "White Reality Check",
+    "Hansen SPA",
+    "Romano-Wolf",
+    "Holm",
+    "BH-FDR",
+    "PSR",
+    "DSR",
+    "PBO"
+  ],
+  "pbo": "NOT_APPLICABLE",
+  "pbo_not_applicable_reason": "fewer_than_two_multi_stratum_candidates",
+  "registered_candidate_equivalent_denominator": 1200,
+  "status": "PASS",
+  "white_reality_check_p": 1.0
+}

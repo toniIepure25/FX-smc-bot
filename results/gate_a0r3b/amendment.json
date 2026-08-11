@@ -1,0 +1,66 @@
+{
+  "aggregation_rule": {
+    "no_performance_weighting": true,
+    "no_year_or_pair_selection_after_outcomes": true,
+    "primary": "equal_weight_across_eligible_topology_units",
+    "sensitivity": "observation_weighted_pooling",
+    "single_unit_label": "SINGLE_STRATUM_EXPLORATORY_LEAD"
+  },
+  "amends": "A0R3 all-9-pair-year gate",
+  "artifact_id": "A0R3B_PROSPECTIVE_PASS_STRATA_AMENDMENT_V1",
+  "created_at": "2026-08-11T19:06:15.173422+00:00",
+  "excluded_failed_strata": [
+    {
+      "pair": "EURUSD",
+      "year": 2016
+    },
+    {
+      "pair": "EURUSD",
+      "year": 2017
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2015
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2016
+    }
+  ],
+  "exploratory_pass_strata": [
+    {
+      "pair": "EURUSD",
+      "year": 2015
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2017
+    },
+    {
+      "pair": "USDJPY",
+      "year": 2015
+    },
+    {
+      "pair": "USDJPY",
+      "year": 2016
+    },
+    {
+      "pair": "USDJPY",
+      "year": 2017
+    }
+  ],
+  "gate_id": "A0R3B_PASS_STRATA_EXPLORATORY_DISCOVERY_V1",
+  "holdout_policy": {
+    "2018_internal_confirmation": "untouched",
+    "2019_external_validation": "untouched",
+    "2020_2022_replication": "untouched",
+    "2023_2025_quarantine": "untouched"
+  },
+  "mode": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "reason": "A0R3 outcomes were not observed; complete-case PASS strata are frozen.",
+  "self_hash": "6c696cc95fa1b6064ad55b8b357ff1ddec1274ab91945d9fd2fca41bfb8ea9a7",
+  "source_hashes": {
+    "a0r2_trial_materialization_v2_jsonl": "09e18295e3a06ca85789840e2cca3802005b465ea6f132cab2c50a63c82061a1"
+  },
+  "status": "PASS"
+}

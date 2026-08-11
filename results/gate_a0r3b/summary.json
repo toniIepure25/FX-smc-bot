@@ -1,0 +1,68 @@
+{
+  "any_2018_plus_market_or_outcome_data_accessed": false,
+  "artifact_hashes": {
+    "amendment": "950ce79e7a731390173f31928fb544fb7f78392352a5e4290c0a620dc39b2ec7",
+    "cost_stress": "ae1477758ddadb7120e0f328c771a342c38dd37bc564b23e8832096e2b301522",
+    "freeze": "4d7be2b1af03888dfa49be384e803b70bf80a2045026f23d2776003502bad470",
+    "multiple_testing": "ce24a7e11027f4eb32fccbeb1678e067e26f1db388cc4105024e4de869b69efa",
+    "results": "bdad2bc267a3212715b2e4e0d6d337be32956dd5a82a9fa05a7f0b9afe01acef",
+    "shortlist": "ef0a3aa7631d6d763d90d642f6db2448469afa0d441ee916505c3dfef71e80a7",
+    "single_stratum_leads": "b2c10fdb66a415c3738079e1238f0f5e644ae36b28d87c6ce1072d413195e34b",
+    "top_candidates": "ff4ddb18e7297fab20b03a390aae595639903b22b7fbca3776574229f9913b9d",
+    "trial_eligibility": "4f672e6a676735152135c05490a0fdcc9c4d043277de7577a4a95b95976cbd31"
+  },
+  "artifact_id": "A0R3B_SUMMARY_V1",
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "eligible_trials": 86,
+  "evaluated_trials": 86,
+  "excluded_failed_strata": [
+    {
+      "pair": "EURUSD",
+      "year": 2016
+    },
+    {
+      "pair": "EURUSD",
+      "year": 2017
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2015
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2016
+    }
+  ],
+  "frozen_dataset_sha256": "c8207b7e49eccfdc03542855b7f9a34a948241c9eee43fa01f632641e9467510",
+  "gate_id": "A0R3B_PASS_STRATA_EXPLORATORY_DISCOVERY_V1",
+  "ineligible_trials": 1114,
+  "opened_2018_plus_market_or_outcome_files": [],
+  "opened_market_data_file_count": 120,
+  "pass_strata": [
+    {
+      "pair": "EURUSD",
+      "year": 2015
+    },
+    {
+      "pair": "GBPUSD",
+      "year": 2017
+    },
+    {
+      "pair": "USDJPY",
+      "year": 2015
+    },
+    {
+      "pair": "USDJPY",
+      "year": 2016
+    },
+    {
+      "pair": "USDJPY",
+      "year": 2017
+    }
+  ],
+  "raw_market_data_modified": false,
+  "shortlist_size": 0,
+  "single_stratum_lead_count": 0,
+  "status": "PASS",
+  "top_candidate_count": 10
+}

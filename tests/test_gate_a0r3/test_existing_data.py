@@ -12,6 +12,13 @@ from fx_smc_bot.research.a0r3_existing_data import (
     prospective_split_amendment,
     trial_eligibility,
 )
+from fx_smc_bot.research.a0r3b_pass_strata import (
+    MarketReadGuard,
+    evidence_tier,
+    pass_strata_trial_eligibility,
+    required_pairs_for_trial,
+    topology_units,
+)
 
 
 def test_split_amendment_quarantines_2018_plus(tmp_path: Path) -> None:
@@ -93,3 +100,74 @@ def test_execution_returns_apply_one_bar_latency_and_cost_stress() -> None:
 
     assert base.iloc[0] <= 0.0
     assert base.sum() > stressed.sum()
+
+
+def test_a0r3b_requires_complete_case_pass_strata_without_substitution() -> None:
+    trial = {
+        "trial_id": "C",
+        "family_id": "F03_VOLATILITY_BREAKOUT",
+        "candidate_equivalent_weight": 1,
+        "configuration_sha256": "ghi",
+        "full_configuration": {
+            "instrument_or_portfolio_scope": "GBPUSD",
+            "required_inputs": ["M1 signed mid return", "rolling realized variance"],
+        },
+    }
+    unavailable = {
+        **trial,
+        "trial_id": "D",
+        "full_configuration": {
+            "instrument_or_portfolio_scope": "EURUSD",
+            "required_inputs": ["M1 signed mid return"],
+        },
+    }
+
+    out = pass_strata_trial_eligibility([trial, unavailable])
+
+    assert out["eligible_trials"] == 2
+    assert out["rows"][0]["eligible_topology_units"] == [
+        {
+            "topology_id": "GBPUSD:2017",
+            "year": 2017,
+            "legs": ["GBPUSD"],
+            "evaluation_pair": "GBPUSD",
+        }
+    ]
+    assert out["rows"][1]["eligible_topology_units"][0]["topology_id"] == "EURUSD:2015"
+
+
+def test_a0r3b_multivariate_requires_simultaneous_pass_legs() -> None:
+    config = {
+        "instrument_or_portfolio_scope": "GBPUSD",
+        "required_inputs": ["lagged cross-pair synchronized returns"],
+    }
+
+    required, reasons = required_pairs_for_trial(config, "F07_CURRENCY_FACTOR_RESIDUALS")
+
+    assert not reasons
+    assert required == {"EURUSD", "GBPUSD", "USDJPY"}
+    assert topology_units(required, "GBPUSD") == []
+
+
+def test_a0r3b_market_read_guard_rejects_holdout_year(tmp_path: Path) -> None:
+    paths = Paths(
+        repo=tmp_path,
+        raw=tmp_path / "raw",
+        results=tmp_path / "results",
+        docs=tmp_path / "docs",
+        trials=tmp_path / "trials.jsonl",
+    )
+    guard = MarketReadGuard()
+
+    with pytest.raises(ValueError, match="A0R3B_2018_PLUS_MARKET_DATA_ACCESS_FORBIDDEN"):
+        guard.read_side(paths, "EURUSD", "bid", 2018, 1)
+
+
+def test_a0r3b_single_unit_gets_single_stratum_label() -> None:
+    row = {
+        "topology_unit_count": 1,
+        "cost_stress": {"survives_2_0x": True},
+        "cross_stratum_stability": 1.0,
+    }
+
+    assert evidence_tier(row) == "SINGLE_STRATUM_EXPLORATORY_LEAD"

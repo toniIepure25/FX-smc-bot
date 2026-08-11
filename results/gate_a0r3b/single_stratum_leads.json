@@ -1,0 +1,8 @@
+{
+  "artifact_id": "A0R3B_SINGLE_STRATUM_LEADS_V1",
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "gate_id": "A0R3B_PASS_STRATA_EXPLORATORY_DISCOVERY_V1",
+  "lead_count": 0,
+  "rows": [],
+  "status": "PASS"
+}
