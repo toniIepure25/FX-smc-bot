@@ -9,16 +9,14 @@
       "pair": "EURUSD",
       "side": "bid",
       "date": "2010-01-04",
-      "status": "PASS",
-      "failure_category": "",
-      "http_status": 200,
-      "content_length": 10975,
-      "row_count": 1440,
-      "raw_sha256": "a0b8e2a41b89cffaaa2e286f956180627277c01168a84e9d1f1203738baeec91",
-      "parsed_row_hash": "c41463036fab0225cf657afc17f41a17e89745274a6e915f22f8e681edd0261d",
-      "control_started_at": "2026-08-11T10:50:53.927577+00:00",
-      "control_completed_at": "2026-08-11T10:51:38.057829+00:00",
-      "duration_ms": 44130
+      "status": "FAIL",
+      "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
+      "http_status": 503,
+      "content_length": 0,
+      "error_fingerprint": "54e522df706db712",
+      "control_started_at": "2026-08-11T11:34:29.086514+00:00",
+      "control_completed_at": "2026-08-11T11:35:24.708053+00:00",
+      "duration_ms": 55622
     },
     {
       "control": "B",
@@ -29,16 +27,16 @@
       "failure_category": "NATIVE_BI5_TRANSPORT_FAILURE",
       "http_status": null,
       "content_length": 0,
-      "error_fingerprint": "93c4eccc6c991c57",
-      "control_started_at": "2026-08-11T10:51:38.057853+00:00",
-      "control_completed_at": "2026-08-11T10:52:21.136274+00:00",
-      "duration_ms": 43078
+      "error_fingerprint": "a0efde77f98f5eab",
+      "control_started_at": "2026-08-11T11:35:24.708067+00:00",
+      "control_completed_at": "2026-08-11T11:36:26.077210+00:00",
+      "duration_ms": 61369
     }
   ],
   "rolling_calls": 20,
   "failure_trigger": 5,
   "partition_attempts_consumed": 0,
-  "health_run_started_at": "2026-08-11T10:50:53.927546+00:00",
-  "health_run_completed_at": "2026-08-11T10:52:21.136306+00:00",
-  "duration_ms": 87209
+  "health_run_started_at": "2026-08-11T11:34:29.086488+00:00",
+  "health_run_completed_at": "2026-08-11T11:36:26.077229+00:00",
+  "duration_ms": 116991
 }
