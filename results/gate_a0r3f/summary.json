@@ -1,0 +1,33 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "a0r3e_regression_max_abs_delta": 0.0,
+  "a0r3e_regression_status": "PASS",
+  "artifact_id": "A0R3F_SUMMARY_V1",
+  "blocked_remaining_by_family": {
+    "F03_VOLATILITY_BREAKOUT": 11,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 7,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 9,
+    "F10_INTRADAY_SEASONALITY": 9,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 12,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 14
+  },
+  "certified_after": 8,
+  "certified_before": 8,
+  "claim": "EXPLORATORY_NOT_VALIDATED_ALPHA",
+  "corrected_trials_run": 8,
+  "cost_stress_1_5x_survivors": 0,
+  "cost_stress_2_0x_survivors": 0,
+  "created_at": "2026-08-12T12:45:29.425965+00:00",
+  "gate_id": "A0R3F_REMAINING_SEMANTIC_CLOSURE_STOP_BEFORE_2018_V1",
+  "hansen_spa_p": 1.0,
+  "newly_certified_by_family": {},
+  "newly_certified_trials": [],
+  "next_gate": "A0R3F_NO_SCIENTIFIC_SURVIVOR_STOP_BEFORE_2018_CONFIRMATION",
+  "pbo": "NOT_APPLICABLE",
+  "review_ranking_size": 8,
+  "scientific_survivor_count": 0,
+  "status": "PASS",
+  "summary_hash": "ba55d79468eb72aa43ab5952d018d71d26313ab56a58f207f9d06fc5fd2310a5",
+  "terminal_decision": "A0R3F_NO_SCIENTIFIC_SURVIVOR_STOP_BEFORE_2018_CONFIRMATION",
+  "white_reality_check_p": 0.995991984
+}

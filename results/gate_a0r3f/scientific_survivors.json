@@ -1,0 +1,13 @@
+{
+  "artifact_id": "A0R3F_SCIENTIFIC_EXPLORATORY_SURVIVORS_V1",
+  "gate_id": "A0R3F_REMAINING_SEMANTIC_CLOSURE_STOP_BEFORE_2018_V1",
+  "rows": [],
+  "status": "PASS",
+  "survivor_count": 0,
+  "survivor_criteria": [
+    "executable net_bps > 0",
+    "1.5x cost-stress net_bps > 0",
+    "2.0x cost-stress net_bps > 0",
+    "candidate remains exploratory, not validated"
+  ]
+}

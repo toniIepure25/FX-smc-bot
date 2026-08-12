@@ -1,0 +1,19 @@
+{
+  "a0r3e_certification_hash": "97bb9d20b8e0ffd02910dd68c79de94c90368391c15c566a1dc0347a43d0b322",
+  "artifact_id": "A0R3F_CERTIFICATION_SUMMARY_V1",
+  "blocked_remaining_by_family": {
+    "F03_VOLATILITY_BREAKOUT": 11,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 7,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 9,
+    "F10_INTRADAY_SEASONALITY": 9,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 12,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 14
+  },
+  "certified_after": 8,
+  "certified_before": 8,
+  "gate_id": "A0R3F_REMAINING_SEMANTIC_CLOSURE_STOP_BEFORE_2018_V1",
+  "newly_certified_by_family": {},
+  "newly_certified_trials": [],
+  "status": "PASS",
+  "target_family_certification_rule": "CERTIFIED_EXECUTABLE requires zero unresolved semantic blockers"
+}

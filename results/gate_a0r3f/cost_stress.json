@@ -1,0 +1,47 @@
+{
+  "artifact_id": "A0R3F_COST_STRESS_RESULTS_V1",
+  "gate_id": "A0R3F_REMAINING_SEMANTIC_CLOSURE_STOP_BEFORE_2018_V1",
+  "rows": [
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-01-0002"
+    },
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-01-0020"
+    },
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-01-0047"
+    },
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-01-0065"
+    },
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-01-0092"
+    },
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-01-0110"
+    },
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-02-0017"
+    },
+    {
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trial_id": "A0R1-02-0035"
+    }
+  ],
+  "status": "PASS"
+}

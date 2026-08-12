@@ -1,0 +1,89 @@
+{
+  "artifact_id": "A0R3F_A0R3E_REGRESSION_CHECK_V1",
+  "checks": [
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-01-0002"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-01-0020"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-01-0047"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-01-0065"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-01-0092"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-01-0110"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-02-0017"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0.0
+      },
+      "trial_id": "A0R1-02-0035"
+    }
+  ],
+  "gate_id": "A0R3F_REMAINING_SEMANTIC_CLOSURE_STOP_BEFORE_2018_V1",
+  "max_abs_delta": 0.0,
+  "status": "PASS",
+  "tolerance": 1e-09
+}
