@@ -1,0 +1,166 @@
+program_id: FX_INTRADAY_ALPHA_DISCOVERY_V2
+lineage_id: FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1
+gate_id: A0R4_V2_PROSPECTIVE_READINESS_V1
+freeze_id: A0R4_V2_SEARCH_SPACE_V1
+supersedes: FX_INTRADAY_ALPHA_DISCOVERY_V1
+status: FROZEN_PRE_OUTCOME
+outcome_data_accessed: false
+
+# This YAML is the human-readable freeze of the V2 search space. The authoritative,
+# executable enumeration lives in src/fx_smc_bot/research/v2/search_space.py; it is a
+# structural error for the two to disagree. Grids are deliberately modest and are never
+# padded to reach the 1200 candidate-equivalent ceiling.
+
+capability_grounding:
+  # The V2 search space is designed only around capabilities guaranteed by the frozen
+  # dataset actually on disk (see results/gate_a0r4/data_capability_matrix.json).
+  supported_instruments: [EURUSD, GBPUSD, USDJPY]
+  granularity: Dukascopy M1 bid/ask OHLC
+  development_region_years: [2015, 2016, 2017]   # already inspected pre-outcome
+  holdout_region_years: [2018, 2019]             # never opened during readiness
+  never_uses_volume_field: true
+  hard_rule: "M1 bar count != quote update count; tick semantics never faked from M1."
+
+execution_contract:
+  entry_price: side_correct_long_ask_short_bid
+  exit_price: side_correct_long_bid_short_ask
+  signal_latency: minimum_one_completed_m1_bar
+  same_bar_ambiguity: adverse_first
+  rollover_exclusion_start: "16:30 America/New_York"
+  mandatory_flat_time: "16:45 America/New_York"
+  new_entry_resume: "17:30 America/New_York"
+  max_position_holding: intraday_only
+  missing_quote: no_synthetic_fill
+  base_commission_slippage_bps_per_fill: 0.10
+  spread_cost: actual_side_correct_bid_ask_in_fills
+  cost_stress_multipliers: [1.5, 2.0]
+
+trial_budget:
+  global_maximum_candidate_equivalent_trials: 1200
+  registered_denominator_policy: admitted_executable_trials_actually_evaluated
+  delete_losing_trials: false
+  pad_to_budget: false
+
+optimization:
+  fixed_seed: 1729
+  objective: median_net_sharpe_minus_turnover_penalty_minus_cross_fold_instability_penalty
+  optimize_final_cumulative_return: false
+
+admitted_families:
+  F01_SESSION_OPENING_MOMENTUM_REVERSAL:
+    feature: session_momentum
+    price_representation: mid
+    anchors: [london_open, new_york_open, tokyo_open]
+    lookback_bars: [30, 60]
+    holding_bars: [30, 60]
+    directions: [continuation, reversal]
+    thresholds: [0.5, 1.0]
+  F02_QUOTE_RUN_CONTINUATION_EXHAUSTION:
+    feature: signed_return_run
+    note: M1 signed-return run-length variant only
+    lookback_bars: [15, 30, 60]
+    directions: [continuation, reversal]
+    thresholds: [0.5, 1.0]
+  F03_VOLATILITY_BREAKOUT:
+    feature: volatility_breakout
+    definition: (rolling_range / wilder_atr) - 1 gate + prior-high/low break
+    lookback_bars: [30, 60, 120]
+    directions: [continuation, reversal]
+    thresholds: [0.5, 1.0]
+  F04_LIQUIDITY_SHOCK_REVERSAL:
+    feature: liquidity_shock_m1
+    definition: mean-reversion after (spread_z & abnormal_return_z) shock bar completes
+    note: explicit M1 observable proxy, NOT tick liquidity
+    lookback_bars: [30, 60]
+    thresholds: [1.5, 2.0]
+    holding_bars: [15, 30]
+  F05_SPREAD_AWARE_EXECUTION_GATING:
+    feature: spread_zscore
+    forecasters: [seasonal_median, har_linear]   # deterministic linear only
+    gate_percentile: 0.8
+    lookback_bars: [30, 60]
+    directions: [continuation, reversal]
+  F10_INTRADAY_SEASONALITY:
+    feature: seasonality_cell
+    cells: [hour_of_session, day_of_week]
+    estimation: prior_only_expanding
+    directions: [continuation, reversal]
+    thresholds: [0.1, 0.25]
+  F11_REGIME_CONDITIONED_TREND_REVERSAL:
+    feature: regime_trend
+    regime_models: [quantile_bins, gaussian_mixture]   # deterministic, fixed seed
+    n_components_or_bins: 3
+    lookback_bars: [30, 60]
+    thresholds: [0.5, 1.0]
+  F12_COST_SENSITIVE_ML_ABSTENTION:
+    feature: ml_abstention
+    models: [logistic_regression, ridge_regression]   # deterministic linear only
+    targets: [gross_move_exceeds_frozen_round_trip_cost, net_executable_return_sign]
+    lookback_bars: [30, 60]
+    label_horizon_bars: [30, 60]
+    training_window: expanding_prior_only
+    purge: label_horizon_bars
+    embargo: feature_lookback_bars
+    actions: [long, short, abstain]
+    seed: 1729
+
+rejected_pre_outcome_families:
+  F06_CROSS_PAIR_LEAD_LAG:
+    reason: UNSUPPORTED_INSTRUMENT_DEPENDENCY
+    detail: configured edges require EURJPY/GBPJPY/AUDJPY/AUDUSD, never acquired
+  F07_CURRENCY_FACTOR_RESIDUALS:
+    reason: INSUFFICIENT_CROSS_SECTION
+    detail: three USD pairs cannot identify robust currency dollar factors
+  F08_TRIANGULAR_CONSISTENCY_RESIDUALS:
+    reason: UNSUPPORTED_CROSS_RATE
+    detail: cross rates not acquired; synthesising them zeroes the residual by construction
+  F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL:
+    reason: INSUFFICIENT_CROSS_SECTION
+    detail: currency/JPY-beta-neutral allocations require unavailable legs
+
+rejected_pre_outcome_variants:
+  - family: F02_QUOTE_RUN_CONTINUATION_EXHAUSTION
+    variant: return_per_quote / quote_mean_distance / abnormal_update_rate
+    reason: TICK_ONLY_SEMANTICS
+  - family: F04_LIQUIDITY_SHOCK_REVERSAL
+    variant: quote_gap_spike / abnormal_update_rate
+    reason: TICK_ONLY_SEMANTICS
+  - family: F05_SPREAD_AWARE_EXECUTION_GATING
+    variant: elastic_net / gradient_boosted_trees spread forecaster
+    reason: DEFERRED_NONLINEAR_FORECASTER
+  - family: F11_REGIME_CONDITIONED_TREND_REVERSAL
+    variant: hmm_frozen_state_count
+    reason: NO_VERIFIED_DETERMINISTIC_HMM_LIBRARY
+  - family: F12_COST_SENSITIVE_ML_ABSTENTION
+    variant: random_forest / gradient_boosted_trees / small_neural_network
+    reason: DEFERRED_NONLINEAR_MODEL
+
+statistical_protocol:
+  temporal_progression:
+    discovery: {region: development, years: [2015, 2016, 2017]}
+    internal_confirmation: {region: holdout, window: ["2018-01-01", "2018-06-30"]}
+    external_validation: {region: holdout, window: ["2018-07-01", "2018-12-31"]}
+    independent_replication: {region: holdout, window: ["2019-01-01", "2019-12-31"]}
+  walk_forward: purged_expanding_walk_forward
+  purge: label_horizon_bars
+  embargo: max_feature_lookback_plus_max_holding
+  instrument_leave_one_out: true
+  year_leave_one_out: true
+  multiple_testing: [white_reality_check, hansen_spa, romano_wolf, holm, bh_fdr, psr, dsr, cscv_pbo]
+  bootstrap: stationary_block_bootstrap
+  bootstrap_iterations: 499
+  block_length_days: 5
+
+survivor_predicate:
+  informational_only: REVIEW_RANKING != SCIENTIFIC_SURVIVOR
+  net_bps: "> 0 after full costs"
+  sharpe: ">= 0.5"
+  trade_count: ">= 100"
+  active_days: ">= 60"
+  fold_positive_fraction: ">= 0.60"
+  instrument_leave_one_out_positive: true
+  neighborhood_same_sign_fraction: ">= 0.60"
+  cost_stress: "net_bps > 0 at 1.5x and 2.0x"
+  romano_wolf_p: "<= 0.05"
+  cscv_pbo: "<= 0.5 or NOT_APPLICABLE"
+  data_integrity: "no 2018+ pre-discovery reads; deterministic reproduction PASS"

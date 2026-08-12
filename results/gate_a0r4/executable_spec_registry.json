@@ -1,0 +1,2711 @@
+{
+  "admitted_executable_trials": 336,
+  "artifact_id": "A0R4_EXECUTABLE_SPEC_REGISTRY_V1",
+  "by_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": 144,
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": 36,
+    "F03_VOLATILITY_BREAKOUT": 36,
+    "F04_LIQUIDITY_SHOCK_REVERSAL": 24,
+    "F05_SPREAD_AWARE_EXECUTION_GATING": 24,
+    "F10_INTRADAY_SEASONALITY": 24,
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": 24,
+    "F12_COST_SENSITIVE_ML_ABSTENTION": 24
+  },
+  "denominator_ceiling": 1200,
+  "denominator_within_ceiling": true,
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "materialization_digest": "4ead4048be86b1885503cf232d71f87ee8309b4572ce89e2ca309e38f38fd1a1",
+  "registered_candidate_equivalent_denominator": 336,
+  "rejected_pre_outcome": 2,
+  "trials": [
+    {
+      "configuration_hash": "05474d6b1b9593ef76cd1c043b130165ee51bd9c6d9b2443d3fb864858b7259e",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0000"
+    },
+    {
+      "configuration_hash": "0ce01fc91c4afdab69c3da8c0c3926b202ef9bad7bf54906c193898cfec7ad02",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0001"
+    },
+    {
+      "configuration_hash": "0e7b99cfa2f6ca0762fb5d24e439617056810bb11a40957995048b84ae3b3ba1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0002"
+    },
+    {
+      "configuration_hash": "1243c491d0ff4dc57adcc6a06cdb3c2b925221853f54a53b0476e86f707f581d",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0003"
+    },
+    {
+      "configuration_hash": "1d7bb55b0a75f4350991c73bc931d501baa9c329aa16332852e0442cfae4071b",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0004"
+    },
+    {
+      "configuration_hash": "1edda57a32c9423c8c03624fc8755d811cf958b2f0a38e511427821f3e7273ad",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0005"
+    },
+    {
+      "configuration_hash": "21ddf7ea671c81cfe4745264949159ef8bc49d3893fbbd87dd1a8c44730ea625",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0006"
+    },
+    {
+      "configuration_hash": "2a5158726a2b4182e960cc352f77a56d236bfed671b86f2d4a1e362a6bdbc3cb",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0007"
+    },
+    {
+      "configuration_hash": "2ae5f19e8cfd2c17ce30eee6afb89ed11ddba9de2b15c3ebe6501cba9d12007b",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0008"
+    },
+    {
+      "configuration_hash": "2d00d3a4d7ee8580e9120bc2f6aa6a15ba2294dfb2724642713724cf68bafc0d",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0009"
+    },
+    {
+      "configuration_hash": "2f37ac0ff69cc27914c65350bcdba6279cae93a0079bbbe3fd0005a328e97357",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0010"
+    },
+    {
+      "configuration_hash": "30d54e31e6666d9227f252a3424d334a9cb9a6e1ccb30b24480ab2d585c4ab44",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0011"
+    },
+    {
+      "configuration_hash": "32bed76e584ade185069b482ebcd7e7e44d58c4bea68bd0f1ad4b7d4ef21d618",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0012"
+    },
+    {
+      "configuration_hash": "37c180632a90211da6d234f65bb462a63bd876e8644da627532f581c3e198dfb",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0013"
+    },
+    {
+      "configuration_hash": "3ee075cca5e27b62cc07f7446ed213a2c716f7e06dbd20c2d288806d12659065",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0014"
+    },
+    {
+      "configuration_hash": "49f7f0b5e994f1944a8cdfae4617af695e7208e2c9794a1071c16b05918d2074",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0015"
+    },
+    {
+      "configuration_hash": "4aa71af1baadc67fad6939578379a09aa64ae74fcf89ae489abb134b162b7249",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0016"
+    },
+    {
+      "configuration_hash": "52223589877013cc1aef5150a7afbdffa898f041c974b4e86453d8b0b1732f7d",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0017"
+    },
+    {
+      "configuration_hash": "525f44a8f3de1ea21597884e26cac60344b3b7e33f2c63cb19c87d041155d708",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0018"
+    },
+    {
+      "configuration_hash": "535fa15d3eabc2d8bc91ac9f71da6ca3908a7702c61698d40c890088e28b74ec",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0019"
+    },
+    {
+      "configuration_hash": "5e251da8af15f1c8794c1ae90b7c6f783978e5c7d18cb2c475ec04b44f76caab",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0020"
+    },
+    {
+      "configuration_hash": "77a9c4cf5917751d044cfaa1d82c66f5cd0d4969079e8e8e344817841039f56f",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0021"
+    },
+    {
+      "configuration_hash": "7929c2b1c321a7f5e295dea3ca32ca757f5f254c847b419be79c1eddb0ce02aa",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0022"
+    },
+    {
+      "configuration_hash": "7c47c9dbef6d13c70a43f73025d2bfb331767d648f481d47964f3682fd9df138",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0023"
+    },
+    {
+      "configuration_hash": "81a096da833d8e7e6c646a9393843003321f3f1b3acc40039437a610a18a2d89",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0024"
+    },
+    {
+      "configuration_hash": "8581d3e5263eae7f5729450fb05db9f1256a833a8ebf10041275b7744923871d",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0025"
+    },
+    {
+      "configuration_hash": "86ffc807ca85368f51d6c51bb05a1f86f9a2e5cb400fe8e41936105d1253e6f0",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0026"
+    },
+    {
+      "configuration_hash": "94c464b8d7991c31f32c84986b689433ba44d41c2220739f7eeda20a24f7d5e1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0027"
+    },
+    {
+      "configuration_hash": "a33afcefaff4a3f7bbdea637556b4ee279eada10e9800adf9e1fc517c158cc9d",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0028"
+    },
+    {
+      "configuration_hash": "b6a94a325c5c8c4820de30cc7eee7b4b2a61b6825fba741a3309a5f5395d3459",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0029"
+    },
+    {
+      "configuration_hash": "bd87aacc5223ad2ad95d5e8b883cf8aebeb119c569c86b327dfc00d7c38b0c35",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0030"
+    },
+    {
+      "configuration_hash": "bf9413a8d982f98af58d379dd1abb093ca5915e56109302feac484aa0aec5fab",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0031"
+    },
+    {
+      "configuration_hash": "c1f6278ace546a8bb90628335b94a923047ba36da9b5122e0000fd86796f93f4",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0032"
+    },
+    {
+      "configuration_hash": "c63e74d5d4159ac8f12c604e4f50d800ee7e907c22bb4a548a127f52d6515e1d",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0033"
+    },
+    {
+      "configuration_hash": "cd0e1f47df178df09a50b482c57be4e3ede95f119db4b70bebb87816e0134c74",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0034"
+    },
+    {
+      "configuration_hash": "cd1538c49217a6256be18048dc5e3ab647982cb7978e5741ec7099cdd682e93c",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0035"
+    },
+    {
+      "configuration_hash": "cf2266286ad4993df19bfa88f55ed709e9679d8d9fcad2fde810e56099a0f9fe",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0036"
+    },
+    {
+      "configuration_hash": "d0a50eb4c50b255463ef70f0080bab3cd8e82c43e9dcd6356598d593e53a056d",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0037"
+    },
+    {
+      "configuration_hash": "d1ae5a08d8cfde641bd8865377cf9fed7835d7fd0c18d65f478d880ebbe35372",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0038"
+    },
+    {
+      "configuration_hash": "d3b5fe78a63f4c140fbb2c42d1737067bf49b54da06bcbdceb19e7a0efb9d5da",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0039"
+    },
+    {
+      "configuration_hash": "dd6a417b980b7854648d8b57bb4f3e9357be4e6d46cadd2e375a6a2525fd4a87",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0040"
+    },
+    {
+      "configuration_hash": "e00b442950d5eb7b9fd29e638d07879e695cbc94b464d0bbaf70eb4aa37f0e35",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0041"
+    },
+    {
+      "configuration_hash": "e173e8d0de3ed68c17a98e05f7346982870cea93f4a28f2caa03c1d8551ca3a7",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0042"
+    },
+    {
+      "configuration_hash": "e24359b10a4d2c90ac3a38b71b879d45868d644645d44631c6093c38775d8163",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0043"
+    },
+    {
+      "configuration_hash": "e4df0c6da57604458ea8ace4deb3fc31ac79328fa6019bc45b37261186d54563",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0044"
+    },
+    {
+      "configuration_hash": "e99fd50bdadc5e968a64e33b74868ceb47e0f1104324eaa7a82c75c3b72443fc",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0045"
+    },
+    {
+      "configuration_hash": "ec1ccfbb8f4e0d1435a1b8bd010980a48cc163a859336b4c57ce5dc302bc2538",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0046"
+    },
+    {
+      "configuration_hash": "fa913384b02b06f5ef83e9b2166b3532d113114459e4b2b5035038d7de6bd9c9",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0047"
+    },
+    {
+      "configuration_hash": "066b7641b336a236dea6527a05ecfbe2f59b442309ef43284afcf6fa8503f654",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0048"
+    },
+    {
+      "configuration_hash": "0b665f7e8eee9452dde19af230226713b4f108d06f0c544a56ad78e98dd6cba7",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0049"
+    },
+    {
+      "configuration_hash": "0bfe876943a124e2e0337906b594e4c223bb1dc09f1b4aea96cc7f8af0cd5651",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0050"
+    },
+    {
+      "configuration_hash": "107e8c8d01dd6332102ba083cbebc8a38b775a7492719b283d21030dda4f1095",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0051"
+    },
+    {
+      "configuration_hash": "1165f9c8f92a9022f03dbc9a6e45f8c8b16cba87bcfdbf84eea397e5caef4f92",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0052"
+    },
+    {
+      "configuration_hash": "133c4d128ab51d933c6390d448f367ba524c66750aaf6a9ae149ae211c474769",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0053"
+    },
+    {
+      "configuration_hash": "1f879234be4a76b1ec5191062b0d3df91795e4de84aa67726d6e09cb6d0026f6",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0054"
+    },
+    {
+      "configuration_hash": "20c8043dc42317e93cfee41fb58a650f9c038dccd4c9391742452ffb977e3c7b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0055"
+    },
+    {
+      "configuration_hash": "23fd62923bdc46c23dcca6f906712623ee162d62c4cac5908a29e0d4c074b286",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0056"
+    },
+    {
+      "configuration_hash": "2a605ab7ed48d6a75b0a90f92ed042c268b37a0c414ae99daf72990ea9d68954",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0057"
+    },
+    {
+      "configuration_hash": "2a9fd1940a8566f1f533a98678fdff5106d590a1ee61c4b1409ed2d97f99d7d0",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0058"
+    },
+    {
+      "configuration_hash": "2e65f63e37875b22484baa30714d87b1a1d182895d1f4ce80a4a0a393be6d4c3",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0059"
+    },
+    {
+      "configuration_hash": "33e2084ac05bd38278253a7f38b4a3b0001210a9889afc5ad24deafdd8562296",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0060"
+    },
+    {
+      "configuration_hash": "377d89d969521db416e6b0b5393c848f213c3fc5f68cb1d21302785615292e7f",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0061"
+    },
+    {
+      "configuration_hash": "390eebb2cdbd9adf6d3847265c09c5c331ce385bd320a8dc099b6b12f50e67d4",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0062"
+    },
+    {
+      "configuration_hash": "3c91b721dd8e4a6e7bff568790d4ac8efaa1073dc55a3fd5a8f7bf82c846b98c",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0063"
+    },
+    {
+      "configuration_hash": "40e51f7bca6fb824b67bf64b967f8f33ea6d1b84c53910d3ee15c606cd1de5c1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0064"
+    },
+    {
+      "configuration_hash": "49282e8396b49602063a5cc8197cd87139482d0ebe19955d9b703aa145dfc161",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0065"
+    },
+    {
+      "configuration_hash": "4db5ae0bb51b46c93f02503f4343f80ff2c2f617886ca6961c34dcef7acd73e1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0066"
+    },
+    {
+      "configuration_hash": "536ac3632aa02845c350f346b20be243beb8707b0de58630850a6ff314569765",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0067"
+    },
+    {
+      "configuration_hash": "56a382c22022c7c0e33706c4e32785ba15b49638899f3378cda8cc424f5749e6",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0068"
+    },
+    {
+      "configuration_hash": "58faf75fba882e52653d52d8c34e4d4f17c801fdaeb66cf165e7fca06a27b394",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0069"
+    },
+    {
+      "configuration_hash": "5b66f3763f263cf540971f2217e1924b3f0d85ac121becf8b217b09c93f9f7af",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0070"
+    },
+    {
+      "configuration_hash": "6040652a2087d64741843706726ae207ed864677ec448757846d17d32aa3cc0a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0071"
+    },
+    {
+      "configuration_hash": "636bd192096106d1bac672a70f2e8c53cb11c8b5e18225497fe6b61002d2f915",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0072"
+    },
+    {
+      "configuration_hash": "69ce1d2c4f5d14cf58430d78695df3843a2e096fd189d1a329793b17941b35f1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0073"
+    },
+    {
+      "configuration_hash": "6effd71279c8cf58648c63da92a9223251891fe9455d8966e64caac6eea61ea6",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0074"
+    },
+    {
+      "configuration_hash": "7708a420b1bedf77143f469819ce490a222d745e1302922eb561fe9a3e2be416",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0075"
+    },
+    {
+      "configuration_hash": "8108f35f3225819ae7cda30021bbb4a7388b96d829fb165b442fbfcb3500a58c",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0076"
+    },
+    {
+      "configuration_hash": "83dbb124a4447859aaca9a8bf4d972ca94c568c7533482008442a82e192e05b1",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0077"
+    },
+    {
+      "configuration_hash": "8660f53f3802bb6b1d82b482b1f6e67bd67a30f9f685e7b1ade3d905220d764b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0078"
+    },
+    {
+      "configuration_hash": "9e5a6ae2af2e8bafed797c5839234426239c7e6187b1342748cc7a8e06e058d6",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0079"
+    },
+    {
+      "configuration_hash": "a920b0dacee8447152edd746f95e9e2bef472f291d17985a23cda09a500f4095",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0080"
+    },
+    {
+      "configuration_hash": "af635658bee4aa2e495274eb867f559f99bd53c81d16ba5670fdae4e5cfb51e1",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0081"
+    },
+    {
+      "configuration_hash": "b939318ffb44316600d1605e7e66169c7ea4fc832abf6e8a51521fd755cf8684",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0082"
+    },
+    {
+      "configuration_hash": "b98346fd386d869eb8e4e86ee4b49a7753a0470b903f2ce6449a5ffedb52d6f6",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0083"
+    },
+    {
+      "configuration_hash": "cf4a05d49f21eb6b6c3b7cb80f804aaa7c7384ef3b76a90720ed5ada86f9f6d4",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0084"
+    },
+    {
+      "configuration_hash": "d0283a45614e007f98ead2882e67825a0220ca9aead8dce43cc583b59e9fb2f4",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0085"
+    },
+    {
+      "configuration_hash": "d1b3f27da009183f687313796100a1e54e94e01c2736f85a8cbab7c23d30887f",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0086"
+    },
+    {
+      "configuration_hash": "d52cf70f5acd6044e28288e9c6b041a0a03dde5df59eafe03c99a1fe2807619b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0087"
+    },
+    {
+      "configuration_hash": "db82629da33b95e85409964398775dc9a2ea359794a7dc449d0bf26c79734784",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0088"
+    },
+    {
+      "configuration_hash": "e1ce01dd0fa9f2e05f7c481dc639146f3ae1b30ceb75eafdf1a27226d9cbdda5",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0089"
+    },
+    {
+      "configuration_hash": "e3a2d69982d934f11f8bc4ed93a01d3d2086436c3527718b87127c50ef64d96e",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0090"
+    },
+    {
+      "configuration_hash": "eb55c9094f953e908a582e3c47e0d942a676311d48d0f3c6e58c0903a83f9b08",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0091"
+    },
+    {
+      "configuration_hash": "eb5e1b81361a6fecf1a0b12d9331ee80e9bb78630d574d079744ce3d1335ae82",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0092"
+    },
+    {
+      "configuration_hash": "ee67e43f1abb9b6bbccd632971f5a2cf059e5f03fcb783d7a6685f5b3074ed50",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0093"
+    },
+    {
+      "configuration_hash": "efdffa4916ba07727ca3fa2858812d2570f07b4411b1bbfb33b83136ed92020e",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0094"
+    },
+    {
+      "configuration_hash": "f40103e83300d8661eb92d2c459f0d9adddca4e7a702224213ba0337f0cb67fa",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0095"
+    },
+    {
+      "configuration_hash": "026095afe7fd52fbfc72a018b9ea125abf39e96a3090298b174827d0fea6f9bc",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0096"
+    },
+    {
+      "configuration_hash": "077246669d6c62cc8fda5392cfd03db39093d97f0bb4f73074733e98e539e91b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0097"
+    },
+    {
+      "configuration_hash": "0d2c5318bb0682f9702b5fdf1880350915f1bde7e80624537678384fad587421",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0098"
+    },
+    {
+      "configuration_hash": "1298203668574069e326bb92e12a508d6f80cb686619ee6c6ab782927a5790f0",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0099"
+    },
+    {
+      "configuration_hash": "12e4befaae8d44fda650fc2d51c60ba1b42539366fa563de645f95b7100fd743",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0100"
+    },
+    {
+      "configuration_hash": "15ff15e1180712c6304d86453e3f5e271061955f68ca9d62c31bd5b0585010db",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0101"
+    },
+    {
+      "configuration_hash": "25c99c093f277016a8b3fae2e93a74dab04a38a7cd5daae60535e28e844eaa1c",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0102"
+    },
+    {
+      "configuration_hash": "28012740c62574a86bcdccc0b265825747de876241d351233f5871dba33e0f07",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0103"
+    },
+    {
+      "configuration_hash": "2889a88cd4c1dbd18770eb2d723b0b7e6ee7b111c4b1bc2b09d37e5a01f705bb",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0104"
+    },
+    {
+      "configuration_hash": "380fb37de6849b771c3f8e4f414543a4a05da777951fc864cff320d8a907fc07",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0105"
+    },
+    {
+      "configuration_hash": "3877eb1e780e598dd63f9e1f79ac7ce22fdad04d07c67354fc2ab18606c4e209",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0106"
+    },
+    {
+      "configuration_hash": "38f53c3269a29ce4f9bb158ba904d99e5ef3b685a99f78b27a99493ac73efc7e",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0107"
+    },
+    {
+      "configuration_hash": "42833ff6a0d6e9f7987253bc820a4800b08188bab853c7f0151ad6227a86a08c",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0108"
+    },
+    {
+      "configuration_hash": "4df62f4696b1788e2ff9230678f645384228821d50c0dde52cc0dd6b165bdaf6",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0109"
+    },
+    {
+      "configuration_hash": "56215b15e164dd1f37706ddf6d1e08ec42144bf3e35f3545a9b2fb00435bbe52",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0110"
+    },
+    {
+      "configuration_hash": "60fcab348a7a8fe686688b2de984e0aa9f7ba8f827d341fbbe1446752185203f",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0111"
+    },
+    {
+      "configuration_hash": "63d3c052ef56c5ae173233b19ec8ef726781c76933032637b599363216b874f9",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0112"
+    },
+    {
+      "configuration_hash": "64029862c3171226f1f39bfc090e98059fbef0a80608be74f003a37cd251dd08",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0113"
+    },
+    {
+      "configuration_hash": "6a28a638afcbc2bc1cb8f7f85f5dbb318f65c971b7b538b90077727dc4600472",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0114"
+    },
+    {
+      "configuration_hash": "6f74974f03585dbb7d87b6cd5a7404938236eb0c688b2a764e30bad30251e768",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0115"
+    },
+    {
+      "configuration_hash": "72b4d80b44bd62555a3cf8173dc5467ef3581b42e96cced78cab39d8aa71d400",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0116"
+    },
+    {
+      "configuration_hash": "7af4c09a9b14384d4cf78c942173eb53c6cddbeb9ab938c33faf3d74e193dd24",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0117"
+    },
+    {
+      "configuration_hash": "7e1d805d623cae968f97a7347b1964cd22f41603318b2425a50bf4fa73571e2a",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0118"
+    },
+    {
+      "configuration_hash": "83d86233f8fc9a16f1ff0306ed713efc3eb378b8ff196fd51b0bb2a7d2a6f0af",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0119"
+    },
+    {
+      "configuration_hash": "8450c83fd7d3876b5dfa405cf76bfc281479abe62a8cb4e39d38b07241eb27f1",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0120"
+    },
+    {
+      "configuration_hash": "8d986657b801b69359bc854d1582af6c1278ce2127ed1c14ae801090c0917da6",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0121"
+    },
+    {
+      "configuration_hash": "9117242160c39a5ec74a1febd5d2b9be4c003daa1eacc2d6d950d04cf9352474",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0122"
+    },
+    {
+      "configuration_hash": "919db6b7628e782667972391e04040454924507460c32008dbc48ec9dda14290",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0123"
+    },
+    {
+      "configuration_hash": "943914de82dbe05d5347fd169eeb0339e7f8ccc53f4f28391b151fd9ce0d4f96",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0124"
+    },
+    {
+      "configuration_hash": "951fa2fbeda5207d8f284b46f0fa902e128b5c2226b7a6d782d12812dcc26e43",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0125"
+    },
+    {
+      "configuration_hash": "955b90b401f422bbd290bc5e670285da4007de4d4092e46d568195944b424501",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0126"
+    },
+    {
+      "configuration_hash": "9fedfbe489fd147469af1c8af55f352293fbdad2ce1b482b64a93b70f21b1b30",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0127"
+    },
+    {
+      "configuration_hash": "a27d6aac9d1d073b3591246b6c19afb218dc09194496010bacc95d415512eb43",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0128"
+    },
+    {
+      "configuration_hash": "a47142162328734e2ad659d97f7e06ff81efaa587210a5797af021eee8058daa",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0129"
+    },
+    {
+      "configuration_hash": "a4de0f7b08e1a23cf6173a8bd0b205fad9b6960410621833fc29caafd6d028ec",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0130"
+    },
+    {
+      "configuration_hash": "a71933959f57c5f3a2a8143ec94ef9db850192480fe2c2df3651bf466f91158b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0131"
+    },
+    {
+      "configuration_hash": "ab5da32a54909ab4cf383c840fa465b71ea1dc119aea2f2d158380d05c76da21",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0132"
+    },
+    {
+      "configuration_hash": "b3be6943671a08301af9396860ad6a4b47f717105b29d1b54c0937089de25b46",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0133"
+    },
+    {
+      "configuration_hash": "b3e7c6edfe9b24e74e3efee37be0c694de04b0394e295d66ee0544d42150bc2b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0134"
+    },
+    {
+      "configuration_hash": "bb5be1a96015ee0a3a53c1759e519e1c6b02ac19df0e056f9c5c6beb87f2f627",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0135"
+    },
+    {
+      "configuration_hash": "cbeda1929fa3a655948bfd04d58d02171d21e678cef4b62a50cc00d7be58cf31",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0136"
+    },
+    {
+      "configuration_hash": "cf0dd184b58418d87d6d894f93c2d603d268b3524abb463f5dda9b2d7f643a3f",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0137"
+    },
+    {
+      "configuration_hash": "cf89c0a02a31a6a4f449d832e732b06a311d82aa85d82dc5bc135d741c0d8019",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0138"
+    },
+    {
+      "configuration_hash": "d0c6e2f12a248e0127635d081c4e2032a003b01c6ccc8c568e850d9054108fe4",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0139"
+    },
+    {
+      "configuration_hash": "d2725c57076754a074d2a37aa99303ceb7b47e6167bfa79bfb6e380d38c7ffcc",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0140"
+    },
+    {
+      "configuration_hash": "d62138e14f236ce197e4e1b954da688d47e92f13de31764544cbd4d42198c947",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0141"
+    },
+    {
+      "configuration_hash": "f102f8c7bd45472241392de7f56c84a05dd2e3b711439d45357761a83a3e04ed",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0142"
+    },
+    {
+      "configuration_hash": "f4f96a7f494d62badd47f23b9c34ee29d1405feab29e27f30847795e0d069eed",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "70540f8b3eb2032a57ae32d2ae817e6d5bbccd75e2fa27a8399b2a21b6d5c5a3",
+      "trial_id": "V2-0143"
+    },
+    {
+      "configuration_hash": "059eb1de89feb1b2f2828fcd9f5872abfc0ef377dccdc0bbbcb5c702d6eda7f3",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0144"
+    },
+    {
+      "configuration_hash": "44e56027e9362e154a2cce85c9ee93b66b82c2d292c6be1f962f17c7d1bf5b63",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0145"
+    },
+    {
+      "configuration_hash": "4666b10498945bee076f8d49604b18230c161a2bf46feb7fafeaa3a0bf91aa32",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0146"
+    },
+    {
+      "configuration_hash": "54a87379e81694910cab5227d595af712cb2dac344c326625fadf9a41f85597b",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0147"
+    },
+    {
+      "configuration_hash": "5e7fb777262a24825751a4794d8ec8547dc1c9f5072ae43e059e8254f8aa9d4b",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0148"
+    },
+    {
+      "configuration_hash": "689d0ccc725160ccc12d5103490e0a6124f44874b3ba842b89568c0f6d736a36",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0149"
+    },
+    {
+      "configuration_hash": "6e7dde7d1e5961e3d92345d32bf076fd9c80d6df9f04cb6bc121f482efeecc6d",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0150"
+    },
+    {
+      "configuration_hash": "7c70d18d5f449972e0c74682311f1248e979cb41ea5c92dc6f3974c0e68f31fd",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0151"
+    },
+    {
+      "configuration_hash": "9d48aed59626785dc7b2e1d427359aab50efb525ee892e3822ed244e41a7755a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0152"
+    },
+    {
+      "configuration_hash": "df1819f1c3f08c7771c1cec9b481927b2df53e84fc051661c59d887741e24771",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0153"
+    },
+    {
+      "configuration_hash": "e8c4cec8fa261a48df4ce6ecbd153e7b545667ed79419b27edb4c5651cb716f2",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0154"
+    },
+    {
+      "configuration_hash": "f5bf7130249c85697d1fc00bc1c4609013fe01e10bd57632ba52044740ee4f3c",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0155"
+    },
+    {
+      "configuration_hash": "0fc49647e852110e05d8cf939d0fc790f120ebfba5ab79de2330ac6f246d09fb",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0156"
+    },
+    {
+      "configuration_hash": "1ee4bfa0c3ba6454b974bc4b0a2e35d5a349de52dff182a21fd0677fd79823c1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0157"
+    },
+    {
+      "configuration_hash": "2a683f6e97adfa81202eb96a618a6209ada34647b8a7fd72ec94ccc091c14b6e",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0158"
+    },
+    {
+      "configuration_hash": "2b4dc3fd4ad9f68a0ad19721bc2d140de6d3654fe29ac30300c7be5787fbe151",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0159"
+    },
+    {
+      "configuration_hash": "353bd245be98ae00260ae160b031129e155cd6799e317e20017b66778dafb156",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0160"
+    },
+    {
+      "configuration_hash": "6f48d55d7f735455fc8b792ab9a61f3801cc0f6569d464b4316d5d302fcbad12",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0161"
+    },
+    {
+      "configuration_hash": "8de4fb0026bd1eb8f6d4c7806f14a4cfa515fcf5f9744e431b87d988bd5d65b2",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0162"
+    },
+    {
+      "configuration_hash": "bc0146363d2226567b81e2a6a659ec5e24bf10d7fbbbb98d38c51ac16a7dfab3",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0163"
+    },
+    {
+      "configuration_hash": "c131fbf12df8527d43bb6b53a37e05e5be60ed486bc8b85b822dafafe233dd03",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0164"
+    },
+    {
+      "configuration_hash": "e2d009744facdc2082c7705a58638ad855e3319ec95d307209fb799f8774a156",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0165"
+    },
+    {
+      "configuration_hash": "f49cc83b7c095d249ac632f4a39f4051576dd27fb204e2153e3155db3a3caacf",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0166"
+    },
+    {
+      "configuration_hash": "ff8555f2da5dafd2f41c938e0ea031b7b51cf4700392c255c017dd3b57fab697",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0167"
+    },
+    {
+      "configuration_hash": "12cbd5814080ea0a081f98a2a7dec4576a19043f2fc1ab81a32ade9eec9c84ed",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0168"
+    },
+    {
+      "configuration_hash": "26bc5c9d4e9bab85d21a074ccf0136d8bfc885ec4453108126441d3104111ffe",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0169"
+    },
+    {
+      "configuration_hash": "5e83c50a390f8e48393a2ec88f2cf7a4281a2c879496f78c5054516682df49c1",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0170"
+    },
+    {
+      "configuration_hash": "652c7909feaad8b986695b019c1c7ff636c81377e465ddb1cd95e9b6b69ab890",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0171"
+    },
+    {
+      "configuration_hash": "7e6c8ae2798f3fd9929f1fafd200bf8e2f1a561eafc25cba6fc885ff2f85a94a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0172"
+    },
+    {
+      "configuration_hash": "8a7ce2e8f80a8432d73ecd15adc057765d954c826ae5f040689fb1f1b5afd8d7",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0173"
+    },
+    {
+      "configuration_hash": "a94899d93cf0b0951016ba8fafecc472f1f14fb0b2ef223a272a67e1ac9a3539",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0174"
+    },
+    {
+      "configuration_hash": "a99f09a2ee93a28b6f987a46b8af7e18a9ac1e07a0cb3b2cb7d755d825417169",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0175"
+    },
+    {
+      "configuration_hash": "c74793c683e6ec4f75ed6ac4dbeb8d7a1a78dd080ff594542b5dfedf05368c9b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0176"
+    },
+    {
+      "configuration_hash": "c8ea058605b29f9aa050346534f44241c25e3c99866c21e880538c2a64da5a53",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0177"
+    },
+    {
+      "configuration_hash": "f7d62f2eadab8cd151c1946eb9ade67e867821b3b86e56a7af2e59264ca199e5",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0178"
+    },
+    {
+      "configuration_hash": "fabde1e847224c3dd53c93544219de94e203f108ef749a22101e03e5a1da91da",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "14a8bbf26390df94b37fbc320be9ab736d1fc785cd658be21970a1f46b67754c",
+      "trial_id": "V2-0179"
+    },
+    {
+      "configuration_hash": "093bab4fa549a7e77996a6a54a863660e00408de0f47649ea8998645f67b324a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0180"
+    },
+    {
+      "configuration_hash": "253b12facb8f0bcbb0d9702e239bd5be805f87c16cd89c747523a8b52fd5aeef",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0181"
+    },
+    {
+      "configuration_hash": "3462d55588ddf03f86f8fd3a34f3873bc5d454b2718575fdaf85dd3edf9e8b7c",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0182"
+    },
+    {
+      "configuration_hash": "59d5fde3844ee0f4c3c39efd0c21507499ef35621f80e323b40a8cb4ea3c621c",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0183"
+    },
+    {
+      "configuration_hash": "73d723de47b5f033889efe6da753877597f77e404ec444d01f26c4b697b70f0c",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0184"
+    },
+    {
+      "configuration_hash": "7d5fab3d9ffae3a18eaaf369c456f12d00b7f0ffbc5c4f185e77ed0a7f7c3d72",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0185"
+    },
+    {
+      "configuration_hash": "c603ba51f5f2ae24200c30ecca10db9ae9e6ca82720caf4c194ed9f39d8fb304",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0186"
+    },
+    {
+      "configuration_hash": "ce0d207c01e2a138a7779e62656d3598faf270802925e3706542552b9f200cda",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0187"
+    },
+    {
+      "configuration_hash": "d870ad095260ad4f55a182c290f54507e77cd0abc5aa4fbdddfb79bd96daab8c",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0188"
+    },
+    {
+      "configuration_hash": "dac59ee6673c2cac4695534204a90d3153b3983888900ff263040c53c475bf93",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0189"
+    },
+    {
+      "configuration_hash": "f136196e475cef350959f78408cc0680c9854b30e178b4f4f2bbdb9fa9f9b6fc",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0190"
+    },
+    {
+      "configuration_hash": "f72cf1d70e7c700786880472bd72800818a43d0dec33116009f517db4505ea88",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0191"
+    },
+    {
+      "configuration_hash": "241dc21d5db8b7b5a06f3fb5edb68a4bf9704ee5b698d88c97c39e021b6034eb",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0192"
+    },
+    {
+      "configuration_hash": "260335b43c7c47a6219f935cf302fcedd19c978c3018c35baaf1eae330d194b0",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0193"
+    },
+    {
+      "configuration_hash": "3c2e18755329f9c36e68bea6311a3e9f66a17e7369e59e861010c7c4f69806c2",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0194"
+    },
+    {
+      "configuration_hash": "3e4666a93df7927ae281414a8513c23a067c3f8f361553663f5f07ae7b167e95",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0195"
+    },
+    {
+      "configuration_hash": "3fd78897e509c18c1fcc9b77272a2c63a8bb1eba174273d204dd3ac49eb00c3c",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0196"
+    },
+    {
+      "configuration_hash": "523f3f9fa3c434edc7ace725b69c618fc09741a4c870eed95e27f0b488235a5d",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0197"
+    },
+    {
+      "configuration_hash": "88ad3198bbfa46514935c2731df4a30af41ca0bcda832e5359c25eb399d3718c",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0198"
+    },
+    {
+      "configuration_hash": "93185ae318b86ecf4ed646f7f04b0bbf76a1fea27528ce704fcea3d536486e70",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0199"
+    },
+    {
+      "configuration_hash": "aea5701d54dcbf3c431703f6665bf5400c45ad9012905c692d9adefc19426381",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0200"
+    },
+    {
+      "configuration_hash": "c290b3098034e56ae7d45412a8ac72345167f2446123cc6dcace073a072f88d3",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0201"
+    },
+    {
+      "configuration_hash": "d5990d0f4848910e49d9d09caa80a505d4cefab3fac7d7e2e2978b3a0b749cdb",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0202"
+    },
+    {
+      "configuration_hash": "db4ac7557267ad2c1ad56152e88f7ef223b834c9049088078d40f09658148809",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0203"
+    },
+    {
+      "configuration_hash": "0fe243418362d4e95d447b33b41d2f8585c149ee558f6df49fde23de872186fa",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0204"
+    },
+    {
+      "configuration_hash": "16a57c173d421727d373736bcbb351c60140772c9c5612f6a27d02fcb0112fad",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0205"
+    },
+    {
+      "configuration_hash": "26ad90dd35b2bc646e7e89b72453c1f0836be271709cde3510de8657afa73bd3",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0206"
+    },
+    {
+      "configuration_hash": "39759baad24f9a18e02ed466201ec89d1856aa1bdd0b6cd8119364b587811ca5",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0207"
+    },
+    {
+      "configuration_hash": "79e1696df0fee4efa9bcf5bdce1b9b13126b4e15cc4f45f6bc0e38cde9b3f7aa",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0208"
+    },
+    {
+      "configuration_hash": "7c8d9ba66d6a9478f1733ef7c63511e1c66daadb77d466d4f1e2f0229b498adb",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0209"
+    },
+    {
+      "configuration_hash": "88c9ecf9c7f81c5fbdd6134c636cd20099df8bb7594d6264e59413f1557fe815",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0210"
+    },
+    {
+      "configuration_hash": "a929a101d2efd5786a49fd58552d102a0a16ed2a6993220ca3612c424c0357dc",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0211"
+    },
+    {
+      "configuration_hash": "b760cc5ce264961ce85ebf0dc0a260734d47f648443942bdb87125ec83d383d6",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0212"
+    },
+    {
+      "configuration_hash": "bb72e35c8f88dc054d506cd78fdbb3b7a6c2f360800792bfde1c258a3679beec",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0213"
+    },
+    {
+      "configuration_hash": "c6b9e1c6d6bfb22b6e1505fd1acd64398a4248f6e94e82ba8a4a70e57e5300e4",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0214"
+    },
+    {
+      "configuration_hash": "cef2dd8c01a11e9f6b755cb10e57fcc127257fdb1f6584b2fa0ca1d2e3c1b56a",
+      "execution_contract_hash": "673b91ed15ae87921edc2a8be6ac8531c20aabcbd9f275d434a8178587e60fbd",
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "902699be1ddb0d5629609ca254cc360ec40205ec3a864d6d01aa26354e80a9e3",
+      "trial_id": "V2-0215"
+    },
+    {
+      "configuration_hash": "039073ab8737361f8aa8da7935d3249547e26826d73238c78e131fa9cdde86e7",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0216"
+    },
+    {
+      "configuration_hash": "21acadb977fc0313ad65656f660795d911fbeb908e124983a34503ca0076fcee",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0217"
+    },
+    {
+      "configuration_hash": "4b9ce280fe33e7125ff9dc24dce13a42ae40f7e8701c41ec38c5e71c1d446169",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0218"
+    },
+    {
+      "configuration_hash": "83eca174428efc604c7349537db6be8d56dbb48f7650af39919a17fd9197ae32",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0219"
+    },
+    {
+      "configuration_hash": "a4eebc1b752b699f0f5dad6168cac069144392cf4a0913edc5a62399bd5197fc",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0220"
+    },
+    {
+      "configuration_hash": "cd07e959d7bc28e174d379b3e45028afa6d6deccbf5978ce425276439ce8049a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0221"
+    },
+    {
+      "configuration_hash": "dfc5d6bea43e4d92a9ee97d590bd6e464324511eddc4acc76637d3000bea23aa",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0222"
+    },
+    {
+      "configuration_hash": "f1b5f095f7e7b2fbb9b0f453e5666ee71afda27dd76ef0194543998587305461",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0223"
+    },
+    {
+      "configuration_hash": "3e5174d3b508dfba77d51dc53fb1102454fa974d9a29232c56aac67f9a073e46",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0224"
+    },
+    {
+      "configuration_hash": "475157c8d3befa698e38844c2491e4254cae9f3a9e8d69bb6c9d04c417cda12c",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0225"
+    },
+    {
+      "configuration_hash": "5281f46b4c15ca83cfdb306d2dddba09667f72e91ad30920df1eeeed512db38f",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0226"
+    },
+    {
+      "configuration_hash": "6d13d7edadbe8429ca562efe8f2e89259aaf3f20935b2139a5476390c9b0d80a",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0227"
+    },
+    {
+      "configuration_hash": "97345d76e28eb11c47033a0fd40ad6f598b440f6dcb7ae1a11cf5c5271aff93d",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0228"
+    },
+    {
+      "configuration_hash": "9be43b42fd4157971491094d974c54573134fa50be7029568da42232a49efe74",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0229"
+    },
+    {
+      "configuration_hash": "dea888c02555cff7e3fefab4f35bfff9467c78f28afcd573a25dc0bbd223f144",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0230"
+    },
+    {
+      "configuration_hash": "f607c925f4364df13bad77a1dc6c2fff9390917d9fe5f43f3ef3134fac6ee634",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0231"
+    },
+    {
+      "configuration_hash": "2638fb0604614a1b2fcc1d64fa37f88f8c3a0517a2bbfc8e8b37941731acb171",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0232"
+    },
+    {
+      "configuration_hash": "30a67cd3b43f4396c4457c3a36ceef38984b09ab6f4bfd741c5a809327a37d23",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0233"
+    },
+    {
+      "configuration_hash": "4a941e4430014ee70dfa72403cab6bd9652085c9dd0b23214121e7de98da5fa9",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0234"
+    },
+    {
+      "configuration_hash": "78decb7d9bc051fb4f78809995aad2aea164ee2d81ac0127aaba811f812f23fc",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0235"
+    },
+    {
+      "configuration_hash": "866a55449b989f22f5365cd0a7d1c04c0f5d4b06ceddce5780369d09d0e338ef",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0236"
+    },
+    {
+      "configuration_hash": "b2d1b3e2adbe835ab1a82abc485372ea0c826fa61f4ced372951235f1b7b4858",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0237"
+    },
+    {
+      "configuration_hash": "c7bd982a351fe2609a68d4a19a10344516a03452d6b3d2009387e2fe56f3abfd",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0238"
+    },
+    {
+      "configuration_hash": "e2d899fffd6b10717551b7e049753eabdaed807af01380d38aedad0994eb27f5",
+      "execution_contract_hash": "50f6cb14b10cce8fd1f7ac0150e6d26d732087b20205a777a4b400ea0ade4830",
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "6965916cca92170a8285519b1b5a895add6eeffb7cd9863c88b25f3bb8495e87",
+      "trial_id": "V2-0239"
+    },
+    {
+      "configuration_hash": "12883f07630d3db4fa7b027c8e304ecd5288ade4d17715051bf047bbde950d3c",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0240"
+    },
+    {
+      "configuration_hash": "1537d8858a208e8e0f6a037867b0ab7b1a4133870b33ecce9979cbc682957cb6",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0241"
+    },
+    {
+      "configuration_hash": "36b9061094d6993dd69825cd5f722239195c937a5ab08e6ad3fcea91c75f43ee",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0242"
+    },
+    {
+      "configuration_hash": "6d8ff3758f74e89943ee1835456c1ea99d3850570acfb4056ceadca990d36384",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0243"
+    },
+    {
+      "configuration_hash": "9b941cceb2b91c1d481a3b575afa7caa5c01903b206fa4f6f89c0f820f617283",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0244"
+    },
+    {
+      "configuration_hash": "caefe840eb370cc4fe832485ef1b72ce217121170e382d61a2918b6012631919",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0245"
+    },
+    {
+      "configuration_hash": "e970c8be74ca09639861f9fe1a9fecf5f06a1eba6f2974d69675b1bb8b582cbd",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0246"
+    },
+    {
+      "configuration_hash": "ecc5feab7769e90cc5996e67b398630e13169df5a331ee770095695966213fcd",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0247"
+    },
+    {
+      "configuration_hash": "05d54695f4f060afb579be13316f1a0c9a19e2ae159ed1d400c993a01d23e2dc",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0248"
+    },
+    {
+      "configuration_hash": "0892a54f21408ddfb0ef7381bbd5b2f3fe156fb65d01c695b1bd0d984bb11765",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0249"
+    },
+    {
+      "configuration_hash": "0b436000132ab2c8f04d7cc8e9edb50578165629cfe178a0a3981fcabd2125e7",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0250"
+    },
+    {
+      "configuration_hash": "0e3e485ced6619a6ad482e4649c56f24c1c1ba128056714a9577ef0160ff0ce6",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0251"
+    },
+    {
+      "configuration_hash": "1499bb6c819e80736372662b72fbb1f58c70b77959f0e5585f1c82999aba7439",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0252"
+    },
+    {
+      "configuration_hash": "b0f541f7cc56ed5db336691823d2156ab9f87e3c7184e6cd46084cec02c650a5",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0253"
+    },
+    {
+      "configuration_hash": "b8a0f749cd3eb5f2d1e65ead41be525ce83c97e72a2829bb4c2727b8adc07bfc",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0254"
+    },
+    {
+      "configuration_hash": "c16384040b4b4f821156553d25cf352a9aa374844a27e94df43ff56ffebc67bf",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0255"
+    },
+    {
+      "configuration_hash": "065155209ee510d1a269fb07259e4399f0a36afe987cf0038b7d470d733833e2",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0256"
+    },
+    {
+      "configuration_hash": "0c3624eeb77f9684bcc629c9ffba073bf4b93bfc381e86ffdd99b00360532266",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0257"
+    },
+    {
+      "configuration_hash": "1c0ebf1ba5d7b514b19e4f141a5a60bea4011e39e0626e5055259c64c50cd28f",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0258"
+    },
+    {
+      "configuration_hash": "47e265a9e4156a4ed95705d020fc09ad766d20364f486b14e10922cc2469eea7",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0259"
+    },
+    {
+      "configuration_hash": "48aef8780b183cfa545ea19d5eac8e2bf978cce96f96323f350c4fe259460eb3",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0260"
+    },
+    {
+      "configuration_hash": "8a9ce11cc197ee89185df6bdac691141048312ff2504a55a07c859c74147657f",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0261"
+    },
+    {
+      "configuration_hash": "a3475c15de76efea5754d5e8dabea983fa66b0db020402032e4ffc6692962d78",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0262"
+    },
+    {
+      "configuration_hash": "ad6e3cd0eef7df39f57852eff182867cf23ee83f7227b420cc51deb2f941f5f4",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "cab070cb6f7dc06f906098161cefdef825c76676e5e75aedb7679ba8b961fae1",
+      "trial_id": "V2-0263"
+    },
+    {
+      "configuration_hash": "12bf386f69b78ee7248d95e0e14b4d34747bf4748d64cc6b34841a39b6d0a0cb",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0264"
+    },
+    {
+      "configuration_hash": "51574477cc1a146289d54d60d3d43d67ec63e7d9ca8d0dc78d02ba6928fc6b9a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0265"
+    },
+    {
+      "configuration_hash": "78673879892b456bb6db179191b56ca5521e08ddb41d342b49d57b40ef5a727e",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0266"
+    },
+    {
+      "configuration_hash": "97544bd974ef3559e1d9d7ceee600649f2ce5338cf3d795e8ee74b6bf37e6bc1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0267"
+    },
+    {
+      "configuration_hash": "9e138aec83e4219bf15ee8034d2e5b7992318a1ecfe63a74b5f618214cad8bd5",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0268"
+    },
+    {
+      "configuration_hash": "c29dadb867fd9ed10bf6284e89ffe1d3c356c4574b8106c42ba3e6d5022b3586",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0269"
+    },
+    {
+      "configuration_hash": "d892091804cb4668230435196e277df2f7aa969e7c88c6a367b39a9002e0fc0f",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0270"
+    },
+    {
+      "configuration_hash": "de56b25c937e47ea9671b328725dd693dea48a8b37888be51c5eb8f2a0fced9a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0271"
+    },
+    {
+      "configuration_hash": "13ec472c54063e8eb6e37d64251acd92cde541de1abb4e9407df747edd415ee7",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0272"
+    },
+    {
+      "configuration_hash": "357b221ce6a86bf42877e7729f04b02ece110988e133925a3433e6e54e5a7859",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0273"
+    },
+    {
+      "configuration_hash": "5b7dfe8bffed0247d0905567b4381f514248cb938c23825797f31a7e407056e0",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0274"
+    },
+    {
+      "configuration_hash": "785ce188784f770d961381d8b25e26e779922c5cc5dae0df575a2e4e9b61e586",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0275"
+    },
+    {
+      "configuration_hash": "959f3bb7b1a6dd967ab8fdc8a81cb28f2455fbd4016d17184ba76396a6571e0b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0276"
+    },
+    {
+      "configuration_hash": "b36b992abd1f9b5e3fac7936c01a0bd979eeb81534643f101c5b462874502a5a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0277"
+    },
+    {
+      "configuration_hash": "b7c920be4e2e3a7e48cd7ec85bfb36cbbab1d2f890689396c00aab12afaa4db8",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0278"
+    },
+    {
+      "configuration_hash": "dc1e9ae0acfb0c41ccf608ef2690deece7b881acd11faf2f87c23ec2dbe4893e",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0279"
+    },
+    {
+      "configuration_hash": "2dd5c85ca03038741927c721479b386da24fe87ddf07c7a351564f9ed218cb9c",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0280"
+    },
+    {
+      "configuration_hash": "501c7351aa795398764a58f2910367cdda006fac322ab2651991871cf8780b7e",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0281"
+    },
+    {
+      "configuration_hash": "53f14a685f887c1c48755ecc91d0eee16657edfc649759055feee29666ac3aa5",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0282"
+    },
+    {
+      "configuration_hash": "620702014a357c967803e99f9eafc435b72e136c68c013c7548d95ae1512c9d9",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0283"
+    },
+    {
+      "configuration_hash": "7f0f76e7812a117e28a477212034518e233a6319ccced4dbad9ada6e5b6fab6d",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0284"
+    },
+    {
+      "configuration_hash": "8e2496f394543c8e893f5225b867c567ffc62037b7d469c363531364b3a4e74d",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0285"
+    },
+    {
+      "configuration_hash": "b12ac5edac218bbe5f6db34bf78bc9f829c7e1c1d2b6157ed9f46ff996f5756b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0286"
+    },
+    {
+      "configuration_hash": "f64be82a08651beb7c62c8895f9a44431114504e35a71f6d5fdc6c5e0266590f",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "720ba00d6d38365d7dc5ccd8375423edd214cef6e4b78b6865ed040c37a776fb",
+      "trial_id": "V2-0287"
+    },
+    {
+      "configuration_hash": "4b66889b20d4fa546281e6c530edb451d252273d27c784af82f7b072c8f6cdbb",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0288"
+    },
+    {
+      "configuration_hash": "65e497eb75a30572f2b0f97eaf5f88e0ff817ffb526aae166b137bb9c0250871",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0289"
+    },
+    {
+      "configuration_hash": "748bcf94675558ccac8001dc19b8bfae6d19cae7ce52b41318ecd8b61207963f",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0290"
+    },
+    {
+      "configuration_hash": "83bb0500fa33f6f41869cd3825c2c2f0ae220e800f8668d43592de7d6ff87d44",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0291"
+    },
+    {
+      "configuration_hash": "88fecb105a71a8fc34fb3d6b743a30d245ce633f5b461522cebae41e9e97bfa0",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0292"
+    },
+    {
+      "configuration_hash": "bad803ffb9e896a324cc7267beb20238f601b204f2b4c50a21efe977c9331f46",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0293"
+    },
+    {
+      "configuration_hash": "cc93b278ddef34efca5157f0a9244b9106a7ac48638953f66bab382ed1d3f9ed",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0294"
+    },
+    {
+      "configuration_hash": "f4abca3639ab146e03d261b29ed6ca776ec782377e6f862d4e945a48244702bf",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0295"
+    },
+    {
+      "configuration_hash": "08be9a427f3076552ca167c633f94a09ff64574174bdbb50e3039f96b1ed7236",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0296"
+    },
+    {
+      "configuration_hash": "278d68411241348a508c6bacb0b5590f6e92a5913848b3034d723d8fef1d7394",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0297"
+    },
+    {
+      "configuration_hash": "2bd5c4edc1f69dcd53423bb48c0c7edd06dc6ef8cedf1a1379f46ab686fad355",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0298"
+    },
+    {
+      "configuration_hash": "6d23969fea5422a6ab4858cebc9497439235cae1645e78ebbcd0f309ed7c8a1a",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0299"
+    },
+    {
+      "configuration_hash": "bb91f0780059471d962a87dfbf1af4cc19209dfbc2ad2504b7a732c08f1bbef2",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0300"
+    },
+    {
+      "configuration_hash": "bda298296ec69d433141690b39ac1b244f99fa7d766ea6d14bfa41fc6d109da5",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0301"
+    },
+    {
+      "configuration_hash": "c7699e6a4162b9097fa6cc6d5c2e89bb559851b28a6f4b5f5e188bb376b4003b",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0302"
+    },
+    {
+      "configuration_hash": "d7b556056e9c8228d9cb70aa7864b6063c98379be82a398dd5eeec543f3a773b",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0303"
+    },
+    {
+      "configuration_hash": "26b2de5ef45f87ac07ae157b37368b5423bf43b5ea7f1d964e0546c0827cba88",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0304"
+    },
+    {
+      "configuration_hash": "35094ed01b5d21d58f235244caa8e1bf54203df2b5547507fee64dbaaf841a55",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0305"
+    },
+    {
+      "configuration_hash": "887371c60d3ef0b359b207fc57bb45acbabe74b67347905b2071b99f4a5a19db",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0306"
+    },
+    {
+      "configuration_hash": "a36b9f6219bd57850c848628fa69653626c06ffc9626b9d5418a978c7385d914",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0307"
+    },
+    {
+      "configuration_hash": "a76c2828e25e6f517facc4ebfe83cb09092ea16de4b8796c0c0ec7b63694f47a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0308"
+    },
+    {
+      "configuration_hash": "ad583f5972599d1cdd375f04fb11350e692d33fc11d356e80b5a872028835457",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0309"
+    },
+    {
+      "configuration_hash": "ea9ce0a0ab57063e9a39e6c31e8e9fbdde9b2af4e1b8ce9e2d017fa07c3e0b55",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "fb870274280cd91b490353c11fa3d587905574ed61865b126095b3dfefca907a",
+      "trial_id": "V2-0310"
+    },
+    {
+      "configuration_hash": "fae5806c0fe7ffed07ef30bb225b51b294cf3c577af042bfb5e429d0259fa196",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "a162201dcffc18afd0684656d4027c7193d8edc29fe86d887fbc474cda59c06d",
+      "trial_id": "V2-0311"
+    },
+    {
+      "configuration_hash": "299dab963c3d317986c494e8e9fb8bf0ed65f3befc3d07b93ec4cd58505923b2",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0312"
+    },
+    {
+      "configuration_hash": "34a0a4870e7625be60c406287204fa791b5e89ed023ff172dba9d04187e8d4be",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0313"
+    },
+    {
+      "configuration_hash": "4ef2c201ba8315f751a6f032027660e19db06a2a43b38c5b1646fb93a428920f",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0314"
+    },
+    {
+      "configuration_hash": "5476112653283229b4453e55bad06a25fa19cfdc03e94d516eb27defcede5061",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0315"
+    },
+    {
+      "configuration_hash": "5d4fd60930287bcd22c1e62db95d04f165380674bc99c4c133cef24a3275a0b1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0316"
+    },
+    {
+      "configuration_hash": "7bb39326f8e55782ff092cd2bd3ff058e5a248878cefff90f1156209a5560333",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0317"
+    },
+    {
+      "configuration_hash": "b757579784f5ce0480fa6b905c3fc87cbb1503279174db2d07e5e1be937ca423",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0318"
+    },
+    {
+      "configuration_hash": "dcab745639b74eef0d48686ad5aef1e1c35868671ce8f95cba753f8b39983ab1",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0319"
+    },
+    {
+      "configuration_hash": "636baa856b7fafe9586b5d45d9aeee05e814e4e0a2495ab81108ff052e8fc4fc",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0320"
+    },
+    {
+      "configuration_hash": "8fe6ef7ad24da4f118b506eb7a8a0580ba3c489f48489277d1a994eba59fdd42",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0321"
+    },
+    {
+      "configuration_hash": "90dc686b49175b1355797a055feb85e3cd9a6bafda16206df6207e1a01d5b732",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0322"
+    },
+    {
+      "configuration_hash": "aa704351a8770b28dae4ec8a856369ac56633de7bd4c8ee8b993f8fc99256f6e",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0323"
+    },
+    {
+      "configuration_hash": "bbc85fa8bbfa66aeb0b07f727cfb193ddf840f4ddfc98b1cef251c2ad37abff4",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0324"
+    },
+    {
+      "configuration_hash": "cbb1ba6d786204cf0cae79875d8de7827cb44854e1f51bbc53acd2590dcfb017",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0325"
+    },
+    {
+      "configuration_hash": "d14a4ea3a749ddfda01e3cc62b935e583a81a8eb807b2a695c87338d18c76ef1",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0326"
+    },
+    {
+      "configuration_hash": "e54d2f3fe0d3f3f729096f6b99d59b63ee5d5bf19f6891a30084da10b46f97ac",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0327"
+    },
+    {
+      "configuration_hash": "1cf833a44705860491d433c1f57eb0170ac3cf04c46ae2ab801a68f777ec996a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0328"
+    },
+    {
+      "configuration_hash": "1fc46f56efd92a5a5ec22d070c92cc6ad74990b097a1074fa96c86539c8b3699",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0329"
+    },
+    {
+      "configuration_hash": "2468fce9d95b721483c8fab2a893b95b38b87db4b649bd3ca11486ca6d9492a2",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0330"
+    },
+    {
+      "configuration_hash": "262c3a6d0938ee15edd3ae10f65bc2941e0d422c9db98dc217f71e53324feaa4",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0331"
+    },
+    {
+      "configuration_hash": "7676330dc268651b812378dfe1e3eff2d4799f22cd6052527a75645fdacfeaae",
+      "execution_contract_hash": "d51d32c6b70bc875b901e7313ef3de8fc76d8b4f1adf145381e3aac10a7ce6ba",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0332"
+    },
+    {
+      "configuration_hash": "789a98fd4af19003efaca1e25938ed821e5ec8a1271b052f6416a4e17626ea5a",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0333"
+    },
+    {
+      "configuration_hash": "a7c5896de88b63667e6386d38bddc5de30c8163019859b1c6f6c9669ba93d691",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "3efc279a64c3919f787fa1ca01de598e50413692e62796152550b798dfd85c03",
+      "trial_id": "V2-0334"
+    },
+    {
+      "configuration_hash": "cee2fa93b0df28444ead1fbf396a7229164316cf3d4555abab80c39aa4d5de9f",
+      "execution_contract_hash": "b9da6f02b738a2d58d9c6f793b0e6ba3369ef0f193f07c2481424bda50e53c56",
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "semantic_spec_hash": "42fad8d9b129cf715dcdb27f98e529f97df4e504e3a65ac17cbe9c79dca6bf13",
+      "trial_id": "V2-0335"
+    }
+  ],
+  "unresolved_semantic_blockers": 0
+}

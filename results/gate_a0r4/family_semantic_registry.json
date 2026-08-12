@@ -1,0 +1,99 @@
+{
+  "admitted_families": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
+      "candidate_specs": 144,
+      "feature_kind": "session_momentum"
+    },
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": {
+      "candidate_specs": 36,
+      "feature_kind": "signed_return_run"
+    },
+    "F03_VOLATILITY_BREAKOUT": {
+      "candidate_specs": 36,
+      "feature_kind": "volatility_breakout"
+    },
+    "F04_LIQUIDITY_SHOCK_REVERSAL": {
+      "candidate_specs": 24,
+      "feature_kind": "liquidity_shock_m1"
+    },
+    "F05_SPREAD_AWARE_EXECUTION_GATING": {
+      "candidate_specs": 24,
+      "feature_kind": "spread_zscore"
+    },
+    "F10_INTRADAY_SEASONALITY": {
+      "candidate_specs": 24,
+      "feature_kind": "seasonality_cell"
+    },
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": {
+      "candidate_specs": 24,
+      "feature_kind": "regime_trend"
+    },
+    "F12_COST_SENSITIVE_ML_ABSTENTION": {
+      "candidate_specs": 24,
+      "feature_kind": "ml_abstention"
+    }
+  },
+  "admitted_family_count": 8,
+  "artifact_id": "A0R4_FAMILY_SEMANTIC_REGISTRY_V1",
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "rejected_families": {
+    "F06_CROSS_PAIR_LEAD_LAG": {
+      "detail": "Configured edges require EURJPY/GBPJPY/AUDJPY/AUDUSD, never acquired.",
+      "reason": "UNSUPPORTED_INSTRUMENT_DEPENDENCY",
+      "required_capability": "JPY_CROSS_INSTRUMENTS"
+    },
+    "F07_CURRENCY_FACTOR_RESIDUALS": {
+      "detail": "Three USD pairs cannot identify robust currency dollar factors.",
+      "reason": "INSUFFICIENT_CROSS_SECTION",
+      "required_capability": "CURRENCY_FACTOR_CROSS_SECTION"
+    },
+    "F08_TRIANGULAR_CONSISTENCY_RESIDUALS": {
+      "detail": "Cross rates not acquired; synthesising them zeroes the residual by construction, leaving nothing observable to trade.",
+      "reason": "UNSUPPORTED_CROSS_RATE",
+      "required_capability": "TRIANGULAR_CROSS_RATE"
+    },
+    "F09_CROSS_SECTIONAL_INTRADAY_MOMENTUM_REVERSAL": {
+      "detail": "Currency/JPY-beta-neutral allocations require unavailable legs; three USD pairs are too thin a cross-section.",
+      "reason": "INSUFFICIENT_CROSS_SECTION",
+      "required_capability": "JPY_CROSS_INSTRUMENTS"
+    }
+  },
+  "rejected_family_count": 4,
+  "rejected_variants": [
+    {
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "reason": "TICK_ONLY_SEMANTICS",
+      "required_capability": "TICK_QUOTE_ARRIVAL_RATE",
+      "variant": "return_per_quote / quote_mean_distance / abnormal_update_rate"
+    },
+    {
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "reason": "TICK_ONLY_SEMANTICS",
+      "required_capability": "TICK_QUOTE_ARRIVAL_RATE",
+      "variant": "quote_gap_spike / abnormal_update_rate"
+    },
+    {
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "reason": "DEFERRED_NONLINEAR_FORECASTER",
+      "required_capability": null,
+      "variant": "elastic_net / gradient_boosted_trees spread forecaster"
+    },
+    {
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "reason": "NO_VERIFIED_DETERMINISTIC_HMM_LIBRARY",
+      "required_capability": null,
+      "variant": "hmm_frozen_state_count"
+    },
+    {
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "reason": "DEFERRED_NONLINEAR_MODEL",
+      "required_capability": null,
+      "variant": "random_forest / gradient_boosted_trees / small_neural_network"
+    }
+  ],
+  "supported_instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ]
+}

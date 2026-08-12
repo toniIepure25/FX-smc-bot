@@ -1,0 +1,105 @@
+{
+  "artifact_id": "A0R4_STATISTICAL_PROTOCOL_V1",
+  "costs": {
+    "base_commission_slippage_bps_per_fill": 0.1,
+    "cost_stress_multipliers": [
+      1.5,
+      2.0
+    ],
+    "spread": "actual side-correct bid/ask captured in fills"
+  },
+  "frozen_pre_outcome": true,
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "multiple_testing": {
+    "block_length_days": 5,
+    "bootstrap": "stationary_block_bootstrap",
+    "bootstrap_iterations": 499,
+    "false_discovery": [
+      "Holm",
+      "BH-FDR"
+    ],
+    "family_wise_error": [
+      "White Reality Check",
+      "Hansen SPA",
+      "Romano-Wolf step-down"
+    ],
+    "overfitting": [
+      "CSCV PBO"
+    ],
+    "registered_candidate_equivalent_denominator_policy": "number of ADMITTED_EXECUTABLE V2 trials actually evaluated on data; rejected-pre-outcome specs are never evaluated and never inflate the denominator; capped at the inherited ceiling of 1200",
+    "risk_adjusted": [
+      "PSR",
+      "DSR"
+    ]
+  },
+  "primary_return_unit": "daily_strategy_net_pnl_bps_by_ny_exit_date",
+  "protocol_hash": "93a71895a2fd71d4cde423e757b20e2a104ab6fc2fae29e671af9bab5ef1cfba",
+  "seed_policy": "all randomness seeded by a frozen per-model integer seed; no wall-clock",
+  "split_justification": "Discovery uses only the already-inspected 2015-2017 development region. The untouched 2018-2019 holdout is partitioned into three strictly later, non-overlapping windows (2018-H1, 2018-H2, 2019) giving independent confirmation, validation and replication. No window boundary is a function of any observed outcome.",
+  "temporal_progression": {
+    "discovery": {
+      "holdout_touched": false,
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "purpose": "search + anti-overfitting; produces exploratory survivor set only",
+      "region": "development",
+      "years": [
+        2015,
+        2016,
+        2017
+      ]
+    },
+    "external_validation": {
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "purpose": "second independent out-of-sample validation window",
+      "region": "holdout",
+      "window": [
+        "2018-07-01",
+        "2018-12-31"
+      ]
+    },
+    "independent_replication": {
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "purpose": "full independent year for replication",
+      "region": "holdout",
+      "window": [
+        "2019-01-01",
+        "2019-12-31"
+      ]
+    },
+    "internal_confirmation": {
+      "instruments": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY"
+      ],
+      "purpose": "first strictly-out-of-sample confirmation of survivor predicate",
+      "region": "holdout",
+      "window": [
+        "2018-01-01",
+        "2018-06-30"
+      ]
+    }
+  },
+  "walk_forward": {
+    "discovery_train_min_bars": ">= 12 months of M1 within development region",
+    "embargo": "max_feature_lookback_bars_plus_max_holding_bars",
+    "instrument_leave_one_out": true,
+    "parameter_neighborhood_stability": true,
+    "purge": "label_horizon_bars",
+    "scheme": "purged_expanding_walk_forward",
+    "test_stride": "3 months",
+    "year_leave_one_out": true
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "artifact_id": "A0R4_ROOT_CAUSE_CENSUS_V1",
+  "blocker_count": 11,
+  "blockers": [
+    {
+      "belongs_to_v1_history": true,
+      "category": "semantic_specification",
+      "id": "RC01",
+      "proving_test": "tests/test_gate_a0r4/test_compiler_and_space.py::test_compiler_has_only_two_terminal_states_no_blocked",
+      "repair": "V2 defines each admitted family with a complete executable FeatureSpec/SignalSpec/ExecutionSpec/ModelSpec; the compiler admits only fully-specified specs and rejects the rest pre-outcome.",
+      "root_cause": "V1 froze these families at the idea level; exact pre-outcome feature/stop/model formulas were never part of the frozen spec.",
+      "symptom": "F03/F04/F05/F10/F11/F12 trials permanently IMPLEMENTATION_BLOCKED in A0R3D/E/F certification.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "unavailable_data_capability",
+      "id": "RC02",
+      "proving_test": "tests/test_gate_a0r4/test_compiler_and_space.py::test_tick_and_cross_capabilities_unsupported",
+      "repair": "Capability matrix marks tick semantics UNSUPPORTED; those variants are rejected pre-outcome and never proxied from M1.",
+      "root_cause": "Tick-level quote-arrival semantics were never acquired; only M1 bid/ask OHLC exists. M1 bar count != quote update count.",
+      "symptom": "F02 return-per-quote, F04 quote-gap/update-rate variants un-runnable.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "unavailable_data_capability",
+      "id": "RC03",
+      "proving_test": "tests/test_gate_a0r4/test_compiler_and_space.py::test_rejected_families_documented",
+      "repair": "V2 rejects these four families pre-outcome as unsupported-instrument / insufficient-cross-section, documented in the family registry.",
+      "root_cause": "Only three USD majors were acquired; JPY crosses and AUD pairs planned in V1 were never materialised.",
+      "symptom": "F06/F07/F08/F09 (cross-pair, currency-factor, triangular, cross-sectional) never producible.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "evaluator_implementation",
+      "id": "RC04",
+      "proving_test": "tests/test_gate_a0r4/test_kernel_golden.py",
+      "repair": "V2 reuses only the certified A0R3D side-correct event state machine as its single canonical kernel; pinned by golden tests.",
+      "root_cause": "Evaluator was not the certified side-correct engine.",
+      "symptom": "A0R3B surrogate evaluator used mid-return execution and synthetic half-spread costs, later superseded.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "execution_semantics",
+      "id": "RC05",
+      "proving_test": "tests/test_gate_a0r4/test_kernel_golden.py::test_long_entry_uses_ask_exit_uses_bid_with_one_bar_latency",
+      "repair": "V2 active path has exactly one execution kernel (kernel.py wrapping the certified engine); historical paths are preserved but inactive.",
+      "root_cause": "Operational layering accreted several execution code paths.",
+      "symptom": "Multiple historical execution paths (a0r2_execution, a0r3d kernel).",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "statistical_methodology",
+      "id": "RC06",
+      "proving_test": "tests/test_gate_a0r4/test_statistics.py::test_pbo_in_unit_interval_and_low_for_common_signal",
+      "repair": "V2 freezes the statistical protocol and denominator = admitted executable trial count (<= 1200), adds a CSCV PBO estimator.",
+      "root_cause": "Too few certified trials for CSCV; denominator convention implicit.",
+      "symptom": "PBO reported NOT_APPLICABLE; denominator policy needed freezing.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "model_training_semantics",
+      "id": "RC07",
+      "proving_test": "tests/test_gate_a0r4/test_ml_causality.py",
+      "repair": "ModelSpec captures the full surface; signals use causal expanding walk-forward with explicit purge/embargo and fixed seeds; only deterministic model classes are admitted.",
+      "root_cause": "Model families had no deterministic training/evaluation surface.",
+      "symptom": "F11/F12 model fit/label/embargo/purge/seed/action never specified.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "reproducibility_provenance",
+      "id": "RC08",
+      "proving_test": "tests/test_gate_a0r4/test_compiler_and_space.py::test_materialization_is_byte_stable_and_ids_unique",
+      "repair": "Every materialized trial carries config/semantic/capability/execution/protocol hashes + repo-relative provenance; clean-room digest is byte-stable across re-materialization.",
+      "root_cause": "No repository-relative logical provenance + hash chain per trial.",
+      "symptom": "Artifacts embedded absolute developer paths; reproduction implicit.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": false,
+      "category": "infrastructure_runtime",
+      "id": "RC09",
+      "proving_test": "tests/test_gate_a0r4 (whole suite runs under --basetemp)",
+      "repair": "V2 tests use tmp_path/monkeypatch only; suite is run with an explicit writable --basetemp. Documented for CI.",
+      "root_cause": "Environment-restricted %TEMP%/pytest-of-* path.",
+      "symptom": "pytest default temp dir raised PermissionError on this host.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "obsolete_artifacts_or_coupling",
+      "id": "RC10",
+      "proving_test": "import graph: research/v2 imports only a0r3d certified kernel",
+      "repair": "V2 is a self-contained package (research/v2) depending only on the certified numeric kernels; readable without historical context.",
+      "root_cause": "Historical corrective layers are hard to reconstruct.",
+      "symptom": "V2 risked depending on months of A0/A0R1/A0R2/A0R3 overlay machinery.",
+      "v2_must_solve": true
+    },
+    {
+      "belongs_to_v1_history": true,
+      "category": "statistical_methodology",
+      "id": "RC11",
+      "proving_test": "tests/test_gate_a0r4/test_survivor_firewall_protocol.py::test_ranking_above_losers_is_not_a_survivor",
+      "repair": "A single frozen survivor predicate with economic + statistical + robustness + integrity requirements; ranking is explicitly informational.",
+      "root_cause": "No frozen predicate separating ranking from scientific survival.",
+      "symptom": "REVIEW_RANKING risked being read as survivor alpha.",
+      "v2_must_solve": true
+    }
+  ],
+  "categories": [
+    "evaluator_implementation",
+    "execution_semantics",
+    "infrastructure_runtime",
+    "model_training_semantics",
+    "obsolete_artifacts_or_coupling",
+    "reproducibility_provenance",
+    "semantic_specification",
+    "statistical_methodology",
+    "unavailable_data_capability"
+  ],
+  "created_at": "2026-08-12T14:39:16.734394+00:00",
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V2"
+}

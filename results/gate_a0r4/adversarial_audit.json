@@ -1,0 +1,94 @@
+{
+  "artifact_id": "A0R4_ADVERSARIAL_AUDIT_V1",
+  "created_at": "2026-08-12T14:39:28.575877+00:00",
+  "findings": [
+    {
+      "mitigation": "All features trailing/causal; breakout uses shift(1) prior high/low; kernel enforces one completed-bar latency.",
+      "status": "MITIGATED",
+      "test": "test_features.py::test_returns_are_causal_no_future_leakage",
+      "vector": "look_ahead_bias"
+    },
+    {
+      "mitigation": "ML standardisation fits mu/sd on the training window only; feature z-scores are trailing.",
+      "status": "MITIGATED",
+      "test": "test_ml_causality.py::test_ml_signal_no_future_leakage",
+      "vector": "leakage_via_normalization"
+    },
+    {
+      "mitigation": "Walk-forward training excludes bars within horizon+purge+embargo of the prediction bar.",
+      "status": "MITIGATED",
+      "test": "test_ml_causality.py::test_ml_produces_no_signal_before_min_training",
+      "vector": "target_overlap_purge_embargo"
+    },
+    {
+      "mitigation": "Signal at close t fills no earlier than open t+1; no synthetic fills.",
+      "status": "MITIGATED",
+      "test": "test_kernel_golden.py::test_long_entry_uses_ask_exit_uses_bid_with_one_bar_latency",
+      "vector": "same_bar_signal_to_fill"
+    },
+    {
+      "mitigation": "Long enters ask/exits bid; short enters bid/exits ask; golden tested.",
+      "status": "MITIGATED",
+      "test": "test_kernel_golden.py::test_short_entry_uses_bid_exit_uses_ask",
+      "vector": "incorrect_bid_ask_direction"
+    },
+    {
+      "mitigation": "Actual spread paid in fills + 0.10 bps/fill commission-slippage + 1.5x/2.0x stress; monotone stress tested.",
+      "status": "MITIGATED",
+      "test": "test_kernel_golden.py::test_cost_stress_monotonically_reduces_net",
+      "vector": "unrealistic_costs"
+    },
+    {
+      "mitigation": "All session logic in America/New_York via tz-aware timestamps; rollover/flat windows golden tested.",
+      "status": "MITIGATED",
+      "test": "test_kernel_golden.py::test_mandatory_flat_forces_exit_in_flat_window",
+      "vector": "timezone_dst_rollover"
+    },
+    {
+      "mitigation": "Denominator = admitted executable count, frozen pre-outcome; rejected specs never evaluated; not reduced after seeing losses.",
+      "status": "MITIGATED",
+      "test": "test_compiler_and_space.py::test_denominator_within_ceiling_and_not_padded",
+      "vector": "data_snooping_denominator_reduction"
+    },
+    {
+      "mitigation": "V2 specs frozen and hashed before holdout access; firewall blocks 2018+ reads structurally.",
+      "status": "MITIGATED",
+      "test": "test_survivor_firewall_protocol.py::test_firewall_classifies_and_blocks_2018_plus",
+      "vector": "outcome_assisted_semantics"
+    },
+    {
+      "mitigation": "Tick capabilities UNSUPPORTED; volume field never read; tick variants rejected pre-outcome.",
+      "status": "MITIGATED",
+      "test": "test_compiler_and_space.py::test_tick_and_cross_capabilities_unsupported",
+      "vector": "fake_tick_from_m1"
+    },
+    {
+      "mitigation": "Only deterministic model classes admitted (quantile bins, fixed-seed GMM, liblinear logistic, closed-form ridge); RF/GBT/NN/HMM rejected.",
+      "status": "MITIGATED",
+      "test": "test_ml_causality.py::test_ml_signal_is_deterministic",
+      "vector": "nondeterministic_model_fitting"
+    },
+    {
+      "mitigation": "Provenance is repository-relative; hash chain per trial; clean-room re-materialization byte-identical.",
+      "status": "MITIGATED",
+      "test": "test_compiler_and_space.py::test_materialization_is_byte_stable_and_ids_unique",
+      "vector": "machine_dependent_artifacts"
+    },
+    {
+      "mitigation": "ML/regime insufficient-data blocks abstain (signal 0) rather than guessing; failure_behavior is explicit in the spec.",
+      "status": "MITIGATED",
+      "test": "test_ml_causality.py::test_ml_produces_no_signal_before_min_training",
+      "vector": "silent_exception_fallback_changes_meaning"
+    },
+    {
+      "mitigation": "Frozen survivor predicate separate from informational review ranking; negative-net never a survivor.",
+      "status": "MITIGATED",
+      "test": "test_survivor_firewall_protocol.py::test_ranking_above_losers_is_not_a_survivor",
+      "vector": "ranking_promoted_as_survivor"
+    }
+  ],
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "unresolved_material_findings": 0,
+  "vectors_examined": 14,
+  "verdict": "NO_UNRESOLVED_MATERIAL_FINDING"
+}

@@ -1,0 +1,30 @@
+{
+  "artifact_id": "A0R4_SURVIVOR_PREDICATE_V1",
+  "confirmation_eligibility": "only survivors of the discovery predicate are eligible for the strictly-later 2018-H1 internal confirmation stage; confirmation is a separate gate",
+  "frozen_pre_outcome": true,
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "informational_only_note": "REVIEW_RANKING != SCIENTIFIC_SURVIVOR",
+  "predicate_hash": "e9d9b4e78226a799142a82d675c3d78b0c8058e11461d1f844ff0cc86c11d262",
+  "requirements": {
+    "cost_stress": "net_bps > 0 at both 1.5x and 2.0x cost stress",
+    "data_integrity": "no 2018+ pre-discovery reads; deterministic reproduction PASS",
+    "fold_robustness": "positive net_bps in >= 60% of purged walk-forward test folds",
+    "instrument_robustness": "positive net_bps under instrument leave-one-out",
+    "multiple_testing": "Romano-Wolf step-down p <= 0.05 against frozen denominator",
+    "neighborhood_stability": "sign-stable in >= 60% of parameter neighbours",
+    "net_profitability": "discovery net_bps > 0 after full costs",
+    "overfitting": "CSCV PBO <= 0.5 (or NOT_APPLICABLE with < 4 trials)",
+    "risk_adjusted": "annualised daily Sharpe >= 0.5 on discovery region",
+    "sample_sufficiency": "trade_count >= 100 and active_days >= 60"
+  },
+  "thresholds": {
+    "max_pbo": 0.5,
+    "max_romano_wolf_p": 0.05,
+    "min_active_days": 60,
+    "min_fold_positive_fraction": 0.6,
+    "min_neighborhood_same_sign": 0.6,
+    "min_net_bps": 0.0,
+    "min_sharpe": 0.5,
+    "min_trades": 100
+  }
+}

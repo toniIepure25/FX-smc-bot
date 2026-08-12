@@ -1,0 +1,52 @@
+{
+  "artifact_id": "V1_FINAL_CLOSURE_V1",
+  "created_at": "2026-08-12T14:39:16.735783+00:00",
+  "executable_trials": {
+    "certified_executable": 8,
+    "families_executed": [
+      "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION"
+    ]
+  },
+  "holdout": {
+    "2018_plus_market_or_outcome_files_opened": 0
+  },
+  "immutability": "V1 artifacts are historical evidence and are not rewritten. V2 invents no semantics retroactively attributed to V1.",
+  "incompletely_specified_families": [
+    "F03_VOLATILITY_BREAKOUT",
+    "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "F10_INTRADAY_SEASONALITY",
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "F12_COST_SENSITIVE_ML_ABSTENTION"
+  ],
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+  "source_hashes": {
+    "a0_search_space_freeze": "68a236052452f3e8f2aea7404cf832189ac5ebc9e80d1bfa3d94f2572b2523d0",
+    "a0r3e_summary": "437f504a56f61193dc863132ba54d2e1c3838d5f84cf5b95d4b07647a4df22ff",
+    "a0r3f_summary": "d9fb4a2366e1512ed367ff747074b46f1c816e47179a2e487a44facd1509f3c7"
+  },
+  "status": "CLOSED_NO_CERTIFIED_V1_ALPHA",
+  "status_semantics": {
+    "claimed": "NO_CERTIFIED_V1_ALPHA",
+    "explicitly_not_claimed": "ALL_CONCEPTUAL_FAMILIES_PROVEN_UNPROFITABLE",
+    "reason": "Six families were never given complete executable pre-outcome semantics, so their profitability was never tested. Absence of a certified survivor among the two executable families is not evidence of alpha absence for the unspecified conceptual families."
+  },
+  "successor": "FX_INTRADAY_ALPHA_DISCOVERY_V2",
+  "unavailable_inputs": [
+    "tick-level quote arrival/update-rate semantics",
+    "JPY cross instruments (EURJPY/GBPJPY/AUDJPY)",
+    "AUD and other majors (AUDUSD/USDCAD/USDCHF)",
+    "market data outside acquired 2015-2019 window for three USD majors"
+  ],
+  "what_was_discovered": {
+    "a0r3e_regression_status": "PASS",
+    "cost_stress_1_5x_survivors": 0,
+    "cost_stress_2_0x_survivors": 0,
+    "hansen_spa_p": 1.0,
+    "scientific_exploratory_survivors": 0,
+    "white_reality_check_p": 0.995991984
+  },
+  "what_was_not_established": "No certified V1 alpha was confirmed. Because A0R3E/F found zero scientific exploratory survivors, no 2018+ V1 confirmation was ever warranted or run."
+}

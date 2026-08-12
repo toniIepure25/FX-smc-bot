@@ -1,0 +1,464 @@
+{
+  "all_stages_executed": true,
+  "artifact_id": "A0R4_DRY_RUN_V1",
+  "evaluated_specs": 16,
+  "families_covered": [
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+    "F03_VOLATILITY_BREAKOUT",
+    "F04_LIQUIDITY_SHOCK_REVERSAL",
+    "F05_SPREAD_AWARE_EXECUTION_GATING",
+    "F10_INTRADAY_SEASONALITY",
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+    "F12_COST_SENSITIVE_ML_ABSTENTION"
+  ],
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "multiple_testing": {
+    "block_length_days": 5,
+    "bootstrap_iterations": 499,
+    "hansen_spa_p": 0.016032064,
+    "romano_wolf_stepdown_p": [
+      0.290581162,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.072144289,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "seed": 1729,
+    "white_reality_check_p": 0.482965932
+  },
+  "note": "Synthetic/permitted fixtures only; results never feed the frozen V2 design.",
+  "pbo": {
+    "n_periods": 5,
+    "pbo": "NOT_APPLICABLE",
+    "reason": "insufficient_time_blocks"
+  },
+  "per_spec": [
+    {
+      "active_days": 5,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "net_bps": 15.129948,
+      "nonzero_signal_bars": 769,
+      "sharpe": 7.58961,
+      "spec_hash": "026095afe7fd52fbfc72a018b9ea125abf39e96a3090298b174827d0fea6f9bc",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 28
+    },
+    {
+      "active_days": 4,
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "net_bps": -62.721898,
+      "nonzero_signal_bars": 638,
+      "sharpe": -9.966885,
+      "spec_hash": "05474d6b1b9593ef76cd1c043b130165ee51bd9c6d9b2443d3fb864858b7259e",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 12
+    },
+    {
+      "active_days": 5,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "net_bps": -247.89796,
+      "nonzero_signal_bars": 4088,
+      "sharpe": -23.307789,
+      "spec_hash": "059eb1de89feb1b2f2828fcd9f5872abfc0ef377dccdc0bbbcb5c702d6eda7f3",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 95
+    },
+    {
+      "active_days": 5,
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "net_bps": -158.16961,
+      "nonzero_signal_bars": 3979,
+      "sharpe": -5.104547,
+      "spec_hash": "0fc49647e852110e05d8cf939d0fc790f120ebfba5ab79de2330ac6f246d09fb",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 93
+    },
+    {
+      "active_days": 5,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "net_bps": -321.168802,
+      "nonzero_signal_bars": 560,
+      "sharpe": -33.012103,
+      "spec_hash": "093bab4fa549a7e77996a6a54a863660e00408de0f47649ea8998645f67b324a",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 136
+    },
+    {
+      "active_days": 5,
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "net_bps": -201.733529,
+      "nonzero_signal_bars": 378,
+      "sharpe": -21.318585,
+      "spec_hash": "0fe243418362d4e95d447b33b41d2f8585c149ee558f6df49fde23de872186fa",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 68
+    },
+    {
+      "active_days": 5,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "net_bps": -64.471258,
+      "nonzero_signal_bars": 55,
+      "sharpe": -8.928617,
+      "spec_hash": "039073ab8737361f8aa8da7935d3249547e26826d73238c78e131fa9cdde86e7",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 46
+    },
+    {
+      "active_days": 5,
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "net_bps": 38.660223,
+      "nonzero_signal_bars": 12,
+      "sharpe": 9.996905,
+      "spec_hash": "21acadb977fc0313ad65656f660795d911fbeb908e124983a34503ca0076fcee",
+      "survives_1_5x": true,
+      "survives_2_0x": true,
+      "trade_count": 12
+    },
+    {
+      "active_days": 4,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "net_bps": -15.502293,
+      "nonzero_signal_bars": 584,
+      "sharpe": -2.380232,
+      "spec_hash": "05d54695f4f060afb579be13316f1a0c9a19e2ae159ed1d400c993a01d23e2dc",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 12
+    },
+    {
+      "active_days": 4,
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "net_bps": -67.083501,
+      "nonzero_signal_bars": 675,
+      "sharpe": -14.693639,
+      "spec_hash": "065155209ee510d1a269fb07259e4399f0a36afe987cf0038b7d470d733833e2",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 12
+    },
+    {
+      "active_days": 5,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "net_bps": -88.059473,
+      "nonzero_signal_bars": 1776,
+      "sharpe": -3.324614,
+      "spec_hash": "12bf386f69b78ee7248d95e0e14b4d34747bf4748d64cc6b34841a39b6d0a0cb",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 97
+    },
+    {
+      "active_days": 5,
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "net_bps": -134.492259,
+      "nonzero_signal_bars": 438,
+      "sharpe": -8.260643,
+      "spec_hash": "13ec472c54063e8eb6e37d64251acd92cde541de1abb4e9407df747edd415ee7",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 36
+    },
+    {
+      "active_days": 5,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "net_bps": -421.952332,
+      "nonzero_signal_bars": 2673,
+      "sharpe": -28.053471,
+      "spec_hash": "08be9a427f3076552ca167c633f94a09ff64574174bdbb50e3039f96b1ed7236",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 145
+    },
+    {
+      "active_days": 5,
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "net_bps": -56.614988,
+      "nonzero_signal_bars": 1763,
+      "sharpe": -3.733934,
+      "spec_hash": "26b2de5ef45f87ac07ae157b37368b5423bf43b5ea7f1d964e0546c0827cba88",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 68
+    },
+    {
+      "active_days": 4,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "net_bps": -227.849505,
+      "nonzero_signal_bars": 2641,
+      "sharpe": -22.484533,
+      "spec_hash": "1cf833a44705860491d433c1f57eb0170ac3cf04c46ae2ab801a68f777ec996a",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 127
+    },
+    {
+      "active_days": 4,
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "net_bps": -331.512757,
+      "nonzero_signal_bars": 4820,
+      "sharpe": -19.613013,
+      "spec_hash": "1fc46f56efd92a5a5ec22d070c92cc6ad74990b097a1074fa96c86539c8b3699",
+      "survives_1_5x": false,
+      "survives_2_0x": false,
+      "trade_count": 77
+    }
+  ],
+  "purpose": "pipeline_verification_only_not_alpha_discovery",
+  "scientific_survivor_count": 0,
+  "survivor_evaluation": [
+    {
+      "failed_requirements": [
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "026095afe7fd52fbfc72a018b9ea125abf39e96a3090298b174827d0fea6f9bc",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "05474d6b1b9593ef76cd1c043b130165ee51bd9c6d9b2443d3fb864858b7259e",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "059eb1de89feb1b2f2828fcd9f5872abfc0ef377dccdc0bbbcb5c702d6eda7f3",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "0fc49647e852110e05d8cf939d0fc790f120ebfba5ab79de2330ac6f246d09fb",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "093bab4fa549a7e77996a6a54a863660e00408de0f47649ea8998645f67b324a",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "0fe243418362d4e95d447b33b41d2f8585c149ee558f6df49fde23de872186fa",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "039073ab8737361f8aa8da7935d3249547e26826d73238c78e131fa9cdde86e7",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "multiple_testing"
+      ],
+      "spec_hash": "21acadb977fc0313ad65656f660795d911fbeb908e124983a34503ca0076fcee",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "05d54695f4f060afb579be13316f1a0c9a19e2ae159ed1d400c993a01d23e2dc",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "065155209ee510d1a269fb07259e4399f0a36afe987cf0038b7d470d733833e2",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "12bf386f69b78ee7248d95e0e14b4d34747bf4748d64cc6b34841a39b6d0a0cb",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "13ec472c54063e8eb6e37d64251acd92cde541de1abb4e9407df747edd415ee7",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "08be9a427f3076552ca167c633f94a09ff64574174bdbb50e3039f96b1ed7236",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "26b2de5ef45f87ac07ae157b37368b5423bf43b5ea7f1d964e0546c0827cba88",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "1cf833a44705860491d433c1f57eb0170ac3cf04c46ae2ab801a68f777ec996a",
+      "survivor": false
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "spec_hash": "1fc46f56efd92a5a5ec22d070c92cc6ad74990b097a1074fa96c86539c8b3699",
+      "survivor": false
+    }
+  ]
+}

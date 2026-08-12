@@ -1,0 +1,210 @@
+{
+  "artifact_id": "A0R4_DATA_CAPABILITY_MATRIX_V1",
+  "canonical_granularity": "M1_BIDASK_OHLC",
+  "capabilities": [
+    {
+      "capability": "M1_BIDASK_OHLC",
+      "rationale": "Directly acquired Dukascopy M1 bid and ask OHLC bars for the three USD majors.",
+      "required_fields": [
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "MID_OHLC",
+      "rationale": "Deterministically derived as (bid + ask) / 2 from acquired bid/ask OHLC.",
+      "required_fields": [
+        "mid_open",
+        "mid_high",
+        "mid_low",
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "M1_SPREAD",
+      "rationale": "Per-bar quoted spread = ask_close - bid_close from acquired bid/ask bars.",
+      "required_fields": [
+        "ask_close",
+        "bid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "M1_RETURNS",
+      "rationale": "Log/percent returns of the derived mid close; fully causal at bar close.",
+      "required_fields": [
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "M1_REALIZED_VOL",
+      "rationale": "Rolling standard deviation of M1 mid returns; a realised-vol proxy at M1 scale.",
+      "required_fields": [
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "WILDER_ATR_M1",
+      "rationale": "Wilder ATR computed from mid true range; exact recursive definition.",
+      "required_fields": [
+        "mid_high",
+        "mid_low",
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "ROLLING_RANGE_M1",
+      "rationale": "Rolling high-low range and range-compression ratios from mid bars.",
+      "required_fields": [
+        "mid_high",
+        "mid_low"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "SESSION_TIME_OF_DAY",
+      "rationale": "America/New_York wall-clock hour/minute derived from the UTC bar timestamp.",
+      "required_fields": [
+        "timestamp"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "CALENDAR_CELLS",
+      "rationale": "Day-of-week, month-end and quarter-end flags from the UTC bar timestamp.",
+      "required_fields": [
+        "timestamp"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "M5_DERIVED",
+      "rationale": "Deterministic M5 bars resampled from canonical M1; label-preserving.",
+      "required_fields": [
+        "mid_close"
+      ],
+      "required_granularity": "M5",
+      "supported": true
+    },
+    {
+      "capability": "CROSS_PAIR_SYNC_3_MAJORS",
+      "rationale": "EURUSD/GBPUSD/USDJPY share the M1 grid and can be timestamp-joined.",
+      "required_fields": [
+        "timestamp",
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "TICK_QUOTE_ARRIVAL_RATE",
+      "rationale": "M1 bars carry no reliable per-quote arrival count; volume is a tick-volume proxy, not a quote count. Never reconstructed from M1.",
+      "required_fields": [
+        "quote_arrival_count"
+      ],
+      "required_granularity": "TICK",
+      "supported": false
+    },
+    {
+      "capability": "TICK_LEVEL_MICROSTRUCTURE",
+      "rationale": "Sub-M1 tick prices/times were not acquired for the frozen dataset.",
+      "required_fields": [
+        "tick_price",
+        "tick_time"
+      ],
+      "required_granularity": "TICK",
+      "supported": false
+    },
+    {
+      "capability": "ORDER_BOOK_DEPTH",
+      "rationale": "No order-book depth exists in the acquired Dukascopy dataset.",
+      "required_fields": [
+        "bid_sizes",
+        "ask_sizes"
+      ],
+      "required_granularity": "L2",
+      "supported": false
+    },
+    {
+      "capability": "JPY_CROSS_INSTRUMENTS",
+      "rationale": "JPY cross instruments were never acquired; only USD majors exist.",
+      "required_fields": [
+        "EURJPY",
+        "GBPJPY",
+        "AUDJPY"
+      ],
+      "required_granularity": "M1",
+      "supported": false
+    },
+    {
+      "capability": "AUD_AND_OTHER_MAJORS",
+      "rationale": "These majors were planned in V1 but never materialised.",
+      "required_fields": [
+        "AUDUSD",
+        "USDCAD",
+        "USDCHF"
+      ],
+      "required_granularity": "M1",
+      "supported": false
+    },
+    {
+      "capability": "CURRENCY_FACTOR_CROSS_SECTION",
+      "rationale": "Three USD pairs cannot identify robust EUR/GBP/JPY/AUD dollar factors.",
+      "required_fields": [
+        "multi_currency_panel"
+      ],
+      "required_granularity": "M1",
+      "supported": false
+    },
+    {
+      "capability": "TRIANGULAR_CROSS_RATE",
+      "rationale": "Cross rates were not acquired; synthesising them makes the triangular residual identically zero, so there is no observable inconsistency to trade.",
+      "required_fields": [
+        "EURJPY",
+        "GBPJPY",
+        "AUDJPY"
+      ],
+      "required_granularity": "M1",
+      "supported": false
+    }
+  ],
+  "development_years": [
+    2015,
+    2016,
+    2017
+  ],
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "hard_rule": "M1 bar count != quote update count; tick semantics never faked from M1.",
+  "holdout_years": [
+    2018,
+    2019
+  ],
+  "never_uses_volume_field": true,
+  "supported_capability_count": 11,
+  "supported_instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "unsupported_capability_count": 7
+}

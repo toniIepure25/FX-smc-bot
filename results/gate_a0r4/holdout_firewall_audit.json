@@ -1,0 +1,22 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "artifact_id": "A0R4_HOLDOUT_FIREWALL_AUDIT_V1",
+  "blocked_attempt_count": 1,
+  "blocked_attempts": [
+    "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2018\\month=01\\data.json"
+  ],
+  "forbidden_attempt_correctly_blocked": true,
+  "gate_id": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "holdout_year_floor": 2018,
+  "opened_2018_plus_market_or_outcome_files": [],
+  "opened_bytes": 3805206,
+  "opened_file_count": 1,
+  "opened_files": [
+    {
+      "bytes": 3805206,
+      "path": "D:\\ComputaCenter\\FX-smc-bot\\data\\raw\\dukascopy-node\\EURUSD\\price=bid\\year=2015\\month=01\\data.json",
+      "sha256": "c17b89fed9bd9c12fa49422fd8c553ff0333530521cd62a627e0d3ecbe19b51c",
+      "year": 2015
+    }
+  ]
+}
