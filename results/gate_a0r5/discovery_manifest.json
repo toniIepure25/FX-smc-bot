@@ -1,0 +1,25 @@
+{
+  "a0r4_gate": "A0R4_V2_PROSPECTIVE_READINESS_V1",
+  "artifact_id": "A0R5_DISCOVERY_MANIFEST_V1",
+  "created_at": "2026-08-13T15:40:34.568001+00:00",
+  "exploratory_only": true,
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "lineage_id": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+  "materialization_digest": "4ead4048be86b1885503cf232d71f87ee8309b4572ce89e2ca309e38f38fd1a1",
+  "note": "2015-2017 was partly inspected in V1; no candidate is validated alpha.",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V2",
+  "region": "development_2015_2017",
+  "registered_candidate_equivalent_denominator": 336,
+  "statistical_protocol_hash": "93a71895a2fd71d4cde423e757b20e2a104ab6fc2fae29e671af9bab5ef1cfba",
+  "survivor_predicate_hash": "e9d9b4e78226a799142a82d675c3d78b0c8058e11461d1f844ff0cc86c11d262",
+  "years": [
+    2015,
+    2016,
+    2017
+  ]
+}

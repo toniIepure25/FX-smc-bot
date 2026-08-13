@@ -1,0 +1,22 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "all_permitted_files_pre_2018": true,
+  "artifact_id": "A0R5_HOLDOUT_FIREWALL_AUDIT_V1",
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "holdout_probe_paths_blocked": 6,
+  "holdout_probe_paths_tested": 6,
+  "instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "opened_2018_plus_market_or_outcome_files": [],
+  "permitted_development_files_expected": 216,
+  "region": "development_2015_2017",
+  "worker_firewall_assertion": "every worker asserted fw.opened_2018_plus_count()==0 before evaluating",
+  "years_permitted_and_opened": [
+    2015,
+    2016,
+    2017
+  ]
+}

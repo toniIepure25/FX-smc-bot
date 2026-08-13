@@ -1,0 +1,5056 @@
+{
+  "artifact_id": "A0R5_SCIENTIFIC_EXPLORATORY_SURVIVORS_V1",
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "predicate_evaluation": [
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -414.185872,
+      "trial_id": "V2-0000"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -275.965274,
+      "trial_id": "V2-0001"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1364.412129,
+      "trial_id": "V2-0002"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1158.205571,
+      "trial_id": "V2-0003"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1229.924471,
+      "trial_id": "V2-0004"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -376.220152,
+      "trial_id": "V2-0005"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1029.197669,
+      "trial_id": "V2-0006"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -701.754394,
+      "trial_id": "V2-0007"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1612.71659,
+      "trial_id": "V2-0008"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2596.085098,
+      "trial_id": "V2-0009"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -615.336533,
+      "trial_id": "V2-0010"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -690.85818,
+      "trial_id": "V2-0011"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -839.199543,
+      "trial_id": "V2-0012"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -806.350165,
+      "trial_id": "V2-0013"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1380.834007,
+      "trial_id": "V2-0014"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -893.54805,
+      "trial_id": "V2-0015"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2546.943775,
+      "trial_id": "V2-0016"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2295.255679,
+      "trial_id": "V2-0017"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -944.438268,
+      "trial_id": "V2-0018"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -259.852784,
+      "trial_id": "V2-0019"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -974.564528,
+      "trial_id": "V2-0020"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2630.769722,
+      "trial_id": "V2-0021"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2181.625813,
+      "trial_id": "V2-0022"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -817.937056,
+      "trial_id": "V2-0023"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2774.143208,
+      "trial_id": "V2-0024"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1742.577225,
+      "trial_id": "V2-0025"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2411.488687,
+      "trial_id": "V2-0026"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2230.588067,
+      "trial_id": "V2-0027"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1245.464449,
+      "trial_id": "V2-0028"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1779.520906,
+      "trial_id": "V2-0029"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2443.768375,
+      "trial_id": "V2-0030"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1106.80525,
+      "trial_id": "V2-0031"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -345.410961,
+      "trial_id": "V2-0032"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1077.143573,
+      "trial_id": "V2-0033"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -704.83465,
+      "trial_id": "V2-0034"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -282.00975,
+      "trial_id": "V2-0035"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1840.233467,
+      "trial_id": "V2-0036"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -342.277414,
+      "trial_id": "V2-0037"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1296.898764,
+      "trial_id": "V2-0038"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1283.068872,
+      "trial_id": "V2-0039"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1160.67075,
+      "trial_id": "V2-0040"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -813.811611,
+      "trial_id": "V2-0041"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -125.189319,
+      "trial_id": "V2-0042"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -247.707139,
+      "trial_id": "V2-0043"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1025.824171,
+      "trial_id": "V2-0044"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1189.497945,
+      "trial_id": "V2-0045"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2244.081322,
+      "trial_id": "V2-0046"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -800.669929,
+      "trial_id": "V2-0047"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1311.035656,
+      "trial_id": "V2-0048"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2093.893078,
+      "trial_id": "V2-0049"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4212.289143,
+      "trial_id": "V2-0050"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2180.310729,
+      "trial_id": "V2-0051"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1121.893318,
+      "trial_id": "V2-0052"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2204.301853,
+      "trial_id": "V2-0053"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -994.20464,
+      "trial_id": "V2-0054"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1794.756093,
+      "trial_id": "V2-0055"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4979.4262,
+      "trial_id": "V2-0056"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2364.952101,
+      "trial_id": "V2-0057"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4561.65041,
+      "trial_id": "V2-0058"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2329.638544,
+      "trial_id": "V2-0059"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -757.891559,
+      "trial_id": "V2-0060"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -5052.464982,
+      "trial_id": "V2-0061"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2569.036594,
+      "trial_id": "V2-0062"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1318.814194,
+      "trial_id": "V2-0063"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4429.305318,
+      "trial_id": "V2-0064"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2903.275358,
+      "trial_id": "V2-0065"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2829.613099,
+      "trial_id": "V2-0066"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -3954.23556,
+      "trial_id": "V2-0067"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1946.491423,
+      "trial_id": "V2-0068"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4165.691439,
+      "trial_id": "V2-0069"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2183.342539,
+      "trial_id": "V2-0070"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2633.287697,
+      "trial_id": "V2-0071"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2364.638988,
+      "trial_id": "V2-0072"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2682.977322,
+      "trial_id": "V2-0073"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4056.022833,
+      "trial_id": "V2-0074"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4958.352173,
+      "trial_id": "V2-0075"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2280.068431,
+      "trial_id": "V2-0076"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2171.228874,
+      "trial_id": "V2-0077"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2516.045839,
+      "trial_id": "V2-0078"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -736.575767,
+      "trial_id": "V2-0079"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1665.14578,
+      "trial_id": "V2-0080"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2599.575556,
+      "trial_id": "V2-0081"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1329.942848,
+      "trial_id": "V2-0082"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2592.437059,
+      "trial_id": "V2-0083"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -5025.286744,
+      "trial_id": "V2-0084"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2165.971715,
+      "trial_id": "V2-0085"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -3996.397954,
+      "trial_id": "V2-0086"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4364.091416,
+      "trial_id": "V2-0087"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1603.731775,
+      "trial_id": "V2-0088"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4951.3988,
+      "trial_id": "V2-0089"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2580.121996,
+      "trial_id": "V2-0090"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4624.356511,
+      "trial_id": "V2-0091"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -3940.647302,
+      "trial_id": "V2-0092"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4331.820083,
+      "trial_id": "V2-0093"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2844.282624,
+      "trial_id": "V2-0094"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1044.647769,
+      "trial_id": "V2-0095"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2653.346625,
+      "trial_id": "V2-0096"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2539.6401,
+      "trial_id": "V2-0097"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": 172.134511,
+      "trial_id": "V2-0098"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2144.363478,
+      "trial_id": "V2-0099"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -901.136775,
+      "trial_id": "V2-0100"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -574.308007,
+      "trial_id": "V2-0101"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -200.993518,
+      "trial_id": "V2-0102"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1778.967208,
+      "trial_id": "V2-0103"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2034.073681,
+      "trial_id": "V2-0104"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1923.846119,
+      "trial_id": "V2-0105"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2144.954747,
+      "trial_id": "V2-0106"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2399.442197,
+      "trial_id": "V2-0107"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2155.792014,
+      "trial_id": "V2-0108"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2547.559066,
+      "trial_id": "V2-0109"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2013.609565,
+      "trial_id": "V2-0110"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1798.625973,
+      "trial_id": "V2-0111"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2735.912909,
+      "trial_id": "V2-0112"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1116.550567,
+      "trial_id": "V2-0113"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1633.022264,
+      "trial_id": "V2-0114"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2352.323548,
+      "trial_id": "V2-0115"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -619.722703,
+      "trial_id": "V2-0116"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1503.314907,
+      "trial_id": "V2-0117"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1494.097333,
+      "trial_id": "V2-0118"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -402.309781,
+      "trial_id": "V2-0119"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1208.490354,
+      "trial_id": "V2-0120"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1855.651455,
+      "trial_id": "V2-0121"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3585.333583,
+      "trial_id": "V2-0122"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2452.188922,
+      "trial_id": "V2-0123"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3622.697007,
+      "trial_id": "V2-0124"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1130.738675,
+      "trial_id": "V2-0125"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3578.823853,
+      "trial_id": "V2-0126"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2264.744119,
+      "trial_id": "V2-0127"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1795.751845,
+      "trial_id": "V2-0128"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1924.747086,
+      "trial_id": "V2-0129"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -776.901338,
+      "trial_id": "V2-0130"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1042.873094,
+      "trial_id": "V2-0131"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -710.537931,
+      "trial_id": "V2-0132"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -411.464823,
+      "trial_id": "V2-0133"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3190.780584,
+      "trial_id": "V2-0134"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1937.850301,
+      "trial_id": "V2-0135"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2081.404021,
+      "trial_id": "V2-0136"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1199.686062,
+      "trial_id": "V2-0137"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2654.604257,
+      "trial_id": "V2-0138"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3287.742398,
+      "trial_id": "V2-0139"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1538.565148,
+      "trial_id": "V2-0140"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1080.653053,
+      "trial_id": "V2-0141"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2519.943879,
+      "trial_id": "V2-0142"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2324.633294,
+      "trial_id": "V2-0143"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -9019.067574,
+      "trial_id": "V2-0144"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -22314.886391,
+      "trial_id": "V2-0145"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -5674.77539,
+      "trial_id": "V2-0146"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -3522.675638,
+      "trial_id": "V2-0147"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -11545.486294,
+      "trial_id": "V2-0148"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -6515.415699,
+      "trial_id": "V2-0149"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -13762.119741,
+      "trial_id": "V2-0150"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -19211.487354,
+      "trial_id": "V2-0151"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -10797.888033,
+      "trial_id": "V2-0152"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -29369.527482,
+      "trial_id": "V2-0153"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -3834.170962,
+      "trial_id": "V2-0154"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -10785.554688,
+      "trial_id": "V2-0155"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -13137.65873,
+      "trial_id": "V2-0156"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -33419.09556,
+      "trial_id": "V2-0157"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -23075.437265,
+      "trial_id": "V2-0158"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -61053.640999,
+      "trial_id": "V2-0159"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -51066.453051,
+      "trial_id": "V2-0160"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -16563.390564,
+      "trial_id": "V2-0161"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -9296.234052,
+      "trial_id": "V2-0162"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -15756.791512,
+      "trial_id": "V2-0163"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -46391.905036,
+      "trial_id": "V2-0164"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -12034.086622,
+      "trial_id": "V2-0165"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -24056.776532,
+      "trial_id": "V2-0166"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -30916.6166,
+      "trial_id": "V2-0167"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -27722.518831,
+      "trial_id": "V2-0168"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -11125.001801,
+      "trial_id": "V2-0169"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3910.633113,
+      "trial_id": "V2-0170"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -21443.99095,
+      "trial_id": "V2-0171"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -14462.204362,
+      "trial_id": "V2-0172"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -9631.023529,
+      "trial_id": "V2-0173"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -32585.904863,
+      "trial_id": "V2-0174"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -7969.099997,
+      "trial_id": "V2-0175"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -22287.950264,
+      "trial_id": "V2-0176"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -39412.181935,
+      "trial_id": "V2-0177"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -14197.944427,
+      "trial_id": "V2-0178"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -10832.4603,
+      "trial_id": "V2-0179"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -4982.478998,
+      "trial_id": "V2-0180"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -12874.054356,
+      "trial_id": "V2-0181"
+    },
+    {
+      "failed_requirements": [
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 1361.959444,
+      "trial_id": "V2-0182"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -4982.478998,
+      "trial_id": "V2-0183"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -8626.906668,
+      "trial_id": "V2-0184"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -8627.665782,
+      "trial_id": "V2-0185"
+    },
+    {
+      "failed_requirements": [
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 1361.959444,
+      "trial_id": "V2-0186"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -6078.390663,
+      "trial_id": "V2-0187"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -6078.390663,
+      "trial_id": "V2-0188"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -12874.054356,
+      "trial_id": "V2-0189"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -535.210197,
+      "trial_id": "V2-0190"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -534.071368,
+      "trial_id": "V2-0191"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -13035.535903,
+      "trial_id": "V2-0192"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -15836.13015,
+      "trial_id": "V2-0193"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2844.523599,
+      "trial_id": "V2-0194"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -7613.365828,
+      "trial_id": "V2-0195"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -27319.922144,
+      "trial_id": "V2-0196"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -7613.557332,
+      "trial_id": "V2-0197"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -27316.053099,
+      "trial_id": "V2-0198"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -15835.874123,
+      "trial_id": "V2-0199"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -13025.848438,
+      "trial_id": "V2-0200"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4805.878088,
+      "trial_id": "V2-0201"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4805.813401,
+      "trial_id": "V2-0202"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2844.458596,
+      "trial_id": "V2-0203"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -9069.598184,
+      "trial_id": "V2-0204"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -4290.64383,
+      "trial_id": "V2-0205"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2682.014291,
+      "trial_id": "V2-0206"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -4507.603045,
+      "trial_id": "V2-0207"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -16512.789779,
+      "trial_id": "V2-0208"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -16510.793901,
+      "trial_id": "V2-0209"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -10009.518705,
+      "trial_id": "V2-0210"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -10006.358734,
+      "trial_id": "V2-0211"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -9069.598184,
+      "trial_id": "V2-0212"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2682.014291,
+      "trial_id": "V2-0213"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -4507.603045,
+      "trial_id": "V2-0214"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -4290.64383,
+      "trial_id": "V2-0215"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -462.129083,
+      "trial_id": "V2-0216"
+    },
+    {
+      "failed_requirements": [
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 671.360356,
+      "trial_id": "V2-0217"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 35.538437,
+      "trial_id": "V2-0218"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -9.745292,
+      "trial_id": "V2-0219"
+    },
+    {
+      "failed_requirements": [
+        "instrument_robustness",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 756.21638,
+      "trial_id": "V2-0220"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 84.547257,
+      "trial_id": "V2-0221"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -625.526461,
+      "trial_id": "V2-0222"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -118.214667,
+      "trial_id": "V2-0223"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -241.817471,
+      "trial_id": "V2-0224"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -275.409307,
+      "trial_id": "V2-0225"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1609.858533,
+      "trial_id": "V2-0226"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": 80.640611,
+      "trial_id": "V2-0227"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -3683.121459,
+      "trial_id": "V2-0228"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2027.615174,
+      "trial_id": "V2-0229"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -3627.346392,
+      "trial_id": "V2-0230"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -39.753484,
+      "trial_id": "V2-0231"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -2644.343279,
+      "trial_id": "V2-0232"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -466.304383,
+      "trial_id": "V2-0233"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -474.830015,
+      "trial_id": "V2-0234"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3479.180117,
+      "trial_id": "V2-0235"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -53.062758,
+      "trial_id": "V2-0236"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1871.492418,
+      "trial_id": "V2-0237"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -3506.316305,
+      "trial_id": "V2-0238"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -111.24197,
+      "trial_id": "V2-0239"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -950.510591,
+      "trial_id": "V2-0240"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -721.895002,
+      "trial_id": "V2-0241"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -182.239728,
+      "trial_id": "V2-0242"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -498.71465,
+      "trial_id": "V2-0243"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -781.88472,
+      "trial_id": "V2-0244"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1479.969314,
+      "trial_id": "V2-0245"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -1274.340141,
+      "trial_id": "V2-0246"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -19.224747,
+      "trial_id": "V2-0247"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1015.874036,
+      "trial_id": "V2-0248"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2304.077673,
+      "trial_id": "V2-0249"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -859.208654,
+      "trial_id": "V2-0250"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1065.688795,
+      "trial_id": "V2-0251"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2140.359588,
+      "trial_id": "V2-0252"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1164.707871,
+      "trial_id": "V2-0253"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2258.281959,
+      "trial_id": "V2-0254"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1879.247375,
+      "trial_id": "V2-0255"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -759.299601,
+      "trial_id": "V2-0256"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1312.686648,
+      "trial_id": "V2-0257"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1274.977315,
+      "trial_id": "V2-0258"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -944.635103,
+      "trial_id": "V2-0259"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -892.804037,
+      "trial_id": "V2-0260"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -855.128867,
+      "trial_id": "V2-0261"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1487.113718,
+      "trial_id": "V2-0262"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -1201.417698,
+      "trial_id": "V2-0263"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -104.859977,
+      "trial_id": "V2-0264"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -62.488269,
+      "trial_id": "V2-0265"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -42.573385,
+      "trial_id": "V2-0266"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 0.79652,
+      "trial_id": "V2-0267"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "neighborhood_stability",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 52.237557,
+      "trial_id": "V2-0268"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -89.45705,
+      "trial_id": "V2-0269"
+    },
+    {
+      "failed_requirements": [
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 29.865653,
+      "trial_id": "V2-0270"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -175.696012,
+      "trial_id": "V2-0271"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": 4.906163,
+      "trial_id": "V2-0272"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -55.751989,
+      "trial_id": "V2-0273"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -236.590986,
+      "trial_id": "V2-0274"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -128.723133,
+      "trial_id": "V2-0275"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -292.385907,
+      "trial_id": "V2-0276"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -30.354888,
+      "trial_id": "V2-0277"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -198.394828,
+      "trial_id": "V2-0278"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -123.317143,
+      "trial_id": "V2-0279"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -48.740136,
+      "trial_id": "V2-0280"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -37.130724,
+      "trial_id": "V2-0281"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": 32.06136,
+      "trial_id": "V2-0282"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -21.297662,
+      "trial_id": "V2-0283"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -20.181149,
+      "trial_id": "V2-0284"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": 2.644635,
+      "trial_id": "V2-0285"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -234.055894,
+      "trial_id": "V2-0286"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "sample_sufficiency",
+        "fold_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": 12.54432,
+      "trial_id": "V2-0287"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -11503.126175,
+      "trial_id": "V2-0288"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -7582.602065,
+      "trial_id": "V2-0289"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -4771.395526,
+      "trial_id": "V2-0290"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -6716.768055,
+      "trial_id": "V2-0291"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -7717.483339,
+      "trial_id": "V2-0292"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -2184.340824,
+      "trial_id": "V2-0293"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -4051.643281,
+      "trial_id": "V2-0294"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -4566.470245,
+      "trial_id": "V2-0295"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -22947.976203,
+      "trial_id": "V2-0296"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -19603.219324,
+      "trial_id": "V2-0297"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -11479.652669,
+      "trial_id": "V2-0298"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -8059.962926,
+      "trial_id": "V2-0299"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -9689.30849,
+      "trial_id": "V2-0300"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -25072.583904,
+      "trial_id": "V2-0301"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -18300.15158,
+      "trial_id": "V2-0302"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -12179.531761,
+      "trial_id": "V2-0303"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -5691.060462,
+      "trial_id": "V2-0304"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -5342.303504,
+      "trial_id": "V2-0305"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -7276.54071,
+      "trial_id": "V2-0306"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -8890.813979,
+      "trial_id": "V2-0307"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -13604.914083,
+      "trial_id": "V2-0308"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -14763.044686,
+      "trial_id": "V2-0309"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -18817.685479,
+      "trial_id": "V2-0310"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -11710.824965,
+      "trial_id": "V2-0311"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 565.469781,
+      "trial_id": "V2-0312"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -85.034951,
+      "trial_id": "V2-0313"
+    },
+    {
+      "failed_requirements": [
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": 183.663024,
+      "trial_id": "V2-0314"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -15005.322912,
+      "trial_id": "V2-0315"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -50.576432,
+      "trial_id": "V2-0316"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -5590.167116,
+      "trial_id": "V2-0317"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "neighborhood_stability",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -7898.238669,
+      "trial_id": "V2-0318"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "EURUSD",
+      "is_survivor": false,
+      "net_bps": -15937.59159,
+      "trial_id": "V2-0319"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -36821.096022,
+      "trial_id": "V2-0320"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -35253.559735,
+      "trial_id": "V2-0321"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1800.373646,
+      "trial_id": "V2-0322"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -4012.60943,
+      "trial_id": "V2-0323"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -1811.49532,
+      "trial_id": "V2-0324"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -2961.612731,
+      "trial_id": "V2-0325"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -19671.173069,
+      "trial_id": "V2-0326"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "GBPUSD",
+      "is_survivor": false,
+      "net_bps": -19919.187547,
+      "trial_id": "V2-0327"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -930.99423,
+      "trial_id": "V2-0328"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -11738.28488,
+      "trial_id": "V2-0329"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -550.999219,
+      "trial_id": "V2-0330"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -8183.470743,
+      "trial_id": "V2-0331"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -808.610316,
+      "trial_id": "V2-0332"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -21850.245063,
+      "trial_id": "V2-0333"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -19883.629695,
+      "trial_id": "V2-0334"
+    },
+    {
+      "failed_requirements": [
+        "net_profitability",
+        "risk_adjusted",
+        "fold_robustness",
+        "instrument_robustness",
+        "cost_stress",
+        "multiple_testing"
+      ],
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "instrument": "USDJPY",
+      "is_survivor": false,
+      "net_bps": -665.30262,
+      "trial_id": "V2-0335"
+    }
+  ],
+  "predicate_hash": "e9d9b4e78226a799142a82d675c3d78b0c8058e11461d1f844ff0cc86c11d262",
+  "survivor_count": 0,
+  "survivor_criteria": {
+    "cost_stress": "net_bps > 0 at both 1.5x and 2.0x cost stress",
+    "data_integrity": "no 2018+ pre-discovery reads; deterministic reproduction PASS",
+    "fold_robustness": "positive net_bps in >= 60% of purged walk-forward test folds",
+    "instrument_robustness": "positive net_bps under instrument leave-one-out",
+    "multiple_testing": "Romano-Wolf step-down p <= 0.05 against frozen denominator",
+    "neighborhood_stability": "sign-stable in >= 60% of parameter neighbours",
+    "net_profitability": "discovery net_bps > 0 after full costs",
+    "overfitting": "CSCV PBO <= 0.5 (or NOT_APPLICABLE with < 4 trials)",
+    "risk_adjusted": "annualised daily Sharpe >= 0.5 on discovery region",
+    "sample_sufficiency": "trade_count >= 100 and active_days >= 60"
+  },
+  "survivors": []
+}

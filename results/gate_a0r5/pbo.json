@@ -1,0 +1,9 @@
+{
+  "artifact_id": "A0R5_PBO_V1",
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "median_logit": 1.963047,
+  "n_combinations": 70,
+  "n_splits": 8,
+  "pbo": 0.128571,
+  "reason": "OK"
+}

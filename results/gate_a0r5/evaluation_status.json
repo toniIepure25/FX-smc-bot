@@ -1,0 +1,10 @@
+{
+  "artifact_id": "A0R5_EVALUATION_STATUS_V1",
+  "deterministically_evaluated": "336/336",
+  "evaluated_trials": 336,
+  "expected_trials": 336,
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "terminal_states": {
+    "EVALUATED": 336
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "artifact_id": "A0R5_FAMILY_DIAGNOSTICS_V1",
+  "by_family": {
+    "F01_SESSION_OPENING_MOMENTUM_REVERSAL": {
+      "best_net_bps": 172.1345,
+      "by_instrument_mean_net": {
+        "EURUSD": -1232.2889,
+        "GBPUSD": -2839.9493,
+        "USDJPY": -1826.5122
+      },
+      "failures": 0,
+      "mean_net_bps": -1966.2501,
+      "mean_trade_count": 3105.0,
+      "median_net_bps": -1889.7488,
+      "positive_net": 1,
+      "survives_1_5x": 0,
+      "survives_2_0x": 0,
+      "trials": 144,
+      "zero_trade": 0
+    },
+    "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION": {
+      "best_net_bps": -3522.6756,
+      "by_instrument_mean_net": {
+        "EURUSD": -12196.0879,
+        "GBPUSD": -28064.0072,
+        "USDJPY": -17965.0762
+      },
+      "failures": 0,
+      "mean_net_bps": -19408.3904,
+      "mean_trade_count": 29180.2,
+      "median_net_bps": -14330.0744,
+      "positive_net": 0,
+      "survives_1_5x": 0,
+      "survives_2_0x": 0,
+      "trials": 36,
+      "zero_trade": 0
+    },
+    "F03_VOLATILITY_BREAKOUT": {
+      "best_net_bps": 1361.9594,
+      "by_instrument_mean_net": {
+        "EURUSD": -5289.1486,
+        "GBPUSD": -11908.0801,
+        "USDJPY": -7844.9317
+      },
+      "failures": 0,
+      "mean_net_bps": -8347.3868,
+      "mean_trade_count": 12810.6,
+      "median_net_bps": -6845.8782,
+      "positive_net": 2,
+      "survives_1_5x": 2,
+      "survives_2_0x": 0,
+      "trials": 36,
+      "zero_trade": 0
+    },
+    "F04_LIQUIDITY_SHOCK_REVERSAL": {
+      "best_net_bps": 756.2164,
+      "by_instrument_mean_net": {
+        "EURUSD": 41.5059,
+        "GBPUSD": -1428.0352,
+        "USDJPY": -1575.8464
+      },
+      "failures": 0,
+      "mean_net_bps": -987.4586,
+      "mean_trade_count": 3370.7,
+      "median_net_bps": -368.7692,
+      "positive_net": 5,
+      "survives_1_5x": 2,
+      "survives_2_0x": 1,
+      "trials": 24,
+      "zero_trade": 0
+    },
+    "F05_SPREAD_AWARE_EXECUTION_GATING": {
+      "best_net_bps": -19.2247,
+      "by_instrument_mean_net": {
+        "EURUSD": -738.5974,
+        "GBPUSD": -1585.9307,
+        "USDJPY": -1091.0079
+      },
+      "failures": 0,
+      "mean_net_bps": -1138.512,
+      "mean_trade_count": 2038.2,
+      "median_net_bps": -1040.7814,
+      "positive_net": 0,
+      "survives_1_5x": 0,
+      "survives_2_0x": 0,
+      "trials": 24,
+      "zero_trade": 0
+    },
+    "F10_INTRADAY_SEASONALITY": {
+      "best_net_bps": 52.2376,
+      "by_instrument_mean_net": {
+        "EURUSD": -49.0219,
+        "GBPUSD": -132.5766,
+        "USDJPY": -39.2694
+      },
+      "failures": 0,
+      "mean_net_bps": -73.6226,
+      "mean_trade_count": 101.2,
+      "median_net_bps": -45.6568,
+      "positive_net": 7,
+      "survives_1_5x": 3,
+      "survives_2_0x": 2,
+      "trials": 24,
+      "zero_trade": 0
+    },
+    "F11_REGIME_CONDITIONED_TREND_REVERSAL": {
+      "best_net_bps": -2184.3408,
+      "by_instrument_mean_net": {
+        "EURUSD": -6136.7287,
+        "GBPUSD": -15916.5484,
+        "USDJPY": -10762.1485
+      },
+      "failures": 0,
+      "mean_net_bps": -10938.4752,
+      "mean_trade_count": 18048.5,
+      "median_net_bps": -9290.0612,
+      "positive_net": 0,
+      "survives_1_5x": 0,
+      "survives_2_0x": 0,
+      "trials": 24,
+      "zero_trade": 0
+    },
+    "F12_COST_SENSITIVE_ML_ABSTENTION": {
+      "best_net_bps": 565.4698,
+      "by_instrument_mean_net": {
+        "EURUSD": -5477.2249,
+        "GBPUSD": -15281.3884,
+        "USDJPY": -8076.4421
+      },
+      "failures": 0,
+      "mean_net_bps": -9611.6851,
+      "mean_trade_count": 12291.4,
+      "median_net_bps": -4801.3883,
+      "positive_net": 2,
+      "survives_1_5x": 1,
+      "survives_2_0x": 1,
+      "trials": 24,
+      "zero_trade": 0
+    }
+  },
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1"
+}

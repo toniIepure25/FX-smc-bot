@@ -1,0 +1,113 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "artifact_id": "A0R5_REPRODUCIBILITY_AUDIT_V1",
+  "comparisons": [
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F01_SESSION_OPENING_MOMENTUM_REVERSAL",
+      "trial_id": "V2-0000"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F02_QUOTE_RUN_CONTINUATION_EXHAUSTION",
+      "trial_id": "V2-0144"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F03_VOLATILITY_BREAKOUT",
+      "trial_id": "V2-0180"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F04_LIQUIDITY_SHOCK_REVERSAL",
+      "trial_id": "V2-0216"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F05_SPREAD_AWARE_EXECUTION_GATING",
+      "trial_id": "V2-0240"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F10_INTRADAY_SEASONALITY",
+      "trial_id": "V2-0264"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F11_REGIME_CONDITIONED_TREND_REVERSAL",
+      "trial_id": "V2-0289"
+    },
+    {
+      "deltas": {
+        "cost_bps": 0.0,
+        "daily_sharpe": 0.0,
+        "gross_bps": 0.0,
+        "net_bps": 0.0,
+        "trade_count": 0
+      },
+      "family_id": "F12_COST_SENSITIVE_ML_ABSTENTION",
+      "trial_id": "V2-0312"
+    }
+  ],
+  "digest_matches_frozen": true,
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "hansen_spa_p": 0.460921844,
+  "materialization_digest": "4ead4048be86b1885503cf232d71f87ee8309b4572ce89e2ca309e38f38fd1a1",
+  "max_abs_metric_delta": 0.0,
+  "membership_336_identical": true,
+  "metric_reproduction_pass": true,
+  "resampled_trials": [
+    "V2-0000",
+    "V2-0144",
+    "V2-0180",
+    "V2-0216",
+    "V2-0240",
+    "V2-0264",
+    "V2-0289",
+    "V2-0312"
+  ],
+  "statistics_reproduction_pass": true,
+  "white_reality_check_p": 1.0
+}

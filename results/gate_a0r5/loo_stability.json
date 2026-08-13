@@ -1,0 +1,3702 @@
+{
+  "artifact_id": "A0R5_LOO_STABILITY_V1",
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "rows": [
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -51.206987,
+        "2016": -392.001612,
+        "2017": 29.022726
+      },
+      "trial_id": "V2-0000",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 380.473677,
+        "2016": -59.650507,
+        "2017": -596.788445
+      },
+      "trial_id": "V2-0001",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -583.269703,
+        "2016": -374.036816,
+        "2017": -407.10561
+      },
+      "trial_id": "V2-0002",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -551.975052,
+        "2016": -837.843689,
+        "2017": 231.613171
+      },
+      "trial_id": "V2-0003",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -725.219912,
+        "2016": -131.315865,
+        "2017": -373.388694
+      },
+      "trial_id": "V2-0004",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 146.27466,
+        "2016": -561.471241,
+        "2017": 38.976429
+      },
+      "trial_id": "V2-0005",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -778.951193,
+        "2016": -252.54915,
+        "2017": 2.302674
+      },
+      "trial_id": "V2-0006",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -358.283095,
+        "2016": -311.336957,
+        "2017": -32.134343
+      },
+      "trial_id": "V2-0007",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -592.133276,
+        "2016": -669.654007,
+        "2017": -350.929307
+      },
+      "trial_id": "V2-0008",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1229.901397,
+        "2016": -838.693581,
+        "2017": -527.490121
+      },
+      "trial_id": "V2-0009",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 744.687789,
+        "2016": -563.562174,
+        "2017": -796.462148
+      },
+      "trial_id": "V2-0010",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -273.767034,
+        "2016": -37.628199,
+        "2017": -379.462947
+      },
+      "trial_id": "V2-0011",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -0.815734,
+        "2016": -382.985692,
+        "2017": -455.398117
+      },
+      "trial_id": "V2-0012",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 103.535277,
+        "2016": -232.8646,
+        "2017": -677.020842
+      },
+      "trial_id": "V2-0013",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -388.195585,
+        "2016": -677.518195,
+        "2017": -315.120227
+      },
+      "trial_id": "V2-0014",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -663.104915,
+        "2016": -181.982057,
+        "2017": -48.461078
+      },
+      "trial_id": "V2-0015",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -980.390047,
+        "2016": -1014.59549,
+        "2017": -551.958238
+      },
+      "trial_id": "V2-0016",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1156.515834,
+        "2016": -579.273696,
+        "2017": -559.466149
+      },
+      "trial_id": "V2-0017",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -297.712715,
+        "2016": -187.176081,
+        "2017": -459.549472
+      },
+      "trial_id": "V2-0018",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 120.830783,
+        "2016": 402.808761,
+        "2017": -783.492327
+      },
+      "trial_id": "V2-0019",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -113.735214,
+        "2016": -457.20411,
+        "2017": -403.625204
+      },
+      "trial_id": "V2-0020",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1302.707644,
+        "2016": -706.742553,
+        "2017": -621.319525
+      },
+      "trial_id": "V2-0021",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1081.096656,
+        "2016": -806.965827,
+        "2017": -293.56333
+      },
+      "trial_id": "V2-0022",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 333.000954,
+        "2016": -607.278709,
+        "2017": -543.659302
+      },
+      "trial_id": "V2-0023",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1707.369233,
+        "2016": -935.22979,
+        "2017": -131.544184
+      },
+      "trial_id": "V2-0024",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -770.358756,
+        "2016": -626.567616,
+        "2017": -345.650853
+      },
+      "trial_id": "V2-0025",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -995.960473,
+        "2016": -947.513094,
+        "2017": -468.01512
+      },
+      "trial_id": "V2-0026",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1654.257138,
+        "2016": -395.488916,
+        "2017": -180.842013
+      },
+      "trial_id": "V2-0027",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -777.654364,
+        "2016": -888.474009,
+        "2017": 420.663924
+      },
+      "trial_id": "V2-0028",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -803.05771,
+        "2016": -625.487657,
+        "2017": -350.975539
+      },
+      "trial_id": "V2-0029",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2071.386884,
+        "2016": -442.775062,
+        "2017": 70.39357
+      },
+      "trial_id": "V2-0030",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -556.495022,
+        "2016": -232.851914,
+        "2017": -317.458314
+      },
+      "trial_id": "V2-0031",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 35.269752,
+        "2016": -372.559498,
+        "2017": -8.121216
+      },
+      "trial_id": "V2-0032",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -315.424884,
+        "2016": -414.549656,
+        "2017": -347.169034
+      },
+      "trial_id": "V2-0033",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -374.393523,
+        "2016": -43.389142,
+        "2017": -287.051985
+      },
+      "trial_id": "V2-0034",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 110.717618,
+        "2016": -490.063383,
+        "2017": 97.336015
+      },
+      "trial_id": "V2-0035",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -748.650646,
+        "2016": -774.852329,
+        "2017": -316.730492
+      },
+      "trial_id": "V2-0036",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -107.526155,
+        "2016": 354.844443,
+        "2017": -589.595703
+      },
+      "trial_id": "V2-0037",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -629.114101,
+        "2016": -224.835638,
+        "2017": -442.949026
+      },
+      "trial_id": "V2-0038",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -797.784111,
+        "2016": -10.128093,
+        "2017": -475.156668
+      },
+      "trial_id": "V2-0039",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -639.213121,
+        "2016": -113.221413,
+        "2017": -408.236216
+      },
+      "trial_id": "V2-0040",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -387.273319,
+        "2016": -447.868517,
+        "2017": 21.330225
+      },
+      "trial_id": "V2-0041",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -8.735888,
+        "2016": -9.599207,
+        "2017": -106.854224
+      },
+      "trial_id": "V2-0042",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -185.189268,
+        "2016": 37.070099,
+        "2017": -99.58797
+      },
+      "trial_id": "V2-0043",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -236.961826,
+        "2016": -543.100755,
+        "2017": -245.76159
+      },
+      "trial_id": "V2-0044",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -831.099289,
+        "2016": 59.987874,
+        "2017": -418.38653
+      },
+      "trial_id": "V2-0045",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1428.36593,
+        "2016": -766.370552,
+        "2017": -49.34484
+      },
+      "trial_id": "V2-0046",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -299.794433,
+        "2016": -174.062366,
+        "2017": -326.813129
+      },
+      "trial_id": "V2-0047",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 34.493114,
+        "2016": -732.656662,
+        "2017": -612.872108
+      },
+      "trial_id": "V2-0048",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -786.757583,
+        "2016": -987.306139,
+        "2017": -319.829355
+      },
+      "trial_id": "V2-0049",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -676.295121,
+        "2016": -1796.580153,
+        "2017": -1739.413869
+      },
+      "trial_id": "V2-0050",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -15.260979,
+        "2016": -1421.17538,
+        "2017": -743.874369
+      },
+      "trial_id": "V2-0051",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 122.334729,
+        "2016": -823.364079,
+        "2017": -420.863968
+      },
+      "trial_id": "V2-0052",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -772.497546,
+        "2016": -698.615529,
+        "2017": -733.188779
+      },
+      "trial_id": "V2-0053",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 178.433327,
+        "2016": -349.107759,
+        "2017": -823.530209
+      },
+      "trial_id": "V2-0054",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -552.410992,
+        "2016": -523.099388,
+        "2017": -719.245713
+      },
+      "trial_id": "V2-0055",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2027.695756,
+        "2016": -1172.630608,
+        "2017": -1779.099836
+      },
+      "trial_id": "V2-0056",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -988.442395,
+        "2016": -592.941259,
+        "2017": -783.568447
+      },
+      "trial_id": "V2-0057",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -857.941182,
+        "2016": -2130.386912,
+        "2017": -1573.322316
+      },
+      "trial_id": "V2-0058",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -989.489014,
+        "2016": -1021.453705,
+        "2017": -318.695824
+      },
+      "trial_id": "V2-0059",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 170.137767,
+        "2016": -177.786534,
+        "2017": -750.242793
+      },
+      "trial_id": "V2-0060",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2035.488326,
+        "2016": -1519.973677,
+        "2017": -1497.002978
+      },
+      "trial_id": "V2-0061",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -978.728355,
+        "2016": -1197.636255,
+        "2017": -392.671984
+      },
+      "trial_id": "V2-0062",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 98.422837,
+        "2016": -699.855945,
+        "2017": -717.381085
+      },
+      "trial_id": "V2-0063",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -808.469014,
+        "2016": -2716.713404,
+        "2017": -904.1229
+      },
+      "trial_id": "V2-0064",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -523.207834,
+        "2016": -1872.210794,
+        "2017": -507.856729
+      },
+      "trial_id": "V2-0065",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -608.051129,
+        "2016": -974.067788,
+        "2017": -1247.494182
+      },
+      "trial_id": "V2-0066",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -218.284274,
+        "2016": -2527.244837,
+        "2017": -1208.706449
+      },
+      "trial_id": "V2-0067",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -953.529924,
+        "2016": -187.391837,
+        "2017": -805.569662
+      },
+      "trial_id": "V2-0068",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1131.916438,
+        "2016": -1872.426114,
+        "2017": -1161.348887
+      },
+      "trial_id": "V2-0069",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -902.187165,
+        "2016": -686.00531,
+        "2017": -595.150064
+      },
+      "trial_id": "V2-0070",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -734.988776,
+        "2016": -612.629877,
+        "2017": -1285.669044
+      },
+      "trial_id": "V2-0071",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1145.441671,
+        "2016": -433.150399,
+        "2017": -786.046919
+      },
+      "trial_id": "V2-0072",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -645.366379,
+        "2016": -529.292645,
+        "2017": -1508.318298
+      },
+      "trial_id": "V2-0073",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -298.929611,
+        "2016": -2155.845865,
+        "2017": -1601.247357
+      },
+      "trial_id": "V2-0074",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2011.436487,
+        "2016": -1513.589417,
+        "2017": -1433.32627
+      },
+      "trial_id": "V2-0075",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -316.423516,
+        "2016": -1180.680873,
+        "2017": -782.964042
+      },
+      "trial_id": "V2-0076",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -966.263082,
+        "2016": -714.742693,
+        "2017": -490.223099
+      },
+      "trial_id": "V2-0077",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -962.565574,
+        "2016": -998.387522,
+        "2017": -555.092743
+      },
+      "trial_id": "V2-0078",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -310.188133,
+        "2016": -113.8769,
+        "2017": -312.510733
+      },
+      "trial_id": "V2-0079",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -634.994549,
+        "2016": -26.840529,
+        "2017": -1003.310702
+      },
+      "trial_id": "V2-0080",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -217.302325,
+        "2016": -1667.036931,
+        "2017": -715.2363
+      },
+      "trial_id": "V2-0081",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -93.415212,
+        "2016": -582.594548,
+        "2017": -653.933089
+      },
+      "trial_id": "V2-0082",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -937.479673,
+        "2016": -145.302894,
+        "2017": -1509.654492
+      },
+      "trial_id": "V2-0083",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2076.733901,
+        "2016": -1134.212203,
+        "2017": -1814.340639
+      },
+      "trial_id": "V2-0084",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -774.265845,
+        "2016": -837.041196,
+        "2017": -554.664673
+      },
+      "trial_id": "V2-0085",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -264.20972,
+        "2016": -2494.88157,
+        "2017": -1237.306665
+      },
+      "trial_id": "V2-0086",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1012.268155,
+        "2016": -2228.337119,
+        "2017": -1123.486142
+      },
+      "trial_id": "V2-0087",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -628.232215,
+        "2016": 32.660305,
+        "2017": -1008.159865
+      },
+      "trial_id": "V2-0088",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1080.632174,
+        "2016": -2295.370299,
+        "2017": -1575.396327
+      },
+      "trial_id": "V2-0089",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -495.388992,
+        "2016": -1253.7241,
+        "2017": -831.008905
+      },
+      "trial_id": "V2-0090",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -848.927768,
+        "2016": -1792.572617,
+        "2017": -1982.856126
+      },
+      "trial_id": "V2-0091",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -262.70004,
+        "2016": -2154.990258,
+        "2017": -1522.957004
+      },
+      "trial_id": "V2-0092",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1096.332118,
+        "2016": -2331.825767,
+        "2017": -903.662198
+      },
+      "trial_id": "V2-0093",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -514.232255,
+        "2016": -1821.490071,
+        "2017": -508.560298
+      },
+      "trial_id": "V2-0094",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -490.105222,
+        "2016": -190.72625,
+        "2017": -363.816297
+      },
+      "trial_id": "V2-0095",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -970.315894,
+        "2016": -1330.768276,
+        "2017": -352.262454
+      },
+      "trial_id": "V2-0096",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1273.492798,
+        "2016": -459.869437,
+        "2017": -806.277864
+      },
+      "trial_id": "V2-0097",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.0,
+      "per_year_net_bps": {
+        "2015": -42.81668,
+        "2016": 62.084763,
+        "2017": 152.866427
+      },
+      "trial_id": "V2-0098",
+      "year_loo_positive": true
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -685.509184,
+        "2016": -708.800498,
+        "2017": -750.053796
+      },
+      "trial_id": "V2-0099",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 45.342684,
+        "2016": -535.391521,
+        "2017": -411.087937
+      },
+      "trial_id": "V2-0100",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -532.194809,
+        "2016": 299.878165,
+        "2017": -341.991363
+      },
+      "trial_id": "V2-0101",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.833333,
+      "per_year_net_bps": {
+        "2015": -78.361412,
+        "2016": -157.853399,
+        "2017": 35.221293
+      },
+      "trial_id": "V2-0102",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -233.155205,
+        "2016": -1170.480133,
+        "2017": -375.33187
+      },
+      "trial_id": "V2-0103",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -225.928795,
+        "2016": -1218.5826,
+        "2017": -589.562286
+      },
+      "trial_id": "V2-0104",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.833333,
+      "per_year_net_bps": {
+        "2015": -902.904071,
+        "2016": -580.198192,
+        "2017": -440.743856
+      },
+      "trial_id": "V2-0105",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -417.240888,
+        "2016": -1296.487228,
+        "2017": -431.22663
+      },
+      "trial_id": "V2-0106",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -737.030018,
+        "2016": -907.805417,
+        "2017": -754.606762
+      },
+      "trial_id": "V2-0107",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -815.953892,
+        "2016": -964.442393,
+        "2017": -375.395729
+      },
+      "trial_id": "V2-0108",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -437.514665,
+        "2016": -1483.594231,
+        "2017": -626.45017
+      },
+      "trial_id": "V2-0109",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1060.283366,
+        "2016": -188.697017,
+        "2017": -764.629182
+      },
+      "trial_id": "V2-0110",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -844.353763,
+        "2016": -499.320063,
+        "2017": -454.952147
+      },
+      "trial_id": "V2-0111",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -690.08893,
+        "2016": -788.586249,
+        "2017": -1257.23773
+      },
+      "trial_id": "V2-0112",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -221.183084,
+        "2016": -738.903915,
+        "2017": -156.463568
+      },
+      "trial_id": "V2-0113",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -495.110633,
+        "2016": -457.267257,
+        "2017": -680.644374
+      },
+      "trial_id": "V2-0114",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -701.643141,
+        "2016": -866.166727,
+        "2017": -784.513679
+      },
+      "trial_id": "V2-0115",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.833333,
+      "per_year_net_bps": {
+        "2015": -246.473368,
+        "2016": -363.644457,
+        "2017": -9.604877
+      },
+      "trial_id": "V2-0116",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -256.075991,
+        "2016": -193.874085,
+        "2017": -1053.364831
+      },
+      "trial_id": "V2-0117",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -143.554276,
+        "2016": -295.327966,
+        "2017": -1055.215091
+      },
+      "trial_id": "V2-0118",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -206.593866,
+        "2016": -79.069622,
+        "2017": -116.646292
+      },
+      "trial_id": "V2-0119",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -690.597481,
+        "2016": -771.769206,
+        "2017": 253.876334
+      },
+      "trial_id": "V2-0120",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -533.651868,
+        "2016": -744.940787,
+        "2017": -577.0588
+      },
+      "trial_id": "V2-0121",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1298.739445,
+        "2016": -1486.476875,
+        "2017": -800.117262
+      },
+      "trial_id": "V2-0122",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1091.394507,
+        "2016": -393.94608,
+        "2017": -966.848335
+      },
+      "trial_id": "V2-0123",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1199.236972,
+        "2016": -1536.333064,
+        "2017": -887.126971
+      },
+      "trial_id": "V2-0124",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -518.329899,
+        "2016": -80.700089,
+        "2017": -531.708688
+      },
+      "trial_id": "V2-0125",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -818.303083,
+        "2016": -1611.151661,
+        "2017": -1149.369109
+      },
+      "trial_id": "V2-0126",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -788.603899,
+        "2016": -810.862336,
+        "2017": -665.277884
+      },
+      "trial_id": "V2-0127",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -874.817694,
+        "2016": -527.739872,
+        "2017": -393.194279
+      },
+      "trial_id": "V2-0128",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1093.679053,
+        "2016": -317.122736,
+        "2017": -513.945297
+      },
+      "trial_id": "V2-0129",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 73.904526,
+        "2016": -481.028678,
+        "2017": -369.777186
+      },
+      "trial_id": "V2-0130",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.833333,
+      "per_year_net_bps": {
+        "2015": -337.096391,
+        "2016": -166.101878,
+        "2017": -539.674824
+      },
+      "trial_id": "V2-0131",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -533.32749,
+        "2016": 289.862479,
+        "2017": -467.072919
+      },
+      "trial_id": "V2-0132",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.833333,
+      "per_year_net_bps": {
+        "2015": -503.245213,
+        "2016": 140.363809,
+        "2017": -48.583419
+      },
+      "trial_id": "V2-0133",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -842.389177,
+        "2016": -1135.998221,
+        "2017": -1212.393186
+      },
+      "trial_id": "V2-0134",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -263.706009,
+        "2016": -1005.89918,
+        "2017": -668.245112
+      },
+      "trial_id": "V2-0135",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -740.834051,
+        "2016": -164.585935,
+        "2017": -1175.984035
+      },
+      "trial_id": "V2-0136",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -574.862565,
+        "2016": -877.022835,
+        "2017": 252.199338
+      },
+      "trial_id": "V2-0137",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -413.395649,
+        "2016": -1363.196796,
+        "2017": -878.011813
+      },
+      "trial_id": "V2-0138",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -911.471933,
+        "2016": -1952.050605,
+        "2017": -424.219861
+      },
+      "trial_id": "V2-0139",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -205.630147,
+        "2016": -1111.95586,
+        "2017": -220.979141
+      },
+      "trial_id": "V2-0140",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -233.14557,
+        "2016": -225.189029,
+        "2017": -622.318453
+      },
+      "trial_id": "V2-0141",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.833333,
+      "per_year_net_bps": {
+        "2015": -721.250945,
+        "2016": -927.68197,
+        "2017": -871.010964
+      },
+      "trial_id": "V2-0142",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -828.632019,
+        "2016": -855.503723,
+        "2017": -640.497552
+      },
+      "trial_id": "V2-0143",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3285.70866,
+        "2016": -4256.985374,
+        "2017": -1476.37354
+      },
+      "trial_id": "V2-0144",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -10637.58879,
+        "2016": -7033.333462,
+        "2017": -4643.964139
+      },
+      "trial_id": "V2-0145",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2421.887011,
+        "2016": -1815.478976,
+        "2017": -1437.409403
+      },
+      "trial_id": "V2-0146",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1562.691424,
+        "2016": -1265.198067,
+        "2017": -694.786147
+      },
+      "trial_id": "V2-0147",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3923.828671,
+        "2016": -4244.799183,
+        "2017": -3376.85844
+      },
+      "trial_id": "V2-0148",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2601.622314,
+        "2016": -1774.509248,
+        "2017": -2139.284137
+      },
+      "trial_id": "V2-0149",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5119.098602,
+        "2016": -4842.207039,
+        "2017": -3800.8141
+      },
+      "trial_id": "V2-0150",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6904.942771,
+        "2016": -6474.585496,
+        "2017": -5831.959087
+      },
+      "trial_id": "V2-0151",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5448.803692,
+        "2016": -3329.885775,
+        "2017": -2019.198566
+      },
+      "trial_id": "V2-0152",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -14064.910501,
+        "2016": -9684.420633,
+        "2017": -5620.196347
+      },
+      "trial_id": "V2-0153",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2266.408047,
+        "2016": -5.314983,
+        "2017": -1562.447933
+      },
+      "trial_id": "V2-0154",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4861.41384,
+        "2016": -3999.326585,
+        "2017": -1924.814263
+      },
+      "trial_id": "V2-0155",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2524.790469,
+        "2016": -5247.793119,
+        "2017": -5365.075143
+      },
+      "trial_id": "V2-0156",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -10740.578021,
+        "2016": -12707.783143,
+        "2017": -9970.734395
+      },
+      "trial_id": "V2-0157",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3692.659178,
+        "2016": -10346.364443,
+        "2017": -9036.413645
+      },
+      "trial_id": "V2-0158",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -17559.207831,
+        "2016": -23599.363759,
+        "2017": -19895.069409
+      },
+      "trial_id": "V2-0159",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -10949.83778,
+        "2016": -22399.854247,
+        "2017": -17716.761024
+      },
+      "trial_id": "V2-0160",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5079.208,
+        "2016": -6869.311245,
+        "2017": -4614.871319
+      },
+      "trial_id": "V2-0161",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2668.083798,
+        "2016": -3897.705432,
+        "2017": -2730.444822
+      },
+      "trial_id": "V2-0162",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2657.595464,
+        "2016": -7508.524745,
+        "2017": -5590.671303
+      },
+      "trial_id": "V2-0163",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -13289.460165,
+        "2016": -17888.914719,
+        "2017": -15213.530152
+      },
+      "trial_id": "V2-0164",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2754.918769,
+        "2016": -5014.137408,
+        "2017": -4265.030445
+      },
+      "trial_id": "V2-0165",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -7431.067855,
+        "2016": -9113.347216,
+        "2017": -7512.361461
+      },
+      "trial_id": "V2-0166",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6587.774631,
+        "2016": -13694.768971,
+        "2017": -10634.072998
+      },
+      "trial_id": "V2-0167",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -8026.767076,
+        "2016": -10571.668187,
+        "2017": -9124.083568
+      },
+      "trial_id": "V2-0168",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4589.045463,
+        "2016": -2999.267475,
+        "2017": -3536.688862
+      },
+      "trial_id": "V2-0169",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -399.516664,
+        "2016": -2923.394994,
+        "2017": -587.721455
+      },
+      "trial_id": "V2-0170",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -7957.551822,
+        "2016": -7656.790797,
+        "2017": -5829.648332
+      },
+      "trial_id": "V2-0171",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4201.915014,
+        "2016": -5240.117544,
+        "2017": -5020.171803
+      },
+      "trial_id": "V2-0172",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3952.953418,
+        "2016": -2199.307153,
+        "2017": -3478.762959
+      },
+      "trial_id": "V2-0173",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -11171.080292,
+        "2016": -12439.591397,
+        "2017": -8975.233174
+      },
+      "trial_id": "V2-0174",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1596.221863,
+        "2016": -4126.046081,
+        "2017": -2246.832054
+      },
+      "trial_id": "V2-0175",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6216.42423,
+        "2016": -8478.986354,
+        "2017": -7592.53968
+      },
+      "trial_id": "V2-0176",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -12185.209746,
+        "2016": -14401.339845,
+        "2017": -12825.632344
+      },
+      "trial_id": "V2-0177",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5670.92058,
+        "2016": -5114.305579,
+        "2017": -3412.718268
+      },
+      "trial_id": "V2-0178",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3833.054228,
+        "2016": -4426.124644,
+        "2017": -2573.281428
+      },
+      "trial_id": "V2-0179",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -960.696155,
+        "2016": -2064.858021,
+        "2017": -1956.924822
+      },
+      "trial_id": "V2-0180",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6812.447386,
+        "2016": -3801.37045,
+        "2017": -2260.236519
+      },
+      "trial_id": "V2-0181",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": 106.936829,
+        "2016": 945.188967,
+        "2017": 309.833648
+      },
+      "trial_id": "V2-0182",
+      "year_loo_positive": true
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -960.696155,
+        "2016": -2064.858021,
+        "2017": -1956.924822
+      },
+      "trial_id": "V2-0183",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4785.704829,
+        "2016": -1881.926067,
+        "2017": -1959.275772
+      },
+      "trial_id": "V2-0184",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4785.704829,
+        "2016": -1881.926067,
+        "2017": -1960.034886
+      },
+      "trial_id": "V2-0185",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": 106.936829,
+        "2016": 945.188967,
+        "2017": 309.833648
+      },
+      "trial_id": "V2-0186",
+      "year_loo_positive": true
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": -2165.719398,
+        "2016": -2466.433621,
+        "2017": -1446.237644
+      },
+      "trial_id": "V2-0187",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": -2165.719398,
+        "2016": -2466.433621,
+        "2017": -1446.237644
+      },
+      "trial_id": "V2-0188",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6812.447386,
+        "2016": -3801.37045,
+        "2017": -2260.236519
+      },
+      "trial_id": "V2-0189",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 839.969069,
+        "2016": -1150.783306,
+        "2017": -224.39596
+      },
+      "trial_id": "V2-0190",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 839.969069,
+        "2016": -1150.783306,
+        "2017": -223.257132
+      },
+      "trial_id": "V2-0191",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2956.110716,
+        "2016": -5343.84555,
+        "2017": -4735.579637
+      },
+      "trial_id": "V2-0192",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4831.275854,
+        "2016": -6217.27491,
+        "2017": -4787.579386
+      },
+      "trial_id": "V2-0193",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1574.34485,
+        "2016": 169.197706,
+        "2017": -1439.376456
+      },
+      "trial_id": "V2-0194",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1118.453051,
+        "2016": -4452.318919,
+        "2017": -2042.593858
+      },
+      "trial_id": "V2-0195",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -7497.934363,
+        "2016": -11122.474498,
+        "2017": -8699.513283
+      },
+      "trial_id": "V2-0196",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1118.644555,
+        "2016": -4452.318919,
+        "2017": -2042.593858
+      },
+      "trial_id": "V2-0197",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -7487.939316,
+        "2016": -11128.6005,
+        "2017": -8699.513283
+      },
+      "trial_id": "V2-0198",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4831.019827,
+        "2016": -6217.27491,
+        "2017": -4787.579386
+      },
+      "trial_id": "V2-0199",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2950.468568,
+        "2016": -5339.800233,
+        "2017": -4735.579637
+      },
+      "trial_id": "V2-0200",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -554.180539,
+        "2016": -2187.045114,
+        "2017": -2064.652435
+      },
+      "trial_id": "V2-0201",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -554.115852,
+        "2016": -2187.045114,
+        "2017": -2064.652435
+      },
+      "trial_id": "V2-0202",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1574.279847,
+        "2016": 169.197706,
+        "2017": -1439.376456
+      },
+      "trial_id": "V2-0203",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3138.966294,
+        "2016": -2674.886168,
+        "2017": -3255.745722
+      },
+      "trial_id": "V2-0204",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -728.213278,
+        "2016": -1295.208754,
+        "2017": -2267.221798
+      },
+      "trial_id": "V2-0205",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1506.556452,
+        "2016": -1357.954779,
+        "2017": 182.496941
+      },
+      "trial_id": "V2-0206",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1218.206262,
+        "2016": -2439.361208,
+        "2017": -850.035575
+      },
+      "trial_id": "V2-0207",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4973.12166,
+        "2016": -6561.451233,
+        "2017": -4978.216887
+      },
+      "trial_id": "V2-0208",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4971.125782,
+        "2016": -6561.451233,
+        "2017": -4978.216887
+      },
+      "trial_id": "V2-0209",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3629.220935,
+        "2016": -3344.004008,
+        "2017": -3036.293762
+      },
+      "trial_id": "V2-0210",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3626.060964,
+        "2016": -3344.004008,
+        "2017": -3036.293762
+      },
+      "trial_id": "V2-0211",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3138.966294,
+        "2016": -2674.886168,
+        "2017": -3255.745722
+      },
+      "trial_id": "V2-0212",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1506.556452,
+        "2016": -1357.954779,
+        "2017": 182.496941
+      },
+      "trial_id": "V2-0213",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1218.206262,
+        "2016": -2439.361208,
+        "2017": -850.035575
+      },
+      "trial_id": "V2-0214",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -728.213278,
+        "2016": -1295.208754,
+        "2017": -2267.221798
+      },
+      "trial_id": "V2-0215",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 181.274423,
+        "2016": -479.307722,
+        "2017": -164.095785
+      },
+      "trial_id": "V2-0216",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": 677.840169,
+        "2016": 145.522484,
+        "2017": -152.002297
+      },
+      "trial_id": "V2-0217",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 129.641916,
+        "2016": -160.102334,
+        "2017": 65.998854
+      },
+      "trial_id": "V2-0218",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": 68.441867,
+        "2016": 51.481381,
+        "2017": -129.66854
+      },
+      "trial_id": "V2-0219",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": 654.602907,
+        "2016": 91.244379,
+        "2017": 10.369094
+      },
+      "trial_id": "V2-0220",
+      "year_loo_positive": true
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 402.577559,
+        "2016": -317.722028,
+        "2017": -0.308273
+      },
+      "trial_id": "V2-0221",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -64.65953,
+        "2016": -353.221415,
+        "2017": -207.645516
+      },
+      "trial_id": "V2-0222",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 31.528478,
+        "2016": -252.171306,
+        "2017": 102.42816
+      },
+      "trial_id": "V2-0223",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -335.155012,
+        "2016": 485.763509,
+        "2017": -392.425968
+      },
+      "trial_id": "V2-0224",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -149.860407,
+        "2016": 64.168792,
+        "2017": -189.717691
+      },
+      "trial_id": "V2-0225",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -424.06044,
+        "2016": -484.832969,
+        "2017": -700.965124
+      },
+      "trial_id": "V2-0226",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.0,
+      "per_year_net_bps": {
+        "2015": 200.138055,
+        "2016": 63.815022,
+        "2017": -183.312466
+      },
+      "trial_id": "V2-0227",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1046.055046,
+        "2016": -1212.966907,
+        "2017": -1424.099505
+      },
+      "trial_id": "V2-0228",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -676.366892,
+        "2016": -97.427056,
+        "2017": -1253.821226
+      },
+      "trial_id": "V2-0229",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -994.333019,
+        "2016": -934.913473,
+        "2017": -1698.0999
+      },
+      "trial_id": "V2-0230",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": 40.829035,
+        "2016": 318.687018,
+        "2017": -399.269537
+      },
+      "trial_id": "V2-0231",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -725.487557,
+        "2016": -1015.173823,
+        "2017": -903.681899
+      },
+      "trial_id": "V2-0232",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 123.274178,
+        "2016": -342.020953,
+        "2017": -247.557607
+      },
+      "trial_id": "V2-0233",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 75.652396,
+        "2016": -128.73797,
+        "2017": -421.744441
+      },
+      "trial_id": "V2-0234",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -712.577925,
+        "2016": -1429.303822,
+        "2017": -1337.29837
+      },
+      "trial_id": "V2-0235",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 22.431505,
+        "2016": 222.563958,
+        "2017": -298.058222
+      },
+      "trial_id": "V2-0236",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -193.842936,
+        "2016": -1039.310706,
+        "2017": -638.338775
+      },
+      "trial_id": "V2-0237",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -858.842896,
+        "2016": -1642.35162,
+        "2017": -1005.121789
+      },
+      "trial_id": "V2-0238",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -18.487151,
+        "2016": 255.53468,
+        "2017": -348.289499
+      },
+      "trial_id": "V2-0239",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -421.920159,
+        "2016": -117.122161,
+        "2017": -411.468271
+      },
+      "trial_id": "V2-0240",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -401.589557,
+        "2016": -385.024276,
+        "2017": 64.71883
+      },
+      "trial_id": "V2-0241",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 62.383245,
+        "2016": 369.876832,
+        "2017": -614.499805
+      },
+      "trial_id": "V2-0242",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -214.739092,
+        "2016": -337.069819,
+        "2017": 53.094261
+      },
+      "trial_id": "V2-0243",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -257.43901,
+        "2016": -101.351786,
+        "2017": -423.093924
+      },
+      "trial_id": "V2-0244",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -871.613532,
+        "2016": -879.326057,
+        "2017": 270.970275
+      },
+      "trial_id": "V2-0245",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -708.300881,
+        "2016": -821.238295,
+        "2017": 255.199035
+      },
+      "trial_id": "V2-0246",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 215.213677,
+        "2016": 396.021,
+        "2017": -630.459424
+      },
+      "trial_id": "V2-0247",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -507.016495,
+        "2016": -234.980135,
+        "2017": -273.877406
+      },
+      "trial_id": "V2-0248",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -300.695276,
+        "2016": -1131.7369,
+        "2017": -871.645497
+      },
+      "trial_id": "V2-0249",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 158.337485,
+        "2016": -158.599373,
+        "2017": -858.946766
+      },
+      "trial_id": "V2-0250",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 181.25371,
+        "2016": -357.254624,
+        "2017": -889.68788
+      },
+      "trial_id": "V2-0251",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -960.044134,
+        "2016": -936.428704,
+        "2017": -243.886751
+      },
+      "trial_id": "V2-0252",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -487.907458,
+        "2016": -365.015601,
+        "2017": -311.784812
+      },
+      "trial_id": "V2-0253",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -991.834696,
+        "2016": -1014.982472,
+        "2017": -251.464791
+      },
+      "trial_id": "V2-0254",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -313.387858,
+        "2016": -769.749837,
+        "2017": -796.109679
+      },
+      "trial_id": "V2-0255",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -569.024519,
+        "2016": 304.016668,
+        "2017": -494.29175
+      },
+      "trial_id": "V2-0256",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -530.888322,
+        "2016": -484.535965,
+        "2017": -297.262361
+      },
+      "trial_id": "V2-0257",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -617.199295,
+        "2016": -407.06216,
+        "2017": -250.71586
+      },
+      "trial_id": "V2-0258",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -210.850017,
+        "2016": -338.630757,
+        "2017": -395.154329
+      },
+      "trial_id": "V2-0259",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -633.954373,
+        "2016": 178.495125,
+        "2017": -437.344788
+      },
+      "trial_id": "V2-0260",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -89.859833,
+        "2016": -341.050118,
+        "2017": -424.218916
+      },
+      "trial_id": "V2-0261",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -169.023621,
+        "2016": -1124.131536,
+        "2017": -193.958561
+      },
+      "trial_id": "V2-0262",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -66.492785,
+        "2016": -901.501304,
+        "2017": -233.42361
+      },
+      "trial_id": "V2-0263",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": -104.859977,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0264",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -62.488269,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0265",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -42.573385,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0266",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 0.79652,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0267",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": true,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 52.237557,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0268",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -89.45705,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0269",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": 29.865653,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0270",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -175.696012,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0271",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": true,
+      "neighborhood_same_sign_fraction": 0.0,
+      "per_year_net_bps": {
+        "2015": 4.906163,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0272",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -55.751989,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0273",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -236.590986,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0274",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -128.723133,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0275",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -292.385907,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0276",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -30.354888,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0277",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -198.394828,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0278",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -123.317143,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0279",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -48.740136,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0280",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": -37.130724,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0281",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 32.06136,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0282",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -21.297662,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0283",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -20.181149,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0284",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.333333,
+      "per_year_net_bps": {
+        "2015": 2.644635,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0285",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": -234.055894,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0286",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": true,
+      "neighborhood_same_sign_fraction": 0.666667,
+      "per_year_net_bps": {
+        "2015": 12.54432,
+        "2016": 0.0,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0287",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5702.340118,
+        "2016": -3405.297864,
+        "2017": -2395.488192
+      },
+      "trial_id": "V2-0288",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4024.68011,
+        "2016": -1177.288422,
+        "2017": -2380.633532
+      },
+      "trial_id": "V2-0289",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2657.261368,
+        "2016": -836.249244,
+        "2017": -1277.884915
+      },
+      "trial_id": "V2-0290",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2879.935285,
+        "2016": -2124.388764,
+        "2017": -1712.444006
+      },
+      "trial_id": "V2-0291",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4121.705042,
+        "2016": -1879.988192,
+        "2017": -1715.790105
+      },
+      "trial_id": "V2-0292",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -606.47724,
+        "2016": -1305.081442,
+        "2017": -272.782142
+      },
+      "trial_id": "V2-0293",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2447.387536,
+        "2016": -286.203587,
+        "2017": -1318.052159
+      },
+      "trial_id": "V2-0294",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3225.655812,
+        "2016": -636.893695,
+        "2017": -703.920737
+      },
+      "trial_id": "V2-0295",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5798.144791,
+        "2016": -9176.554534,
+        "2017": -7973.276878
+      },
+      "trial_id": "V2-0296",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4851.349982,
+        "2016": -7849.900893,
+        "2017": -6901.968449
+      },
+      "trial_id": "V2-0297",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3591.192834,
+        "2016": -3807.683136,
+        "2017": -4080.776699
+      },
+      "trial_id": "V2-0298",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1811.584965,
+        "2016": -4182.607268,
+        "2017": -2065.770693
+      },
+      "trial_id": "V2-0299",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3035.133619,
+        "2016": -3872.294143,
+        "2017": -2781.880729
+      },
+      "trial_id": "V2-0300",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5944.091593,
+        "2016": -10075.185554,
+        "2017": -9053.306757
+      },
+      "trial_id": "V2-0301",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3874.492895,
+        "2016": -7959.497818,
+        "2017": -6466.160866
+      },
+      "trial_id": "V2-0302",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3488.676187,
+        "2016": -4683.371596,
+        "2017": -4007.483978
+      },
+      "trial_id": "V2-0303",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1444.155427,
+        "2016": -2071.717553,
+        "2017": -2175.187482
+      },
+      "trial_id": "V2-0304",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1765.437452,
+        "2016": -2401.500505,
+        "2017": -1175.365547
+      },
+      "trial_id": "V2-0305",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -1289.023284,
+        "2016": -3096.703906,
+        "2017": -2890.813519
+      },
+      "trial_id": "V2-0306",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2838.04833,
+        "2016": -4029.719492,
+        "2017": -2023.046157
+      },
+      "trial_id": "V2-0307",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4934.247014,
+        "2016": -4578.724362,
+        "2017": -4091.942706
+      },
+      "trial_id": "V2-0308",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5235.303166,
+        "2016": -5044.348407,
+        "2017": -4483.393112
+      },
+      "trial_id": "V2-0309",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5601.067575,
+        "2016": -7350.872824,
+        "2017": -5865.745081
+      },
+      "trial_id": "V2-0310",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3668.163071,
+        "2016": -4588.951946,
+        "2017": -3453.709948
+      },
+      "trial_id": "V2-0311",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": 379.312775,
+        "2016": 127.067607,
+        "2017": 59.089399
+      },
+      "trial_id": "V2-0312",
+      "year_loo_positive": true
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 80.03731,
+        "2016": -182.52732,
+        "2017": 17.455059
+      },
+      "trial_id": "V2-0313",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": 295.826134,
+        "2016": -27.983915,
+        "2017": -84.179195
+      },
+      "trial_id": "V2-0314",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6012.161667,
+        "2016": -5071.663632,
+        "2017": -3921.497613
+      },
+      "trial_id": "V2-0315",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": 119.708564,
+        "2016": -193.809307,
+        "2017": 23.524311
+      },
+      "trial_id": "V2-0316",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": -1852.919954,
+        "2016": -2557.782935,
+        "2017": -1179.464228
+      },
+      "trial_id": "V2-0317",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 0.5,
+      "per_year_net_bps": {
+        "2015": -2514.588027,
+        "2016": -2901.661868,
+        "2017": -2481.988774
+      },
+      "trial_id": "V2-0318",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6071.909271,
+        "2016": -5178.651477,
+        "2017": -4687.030841
+      },
+      "trial_id": "V2-0319",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -10585.850011,
+        "2016": -14806.311828,
+        "2017": -11428.934183
+      },
+      "trial_id": "V2-0320",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -10624.241596,
+        "2016": -13421.335221,
+        "2017": -11207.982918
+      },
+      "trial_id": "V2-0321",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -168.732075,
+        "2016": -1319.819877,
+        "2017": -311.821694
+      },
+      "trial_id": "V2-0322",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -874.494497,
+        "2016": -2228.591209,
+        "2017": -909.523724
+      },
+      "trial_id": "V2-0323",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -157.326061,
+        "2016": -1327.022354,
+        "2017": -327.146906
+      },
+      "trial_id": "V2-0324",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -345.996574,
+        "2016": -1866.587326,
+        "2017": -749.028831
+      },
+      "trial_id": "V2-0325",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -4984.873723,
+        "2016": -8089.946465,
+        "2017": -6596.352881
+      },
+      "trial_id": "V2-0326",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6080.106108,
+        "2016": -8419.276449,
+        "2017": -5419.804989
+      },
+      "trial_id": "V2-0327",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -522.441475,
+        "2016": -408.552755,
+        "2017": 0.0
+      },
+      "trial_id": "V2-0328",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -3199.556041,
+        "2016": -4228.425009,
+        "2017": -4310.303831
+      },
+      "trial_id": "V2-0329",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -451.502382,
+        "2016": -133.389743,
+        "2017": 33.892907
+      },
+      "trial_id": "V2-0330",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -2871.827766,
+        "2016": -2337.110714,
+        "2017": -2974.532263
+      },
+      "trial_id": "V2-0331",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -468.14594,
+        "2016": -348.608458,
+        "2017": 8.144082
+      },
+      "trial_id": "V2-0332",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -6511.032959,
+        "2016": -8287.764338,
+        "2017": -7051.447766
+      },
+      "trial_id": "V2-0333",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -5831.34567,
+        "2016": -6671.698238,
+        "2017": -7380.585787
+      },
+      "trial_id": "V2-0334",
+      "year_loo_positive": false
+    },
+    {
+      "instrument_loo_positive": false,
+      "neighborhood_same_sign_fraction": 1.0,
+      "per_year_net_bps": {
+        "2015": -327.853238,
+        "2016": -347.654454,
+        "2017": 10.205073
+      },
+      "trial_id": "V2-0335",
+      "year_loo_positive": false
+    }
+  ]
+}

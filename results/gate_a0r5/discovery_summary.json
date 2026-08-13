@@ -1,0 +1,30 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "artifact_id": "A0R5_DISCOVERY_SUMMARY_V1",
+  "bh_fdr_significant": 0,
+  "created_at": "2026-08-13T15:40:34.909652+00:00",
+  "evaluated_trials": 336,
+  "expected_trials": 336,
+  "exploratory_only": true,
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "hansen_spa_p": 0.460921844,
+  "holm_significant": 0,
+  "materialization_digest": "4ead4048be86b1885503cf232d71f87ee8309b4572ce89e2ca309e38f38fd1a1",
+  "next_gate": "STOP_NO_2018_CONFIRMATION",
+  "pbo": 0.128571,
+  "positive_net_trials": 17,
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V2",
+  "region": "development_2015_2017",
+  "registered_candidate_equivalent_denominator": 336,
+  "romano_wolf_significant": 0,
+  "scientific_survivor_count": 0,
+  "scientific_survivor_ids": [],
+  "summary_hash": "abf31fc2796d609d015e0a4155e3ab9e535aab02a08d4b30f8eb634c40c39a64",
+  "survives_1_5x": 8,
+  "survives_2_0x": 4,
+  "terminal_decision": "V2_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR",
+  "terminal_states": {
+    "EVALUATED": 336
+  },
+  "white_reality_check_p": 1.0
+}

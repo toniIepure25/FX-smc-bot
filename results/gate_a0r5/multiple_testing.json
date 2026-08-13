@@ -1,0 +1,2039 @@
+{
+  "artifact_id": "A0R5_MULTIPLE_TESTING_V1",
+  "bh_fdr_significant": 0,
+  "block_length_days": 5,
+  "bootstrap_iterations": 499,
+  "evaluated_columns": 336,
+  "gate_id": "A0R5_V2_DISCOVERY_2015_2017_V1",
+  "hansen_spa_p": 0.460921844,
+  "holm_significant": 0,
+  "pbo": {
+    "median_logit": 1.963047,
+    "n_combinations": 70,
+    "n_splits": 8,
+    "pbo": 0.128571,
+    "reason": "OK"
+  },
+  "per_trial": {
+    "V2-0000": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.748906919,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0001": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.615489083,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0002": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.985183718,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0003": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.894796446,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0004": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.977321019,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0005": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.719654888,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0006": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.971715094,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0007": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.777741154,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0008": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998274724,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0009": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999998995,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0010": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.756598521,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0011": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.778371146,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0012": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.939352262,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0013": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.804461175,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0014": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.992576298,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0015": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.951187201,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0016": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999994989,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0017": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99997549,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0018": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.930511178,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0019": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.608927944,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0020": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.963667145,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0021": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999995172,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0022": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999654273,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0023": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.82099244,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0024": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.9983575,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0025": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.9991716,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0026": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999935353,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0027": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.993834067,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0028": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.907346547,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0029": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.997630807,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0030": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.997079823,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0031": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.973506341,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0032": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.712937755,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0033": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.975771136,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0034": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.870165923,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0035": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.66783695,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0036": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998175043,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0037": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.644442604,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0038": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.980236207,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0039": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.975767163,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0040": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.970001675,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0041": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.816817615,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0042": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.589934648,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0043": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.674253018,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0044": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.958637181,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0045": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.966995684,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0046": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.991353276,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0047": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.808395349,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0048": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.969420937,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0049": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.9938705,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0050": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999516,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0051": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999883214,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0052": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.94682706,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0053": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.995908705,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0054": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.891203068,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0055": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.983438141,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0056": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0057": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999650895,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0058": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999971,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0059": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998080826,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0060": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.828530929,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0061": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0062": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999342302,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0063": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.969832075,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0064": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999998,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0065": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999998987,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0066": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999976047,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0067": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0068": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999319254,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0069": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999999,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0070": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999053804,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0071": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999825723,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0072": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999972381,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0073": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99995385,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0074": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0075": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0076": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998011054,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0077": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998970234,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0078": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998448601,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0079": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.824124323,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0080": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.997226991,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0081": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999987693,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0082": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.972936714,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0083": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999752887,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0084": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0085": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999101974,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0086": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0087": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999998,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0088": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.996187386,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0089": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999997,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0090": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999399277,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0091": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999977,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0092": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0093": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0094": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999998413,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0095": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.907879534,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0096": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999992919,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0097": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998447047,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0098": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.388622874,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0099": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999755783,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0100": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.929821201,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0101": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.818846918,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0102": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.628298587,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0103": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.997578827,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0104": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.991050579,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0105": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998901535,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0106": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.993861147,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0107": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999962438,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0108": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999758521,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0109": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998652111,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0110": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.991247594,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0111": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998315706,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0112": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999996945,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0113": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.902090832,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0114": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.972181987,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0115": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999919266,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0116": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.766298229,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0117": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.995759607,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0118": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.995510941,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0119": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.681410591,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0120": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.982488518,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0121": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.985146957,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0122": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999974,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0123": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.997946008,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0124": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999983,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0125": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.904879605,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0126": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999996,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0127": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999905001,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0128": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998333906,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0129": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.989401897,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0130": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.892642314,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0131": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.944763844,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0132": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.798793581,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0133": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.746055159,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0134": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999851,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0135": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999077864,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0136": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999696542,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0137": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.981841914,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0138": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999232669,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0139": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999946,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0140": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.965049444,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0141": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.950590573,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0142": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999982085,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0143": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999905449,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0144": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999999,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0145": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0146": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999983615,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0147": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.995177855,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0148": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0149": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999865,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0150": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0151": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0152": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0153": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0154": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.994719299,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0155": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0156": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0157": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0158": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0159": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0160": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0161": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0162": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0163": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0164": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0165": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0166": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0167": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0168": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0169": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0170": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.996579846,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0171": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0172": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0173": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0174": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0175": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.9999995,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0176": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0177": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0178": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0179": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0180": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999905664,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0181": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0182": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.160589248,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0183": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999905664,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0184": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0185": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0186": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.160589248,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0187": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999994816,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0188": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999994816,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0189": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0190": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.658976347,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0191": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.658658414,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0192": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0193": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0194": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.979780413,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0195": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999979,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0196": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0197": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999979,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0198": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0199": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0200": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0201": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999512368,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0202": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999512289,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0203": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.979778061,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0204": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0205": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999299876,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0206": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.976964369,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0207": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999212718,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0208": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0209": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0210": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0211": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0212": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0213": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.976964369,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0214": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999212718,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0215": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999299876,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0216": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.77811393,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0217": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.106540481,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0218": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.469171455,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0219": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.505038164,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0220": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.046467955,
+      "romano_wolf_p": 0.997995992
+    },
+    "V2-0221": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.456537023,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0222": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.852572715,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0223": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.582853504,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0224": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.636757606,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0225": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.702009846,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0226": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99327102,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0227": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.431089187,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0228": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999285,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0229": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.989441622,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0230": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999976702,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0231": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.526474776,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0232": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99966414,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0233": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.771930102,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0234": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.772122668,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0235": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999994787,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0236": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.534322652,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0237": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.990508969,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0238": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999939053,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0239": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.568494086,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0240": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.851398061,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0241": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.784266012,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0242": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.579710449,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0243": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.707876632,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0244": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.802823252,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0245": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.941174581,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0246": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.920147951,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0247": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.508115688,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0248": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.901482749,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0249": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998184889,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0250": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.865583185,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0251": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.905976505,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0252": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.997001652,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0253": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.942858774,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0254": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.997366767,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0255": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99456244,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0256": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.812025486,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0257": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.937943331,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0258": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.945590856,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0259": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.865907096,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0260": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.862697351,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0261": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.859120435,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0262": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.958496543,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0263": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.929312228,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0264": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.677376691,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0265": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.875406205,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0266": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.932313036,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0267": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.494605241,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0268": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.259979262,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0269": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.859793135,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0270": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.078635026,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0271": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.772043444,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0272": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.484101777,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0273": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.66285158,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0274": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.909944844,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0275": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.865059011,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0276": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.94245862,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0277": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.586015524,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0278": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.814638647,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0279": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.74647815,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0280": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.780684784,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0281": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.71511907,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0282": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.420728091,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0283": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.643872089,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0284": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.731050107,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0285": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.466176334,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0286": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.920669639,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0287": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.425262554,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0288": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0289": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999957,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0290": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999543863,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0291": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99999995,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0292": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999972,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0293": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.941301594,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0294": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999317218,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0295": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.998824169,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0296": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0297": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0298": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0299": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999956,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0300": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0301": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0302": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0303": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0304": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999993981,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0305": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999875066,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0306": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999997987,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0307": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99999991,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0308": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0309": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0310": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0311": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0312": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.256097549,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0313": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.562449556,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0314": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.418556866,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0315": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0316": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.542158272,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0317": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999727024,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0318": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999999864,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0319": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0320": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0321": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0322": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.932332879,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0323": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.99781902,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0324": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.921997774,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0325": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.982148354,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0326": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0327": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0328": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.993882058,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0329": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0330": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.818481327,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0331": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.999997142,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0332": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.926505206,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0333": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0334": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 1.0,
+      "romano_wolf_p": 1.0
+    },
+    "V2-0335": {
+      "bh_fdr_p": 1.0,
+      "holm_p": 1.0,
+      "raw_p": 0.963174145,
+      "romano_wolf_p": 1.0
+    }
+  },
+  "registered_candidate_equivalent_denominator": 336,
+  "romano_wolf_significant": 0,
+  "seed": 1729,
+  "white_reality_check_p": 1.0
+}
