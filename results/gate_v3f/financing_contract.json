@@ -1,0 +1,23 @@
+{
+  "artifact_id": "V3_FINANCING_CONTRACT_V1",
+  "components_required_for_executable_multiday": [
+    "daily_rollover_swap_long",
+    "daily_rollover_swap_short",
+    "triple_roll_weekday_convention",
+    "weekend_gap_return",
+    "holiday_gap_return",
+    "carry_interest_differential"
+  ],
+  "consequence": "H2/H3 cannot become scientific executable survivors under this freeze.",
+  "current_status": "UNSUPPORTED -> H2/H3 = PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE",
+  "financing_capability_supported": false,
+  "fully_executable_horizons": [
+    "H0_micro_intraday",
+    "H1_session_daily"
+  ],
+  "price_alpha_only_horizons": [
+    "H2_intraweek",
+    "H3_intramonth"
+  ],
+  "provenance_requirement": "broker/provider swap series with immutable manifest and checksum; not derivable from price data."
+}

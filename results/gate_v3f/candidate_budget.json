@@ -1,0 +1,115 @@
+{
+  "artifact_id": "V3_CANDIDATE_BUDGET_V1",
+  "budget_hierarchy": [
+    "domain",
+    "family",
+    "parameter_neighborhood",
+    "instrument_scope"
+  ],
+  "composition_archetype_count": 6,
+  "composition_candidate_total": 84,
+  "executable_standalone_candidates": 920,
+  "lineage": {
+    "V1_evaluated": 8,
+    "V2_evaluated": 336,
+    "V3_registered": 1044,
+    "cumulative_program_candidate_equivalent": 1388,
+    "inherited_candidate_ceiling_per_version": 1200,
+    "v3_within_ceiling": true
+  },
+  "outcome_driven_candidate_deletion": "forbidden",
+  "per_domain": {
+    "A": {
+      "candidate_count": 75,
+      "domain_name": "classical_technical_structure",
+      "families": {
+        "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION": 75
+      }
+    },
+    "B": {
+      "candidate_count": 150,
+      "domain_name": "time_series_momentum_trend",
+      "families": {
+        "V3_B_MULTISCALE_TSMOM_VOLSCALED": 75,
+        "V3_B_TREND_PULLBACK_ENTRY": 75
+      }
+    },
+    "C": {
+      "candidate_count": 120,
+      "domain_name": "mean_reversion",
+      "families": {
+        "V3_C_OU_HALFLIFE_REVERSION": 60,
+        "V3_C_ZSCORE_OVERSHOOT_REVERSION": 60
+      }
+    },
+    "D": {
+      "candidate_count": 75,
+      "domain_name": "volatility_range_structure",
+      "families": {
+        "V3_D_COMPRESSION_EXPANSION_BREAK": 75
+      }
+    },
+    "E": {
+      "candidate_count": 60,
+      "domain_name": "market_microstructure",
+      "families": {
+        "V3_E_SPREAD_STATE_GATED_REVERSAL": 60
+      }
+    },
+    "F": {
+      "candidate_count": 75,
+      "domain_name": "seasonality_calendar",
+      "families": {
+        "V3_F_SESSION_OPEN_CONDITIONED_MOMENTUM": 75
+      }
+    },
+    "G": {
+      "candidate_count": 45,
+      "domain_name": "cross_pair_currency_structure",
+      "families": {
+        "V3_G_CROSS_SECTIONAL_MOMENTUM": 20,
+        "V3_G_USD_FACTOR_RESIDUAL_REVERSION": 25
+      }
+    },
+    "H": {
+      "candidate_count": 120,
+      "domain_name": "statistical_arbitrage",
+      "families": {
+        "V3_H_COINTEGRATION_KALMAN_HEDGE": 20,
+        "V3_H_TRIANGULAR_RESIDUAL_REVERSION": 100
+      }
+    },
+    "I": {
+      "candidate_count": 120,
+      "domain_name": "applied_math_signal_processing",
+      "families": {
+        "V3_I_CHANGEPOINT_REGIME_SHIFT": 60,
+        "V3_I_KALMAN_STATE_TREND": 60
+      }
+    },
+    "J": {
+      "candidate_count": 0,
+      "domain_name": "regime_modeling",
+      "families": {
+        "V3_J_VOL_REGIME_CONDITION": 0
+      }
+    },
+    "K": {
+      "candidate_count": 60,
+      "domain_name": "cost_aware_prediction",
+      "families": {
+        "V3_K_COST_GATED_SPARSE_ENTRY": 60
+      }
+    },
+    "L": {
+      "candidate_count": 60,
+      "domain_name": "machine_learning",
+      "families": {
+        "V3_L_META_LABEL_TRADE_FILTER": 60
+      }
+    }
+  },
+  "price_alpha_only_standalone_candidates": 40,
+  "standalone_candidate_total": 960,
+  "v3_registered_candidate_equivalent_denominator": 1044
+}

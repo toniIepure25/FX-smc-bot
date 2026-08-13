@@ -1,0 +1,1205 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "artifact_id": "V3_EXPOSURE_REGISTRY_V1",
+  "cell_count": 130,
+  "cells": [
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURUSD",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURUSD",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURUSD",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURUSD",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURUSD",
+      "year": 2014
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "EURUSD",
+      "year": 2015
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "EURUSD",
+      "year": 2016
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "EURUSD",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURUSD",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURUSD",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPUSD",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPUSD",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPUSD",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPUSD",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPUSD",
+      "year": 2014
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "GBPUSD",
+      "year": 2015
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "GBPUSD",
+      "year": 2016
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "GBPUSD",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPUSD",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPUSD",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDJPY",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDJPY",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDJPY",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDJPY",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDJPY",
+      "year": 2014
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "USDJPY",
+      "year": 2015
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "USDJPY",
+      "year": 2016
+    },
+    {
+      "acquired": true,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA",
+      "exposure_level": "MODEL_SELECTION",
+      "instrument": "USDJPY",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDJPY",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDJPY",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDUSD",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "NZDUSD",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCAD",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "USDCHF",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURJPY",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPJPY",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "AUDJPY",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURGBP",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "EURCHF",
+      "year": 2019
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2010
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2011
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2012
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2013
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "PRIMARY_DEVELOPMENT",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2014
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2015
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2016
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SECONDARY_ROBUSTNESS",
+      "exposure_class": "NEW_DEVELOPMENT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2017
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2018
+    },
+    {
+      "acquired": false,
+      "data_type": "M1_BIDASK",
+      "development_role": "SEALED_HOLDOUT",
+      "exposure_class": "SEALED_HOLDOUT_DATA",
+      "exposure_level": "NONE",
+      "instrument": "GBPCHF",
+      "year": 2019
+    }
+  ],
+  "counts_by_development_role": {
+    "PRIMARY_DEVELOPMENT": 65,
+    "SEALED_HOLDOUT": 26,
+    "SECONDARY_ROBUSTNESS": 39
+  },
+  "counts_by_exposure_class": {
+    "NEW_DEVELOPMENT_DATA": 95,
+    "PREVIOUSLY_EXPOSED_DEVELOPMENT_DATA": 9,
+    "SEALED_HOLDOUT_DATA": 26
+  },
+  "data_type": "M1_BIDASK",
+  "primary_development_years": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014
+  ],
+  "sealed_cells_all_none": true,
+  "sealed_holdout_years": [
+    2018,
+    2019
+  ],
+  "secondary_robustness_years": [
+    2015,
+    2016,
+    2017
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "artifact_id": "V3_LINEAGE_REGISTRY_V1",
+  "cumulative_program_candidate_equivalent": 1388,
+  "programs": [
+    {
+      "evaluated": 8,
+      "program": "FX_INTRADAY_ALPHA_DISCOVERY_V1",
+      "survivors": 0,
+      "terminal": "CLOSED_NO_CERTIFIED_V1_ALPHA"
+    },
+    {
+      "evaluated": 336,
+      "program": "FX_INTRADAY_ALPHA_DISCOVERY_V2",
+      "survivors": 0,
+      "terminal": "V2_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR"
+    },
+    {
+      "program": "FX_INTRADAY_ALPHA_DISCOVERY_V3",
+      "registered": 1044,
+      "survivors": "PENDING_DISCOVERY",
+      "terminal": "V3_ALPHA_DISCOVERY_READY"
+    }
+  ]
+}

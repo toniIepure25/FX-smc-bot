@@ -1,0 +1,134 @@
+{
+  "archetype_count": 6,
+  "archetypes": [
+    {
+      "archetype_id": "M_TREND_PULLBACK_VOLREGIME_SPREADGATE",
+      "candidate_budget": 16,
+      "components": [
+        {
+          "family_id": "V3_B_TREND_PULLBACK_ENTRY",
+          "role": "SIGNAL"
+        },
+        {
+          "family_id": "V3_J_VOL_REGIME_CONDITION",
+          "role": "REGIME"
+        },
+        {
+          "family_id": "V3_E_SPREAD_STATE_GATED_REVERSAL",
+          "role": "GATE"
+        }
+      ],
+      "horizon": "H1_session_daily",
+      "hypothesis": "Longer-horizon trend + shorter-horizon pullback entry, active only in a moderate volatility regime and executed only through a compressed-spread gate."
+    },
+    {
+      "archetype_id": "M_COMPRESSION_BREAKOUT_REGIME",
+      "candidate_budget": 16,
+      "components": [
+        {
+          "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+          "role": "SIGNAL"
+        },
+        {
+          "family_id": "V3_D_COMPRESSION_EXPANSION_BREAK",
+          "role": "FILTER"
+        },
+        {
+          "family_id": "V3_J_VOL_REGIME_CONDITION",
+          "role": "REGIME"
+        }
+      ],
+      "horizon": "H0_micro_intraday",
+      "hypothesis": "Volatility compression + directional breakout, admitted only when a frozen regime says the market is in a low-vol pre-expansion state."
+    },
+    {
+      "archetype_id": "M_LIQSHOCK_SESSION_REVERSION_COSTGATE",
+      "candidate_budget": 16,
+      "components": [
+        {
+          "family_id": "V3_C_ZSCORE_OVERSHOOT_REVERSION",
+          "role": "SIGNAL"
+        },
+        {
+          "family_id": "V3_F_SESSION_OPEN_CONDITIONED_MOMENTUM",
+          "role": "FILTER"
+        },
+        {
+          "family_id": "V3_K_COST_GATED_SPARSE_ENTRY",
+          "role": "GATE"
+        }
+      ],
+      "horizon": "H0_micro_intraday",
+      "hypothesis": "A liquidity/spread shock near a session open triggers a mean-reversion, taken only when the cost gate says expected edge exceeds cost."
+    },
+    {
+      "archetype_id": "M_FACTOR_RESIDUAL_STATEFILTER_VOLNORM",
+      "candidate_budget": 12,
+      "components": [
+        {
+          "family_id": "V3_G_USD_FACTOR_RESIDUAL_REVERSION",
+          "role": "SIGNAL"
+        },
+        {
+          "family_id": "V3_I_KALMAN_STATE_TREND",
+          "role": "FILTER"
+        },
+        {
+          "family_id": "V3_J_VOL_REGIME_CONDITION",
+          "role": "REGIME"
+        }
+      ],
+      "horizon": "H1_session_daily",
+      "hypothesis": "USD-factor residual reversion, cleaned by a causal state-space filter and volatility-normalised, on a beta-neutral basis."
+    },
+    {
+      "archetype_id": "M_TRIANGLE_COINTEGRATION_VOLNORM",
+      "candidate_budget": 12,
+      "components": [
+        {
+          "family_id": "V3_H_TRIANGULAR_RESIDUAL_REVERSION",
+          "role": "SIGNAL"
+        },
+        {
+          "family_id": "V3_H_COINTEGRATION_KALMAN_HEDGE",
+          "role": "FILTER"
+        },
+        {
+          "family_id": "V3_J_VOL_REGIME_CONDITION",
+          "role": "REGIME"
+        }
+      ],
+      "horizon": "H1_session_daily",
+      "hypothesis": "Triangular no-arbitrage residual reversion combined with a cointegration-state eligibility filter and volatility normalisation."
+    },
+    {
+      "archetype_id": "M_XSMOM_CHANGEPOINT_COSTGATE",
+      "candidate_budget": 12,
+      "components": [
+        {
+          "family_id": "V3_G_CROSS_SECTIONAL_MOMENTUM",
+          "role": "SIGNAL"
+        },
+        {
+          "family_id": "V3_I_CHANGEPOINT_REGIME_SHIFT",
+          "role": "FILTER"
+        },
+        {
+          "family_id": "V3_K_COST_GATED_SPARSE_ENTRY",
+          "role": "GATE"
+        }
+      ],
+      "horizon": "H2_intraweek",
+      "hypothesis": "Cross-sectional momentum entered on a fresh causal change-point, cost-gated; price-alpha-only at H2 (financing unsupported)."
+    }
+  ],
+  "artifact_id": "V3_COMPOSITION_GRAMMAR_V1",
+  "principle": "closed whitelist of archetypes with explicit hypotheses; no signal-x-filter-x-regime cross-product operator",
+  "roles": [
+    "SIGNAL",
+    "REGIME",
+    "FILTER",
+    "GATE"
+  ],
+  "total_composition_candidates": 84
+}

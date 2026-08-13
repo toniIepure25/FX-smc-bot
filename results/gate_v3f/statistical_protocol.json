@@ -1,0 +1,67 @@
+{
+  "artifact_id": "V3_STATISTICAL_PROTOCOL_V1",
+  "block_length_days": 5,
+  "bootstrap": "stationary_block_bootstrap",
+  "bootstrap_iterations": 999,
+  "denominator_policy": "global candidate-equivalent denominator = ADMITTED_EXECUTABLE V3 candidates + inherited V1/V2 lineage; rejected-pre-outcome specs never inflate it; frozen before outcome evaluation.",
+  "false_discovery": [
+    "Holm",
+    "BH-FDR"
+  ],
+  "family_wise_error": [
+    "White Reality Check",
+    "Hansen SPA",
+    "Romano-Wolf step-down"
+  ],
+  "frozen_pre_outcome": true,
+  "hierarchical_error_control": {
+    "consistency_rule": "a candidate is significant only if it passes candidate-, family-, domain- and global-level control simultaneously",
+    "domain_level": "BH-FDR across family-level gatekeeper p-values within a domain",
+    "family_level_gatekeeper": "Romano-Wolf step-down within family; family eligible only if >=1 candidate significant at family FWER",
+    "global_level": "White Reality Check + Hansen SPA over the full admitted candidate matrix; global FWER bound over the frozen denominator"
+  },
+  "hierarchy": [
+    "global",
+    "domain",
+    "family",
+    "candidate"
+  ],
+  "holdout_confirmation": {
+    "region": "sealed_2018_plus",
+    "status": "DEFERRED_UNTIL_V3_DISCOVERY_RUN",
+    "touched_during_readiness": false
+  },
+  "overfitting": [
+    "CSCV PBO"
+  ],
+  "primary_return_unit": "daily_strategy_net_pnl_bps_by_ny_exit_date",
+  "protocol_hash": "b9f6bbf58c6fa11bc4cb8b4b69edd86b54c3f631b3c7f2dfac4da0b1bd973aca",
+  "risk_adjusted": [
+    "PSR",
+    "DSR"
+  ],
+  "robustness_battery": [
+    "instrument_leave_one_out",
+    "year_leave_one_out",
+    "session_leave_one_out",
+    "parameter_neighborhood_stability",
+    "cost_stress_1_5x_2_0x",
+    "spread_stress",
+    "delayed_entry_stress",
+    "execution_degradation",
+    "regime_robustness",
+    "subperiod_stability",
+    "overnight_cost_stress_multiday",
+    "weekend_gap_stress_multiday"
+  ],
+  "seed_policy": "all randomness seeded by a frozen per-test integer seed; no wall-clock",
+  "walk_forward": {
+    "embargo": "max_feature_lookback_bars_plus_max_holding_bars",
+    "instrument_leave_one_out": true,
+    "parameter_neighborhood_stability": true,
+    "purge": "label_horizon_bars",
+    "scheme": "purged_expanding_walk_forward",
+    "session_leave_one_out_when_relevant": true,
+    "year_leave_one_out": true
+  }
+}

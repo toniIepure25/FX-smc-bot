@@ -1,0 +1,38 @@
+{
+  "arm64_native": true,
+  "artifact_id": "V3_ENVIRONMENT_PROFILE_V1",
+  "blas_lapack_backend": "accelerate",
+  "dependency_lock": {
+    "exists": true,
+    "file": "requirements.lock",
+    "sha256": "ed311ceef198e2ac209ef102bd33617f0bc22ea17d6a861f4d7c761bebba57ec"
+  },
+  "git_version": "git version 2.50.1 (Apple Git-155)",
+  "hardware": {
+    "arch": "arm64",
+    "cpu_brand": "Apple M5",
+    "logical_cpus": 10,
+    "model": "Mac17,4",
+    "physical_cpus": 10,
+    "ram_bytes": 17179869184,
+    "ram_gib": 16.0
+  },
+  "interpreter": {
+    "host_gnu_type": "aarch64-apple-darwin",
+    "implementation": "CPython",
+    "machine": "arm64",
+    "python_version": "3.12.13",
+    "rosetta": false
+  },
+  "os": {
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "product_version": "26.5.2"
+  },
+  "versions": {
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "pyarrow": "25.0.1",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  }
+}

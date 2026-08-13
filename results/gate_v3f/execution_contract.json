@@ -1,0 +1,87 @@
+{
+  "artifact_id": "V3_EXECUTION_CONTRACT_V1",
+  "cost_stress_multipliers": [
+    1.5,
+    2.0
+  ],
+  "financing_capability_supported": false,
+  "per_horizon": {
+    "H0_micro_intraday": {
+      "cost_model": "intraday_spread_commission_slippage",
+      "executability_class": "FULLY_EXECUTABLE",
+      "execution_surface": {
+        "base_commission_slippage_bps_per_fill": 0.1,
+        "entry_price_side": "side_correct_long_ask_short_bid",
+        "exit_price_side": "side_correct_long_bid_short_ask",
+        "mandatory_flat_ny": "16:45",
+        "min_entry_latency_bars": 1,
+        "missing_quote_policy": "no_synthetic_fill",
+        "new_entry_resume_ny": "17:30",
+        "overnight_financing": "not_incurred_flat_before_rollover",
+        "rollover_exclusion_ny": "16:30",
+        "same_bar_policy": "adverse_first",
+        "spread_cost": "side_correct_bid_ask_in_fills"
+      },
+      "requires_overnight_financing": false
+    },
+    "H1_session_daily": {
+      "cost_model": "intraday_spread_commission_slippage",
+      "executability_class": "FULLY_EXECUTABLE",
+      "execution_surface": {
+        "base_commission_slippage_bps_per_fill": 0.1,
+        "entry_price_side": "side_correct_long_ask_short_bid",
+        "exit_price_side": "side_correct_long_bid_short_ask",
+        "mandatory_flat_ny": "16:45",
+        "min_entry_latency_bars": 1,
+        "missing_quote_policy": "no_synthetic_fill",
+        "new_entry_resume_ny": "17:30",
+        "overnight_financing": "not_incurred_flat_before_rollover",
+        "rollover_exclusion_ny": "16:30",
+        "same_bar_policy": "adverse_first",
+        "spread_cost": "side_correct_bid_ask_in_fills"
+      },
+      "requires_overnight_financing": false
+    },
+    "H2_intraweek": {
+      "cost_model": "multiday_spread_commission_slippage_financing_gap",
+      "executability_class": "PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE",
+      "execution_surface": {
+        "base_commission_slippage_bps_per_fill": 0.1,
+        "daily_rollover": "position_carried_across_ny_1700",
+        "entry_price_side": "side_correct_long_ask_short_bid",
+        "exit_price_side": "side_correct_long_bid_short_ask",
+        "holiday_gap": "exchange_holiday_gaps_modelled",
+        "min_entry_latency_bars": 1,
+        "missing_quote_policy": "no_synthetic_fill",
+        "overnight_financing": "REQUIRED_BUT_UNSUPPORTED",
+        "quote_outage_policy": "no_synthetic_fill_hold_last_valid_state",
+        "same_bar_policy": "adverse_first",
+        "spread_cost": "side_correct_bid_ask_in_fills",
+        "triple_roll_convention": "wednesday_triple_swap_when_applicable",
+        "weekend_gap": "friday_close_to_sunday_open_gap_modelled"
+      },
+      "requires_overnight_financing": true
+    },
+    "H3_intramonth": {
+      "cost_model": "multiday_spread_commission_slippage_financing_gap",
+      "executability_class": "PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE",
+      "execution_surface": {
+        "base_commission_slippage_bps_per_fill": 0.1,
+        "daily_rollover": "position_carried_across_ny_1700",
+        "entry_price_side": "side_correct_long_ask_short_bid",
+        "exit_price_side": "side_correct_long_bid_short_ask",
+        "holiday_gap": "exchange_holiday_gaps_modelled",
+        "min_entry_latency_bars": 1,
+        "missing_quote_policy": "no_synthetic_fill",
+        "overnight_financing": "REQUIRED_BUT_UNSUPPORTED",
+        "quote_outage_policy": "no_synthetic_fill_hold_last_valid_state",
+        "same_bar_policy": "adverse_first",
+        "spread_cost": "side_correct_bid_ask_in_fills",
+        "triple_roll_convention": "wednesday_triple_swap_when_applicable",
+        "weekend_gap": "friday_close_to_sunday_open_gap_modelled"
+      },
+      "requires_overnight_financing": true
+    }
+  },
+  "rule": "multi-day strategies without defensible financing are PRICE_ALPHA_ONLY; never assume zero overnight financing."
+}

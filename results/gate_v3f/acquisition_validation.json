@@ -1,0 +1,17 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "artifact_id": "V3_ACQUISITION_VALIDATION_V1",
+  "holdout_blocked_before_transport": true,
+  "holdout_url": "https://datafeed.dukascopy.com/datafeed/EURUSD/2018/00/02/12h_ticks.bi5",
+  "pre_2018_fetch": {
+    "attempted": true,
+    "bytes": 48410,
+    "http_status": 200,
+    "note": "binary .bi5 not decoded or committed; scratch-only",
+    "sha256": "fba2ac3bf3338fcc4ee64ed4c3a8799e5f30a31ed5e77375ecfc254f2a4095d4",
+    "transport": "system_trust_curl",
+    "transport_reachable": true
+  },
+  "pre_2018_url": "https://datafeed.dukascopy.com/datafeed/EURUSD/2015/02/10/12h_ticks.bi5",
+  "validation_passed": true
+}

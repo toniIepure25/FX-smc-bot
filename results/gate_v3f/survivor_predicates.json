@@ -1,0 +1,63 @@
+{
+  "artifact_id": "V3_SURVIVOR_PREDICATES_V1",
+  "executable_horizons": [
+    "H0_micro_intraday",
+    "H1_session_daily"
+  ],
+  "frozen_pre_outcome": true,
+  "no_post_result_threshold_changes": true,
+  "predicates_by_horizon": {
+    "H0_micro_intraday": {
+      "executable_eligible": true,
+      "fold_robustness_min_fraction": 0.6,
+      "horizon": "H0_micro_intraday",
+      "instrument_robustness_min_fraction": 0.6,
+      "min_annualized_dsr": 0.5,
+      "min_deflated_sharpe": 0.0,
+      "min_net_bps_per_trade": 0.15,
+      "min_trades": 250,
+      "requires_multiple_testing_significant": true,
+      "survives_cost_stress_multiplier": 2.0
+    },
+    "H1_session_daily": {
+      "executable_eligible": true,
+      "fold_robustness_min_fraction": 0.6,
+      "horizon": "H1_session_daily",
+      "instrument_robustness_min_fraction": 0.6,
+      "min_annualized_dsr": 0.5,
+      "min_deflated_sharpe": 0.0,
+      "min_net_bps_per_trade": 0.75,
+      "min_trades": 120,
+      "requires_multiple_testing_significant": true,
+      "survives_cost_stress_multiplier": 2.0
+    },
+    "H2_intraweek": {
+      "executable_eligible": false,
+      "fold_robustness_min_fraction": 0.6,
+      "horizon": "H2_intraweek",
+      "instrument_robustness_min_fraction": 0.6,
+      "min_annualized_dsr": 0.5,
+      "min_deflated_sharpe": 0.0,
+      "min_net_bps_per_trade": 3.0,
+      "min_trades": 60,
+      "requires_multiple_testing_significant": true,
+      "survives_cost_stress_multiplier": 2.0
+    },
+    "H3_intramonth": {
+      "executable_eligible": false,
+      "fold_robustness_min_fraction": 0.6,
+      "horizon": "H3_intramonth",
+      "instrument_robustness_min_fraction": 0.6,
+      "min_annualized_dsr": 0.5,
+      "min_deflated_sharpe": 0.0,
+      "min_net_bps_per_trade": 8.0,
+      "min_trades": 30,
+      "requires_multiple_testing_significant": true,
+      "survives_cost_stress_multiplier": 2.0
+    }
+  },
+  "price_alpha_only_horizons": [
+    "H2_intraweek",
+    "H3_intramonth"
+  ]
+}

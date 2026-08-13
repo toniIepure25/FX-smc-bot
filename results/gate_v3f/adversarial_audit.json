@@ -1,0 +1,125 @@
+{
+  "artifact_id": "V3_ADVERSARIAL_AUDIT_V1",
+  "findings": [
+    {
+      "control": "Feature DAG admits only causal_endpoint nodes; right-aligned windows; entry at t+1. feature_dag.validate() rejects any non-causal node.",
+      "status": "MITIGATED",
+      "vector": "look_ahead_bias"
+    },
+    {
+      "control": "Survivor predicates + statistical protocol frozen pre-outcome; no outcome-driven candidate deletion (budget.py).",
+      "status": "MITIGATED",
+      "vector": "selection_leakage"
+    },
+    {
+      "control": "Normalization is rolling/expanding-prior only; no full-sample z-scores; enforced by DAG node normalization + nan_policy=drop_warmup.",
+      "status": "MITIGATED",
+      "vector": "future_normalization"
+    },
+    {
+      "control": "Stat-arb pair/triangle eligibility is prospectively registered (compiler.REGISTERED_TRIANGLES), never chosen on full-sample P&L.",
+      "status": "MITIGATED",
+      "vector": "full_sample_pair_selection"
+    },
+    {
+      "control": "Cointegration state uses rolling/Kalman causal hedge ratios; eligibility frozen; falsification stated (families H).",
+      "status": "MITIGATED",
+      "vector": "full_sample_cointegration"
+    },
+    {
+      "control": "Regime models: fixed causal quantile bins or expanding-prior GMM/HMM with filtered (not smoothed) states (statistics/families J).",
+      "status": "MITIGATED",
+      "vector": "regime_fitting_leakage"
+    },
+    {
+      "control": "Currency/USD factor computed causally on synchronized panel; expanding estimation; no full-sample eigenbasis (feature_dag usd_factor).",
+      "status": "MITIGATED",
+      "vector": "pca_leakage"
+    },
+    {
+      "control": "Cross-pair features join on identical UTC M1 grid; dry-run asserts timestamp alignment.",
+      "status": "MITIGATED",
+      "vector": "cross_market_timestamp_mismatch"
+    },
+    {
+      "control": "Session cells derived from UTC via America/New_York (DST-correct); capability SESSION_TIME_OF_DAY.",
+      "status": "MITIGATED",
+      "vector": "dst_errors"
+    },
+    {
+      "control": "Multi-day execution contract models weekend/holiday gaps; H2/H3 gap stress in robustness battery.",
+      "status": "MITIGATED",
+      "vector": "weekend_holiday_handling"
+    },
+    {
+      "control": "Side-correct bid/ask spread charged in all fills; spread stress in robustness battery.",
+      "status": "MITIGATED",
+      "vector": "spread_omission"
+    },
+    {
+      "control": "Financing UNSUPPORTED -> H2/H3 marked PRICE_ALPHA_ONLY, barred from executable survivorship; never assumed zero.",
+      "status": "MITIGATED",
+      "vector": "carry_financing_omission"
+    },
+    {
+      "control": "Instrument universe is prospectively defined; no pair dropped on outcomes; robustness-only instruments never become survivors.",
+      "status": "MITIGATED",
+      "vector": "survivorship_bias"
+    },
+    {
+      "control": "Hierarchical WRC/SPA/Romano-Wolf/Holm/BH-FDR over the frozen denominator; cumulative V1/V2/V3 lineage account.",
+      "status": "MITIGATED",
+      "vector": "data_snooping"
+    },
+    {
+      "control": "PARAM_COMBO_CEILING caps per-family neighbourhood; F capped from 100 to 25; denominator within inherited 1200 ceiling.",
+      "status": "MITIGATED",
+      "vector": "parameter_overpopulation"
+    },
+    {
+      "control": "Rejected specs never inflate denominator; single-pair families register only on 3 tier-1 majors; robustness pairs are not survivor candidates (compiler.py).",
+      "status": "MITIGATED",
+      "vector": "hidden_denominator_reduction"
+    },
+    {
+      "control": "Portfolio layer reports both individual-alpha and combination evidence; gross/net-currency caps frozen (dry-run portfolio cap).",
+      "status": "MITIGATED",
+      "vector": "portfolio_double_counting"
+    },
+    {
+      "control": "Stationary block bootstrap (block=5d) rather than iid; per-horizon predicates; DSR deflates by denominator.",
+      "status": "MITIGATED",
+      "vector": "inappropriate_statistical_assumptions"
+    },
+    {
+      "control": "ML restricted to interpretable calibrated linear/shallow models with purge/embargo/expanding train/frozen seed/features/target (families L).",
+      "status": "MITIGATED",
+      "vector": "overfit_ml"
+    },
+    {
+      "control": "Deterministic seeds; canonical-JSON hashing independent of float layout; frozen tolerances for BLAS-dependent float outputs.",
+      "status": "MITIGATED",
+      "vector": "unstable_numerics"
+    },
+    {
+      "control": "Class-A identities byte-identical (V2 digest reproduced); Class-B floats bounded by frozen ULP tolerances; Accelerate documented.",
+      "status": "MITIGATED",
+      "vector": "arm_x86_divergence"
+    },
+    {
+      "control": "V3 firewall blocks 2018+ file reads AND provider requests before I/O; counter asserted 0; tested.",
+      "status": "MITIGATED",
+      "vector": "accidental_holdout_reads"
+    },
+    {
+      "control": "Tick/order-book capabilities UNSUPPORTED; families needing them REJECTED_PRE_OUTCOME; M1 volume never used.",
+      "status": "MITIGATED",
+      "vector": "tick_faking"
+    }
+  ],
+  "firewall_file_read_blocked": true,
+  "firewall_network_request_blocked": true,
+  "reviewer_stance": "skeptical quantitative reviewer",
+  "unresolved_material_findings": 0,
+  "vectors_examined": 23
+}

@@ -1,0 +1,26 @@
+{
+  "artifact_id": "V3_MAC_PERFORMANCE_PROFILE_V1",
+  "concurrency_recommendation": {
+    "assumed_gib_per_heavy_worker": 2.0,
+    "blas_threads_per_worker": 1,
+    "cpu_bound_workers": 8,
+    "policy": "set OMP/OPENBLAS/MKL/VECLIB threads=1 per worker to avoid oversubscription; do not rely on swap.",
+    "ram_bound_workers": 6,
+    "recommended_heavy_workers": 6
+  },
+  "fits_within_16gib": true,
+  "logical_cpus": 10,
+  "machine": "Mac17,4",
+  "peak_rss_bytes": 258506752,
+  "peak_rss_gib": 0.241,
+  "ram_gib": 16.0,
+  "timings_seconds_best_of_3": {
+    "block_bootstrap_200x5e3": 0.0071,
+    "cross_pair_sync_3e5": 0.0062,
+    "feature_generation_5e5": 0.0276,
+    "gmm_3comp_3e4x3": 0.0817,
+    "linear_ml_logreg_5e4x6": 0.0223,
+    "m1_load_1e6_bars": 0.0199,
+    "signal_eval_5e5": 0.013
+  }
+}

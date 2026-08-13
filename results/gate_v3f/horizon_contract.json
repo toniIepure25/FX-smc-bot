@@ -1,0 +1,56 @@
+{
+  "artifact_id": "V3_HORIZON_CONTRACT_V1",
+  "bars_per_day": 1440,
+  "bars_per_hour": 60,
+  "holding_time_basis": "M1_market_time_bars",
+  "horizons": [
+    {
+      "cost_model": "intraday_spread_commission_slippage",
+      "crosses_session_boundary": false,
+      "description": "Minutes to a few hours; entered and exited well within one session.",
+      "horizon": "H0_micro_intraday",
+      "max_holding_bars": 180,
+      "max_holding_hours": 3.0,
+      "min_holding_bars": 1,
+      "min_holding_hours": 0.017,
+      "min_survivor_trades": 250,
+      "requires_overnight_financing": false
+    },
+    {
+      "cost_model": "intraday_spread_commission_slippage",
+      "crosses_session_boundary": false,
+      "description": "Hours to same-day close; mandatory flat before NY rollover.",
+      "horizon": "H1_session_daily",
+      "max_holding_bars": 1440,
+      "max_holding_hours": 24.0,
+      "min_holding_bars": 60,
+      "min_holding_hours": 1.0,
+      "min_survivor_trades": 120,
+      "requires_overnight_financing": false
+    },
+    {
+      "cost_model": "multiday_spread_commission_slippage_financing_gap",
+      "crosses_session_boundary": true,
+      "description": "~1-5 trading days; positions held across daily rollovers and possibly a weekend.",
+      "horizon": "H2_intraweek",
+      "max_holding_bars": 7200,
+      "max_holding_hours": 120.0,
+      "min_holding_bars": 1440,
+      "min_holding_hours": 24.0,
+      "min_survivor_trades": 60,
+      "requires_overnight_financing": true
+    },
+    {
+      "cost_model": "multiday_spread_commission_slippage_financing_gap",
+      "crosses_session_boundary": true,
+      "description": "~5-20 trading days; multiple rollovers, weekends and possible holiday gaps.",
+      "horizon": "H3_intramonth",
+      "max_holding_bars": 28800,
+      "max_holding_hours": 480.0,
+      "min_holding_bars": 7200,
+      "min_holding_hours": 120.0,
+      "min_survivor_trades": 30,
+      "requires_overnight_financing": true
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "admitted_candidate_count": 960,
+  "admitted_family_count": 17,
+  "artifact_id": "V3_COMPILER_ADMISSION_V1",
+  "compiler_version": "V3_COMPILER_1",
+  "executable_candidate_count": 920,
+  "executable_family_count": 14,
+  "family_count": 19,
+  "param_combo_ceiling": 25,
+  "price_alpha_only_candidate_count": 40,
+  "price_alpha_only_family_count": 3,
+  "registered_self_instruments": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "registered_triangles": [
+    [
+      "EURUSD",
+      "USDJPY",
+      "EURJPY"
+    ],
+    [
+      "GBPUSD",
+      "USDJPY",
+      "GBPJPY"
+    ],
+    [
+      "AUDUSD",
+      "USDJPY",
+      "AUDJPY"
+    ],
+    [
+      "EURUSD",
+      "GBPUSD",
+      "EURGBP"
+    ],
+    [
+      "EURUSD",
+      "USDCHF",
+      "EURCHF"
+    ]
+  ],
+  "rejected_family_count": 2,
+  "results": [
+    {
+      "candidate_count": 75,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+      "instrument_count": 3,
+      "param_combos": 25,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 75,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_B_MULTISCALE_TSMOM_VOLSCALED",
+      "instrument_count": 3,
+      "param_combos": 25,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 75,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_B_TREND_PULLBACK_ENTRY",
+      "instrument_count": 3,
+      "param_combos": 25,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 60,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_C_ZSCORE_OVERSHOOT_REVERSION",
+      "instrument_count": 3,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 60,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_C_OU_HALFLIFE_REVERSION",
+      "instrument_count": 3,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 75,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_D_COMPRESSION_EXPANSION_BREAK",
+      "instrument_count": 3,
+      "param_combos": 25,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 60,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_E_SPREAD_STATE_GATED_REVERSAL",
+      "instrument_count": 3,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 0,
+      "executability_class": "n/a",
+      "family_id": "V3_E_TICK_ARRIVAL_INTENSITY",
+      "instrument_count": 0,
+      "param_combos": 0,
+      "reason": "unsupported signal-input capabilities: ['TICK_QUOTE_ARRIVAL_RATE']",
+      "survivor_eligible": false,
+      "terminal_state": "REJECTED_PRE_OUTCOME"
+    },
+    {
+      "candidate_count": 0,
+      "executability_class": "n/a",
+      "family_id": "V3_E_ORDER_BOOK_IMBALANCE",
+      "instrument_count": 0,
+      "param_combos": 0,
+      "reason": "unsupported signal-input capabilities: ['ORDER_BOOK_DEPTH']",
+      "survivor_eligible": false,
+      "terminal_state": "REJECTED_PRE_OUTCOME"
+    },
+    {
+      "candidate_count": 75,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_F_SESSION_OPEN_CONDITIONED_MOMENTUM",
+      "instrument_count": 3,
+      "param_combos": 25,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 25,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_G_USD_FACTOR_RESIDUAL_REVERSION",
+      "instrument_count": 1,
+      "param_combos": 25,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 20,
+      "executability_class": "PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE",
+      "family_id": "V3_G_CROSS_SECTIONAL_MOMENTUM",
+      "instrument_count": 1,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": false,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 100,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_H_TRIANGULAR_RESIDUAL_REVERSION",
+      "instrument_count": 5,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 20,
+      "executability_class": "PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE",
+      "family_id": "V3_H_COINTEGRATION_KALMAN_HEDGE",
+      "instrument_count": 1,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": false,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 60,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_I_KALMAN_STATE_TREND",
+      "instrument_count": 3,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 60,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_I_CHANGEPOINT_REGIME_SHIFT",
+      "instrument_count": 3,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 0,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_J_VOL_REGIME_CONDITION",
+      "instrument_count": 3,
+      "param_combos": 5,
+      "reason": "all signal inputs supported; features causal; instruments in plan; conditioning-only (registered via composition, not standalone)",
+      "survivor_eligible": false,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 60,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_K_COST_GATED_SPARSE_ENTRY",
+      "instrument_count": 3,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    },
+    {
+      "candidate_count": 60,
+      "executability_class": "FULLY_EXECUTABLE",
+      "family_id": "V3_L_META_LABEL_TRADE_FILTER",
+      "instrument_count": 3,
+      "param_combos": 20,
+      "reason": "all signal inputs supported; features causal; instruments in plan",
+      "survivor_eligible": true,
+      "terminal_state": "ADMITTED_EXECUTABLE"
+    }
+  ],
+  "robustness_only_instruments": [
+    "AUDUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY",
+    "EURGBP",
+    "EURCHF",
+    "GBPCHF"
+  ],
+  "unresolved_blocked_count": 0
+}

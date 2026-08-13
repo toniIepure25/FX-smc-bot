@@ -1,0 +1,76 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "all_horizon_classes_exercised": true,
+  "artifact_id": "V3_DRY_RUN_V1",
+  "cross_pair": {
+    "rows": 20000,
+    "timestamp_aligned": true
+  },
+  "dry_run_passes": true,
+  "dry_run_pnl_affects_specs": false,
+  "financing_multiday_flagged_price_alpha_only": true,
+  "horizons": [
+    {
+      "cost_bps": 4404.238,
+      "executability_class": "FULLY_EXECUTABLE",
+      "executable_survivor_eligible": true,
+      "gross_bps": -3895.312,
+      "holding_bars": 6,
+      "horizon": "H0_micro_intraday",
+      "net_bps": -8299.55,
+      "trades": 3323,
+      "warmup_nan_respected": true
+    },
+    {
+      "cost_bps": 405.204,
+      "executability_class": "FULLY_EXECUTABLE",
+      "executable_survivor_eligible": true,
+      "gross_bps": -509.206,
+      "holding_bars": 65,
+      "horizon": "H1_session_daily",
+      "net_bps": -914.41,
+      "trades": 306,
+      "warmup_nan_respected": true
+    },
+    {
+      "cost_bps": 86.157,
+      "executability_class": "PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE",
+      "executable_survivor_eligible": false,
+      "gross_bps": -60.5,
+      "holding_bars": 300,
+      "horizon": "H2_intraweek",
+      "net_bps": -146.657,
+      "trades": 66,
+      "warmup_nan_respected": true
+    },
+    {
+      "cost_bps": 86.157,
+      "executability_class": "PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE",
+      "executable_survivor_eligible": false,
+      "gross_bps": -60.5,
+      "holding_bars": 300,
+      "horizon": "H3_intramonth",
+      "net_bps": -146.657,
+      "trades": 66,
+      "warmup_nan_respected": true
+    }
+  ],
+  "ml_meta": {
+    "deterministic_refit": true,
+    "train_rows": 9970
+  },
+  "portfolio": {
+    "cap": 1.5,
+    "cap_respected": true,
+    "raw_gross": 2.0,
+    "scaled_gross": 1.5
+  },
+  "region": "synthetic_pre_2018",
+  "specs_unchanged": true,
+  "statistical_bootstrap": {
+    "block": 5,
+    "iterations": 200,
+    "p_like": 0.485
+  },
+  "synthetic_only": true
+}

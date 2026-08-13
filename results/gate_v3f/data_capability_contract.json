@@ -1,0 +1,331 @@
+{
+  "artifact_id": "V3_DATA_CAPABILITY_MATRIX_V1",
+  "canonical_granularity": "M1_BIDASK_OHLC",
+  "capabilities": [
+    {
+      "capability": "M1_BIDASK_OHLC",
+      "rationale": "Dukascopy M1 bid/ask OHLC; the canonical acquired granularity.",
+      "required_fields": [
+        "bid_open",
+        "bid_high",
+        "bid_low",
+        "bid_close",
+        "ask_open",
+        "ask_high",
+        "ask_low",
+        "ask_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "MID_OHLC",
+      "rationale": "Deterministic (bid+ask)/2 mid; causal at bar close.",
+      "required_fields": [
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "M1_SPREAD",
+      "rationale": "Per-bar quoted spread = ask_close - bid_close.",
+      "required_fields": [
+        "ask_close",
+        "bid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "M1_RETURNS",
+      "rationale": "Log/percent returns of the derived mid; causal at bar close.",
+      "required_fields": [
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "M1_REALIZED_VOL",
+      "rationale": "Rolling realized-vol proxy from M1 mid returns.",
+      "required_fields": [
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "RANGE_ESTIMATORS_M1",
+      "rationale": "Parkinson/Garman-Klass/Rogers-Satchell/ATR from OHLC; exact definitions.",
+      "required_fields": [
+        "mid_high",
+        "mid_low",
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "SESSION_TIME_OF_DAY",
+      "rationale": "America/New_York wall-clock from UTC bar timestamp (DST-correct).",
+      "required_fields": [
+        "timestamp"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "CALENDAR_CELLS",
+      "rationale": "Day-of-week, week-of-month, month/quarter-end flags from timestamp.",
+      "required_fields": [
+        "timestamp"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "MULTI_TF_DERIVED",
+      "rationale": "Deterministic higher-TF bars resampled from canonical M1; label-preserving.",
+      "required_fields": [
+        "mid_close"
+      ],
+      "required_granularity": "M5/M15/H1",
+      "supported": true
+    },
+    {
+      "capability": "CROSS_PAIR_SYNC",
+      "rationale": "All acquired pairs share the M1 UTC grid; synchronized causal joins.",
+      "required_fields": [
+        "timestamp",
+        "mid_close"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "CURRENCY_FACTOR_PANEL",
+      "rationale": "With >=7 pairs spanning USD/EUR/GBP/JPY/AUD/NZD/CAD/CHF, dollar and single-currency factors are identifiable (pending acquisition).",
+      "required_fields": [
+        "multi_currency_panel"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "TRIANGULAR_RESIDUAL",
+      "rationale": "Genuine triangle residuals exist only when all three legs are acquired independently; never synthesised (that forces the residual to zero).",
+      "required_fields": [
+        "EURUSD",
+        "USDJPY",
+        "EURJPY"
+      ],
+      "required_granularity": "M1",
+      "supported": true
+    },
+    {
+      "capability": "TICK_QUOTE_ARRIVAL_RATE",
+      "rationale": "M1 volume is a tick-volume proxy, not a quote count; unsupported unless true tick data are separately acquired for a named instrument subset.",
+      "required_fields": [
+        "quote_arrival_count"
+      ],
+      "required_granularity": "TICK",
+      "supported": false
+    },
+    {
+      "capability": "TICK_LEVEL_MICROSTRUCTURE",
+      "rationale": "Sub-M1 tick prices/times not in the M1 dataset; faking them is forbidden.",
+      "required_fields": [
+        "tick_price",
+        "tick_time"
+      ],
+      "required_granularity": "TICK",
+      "supported": false
+    },
+    {
+      "capability": "ORDER_BOOK_DEPTH",
+      "rationale": "No depth in Dukascopy M1/tick; unsupported.",
+      "required_fields": [
+        "bid_sizes",
+        "ask_sizes"
+      ],
+      "required_granularity": "L2",
+      "supported": false
+    },
+    {
+      "capability": "OVERNIGHT_FINANCING_RATES",
+      "rationale": "Historically-realistic broker swap/financing with defensible provenance is NOT reconstructable from price data; multi-day P&L cannot be net-executable and such strategies are PRICE_ALPHA_RESEARCH_ONLY_NOT_FULLY_EXECUTABLE.",
+      "required_fields": [
+        "swap_long",
+        "swap_short"
+      ],
+      "required_granularity": "DAILY",
+      "supported": false
+    }
+  ],
+  "currencies": [
+    "AUD",
+    "CAD",
+    "CHF",
+    "EUR",
+    "GBP",
+    "JPY",
+    "NZD",
+    "USD"
+  ],
+  "development_years": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017
+  ],
+  "hard_rule": "M1 bar count != quote update count; tick semantics never faked from M1.",
+  "instrument_count": 13,
+  "instruments": [
+    {
+      "acquisition_status": "exposed_reconstructable",
+      "base": "EUR",
+      "liquidity_tier": 1,
+      "quote": "USD",
+      "rationale": "Deepest FX pair; V2-exposed. Anchors the USD/EUR factor.",
+      "role": "usd_major",
+      "symbol": "EURUSD"
+    },
+    {
+      "acquisition_status": "exposed_reconstructable",
+      "base": "GBP",
+      "liquidity_tier": 1,
+      "quote": "USD",
+      "rationale": "Deep major; V2-exposed. GBP leg of the USD factor.",
+      "role": "usd_major",
+      "symbol": "GBPUSD"
+    },
+    {
+      "acquisition_status": "exposed_reconstructable",
+      "base": "USD",
+      "liquidity_tier": 1,
+      "quote": "JPY",
+      "rationale": "Deep major; V2-exposed. USD/JPY factor anchor and risk proxy.",
+      "role": "usd_major",
+      "symbol": "USDJPY"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "AUD",
+      "liquidity_tier": 2,
+      "quote": "USD",
+      "rationale": "Commodity/risk-on major; adds AUD leg for currency-factor identification.",
+      "role": "usd_major",
+      "symbol": "AUDUSD"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "NZD",
+      "liquidity_tier": 2,
+      "quote": "USD",
+      "rationale": "Correlated risk-on major; NZD leg and AUDNZD-style relative structure.",
+      "role": "usd_major",
+      "symbol": "NZDUSD"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "USD",
+      "liquidity_tier": 2,
+      "quote": "CAD",
+      "rationale": "Oil-sensitive major; CAD leg of the USD factor.",
+      "role": "usd_major",
+      "symbol": "USDCAD"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "USD",
+      "liquidity_tier": 2,
+      "quote": "CHF",
+      "rationale": "Safe-haven major; CHF leg, strong EURCHF/USDCHF triangular structure.",
+      "role": "usd_major",
+      "symbol": "USDCHF"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "EUR",
+      "liquidity_tier": 2,
+      "quote": "JPY",
+      "rationale": "Risk-barometer cross; EUR-USD-JPY triangle with EURUSD/USDJPY.",
+      "role": "cross",
+      "symbol": "EURJPY"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "GBP",
+      "liquidity_tier": 3,
+      "quote": "JPY",
+      "rationale": "High-vol cross; GBP-USD-JPY triangle, momentum/vol structure.",
+      "role": "cross",
+      "symbol": "GBPJPY"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "AUD",
+      "liquidity_tier": 3,
+      "quote": "JPY",
+      "rationale": "Canonical risk-on/off carry cross; AUD-USD-JPY triangle.",
+      "role": "cross",
+      "symbol": "AUDJPY"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "EUR",
+      "liquidity_tier": 2,
+      "quote": "GBP",
+      "rationale": "European relative-value cross; EUR-USD-GBP triangle, mean-reverting.",
+      "role": "cross",
+      "symbol": "EURGBP"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "EUR",
+      "liquidity_tier": 3,
+      "quote": "CHF",
+      "rationale": "Low-vol regime-sensitive cross; EUR-USD-CHF triangle (2015 SNB break noted).",
+      "role": "cross",
+      "symbol": "EURCHF"
+    },
+    {
+      "acquisition_status": "planned_pending_acquisition",
+      "base": "GBP",
+      "liquidity_tier": 3,
+      "quote": "CHF",
+      "rationale": "Cross completing GBP/CHF structure; GBP-USD-CHF triangle.",
+      "role": "cross",
+      "symbol": "GBPCHF"
+    }
+  ],
+  "instruments_acquired": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY"
+  ],
+  "instruments_planned": [
+    "AUDUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY",
+    "EURGBP",
+    "EURCHF",
+    "GBPCHF"
+  ],
+  "never_uses_volume_field": true,
+  "sealed_holdout_years": [
+    2018,
+    2019
+  ],
+  "supported_capability_count": 12,
+  "unsupported_capability_count": 4
+}

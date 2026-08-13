@@ -1,0 +1,674 @@
+{
+  "acquisition_properties": [
+    "resumable",
+    "checksummed",
+    "immutable",
+    "partitioned_by_instrument_year",
+    "rate_limit_aware",
+    "bounded",
+    "interruption_safe",
+    "firewalled_pre_2018_only"
+  ],
+  "artifact_id": "V3_ACQUISITION_PLAN_V1",
+  "estimate_constants": {
+    "canonical_bytes_per_m1_bar": 20,
+    "files_per_instrument_year": 24,
+    "m1_bars_per_day": 1440,
+    "seconds_per_instrument_year": 45.0,
+    "source_to_canonical_ratio": 3.0,
+    "trading_days_per_year": 260
+  },
+  "granularity": "M1_BIDASK_OHLC",
+  "instrument_count": 13,
+  "plan_years": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017
+  ],
+  "region": "pre_2018_development_only",
+  "tick_data": "NOT_IN_THIS_PLAN; if later acquired, restricted to a named high-liquidity subset with a separate storage estimate; M1 is never represented as tick data.",
+  "totals": {
+    "canonical_bytes_est": 778752000,
+    "canonical_gib_est": 0.73,
+    "disk_reserve_gib": 20.0,
+    "files": 2496,
+    "instrument_years": 104,
+    "m1_bars_est": 38937600,
+    "requests": 2496,
+    "runtime_hours_est": 1.3,
+    "runtime_seconds_est": 4680.0,
+    "source_bytes_est": 2336256000,
+    "source_gib_est": 2.18
+  },
+  "units": [
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURUSD",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPUSD",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDJPY",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDUSD",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "NZDUSD",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCAD",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "USDCHF",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURJPY",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPJPY",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "AUDJPY",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURGBP",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "EURCHF",
+      "year": 2017
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2010
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2011
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2012
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2013
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2014
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2015
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2016
+    },
+    {
+      "canonical_bytes_est": 7488000,
+      "files": 24,
+      "instrument": "GBPCHF",
+      "year": 2017
+    }
+  ]
+}

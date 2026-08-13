@@ -1,0 +1,448 @@
+{
+  "artifact_id": "V3_FEATURE_DAG_V1",
+  "dag_hash": "1b9cd85625988e16d15cf7983479f67023ebd7b1a2400ec8f240d16733997c38",
+  "edge_count": 11,
+  "max_warmup_bars": 304,
+  "node_count": 17,
+  "nodes": [
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "wilder_atr",
+      "lookback_bars": 14,
+      "nan_policy": "drop_warmup",
+      "node_hash": "9c772d486b33e221544d3dc811727bd273413bdb2a393c6030b7a8d13a0620c6",
+      "node_id": "atr",
+      "normalization": "none",
+      "parents": [],
+      "required_capabilities": [
+        "RANGE_ESTIMATORS_M1"
+      ],
+      "source_fields": [
+        "mid_high",
+        "mid_low",
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "price",
+      "warmup_bars": 14
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "calendar_bucket",
+      "lookback_bars": 1,
+      "nan_policy": "drop_warmup",
+      "node_hash": "ad52da408e27576b729dc27030232bb7e99374dba611493486e4ab04ab1f2d04",
+      "node_id": "calendar_cell",
+      "normalization": "none",
+      "parents": [],
+      "required_capabilities": [
+        "CALENDAR_CELLS"
+      ],
+      "source_fields": [
+        "timestamp"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "categorical",
+      "warmup_bars": 0
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "mid_price",
+      "lookback_bars": 1,
+      "nan_policy": "drop_warmup",
+      "node_hash": "c81ac7e49a3cb0a7635077d3a229ef80190349be42f77bee1b0d768f50789c27",
+      "node_id": "mid_close",
+      "normalization": "none",
+      "parents": [],
+      "required_capabilities": [
+        "MID_OHLC"
+      ],
+      "source_fields": [
+        "bid_close",
+        "ask_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "price",
+      "warmup_bars": 0
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "log_return",
+      "lookback_bars": 2,
+      "nan_policy": "drop_warmup",
+      "node_hash": "e262285b15c45bc03f42db3074dcae7210642abf19e5bb24aeccaf6203120dd7",
+      "node_id": "m1_return",
+      "normalization": "none",
+      "parents": [
+        "mid_close"
+      ],
+      "required_capabilities": [
+        "M1_RETURNS"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "log_return",
+      "warmup_bars": 2
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "panel"
+      ],
+      "kind": "synced_return_panel",
+      "lookback_bars": 2,
+      "nan_policy": "drop_warmup",
+      "node_hash": "3490b34bd357f705342c143cf25cacb464f40bd1a98a0d540bbf0dbb7a4ece5b",
+      "node_id": "cross_return_panel",
+      "normalization": "none",
+      "parents": [
+        "m1_return"
+      ],
+      "required_capabilities": [
+        "CROSS_PAIR_SYNC",
+        "CURRENCY_FACTOR_PANEL"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "log_return",
+      "warmup_bars": 2
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "price_minus_ewma",
+      "lookback_bars": 120,
+      "nan_policy": "drop_warmup",
+      "node_hash": "dcc70d06166ef5dac04f0f954796c315f0bad9afe4ba5da2e5f7771e685f1aba",
+      "node_id": "dist_from_ewma",
+      "normalization": "rolling_zscore",
+      "parents": [
+        "mid_close"
+      ],
+      "required_capabilities": [
+        "M1_RETURNS"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "z",
+      "warmup_bars": 120
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "panel"
+      ],
+      "kind": "cross_sectional_usd_factor",
+      "lookback_bars": 60,
+      "nan_policy": "drop_warmup",
+      "node_hash": "80562c8d8547e57e6310862ace7b8305aabee74910a33cd0aa8ef2dc24b48621",
+      "node_id": "usd_factor",
+      "normalization": "none",
+      "parents": [
+        "cross_return_panel"
+      ],
+      "required_capabilities": [
+        "CURRENCY_FACTOR_PANEL"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "factor_return",
+      "warmup_bars": 60
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "panel"
+      ],
+      "kind": "residual_vs_usd_factor",
+      "lookback_bars": 60,
+      "nan_policy": "drop_warmup",
+      "node_hash": "49fcd1de6f69325a1c7633185d93a4540ff130507654c14ba1562f13950dc0ab",
+      "node_id": "factor_residual",
+      "normalization": "none",
+      "parents": [
+        "cross_return_panel",
+        "usd_factor"
+      ],
+      "required_capabilities": [
+        "CURRENCY_FACTOR_PANEL"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "residual_return",
+      "warmup_bars": 60
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "return_zscore",
+      "lookback_bars": 60,
+      "nan_policy": "drop_warmup",
+      "node_hash": "d59e2f1235696ce616a4571c07e44379150bea10d5d4828b9386b95db6a101a7",
+      "node_id": "mom_zscore",
+      "normalization": "rolling_zscore",
+      "parents": [
+        "m1_return"
+      ],
+      "required_capabilities": [
+        "M1_RETURNS"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "z",
+      "warmup_bars": 60
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "parkinson_range_vol",
+      "lookback_bars": 60,
+      "nan_policy": "drop_warmup",
+      "node_hash": "5567e21900994440ae8b2e0a855ab91d79e1ed512e3baddac085975bf994bf73",
+      "node_id": "parkinson_vol",
+      "normalization": "none",
+      "parents": [],
+      "required_capabilities": [
+        "RANGE_ESTIMATORS_M1"
+      ],
+      "source_fields": [
+        "mid_high",
+        "mid_low"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "vol",
+      "warmup_bars": 60
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "hl_range_ratio",
+      "lookback_bars": 60,
+      "nan_policy": "drop_warmup",
+      "node_hash": "3141043459d9c50bb4b7537512a6c27100e87ad8e7c51c4c2988d96a3b0e928a",
+      "node_id": "range_compression",
+      "normalization": "none",
+      "parents": [],
+      "required_capabilities": [
+        "RANGE_ESTIMATORS_M1"
+      ],
+      "source_fields": [
+        "mid_high",
+        "mid_low"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "ratio",
+      "warmup_bars": 60
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "rolling_std_return",
+      "lookback_bars": 60,
+      "nan_policy": "drop_warmup",
+      "node_hash": "548311a5497f6b7cd151d3045e684f29173c9190e8a7081bfd2937e181a4d470",
+      "node_id": "realized_vol",
+      "normalization": "none",
+      "parents": [
+        "m1_return"
+      ],
+      "required_capabilities": [
+        "M1_REALIZED_VOL"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "vol",
+      "warmup_bars": 60
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "ny_session_bucket",
+      "lookback_bars": 1,
+      "nan_policy": "drop_warmup",
+      "node_hash": "a85b71059829ddafab7fcb7da00fa85dbda9db2dafaff766c65ee06a0eb31661",
+      "node_id": "session_cell",
+      "normalization": "none",
+      "parents": [],
+      "required_capabilities": [
+        "SESSION_TIME_OF_DAY"
+      ],
+      "source_fields": [
+        "timestamp"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "categorical",
+      "warmup_bars": 0
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "quoted_spread",
+      "lookback_bars": 1,
+      "nan_policy": "drop_warmup",
+      "node_hash": "e44d8b7d3d95845e2ccbd329ab65270376b933b193d4984e53458d9e8dc78a37",
+      "node_id": "spread",
+      "normalization": "none",
+      "parents": [],
+      "required_capabilities": [
+        "M1_SPREAD"
+      ],
+      "source_fields": [
+        "bid_close",
+        "ask_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "price",
+      "warmup_bars": 0
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "spread_zscore",
+      "lookback_bars": 120,
+      "nan_policy": "drop_warmup",
+      "node_hash": "0babc4be407a110af597d5a46324fdbcff491d6df9b1023241e426b2b8a5f2e1",
+      "node_id": "spread_zscore",
+      "normalization": "rolling_zscore",
+      "parents": [
+        "spread"
+      ],
+      "required_capabilities": [
+        "M1_SPREAD"
+      ],
+      "source_fields": [
+        "bid_close",
+        "ask_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "z",
+      "warmup_bars": 120
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "self"
+      ],
+      "kind": "ols_slope_tstat",
+      "lookback_bars": 120,
+      "nan_policy": "drop_warmup",
+      "node_hash": "b226204acd762fe80089d344ae9b0bdbbeb31d075f81ab21dfea512d9adceb88",
+      "node_id": "trend_slope",
+      "normalization": "none",
+      "parents": [
+        "mid_close"
+      ],
+      "required_capabilities": [
+        "M1_RETURNS"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "tstat",
+      "warmup_bars": 120
+    },
+    {
+      "causality": "causal_endpoint",
+      "granularity": "M1",
+      "instrument_dependencies": [
+        "triangle"
+      ],
+      "kind": "triangular_residual_zscore",
+      "lookback_bars": 300,
+      "nan_policy": "drop_warmup",
+      "node_hash": "c572b9a09af5a8ed7333d67d28fb324e56579cdc3a427764c7cb13dc1ab24b14",
+      "node_id": "triangle_residual",
+      "normalization": "rolling_zscore",
+      "parents": [
+        "cross_return_panel"
+      ],
+      "required_capabilities": [
+        "TRIANGULAR_RESIDUAL"
+      ],
+      "source_fields": [
+        "mid_close"
+      ],
+      "timestamp_availability": "bar_close_t",
+      "units": "z",
+      "warmup_bars": 300
+    }
+  ],
+  "topological_order": [
+    "atr",
+    "calendar_cell",
+    "mid_close",
+    "m1_return",
+    "cross_return_panel",
+    "dist_from_ewma",
+    "usd_factor",
+    "factor_residual",
+    "mom_zscore",
+    "parkinson_vol",
+    "range_compression",
+    "realized_vol",
+    "session_cell",
+    "spread",
+    "spread_zscore",
+    "trend_slope",
+    "triangle_residual"
+  ]
+}

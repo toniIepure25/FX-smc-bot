@@ -1,0 +1,88 @@
+{
+  "artifact_id": "V3_PARAMETER_SCALES_V1",
+  "principle": "meaningful log/structural spacing; no dense arbitrary grids",
+  "scales": [
+    {
+      "active_semantics": "longer lookback => slower feature; inert below min_observations",
+      "lower_bound": 5.0,
+      "name": "lookback_bars_intraday",
+      "neighborhood": "adjacent doubling steps",
+      "rationale": "Powers-of-two minutes span 15m..4h, the meaningful intraday memory scales.",
+      "spacing": "log2",
+      "units": "M1_bars",
+      "upper_bound": 480.0,
+      "values": [
+        15.0,
+        30.0,
+        60.0,
+        120.0,
+        240.0
+      ]
+    },
+    {
+      "active_semantics": "sets trend/reversion memory for H2/H3; inert below one day",
+      "lower_bound": 1.0,
+      "name": "lookback_days_multiday",
+      "neighborhood": "adjacent doubling steps",
+      "rationale": "Day-scale memory for intraweek/intramonth structure.",
+      "spacing": "log2",
+      "units": "trading_days",
+      "upper_bound": 40.0,
+      "values": [
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ]
+    },
+    {
+      "active_semantics": "higher threshold => sparser, higher-conviction entries",
+      "lower_bound": 0.25,
+      "name": "entry_threshold_sigma",
+      "neighborhood": "+/- one grid step",
+      "rationale": "Standardised-deviation entry bands; sparsity/turnover trade-off.",
+      "spacing": "linear",
+      "units": "z_units",
+      "upper_bound": 3.0,
+      "values": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5
+      ]
+    },
+    {
+      "active_semantics": "OU/EWMA memory; inert when series is non-mean-reverting",
+      "lower_bound": 10.0,
+      "name": "halflife_bars",
+      "neighborhood": "adjacent decade-ish steps",
+      "rationale": "Log-decade half-lives for mean-reversion / state-space smoothing.",
+      "spacing": "log10",
+      "units": "M1_bars",
+      "upper_bound": 3000.0,
+      "values": [
+        30.0,
+        100.0,
+        300.0,
+        1000.0
+      ]
+    },
+    {
+      "active_semantics": "min ratio of expected edge to expected round-trip cost to trade",
+      "lower_bound": 1.0,
+      "name": "cost_edge_multiple",
+      "neighborhood": "+/- one grid step",
+      "rationale": "Cost-aware gate: trade only when edge sufficiently exceeds cost+uncertainty.",
+      "spacing": "linear",
+      "units": "ratio",
+      "upper_bound": 5.0,
+      "values": [
+        1.0,
+        1.5,
+        2.0,
+        3.0
+      ]
+    }
+  ]
+}
