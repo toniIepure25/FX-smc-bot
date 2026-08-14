@@ -1,0 +1,109 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "2018_plus_provider_requests_issued": 0,
+  "artifact_id": "V3_NATIVE_PARITY_PANEL_V1",
+  "fail_units": 0,
+  "panel_hash": "cd5f2c68c1dd8c8042ede5e3fe609f85ede59729f5ce92c011b7b200e6b1e13d",
+  "panel_size": 4,
+  "parity_contract": {
+    "acceptance": {
+      "FAIL": "any difference exceeding frozen quote precision, or minute-set mismatch",
+      "PASS_CANONICAL_EQUIVALENT": "identical values after rounding to frozen quote precision (serialization-only differences)",
+      "PASS_EXACT": "identical minute set AND identical canonical values everywhere"
+    },
+    "artifact_id": "V3_PARITY_CONTRACT_V1",
+    "compared_fields": [
+      "timestamps",
+      "bid_open",
+      "bid_high",
+      "bid_low",
+      "bid_close",
+      "ask_open",
+      "ask_high",
+      "ask_low",
+      "ask_close",
+      "row_presence",
+      "missing_minutes",
+      "ordering",
+      "day_boundaries",
+      "jpy_scaling",
+      "nonjpy_scaling"
+    ],
+    "comparison_window": "the common covered minute window [max(min), min(max)] of the two series; within it, minute sets and canonical values must match. This handles partial references and does NOT loosen price equality.",
+    "frozen_quote_precision": {
+      "jpy_decimals": 3,
+      "nonjpy_decimals": 5
+    },
+    "no_loose_tolerance_after_results": true,
+    "no_strategy_or_pnl_comparison": true
+  },
+  "pass_units": 4,
+  "transport_certification": {
+    "native_primary": true,
+    "rule": "certify only if >=2 units have both transports AND zero FAIL under the frozen quote-precision contract.",
+    "tick_fallback_role": "deterministic per-day fallback only",
+    "verdict": "V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED"
+  },
+  "units": [
+    {
+      "date": "2014-06-10",
+      "exact_field_mismatches": 0,
+      "instrument": "EURUSD",
+      "instrument_decimals": 5,
+      "minute_set_equal": true,
+      "native_minutes": 480,
+      "precision_field_mismatches": 0,
+      "session_type": "nonjpy_major_london_ny",
+      "shared_minutes": 480,
+      "tick_minutes": 480,
+      "tick_source": "canonical",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2014-06-10",
+      "exact_field_mismatches": 0,
+      "instrument": "USDJPY",
+      "instrument_decimals": 3,
+      "minute_set_equal": true,
+      "native_minutes": 480,
+      "precision_field_mismatches": 0,
+      "session_type": "jpy_major_london_ny",
+      "shared_minutes": 480,
+      "tick_minutes": 480,
+      "tick_source": "canonical",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2016-03-08",
+      "exact_field_mismatches": 0,
+      "instrument": "EURJPY",
+      "instrument_decimals": 3,
+      "minute_set_equal": true,
+      "native_minutes": 180,
+      "precision_field_mismatches": 0,
+      "session_type": "jpy_cross_later_year",
+      "shared_minutes": 180,
+      "tick_minutes": 180,
+      "tick_source": "ticks",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2011-09-14",
+      "exact_field_mismatches": 0,
+      "instrument": "GBPUSD",
+      "instrument_decimals": 5,
+      "minute_set_equal": true,
+      "native_minutes": 180,
+      "precision_field_mismatches": 0,
+      "session_type": "nonjpy_major_early_year",
+      "shared_minutes": 180,
+      "tick_minutes": 180,
+      "tick_source": "ticks",
+      "verdict": "PASS_EXACT"
+    }
+  ],
+  "units_with_both_transports": 4,
+  "verdict_counts": {
+    "PASS_EXACT": 4
+  }
+}

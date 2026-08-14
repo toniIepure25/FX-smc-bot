@@ -1,0 +1,21 @@
+{
+  "artifact_id": "V3_NATIVE_ACQUISITION_PLAN_V1",
+  "day_units": 27118,
+  "granularity": {
+    "acquisition_unit": "instrument_x_trading_day",
+    "canonical_storage": "instrument/year/month",
+    "files_per_unit": 2
+  },
+  "instruments": 13,
+  "monthly_canonical_partitions": 2496,
+  "native_requests_planned": 54236,
+  "new_primary_estimate_native_requests": 54236,
+  "old_primary_estimate_tick_requests": 650832,
+  "plan_end": "2017-12-31",
+  "plan_start": "2010-01-01",
+  "region": "pre_2018_only",
+  "request_reduction_vs_tick": "12.0x fewer requests than the tick path",
+  "tick_requests_equivalent": 650832,
+  "trading_days_per_instrument": 2086,
+  "weekend_rule": "deterministic calendar exclusion (Sat/Sun); never inferred from provider silence."
+}

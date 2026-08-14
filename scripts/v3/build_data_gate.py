@@ -17,8 +17,10 @@ from typing import Any
 
 from fx_smc_bot.research.v3 import acquisition_pipeline as ap
 from fx_smc_bot.research.v3.acquisition import acquisition_plan_payload
+from fx_smc_bot.research.v3.acquisition_state import StateStore
 from fx_smc_bot.research.v3.data_gate import build_gate, gate_hash
 from fx_smc_bot.research.v3.evidence import evidence_payload
+from fx_smc_bot.research.v3.native_plan import native_plan_payload
 from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
 from fx_smc_bot.research.v3.statistics import statistics_hash
 from fx_smc_bot.research.v3.universes import assert_invariants, universe_counts
@@ -26,6 +28,12 @@ from fx_smc_bot.research.v3.universes import assert_invariants, universe_counts
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "results" / "gate_v3f"
 CANON = REPO / "data" / "canonical"
+BULK_STATE = REPO / "data" / "acquisition_state" / "bulk_state.json"
+
+
+def _maybe_load(name: str) -> dict[str, Any] | None:
+    p = OUT / name
+    return json.loads(p.read_text()) if p.exists() else None
 
 
 def _load(name: str) -> dict[str, Any]:
@@ -103,10 +111,41 @@ def main() -> int:
         "pipeline; no complete monthly partition is certified yet."
     )
     gate["data_manifest_hash"] = manifest["data_manifest_hash"]
+
+    # --- native transport certification + rebuilt native plan (this gate) ---
+    parity = _maybe_load("native_parity_panel.json")
+    native_plan = native_plan_payload()
+    gate["native_transport"] = {
+        "certification": (parity["transport_certification"] if parity else None),
+        "parity_pass_units": (parity["pass_units"] if parity else 0),
+        "parity_fail_units": (parity["fail_units"] if parity else 0),
+        "parity_hash": (parity["panel_hash"] if parity else None),
+    }
+    gate["native_plan"] = {
+        "native_requests_planned": native_plan["native_requests_planned"],
+        "old_tick_requests_equivalent": native_plan["tick_requests_equivalent"],
+        "request_reduction_vs_tick": native_plan["request_reduction_vs_tick"],
+        "day_units_total": native_plan["day_units"],
+        "monthly_canonical_partitions": native_plan["monthly_canonical_partitions"],
+    }
+    # --- durable bulk-acquisition state (day-unit granularity), if a run has started ---
+    if BULK_STATE.exists():
+        bstore = StateStore(BULK_STATE)
+        bstore.load()
+        bsum = bstore.summary()
+        gate["bulk_acquisition_state"] = bsum
+        gate["coverage"]["native_day_units_certified"] = bsum["certified_units"]
+        gate["coverage"]["native_day_units_total"] = native_plan["day_units"]
+        gate["coverage"]["native_day_units_pending"] = (
+            native_plan["day_units"] - bsum["certified_units"]
+        )
     gate["gate_hash"] = gate_hash(gate)
     gate["built_at"] = datetime.now(timezone.utc).isoformat()
     gate["evidence"] = evidence
 
+    (OUT / "native_acquisition_plan.json").write_text(
+        json.dumps(native_plan_payload(), indent=2, sort_keys=True)
+    )
     (OUT / "data_certification_gate.json").write_text(json.dumps(gate, indent=2, sort_keys=True))
     print("verdict:", gate["verdict"])
     print("conditions:", gate["conditions_passed"], "/", gate["conditions_total"])

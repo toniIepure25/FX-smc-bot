@@ -2,7 +2,20 @@
   "2018_plus_market_or_outcome_files_opened": 0,
   "2018_plus_provider_requests_issued": 0,
   "artifact_id": "V3_DATA_CERTIFICATION_GATE_V1",
-  "built_at": "2026-08-14T07:10:23.373084+00:00",
+  "built_at": "2026-08-14T08:33:00.916855+00:00",
+  "bulk_acquisition_state": {
+    "certified_native": 4,
+    "certified_tick_fallback": 0,
+    "certified_units": 4,
+    "counts_by_status": {
+      "CERTIFIED_NATIVE": 4,
+      "PLANNED": 2081,
+      "RETRYABLE": 1
+    },
+    "coverage_complete": false,
+    "pending_units": 2082,
+    "total_units": 2086
+  },
   "conditions": {
     "denominator_semantics_unambiguous": true,
     "deterministic_data_manifests_reproduce": true,
@@ -21,6 +34,9 @@
   "coverage": {
     "certified_units": 0,
     "coverage_complete": false,
+    "native_day_units_certified": 4,
+    "native_day_units_pending": 27114,
+    "native_day_units_total": 27118,
     "pending_units": 2496,
     "prospectively_excluded_units": 0,
     "required_units": 2496,
@@ -41,7 +57,25 @@
     "quality_gates_pass": true,
     "readiness_evidence_derived": true
   },
-  "gate_hash": "14e202e93ef1b864f766132380c231f77ab77a16f6ffef86439cc9f725655a8b",
+  "gate_hash": "ccd821896c73fdb13702256b1c48b877f8088352b4668d088aeb5e44d05c1153",
+  "native_plan": {
+    "day_units_total": 27118,
+    "monthly_canonical_partitions": 2496,
+    "native_requests_planned": 54236,
+    "old_tick_requests_equivalent": 650832,
+    "request_reduction_vs_tick": "12.0x fewer requests than the tick path"
+  },
+  "native_transport": {
+    "certification": {
+      "native_primary": true,
+      "rule": "certify only if >=2 units have both transports AND zero FAIL under the frozen quote-precision contract.",
+      "tick_fallback_role": "deterministic per-day fallback only",
+      "verdict": "V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED"
+    },
+    "parity_fail_units": 0,
+    "parity_hash": "cd5f2c68c1dd8c8042ede5e3fe609f85ede59729f5ce92c011b7b200e6b1e13d",
+    "parity_pass_units": 4
+  },
   "next_gate": "COMPLETE_BULK_PRE_2018_ACQUISITION",
   "remaining_external_step": "complete bulk pre-2018 acquisition (13 instruments x 2010-2017); bounded, resumable; blocked this session only by provider 503-throttle over the corporate proxy. All non-data conditions already pass.",
   "verdict": "V3_DATA_CERTIFICATION_IN_PROGRESS_BULK_ACQUISITION_PENDING"
