@@ -112,14 +112,19 @@
       "vector": "accidental_holdout_reads"
     },
     {
-      "control": "Tick/order-book capabilities UNSUPPORTED; families needing them REJECTED_PRE_OUTCOME; M1 volume never used.",
+      "control": "Tick/order-book capabilities UNSUPPORTED; families needing them REJECTED_PRE_OUTCOME; native volume used ONLY as certified quote-presence provenance (volume>0<=>observed), never an alpha feature and never enabling tick-arrival rate.",
       "status": "MITIGATED",
       "vector": "tick_faking"
+    },
+    {
+      "control": "Canonical M1 marks imputed carry-forward rows; execution never fills on a non-observed minute (advances to next executable); imputed rows are not zero-return market observations; stale cross-pair legs break synchronization.",
+      "status": "MITIGATED",
+      "vector": "synthetic_fill"
     }
   ],
   "firewall_file_read_blocked": true,
   "firewall_network_request_blocked": true,
   "reviewer_stance": "skeptical quantitative reviewer",
   "unresolved_material_findings": 0,
-  "vectors_examined": 23
+  "vectors_examined": 24
 }

@@ -19,11 +19,14 @@ from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
 from fx_smc_bot.research.v3.statistics import statistics_hash
 from fx_smc_bot.research.v3.universes import universe_counts
 
-GOLDEN_FREEZE_HASH = "cdfb66a0b5388ace815d0dc90a0f6df0cf2b5ac078ca0c4dffebfea2809b1297"
+# Updated at the observation-provenance gate: freeze hash changed as a PRE-OUTCOME
+# data-semantic correction (missing-observation contract + canonical M1 schema v2 + volume
+# provenance). Universes A/B/C are UNCHANGED. No V3 P&L/performance informed the change.
+GOLDEN_FREEZE_HASH = "5a96fd0e6de8bc74cf98f39f5cf36e018dfb0521fba9f94e5cccd6dae726f6b1"
 GOLDEN_TOTAL_DENOMINATOR = 1044
 GOLDEN_EXECUTABLE_ALPHA = 992
 GOLDEN_PRICE_ALPHA_ONLY = 52
-GOLDEN_COMPONENT_COUNT = 22
+GOLDEN_COMPONENT_COUNT = 24
 
 
 def test_freeze_hash_is_golden() -> None:

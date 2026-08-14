@@ -200,8 +200,15 @@ def capability_matrix_payload() -> dict[str, Any]:
         "instruments": [i.as_dict() for i in INSTRUMENTS],
         "instruments_acquired": list(instruments_acquired()),
         "instruments_planned": list(instruments_planned()),
-        "never_uses_volume_field": True,
-        "hard_rule": "M1 bar count != quote update count; tick semantics never faked from M1.",
+        "never_uses_volume_as_alpha_feature": True,
+        "native_volume_use": {
+            "as_alpha_feature": "FORBIDDEN",
+            "as_quote_presence_provenance": "PERMITTED; certified rule volume>0 <=> observed "
+                                            "minute (1680/1680 vs tick reference).",
+            "enables_tick_arrival_rate_capability": False,
+        },
+        "hard_rule": "M1 bar count != quote update count; tick semantics never faked from M1; "
+                     "native volume is quote-presence provenance only, never an alpha feature.",
         "capabilities": [c.as_dict() for c in _CAPABILITIES],
         "supported_capability_count": sum(1 for c in _CAPABILITIES if c.supported),
         "unsupported_capability_count": sum(1 for c in _CAPABILITIES if not c.supported),

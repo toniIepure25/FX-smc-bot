@@ -78,10 +78,14 @@ def decode_candle_bi5(raw: bytes, day_start_ms: int, scale: int) -> list[dict[st
         raise ValueError("native candle payload is not decodable LZMA")
     rows: list[dict[str, Any]] = []
     for off in range(0, len(data) - (len(data) % _CANDLE.size), _CANDLE.size):
-        t, o, c, low, high, _vol = _CANDLE.unpack_from(data, off)
+        t, o, c, low, high, vol = _CANDLE.unpack_from(data, off)
         rows.append({
             "timestamp": day_start_ms + int(t) * 1000,
             "open": o / scale, "high": high / scale, "low": low / scale, "close": c / scale,
+            # native candle volume, preserved ONLY as quote-presence provenance/data-quality
+            # metadata (empirically volume>0 <=> the minute had underlying tick observations).
+            # It is NOT a V3 alpha feature and does NOT enable tick-arrival-rate capability.
+            "volume": float(vol),
         })
     return rows
 
@@ -105,6 +109,8 @@ def native_m1_day(bid_raw: bytes, ask_raw: bytes, instrument: str, d: date) -> l
             "bid_close": b["close"],
             "ask_open": a["open"], "ask_high": a["high"], "ask_low": a["low"],
             "ask_close": a["close"],
+            # quote-presence provenance only (not alpha): volume>0 <=> observed minute.
+            "bid_volume": b.get("volume", 0.0), "ask_volume": a.get("volume", 0.0),
         })
     return rows
 

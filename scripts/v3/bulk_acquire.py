@@ -30,6 +30,7 @@ from typing import Any
 import pandas as pd  # type: ignore[import-untyped]
 
 from fx_smc_bot.research.v3 import acquisition_pipeline as ap
+from fx_smc_bot.research.v3 import canonical_m1 as cm
 from fx_smc_bot.research.v3 import native_transport as nt
 from fx_smc_bot.research.v3._hashing import canonical_hash
 from fx_smc_bot.research.v3.acquisition_state import StateStore, Transport, UnitStatus
@@ -93,12 +94,19 @@ def _day_ms(d: date) -> int:
     return int(datetime(d.year, d.month, d.day, tzinfo=timezone.utc).timestamp() * 1000)
 
 
-def _write_canonical(canon: Path, inst: str, d: date, rows: list[dict[str, Any]]) -> str:
+def _write_canonical(canon: Path, inst: str, d: date, canon_rows: list[dict[str, Any]]) -> str:
+    """Persist canonical M1 v2 rows per side, INCLUDING observation provenance masks."""
+
     digest_input: list[dict[str, Any]] = []
     for side in ("bid", "ask"):
         side_rows = [{"timestamp": r["timestamp"], "open": r[f"{side}_open"],
                       "high": r[f"{side}_high"], "low": r[f"{side}_low"],
-                      "close": r[f"{side}_close"]} for r in rows]
+                      "close": r[f"{side}_close"], "observed": bool(r[f"{side}_observed"]),
+                      "executable_quote": bool(r["executable_quote"]),
+                      "is_imputed": bool(r["is_imputed"]),
+                      "staleness_minutes": int(r["staleness_minutes"]),
+                      "session_valid": bool(r["session_valid"]),
+                      "transport": r["transport"]} for r in canon_rows]
         digest_input.append({"side": side, "rows": side_rows})
         pdir = (canon / inst / f"price={side}" / f"year={d.year}" / f"month={d.month:02d}"
                 / f"day={d.day:02d}")
@@ -153,8 +161,7 @@ def _acquire_tick_fallback_day(sched: AdaptiveScheduler, fw: V3HoldoutFirewall, 
         else:
             return "retry", [], ""  # throttle/timeout -> never infer closure
     if any_data:
-        # flat-fill to the native full-minute grid so tick-fallback days are canonical-consistent
-        return "tick", nt.fill_session_grid(ap.aggregate_m1(ticks)), hasher.hexdigest()
+        return "tick", ap.aggregate_m1(ticks), hasher.hexdigest()  # canonicalized by caller
     if all_missing:
         return "missing", [], ""  # every session hour genuinely 404 -> exceptional closure
     return "retry", [], ""
@@ -188,12 +195,13 @@ def run(args: argparse.Namespace) -> int:
         store.transition(inst, d, UnitStatus.IN_PROGRESS)
         result, rows, src = _acquire_native_day(sched, fw, inst, d, scratch)
         if result == "native" and rows:
+            canon_rows = cm.canonicalize_native_day(rows, d)
             cert = ap.certify_partition(instrument=inst, year=d.year, month=d.month, day=d.day,
-                                        side="bid", m1_rows=rows, source_bytes=0,
+                                        side="bid", m1_rows=canon_rows, source_bytes=0,
                                         source_sha256=src, request_urls=[])
             if cert["integrity_audit"]["bid_ask_valid"] and cert["integrity_audit"][
                     "scaling_plausibility_ok"]:
-                canon_hash = _write_canonical(canon, inst, d, rows)
+                canon_hash = _write_canonical(canon, inst, d, canon_rows)
                 store.transition(inst, d, UnitStatus.CERTIFIED_NATIVE,
                                  transport=Transport.NATIVE_M1.value, source_checksum=src,
                                  canonical_checksum=canon_hash, canonical_rows=len(rows))
@@ -204,12 +212,13 @@ def run(args: argparse.Namespace) -> int:
             # closure from provider silence).
             tresult, trows, tsrc = _acquire_tick_fallback_day(sched, fw, inst, d, scratch)
             if tresult == "tick" and trows:
+                canon_trows = cm.canonicalize_tick_day(trows, d)
                 tcert = ap.certify_partition(instrument=inst, year=d.year, month=d.month,
-                                             day=d.day, side="bid", m1_rows=trows,
+                                             day=d.day, side="bid", m1_rows=canon_trows,
                                              source_bytes=0, source_sha256=tsrc, request_urls=[])
                 if tcert["integrity_audit"]["bid_ask_valid"] and tcert["integrity_audit"][
                         "scaling_plausibility_ok"]:
-                    ch = _write_canonical(canon, inst, d, trows)
+                    ch = _write_canonical(canon, inst, d, canon_trows)
                     store.transition(inst, d, UnitStatus.CERTIFIED_TICK_FALLBACK,
                                      transport=Transport.TICK_AGGREGATED_M1.value,
                                      fallback_reason="native_unavailable_tick_fallback",

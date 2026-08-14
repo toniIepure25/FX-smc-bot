@@ -1,0 +1,61 @@
+{
+  "artifact_id": "V3_MISSING_OBSERVATION_CONTRACT_V1",
+  "certified_native_observation_rule": {
+    "certification": "measured vs tick_count>0 on the fleet parity panel: 1680/1680 minutes agree (100.000%). Certified against the tick reference, NOT assumed.",
+    "rule": "native observed minute := native candle volume > 0 (per side)",
+    "sides": "bid_observed := bid_volume > 0 ; ask_observed := ask_volume > 0"
+  },
+  "concepts": {
+    "CLOCK_MINUTE": "regular M1 grid timestamp; may exist with no market observation",
+    "EXECUTABLE_QUOTE": "session_valid AND both bid and ask observed",
+    "OBSERVED_MARKET_QUOTE": "minute with genuine underlying tick observation"
+  },
+  "contract_hash": "6d3bc610e6cd02db581a6fa3aa0b7d098c8b128e7dd0ce485c14b9e6e27ecb54",
+  "cross_pair_synchronization": {
+    "default": "contemporaneously observed prices only, unless a frozen family explicitly defines another causal synchronization rule.",
+    "forbidden": "treating a carry-forward quote as fresh merely because it shares a timestamp row (applies to triangular residuals, currency factors, cross-sectional momentum, cross-pair residuals, cointegration inputs).",
+    "rule": "a synchronized cross-pair/triangular observation at t requires EVERY leg observed at t (contemporaneous). A stale/imputed leg breaks synchronization."
+  },
+  "execution_invariant": {
+    "latency": "frozen one-completed-M1 latency preserved; missing_quote_policy=no_synthetic_fill; never manufacture a fill at a carry-forward price.",
+    "on_missing_quote": "advance clock time to the next session-valid EXECUTABLE (observed bid+ask) minute; time advances but execution does not.",
+    "rule": "NO entry/exit/stop/target/mandatory-exit/delayed fill may execute on an imputed / non-observed minute."
+  },
+  "feature_policy": {
+    "clock_features_may_advance_with_time": [
+      "session_cell",
+      "calendar_cell",
+      "time_of_day"
+    ],
+    "rule": "an imputed row does not update stateful market features and is NOT a zero market return.",
+    "stateful_market_features_update_only_on_observation": [
+      "realized_vol",
+      "atr_range_estimators",
+      "compression_expansion",
+      "momentum",
+      "moving_average",
+      "zscore",
+      "ou_estimation",
+      "kalman_update",
+      "regime_estimation",
+      "spread_statistics",
+      "ml_training_example"
+    ]
+  },
+  "frozen_pre_outcome": true,
+  "imputation": {
+    "carry_forward": "no-observation minutes may carry a flat last-close bar for clock alignment (fill_session_grid).",
+    "imputed_is_never_a_real_quote": true,
+    "must_mark_imputed": true,
+    "staleness_minutes": "minutes since the last observed quote (0 on observed minutes)."
+  },
+  "mtf_provenance": {
+    "rule": "M5/M15/H1 bars carry observed_minutes, imputed_minutes and coverage_fraction; N carry-forward minutes are NOT N independent market observations."
+  },
+  "no_v3_pnl_or_performance_used": true,
+  "tick_observation_rule": "tick observed minute := tick_count > 0 (from tick->M1 aggregation)",
+  "volume_use": {
+    "forbidden": "any V3 alpha feature; does NOT enable TICK_QUOTE_ARRIVAL_RATE capability.",
+    "permitted": "quote-observation provenance / data-quality metadata only."
+  }
+}

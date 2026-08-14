@@ -16,6 +16,7 @@ from typing import Any
 from fx_smc_bot.research.v3.acquisition import acquisition_plan_payload
 from fx_smc_bot.research.v3.boundary import boundary_payload
 from fx_smc_bot.research.v3.budget import budget_payload, lineage_payload
+from fx_smc_bot.research.v3.canonical_m1 import canonical_schema_payload
 from fx_smc_bot.research.v3.capabilities import capability_matrix_payload
 from fx_smc_bot.research.v3.compiler import compiler_payload
 from fx_smc_bot.research.v3.composition import composition_grammar_payload
@@ -30,6 +31,7 @@ from fx_smc_bot.research.v3.feature_dag import build_canonical_dag
 from fx_smc_bot.research.v3.firewall import V3HoldoutFirewall
 from fx_smc_bot.research.v3.freeze import build_freeze
 from fx_smc_bot.research.v3.horizons import horizons_payload
+from fx_smc_bot.research.v3.observation_contract import observation_contract_payload
 from fx_smc_bot.research.v3.parameters import parameters_payload
 from fx_smc_bot.research.v3.portfolio import portfolio_payload
 from fx_smc_bot.research.v3.program_protocol import program_protocol_payload
@@ -96,7 +98,13 @@ def adversarial_audit_payload() -> dict[str, Any]:
         ("accidental_holdout_reads", "V3 firewall blocks 2018+ file reads AND provider requests "
          "before I/O; counter asserted 0; tested.", "MITIGATED"),
         ("tick_faking", "Tick/order-book capabilities UNSUPPORTED; families needing them "
-         "REJECTED_PRE_OUTCOME; M1 volume never used.", "MITIGATED"),
+         "REJECTED_PRE_OUTCOME; native volume used ONLY as certified quote-presence provenance "
+         "(volume>0<=>observed), never an alpha feature and never enabling tick-arrival rate.",
+         "MITIGATED"),
+        ("synthetic_fill", "Canonical M1 marks imputed carry-forward rows; execution never "
+         "fills on a non-observed minute (advances to next executable); imputed rows are not "
+         "zero-return market observations; stale cross-pair legs break synchronization.",
+         "MITIGATED"),
     ]
     # Live proof the firewall blocks both surfaces.
     fw = V3HoldoutFirewall()
@@ -165,6 +173,8 @@ def main() -> int:
     _write("program_protocol.json", program_protocol_payload())
     _write("claim_class_universes.json", universes_payload())
     _write("readiness_evidence.json", evidence_payload())
+    _write("missing_observation_contract.json", observation_contract_payload())
+    _write("canonical_m1_schema.json", canonical_schema_payload())
     _write("statistical_protocol.json", statistical_protocol_payload())
     _write("survivor_predicates.json", survivor_predicates_payload())
     _write("candidate_budget.json", budget_payload())

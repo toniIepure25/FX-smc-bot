@@ -1,0 +1,30 @@
+{
+  "artifact_id": "V3_CANONICAL_M1_SCHEMA_V2",
+  "canonicalizer_version": "v3_m1_canonicalizer_2",
+  "fields": [
+    "timestamp",
+    "bid_open",
+    "bid_high",
+    "bid_low",
+    "bid_close",
+    "ask_open",
+    "ask_high",
+    "ask_low",
+    "ask_close",
+    "session_valid",
+    "bid_observed",
+    "ask_observed",
+    "executable_quote",
+    "is_imputed",
+    "staleness_minutes",
+    "transport"
+  ],
+  "imputed_rows_marked": true,
+  "mtf_provenance_fields": [
+    "observed_minutes",
+    "imputed_minutes",
+    "coverage_fraction"
+  ],
+  "native_observed_rule": "bid_volume>0 / ask_volume>0 (certified vs tick)",
+  "tick_observed_rule": "minute present in tick->M1 aggregation (tick_count>0)"
+}

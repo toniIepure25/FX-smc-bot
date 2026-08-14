@@ -23,6 +23,7 @@ from fx_smc_bot.research.v3._hashing import canonical_hash
 from fx_smc_bot.research.v3.acquisition import acquisition_plan_hash
 from fx_smc_bot.research.v3.boundary import boundary_hash
 from fx_smc_bot.research.v3.budget import budget_hash, global_denominator, lineage_hash
+from fx_smc_bot.research.v3.canonical_m1 import canonical_schema_hash
 from fx_smc_bot.research.v3.capabilities import capability_hash, check_required
 from fx_smc_bot.research.v3.compiler import ADMITTED_EXECUTABLE, compiler_hash, compiler_payload
 from fx_smc_bot.research.v3.composition import composition_hash
@@ -44,6 +45,7 @@ from fx_smc_bot.research.v3.families import FAMILY_INDEX, family_registry_hash
 from fx_smc_bot.research.v3.feature_dag import build_canonical_dag
 from fx_smc_bot.research.v3.firewall import V3HoldoutFirewall
 from fx_smc_bot.research.v3.horizons import HORIZONS, horizons_hash, requires_financing
+from fx_smc_bot.research.v3.observation_contract import observation_contract_hash
 from fx_smc_bot.research.v3.parameters import parameters_hash
 from fx_smc_bot.research.v3.portfolio import portfolio_hash
 from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
@@ -92,6 +94,8 @@ def component_hashes() -> dict[str, str]:
         "lineage_registry": lineage_hash(),
         "v2_v3_information_boundary": boundary_hash(),
         "acquisition_plan": acquisition_plan_hash(),
+        "missing_observation_contract": observation_contract_hash(),
+        "canonical_m1_schema": canonical_schema_hash(),
     }
 
 

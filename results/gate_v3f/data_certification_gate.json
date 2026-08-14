@@ -2,7 +2,7 @@
   "2018_plus_market_or_outcome_files_opened": 0,
   "2018_plus_provider_requests_issued": 0,
   "artifact_id": "V3_DATA_CERTIFICATION_GATE_V1",
-  "built_at": "2026-08-14T19:44:52.402791+00:00",
+  "built_at": "2026-08-14T20:29:30.178243+00:00",
   "bulk_acquisition_state": {
     "certified_native": 3,
     "certified_tick_fallback": 0,

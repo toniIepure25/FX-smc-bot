@@ -1,0 +1,427 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "2018_plus_provider_requests_issued": 0,
+  "artifact_id": "V3_OBSERVATION_MASK_PARITY_V1",
+  "canonical_schema": {
+    "artifact_id": "V3_CANONICAL_M1_SCHEMA_V2",
+    "canonicalizer_version": "v3_m1_canonicalizer_2",
+    "fields": [
+      "timestamp",
+      "bid_open",
+      "bid_high",
+      "bid_low",
+      "bid_close",
+      "ask_open",
+      "ask_high",
+      "ask_low",
+      "ask_close",
+      "session_valid",
+      "bid_observed",
+      "ask_observed",
+      "executable_quote",
+      "is_imputed",
+      "staleness_minutes",
+      "transport"
+    ],
+    "imputed_rows_marked": true,
+    "mtf_provenance_fields": [
+      "observed_minutes",
+      "imputed_minutes",
+      "coverage_fraction"
+    ],
+    "native_observed_rule": "bid_volume>0 / ask_volume>0 (certified vs tick)",
+    "tick_observed_rule": "minute present in tick->M1 aggregation (tick_count>0)"
+  },
+  "certification": {
+    "rule": "all 13 instruments PASS both OHLC and observation-mask parity; native volume>0 observation rule certified vs tick.",
+    "verdict": "V3_OBSERVATION_MASK_PARITY_CERTIFIED_FLEET_WIDE"
+  },
+  "mask_fail_units": [],
+  "mask_instruments_missing": [],
+  "mask_instruments_pass": [
+    "AUDJPY",
+    "AUDUSD",
+    "EURCHF",
+    "EURGBP",
+    "EURJPY",
+    "EURUSD",
+    "GBPCHF",
+    "GBPJPY",
+    "GBPUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF",
+    "USDJPY"
+  ],
+  "ohlc_instruments_pass": [
+    "AUDJPY",
+    "AUDUSD",
+    "EURCHF",
+    "EURGBP",
+    "EURJPY",
+    "EURUSD",
+    "GBPCHF",
+    "GBPJPY",
+    "GBPUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF",
+    "USDJPY"
+  ],
+  "panel_size": 16,
+  "parity_hash": "b339ee2049c2105173e278e5b769f3f20b57194b6f0a4c4fb683cf2c3f48df9e",
+  "units": [
+    {
+      "date": "2014-06-10",
+      "instrument": "EURUSD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 480,
+        "native_imputed": 0,
+        "shared_minutes": 480,
+        "tick_executable": 480,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2014-06-10",
+      "instrument": "USDJPY",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2011-09-14",
+      "instrument": "GBPUSD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2010-06-09",
+      "instrument": "AUDUSD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2017-05-10",
+      "instrument": "NZDUSD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2013-04-10",
+      "instrument": "USDCAD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2015-09-09",
+      "instrument": "USDCHF",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2016-03-08",
+      "instrument": "EURJPY",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2011-03-09",
+      "instrument": "GBPJPY",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2016-11-09",
+      "instrument": "AUDJPY",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2012-07-11",
+      "instrument": "EURGBP",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2014-05-14",
+      "instrument": "EURCHF",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2013-08-14",
+      "instrument": "GBPCHF",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2014-06-08",
+      "instrument": "EURUSD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 103,
+        "native_imputed": 16,
+        "shared_minutes": 119,
+        "tick_executable": 103,
+        "tick_imputed": 16,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2014-06-13",
+      "instrument": "EURUSD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    },
+    {
+      "date": "2014-03-10",
+      "instrument": "EURUSD",
+      "mask": "PASS",
+      "mask_detail": {
+        "mask_mismatches": {
+          "ask_observed": 0,
+          "bid_observed": 0,
+          "executable_quote": 0,
+          "is_imputed": 0,
+          "session_valid": 0
+        },
+        "minute_set_equal": true,
+        "native_executable": 120,
+        "native_imputed": 0,
+        "shared_minutes": 120,
+        "tick_executable": 120,
+        "tick_imputed": 0,
+        "verdict": "PASS"
+      },
+      "ohlc": "PASS_EXACT"
+    }
+  ]
+}

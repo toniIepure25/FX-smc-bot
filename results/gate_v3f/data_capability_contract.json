@@ -183,7 +183,7 @@
     2016,
     2017
   ],
-  "hard_rule": "M1 bar count != quote update count; tick semantics never faked from M1.",
+  "hard_rule": "M1 bar count != quote update count; tick semantics never faked from M1; native volume is quote-presence provenance only, never an alpha feature.",
   "instrument_count": 13,
   "instruments": [
     {
@@ -321,7 +321,12 @@
     "EURCHF",
     "GBPCHF"
   ],
-  "never_uses_volume_field": true,
+  "native_volume_use": {
+    "as_alpha_feature": "FORBIDDEN",
+    "as_quote_presence_provenance": "PERMITTED; certified rule volume>0 <=> observed minute (1680/1680 vs tick reference).",
+    "enables_tick_arrival_rate_capability": false
+  },
+  "never_uses_volume_as_alpha_feature": true,
   "sealed_holdout_years": [
     2018,
     2019
