@@ -133,9 +133,13 @@ class StateStore:
         self._persist()
 
     def pending_keys(self) -> list[str]:
+        # IN_PROGRESS is included so a unit interrupted mid-fetch (kill/crash during the
+        # multi-week run) is re-attempted on resume rather than stranded forever. Certified /
+        # TERMINAL_DATA_ABSENT units are never re-attempted.
         return [k for k, r in sorted(self.units.items())
                 if UnitStatus(r.status) in (UnitStatus.PLANNED, UnitStatus.RETRYABLE,
-                                            UnitStatus.INTEGRITY_FAILURE)]
+                                            UnitStatus.INTEGRITY_FAILURE,
+                                            UnitStatus.IN_PROGRESS)]
 
     def summary(self) -> dict[str, Any]:
         counts: dict[str, int] = {}

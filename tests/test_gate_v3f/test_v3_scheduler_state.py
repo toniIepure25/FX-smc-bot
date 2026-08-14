@@ -117,3 +117,20 @@ def test_plan_units_are_pre_2018_fx_trading_dates() -> None:
     assert saturdays == 0        # Saturday is the only fully-closed weekday-type
     assert sundays > 0           # Sunday partial sessions are legitimate trading dates
     assert seen_years <= {2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017}
+
+
+def test_interrupted_in_progress_unit_is_resumable(tmp_path: Path) -> None:
+    # a unit interrupted mid-fetch (IN_PROGRESS) must be re-attempted on resume, not stranded
+    store = StateStore(tmp_path / "state.json")
+    d = date(2014, 6, 10)  # Tuesday, trading date
+    store.plan("EURUSD", d)
+    store._persist()
+    store.transition("EURUSD", d, UnitStatus.IN_PROGRESS)
+    # reload as if a fresh process resumed
+    resumed = StateStore(tmp_path / "state.json")
+    resumed.load()
+    assert store.key("EURUSD", d) in resumed.pending_keys()
+    # re-transitioning IN_PROGRESS on resume is a no-op (allowed), then it can certify
+    resumed.transition("EURUSD", d, UnitStatus.IN_PROGRESS)
+    resumed.transition("EURUSD", d, UnitStatus.CERTIFIED_NATIVE, transport="NATIVE_M1")
+    assert store.key("EURUSD", d) not in resumed.pending_keys()
