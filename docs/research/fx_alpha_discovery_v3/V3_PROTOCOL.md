@@ -1,9 +1,9 @@
 # FX_INTRADAY_ALPHA_DISCOVERY_V3 — Prospective Protocol (pre-discovery freeze)
 
 **Program:** `FX_INTRADAY_ALPHA_DISCOVERY_V3`
-**State:** `V3_ALPHA_DISCOVERY_READY`
-**Next gate:** `V3_ALPHA_DISCOVERY_RUN`
-**Freeze hash:** `ea8973315820ce220b603d9edc8f74441a10b212d19f4b52c67a01c01de8ea87`
+**State:** `V3_ALPHA_DISCOVERY_READY` (architecture) · `V3_DATA_CERTIFICATION_IN_PROGRESS_BULK_ACQUISITION_PENDING` (data)
+**Next gate:** `V3_ALPHA_DISCOVERY_RUN` (after bulk pre-2018 acquisition completes)
+**Freeze hash:** `cdfb66a0b5388ace815d0dc90a0f6df0cf2b5ac078ca0c4dffebfea2809b1297` (was `ea8973…`; changed by the pre-outcome integrity hardening below)
 **Machine-readable freeze:** [`results/gate_v3f/freeze_manifest.json`](../../../results/gate_v3f/freeze_manifest.json)
 **Code:** [`src/fx_smc_bot/research/v3/`](../../../src/fx_smc_bot/research/v3/)
 
@@ -108,16 +108,27 @@ per-family ceiling (`PARAM_COMBO_CEILING = 25`). Single-pair families register o
 tier-1 majors; the other 10 pairs enter via cross-sectional families and leave-one-out
 robustness, never as separately-registered survivor candidates (no hidden denominator).
 
-| Bucket | Count |
-| --- | --- |
-| Executable standalone candidates | 920 |
-| Price-alpha-only standalone (H2/H3) | 40 |
-| Composition-archetype candidates | 84 |
-| **V3 registered denominator** | **1044** |
-| V1 evaluated / V2 evaluated | 8 / 336 |
-| Cumulative V1+V2+V3 | 1388 |
+Claim-class universes are frozen and disjoint, with counts derived from the compiler +
+composition grammar (see [`universes.py`](../../../src/fx_smc_bot/research/v3/universes.py)):
 
-1044 ≤ inherited per-version ceiling 1200. Outcome-driven candidate deletion is forbidden.
+| Universe | Definition | Count | Consumed by |
+| --- | --- | --- | --- |
+| **A** executable scientific-alpha | FULLY_EXECUTABLE standalone (920) + composition (72) | **992** | executable WRC/SPA/RW/Holm/BH-FDR/PSR/DSR/PBO |
+| **B** price-alpha-only | H2/H3 PRICE_ALPHA_ONLY standalone (40) + composition (12) | **52** | price-alpha analysis only; never executable survivors |
+| **C** total V3 registry | A + B (disjoint) | **1044** | — |
+| **D** lineage | V1 (8) + V2 (336) + V3 (1044) | **1388** | program-level sequential procedure |
+
+A + B = C exactly. The executable multiple-testing matrix consumes **only universe A (992)**;
+V1/V2 are controlled by a separate frozen program-level sequential procedure, never as
+imaginary columns in the V3 matrix. 1044 ≤ inherited per-version ceiling 1200. A shrink
+invariant proves no runtime failure, zero-trade candidate, or outcome can shrink a frozen
+universe. Outcome-driven candidate deletion is forbidden.
+
+**Pre-outcome integrity hardening (this gate):** `program_protocol` is now an independent
+artifact (previously mis-aliased to `statistics_hash()`); readiness criteria are
+evidence-derived (double-hash determinism, denominator agreement, all-H2/H3 financing paths,
+causal-leakage perturbation, deterministic ML/regime refit). These are pre-outcome
+corrections; no V3 outcome informed them. Freeze hash `ea8973…` → `cdfb66a0…`.
 
 ## 7. Statistical protocol and survivor predicates
 

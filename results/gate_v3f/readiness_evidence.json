@@ -1,0 +1,7 @@
+{
+  "artifact_id": "V3_READINESS_EVIDENCE_V1",
+  "cross_pair_alignment_ok": true,
+  "feature_dag_deterministic": true,
+  "ml_regime_deterministic_ok": true,
+  "no_future_leakage_ok": true
+}

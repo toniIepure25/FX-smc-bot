@@ -3,7 +3,13 @@
   "block_length_days": 5,
   "bootstrap": "stationary_block_bootstrap",
   "bootstrap_iterations": 999,
-  "denominator_policy": "global candidate-equivalent denominator = ADMITTED_EXECUTABLE V3 candidates + inherited V1/V2 lineage; rejected-pre-outcome specs never inflate it; frozen before outcome evaluation.",
+  "denominator_exposure": {
+    "authority": "universes.py (counts derived from compiler + composition, not assumed)",
+    "cross_version_multiplicity": "program_level_sequential (universe_D lineage)",
+    "executable_multiple_testing": "universe_A",
+    "price_alpha_analysis": "universe_B"
+  },
+  "denominator_policy": "the executable multiple-testing matrix consumes claim-class universe A (executable scientific-alpha candidates) ONLY; price-alpha-only candidates (universe B) are analysed separately against |B| and can never be executable survivors; V1/V2 historical candidates are NOT columns in the V3 matrix and are controlled by the program-level sequential procedure (see program_protocol.py). Rejected-pre-outcome specs never inflate any universe; all counts are frozen pre-outcome (see universes.py).",
   "false_discovery": [
     "Holm",
     "BH-FDR"
@@ -18,7 +24,7 @@
     "consistency_rule": "a candidate is significant only if it passes candidate-, family-, domain- and global-level control simultaneously",
     "domain_level": "BH-FDR across family-level gatekeeper p-values within a domain",
     "family_level_gatekeeper": "Romano-Wolf step-down within family; family eligible only if >=1 candidate significant at family FWER",
-    "global_level": "White Reality Check + Hansen SPA over the full admitted candidate matrix; global FWER bound over the frozen denominator"
+    "global_level": "White Reality Check + Hansen SPA over the executable candidate matrix (claim-class universe A only); global FWER bound over the frozen denominator |A|"
   },
   "hierarchy": [
     "global",
@@ -35,7 +41,7 @@
     "CSCV PBO"
   ],
   "primary_return_unit": "daily_strategy_net_pnl_bps_by_ny_exit_date",
-  "protocol_hash": "b9f6bbf58c6fa11bc4cb8b4b69edd86b54c3f631b3c7f2dfac4da0b1bd973aca",
+  "protocol_hash": "cde77f9d333eceac2ae795a1f140c1666e3ec01b5172386134c093c01c5cdcef",
   "risk_adjusted": [
     "PSR",
     "DSR"

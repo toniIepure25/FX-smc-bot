@@ -1,0 +1,241 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "2018_plus_provider_requests_blocked": 0,
+  "2018_plus_provider_requests_issued": 0,
+  "artifact_id": "V3_DATA_MANIFEST_V1",
+  "canonicalizer_version": "v3_m1_canonicalizer_1",
+  "certified_partition_count": 4,
+  "data_manifest_hash": "d7c34acb79965485934e0e1bed8fe0a458912d6cbaa2b53fe4f4dfe26a219894",
+  "exposure_semantics": "DOWNLOAD+PARSE+INTEGRITY_INSPECTION != OUTCOME_EXPOSED",
+  "firewall_audit": {
+    "2018_plus_market_or_outcome_files_opened": 0,
+    "2018_plus_provider_requests_issued": 0,
+    "artifact_id": "V3_HOLDOUT_FIREWALL_AUDIT_V1",
+    "covers": [
+      "file_reads",
+      "provider_network_requests"
+    ],
+    "file_audit": {
+      "2018_plus_market_or_outcome_files_opened": 0,
+      "artifact_id": "A0R4_HOLDOUT_FIREWALL_AUDIT_V1",
+      "blocked_attempt_count": 0,
+      "blocked_attempts": [],
+      "holdout_year_floor": 2018,
+      "opened_2018_plus_market_or_outcome_files": [],
+      "opened_bytes": 0,
+      "opened_file_count": 0,
+      "opened_files": []
+    },
+    "holdout_date_floor": "2018-01-01",
+    "holdout_year_floor": 2018,
+    "network_audit": {
+      "2018_plus_provider_requests_issued": 0,
+      "artifact_id": "V3_NETWORK_FIREWALL_AUDIT_V1",
+      "blocked_request_count": 0,
+      "blocked_requests": [],
+      "holdout_date_floor": "2018-01-01",
+      "permitted_request_count": 16
+    }
+  },
+  "full_plan": {
+    "instrument_years": 104,
+    "reason": "provider 503-throttle over corporate proxy; ~649k requests needed; bounded resumable background operation for a later/unthrottled run.",
+    "status": "PENDING_BULK_ACQUISITION",
+    "total_monthly_partitions": 2496
+  },
+  "parser_version": "v3_bi5_parser_1",
+  "provider": "dukascopy_datafeed",
+  "sample_partitions": [
+    {
+      "certifications": {
+        "ask": {
+          "acquisition_status": "CERTIFIED",
+          "artifact_id": "V3_PARTITION_CERT_V1",
+          "canonical_bytes": 64,
+          "canonical_checksum": "846e3a93bf6b137bd030c05d10c38216a95cbd1f7120cec4458282aa8160bf65",
+          "canonicalizer_version": "v3_m1_canonicalizer_1",
+          "day": 10,
+          "exposure_note": "DOWNLOAD+PARSE+INTEGRITY_INSPECTION only; NOT OUTCOME_EXPOSED.",
+          "instrument": "EURUSD",
+          "integrity_audit": {
+            "bid_ask_ordering_violations": 0,
+            "bid_ask_valid": true,
+            "duplicate_timestamps": 0,
+            "jpy_pair": false,
+            "missing_minutes_in_span": 0,
+            "price_envelope": [
+              0.3,
+              3.0
+            ],
+            "price_scale": 100000,
+            "scaling_plausibility_ok": true
+          },
+          "month": 6,
+          "parser_version": "v3_bi5_parser_1",
+          "provider": "dukascopy_datafeed",
+          "request_identity": {
+            "url_count": 8,
+            "urls_sha256": "58fa548419eaa88ee364353ab2ea70909e770b921b67f0b8d2a0e015b5315ac6"
+          },
+          "row_count": 480,
+          "side": "ask",
+          "source_bytes": 207499,
+          "source_checksum": "d537e76abc3f6a11c8a4253daa43bbd36f6c40be2760c6dceffeffefdcb3345c",
+          "timestamp_bounds": {
+            "end": "2014-06-10T15:59:00+00:00",
+            "start": "2014-06-10T08:00:00+00:00"
+          },
+          "year": 2014
+        },
+        "bid": {
+          "acquisition_status": "CERTIFIED",
+          "artifact_id": "V3_PARTITION_CERT_V1",
+          "canonical_bytes": 64,
+          "canonical_checksum": "b74d14435d43d97032e14e14d8ae8e433e1253d61e03c364c97e1173b142f761",
+          "canonicalizer_version": "v3_m1_canonicalizer_1",
+          "day": 10,
+          "exposure_note": "DOWNLOAD+PARSE+INTEGRITY_INSPECTION only; NOT OUTCOME_EXPOSED.",
+          "instrument": "EURUSD",
+          "integrity_audit": {
+            "bid_ask_ordering_violations": 0,
+            "bid_ask_valid": true,
+            "duplicate_timestamps": 0,
+            "jpy_pair": false,
+            "missing_minutes_in_span": 0,
+            "price_envelope": [
+              0.3,
+              3.0
+            ],
+            "price_scale": 100000,
+            "scaling_plausibility_ok": true
+          },
+          "month": 6,
+          "parser_version": "v3_bi5_parser_1",
+          "provider": "dukascopy_datafeed",
+          "request_identity": {
+            "url_count": 8,
+            "urls_sha256": "58fa548419eaa88ee364353ab2ea70909e770b921b67f0b8d2a0e015b5315ac6"
+          },
+          "row_count": 480,
+          "side": "bid",
+          "source_bytes": 207499,
+          "source_checksum": "d537e76abc3f6a11c8a4253daa43bbd36f6c40be2760c6dceffeffefdcb3345c",
+          "timestamp_bounds": {
+            "end": "2014-06-10T15:59:00+00:00",
+            "start": "2014-06-10T08:00:00+00:00"
+          },
+          "year": 2014
+        }
+      },
+      "hours_ok": 8,
+      "hours_requested": 8,
+      "instrument": "EURUSD",
+      "m1_bars": 480
+    },
+    {
+      "certifications": {
+        "ask": {
+          "acquisition_status": "CERTIFIED",
+          "artifact_id": "V3_PARTITION_CERT_V1",
+          "canonical_bytes": 64,
+          "canonical_checksum": "aa8e934ac70d44ede6396587d360f37a0401194387adde8e7d11aef185f9d68e",
+          "canonicalizer_version": "v3_m1_canonicalizer_1",
+          "day": 10,
+          "exposure_note": "DOWNLOAD+PARSE+INTEGRITY_INSPECTION only; NOT OUTCOME_EXPOSED.",
+          "instrument": "USDJPY",
+          "integrity_audit": {
+            "bid_ask_ordering_violations": 0,
+            "bid_ask_valid": true,
+            "duplicate_timestamps": 0,
+            "jpy_pair": true,
+            "missing_minutes_in_span": 0,
+            "price_envelope": [
+              50.0,
+              200.0
+            ],
+            "price_scale": 1000,
+            "scaling_plausibility_ok": true
+          },
+          "month": 6,
+          "parser_version": "v3_bi5_parser_1",
+          "provider": "dukascopy_datafeed",
+          "request_identity": {
+            "url_count": 8,
+            "urls_sha256": "e42260c829eb94e98e543f2546e1ec86bc2df5818ca7fea15c9959ead92bb1db"
+          },
+          "row_count": 480,
+          "side": "ask",
+          "source_bytes": 119816,
+          "source_checksum": "0dd77544542569319b14042226f01ac4733d4fa3fc381772b6257a4aad2f10f3",
+          "timestamp_bounds": {
+            "end": "2014-06-10T15:59:00+00:00",
+            "start": "2014-06-10T08:00:00+00:00"
+          },
+          "year": 2014
+        },
+        "bid": {
+          "acquisition_status": "CERTIFIED",
+          "artifact_id": "V3_PARTITION_CERT_V1",
+          "canonical_bytes": 64,
+          "canonical_checksum": "bb0628ab6ab10ac8f3403fc533a9de2b3d306a35198fcb0497e33daa386ae893",
+          "canonicalizer_version": "v3_m1_canonicalizer_1",
+          "day": 10,
+          "exposure_note": "DOWNLOAD+PARSE+INTEGRITY_INSPECTION only; NOT OUTCOME_EXPOSED.",
+          "instrument": "USDJPY",
+          "integrity_audit": {
+            "bid_ask_ordering_violations": 0,
+            "bid_ask_valid": true,
+            "duplicate_timestamps": 0,
+            "jpy_pair": true,
+            "missing_minutes_in_span": 0,
+            "price_envelope": [
+              50.0,
+              200.0
+            ],
+            "price_scale": 1000,
+            "scaling_plausibility_ok": true
+          },
+          "month": 6,
+          "parser_version": "v3_bi5_parser_1",
+          "provider": "dukascopy_datafeed",
+          "request_identity": {
+            "url_count": 8,
+            "urls_sha256": "e42260c829eb94e98e543f2546e1ec86bc2df5818ca7fea15c9959ead92bb1db"
+          },
+          "row_count": 480,
+          "side": "bid",
+          "source_bytes": 119816,
+          "source_checksum": "0dd77544542569319b14042226f01ac4733d4fa3fc381772b6257a4aad2f10f3",
+          "timestamp_bounds": {
+            "end": "2014-06-10T15:59:00+00:00",
+            "start": "2014-06-10T08:00:00+00:00"
+          },
+          "year": 2014
+        }
+      },
+      "hours_ok": 8,
+      "hours_requested": 8,
+      "instrument": "USDJPY",
+      "m1_bars": 480
+    }
+  ],
+  "sample_scope": {
+    "date": "2014-06-10",
+    "granularity": "M1_BIDASK_OHLC",
+    "hours": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "note": "bounded real sample proving the pipeline; NOT full coverage.",
+    "pairs": [
+      "EURUSD",
+      "USDJPY"
+    ]
+  }
+}

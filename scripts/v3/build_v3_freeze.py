@@ -19,6 +19,7 @@ from fx_smc_bot.research.v3.budget import budget_payload, lineage_payload
 from fx_smc_bot.research.v3.capabilities import capability_matrix_payload
 from fx_smc_bot.research.v3.compiler import compiler_payload
 from fx_smc_bot.research.v3.composition import composition_grammar_payload
+from fx_smc_bot.research.v3.evidence import evidence_payload
 from fx_smc_bot.research.v3.execution_contract import (
     execution_contract_payload,
     financing_contract_payload,
@@ -30,8 +31,11 @@ from fx_smc_bot.research.v3.firewall import V3HoldoutFirewall
 from fx_smc_bot.research.v3.freeze import build_freeze
 from fx_smc_bot.research.v3.horizons import horizons_payload
 from fx_smc_bot.research.v3.parameters import parameters_payload
+from fx_smc_bot.research.v3.portfolio import portfolio_payload
+from fx_smc_bot.research.v3.program_protocol import program_protocol_payload
 from fx_smc_bot.research.v3.statistics import statistical_protocol_payload
 from fx_smc_bot.research.v3.survivor import survivor_predicates_payload
+from fx_smc_bot.research.v3.universes import universes_payload
 
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "results" / "gate_v3f"
@@ -157,6 +161,10 @@ def main() -> int:
     _write("parameter_scales.json", parameters_payload())
     _write("execution_contract.json", execution_contract_payload())
     _write("financing_contract.json", financing_contract_payload())
+    _write("portfolio_contract.json", portfolio_payload())
+    _write("program_protocol.json", program_protocol_payload())
+    _write("claim_class_universes.json", universes_payload())
+    _write("readiness_evidence.json", evidence_payload())
     _write("statistical_protocol.json", statistical_protocol_payload())
     _write("survivor_predicates.json", survivor_predicates_payload())
     _write("candidate_budget.json", budget_payload())

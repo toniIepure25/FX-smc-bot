@@ -1,0 +1,48 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "2018_plus_provider_requests_issued": 0,
+  "artifact_id": "V3_DATA_CERTIFICATION_GATE_V1",
+  "built_at": "2026-08-14T07:10:23.373084+00:00",
+  "conditions": {
+    "denominator_semantics_unambiguous": true,
+    "deterministic_data_manifests_reproduce": true,
+    "every_required_unit_certified_or_excluded": false,
+    "freeze_identities_correct": true,
+    "frozen_data_dependencies_satisfiable_in_plan": true,
+    "no_2018_plus_reads": true,
+    "no_2018_plus_requests": true,
+    "no_orphan_acquisition_processes": true,
+    "no_strategy_outcome_or_pnl_computed": true,
+    "readiness_checks_evidence_derived": true,
+    "tests_ruff_mypy_schema_gitdiff_pass": true
+  },
+  "conditions_passed": 10,
+  "conditions_total": 11,
+  "coverage": {
+    "certified_units": 0,
+    "coverage_complete": false,
+    "pending_units": 2496,
+    "prospectively_excluded_units": 0,
+    "required_units": 2496,
+    "sample_day_partitions_certified": 4,
+    "sample_note": "a 1-day, 2-pair (EURUSD/USDJPY) real M1 sample is certified end-to-end, proving the pipeline; no complete monthly partition is certified yet."
+  },
+  "data_manifest_hash": "d7c34acb79965485934e0e1bed8fe0a458912d6cbaa2b53fe4f4dfe26a219894",
+  "discovery_run_in_this_session": false,
+  "evidence": {
+    "denominator_unambiguous": true,
+    "dependencies_satisfiable_in_plan": true,
+    "freeze_identities_correct": true,
+    "manifests_reproduce": true,
+    "no_2018_reads": true,
+    "no_2018_requests": true,
+    "no_orphan_processes": true,
+    "no_outcome_computed": true,
+    "quality_gates_pass": true,
+    "readiness_evidence_derived": true
+  },
+  "gate_hash": "14e202e93ef1b864f766132380c231f77ab77a16f6ffef86439cc9f725655a8b",
+  "next_gate": "COMPLETE_BULK_PRE_2018_ACQUISITION",
+  "remaining_external_step": "complete bulk pre-2018 acquisition (13 instruments x 2010-2017); bounded, resumable; blocked this session only by provider 503-throttle over the corporate proxy. All non-data conditions already pass.",
+  "verdict": "V3_DATA_CERTIFICATION_IN_PROGRESS_BULK_ACQUISITION_PENDING"
+}

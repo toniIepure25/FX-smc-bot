@@ -1,0 +1,35 @@
+{
+  "artifact_id": "V3_MAC_REAL_BENCHMARKS_V1",
+  "concurrency_recommendation": {
+    "blas_threads_per_worker": 1,
+    "cpu_bound_workers": 8,
+    "note": "cross-pair panel families are the memory driver; single-pair families tolerate more workers. Prefer per-family-class concurrency.",
+    "policy": "adaptive_bounded: start at recommended, monitor RSS/pressure, scale down on pressure; never oversubscribe BLAS (threads=1/worker); no swap.",
+    "ram_bound_workers": 1,
+    "recommended_heavy_workers": 1
+  },
+  "extrapolated_per_worker_full_dev_gib": 6.13,
+  "fits_within_16gib": true,
+  "logical_cpus": 10,
+  "machine": "Mac17,4",
+  "memory_pressure": "System-wide memory free percentage: 51%",
+  "peak_rss_gib_1y_panel": 0.766,
+  "ram_gib": 16.0,
+  "real_bars_per_pair": 480,
+  "representative_scale": {
+    "development_years": 8,
+    "instrument_year_bars": 374400,
+    "panel_instruments": 13
+  },
+  "seeded_from_certified_real_m1": true,
+  "supersedes_synthetic_recommendation_of_6": true,
+  "timings_seconds": {
+    "block_bootstrap_499_374k": 0.4217,
+    "cross_pair_sync_13x374k": 0.0537,
+    "event_execution_374k": 0.0038,
+    "gmm_3comp_1e5x3": 1.1541,
+    "kalman_local_level_374k": 0.0344,
+    "logreg_1e5x3": 0.0289,
+    "single_pair_features_374k": 0.0471
+  }
+}

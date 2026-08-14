@@ -34,8 +34,9 @@ STATISTICAL_PROTOCOL: dict[str, Any] = {
         "family_level_gatekeeper": "Romano-Wolf step-down within family; family eligible "
                                    "only if >=1 candidate significant at family FWER",
         "domain_level": "BH-FDR across family-level gatekeeper p-values within a domain",
-        "global_level": "White Reality Check + Hansen SPA over the full admitted candidate "
-                        "matrix; global FWER bound over the frozen denominator",
+        "global_level": "White Reality Check + Hansen SPA over the executable candidate "
+                        "matrix (claim-class universe A only); global FWER bound over the "
+                        "frozen denominator |A|",
         "consistency_rule": "a candidate is significant only if it passes candidate-, "
                             "family-, domain- and global-level control simultaneously",
     },
@@ -48,10 +49,19 @@ STATISTICAL_PROTOCOL: dict[str, Any] = {
     "block_length_days": 5,
     "seed_policy": "all randomness seeded by a frozen per-test integer seed; no wall-clock",
     "denominator_policy": (
-        "global candidate-equivalent denominator = ADMITTED_EXECUTABLE V3 candidates + "
-        "inherited V1/V2 lineage; rejected-pre-outcome specs never inflate it; frozen "
-        "before outcome evaluation."
+        "the executable multiple-testing matrix consumes claim-class universe A (executable "
+        "scientific-alpha candidates) ONLY; price-alpha-only candidates (universe B) are "
+        "analysed separately against |B| and can never be executable survivors; V1/V2 "
+        "historical candidates are NOT columns in the V3 matrix and are controlled by the "
+        "program-level sequential procedure (see program_protocol.py). Rejected-pre-outcome "
+        "specs never inflate any universe; all counts are frozen pre-outcome (see universes.py)."
     ),
+    "denominator_exposure": {
+        "executable_multiple_testing": "universe_A",
+        "price_alpha_analysis": "universe_B",
+        "cross_version_multiplicity": "program_level_sequential (universe_D lineage)",
+        "authority": "universes.py (counts derived from compiler + composition, not assumed)",
+    },
     "walk_forward": {
         "scheme": "purged_expanding_walk_forward",
         "purge": "label_horizon_bars",

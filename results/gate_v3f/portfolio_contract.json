@@ -1,0 +1,24 @@
+{
+  "artifact_id": "V3_PORTFOLIO_CONTRACT_V1",
+  "concentration_limit_per_family": 0.35,
+  "currencies": [
+    "AUD",
+    "CAD",
+    "CHF",
+    "EUR",
+    "GBP",
+    "JPY",
+    "NZD",
+    "USD"
+  ],
+  "frozen_pre_outcome": true,
+  "max_duplicated_correlated_bets": 2,
+  "max_gross_exposure": 4.0,
+  "max_net_jpy_exposure": 1.5,
+  "max_net_usd_exposure": 2.0,
+  "max_per_currency_exposure": 2.0,
+  "max_simultaneous_positions": 8,
+  "portfolio_hash": "03efc942e3afa6608fc82f537ef4f6444e5a62f77bb2b3f449ef2e1e732e379e",
+  "reporting_rule": "report individual-alpha AND portfolio-combination evidence separately; portfolio construction may not hide a weak individual signal.",
+  "volatility_scaling": "inverse_realized_vol_causal"
+}

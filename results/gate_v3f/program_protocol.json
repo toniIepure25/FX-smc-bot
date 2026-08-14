@@ -1,0 +1,64 @@
+{
+  "artifact_id": "V3_PROGRAM_PROTOCOL_V1",
+  "claim_class_governance": {
+    "authority": "see universes.py; counts derive from the compiler + composition grammar, never assumed.",
+    "hard_rule": "a candidate in universe B can NEVER become an executable scientific survivor; only universe A is eligible for executable survivorship.",
+    "universes": {
+      "A": "executable scientific-alpha candidate universe (FULLY_EXECUTABLE only)",
+      "B": "price-alpha-only research universe (H2/H3 without defensible financing)",
+      "C": "total V3 hypothesis registry = A + B",
+      "D": "historical V1/V2/V3 lineage accounting"
+    }
+  },
+  "denominator_exposure_rule": "every statistical routine must declare the exact universe/denominator it consumes (A for executable multiple-testing; B for price-alpha analysis; D for program-level sequential control); denominators are frozen and cannot be shrunk by a runtime failure, a zero-trade candidate, or any observed outcome.",
+  "discovery_prohibition_in_readiness": {
+    "acquisition_may": [
+      "download",
+      "parse",
+      "integrity_inspect"
+    ],
+    "acquisition_must_not": [
+      "compute_v3_signals",
+      "compute_pnl",
+      "rank",
+      "select"
+    ],
+    "no_small_sample_of_real_v3_pnl": true,
+    "no_v3_pnl": true,
+    "no_v3_signal_or_ranking": true
+  },
+  "freeze_governance": {
+    "hashing": "canonical JSON (sorted keys, no insignificant whitespace) -> sha256; machine/architecture independent.",
+    "immutability": "frozen artifacts are append-only; corrections require a documented pre-outcome integrity rationale and a recomputed freeze hash.",
+    "seed_policy": "all randomness seeded by frozen per-routine integer seeds; no wall-clock."
+  },
+  "frozen_pre_outcome": true,
+  "gate_sequence": [
+    "V1_CLOSED_NO_CERTIFIED_ALPHA",
+    "V2_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR",
+    "V3_ALPHA_DISCOVERY_READY (architecture/protocol freeze)",
+    "V3_DATA_CERTIFIED_DISCOVERY_READY (this gate: data certification)",
+    "V3_ALPHA_DISCOVERY_RUN",
+    "V3_HOLDOUT_CONFIRMATION (2018+; strictly later session only)"
+  ],
+  "holdout_governance": {
+    "confirmation_stage": "deferred to a strictly later session; never in readiness.",
+    "holdout_year_floor": 2018,
+    "rule": "no 2018+ file read and no 2018+ provider request during any readiness stage; both blocked before I/O by the firewall; counters asserted zero."
+  },
+  "mission": "Prospectively freeze a multi-horizon FX alpha-research factory whose executable scientific-alpha universe, price-alpha-only research universe, contracts, feature DAG, statistical protocol and survivor predicates are fixed from methodology alone, before any V3 outcome is evaluated and without opening any 2018+ byte.",
+  "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V3",
+  "program_level_multiplicity_procedure": {
+    "alpha_program": 0.05,
+    "controlled_separately_from_v3_matrix": true,
+    "principle": "V1/V2 historical candidates are NOT injected as imaginary columns into the V3 WRC/SPA matrix (their aligned return series are not part of the V3 evaluation). Cross-version multiplicity is controlled by a separate, frozen, prospective *sequential* procedure at the program level.",
+    "procedure": "sequential family-wise alpha budget across program versions: a fixed program-wide error budget alpha_program = 0.05 is split across versions by a frozen Bonferroni-style allocation over the number of versions that reach outcome evaluation; V3's executable survivor test consumes its allocated slice, evaluated against universe A only.",
+    "v3_allocated_alpha": 0.016666666666666666,
+    "versions_reaching_outcome": [
+      "V1",
+      "V2",
+      "V3"
+    ]
+  },
+  "program_protocol_hash": "e9ce6e6e76d1d2c8e9aa2dc3686c173889b996c2efd16453fdf8896dfa252881"
+}

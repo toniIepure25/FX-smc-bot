@@ -1,0 +1,55 @@
+{
+  "artifact_id": "V3_CLAIM_CLASS_UNIVERSES_V1",
+  "denominator_exposure": {
+    "bh_fdr": "A",
+    "cscv_pbo": "A",
+    "dsr": "A",
+    "hansen_spa": "A",
+    "holm": "A",
+    "price_alpha_descriptive": "B",
+    "program_level_sequential": "D",
+    "psr": "A",
+    "romano_wolf": "A",
+    "white_reality_check": "A"
+  },
+  "shrink_invariant": "no runtime failure / zero-trade / outcome can shrink a frozen universe; counts are pure functions of the frozen registries.",
+  "universe_A_executable_alpha": {
+    "composition": 72,
+    "consumed_by": [
+      "white_reality_check",
+      "hansen_spa",
+      "romano_wolf",
+      "holm",
+      "bh_fdr",
+      "psr",
+      "dsr",
+      "cscv_pbo"
+    ],
+    "count": 992,
+    "definition": "FULLY_EXECUTABLE standalone + composition candidates",
+    "eligible_for_executable_survivorship": true,
+    "standalone": 920
+  },
+  "universe_B_price_alpha_only": {
+    "composition": 12,
+    "consumed_by": [
+      "price_alpha_descriptive"
+    ],
+    "count": 52,
+    "definition": "H2/H3 PRICE_ALPHA_ONLY standalone + composition candidates",
+    "eligible_for_executable_survivorship": false,
+    "standalone": 40
+  },
+  "universe_C_total_v3_registry": {
+    "count": 1044,
+    "definition": "A + B (disjoint)"
+  },
+  "universe_D_lineage_accounting": {
+    "V1_evaluated": 8,
+    "V2_evaluated": 336,
+    "V3_executable_alpha": 992,
+    "V3_total_registry": 1044,
+    "cumulative_program_candidate_equivalent": 1388,
+    "rule": "V1/V2 candidates are NOT columns in the V3 WRC/SPA matrix; cross-version multiplicity is controlled by the program-level sequential procedure (alpha_program=0.05 split across V1/V2/V3)."
+  }
+}
