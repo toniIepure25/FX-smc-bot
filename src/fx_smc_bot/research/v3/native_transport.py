@@ -115,6 +115,43 @@ def tick_m1_day(ticks: list[Tick]) -> list[dict[str, Any]]:
     return aggregate_m1(ticks)
 
 
+_SIDE_OHLC = ("bid_open", "bid_high", "bid_low", "bid_close",
+              "ask_open", "ask_high", "ask_low", "ask_close")
+
+
+def fill_session_grid(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Canonical empty-minute policy: flat carry-forward for no-tick minutes.
+
+    Dukascopy native M1 candles are emitted on a regular full-minute grid (no-tick minutes are
+    flat carry-forward bars, O=H=L=C=last close); the tick->M1 aggregation instead omits
+    no-tick minutes. On liquid sessions every minute has ticks so the two coincide, but on thin
+    sessions (Sunday-open / Friday-close) they differ in row PRESENCE only -- prices are
+    identical on every real minute. The canonical M1 standard adopts the native full-grid
+    convention (a regular time grid). This function makes any series canonical-consistent by
+    flat-filling missing minutes within [min, max]; it changes no price and is idempotent on an
+    already-full grid. This is a canonicalizer definition, NOT a quote-precision tolerance.
+    """
+
+    if not rows:
+        return rows
+    by = {r["timestamp"]: r for r in rows}
+    lo, hi = min(by), max(by)
+    out: list[dict[str, Any]] = []
+    last: dict[str, Any] | None = None
+    for ts in range(lo, hi + 60000, 60000):
+        if ts in by:
+            last = by[ts]
+            out.append(last)
+        elif last is not None:
+            flat = {"timestamp": ts}
+            for side in ("bid", "ask"):
+                c = last[f"{side}_close"]
+                flat[f"{side}_open"] = flat[f"{side}_high"] = flat[f"{side}_low"] = c
+                flat[f"{side}_close"] = c
+            out.append(flat)
+    return out
+
+
 # --------------------------------------------------------------------------------------
 # Parity comparison under the FROZEN contract above.
 # --------------------------------------------------------------------------------------
@@ -144,6 +181,15 @@ def parity_contract() -> dict[str, Any]:
         "comparison_window": "the common covered minute window [max(min), min(max)] of the two "
                              "series; within it, minute sets and canonical values must match. "
                              "This handles partial references and does NOT loosen price equality.",
+        "empty_minute_canonicalization": (
+            "canonical M1 uses the native full-minute grid: no-tick minutes are flat "
+            "carry-forward bars (O=H=L=C=last close). Both transports are canonicalized to this "
+            "grid (fill_session_grid) before comparison. This is a parser/canonicalizer "
+            "definition motivated by the primary native transport's structure; it aligns row "
+            "PRESENCE only and does not change any price or the quote-precision tolerance. "
+            "Defined after diagnosing a Sunday-open row-presence difference whose prices already "
+            "matched exactly (0 precision mismatches)."
+        ),
         "no_loose_tolerance_after_results": True,
         "no_strategy_or_pnl_comparison": True,
     }
@@ -162,8 +208,10 @@ def compare_parity(
         return {"verdict": PARITY_MISSING_TICK}
 
     dec = decimals_for(instrument)
-    nat_all = {r["timestamp"]: r for r in native_rows}
-    tk_all = {r["timestamp"]: r for r in tick_rows}
+    # Canonicalize both series to the full-minute grid (native empty-minute policy) so row
+    # presence is compared apples-to-apples; prices are unchanged.
+    nat_all = {r["timestamp"]: r for r in fill_session_grid(native_rows)}
+    tk_all = {r["timestamp"]: r for r in fill_session_grid(tick_rows)}
     # Compare on the COMMON covered minute window (declared pre-result): partial references
     # must not be penalised for coverage span. Price equality is unchanged (quote precision).
     if not nat_all or not tk_all:

@@ -2,19 +2,18 @@
   "2018_plus_market_or_outcome_files_opened": 0,
   "2018_plus_provider_requests_issued": 0,
   "artifact_id": "V3_DATA_CERTIFICATION_GATE_V1",
-  "built_at": "2026-08-14T08:33:00.916855+00:00",
+  "built_at": "2026-08-14T19:44:52.402791+00:00",
   "bulk_acquisition_state": {
-    "certified_native": 4,
+    "certified_native": 3,
     "certified_tick_fallback": 0,
-    "certified_units": 4,
+    "certified_units": 3,
     "counts_by_status": {
-      "CERTIFIED_NATIVE": 4,
-      "PLANNED": 2081,
-      "RETRYABLE": 1
+      "CERTIFIED_NATIVE": 3,
+      "PLANNED": 2501
     },
     "coverage_complete": false,
-    "pending_units": 2082,
-    "total_units": 2086
+    "pending_units": 2501,
+    "total_units": 2504
   },
   "conditions": {
     "denominator_semantics_unambiguous": true,
@@ -34,9 +33,9 @@
   "coverage": {
     "certified_units": 0,
     "coverage_complete": false,
-    "native_day_units_certified": 4,
-    "native_day_units_pending": 27114,
-    "native_day_units_total": 27118,
+    "native_day_units_certified": 3,
+    "native_day_units_pending": 32549,
+    "native_day_units_total": 32552,
     "pending_units": 2496,
     "prospectively_excluded_units": 0,
     "required_units": 2496,
@@ -57,24 +56,54 @@
     "quality_gates_pass": true,
     "readiness_evidence_derived": true
   },
-  "gate_hash": "ccd821896c73fdb13702256b1c48b877f8088352b4668d088aeb5e44d05c1153",
+  "fx_weekly_calendar_contract": {
+    "hash": "1281d80b765dc97b357a52f7312e4392a9d84411a41108466cdda59a0b6fe22b",
+    "rule": "trading date iff weekday != Saturday; Sunday partial (evening open), Mon-Thu full, Friday partial (evening close); DST-aware via zoneinfo.",
+    "session_class_counts_per_instrument": {
+      "FULL_SESSION": 1668,
+      "PARTIAL_FRIDAY_CLOSE": 418,
+      "PARTIAL_SUNDAY_OPEN": 418
+    }
+  },
+  "gate_hash": "ef72ce9c2567d41317f6e53f8c64ca6427560d3636addc752284f52ec36558c9",
   "native_plan": {
-    "day_units_total": 27118,
+    "day_units_total": 32552,
     "monthly_canonical_partitions": 2496,
-    "native_requests_planned": 54236,
-    "old_tick_requests_equivalent": 650832,
+    "native_requests_planned": 65104,
+    "old_tick_requests_equivalent": 781248,
     "request_reduction_vs_tick": "12.0x fewer requests than the tick path"
   },
   "native_transport": {
     "certification": {
       "native_primary": true,
-      "rule": "certify only if >=2 units have both transports AND zero FAIL under the frozen quote-precision contract.",
+      "rule": "certify fleet-wide only if all 13 instruments pass, both scaling classes pass, full/Sunday-open/Friday-close session classes pass, and zero FAIL under the frozen quote-precision contract.",
       "tick_fallback_role": "deterministic per-day fallback only",
-      "verdict": "V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED"
+      "verdict": "V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED_FLEET_WIDE"
     },
+    "fleet_instruments_covered": [
+      "AUDJPY",
+      "AUDUSD",
+      "EURCHF",
+      "EURGBP",
+      "EURJPY",
+      "EURUSD",
+      "GBPCHF",
+      "GBPJPY",
+      "GBPUSD",
+      "NZDUSD",
+      "USDCAD",
+      "USDCHF",
+      "USDJPY"
+    ],
+    "fleet_instruments_missing": [],
+    "fleet_session_classes": [
+      "FULL_SESSION",
+      "PARTIAL_FRIDAY_CLOSE",
+      "PARTIAL_SUNDAY_OPEN"
+    ],
     "parity_fail_units": 0,
-    "parity_hash": "cd5f2c68c1dd8c8042ede5e3fe609f85ede59729f5ce92c011b7b200e6b1e13d",
-    "parity_pass_units": 4
+    "parity_hash": "d6abefac2c64246d27dfdad074743569445a79ba000c3c7fcae57013e146e9ac",
+    "parity_pass_units": 16
   },
   "next_gate": "COMPLETE_BULK_PRE_2018_ACQUISITION",
   "remaining_external_step": "complete bulk pre-2018 acquisition (13 instruments x 2010-2017); bounded, resumable; blocked this session only by provider 503-throttle over the corporate proxy. All non-data conditions already pass.",

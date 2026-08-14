@@ -21,6 +21,8 @@ from enum import Enum
 from pathlib import Path
 from typing import Any
 
+from fx_smc_bot.research.v3.fx_calendar import is_market_closed_calendar
+
 
 class UnitStatus(str, Enum):
     PLANNED = "PLANNED"
@@ -106,11 +108,15 @@ class StateStore:
         k = self.key(instrument, d)
         if k in self.units:
             return
-        status = UnitStatus.TERMINAL_DATA_ABSENT if is_weekend(d) else UnitStatus.PLANNED
+        # Deterministic FX weekly-session calendar: ONLY Saturday is fully closed. Sunday is a
+        # legitimate (partial) trading date; Friday is a partial-close trading date. Closure is
+        # never inferred from provider silence.
+        closed = is_market_closed_calendar(d)
+        status = UnitStatus.TERMINAL_DATA_ABSENT if closed else UnitStatus.PLANNED
         self.units[k] = UnitRecord(
             instrument=instrument, day=d.isoformat(), status=status.value,
             transport=None,
-            fallback_reason="weekend_calendar_rule" if is_weekend(d) else None,
+            fallback_reason="saturday_calendar_closure" if closed else None,
         )
 
     def transition(self, instrument: str, d: date | str, new: UnitStatus, **fields: Any) -> None:

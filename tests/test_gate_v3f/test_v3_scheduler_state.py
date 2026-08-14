@@ -99,15 +99,21 @@ def test_native_plan_reduces_requests() -> None:
     assert c["monthly_canonical_partitions"] == 2496
 
 
-def test_plan_units_are_pre_2018_weekdays_only() -> None:
+def test_plan_units_are_pre_2018_fx_trading_dates() -> None:
+    # Corrected FX weekly calendar: plan includes Sunday partial sessions (weekday 6) but
+    # NEVER Saturday (weekday 5, fully closed), and is strictly pre-2018.
     seen_years = set()
-    weekend = 0
+    saturdays = 0
+    sundays = 0
     for i, (_inst, d) in enumerate(native_plan.iter_units()):
         assert d.year < 2018
-        if d.weekday() >= 5:
-            weekend += 1
+        if d.weekday() == 5:
+            saturdays += 1
+        if d.weekday() == 6:
+            sundays += 1
         seen_years.add(d.year)
         if i > 5000:
             break
-    assert weekend == 0
+    assert saturdays == 0        # Saturday is the only fully-closed weekday-type
+    assert sundays > 0           # Sunday partial sessions are legitimate trading dates
     assert seen_years <= {2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017}

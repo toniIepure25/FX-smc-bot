@@ -93,3 +93,35 @@ one state file.
 Prefer running on a normal permitted network (not the intercepting proxy) for materially higher
 throughput. Canonical data and state live under git-ignored `data/`; only code and lightweight
 manifests are committed.
+
+## Fleet-wide certification + FX calendar correction (this gate)
+
+**Verdict:** `V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED_FLEET_WIDE` — 16 parity units, **0 FAIL**, all
+13 instruments, both scaling classes (JPY/non-JPY), majors + crosses, early (2010–2011) and
+late (2016–2017) epochs, and every session class (full / Sunday-open / Friday-close /
+DST-adjacent). On every real (ticked) minute native M1 equals tick→M1 exactly at the frozen
+quote precision (0 precision mismatches).
+
+**FX weekly-session calendar fix.** The plan previously enumerated weekdays only. Corrected to
+the deterministic America/New_York contract (`fx_calendar.py`): the week opens **Sunday 17:00
+ET** and closes **Friday 17:00 ET**; only **Saturday** is fully closed. Sunday-open and
+Friday-close are legitimate **partial** trading dates. Result: **2504 trading dates/instrument
+(1668 full + 418 Sunday + 418 Friday)** → **32,552 day-units / 65,104 native requests** (was
+2086 / 27,118 / 54,236). Closure is never inferred from provider silence (503/timeout/404 →
+RETRYABLE; only the calendar declares closure).
+
+**Empty-minute canonicalization (diagnosed, then frozen).** The Sunday-open unit initially
+FAILed with **0 price mismatches** — a pure *row-presence* difference: Dukascopy native M1 emits
+a full 1440-minute grid (no-tick minutes are flat carry-forward bars) while tick→M1 omits
+no-tick minutes. The canonical M1 standard adopts the native full-grid convention
+(`fill_session_grid`, flat carry-forward), applied uniformly to both transports before
+comparison and to the tick fallback. This is a parser/canonicalizer definition motivated by the
+primary transport's structure; it changes no price and does not touch the quote-precision
+tolerance. After it, the Sunday-open, Friday-close and DST-adjacent units all PASS_EXACT.
+
+**Terminal data verdict:** `V3_DATA_CERTIFICATION_IN_PROGRESS_BULK_ACQUISITION_PENDING`. The
+transport is fleet-certified and the durable runner is validated (incl. a real Sunday session,
+2010-01-03), but full 32,552-day-unit coverage is a multi-week throttled run — handed off via
+[`BULK_ACQUISITION_RUNBOOK.md`](BULK_ACQUISITION_RUNBOOK.md). `V3_DATA_CERTIFIED_DISCOVERY_READY`
+is reached only when every planned unit has a legitimate final classification and every monthly
+partition is certified.

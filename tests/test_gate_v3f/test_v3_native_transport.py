@@ -83,3 +83,31 @@ def test_parity_contract_is_precision_locked() -> None:
     assert c["frozen_quote_precision"] == {"jpy_decimals": 3, "nonjpy_decimals": 5}
     assert c["no_loose_tolerance_after_results"] is True
     assert c["no_strategy_or_pnl_comparison"] is True
+
+
+def test_fill_session_grid_flat_carry_forward() -> None:
+    from fx_smc_bot.research.v3 import native_transport as nt
+    rows = [
+        {"timestamp": 0, "bid_open": 1.1, "bid_high": 1.1, "bid_low": 1.1, "bid_close": 1.1,
+         "ask_open": 1.2, "ask_high": 1.2, "ask_low": 1.2, "ask_close": 1.2},
+        # minute 60000 missing (no ticks)
+        {"timestamp": 120000, "bid_open": 1.3, "bid_high": 1.3, "bid_low": 1.3, "bid_close": 1.3,
+         "ask_open": 1.4, "ask_high": 1.4, "ask_low": 1.4, "ask_close": 1.4},
+    ]
+    filled = nt.fill_session_grid(rows)
+    assert [r["timestamp"] for r in filled] == [0, 60000, 120000]
+    gap = filled[1]
+    assert gap["bid_open"] == gap["bid_high"] == gap["bid_low"] == gap["bid_close"] == 1.1
+    # idempotent on an already-full grid
+    assert nt.fill_session_grid(filled) == filled
+
+
+def test_parity_passes_when_only_empty_minutes_differ() -> None:
+    from fx_smc_bot.research.v3 import native_transport as nt
+    full = [
+        {"timestamp": t, "bid_open": 1.1, "bid_high": 1.1, "bid_low": 1.1, "bid_close": 1.1,
+         "ask_open": 1.2, "ask_high": 1.2, "ask_low": 1.2, "ask_close": 1.2}
+        for t in (0, 60000, 120000)
+    ]
+    sparse = [full[0], full[2]]  # native has the middle minute (flat), tick omits it
+    assert nt.compare_parity(full, sparse, "EURUSD")["verdict"] == nt.PARITY_PASS_EXACT

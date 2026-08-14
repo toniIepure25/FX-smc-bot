@@ -20,6 +20,7 @@ from fx_smc_bot.research.v3.acquisition import acquisition_plan_payload
 from fx_smc_bot.research.v3.acquisition_state import StateStore
 from fx_smc_bot.research.v3.data_gate import build_gate, gate_hash
 from fx_smc_bot.research.v3.evidence import evidence_payload
+from fx_smc_bot.research.v3.fx_calendar import fx_calendar_hash, fx_calendar_payload
 from fx_smc_bot.research.v3.native_plan import native_plan_payload
 from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
 from fx_smc_bot.research.v3.statistics import statistics_hash
@@ -112,6 +113,15 @@ def main() -> int:
     )
     gate["data_manifest_hash"] = manifest["data_manifest_hash"]
 
+    # --- corrected FX weekly-session calendar contract (this gate) ---
+    gate["fx_weekly_calendar_contract"] = {
+        "hash": fx_calendar_hash(),
+        "rule": fx_calendar_payload()["rule"],
+        "session_class_counts_per_instrument": native_plan_payload()[
+            "session_class_counts_per_instrument"
+        ],
+    }
+
     # --- native transport certification + rebuilt native plan (this gate) ---
     parity = _maybe_load("native_parity_panel.json")
     native_plan = native_plan_payload()
@@ -119,6 +129,9 @@ def main() -> int:
         "certification": (parity["transport_certification"] if parity else None),
         "parity_pass_units": (parity["pass_units"] if parity else 0),
         "parity_fail_units": (parity["fail_units"] if parity else 0),
+        "fleet_instruments_covered": (parity.get("instruments_covered") if parity else None),
+        "fleet_instruments_missing": (parity.get("instruments_missing") if parity else None),
+        "fleet_session_classes": (parity.get("session_classes_covered") if parity else None),
         "parity_hash": (parity["panel_hash"] if parity else None),
     }
     gate["native_plan"] = {

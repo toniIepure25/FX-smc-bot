@@ -1,10 +1,28 @@
 {
   "2018_plus_market_or_outcome_files_opened": 0,
   "2018_plus_provider_requests_issued": 0,
-  "artifact_id": "V3_NATIVE_PARITY_PANEL_V1",
+  "artifact_id": "V3_NATIVE_PARITY_PANEL_FLEET_V1",
   "fail_units": 0,
-  "panel_hash": "cd5f2c68c1dd8c8042ede5e3fe609f85ede59729f5ce92c011b7b200e6b1e13d",
-  "panel_size": 4,
+  "instruments_covered": [
+    "AUDJPY",
+    "AUDUSD",
+    "EURCHF",
+    "EURGBP",
+    "EURJPY",
+    "EURUSD",
+    "GBPCHF",
+    "GBPJPY",
+    "GBPUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF",
+    "USDJPY"
+  ],
+  "instruments_missing": [],
+  "jpy_covered": true,
+  "nonjpy_covered": true,
+  "panel_hash": "d6abefac2c64246d27dfdad074743569445a79ba000c3c7fcae57013e146e9ac",
+  "panel_size": 16,
   "parity_contract": {
     "acceptance": {
       "FAIL": "any difference exceeding frozen quote precision, or minute-set mismatch",
@@ -30,6 +48,7 @@
       "nonjpy_scaling"
     ],
     "comparison_window": "the common covered minute window [max(min), min(max)] of the two series; within it, minute sets and canonical values must match. This handles partial references and does NOT loosen price equality.",
+    "empty_minute_canonicalization": "canonical M1 uses the native full-minute grid: no-tick minutes are flat carry-forward bars (O=H=L=C=last close). Both transports are canonicalized to this grid (fill_session_grid) before comparison. This is a parser/canonicalizer definition motivated by the primary native transport's structure; it aligns row PRESENCE only and does not change any price or the quote-precision tolerance. Defined after diagnosing a Sunday-open row-presence difference whose prices already matched exactly (0 precision mismatches).",
     "frozen_quote_precision": {
       "jpy_decimals": 3,
       "nonjpy_decimals": 5
@@ -37,73 +56,406 @@
     "no_loose_tolerance_after_results": true,
     "no_strategy_or_pnl_comparison": true
   },
-  "pass_units": 4,
+  "pass_units": 16,
+  "session_classes_covered": [
+    "FULL_SESSION",
+    "PARTIAL_FRIDAY_CLOSE",
+    "PARTIAL_SUNDAY_OPEN"
+  ],
   "transport_certification": {
     "native_primary": true,
-    "rule": "certify only if >=2 units have both transports AND zero FAIL under the frozen quote-precision contract.",
+    "rule": "certify fleet-wide only if all 13 instruments pass, both scaling classes pass, full/Sunday-open/Friday-close session classes pass, and zero FAIL under the frozen quote-precision contract.",
     "tick_fallback_role": "deterministic per-day fallback only",
-    "verdict": "V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED"
+    "verdict": "V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED_FLEET_WIDE"
   },
   "units": [
     {
       "date": "2014-06-10",
+      "epoch": "mid",
       "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2014-06-10T00:00:00+00:00",
+        "2014-06-11T00:00:00+00:00"
+      ],
       "instrument": "EURUSD",
       "instrument_decimals": 5,
+      "jpy": false,
       "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2014-06-10T00:00:00+00:00",
+        "last": "2014-06-10T23:59:00+00:00",
+        "rows": 1440
+      },
       "native_minutes": 480,
       "precision_field_mismatches": 0,
-      "session_type": "nonjpy_major_london_ny",
+      "session_class": "FULL_SESSION",
       "shared_minutes": 480,
       "tick_minutes": 480,
-      "tick_source": "canonical",
       "verdict": "PASS_EXACT"
     },
     {
       "date": "2014-06-10",
+      "epoch": "mid",
       "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2014-06-10T00:00:00+00:00",
+        "2014-06-11T00:00:00+00:00"
+      ],
       "instrument": "USDJPY",
       "instrument_decimals": 3,
+      "jpy": true,
       "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2014-06-10T00:00:00+00:00",
+        "last": "2014-06-10T23:59:00+00:00",
+        "rows": 1440
+      },
       "native_minutes": 480,
       "precision_field_mismatches": 0,
-      "session_type": "jpy_major_london_ny",
+      "session_class": "FULL_SESSION",
       "shared_minutes": 480,
       "tick_minutes": 480,
-      "tick_source": "canonical",
-      "verdict": "PASS_EXACT"
-    },
-    {
-      "date": "2016-03-08",
-      "exact_field_mismatches": 0,
-      "instrument": "EURJPY",
-      "instrument_decimals": 3,
-      "minute_set_equal": true,
-      "native_minutes": 180,
-      "precision_field_mismatches": 0,
-      "session_type": "jpy_cross_later_year",
-      "shared_minutes": 180,
-      "tick_minutes": 180,
-      "tick_source": "ticks",
       "verdict": "PASS_EXACT"
     },
     {
       "date": "2011-09-14",
+      "epoch": "early",
       "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2011-09-14T00:00:00+00:00",
+        "2011-09-15T00:00:00+00:00"
+      ],
       "instrument": "GBPUSD",
       "instrument_decimals": 5,
+      "jpy": false,
       "minute_set_equal": true,
-      "native_minutes": 180,
+      "native_coverage": {
+        "first": "2011-09-14T00:00:00+00:00",
+        "last": "2011-09-14T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
       "precision_field_mismatches": 0,
-      "session_type": "nonjpy_major_early_year",
-      "shared_minutes": 180,
-      "tick_minutes": 180,
-      "tick_source": "ticks",
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2010-06-09",
+      "epoch": "early",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2010-06-09T00:00:00+00:00",
+        "2010-06-10T00:00:00+00:00"
+      ],
+      "instrument": "AUDUSD",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2010-06-09T00:00:00+00:00",
+        "last": "2010-06-09T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2017-05-10",
+      "epoch": "late",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2017-05-10T00:00:00+00:00",
+        "2017-05-11T00:00:00+00:00"
+      ],
+      "instrument": "NZDUSD",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2017-05-10T00:00:00+00:00",
+        "last": "2017-05-10T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2013-04-10",
+      "epoch": "mid",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2013-04-10T00:00:00+00:00",
+        "2013-04-11T00:00:00+00:00"
+      ],
+      "instrument": "USDCAD",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2013-04-10T00:00:00+00:00",
+        "last": "2013-04-10T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2015-09-09",
+      "epoch": "late",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2015-09-09T00:00:00+00:00",
+        "2015-09-10T00:00:00+00:00"
+      ],
+      "instrument": "USDCHF",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2015-09-09T00:00:00+00:00",
+        "last": "2015-09-09T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2016-03-08",
+      "epoch": "late",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2016-03-08T00:00:00+00:00",
+        "2016-03-09T00:00:00+00:00"
+      ],
+      "instrument": "EURJPY",
+      "instrument_decimals": 3,
+      "jpy": true,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2016-03-08T00:00:00+00:00",
+        "last": "2016-03-08T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2011-03-09",
+      "epoch": "early",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2011-03-09T00:00:00+00:00",
+        "2011-03-10T00:00:00+00:00"
+      ],
+      "instrument": "GBPJPY",
+      "instrument_decimals": 3,
+      "jpy": true,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2011-03-09T00:00:00+00:00",
+        "last": "2011-03-09T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2016-11-09",
+      "epoch": "late",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2016-11-09T00:00:00+00:00",
+        "2016-11-10T00:00:00+00:00"
+      ],
+      "instrument": "AUDJPY",
+      "instrument_decimals": 3,
+      "jpy": true,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2016-11-09T00:00:00+00:00",
+        "last": "2016-11-09T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2012-07-11",
+      "epoch": "mid",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2012-07-11T00:00:00+00:00",
+        "2012-07-12T00:00:00+00:00"
+      ],
+      "instrument": "EURGBP",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2012-07-11T00:00:00+00:00",
+        "last": "2012-07-11T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2014-05-14",
+      "epoch": "mid",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2014-05-14T00:00:00+00:00",
+        "2014-05-15T00:00:00+00:00"
+      ],
+      "instrument": "EURCHF",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2014-05-14T00:00:00+00:00",
+        "last": "2014-05-14T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2013-08-14",
+      "epoch": "mid",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2013-08-14T00:00:00+00:00",
+        "2013-08-15T00:00:00+00:00"
+      ],
+      "instrument": "GBPCHF",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2013-08-14T00:00:00+00:00",
+        "last": "2013-08-14T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2014-06-08",
+      "epoch": "sunday_open",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2014-06-08T21:00:00+00:00",
+        "2014-06-09T00:00:00+00:00"
+      ],
+      "instrument": "EURUSD",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2014-06-08T00:00:00+00:00",
+        "last": "2014-06-08T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 119,
+      "precision_field_mismatches": 0,
+      "session_class": "PARTIAL_SUNDAY_OPEN",
+      "shared_minutes": 119,
+      "tick_minutes": 119,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2014-06-13",
+      "epoch": "friday_close",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2014-06-13T00:00:00+00:00",
+        "2014-06-13T21:00:00+00:00"
+      ],
+      "instrument": "EURUSD",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2014-06-13T00:00:00+00:00",
+        "last": "2014-06-13T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "PARTIAL_FRIDAY_CLOSE",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "date": "2014-03-10",
+      "epoch": "dst_adjacent",
+      "exact_field_mismatches": 0,
+      "expected_window_utc": [
+        "2014-03-10T00:00:00+00:00",
+        "2014-03-11T00:00:00+00:00"
+      ],
+      "instrument": "EURUSD",
+      "instrument_decimals": 5,
+      "jpy": false,
+      "minute_set_equal": true,
+      "native_coverage": {
+        "first": "2014-03-10T00:00:00+00:00",
+        "last": "2014-03-10T23:59:00+00:00",
+        "rows": 1440
+      },
+      "native_minutes": 120,
+      "precision_field_mismatches": 0,
+      "session_class": "FULL_SESSION",
+      "shared_minutes": 120,
+      "tick_minutes": 120,
       "verdict": "PASS_EXACT"
     }
   ],
-  "units_with_both_transports": 4,
+  "units_with_both_transports": 16,
   "verdict_counts": {
-    "PASS_EXACT": 4
+    "PASS_EXACT": 16
   }
 }

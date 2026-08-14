@@ -34,6 +34,7 @@ from fx_smc_bot.research.v3 import native_transport as nt
 from fx_smc_bot.research.v3._hashing import canonical_hash
 from fx_smc_bot.research.v3.acquisition_state import StateStore, Transport, UnitStatus
 from fx_smc_bot.research.v3.firewall import V3HoldoutFirewall
+from fx_smc_bot.research.v3.fx_calendar import session_hours
 from fx_smc_bot.research.v3.native_plan import iter_units
 from fx_smc_bot.research.v3.provider_scheduler import AdaptiveScheduler, Outcome, classify
 
@@ -123,6 +124,42 @@ def _acquire_native_day(sched: AdaptiveScheduler, fw: V3HoldoutFirewall, inst: s
     return "native", rows, src
 
 
+def _acquire_tick_fallback_day(sched: AdaptiveScheduler, fw: V3HoldoutFirewall, inst: str,
+                               d: date, scratch: Path) -> tuple[str, list[dict[str, Any]], str]:
+    """Per-day tick->M1 fallback (only for genuine native unavailability).
+
+    Returns ('tick', rows, src) if any hour has data; ('missing', [], '') iff EVERY expected
+    session hour returns a genuine 404 (both transports absent -> exceptional closure); ('retry',
+    [], '') on any throttle/timeout (never classify closure from transient silence).
+    """
+
+    scale = ap.price_scale(inst)
+    ticks: list[ap.Tick] = []
+    hasher = hashlib.sha256()
+    any_data = False
+    all_missing = True
+    for h in session_hours(d):
+        o, raw = _fetch(sched, fw, _tick_url(inst, d, h), d,
+                        scratch / f"{inst}_{d.isoformat()}_{h:02d}h.bi5")
+        if o is Outcome.OK:
+            all_missing = False
+            hasher.update(raw)
+            hour_ticks = ap.decode_bi5(raw, _day_ms(d) + h * 3600_000, scale)
+            if hour_ticks:
+                any_data = True
+                ticks.extend(hour_ticks)
+        elif o is Outcome.MISSING:
+            continue  # this hour genuinely absent (natural gap); keep checking
+        else:
+            return "retry", [], ""  # throttle/timeout -> never infer closure
+    if any_data:
+        # flat-fill to the native full-minute grid so tick-fallback days are canonical-consistent
+        return "tick", nt.fill_session_grid(ap.aggregate_m1(ticks)), hasher.hexdigest()
+    if all_missing:
+        return "missing", [], ""  # every session hour genuinely 404 -> exceptional closure
+    return "retry", [], ""
+
+
 def run(args: argparse.Namespace) -> int:
     _install_signals()
     fw = V3HoldoutFirewall()
@@ -163,9 +200,31 @@ def run(args: argparse.Namespace) -> int:
             else:
                 store.transition(inst, d, UnitStatus.INTEGRITY_FAILURE)
         elif result == "missing":
-            # weekday native 404: do NOT infer market-closed; flag for review (retryable),
-            # tick fallback would be attempted by a later policy pass.
-            store.transition(inst, d, UnitStatus.RETRYABLE, fallback_reason="native_404_review")
+            # native genuinely 404 -> attempt the per-day tick->M1 fallback (never infer
+            # closure from provider silence).
+            tresult, trows, tsrc = _acquire_tick_fallback_day(sched, fw, inst, d, scratch)
+            if tresult == "tick" and trows:
+                tcert = ap.certify_partition(instrument=inst, year=d.year, month=d.month,
+                                             day=d.day, side="bid", m1_rows=trows,
+                                             source_bytes=0, source_sha256=tsrc, request_urls=[])
+                if tcert["integrity_audit"]["bid_ask_valid"] and tcert["integrity_audit"][
+                        "scaling_plausibility_ok"]:
+                    ch = _write_canonical(canon, inst, d, trows)
+                    store.transition(inst, d, UnitStatus.CERTIFIED_TICK_FALLBACK,
+                                     transport=Transport.TICK_AGGREGATED_M1.value,
+                                     fallback_reason="native_unavailable_tick_fallback",
+                                     source_checksum=tsrc, canonical_checksum=ch,
+                                     canonical_rows=len(trows))
+                else:
+                    store.transition(inst, d, UnitStatus.INTEGRITY_FAILURE)
+            elif tresult == "missing":
+                # both transports genuinely 404 on a calendar trading date -> exceptional
+                # closure, preserved explicitly (deterministic; not transient silence).
+                store.transition(inst, d, UnitStatus.TERMINAL_DATA_ABSENT,
+                                 fallback_reason="exceptional_closure_native_and_tick_404")
+            else:
+                store.transition(inst, d, UnitStatus.RETRYABLE,
+                                 fallback_reason="throttle_or_timeout")
         else:
             store.transition(inst, d, UnitStatus.RETRYABLE, fallback_reason="throttle_or_timeout")
         processed += 1
