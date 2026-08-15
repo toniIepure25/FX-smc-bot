@@ -32,7 +32,8 @@ Status (safe, read-only):
 .venv/bin/python scripts/v3/bulk_acquire.py status --state data/acquisition_state/bulk_state.json
 ```
 
-Start / resume the durable run (same command resumes; certified units are never re-fetched):
+Start / resume the durable run (recommended — bounded HTTP/2 parallel + adaptive concurrency;
+same command resumes, certified units are never re-fetched):
 ```bash
 OMP_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
 UV_SYSTEM_CERTS=1 \
@@ -40,17 +41,25 @@ UV_SYSTEM_CERTS=1 \
   --state data/acquisition_state/bulk_state.json \
   --canonical data/canonical \
   --scratch data/acquisition_state/scratch \
-  --rate 0.4 \
+  --initial-concurrency 2 --max-concurrency 4 --adaptive-concurrency \
+  --batch-size 8 \
   --log data/acquisition_state/bulk.log
 ```
 
-* `--rate` is the token-bucket requests/sec (start conservative; the adaptive scheduler
-  lowers concurrency on throttle and only raises it from measured health).
-* `--limit N` processes at most N units then exits cleanly (useful for bounded chunks).
-* `--instruments EURUSD,USDJPY` restricts to a subset.
-* **SIGINT/SIGTERM**: the process finishes the current unit, persists state atomically, and
-  exits 0. Re-run the identical command to resume. **Do not run two instances against the
-  same `--state`.**
+* **Bounded HTTP/2 parallel** native fetching (`curl --http2 --parallel`) with connection
+  reuse; every URL is firewalled BEFORE it is scheduled.
+* `--adaptive-concurrency` steps concurrency within `[1, --max-concurrency]` on a rolling
+  health window: upgrade only when the 429/503 rate stays very low, downgrade immediately on
+  throttle/breaker, cool down before probing higher. Start at `--initial-concurrency`.
+* On the intercepted corporate path keep `--max-concurrency 4` (≥4 draws heavy 503). On a
+  faster non-intercepted permitted network `--max-concurrency 8` is safe and much faster.
+* Day-unit atomicity: a day certifies only after BOTH bid+ask succeed; a succeeded side is
+  cached and reused (never redownloaded) if its sibling fails; certified units never re-fetch.
+* `--metrics PATH` writes a soak summary (latency p50/p90/p99, status counts, retry
+  amplification, effective units/hour). `--limit N` / `--instruments EURUSD,USDJPY` bound a run.
+* **SIGINT/SIGTERM**: finishes safely and persists atomically; interrupted IN_PROGRESS units
+  are re-attempted on resume (cached sides reused). Re-run the identical command to resume.
+  **Do not run two instances against the same `--state`.**
 
 ## Mac resource policy (M5, 16 GiB)
 

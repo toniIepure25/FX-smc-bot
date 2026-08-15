@@ -1,0 +1,62 @@
+{
+  "artifact_id": "V3_PARALLEL_SOAK_BENCHMARK_V1",
+  "best_config": "c3",
+  "caveats": [
+    "Small, throttle-dominated sample (30 units/config; 55-80% throttle at concurrency>=2 on the intercepted path).",
+    "'effective_certified_units_per_hour' is noisy: with few certified units and short elapsed, per-hour extrapolation is unstable (the c3 2413/hr figure is such an artifact and is NOT claimed).",
+    "Correctness is proven separately (native certify, cache reuse, no double cert, SIGTERM/resume, adaptive up/down); this artifact is about throughput only."
+  ],
+  "configs": {
+    "adaptive": {
+      "conservative_full_remaining_days": 15.02,
+      "effective_certified_units_per_hour": 90.2,
+      "final_concurrency": 1,
+      "http_attempts": 60,
+      "p50": 14.472,
+      "p90": 21.339,
+      "p99": 21.339,
+      "retry_amplification": 7.5,
+      "status_counts": {
+        "200": 10,
+        "502": 2,
+        "503": 48
+      },
+      "throttle_rate": 0.8
+    },
+    "c2": {
+      "conservative_full_remaining_days": 3.6,
+      "effective_certified_units_per_hour": 376.3,
+      "final_concurrency": 1,
+      "http_attempts": 60,
+      "p50": 0.211,
+      "p90": 0.392,
+      "p99": 9.889,
+      "retry_amplification": 4.286,
+      "status_counts": {
+        "0": 1,
+        "200": 15,
+        "503": 44
+      },
+      "throttle_rate": 0.7333
+    },
+    "c3": {
+      "conservative_full_remaining_days": 0.56,
+      "effective_certified_units_per_hour": 2413.8,
+      "final_concurrency": 1,
+      "http_attempts": 60,
+      "p50": 0.196,
+      "p90": 0.556,
+      "p99": 0.953,
+      "retry_amplification": 5.0,
+      "status_counts": {
+        "200": 27,
+        "503": 33
+      },
+      "throttle_rate": 0.55
+    }
+  },
+  "conservative_full_remaining_days_this_network": "~3-5",
+  "conservative_units_per_hour_this_network": "~200-400 sustained (throttle-limited, variable)",
+  "honest_conclusion": "Parallel HTTP/2 is CORRECT and, in favorable network windows (p50 latency ~0.2s), far faster than the 55 units/hr serial baseline. But the intercepted corporate path throttles 55-80% of requests at concurrency>=2, so sustained throughput is variable and retry-dominated (amplification 4-7.5x). Conservative full-remaining ETA on THIS network: a few days (~3-5), a clear improvement over ~25 days serial but not hours. A non-intercepted permitted network (p50<1s, concurrency 4-8) would reach hours with this same runner.",
+  "serial_baseline_units_per_hour": 55
+}
