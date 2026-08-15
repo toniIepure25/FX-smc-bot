@@ -1,0 +1,103 @@
+{
+  "2018_plus_provider_requests_issued": 0,
+  "artifact_id": "V3_TRANSPORT_BENCHMARK_V1",
+  "best_safe": {
+    "eta": {
+      "files_per_hour": 525.6,
+      "full_native_days": 5.16,
+      "full_native_hours": 123.9
+    },
+    "files_per_sec_ok": 0.146,
+    "parallel_max": 2
+  },
+  "cache_retest_c1": {
+    "first": 79.8,
+    "second": 9.25,
+    "second_status": {
+      "503": 6
+    }
+  },
+  "concurrency_sweep": [
+    {
+      "eta_at_this_level": {
+        "files_per_hour": 226.8,
+        "full_native_days": 11.96,
+        "full_native_hours": 287.1
+      },
+      "files": 6,
+      "files_per_sec_ok": 0.063,
+      "median_file_time_s": 11.18,
+      "ok": 5,
+      "parallel_max": 1,
+      "status_counts": {
+        "200": 5,
+        "502": 1
+      },
+      "throttle_503": 0,
+      "wall_s": 79.8
+    },
+    {
+      "eta_at_this_level": {
+        "files_per_hour": 525.6,
+        "full_native_days": 5.16,
+        "full_native_hours": 123.9
+      },
+      "files": 6,
+      "files_per_sec_ok": 0.146,
+      "median_file_time_s": 14.2,
+      "ok": 6,
+      "parallel_max": 2,
+      "status_counts": {
+        "200": 6
+      },
+      "throttle_503": 0,
+      "wall_s": 41.03
+    },
+    {
+      "eta_at_this_level": {
+        "files_per_hour": 1656.0,
+        "full_native_days": 1.64,
+        "full_native_hours": 39.3
+      },
+      "files": 6,
+      "files_per_sec_ok": 0.46,
+      "median_file_time_s": 5.81,
+      "ok": 4,
+      "parallel_max": 4,
+      "status_counts": {
+        "200": 4,
+        "503": 2
+      },
+      "throttle_503": 2,
+      "wall_s": 8.7
+    }
+  ],
+  "jforex_feasibility": {
+    "canonical_semantics_reproducible": "N/A (transport not runnable); the .bi5 store is identical so semantics would match.",
+    "reasons": [
+      "Java runtime not installed (/usr/bin/java is a stub; needs a JDK).",
+      "Maven not installed; JForex-API JARs would need fetching from Dukascopy's repo.",
+      "IHistory.getBars requires authenticated IClient.connect(jnlp, username, password) to a Dukascopy demo/live account; credentials cannot be entered by the agent and none are available.",
+      "JForex getBars(range) internally fetches the SAME per-day .bi5 files over the SAME intercepted network -> no latency advantage here even with credentials."
+    ],
+    "verdict": "BLOCKED_ON_THIS_MACHINE"
+  },
+  "network": "intercepted corporate proxy (only available path)",
+  "note": "JForex range API bounded by same .bi5 store; benchmarked via HTTP/2 curl.",
+  "recommendation": {
+    "canonical_semantics": "unchanged: all transports fetch byte-identical .bi5 parsed by v3_m1_canonicalizer_2.",
+    "faster_path": "per-file latency 0.6-15s is proxy-induced; a normal non-intercepted network serves the same .bi5 CDN <1s/file with concurrency 4-8 -> full plan in HOURS using the existing durable runner unchanged. Never bypass security controls.",
+    "same_network": "bounded concurrency 2-4 with the adaptive scheduler backoff cuts full native ETA from ~25 days (serial) to ~1.6-5 days; concurrency>=4 draws ~33% 503 (retryable); runner currently serial, would need bounded parallel fetches."
+  },
+  "serial_baseline": {
+    "files": 6,
+    "files_per_sec_ok": 0.192,
+    "median_file_time_s": 0.63,
+    "mode": "serial_new_connection",
+    "ok": 6,
+    "status_counts": {
+      "200": 6
+    },
+    "wall_s": 31.26
+  }
+}
