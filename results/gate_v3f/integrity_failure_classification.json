@@ -1,0 +1,3490 @@
+{
+  "artifact_id": "V3_INTEGRITY_FAILURE_CLASSIFICATION_V1",
+  "counts_by_category": {
+    "NATIVE_BID_ASK_ORDERING_FAILURE": 406,
+    "NATIVE_ZERO_MARKET_OBSERVATIONS": 29
+  },
+  "entries": [
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "AUDJPY",
+      "key": "AUDJPY:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "AUDJPY",
+      "key": "AUDJPY:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-04",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-04",
+      "native_bid_ask_violations": 9,
+      "native_observed_minutes": 1367
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-06",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-06",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1394
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-08",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-08",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1241
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-12",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-12",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1402
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-13",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-13",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1396
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-15",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-15",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1225
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-18",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-18",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1238
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-19",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-19",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1408
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-21",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-21",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1407
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-25",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-25",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1364
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-28",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-01-28",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1427
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1416
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-02",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-02",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1406
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-03",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-03",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1422
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-04",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-04",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1424
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-05",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-05",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1251
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-07",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-07",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 113
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-09",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-09",
+      "native_bid_ask_violations": 9,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-10",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-10",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1395
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-11",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-11",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1409
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-12",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-12",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1244
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-16",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-16",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1396
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-24",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-24",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1370
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-25",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-02-25",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1413
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-01",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1391
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-04",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-04",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1411
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-05",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-05",
+      "native_bid_ask_violations": 9,
+      "native_observed_minutes": 1233
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-12",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-12",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1228
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-15",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-15",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1362
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-17",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-17",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1373
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-18",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-18",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1361
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-19",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-19",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1169
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-23",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-23",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1380
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-24",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1394
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-25",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-25",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1414
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-26",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-26",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1181
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-30",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-30",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1422
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-31",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-03-31",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1428
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1411
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-06",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-06",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-09",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-09",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1202
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-12",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-12",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1431
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-13",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-13",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1424
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-16",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-16",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1199
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-21",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-21",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1432
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-22",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-22",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1430
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-26",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-26",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1426
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-27",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-27",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1437
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-28",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-28",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1431
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-29",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-04-29",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1427
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-03",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-03",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1395
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-04",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-04",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1422
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-05",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-05",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1433
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-07",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-07",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1201
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-09",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-09",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 119
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-10",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-10",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1428
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-14",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-14",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1200
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-20",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-20",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1436
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-21",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-21",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1201
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-26",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-26",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1437
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-27",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-27",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1438
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-28",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-28",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1201
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-30",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-30",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 120
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-31",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-05-31",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1403
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-01",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1437
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-02",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-02",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1431
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-03",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-03",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-04",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-04",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1200
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-06",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-06",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 120
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-07",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-07",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1436
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-08",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-08",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1431
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-09",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-09",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1434
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-10",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-10",
+      "native_bid_ask_violations": 9,
+      "native_observed_minutes": 1430
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-11",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-11",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1203
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-14",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-14",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1406
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-15",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-15",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1434
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-16",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-16",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1426
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-17",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-17",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1432
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-18",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-18",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1203
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-21",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-21",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1427
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-22",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-22",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-23",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-23",
+      "native_bid_ask_violations": 8,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-24",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1424
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-25",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-25",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1260
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-27",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-27",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 118
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-28",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-28",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1413
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-29",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-29",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1428
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-30",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-06-30",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1436
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-01",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1433
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-02",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-02",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1201
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-05",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-05",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1317
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-06",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-06",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1430
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-07",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-07",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1421
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-08",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-08",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1432
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-09",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-09",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1203
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-12",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-12",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1419
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-13",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-13",
+      "native_bid_ask_violations": 9,
+      "native_observed_minutes": 1422
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-14",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-14",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-15",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-15",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1434
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-16",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-16",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1202
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-19",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-19",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1418
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-20",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-20",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1427
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-21",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-21",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1426
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-22",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-22",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-23",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-23",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1207
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-26",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-26",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1400
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-27",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-27",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1417
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-28",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-28",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1429
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-29",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-29",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1417
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-30",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-07-30",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1204
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-02",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-02",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1414
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-03",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-03",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1414
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-04",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-04",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1420
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-05",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-05",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1413
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-06",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-06",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1200
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-09",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-09",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1398
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-10",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-10",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1419
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-11",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-11",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1433
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-12",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-12",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1418
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-13",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-13",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1202
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-15",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-15",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 114
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-16",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-16",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1413
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-17",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-17",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1422
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-18",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-18",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1418
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-19",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-19",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1426
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-20",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-20",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1200
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-22",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-22",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 117
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-24",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1423
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-25",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-25",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1415
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-26",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-26",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1421
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-27",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-27",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1197
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-30",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-30",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1413
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-31",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-08-31",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1412
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-01",
+      "native_bid_ask_violations": 9,
+      "native_observed_minutes": 1421
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-02",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-02",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1399
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-03",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-03",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1199
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-05",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-05",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 115
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-06",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-06",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1257
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-07",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-07",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-08",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-08",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1398
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-09",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-09",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1424
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-10",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-10",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1199
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-13",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-13",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1419
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-14",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-14",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1423
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-15",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-15",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1429
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-16",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-16",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1423
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-17",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-17",
+      "native_bid_ask_violations": 8,
+      "native_observed_minutes": 1200
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-20",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-20",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1416
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-22",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-22",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1426
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-23",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-23",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1418
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-24",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1201
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-28",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-28",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1399
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-29",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-29",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1399
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-30",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-09-30",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1409
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-01",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1197
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-04",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-04",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1413
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-05",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-05",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1420
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-07",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-07",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1420
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-08",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-08",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1198
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-11",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-11",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1411
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-12",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-12",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1410
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-13",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-13",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1423
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-14",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-14",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1420
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-15",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-15",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1202
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-18",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-18",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1431
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-19",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-19",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1432
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-20",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-20",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1416
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-21",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-21",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1435
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-22",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-22",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1200
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-25",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-25",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1425
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-26",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-26",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1424
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-27",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-27",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1422
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-28",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-28",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1432
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2010-10-31",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2010-10-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-30",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2011-08-30",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "AUDUSD",
+      "key": "AUDUSD:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "EURCHF",
+      "key": "EURCHF:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "EURCHF",
+      "key": "EURCHF:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "EURGBP",
+      "key": "EURGBP:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "EURGBP",
+      "key": "EURGBP:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "EURJPY",
+      "key": "EURJPY:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "EURJPY",
+      "key": "EURJPY:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "EURUSD",
+      "key": "EURUSD:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "EURUSD",
+      "key": "EURUSD:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "GBPCHF",
+      "key": "GBPCHF:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-24",
+      "instrument": "GBPCHF",
+      "key": "GBPCHF:2017-12-24",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "GBPCHF",
+      "key": "GBPCHF:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "GBPJPY",
+      "key": "GBPJPY:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "GBPJPY",
+      "key": "GBPJPY:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "GBPUSD",
+      "key": "GBPUSD:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "GBPUSD",
+      "key": "GBPUSD:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "NZDUSD",
+      "key": "NZDUSD:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-01-01",
+      "instrument": "NZDUSD",
+      "key": "NZDUSD:2017-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "NZDUSD",
+      "key": "NZDUSD:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "USDCAD",
+      "key": "USDCAD:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "USDCAD",
+      "key": "USDCAD:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "USDCHF",
+      "key": "USDCHF:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "USDCHF",
+      "key": "USDCHF:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-01-01",
+      "native_bid_ask_violations": 330,
+      "native_observed_minutes": 1320
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-01-14",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-01-15",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1320
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-01-18",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-01-19",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-01-25",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-01-25",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-02-03",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-10",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-02-10",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-02-16",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-02-17",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-02-22",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-02-23",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-02-25",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-02-25",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-02",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-02",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-04",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-08",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-09",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-09",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-10",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-10",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-12",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1320
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-14",
+      "native_bid_ask_violations": 12,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-16",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-17",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-21",
+      "native_bid_ask_violations": 13,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-22",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-23",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-24",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-24",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-03-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-03-29",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-04-01",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-05",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-04-05",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-04-08",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-04-12",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-04-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-04-29",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-05-12",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-05-16",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-05-19",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-05-23",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-05-31",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-05-31",
+      "native_bid_ask_violations": 10,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-02",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-02",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-06",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-06",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-08",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-13",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-13",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-14",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-15",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-17",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-22",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-24",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-24",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-27",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-27",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-06-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-06-30",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-01",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-04",
+      "native_bid_ask_violations": 8,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-05",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-05",
+      "native_bid_ask_violations": 10,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-06",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-06",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-08",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-11",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-11",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-12",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-13",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-13",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-14",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-15",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-18",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-19",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-20",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-20",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-21",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-26",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-26",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-27",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-27",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-28",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-28",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-07-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-07-29",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-01",
+      "native_bid_ask_violations": 8,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-02",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-02",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-03",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-04",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-05",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-05",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-08",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-12",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-15",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-16",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-17",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-18",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-22",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-25",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-25",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-29",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-30",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-08-31",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-08-31",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-02",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-02",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-06",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-06",
+      "native_bid_ask_violations": 9,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-07",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-07",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-08",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-09",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-09",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-12",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-14",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-19",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-20",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-20",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-22",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-23",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-26",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-26",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-29",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-09-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-09-30",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-03",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-05",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-05",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-07",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-07",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-10",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-10",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-11",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-11",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-12",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-17",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-18",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-19",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-20",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-20",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-10-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-10-21",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-15",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-16",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-17",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-18",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-22",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-23",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-24",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-25",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-25",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1422
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-26",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-26",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1320
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-29",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-11-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-11-30",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-08",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-09",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-09",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-13",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-13",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-14",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-15",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-16",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-21",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-22",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-23",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-27",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-27",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-29",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-30",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2010-12-31",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2010-12-31",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1320
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-03",
+      "native_bid_ask_violations": 11,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-04",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-10",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-10",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-11",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-11",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-12",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-13",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-13",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-17",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-18",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-19",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-20",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-20",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-24",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-25",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-25",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-26",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-26",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-27",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-27",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-01-31",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-01-31",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-03",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-07",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-07",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-14",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-15",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-16",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-17",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-21",
+      "native_bid_ask_violations": 7,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-22",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-02-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-02-23",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-04",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-10",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-10",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-11",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-11",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-14",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-17",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-21",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-24",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-04-28",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-04-28",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-02",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-02",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-03",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-04",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-10",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-10",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-12",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-15",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-19",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-22",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-24",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-24",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-26",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-26",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-29",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-05-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-05-30",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-02",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-02",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-06",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-06",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-07",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-07",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-08",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-12",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-12",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-13",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-13",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-14",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-19",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-20",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-20",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-21",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-22",
+      "native_bid_ask_violations": 6,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-26",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-26",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-27",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-27",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-06-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-06-30",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-03",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-04",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-05",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-05",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-10",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-10",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-14",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-17",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-17",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-18",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-19",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-20",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-20",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-25",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-25",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-26",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-26",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-07-27",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-07-27",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-11",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-11",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1439
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-15",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-16",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-16",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-18",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1439
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-21",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-21",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-22",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-22",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-23",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-23",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-25",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-25",
+      "native_bid_ask_violations": 4,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-29",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-29",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-30",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-30",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-08-31",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-08-31",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-04",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-05",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-05",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1439
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-06",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-06",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-07",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-07",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-08",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-08",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1439
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-13",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-13",
+      "native_bid_ask_violations": 5,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-14",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-14",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-15",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-15",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-18",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-18",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 180
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-19",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-19",
+      "native_bid_ask_violations": 3,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-09-20",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-09-20",
+      "native_bid_ask_violations": 15,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2011-11-03",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2011-11-03",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2012-02-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2012-02-01",
+      "native_bid_ask_violations": 1,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2012-02-13",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2012-02-13",
+      "native_bid_ask_violations": 2,
+      "native_observed_minutes": 1440
+    },
+    {
+      "category": "NATIVE_BID_ASK_ORDERING_FAILURE",
+      "day": "2012-03-04",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2012-03-04",
+      "native_bid_ask_violations": 10,
+      "native_observed_minutes": 120
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2016-01-01",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2016-01-01",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    },
+    {
+      "category": "NATIVE_ZERO_MARKET_OBSERVATIONS",
+      "day": "2017-12-31",
+      "instrument": "USDJPY",
+      "key": "USDJPY:2017-12-31",
+      "native_bid_ask_violations": 0,
+      "native_observed_minutes": 0
+    }
+  ],
+  "total": 435
+}

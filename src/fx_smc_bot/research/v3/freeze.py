@@ -49,6 +49,7 @@ from fx_smc_bot.research.v3.observation_contract import observation_contract_has
 from fx_smc_bot.research.v3.parameters import parameters_hash
 from fx_smc_bot.research.v3.portfolio import portfolio_hash
 from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
+from fx_smc_bot.research.v3.remediation import remediation_contract_hash
 from fx_smc_bot.research.v3.statistics import STATISTICAL_PROTOCOL, statistics_hash
 from fx_smc_bot.research.v3.survivor import PREDICATES, survivor_hash
 from fx_smc_bot.research.v3.universes import (
@@ -96,6 +97,11 @@ def component_hashes() -> dict[str, str]:
         "acquisition_plan": acquisition_plan_hash(),
         "missing_observation_contract": observation_contract_hash(),
         "canonical_m1_schema": canonical_schema_hash(),
+        # Pre-outcome data-integrity remediation contract (V3_DATA_INTEGRITY_REMEDIATION_V1):
+        # fixes, before any tick result, the two eligible native-integrity fallback categories
+        # and their tick-remediation rules. A data-integrity correction only; universes A/B/C
+        # and all candidate/statistical/execution components are unchanged.
+        "data_integrity_remediation": remediation_contract_hash(),
     }
 
 

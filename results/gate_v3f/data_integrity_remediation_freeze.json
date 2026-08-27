@@ -1,0 +1,20 @@
+{
+  "artifact_id": "V3_DATA_INTEGRITY_REMEDIATION_FREEZE_UPDATE_V1",
+  "change_description": "Added the V3_DATA_INTEGRITY_REMEDIATION_V1 contract as a new frozen component. It fixes, before any tick result, the two eligible native-integrity fallback categories (NATIVE_ZERO_MARKET_OBSERVATIONS, NATIVE_BID_ASK_ORDERING_FAILURE) and their synchronized-tick remediation rules. No candidate/statistical/execution component changed.",
+  "changed_components": {
+    "data_integrity_remediation": "73ada83bfbace5799c516c3f99ea99daccbcf24cbacb5cfd3314ee16c5ac0f7b"
+  },
+  "class": "PRE_OUTCOME_DATA_INTEGRITY_CORRECTION",
+  "component_count_new": 25,
+  "component_count_old": 24,
+  "new_freeze_hash": "f0ac824e86d13bf325708edddfc074f44c1abd3a99f16873fa56ddd55bf349e3",
+  "no_candidate_outcomes_used": true,
+  "no_v3_pnl_used": true,
+  "old_freeze_hash": "5a96fd0e6de8bc74cf98f39f5cf36e018dfb0521fba9f94e5cccd6dae726f6b1",
+  "remediation_contract_hash": "73ada83bfbace5799c516c3f99ea99daccbcf24cbacb5cfd3314ee16c5ac0f7b",
+  "universes_unchanged": {
+    "A_executable_alpha": 992,
+    "B_price_alpha_only": 52,
+    "C_total_v3_registry": 1044
+  }
+}

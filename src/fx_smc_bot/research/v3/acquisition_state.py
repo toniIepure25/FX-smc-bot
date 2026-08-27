@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any
 
 from fx_smc_bot.research.v3.fx_calendar import is_market_closed_calendar
+from fx_smc_bot.research.v3.remediation import ELIGIBLE_CATEGORIES
 
 
 class UnitStatus(str, Enum):
@@ -131,6 +132,31 @@ class StateStore:
         for f, v in fields.items():
             setattr(rec, f, v)
         self._persist()
+
+    def begin_remediation(self, instrument: str, d: date | str, category: str) -> None:
+        """Re-enter an INTEGRITY_FAILURE unit into the frozen data-integrity remediation pass.
+
+        This is the minimal pre-outcome state correction for the V3_DATA_INTEGRITY_REMEDIATION_V1
+        policy: an INTEGRITY_FAILURE unit may be re-entered into IN_PROGRESS ONLY when its
+        native-integrity failure ``category`` is one of the two eligible remediation categories.
+        Any other category (or any non-INTEGRITY_FAILURE status) is refused -- there is no
+        generic "integrity failures are ignorable" path.
+        """
+
+        k = self.key(instrument, d)
+        rec = self.units[k]
+        cur = UnitStatus(rec.status)
+        if cur is not UnitStatus.INTEGRITY_FAILURE:
+            raise ValueError(
+                f"remediation requires INTEGRITY_FAILURE, got {cur.value} for {k}"
+            )
+        if category not in ELIGIBLE_CATEGORIES:
+            raise ValueError(
+                f"category {category!r} is not an eligible data-integrity remediation "
+                f"category for {k} (eligible: {', '.join(ELIGIBLE_CATEGORIES)})"
+            )
+        self.transition(instrument, d, UnitStatus.IN_PROGRESS,
+                        fallback_reason=f"remediation:{category}", attempts=rec.attempts + 1)
 
     def pending_keys(self) -> list[str]:
         # IN_PROGRESS is included so a unit interrupted mid-fetch (kill/crash during the
