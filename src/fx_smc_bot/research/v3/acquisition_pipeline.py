@@ -26,6 +26,10 @@ from datetime import datetime, timezone
 from typing import Any
 
 from fx_smc_bot.research.v3._hashing import canonical_hash
+from fx_smc_bot.research.v3.quote_validity import (
+    TickValidityStats,
+    classify_ticks,
+)
 
 PARSER_VERSION = "v3_bi5_parser_1"
 CANONICALIZER_VERSION = "v3_m1_canonicalizer_1"
@@ -103,6 +107,22 @@ def aggregate_m1(ticks: list[Tick]) -> list[dict[str, Any]]:
             }
         )
     return rows
+
+
+def aggregate_m1_valid(
+    ticks: list[Tick], instrument: str
+) -> tuple[list[dict[str, Any]], TickValidityStats]:
+    """Aggregate VALID synchronized ticks into per-minute bid/ask OHLC rows.
+
+    Implements the frozen V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1 minute semantics: a minute with
+    >=1 valid tick is observed (OHLC from valid ticks only); a minute with zero valid ticks yields
+    no row (hence unobserved/non-executable under the canonical imputation semantics). Invalid
+    (crossed / non-finite / non-positive / scaling-implausible) ticks never contribute to OHLC and
+    are never treated as a zero return. Returns ``(m1_rows, validity_stats)``.
+    """
+
+    valid, stats = classify_ticks(ticks, instrument)
+    return aggregate_m1(valid), stats
 
 
 def _side_rows(m1_rows: list[dict[str, Any]], side: str) -> list[dict[str, Any]]:

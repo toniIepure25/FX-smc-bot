@@ -1,0 +1,20 @@
+{
+  "artifact_id": "V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_FREEZE_UPDATE_V1",
+  "change_description": "Added the V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1 contract as a new frozen component. It fixes, before any additional tick outcome, the zero-tolerance QUOTE-level rule (a crossed ask<bid tick is an INVALID market quote that never contributes to OHLC/observed/executable) and the minute/day aggregation semantics. No candidate/statistical/execution component changed.",
+  "changed_components": {
+    "synchronized_tick_quote_validity": "3b8c0f20531d5092ff4583b22c207382ac984fb9f0b41080ec96a4f84a202bac"
+  },
+  "class": "PRE_OUTCOME_DATA_QUALITY_CORRECTION",
+  "component_count_new": 26,
+  "component_count_old": 25,
+  "new_freeze_hash": "10c2f71360008ddcb3dd4c0df0ec3da09305dcdffa44047c6d01e64613b88e6d",
+  "no_candidate_outcomes_used": true,
+  "no_v3_pnl_used": true,
+  "old_freeze_hash": "f0ac824e86d13bf325708edddfc074f44c1abd3a99f16873fa56ddd55bf349e3",
+  "quote_validity_contract_hash": "3b8c0f20531d5092ff4583b22c207382ac984fb9f0b41080ec96a4f84a202bac",
+  "universes_unchanged": {
+    "A_executable_alpha": 992,
+    "B_price_alpha_only": 52,
+    "C_total_v3_registry": 1044
+  }
+}

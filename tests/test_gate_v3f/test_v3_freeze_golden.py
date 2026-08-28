@@ -19,16 +19,17 @@ from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
 from fx_smc_bot.research.v3.statistics import statistics_hash
 from fx_smc_bot.research.v3.universes import universe_counts
 
-# Updated at the data-integrity-remediation gate: freeze hash changed as a PRE-OUTCOME
-# data-integrity correction that ADDED the V3_DATA_INTEGRITY_REMEDIATION_V1 contract as a new
-# frozen component (24 -> 25). It fixes, before any tick result, the two eligible
-# native-integrity fallback categories and their synchronized-tick remediation rules.
+# Updated at the synchronized-tick quote-validity gate: freeze hash changed as a PRE-OUTCOME
+# data-quality correction that ADDED the V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1 contract as a
+# new frozen component (25 -> 26). It fixes, before any additional tick outcome, the
+# zero-tolerance QUOTE-level rule (a crossed ask<bid tick is an INVALID market quote that never
+# contributes to OHLC/observed/executable) and the minute/day aggregation semantics.
 # Universes A/B/C are UNCHANGED (992/52/1044). No V3 P&L/candidate outcome informed the change.
-GOLDEN_FREEZE_HASH = "f0ac824e86d13bf325708edddfc074f44c1abd3a99f16873fa56ddd55bf349e3"
+GOLDEN_FREEZE_HASH = "10c2f71360008ddcb3dd4c0df0ec3da09305dcdffa44047c6d01e64613b88e6d"
 GOLDEN_TOTAL_DENOMINATOR = 1044
 GOLDEN_EXECUTABLE_ALPHA = 992
 GOLDEN_PRICE_ALPHA_ONLY = 52
-GOLDEN_COMPONENT_COUNT = 25
+GOLDEN_COMPONENT_COUNT = 26
 
 
 def test_freeze_hash_is_golden() -> None:

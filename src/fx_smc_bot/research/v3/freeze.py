@@ -49,6 +49,7 @@ from fx_smc_bot.research.v3.observation_contract import observation_contract_has
 from fx_smc_bot.research.v3.parameters import parameters_hash
 from fx_smc_bot.research.v3.portfolio import portfolio_hash
 from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
+from fx_smc_bot.research.v3.quote_validity import quote_validity_contract_hash
 from fx_smc_bot.research.v3.remediation import remediation_contract_hash
 from fx_smc_bot.research.v3.statistics import STATISTICAL_PROTOCOL, statistics_hash
 from fx_smc_bot.research.v3.survivor import PREDICATES, survivor_hash
@@ -102,6 +103,13 @@ def component_hashes() -> dict[str, str]:
         # and their tick-remediation rules. A data-integrity correction only; universes A/B/C
         # and all candidate/statistical/execution components are unchanged.
         "data_integrity_remediation": remediation_contract_hash(),
+        # Pre-outcome synchronized-tick quote-validity contract
+        # (V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1): fixes, before any additional tick outcome,
+        # the zero-tolerance QUOTE-level rule (a crossed ask<bid tick is an INVALID market quote
+        # that never contributes to OHLC/observed/executable) and the minute/day semantics.
+        # A data-quality correction only; universes A/B/C and all candidate/statistical/execution
+        # components are unchanged.
+        "synchronized_tick_quote_validity": quote_validity_contract_hash(),
     }
 
 
