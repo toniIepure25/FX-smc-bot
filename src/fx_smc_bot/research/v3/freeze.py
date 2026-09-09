@@ -27,6 +27,7 @@ from fx_smc_bot.research.v3.canonical_m1 import canonical_schema_hash
 from fx_smc_bot.research.v3.capabilities import capability_hash, check_required
 from fx_smc_bot.research.v3.compiler import ADMITTED_EXECUTABLE, compiler_hash, compiler_payload
 from fx_smc_bot.research.v3.composition import composition_hash
+from fx_smc_bot.research.v3.data_availability import amendment_hash
 from fx_smc_bot.research.v3.evidence import (
     cross_pair_alignment_ok,
     feature_dag_deterministic,
@@ -110,6 +111,15 @@ def component_hashes() -> dict[str, str]:
         # A data-quality correction only; universes A/B/C and all candidate/statistical/execution
         # components are unchanged.
         "synchronized_tick_quote_validity": quote_validity_contract_hash(),
+        # V3.1 pre-alpha data-availability amendment
+        # (V3_DATA_AVAILABILITY_AMENDMENT_V1), class POST_DATA_QUALITY_PRE_ALPHA_PROTOCOL_
+        # AMENDMENT: introduces the general UNRESOLVED_DATA_GAP state (all frozen
+        # transport/remediation paths exhausted, no frozen interpretation resolves, no repair
+        # permitted) with explicit no-fabrication execution/feature semantics, cross-
+        # instrument semantics, a structural (threshold-free) dataset admissibility rule and
+        # the V3.1 monthly status taxonomy. Made performance-blind, before any alpha outcome.
+        # A NEW freeze identity: this changes the top-level freeze hash (26 -> 27 components).
+        "data_availability_amendment": amendment_hash(),
     }
 
 

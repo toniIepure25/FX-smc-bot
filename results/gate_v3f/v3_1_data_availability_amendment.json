@@ -1,0 +1,156 @@
+{
+  "amendment": {
+    "adds_frozen_component": "data_availability_amendment",
+    "artifact_id": "V3_DATA_AVAILABILITY_AMENDMENT_V1",
+    "classification": "POST_DATA_QUALITY_PRE_ALPHA_PROTOCOL_AMENDMENT",
+    "cross_instrument_semantics": {
+      "no_global_date_drop_for_unrelated_instruments": "do not drop the date globally for unrelated instruments unless a frozen dependency requires it.",
+      "no_stale_quote_substitution": true,
+      "rule": "a timestamp/day is usable in any cross-pair / triangular / factor / portfolio feature only when EVERY required leg is valid under the frozen observation semantics (contemporaneous observation of all legs).",
+      "unavailable_leg": "if USDJPY is unavailable, any construction requiring USDJPY treats that leg as unavailable for that day."
+    },
+    "dataset_admissibility_rule": {
+      "forbidden_thresholds": [
+        "up_to_N_missing_days_per_month",
+        "minimum_coverage_fraction_e.g._99.9_percent"
+      ],
+      "structural_not_threshold": true,
+      "unresolved_gap_not_observed_or_certified": true,
+      "unresolved_gap_not_prospectively_excluded": true,
+      "unresolved_gap_stays_in_denominator_and_lineage": true,
+      "usable_when": "every required day-unit is in one of: CERTIFIED_NATIVE, CERTIFIED_TICK_FALLBACK, TERMINAL_DATA_ABSENT, UNRESOLVED_DATA_GAP; AND every non-certified state has explicit execution/feature semantics that prevent fabrication and prevent it from being treated as a market observation."
+    },
+    "digest_day_classes": [
+      "certified_day",
+      "prospectively_excluded_terminal_absence_day",
+      "unresolved_data_gap_day",
+      "missing_unexplained_day"
+    ],
+    "freeze_lineage": [
+      {
+        "component_count": "24",
+        "freeze_hash": "5a96fd0e6de8bc74cf98f39f5cf36e018dfb0521fba9f94e5cccd6dae726f6b1",
+        "stage": "original_v3_freeze"
+      },
+      {
+        "component_count": "25",
+        "freeze_hash": "f0ac824e86d13bf325708edddfc074f44c1abd3a99f16873fa56ddd55bf349e3",
+        "stage": "data_integrity_remediation_correction"
+      },
+      {
+        "component_count": "26",
+        "freeze_hash": "10c2f71360008ddcb3dd4c0df0ec3da09305dcdffa44047c6d01e64613b88e6d",
+        "stage": "synchronized_tick_quote_validity_correction"
+      }
+    ],
+    "frozen_pre_alpha": true,
+    "monthly_status_taxonomy": {
+      "CERTIFIED_COMPLETE": "every required trading date present as a certified day-unit",
+      "CERTIFIED_WITH_PROSPECTIVE_ABSENCE": "every required date certified or prospectively excluded (TERMINAL_DATA_ABSENT); no unresolved date",
+      "INCOMPLETE_COVERAGE": "a required date is neither present, excluded nor explicitly unresolved (unexplained) -- blocks usability",
+      "INTEGRITY_FAILURE": "integrity violation on present rows",
+      "USABLE_WITH_UNRESOLVED_DATA_GAP": "every required date certified, prospectively excluded, or explicitly represented as UNRESOLVED_DATA_GAP; the unresolved day is annotated and never hashed as observed"
+    },
+    "never_hash_unresolved_day_as_observed": true,
+    "new_freeze_identity": "recomputed at freeze time (27 components); prior hash NOT preserved",
+    "no_v3_strategy_outcome_available": true,
+    "performance_blind": true,
+    "performance_blindness": {
+      "2018_plus_market_or_outcome_files_opened": 0,
+      "2018_plus_provider_requests_issued": 0,
+      "Sharpe_computed": 0,
+      "V3_PnL_computations": 0,
+      "candidate_outcomes_computed": 0,
+      "no_candidate_specific_information_influenced_this_amendment": true,
+      "rankings_computed": 0,
+      "survivor_tests_computed": 0
+    },
+    "triggering_issue": {
+      "description": "A single genuine unresolved provider data gap discovered before any alpha outcome: the native per-side candle streams are internally inconsistent (330/1320 minutes with a crossed ask/bid close on a thin New-Year session), and the independent synchronized-tick transport has zero observations to certify against. Forensic verdict USDJPY_2010_01_01_GENUINE_UNRESOLVED_DATA_GAP.",
+      "forensic_artifact": "results/gate_v3f/data_gap_forensic_audit.json",
+      "forensic_verdict": "USDJPY_2010_01_01_GENUINE_UNRESOLVED_DATA_GAP",
+      "unit": "USDJPY:2010-01-01"
+    },
+    "unavailable_day_semantics": {
+      "clock_calendar_time_may_advance": true,
+      "no_entry": true,
+      "no_executable_quote": true,
+      "no_exit": true,
+      "no_ml_training_example_from_that_instrument_day": true,
+      "no_spread_volatility_atr_update": true,
+      "no_stateful_market_feature_update": true,
+      "no_stop_or_target_fill": true,
+      "no_synthetic_quote": true,
+      "no_zero_return_insertion": true,
+      "pending_order_semantics": "apply the already-frozen missing-observation execution semantics: advance to the next session-valid executable quote; time advances but execution does not; do NOT invent a price.",
+      "scope": "an instrument on an UNRESOLVED_DATA_GAP day"
+    },
+    "unresolved_data_gap_definition": {
+      "definition": "A required instrument-day for which: (1) all frozen transport/remediation paths have been exhausted; (2) available native data fail frozen integrity checks; (3) no independent frozen transport can certify the day; (4) no frozen deterministic interpretation can resolve it; (5) no repair/interpolation/swap is permitted.",
+      "distinct_from": [
+        "CERTIFIED_NATIVE",
+        "CERTIFIED_TICK_FALLBACK",
+        "TERMINAL_DATA_ABSENT",
+        "PROSPECTIVE_EXCLUSION"
+      ],
+      "never_counted_as_certified": true,
+      "never_counted_as_excluded": true,
+      "never_counted_as_observed": true,
+      "never_re_enters_acquisition": true,
+      "remains_in_data_quality_denominator_and_lineage": true,
+      "state": "UNRESOLVED_DATA_GAP",
+      "terminal": true
+    },
+    "why_no_repair_is_acceptable": [
+      "The frozen zero-tolerance integrity rule forbids repairing, interpolating or swapping a day that fails bid/ask ordering.",
+      "There is no independent frozen transport (zero synchronized ticks) to repair against; any reconstructed quote would be fabricated.",
+      "Repair would turn a genuine data gap into a fake market observation, violating the missing-observation contract (imputed is never a real quote)."
+    ],
+    "why_one_day_does_not_force_abandonment": [
+      "The missing-observation semantics already prohibit fabrication and prohibit treating an unavailable day as a market observation.",
+      "A single corrupted/missing market day contributes no market information; the amendment makes it explicitly unusable rather than fake, so the rest of the otherwise-valid multi-year dataset remains scientifically usable.",
+      "Admissibility is structural (every day-unit in a terminal discovery-relevant state with explicit no-fabrication semantics), not an arbitrary coverage threshold such as 'up to N missing days' or '99.9% coverage'."
+    ]
+  },
+  "amendment_hash": "bd16d72abe4ec83bca6a5394b407b3ffd8b07c0181cc59351d06636365d98a25",
+  "artifact_id": "V3_1_DATA_AVAILABILITY_AMENDMENT_ARTIFACT_V1",
+  "built_at": "2026-09-09T20:35:41.400995+00:00",
+  "freeze_lineage": {
+    "prior_hash_preserved": false,
+    "stages": [
+      {
+        "component_count": 24,
+        "freeze_hash": "5a96fd0e6de8bc74cf98f39f5cf36e018dfb0521fba9f94e5cccd6dae726f6b1",
+        "stage": "original_v3_freeze"
+      },
+      {
+        "component_count": 25,
+        "freeze_hash": "f0ac824e86d13bf325708edddfc074f44c1abd3a99f16873fa56ddd55bf349e3",
+        "stage": "data_integrity_remediation_correction"
+      },
+      {
+        "component_count": 26,
+        "freeze_hash": "10c2f71360008ddcb3dd4c0df0ec3da09305dcdffa44047c6d01e64613b88e6d",
+        "stage": "synchronized_tick_quote_validity_correction"
+      },
+      {
+        "component_count": 27,
+        "freeze_hash": "5587babc9978343fb09469963822003b552b6c44e92dee373599160bdad356fd",
+        "stage": "v3_1_data_availability_amendment"
+      }
+    ]
+  },
+  "performance_blindness_evidence": {
+    "2018_plus_market_or_outcome_files_opened": 0,
+    "2018_plus_provider_requests_issued": 0,
+    "2018_plus_request_blocked_by_firewall": true,
+    "Sharpe_computed": 0,
+    "V3_PnL_computations": 0,
+    "candidate_outcomes_computed": 0,
+    "discovery_run_in_this_session": false,
+    "note": "No V3 strategy outcome/P&L/ranking was available; no candidate-specific information influenced this amendment.",
+    "rankings_computed": 0,
+    "sealed_holdout_cells_all_none": true,
+    "survivor_tests_computed": 0
+  }
+}

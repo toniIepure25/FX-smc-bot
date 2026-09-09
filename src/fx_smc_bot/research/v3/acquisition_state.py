@@ -33,6 +33,11 @@ class UnitStatus(str, Enum):
     RETRYABLE = "RETRYABLE"
     TERMINAL_DATA_ABSENT = "TERMINAL_DATA_ABSENT"
     INTEGRITY_FAILURE = "INTEGRITY_FAILURE"
+    # V3.1 (V3_DATA_AVAILABILITY_AMENDMENT_V1): a required day for which all frozen
+    # transport/remediation paths are exhausted, native data fail frozen integrity checks,
+    # no independent frozen transport can certify it, and no frozen interpretation resolves
+    # it. Terminal; never certified, never excluded, never observed.
+    UNRESOLVED_DATA_GAP = "UNRESOLVED_DATA_GAP"
 
 
 class Transport(str, Enum):
@@ -41,7 +46,10 @@ class Transport(str, Enum):
 
 
 CERTIFIED = (UnitStatus.CERTIFIED_NATIVE, UnitStatus.CERTIFIED_TICK_FALLBACK)
-TERMINAL = (*CERTIFIED, UnitStatus.TERMINAL_DATA_ABSENT)
+# Terminal for ACQUISITION purposes: nothing further to fetch. UNRESOLVED_DATA_GAP is
+# terminal (the data was acquired and inspected); it is NOT certified and NOT excluded --
+# it is explicitly represented as a genuine data gap under the V3.1 amendment.
+TERMINAL = (*CERTIFIED, UnitStatus.TERMINAL_DATA_ABSENT, UnitStatus.UNRESOLVED_DATA_GAP)
 
 # Allowed transitions. Certified/absent are terminal-ish: never regress to a pending status.
 _ALLOWED: dict[UnitStatus, set[UnitStatus]] = {
@@ -54,10 +62,13 @@ _ALLOWED: dict[UnitStatus, set[UnitStatus]] = {
         UnitStatus.IN_PROGRESS, UnitStatus.CERTIFIED_NATIVE,
         UnitStatus.CERTIFIED_TICK_FALLBACK, UnitStatus.INTEGRITY_FAILURE,
     },
-    UnitStatus.INTEGRITY_FAILURE: {UnitStatus.IN_PROGRESS, UnitStatus.RETRYABLE},
+    UnitStatus.INTEGRITY_FAILURE: {
+        UnitStatus.IN_PROGRESS, UnitStatus.RETRYABLE, UnitStatus.UNRESOLVED_DATA_GAP,
+    },
     UnitStatus.CERTIFIED_NATIVE: set(),
     UnitStatus.CERTIFIED_TICK_FALLBACK: set(),
     UnitStatus.TERMINAL_DATA_ABSENT: set(),
+    UnitStatus.UNRESOLVED_DATA_GAP: set(),
 }
 
 
@@ -157,6 +168,27 @@ class StateStore:
             )
         self.transition(instrument, d, UnitStatus.IN_PROGRESS,
                         fallback_reason=f"remediation:{category}", attempts=rec.attempts + 1)
+
+    def declare_unresolved_data_gap(self, instrument: str, d: date | str, *, reason: str) -> None:
+        """Classify an INTEGRITY_FAILURE unit as UNRESOLVED_DATA_GAP (V3.1 amendment).
+
+        Permitted ONLY when every frozen transport/remediation path has been exhausted
+        (frozen V3_DATA_AVAILABILITY_AMENDMENT_V1): the unit's data was acquired and
+        inspected, the native integrity checks fail, no independent frozen transport can
+        certify the day, no frozen deterministic interpretation resolves it, and no
+        repair/interpolation/swap is permitted. The transition is terminal: the unit never
+        re-enters acquisition, is never counted as certified or excluded, and stays in the
+        data-quality denominator and lineage.
+        """
+
+        k = self.key(instrument, d)
+        rec = self.units[k]
+        cur = UnitStatus(rec.status)
+        if cur is not UnitStatus.INTEGRITY_FAILURE:
+            raise ValueError(
+                f"UNRESOLVED_DATA_GAP requires INTEGRITY_FAILURE, got {cur.value} for {k}"
+            )
+        self.transition(instrument, d, UnitStatus.UNRESOLVED_DATA_GAP, fallback_reason=reason)
 
     def pending_keys(self) -> list[str]:
         # IN_PROGRESS is included so a unit interrupted mid-fetch (kill/crash during the

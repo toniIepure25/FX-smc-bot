@@ -19,17 +19,22 @@ from fx_smc_bot.research.v3.program_protocol import program_protocol_hash
 from fx_smc_bot.research.v3.statistics import statistics_hash
 from fx_smc_bot.research.v3.universes import universe_counts
 
-# Updated at the synchronized-tick quote-validity gate: freeze hash changed as a PRE-OUTCOME
-# data-quality correction that ADDED the V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1 contract as a
-# new frozen component (25 -> 26). It fixes, before any additional tick outcome, the
-# zero-tolerance QUOTE-level rule (a crossed ask<bid tick is an INVALID market quote that never
-# contributes to OHLC/observed/executable) and the minute/day aggregation semantics.
-# Universes A/B/C are UNCHANGED (992/52/1044). No V3 P&L/candidate outcome informed the change.
-GOLDEN_FREEZE_HASH = "10c2f71360008ddcb3dd4c0df0ec3da09305dcdffa44047c6d01e64613b88e6d"
+# Updated at the V3.1 data-availability gate: freeze hash changed as a POST-DATA-QUALITY,
+# PRE-ALPHA, PERFORMANCE-BLIND protocol amendment that ADDED the
+# V3_DATA_AVAILABILITY_AMENDMENT_V1 contract as a new frozen component (26 -> 27). It
+# introduces the general UNRESOLVED_DATA_GAP state (all frozen transport/remediation paths
+# exhausted, no frozen interpretation resolves, no repair permitted) with explicit
+# no-fabrication execution/feature semantics, cross-instrument semantics, a structural
+# (threshold-free) dataset admissibility rule and the V3.1 monthly status taxonomy. It
+# resolves the single genuine unresolved data gap (USDJPY:2010-01-01) WITHOUT repairing,
+# fabricating or silently excluding it. This is a NEW freeze identity: the prior hash
+# (10c2f713...) is deliberately NOT preserved. Universes A/B/C are UNCHANGED (992/52/1044).
+# No V3 P&L/candidate outcome informed the change.
+GOLDEN_FREEZE_HASH = "5587babc9978343fb09469963822003b552b6c44e92dee373599160bdad356fd"
 GOLDEN_TOTAL_DENOMINATOR = 1044
 GOLDEN_EXECUTABLE_ALPHA = 992
 GOLDEN_PRICE_ALPHA_ONLY = 52
-GOLDEN_COMPONENT_COUNT = 26
+GOLDEN_COMPONENT_COUNT = 27
 
 
 def test_freeze_hash_is_golden() -> None:

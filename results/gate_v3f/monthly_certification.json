@@ -1,56 +1,34 @@
 {
   "2018_plus_market_or_outcome_files_opened": 0,
   "2018_plus_provider_requests_issued": 0,
-  "artifact_id": "V3_WINDOWS_MONTHLY_CERTIFICATION_V1",
-  "certified_partitions": 2494,
+  "artifact_id": "V3_1_WINDOWS_MONTHLY_CERTIFICATION_V1",
   "global_data_freeze_digest": {
-    "artifact_id": "V3_GLOBAL_DATA_FREEZE_DIGEST_V2",
-    "certified_partitions": 2494,
-    "global_digest": "bce7640ceac69f4f8ef8a928dabd842809db7e44b5710f2fe42c2a5a63ef14b4",
+    "artifact_id": "V3_GLOBAL_DATA_FREEZE_DIGEST_V3",
+    "global_digest": "15a5c1af697c85dfaa454812aa8061b2a4d97fafa956196210bc3b38415d11c0",
     "partition_count": 2496,
     "partition_day_class_counts": {
       "certified_days": 65046,
       "excluded_days": 56,
-      "unresolved_days": 2
+      "missing_unexplained_days": 0,
+      "unresolved_data_gap_days": 2
     },
-    "supersedes": "V3_GLOBAL_DATA_FREEZE_DIGEST_V1"
+    "partition_status_counts": {
+      "CERTIFIED_COMPLETE": 2440,
+      "CERTIFIED_WITH_PROSPECTIVE_ABSENCE": 54,
+      "USABLE_WITH_UNRESOLVED_DATA_GAP": 2
+    },
+    "supersedes": "V3_GLOBAL_DATA_FREEZE_DIGEST_V2",
+    "usable_partitions": 2496
   },
-  "incomplete_instrument_months": [
-    "USDJPY:2010-01"
-  ],
-  "incomplete_sample": [
-    {
-      "instrument": "USDJPY",
-      "missing_dates": [
-        "2010-01-01"
-      ],
-      "month": 1,
-      "present_dates": 25,
-      "required_trading_dates": 26,
-      "row_count": 29280,
-      "side": "bid",
-      "status": "INCOMPLETE_COVERAGE",
-      "year": 2010
-    },
-    {
-      "instrument": "USDJPY",
-      "missing_dates": [
-        "2010-01-01"
-      ],
-      "month": 1,
-      "present_dates": 25,
-      "required_trading_dates": 26,
-      "row_count": 29280,
-      "side": "ask",
-      "status": "INCOMPLETE_COVERAGE",
-      "year": 2010
-    }
-  ],
+  "incomplete_instrument_months": [],
+  "incomplete_sample": [],
   "partition_count": 2496,
   "required_partitions": 2496,
   "status_counts": {
-    "CERTIFIED": 2494,
-    "INCOMPLETE_COVERAGE": 2
+    "CERTIFIED_COMPLETE": 2440,
+    "CERTIFIED_WITH_PROSPECTIVE_ABSENCE": 54,
+    "USABLE_WITH_UNRESOLVED_DATA_GAP": 2
   },
-  "wall_sec": 232.7
+  "usable_partitions": 2496,
+  "wall_sec": 238.38
 }

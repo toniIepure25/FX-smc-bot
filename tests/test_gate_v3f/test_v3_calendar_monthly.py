@@ -81,8 +81,9 @@ def test_month_certified_when_complete() -> None:
     cert = mc.certify_month(instrument="EURUSD", year=2014, month=6, side="bid",
                             rows_by_date=rows, transport_by_date=transport,
                             fallback_by_date={}, decimals=5)
-    assert cert["status"] == mc.CERTIFIED
+    assert cert["status"] == mc.CERTIFIED_COMPLETE
     assert cert["missing_dates"] == []
+    assert cert["unresolved_date_count"] == 0
     assert cert["transport_mix"] == ["NATIVE_M1"]
 
 
@@ -114,7 +115,8 @@ def test_global_digest_deterministic() -> None:
     d1 = mc.global_data_freeze_digest([cert])
     d2 = mc.global_data_freeze_digest([cert])
     assert d1["global_digest"] == d2["global_digest"]
-    assert d1["certified_partitions"] == 1
+    assert d1["usable_partitions"] == 1
+    assert d1["partition_status_counts"][mc.CERTIFIED_COMPLETE] == 1
 
 
 # --- prospectively excluded dates (frozen TERMINAL_DATA_ABSENT rule) ---
@@ -122,11 +124,12 @@ def test_month_certified_when_missing_date_prospectively_excluded() -> None:
     rows = _complete_month_rows(2014, 6)
     dropped = sorted(rows)[10]
     rows.pop(dropped)
+    reason = "confirmed_no_market_observations_native_and_tick"
     cert = mc.certify_month(instrument="EURUSD", year=2014, month=6, side="bid",
                             rows_by_date=rows, transport_by_date={d: "NATIVE_M1" for d in rows},
                             fallback_by_date={}, decimals=5,
-                            excluded_dates={dropped: "confirmed_no_market_observations_native_and_tick"})
-    assert cert["status"] == mc.CERTIFIED
+                            excluded_dates={dropped: reason})
+    assert cert["status"] == mc.CERTIFIED_WITH_PROSPECTIVE_ABSENCE
     assert cert["missing_dates"] == []
     assert cert["excluded_dates"] == {dropped: "confirmed_no_market_observations_native_and_tick"}
     assert cert["excluded_date_count"] == 1
@@ -140,10 +143,11 @@ def test_month_still_incomplete_when_missing_date_not_excluded() -> None:
     other = sorted(rows)[5]
     rows.pop(dropped)
     rows.pop(other)
+    reason = "confirmed_no_market_observations_native_and_tick"
     cert = mc.certify_month(instrument="EURUSD", year=2014, month=6, side="bid",
                             rows_by_date=rows, transport_by_date={d: "NATIVE_M1" for d in rows},
                             fallback_by_date={}, decimals=5,
-                            excluded_dates={other: "confirmed_no_market_observations_native_and_tick"})
+                            excluded_dates={other: reason})
     # excluding one absent date does not cover the other genuinely missing one
     assert cert["status"] == mc.INCOMPLETE
     assert cert["missing_dates"] == [dropped]
@@ -152,12 +156,13 @@ def test_month_still_incomplete_when_missing_date_not_excluded() -> None:
 def test_present_and_excluded_is_a_contradiction() -> None:
     rows = _complete_month_rows(2014, 6)
     d = sorted(rows)[10]
+    reason = "confirmed_no_market_observations_native_and_tick"
     try:
         mc.certify_month(instrument="EURUSD", year=2014, month=6, side="bid",
                          rows_by_date=rows, transport_by_date={d: "NATIVE_M1" for d in rows},
                          fallback_by_date={}, decimals=5,
-                         excluded_dates={d: "confirmed_no_market_observations_native_and_tick"})
-        assert False, "expected ValueError"
+                         excluded_dates={d: reason})
+        raise AssertionError("expected ValueError")
     except ValueError:
         pass
 
@@ -166,27 +171,52 @@ def test_digest_distinguishes_day_classes() -> None:
     rows = _complete_month_rows(2014, 6)
     dropped = sorted(rows)[10]
     rows.pop(dropped)
+    reason = "confirmed_no_market_observations_native_and_tick"
     cert = mc.certify_month(instrument="EURUSD", year=2014, month=6, side="bid",
                             rows_by_date=rows, transport_by_date={d: "NATIVE_M1" for d in rows},
                             fallback_by_date={}, decimals=5,
-                            excluded_dates={dropped: "confirmed_no_market_observations_native_and_tick"})
-    # a second partition with a genuinely unresolved (missing, not excluded) date
+                            excluded_dates={dropped: reason})
+    # a second partition with a genuinely unexplained missing date (neither present,
+    # excluded nor explicitly unresolved)
     rows2 = _complete_month_rows(2014, 6)
-    unresolved = sorted(rows2)[3]
-    rows2.pop(unresolved)
+    missing = sorted(rows2)[3]
+    rows2.pop(missing)
     cert2 = mc.certify_month(instrument="EURUSD", year=2014, month=6, side="ask",
                              rows_by_date=rows2,
                              transport_by_date={d: "NATIVE_M1" for d in rows2},
                              fallback_by_date={}, decimals=5)
     d = mc.global_data_freeze_digest([cert, cert2])
-    assert d["artifact_id"] == "V3_GLOBAL_DATA_FREEZE_DIGEST_V2"
-    assert d["certified_partitions"] == 1
+    assert d["artifact_id"] == "V3_GLOBAL_DATA_FREEZE_DIGEST_V3"
+    assert d["usable_partitions"] == 1
     classes = d["partition_day_class_counts"]
     n = len(mc.month_trading_dates(2014, 6))  # Saturdays excluded by the frozen calendar
-    # cert: n-1 present + 1 excluded; cert2: n-1 present + 1 unresolved.
+    # cert: n-1 present + 1 excluded; cert2: n-1 present + 1 missing-unexplained.
     assert classes["certified_days"] == 2 * (n - 1)
     assert classes["excluded_days"] == 1
-    assert classes["unresolved_days"] == 1
+    assert classes["unresolved_data_gap_days"] == 0
+    assert classes["missing_unexplained_days"] == 1
     # determinism + order independence
     d2 = mc.global_data_freeze_digest([cert2, cert])
     assert d["global_digest"] == d2["global_digest"]
+
+
+def test_digest_unresolved_gap_class_distinct_from_excluded() -> None:
+    # the same missing date, classified as excluded vs unresolved, must hash differently
+    rows = _complete_month_rows(2014, 6)
+    dropped = sorted(rows)[10]
+    rows.pop(dropped)
+    base = dict(instrument="EURUSD", year=2014, month=6, side="bid",
+                rows_by_date=rows,
+                transport_by_date={d: "NATIVE_M1" for d in rows},
+                fallback_by_date={}, decimals=5)
+    as_excluded = mc.certify_month(
+        excluded_dates={dropped: "confirmed_no_market_observations_native_and_tick"}, **base)
+    as_unresolved = mc.certify_month(
+        unresolved_dates={dropped: "unresolved_provider_data_gap_v3_1"}, **base)
+    d_ex = mc.global_data_freeze_digest([as_excluded])
+    d_un = mc.global_data_freeze_digest([as_unresolved])
+    assert d_ex["global_digest"] != d_un["global_digest"]
+    assert d_ex["partition_status_counts"][mc.CERTIFIED_WITH_PROSPECTIVE_ABSENCE] == 1
+    assert d_un["partition_status_counts"][mc.USABLE_WITH_UNRESOLVED_DATA_GAP] == 1
+    assert d_un["partition_day_class_counts"]["unresolved_data_gap_days"] == 1
+    assert d_un["partition_day_class_counts"]["excluded_days"] == 0
