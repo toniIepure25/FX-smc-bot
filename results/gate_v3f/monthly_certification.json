@@ -1,0 +1,311 @@
+{
+  "2018_plus_market_or_outcome_files_opened": 0,
+  "2018_plus_provider_requests_issued": 0,
+  "artifact_id": "V3_WINDOWS_MONTHLY_CERTIFICATION_V1",
+  "certified_partitions": 2440,
+  "global_data_freeze_digest": {
+    "artifact_id": "V3_GLOBAL_DATA_FREEZE_DIGEST_V1",
+    "certified_partitions": 2440,
+    "global_digest": "6072726821cbacb1e07c318323392d59ad83d4f57c9393c33840a5515e4fc96a",
+    "partition_count": 2496
+  },
+  "incomplete_instrument_months": [
+    "AUDJPY:2016-01",
+    "AUDJPY:2017-12",
+    "AUDUSD:2016-01",
+    "AUDUSD:2017-12",
+    "EURCHF:2016-01",
+    "EURCHF:2017-12",
+    "EURGBP:2016-01",
+    "EURGBP:2017-12",
+    "EURJPY:2016-01",
+    "EURJPY:2017-12",
+    "EURUSD:2016-01",
+    "EURUSD:2017-12",
+    "GBPCHF:2016-01",
+    "GBPCHF:2017-12",
+    "GBPJPY:2016-01",
+    "GBPJPY:2017-12",
+    "GBPUSD:2016-01",
+    "GBPUSD:2017-12",
+    "NZDUSD:2016-01",
+    "NZDUSD:2017-01",
+    "NZDUSD:2017-12",
+    "USDCAD:2016-01",
+    "USDCAD:2017-12",
+    "USDCHF:2016-01",
+    "USDCHF:2017-12",
+    "USDJPY:2010-01",
+    "USDJPY:2016-01",
+    "USDJPY:2017-12"
+  ],
+  "incomplete_sample": [
+    {
+      "instrument": "EURUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29400,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29400,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "EURUSD",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30660,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "EURUSD",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30660,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29399,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29399,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "GBPUSD",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30655,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "GBPUSD",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30655,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "USDJPY",
+      "missing_dates": [
+        "2010-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29280,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2010
+    },
+    {
+      "instrument": "USDJPY",
+      "missing_dates": [
+        "2010-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29280,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2010
+    },
+    {
+      "instrument": "USDJPY",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29400,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "USDJPY",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29400,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "USDJPY",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30660,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "USDJPY",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30660,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "AUDUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29400,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "AUDUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29400,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "AUDUSD",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30660,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "AUDUSD",
+      "missing_dates": [
+        "2017-12-31"
+      ],
+      "month": 12,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 30660,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2017
+    },
+    {
+      "instrument": "NZDUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29397,
+      "side": "bid",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    },
+    {
+      "instrument": "NZDUSD",
+      "missing_dates": [
+        "2016-01-01"
+      ],
+      "month": 1,
+      "present_dates": 25,
+      "required_trading_dates": 26,
+      "row_count": 29397,
+      "side": "ask",
+      "status": "INCOMPLETE_COVERAGE",
+      "year": 2016
+    }
+  ],
+  "partition_count": 2496,
+  "required_partitions": 2496,
+  "status_counts": {
+    "CERTIFIED": 2440,
+    "INCOMPLETE_COVERAGE": 56
+  },
+  "wall_sec": 228.47
+}

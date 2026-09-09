@@ -2,18 +2,19 @@
   "2018_plus_market_or_outcome_files_opened": 0,
   "2018_plus_provider_requests_issued": 0,
   "artifact_id": "V3_DATA_CERTIFICATION_GATE_V1",
-  "built_at": "2026-08-14T20:29:30.178243+00:00",
+  "built_at": "2026-09-09T14:36:20.531970+00:00",
   "bulk_acquisition_state": {
-    "certified_native": 3,
-    "certified_tick_fallback": 0,
-    "certified_units": 3,
+    "certified_units": 32117,
     "counts_by_status": {
-      "CERTIFIED_NATIVE": 3,
-      "PLANNED": 2501
+      "CERTIFIED_NATIVE": 32117,
+      "CERTIFIED_TICK_FALLBACK": 406,
+      "INTEGRITY_FAILURE": 1,
+      "TERMINAL_DATA_ABSENT": 28
     },
-    "coverage_complete": false,
-    "pending_units": 2501,
-    "total_units": 2504
+    "integrity_failure_units": 1,
+    "native_day_units_certified": 32117,
+    "native_day_units_total": 32552,
+    "total_units": 32552
   },
   "conditions": {
     "denominator_semantics_unambiguous": true,
@@ -31,18 +32,12 @@
   "conditions_passed": 10,
   "conditions_total": 11,
   "coverage": {
-    "certified_units": 0,
+    "certified_units": 2440,
     "coverage_complete": false,
-    "native_day_units_certified": 3,
-    "native_day_units_pending": 32549,
-    "native_day_units_total": 32552,
-    "pending_units": 2496,
+    "pending_units": 56,
     "prospectively_excluded_units": 0,
-    "required_units": 2496,
-    "sample_day_partitions_certified": 4,
-    "sample_note": "a 1-day, 2-pair (EURUSD/USDJPY) real M1 sample is certified end-to-end, proving the pipeline; no complete monthly partition is certified yet."
+    "required_units": 2496
   },
-  "data_manifest_hash": "d7c34acb79965485934e0e1bed8fe0a458912d6cbaa2b53fe4f4dfe26a219894",
   "discovery_run_in_this_session": false,
   "evidence": {
     "denominator_unambiguous": true,
@@ -65,7 +60,28 @@
       "PARTIAL_SUNDAY_OPEN": 418
     }
   },
-  "gate_hash": "ef72ce9c2567d41317f6e53f8c64ca6427560d3636addc752284f52ec36558c9",
+  "gate_hash": "aafb89420bc50dc42a66bcc8079708cbabc794bd96742ef67a9b21df9b7606b7",
+  "integrity_failure_breakdown": {
+    "bid_ask_feed_quirks": 0,
+    "note": "After the V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1 offline remediation, 406 of the 435 targeted integrity-failure day units are certified via synchronized-tick fallback (crossed/invalid quotes filtered, strict audit passed), 28 are confirmed TERMINAL_DATA_ABSENT (complete session, zero valid synchronized observations on both transports), and 1 remain INTEGRITY_FAILURE (USDJPY:2010-01-01: native 330 bid/ask ordering violations but zero tick observations -- conservatively retained per the frozen rule).",
+    "total": 1,
+    "zero_volume_holiday_closures": 0
+  },
+  "monthly_certification": {
+    "certified_partitions": 2440,
+    "global_data_freeze_digest": {
+      "artifact_id": "V3_GLOBAL_DATA_FREEZE_DIGEST_V1",
+      "certified_partitions": 2440,
+      "global_digest": "6072726821cbacb1e07c318323392d59ad83d4f57c9393c33840a5515e4fc96a",
+      "partition_count": 2496
+    },
+    "incomplete_instrument_months": 28,
+    "required_partitions": 2496,
+    "status_counts": {
+      "CERTIFIED": 2440,
+      "INCOMPLETE_COVERAGE": 56
+    }
+  },
   "native_plan": {
     "day_units_total": 32552,
     "monthly_canonical_partitions": 2496,
@@ -73,39 +89,17 @@
     "old_tick_requests_equivalent": 781248,
     "request_reduction_vs_tick": "12.0x fewer requests than the tick path"
   },
-  "native_transport": {
-    "certification": {
-      "native_primary": true,
-      "rule": "certify fleet-wide only if all 13 instruments pass, both scaling classes pass, full/Sunday-open/Friday-close session classes pass, and zero FAIL under the frozen quote-precision contract.",
-      "tick_fallback_role": "deterministic per-day fallback only",
-      "verdict": "V3_NATIVE_M1_BULK_TRANSPORT_CERTIFIED_FLEET_WIDE"
-    },
-    "fleet_instruments_covered": [
-      "AUDJPY",
-      "AUDUSD",
-      "EURCHF",
-      "EURGBP",
-      "EURJPY",
-      "EURUSD",
-      "GBPCHF",
-      "GBPJPY",
-      "GBPUSD",
-      "NZDUSD",
-      "USDCAD",
-      "USDCHF",
-      "USDJPY"
-    ],
-    "fleet_instruments_missing": [],
-    "fleet_session_classes": [
-      "FULL_SESSION",
-      "PARTIAL_FRIDAY_CLOSE",
-      "PARTIAL_SUNDAY_OPEN"
-    ],
-    "parity_fail_units": 0,
-    "parity_hash": "d6abefac2c64246d27dfdad074743569445a79ba000c3c7fcae57013e146e9ac",
-    "parity_pass_units": 16
-  },
   "next_gate": "COMPLETE_BULK_PRE_2018_ACQUISITION",
-  "remaining_external_step": "complete bulk pre-2018 acquisition (13 instruments x 2010-2017); bounded, resumable; blocked this session only by provider 503-throttle over the corporate proxy. All non-data conditions already pass.",
+  "performance": {
+    "canonical_rows": 46248480,
+    "full_run_units_per_sec": 48.71,
+    "full_run_wall_sec": 668.28,
+    "peak_rss_mb": 516.6,
+    "pilot_frozen_runner_units_per_sec": 0.656,
+    "pilot_offline_runner_units_per_sec": 51.28,
+    "speedup_vs_frozen_runner": 78
+  },
+  "platform": "windows-10-laptop",
+  "remaining_external_step": "Bulk acquisition and data-integrity remediation are complete: 32117 day units certified native, 406 certified via synchronized-tick fallback, 28 confirmed TERMINAL_DATA_ABSENT, 1 INTEGRITY_FAILURE (USDJPY:2010-01-01, zero tick observations). 0 network requests during remediation, 0 2018+ reads. The single remaining INTEGRITY_FAILURE unit is a genuine data gap (native bid/ask ordering violations with no synchronized tick data to certify), not provider throttling.",
   "verdict": "V3_DATA_CERTIFICATION_IN_PROGRESS_BULK_ACQUISITION_PENDING"
 }

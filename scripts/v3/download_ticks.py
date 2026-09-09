@@ -133,24 +133,22 @@ def _all_targets(units: list[dict[str, Any]], tick_scratch: Path) -> list[TickTa
     return out
 
 
-def _curl_batch(targets: list[TickTarget], parallel_max: int,
-                cfg_path: Path) -> dict[str, tuple[int, float]]:
-    """Bounded-parallel fetch of a batch (connection reuse). Returns {url: (code, time_total)}."""
+def _curl_batch(targets: list[TickTarget], parallel_max: int) -> dict[str, tuple[int, float]]:
+    """Bounded-parallel fetch of a batch (connection reuse). Returns {url: (code, time_total)}.
+
+    Uses ``-o <dest> <url>`` per target (NOT a ``--config`` file): curl 8.x on Windows/Schannel
+    silently drops the ``output =`` directive in a parallel config, so files would be fetched
+    but never written. Per-URL ``-o`` is verified to write the files.
+    """
 
     if not targets:
         return {}
-    lines: list[str] = []
+    cmd: list[str] = ["curl", "-sS", "--parallel", "--parallel-max", str(parallel_max),
+                      "-w", "%{url_effective} %{http_code} %{time_total}\n",
+                      "--max-time", "90", "--retry", "0"]
     for t in targets:
-        lines.append(f'url = "{t.url}"')
-        lines.append(f'output = "{t.dest}"')
-    cfg_path.write_text("\n".join(lines))
-    proc = subprocess.run(
-        ["curl", "-sS", "--parallel", "--parallel-max", str(parallel_max),
-         "--config", str(cfg_path),
-         "-w", "%{url_effective} %{http_code} %{time_total}\n",
-         "--max-time", "90", "--retry", "0"],
-        capture_output=True, text=True,
-    )
+        cmd.extend(["-o", str(t.dest), t.url])
+    proc = subprocess.run(cmd, capture_output=True, text=True)
     out: dict[str, tuple[int, float]] = {}
     for line in proc.stdout.strip().splitlines():
         parts = line.split()
@@ -168,7 +166,7 @@ def _classify_http(code: int) -> str:
 
 
 def _download_batch(fw: V3HoldoutFirewall, batch: list[TickTarget], flog: FetchLog,
-                    parallel_max: int, cfg_path: Path) -> dict[str, int]:
+                    parallel_max: int) -> dict[str, int]:
     """Fetch one batch of pending tick-hours; update the fetch log. Returns status counts."""
 
     counts: dict[str, int] = {}
@@ -177,7 +175,7 @@ def _download_batch(fw: V3HoldoutFirewall, batch: list[TickTarget], flog: FetchL
     for t in batch:  # firewall BEFORE scheduling any transport (a 2018+ URL would raise)
         fw.guard_url(t.url)
         fw.guard_date(t.day, context="raw tick download")
-    results = _curl_batch(batch, parallel_max, cfg_path)
+    results = _curl_batch(batch, parallel_max)
     for t in batch:
         code, _t = results.get(t.url, (-1, 0.0))
         status = _classify_http(code)
@@ -210,7 +208,6 @@ def cmd_calibrate(args: argparse.Namespace) -> int:
     tick_scratch.mkdir(parents=True, exist_ok=True)
     flog = FetchLog(tick_scratch / "tick_fetch_log.json")
     fw = V3HoldoutFirewall()
-    cfg = tick_scratch / "_cal.cfg"
     all_targets = _all_targets(units, tick_scratch)
     pending = [t for t in all_targets if not flog.is_terminal(t.key)]
     per = args.calibrate_size
@@ -220,7 +217,7 @@ def cmd_calibrate(args: argparse.Namespace) -> int:
             break
         batch, pending = pending[:per], pending[per:]
         t0 = time.monotonic()
-        counts = _download_batch(fw, batch, flog, c, cfg)
+        counts = _download_batch(fw, batch, flog, c)
         flog.save()
         dt = time.monotonic() - t0
         ok = counts.get(DOWNLOADED_VALID, 0) + counts.get(SOURCE_404, 0)
@@ -250,7 +247,6 @@ def cmd_run(args: argparse.Namespace) -> int:
     tick_scratch.mkdir(parents=True, exist_ok=True)
     flog = FetchLog(tick_scratch / "tick_fetch_log.json")
     fw = V3HoldoutFirewall()
-    cfg = tick_scratch / "_batch.cfg"
     all_targets = _all_targets(units, tick_scratch)
     total = len(all_targets)
     log = open(args.log, "a") if args.log else None
@@ -264,7 +260,7 @@ def cmd_run(args: argparse.Namespace) -> int:
             break
         batch = pending[:args.batch_size]
         batch_no += 1
-        counts = _download_batch(fw, batch, flog, args.concurrency, cfg)
+        counts = _download_batch(fw, batch, flog, args.concurrency)
         flog.save()
         prog = _progress(flog, total)
         elapsed = time.monotonic() - t_start

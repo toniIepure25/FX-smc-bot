@@ -55,6 +55,9 @@ from fx_smc_bot.research.v3.provider_scheduler import (  # noqa: E402
     Outcome,
     classify,
 )
+from fx_smc_bot.research.v3.quote_validity import (  # noqa: E402
+    quote_validity_contract_hash,
+)
 from fx_smc_bot.research.v3.remediation import (  # noqa: E402
     ABSENT_REASON_CONFIRMED,
     CAT_BIDASK_ORDER,
@@ -179,8 +182,8 @@ def build_manifest(state_path: Path, scratch: Path, manifest_path: Path) -> int:
         })
     total_files = sum(len(u["tick_urls"]) for u in units)
     by_cat: dict[str, int] = {}
-    for u in units:
-        by_cat[u["category"]] = by_cat.get(u["category"], 0) + 1
+    for unit in units:
+        by_cat[unit["category"]] = by_cat.get(unit["category"], 0) + 1
     manifest = {
         "artifact_id": "V3_TARGETED_TICK_MANIFEST_V1",
         "remediation_contract_hash": remediation_contract_hash(),
@@ -346,7 +349,7 @@ def _write_canonical(canon: Path, inst: str, d: date,
                      canon_rows: list[dict[str, Any]]) -> str:
     """Persist canonical M1 v2 rows per side (frozen _write_canonical semantics)."""
 
-    import pandas as pd  # noqa: PLC0415
+    import pandas as pd  # type: ignore[import-untyped]  # noqa: PLC0415
 
     digest_input: list[dict[str, Any]] = []
     for side in ("bid", "ask"):
@@ -512,6 +515,211 @@ def run(args: argparse.Namespace) -> int:
     return 0
 
 
+# --------------------------------------------------------------------------------------
+# Offline quote-validity remediation (local bytes only; no network).
+# --------------------------------------------------------------------------------------
+# A tick-hour is in a legitimate terminal transport state iff its fetch-log status is one of
+# these (new DOWNLOADED_VALID/SOURCE_404 plus the backward-compatible ok/missing).
+_TERMINAL_TRANSPORT = ("DOWNLOADED_VALID", "SOURCE_404", "ok", "missing")
+_ABSENT_TRANSPORT = ("SOURCE_404", "missing")
+
+
+def load_tick_session_offline(inst: str, d: date, tick_scratch: Path,
+                              flog: FetchLog) -> dict[str, Any]:
+    """Reconstruct the COMPLETE required session for (inst, d) from LOCAL tick bytes only.
+
+    No network is touched. Every required session hour must already be in a legitimate terminal
+    transport state in the fetch log; otherwise the session is ``unresolved_transient``. Decodes
+    the local ``.bi5`` payloads and returns the same rich result shape as ``acquire_tick_session``.
+    """
+
+    scale = ap.price_scale(inst)
+    hours = session_hours(d)
+    per_hour: dict[str, str] = {}
+    per_hour_sha: dict[str, str] = {}
+    combined = hashlib.sha256()
+    ticks: list[ap.Tick] = []
+    decoded = 0
+    any_transient = False
+    for h in hours:
+        key = f"{inst}_{d.isoformat()}_{h:02d}h"
+        e = flog.get(key)
+        if e is None or e["status"] not in _TERMINAL_TRANSPORT:
+            per_hour[str(h)] = "transient"
+            any_transient = True
+            continue
+        if e["status"] in _ABSENT_TRANSPORT:
+            per_hour[str(h)] = "missing"
+            continue
+        dest = tick_scratch / f"{key}_ticks.bi5"
+        raw = dest.read_bytes() if dest.exists() else b""
+        combined.update(raw)
+        per_hour[str(h)] = "ok"
+        per_hour_sha[str(h)] = hashlib.sha256(raw).hexdigest()
+        ht = ap.decode_bi5(raw, _day_ms(d) + h * 3600_000, scale)
+        if ht:
+            decoded += len(ht)
+            ticks.extend(ht)
+    if any_transient:
+        tick_state = TICK_TRANSIENT
+    elif decoded > 0:
+        tick_state = TICK_HAS_OBS
+    else:
+        tick_state = TICK_ZERO_OBS
+    return {
+        "tick_state": tick_state,
+        "ticks": ticks,
+        "decoded_tick_count": decoded,
+        "tick_source_sha256": combined.hexdigest(),
+        "tick_source_checksums": per_hour_sha,
+        "hour_states": per_hour,
+    }
+
+
+def offline_run(args: argparse.Namespace) -> int:
+    """Fully offline quote-validity remediation of ALL manifest units.
+
+    Reads only local tick bytes (no network), aggregates VALID synchronized ticks under the frozen
+    V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1 contract, applies the frozen remediation decision, and
+    records the invalid-quote provenance. Every one of the 435 units is re-evaluated from scratch;
+    prior remediation classifications (including the 17 remediation_tick_still_failing) are NOT
+    retained. Units already TERMINAL_DATA_ABSENT are re-verified offline (the old zero-decoded rule
+    implies the new zero-valid rule, so the result is unchanged) rather than force-transitioned.
+    """
+
+    store = StateStore(Path(args.state))
+    store.load()
+    manifest = json.loads(Path(args.manifest).read_text())
+    if canonical_hash(manifest["units"]) != manifest["manifest_hash"]:
+        raise SystemExit("manifest hash mismatch -- refusing to run on a tampered manifest")
+    if manifest["remediation_contract_hash"] != remediation_contract_hash():
+        raise SystemExit("remediation contract hash mismatch -- refusing to run")
+
+    canon = Path(args.canonical)
+    tick_scratch = Path(args.tick_scratch)
+    flog = FetchLog(tick_scratch / "tick_fetch_log.json")
+
+    audit_path = Path(args.audit)
+    audit: dict[str, Any] = {}
+    if audit_path.exists():
+        audit = json.loads(audit_path.read_text()).get("units", {})
+
+    counts: dict[str, int] = {}
+    processed = 0
+    for u in manifest["units"]:
+        key = u["key"]
+        inst, iso = key.split(":")
+        d = date.fromisoformat(iso)
+        rec = store.units.get(key)
+        if rec is None:
+            raise SystemExit(f"manifest unit {key} not present in state -- refusing to continue")
+
+        sess = load_tick_session_offline(inst, d, tick_scratch, flog)
+        trows, vstats = ap.aggregate_m1_valid(sess["ticks"], inst)
+
+        if sess["tick_state"] == TICK_TRANSIENT:
+            tick_state, tick_audit, canon_trows = TICK_TRANSIENT, None, []
+        elif vstats.valid_tick_count > 0:
+            tick_state = TICK_HAS_OBS
+            canon_trows = cm.canonicalize_tick_day(trows, d)
+            tcert = ap.certify_partition(instrument=inst, year=d.year, month=d.month,
+                                         day=d.day, side="bid", m1_rows=canon_trows,
+                                         source_bytes=0,
+                                         source_sha256=sess["tick_source_sha256"],
+                                         request_urls=[])
+            tick_audit = tcert["integrity_audit"]
+        else:
+            tick_state, tick_audit, canon_trows = TICK_ZERO_OBS, None, []
+
+        outcome = decide_remediation_outcome(category=u["category"],
+                                             tick_state=tick_state, tick_audit=tick_audit)
+        entry: dict[str, Any] = {
+            "category": u["category"],
+            "native_source_checksum": u["native_source_checksum"],
+            "native_bid_ask_violations": u["native_bid_ask_violations"],
+            "native_observed_minutes": u["native_observed_minutes"],
+            "tick_state": tick_state,
+            "raw_tick_count": vstats.raw_tick_count,
+            "valid_tick_count": vstats.valid_tick_count,
+            "invalid_crossed_tick_count": vstats.invalid_crossed_tick_count,
+            "invalid_other_tick_count": vstats.invalid_other_tick_count,
+            "minutes_affected": vstats.minutes_affected,
+            "minutes_with_no_valid_tick": vstats.minutes_with_no_valid_tick,
+            "maximum_invalid_negative_spread": vstats.max_invalid_negative_spread,
+            "tick_source_sha256": sess["tick_source_sha256"],
+            "tick_source_checksums": sess["tick_source_checksums"],
+            "hour_states": sess["hour_states"],
+        }
+
+        cur = UnitStatus(rec.status)
+        if cur is UnitStatus.TERMINAL_DATA_ABSENT:
+            if outcome != "TERMINAL_DATA_ABSENT":
+                raise SystemExit(
+                    f"unit {key} is TERMINAL_DATA_ABSENT but the quote-validity rule yields "
+                    f"{outcome} -- manual review required (no silent state change)")
+            entry.update({"final_status": "TERMINAL_DATA_ABSENT",
+                          "fallback_reason": rec.fallback_reason,
+                          "reverified_offline": True})
+        else:
+            if cur is UnitStatus.INTEGRITY_FAILURE:
+                store.begin_remediation(inst, d, u["category"])
+            elif cur is UnitStatus.RETRYABLE:
+                store.transition(inst, d, UnitStatus.IN_PROGRESS)
+            # IN_PROGRESS: already in the pass; re-process.
+
+            if outcome == "CERTIFIED_TICK_FALLBACK":
+                ch = _write_canonical(canon, inst, d, canon_trows)
+                reason = (FALLBACK_REASON_BIDASK if u["category"] == CAT_BIDASK_ORDER
+                          else FALLBACK_REASON_ZERO_OBS)
+                store.transition(inst, d, UnitStatus.CERTIFIED_TICK_FALLBACK,
+                                 transport=Transport.TICK_AGGREGATED_M1.value,
+                                 fallback_reason=reason, source_checksum=sess["tick_source_sha256"],
+                                 canonical_checksum=ch, canonical_rows=len(trows))
+                entry.update({"final_status": "CERTIFIED_TICK_FALLBACK",
+                              "tick_canonical_checksum": ch,
+                              "fallback_reason": reason,
+                              "tick_bid_ask_violations":
+                                  tick_audit["bid_ask_ordering_violations"]
+                                  if tick_audit is not None else 0})
+            elif outcome == "TERMINAL_DATA_ABSENT":
+                store.transition(inst, d, UnitStatus.TERMINAL_DATA_ABSENT,
+                                 fallback_reason=ABSENT_REASON_CONFIRMED)
+                entry.update({"final_status": "TERMINAL_DATA_ABSENT",
+                              "fallback_reason": ABSENT_REASON_CONFIRMED})
+            elif outcome == "RETRYABLE":
+                store.transition(inst, d, UnitStatus.RETRYABLE,
+                                 fallback_reason="tick_transient_throttle_or_timeout")
+                entry.update({"final_status": "RETRYABLE",
+                              "fallback_reason": "tick_transient_throttle_or_timeout"})
+            else:  # INTEGRITY_FAILURE
+                store.transition(inst, d, UnitStatus.INTEGRITY_FAILURE,
+                                 fallback_reason="remediation_tick_still_failing")
+                entry.update({"final_status": "INTEGRITY_FAILURE",
+                              "fallback_reason": "remediation_tick_still_failing",
+                              "tick_bid_ask_violations":
+                                  (tick_audit["bid_ask_ordering_violations"]
+                                   if tick_audit else None)})
+        audit[key] = entry
+        counts[outcome] = counts.get(outcome, 0) + 1
+        processed += 1
+        if processed % 25 == 0:
+            print(f"processed={processed} {json.dumps(counts)}", flush=True)
+
+    audit_path.parent.mkdir(parents=True, exist_ok=True)
+    audit_path.write_text(json.dumps(
+        {"artifact_id": "V3_DATA_INTEGRITY_REMEDIATION_AUDIT_V1",
+         "remediation_contract_hash": remediation_contract_hash(),
+         "quote_validity_contract_hash": quote_validity_contract_hash(),
+         "units": audit}, indent=2, sort_keys=True))
+    s = store.summary()
+    print(json.dumps({
+        "processed": processed,
+        "outcome_counts": counts,
+        "state_summary": s,
+    }, indent=2))
+    return 0
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description="V3 targeted tick data-integrity remediation")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -533,6 +741,13 @@ def main() -> int:
     r.add_argument("--concurrency", type=int, default=2)
     r.add_argument("--log", default="")
     r.set_defaults(func=run)
+    o = sub.add_parser("offline", help="fully offline quote-validity remediation (local bytes)")
+    o.add_argument("--state", required=True)
+    o.add_argument("--canonical", required=True)
+    o.add_argument("--tick-scratch", required=True, dest="tick_scratch")
+    o.add_argument("--manifest", required=True)
+    o.add_argument("--audit", required=True)
+    o.set_defaults(func=offline_run)
     args = p.parse_args()
     return int(args.func(args))
 
