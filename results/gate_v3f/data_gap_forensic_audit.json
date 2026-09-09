@@ -1,0 +1,620 @@
+{
+  "artifact_id": "V3_DATA_GAP_FORENSIC_AUDIT_V1",
+  "firewall": {
+    "2018_plus_market_or_outcome_files_opened": 0,
+    "2018_plus_provider_requests_issued": 0,
+    "v3_pnl_computations": 0
+  },
+  "gate": {
+    "after": {
+      "conditions": "10/11",
+      "coverage": {
+        "certified_units": 32523,
+        "coverage_complete": false,
+        "pending_units": 0,
+        "prospectively_excluded_units": 28,
+        "required_units": 32552,
+        "terminal_unresolved_units": 1
+      },
+      "gate_hash": "cfa7a7deafbd80ae7b606376a9e21cf8057fa3f36c8f544c6320a4600dc9f968",
+      "next_gate": "RESOLVE_DATA_INTEGRITY_GAP",
+      "verdict": "V3_DATA_CERTIFICATION_BLOCKED_BY_GENUINE_DATA_GAP"
+    },
+    "before": {
+      "conditions": "10/11",
+      "coverage": "2440/2496 partitions",
+      "verdict": "V3_DATA_CERTIFICATION_IN_PROGRESS_BULK_ACQUISITION_PENDING"
+    }
+  },
+  "monthly_certification": {
+    "after": {
+      "certified_partitions": 2494,
+      "digest_artifact": "V3_GLOBAL_DATA_FREEZE_DIGEST_V2",
+      "global_digest": "bce7640ceac69f4f8ef8a928dabd842809db7e44b5710f2fe42c2a5a63ef14b4",
+      "incomplete_instrument_months": 1,
+      "incomplete_partitions": 2,
+      "partition_day_class_counts": {
+        "certified_days": 65046,
+        "excluded_days": 56,
+        "unresolved_days": 2
+      }
+    },
+    "before": {
+      "certified_partitions": 2440,
+      "global_digest": "6072726821cbacb1e07c318323392d59ad83d4f57c9393c33840a5515e4fc96a",
+      "incomplete_instrument_months": 28,
+      "incomplete_partitions": 56
+    }
+  },
+  "pre_outcome_rule_provenance": [
+    {
+      "artifact": "fx_calendar.py (V3_FX_WEEKLY_CALENDAR_CONTRACT_V1)",
+      "authorizes_exclusion": "Saturday days only (structural, 0 of the 32,552 units).",
+      "exact_meaning": "trading date iff weekday != Saturday; Sunday partial (evening open), Mon-Thu full, Friday partial (evening close); DST-aware. Closure determination is the deterministic calendar ONLY, never HTTP 404/timeout/503 or provider silence.",
+      "first_commit": "dcb317c (2026-08-14)",
+      "implemented_correctly": true,
+      "pre_or_post_outcome": "pre (bulk outcome 2026-08-22; tick outcome 2026-09-08)",
+      "rule": "required trading day / session grid"
+    },
+    {
+      "artifact": "acquisition_pipeline.certify_partition + offline_canonicalize worker",
+      "authorizes_exclusion": "No; certification requires observed, audit-passing rows.",
+      "exact_meaning": "a day unit is certified when its canonical M1 rows pass the strict audit (bid_ask_ordering_violations==0, scaling ok, no duplicate timestamps) on the native transport, or on the tick transport via the frozen remediation path.",
+      "first_commit": "b5ce899 (2026-08-14)",
+      "implemented_correctly": true,
+      "pre_or_post_outcome": "pre",
+      "rule": "certified day unit"
+    },
+    {
+      "artifact": "monthly_certify.certify_month (V3_MONTHLY_PARTITION_CERT_V1)",
+      "authorizes_exclusion": "As originally written: no day-level exclusion slot (it predates the remediation contract).",
+      "exact_meaning": "a month partition is CERTIFIED only when every calendar trading date is present as a certified day-unit (no gaps) and no integrity violation exists; otherwise INCOMPLETE_COVERAGE.",
+      "first_commit": "dcb317c (2026-08-14)",
+      "implemented_correctly": "FIXED this session: now accepts dates prospectively excluded under the frozen remediation rule (see below); a required date that is neither present nor excluded still blocks the partition.",
+      "pre_or_post_outcome": "pre",
+      "rule": "monthly certification / incomplete coverage"
+    },
+    {
+      "artifact": "missing_observation_contract.json (V3_MISSING_OBSERVATION_CONTRACT_V1, frozen_pre_outcome=true, in the original 24-component freeze)",
+      "authorizes_exclusion": "Establishes that confirmed no-observation periods carry no market information and are not 'missing data' to be filled.",
+      "exact_meaning": "CLOCK_MINUTE may exist with no market observation; imputed rows are never real quotes; execution advances the clock to the next session-valid EXECUTABLE minute; no-observation grid cells are a first-class, legitimate part of the data model (no trading, no stateful feature update).",
+      "first_commit": "4e621c6/b5ce899 (2026-08-13/14)",
+      "implemented_correctly": true,
+      "pre_or_post_outcome": "pre",
+      "rule": "missing observations (minute-level data semantics)"
+    },
+    {
+      "artifact": "data_gate.build_gate (V3_DATA_CERTIFICATION_GATE_V1)",
+      "authorizes_exclusion": "Yes -- the exclusion slot has been frozen since 2026-08-14; it was always 0 until this audit populated it from the frozen remediation terminal state.",
+      "exact_meaning": "coverage_complete = certified_units + prospectively_excluded_units >= required_units; the gate passes to V3_DATA_CERTIFIED_DISCOVERY_READY only when every required unit is certified OR prospectively excluded without outcome knowledge.",
+      "first_commit": "b5ce899 (2026-08-14)",
+      "implemented_correctly": true,
+      "pre_or_post_outcome": "pre",
+      "rule": "gate coverage equation (certified OR prospectively excluded)"
+    },
+    {
+      "artifact": "remediation.py (V3_DATA_INTEGRITY_REMEDIATION_V1, component 25 of the freeze; class PRE_OUTCOME_DATA_INTEGRITY_CORRECTION)",
+      "authorizes_exclusion": "Yes -- it is the frozen, outcome-independent rule that produces the only terminal state that is neither certified nor a failure; the gate's exclusion slot is its coverage accounting.",
+      "exact_meaning": "zero_observation_day_rule: a NATIVE_ZERO_MARKET_OBSERVATIONS day is classified TERMINAL_DATA_ABSENT (reason confirmed_no_market_observations_native_and_tick) IFF the complete session was inspected, ALL required session hours are in a legitimate transport state, and zero decoded ticks result. no_absence_from_provider_silence, no_single_missing_hour_absence, no_external_holiday_label. A bid/ask-ordering day with zero tick observations is NOT an absence; it remains INTEGRITY_FAILURE.",
+      "first_commit": "42e40e9 (2026-08-27)",
+      "implemented_correctly": true,
+      "pre_or_post_outcome": "pre relative to the tick outcome (2026-09-08); post relative to the native bulk outcome (2026-08-22) -- it is the frozen correction that defined how the two eligible native-integrity categories are remediated BEFORE any tick result was observed",
+      "rule": "TERMINAL_DATA_ABSENT (dual-transport confirmed absence)"
+    },
+    {
+      "artifact": "quote_validity.py (V3_SYNCHRONIZED_TICK_QUOTE_VALIDITY_V1, component 26)",
+      "authorizes_exclusion": "No; it defines observation validity only.",
+      "exact_meaning": "a tick is valid iff finite, positive, scaling-plausible and ask >= bid; crossed ticks are INVALID and never contribute to OHLC/observed/executable; a minute with >=1 valid tick is observed.",
+      "first_commit": "ebef4a0 (2026-08-28)",
+      "implemented_correctly": true,
+      "pre_or_post_outcome": "pre (before any additional tick outcome)",
+      "rule": "synchronized-tick quote validity"
+    },
+    {
+      "artifact": "execution_contract.json (V3_EXECUTION_CONTRACT_V1)",
+      "authorizes_exclusion": "Confirms the program was designed from the start for genuine no-quote periods (clock advances, no fills).",
+      "exact_meaning": "multi-day horizons model exchange holiday gaps (holiday_gap: exchange_holiday_gaps_modelled); missing_quote_policy = no_synthetic_fill.",
+      "first_commit": "b5ce899 (2026-08-14)",
+      "implemented_correctly": true,
+      "pre_or_post_outcome": "pre",
+      "rule": "holiday gaps in execution"
+    }
+  ],
+  "scope": "resolve the final V3 data-certification gate scientifically; no discovery",
+  "starting_sha": "7f56730c947ca60e62f2939106f0593a0277ca39",
+  "terminal_data_absent_classification": {
+    "ambiguous": 0,
+    "basis": "frozen V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule (pre-tick-outcome; no_external_holiday_label -- the dual-transport confirmation is the rule applied, not any holiday label) counted via the frozen gate coverage equation (certified + prospectively excluded).",
+    "classification": "A_prospectively_authorized_exclusion",
+    "count": 28,
+    "genuinely_required_missing": 0,
+    "summary": "all 28 units: complete session, all hours in legitimate transport state, zero native observed minutes, zero raw/valid synchronized ticks. Dates: 2016-01-01 (13 instruments), 2017-12-31 (13), 2017-01-01 (NZDUSD), 2017-12-24 (GBPCHF).",
+    "units": [
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "AUDJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "AUDJPY:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "AUDJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "AUDJPY:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "AUDUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "AUDUSD:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "AUDUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "AUDUSD:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "EURCHF",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURCHF:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "EURCHF",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURCHF:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "EURGBP",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURGBP:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "EURGBP",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURGBP:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "EURJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURJPY:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "EURJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURJPY:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "EURUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURUSD:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "EURUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "EURUSD:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "GBPCHF",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "GBPCHF:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-24",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "GBPCHF",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "GBPCHF:2017-12-24",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "GBPCHF",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "GBPCHF:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "GBPJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "GBPJPY:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "GBPJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "GBPJPY:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "GBPUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "GBPUSD:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "GBPUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "GBPUSD:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "NZDUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "NZDUSD:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-01-01",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "NZDUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "NZDUSD:2017-01-01",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "NZDUSD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "NZDUSD:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "USDCAD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "USDCAD:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "USDCAD",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "USDCAD:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "USDCHF",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "USDCHF:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "USDCHF",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "USDCHF:2017-12-31",
+        "weekday": "Sunday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2016-01-01",
+        "hours_in_legitimate_transport_state": 22,
+        "instrument": "USDJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_FRIDAY_CLOSE",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "USDJPY:2016-01-01",
+        "weekday": "Friday"
+      },
+      {
+        "all_hours_ok": true,
+        "classification": "A_prospectively_authorized_exclusion",
+        "date": "2017-12-31",
+        "hours_in_legitimate_transport_state": 2,
+        "instrument": "USDJPY",
+        "native_bid_ask_violations": 0,
+        "native_observed_minutes": 0,
+        "rule": "V3_DATA_INTEGRITY_REMEDIATION_V1.zero_observation_day_rule",
+        "session_class": "PARTIAL_SUNDAY_OPEN",
+        "tick_raw_count": 0,
+        "tick_valid_count": 0,
+        "unit": "USDJPY:2017-12-31",
+        "weekday": "Sunday"
+      }
+    ]
+  },
+  "terminal_decision": {
+    "discovery_run": false,
+    "outcome": "B",
+    "reason": "acquisition is complete (0 pending, 0 retryable); 32,523 day units certified + 28 prospectively excluded under the frozen rule cover 32,551 of 32,552 required day units; USDJPY:2010-01-01 remains a genuine unresolved data gap the frozen protocol does not permit excluding.",
+    "verdict": "V3_DATA_CERTIFICATION_BLOCKED_BY_GENUINE_DATA_GAP"
+  },
+  "usdjpy_2010_01_01_forensic": {
+    "adjacent_day_control": "USDJPY:2010-01-04 (Monday): 1440/1440 volume, ask = bid + ~1.5 pips, 0 violations -- the normal stream relationship.",
+    "evidence_scope": "local pre-2018 bytes only (native candle scratch + tick scratch); 0 network requests, 0 2018+ reads",
+    "frozen_interpretations_checked": [
+      "parity contract: requires a tick reference; none exists for this day",
+      "quote validity rule: applies to ticks only; no frozen rule drops crossed native candle closes",
+      "fill_session_grid: fills missing minutes only; changes no price",
+      "remediation bid_ask_failure_rule: pass only if the strict tick audit passes; zero tick observations -> INTEGRITY_FAILURE (conservative, frozen)"
+    ],
+    "interpretation": "the provider's native per-side candle streams for this thin New-Year session are internally inconsistent: the ask side oscillates among 5 coarse levels with tiny volume (5-9) while the bid side trades with real volume (up to 1062); on 330 minutes the stale/coarse ask close sits below the bid close. This is a property of the provider data, not of the frozen parser (bytes decode cleanly; 24-byte records; 1440 rows/side).",
+    "minute_set_alignment": "identical minute sets on both sides (0 bid-only, 0 ask-only); no parser/transport defect, no misalignment at minute level",
+    "native_ask_candles": {
+      "close_range": [
+        92.98,
+        93.02
+      ],
+      "count": 1440,
+      "distinct_close_values": [
+        92.98,
+        92.99,
+        93.0,
+        93.01,
+        93.02
+      ],
+      "distinct_closes": 5,
+      "minutes_volume_gt_0": 1320,
+      "volume_range": [
+        5.0,
+        9.0
+      ]
+    },
+    "native_bid_candles": {
+      "close_range": [
+        92.977,
+        93.005
+      ],
+      "count": 1440,
+      "distinct_closes": 11,
+      "minutes_volume_gt_0": 1320,
+      "volume_range": [
+        1.0,
+        1062.0
+      ]
+    },
+    "tick_transport": "all 22 session hours in legitimate transport state (HTTP 200, empty payloads); zero decoded ticks; zero valid ticks; no independent confirmation exists.",
+    "unit": "USDJPY:2010-01-01",
+    "verdict": "USDJPY_2010_01_01_GENUINE_UNRESOLVED_DATA_GAP",
+    "violations": {
+      "ask_equals_prev_bid_close": "14/330 (no systematic one-minute lag)",
+      "count": 330,
+      "distribution": "spread across all 22 session hours (8-22 per hour); not a burst",
+      "of_observed_minutes": 1320,
+      "spread_ask_minus_bid": [
+        -0.018,
+        -0.003
+      ]
+    },
+    "weekday": "Friday (PARTIAL_FRIDAY_CLOSE under the frozen calendar)"
+  }
+}

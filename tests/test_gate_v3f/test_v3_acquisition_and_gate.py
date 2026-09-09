@@ -7,6 +7,7 @@ import struct
 
 from fx_smc_bot.research.v3 import acquisition_pipeline as ap
 from fx_smc_bot.research.v3.data_gate import (
+    VERDICT_BLOCKED,
     VERDICT_CERTIFIED,
     VERDICT_PENDING,
     build_gate,
@@ -86,3 +87,36 @@ def test_gate_pending_when_coverage_incomplete() -> None:
     assert gate["verdict"] == VERDICT_PENDING
     assert gate["remaining_external_step"] is not None
     assert gate["2018_plus_market_or_outcome_files_opened"] == 0
+
+
+def test_gate_certified_with_prospective_exclusions() -> None:
+    # Certified + prospectively excluded (frozen TERMINAL_DATA_ABSENT rule) covers the
+    # frozen plan exactly.
+    gate = build_gate(certified_units=32524, required_units=32552,
+                      prospectively_excluded_units=28, evidence=_ALL_TRUE)
+    assert gate["verdict"] == VERDICT_CERTIFIED
+    assert gate["coverage"]["coverage_complete"] is True
+    assert gate["coverage"]["pending_units"] == 0
+
+
+def test_gate_blocked_when_only_terminal_unresolved_remain() -> None:
+    # Acquisition complete (0 pending): 32,523 certified + 28 excluded + 1 terminal
+    # INTEGRITY_FAILURE the frozen protocol does not permit excluding.
+    gate = build_gate(certified_units=32523, required_units=32552,
+                      prospectively_excluded_units=28, evidence=_ALL_TRUE,
+                      terminal_unresolved_units=1)
+    assert gate["verdict"] == VERDICT_BLOCKED
+    assert gate["next_gate"] == "RESOLVE_DATA_INTEGRITY_GAP"
+    assert gate["coverage"]["pending_units"] == 0
+    assert gate["coverage"]["terminal_unresolved_units"] == 1
+    assert gate["coverage"]["coverage_complete"] is False
+    assert "genuine data gap" in gate["remaining_external_step"]
+
+
+def test_gate_still_pending_when_acquisition_incomplete() -> None:
+    # Terminal unresolved units do NOT mask still-pending acquisition.
+    gate = build_gate(certified_units=100, required_units=2496,
+                      prospectively_excluded_units=0, evidence=_ALL_TRUE,
+                      terminal_unresolved_units=1)
+    assert gate["verdict"] == VERDICT_PENDING
+    assert gate["coverage"]["pending_units"] == 2496 - 100 - 1
