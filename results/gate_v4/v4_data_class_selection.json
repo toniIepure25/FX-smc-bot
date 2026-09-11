@@ -1,0 +1,284 @@
+{
+ "artifact_id": "V4_DATA_CLASS_SELECTION_V1",
+ "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V4",
+ "lineage": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+ "selection_type": "NEW_DATA_CLASS_AND_MARKET_ARENA_SELECTION",
+ "starting_sha": "28c269ee0d078ed8ebfa5cc31b8fd1179264d666",
+ "scope": "select the highest-information new data class + market arena for the next prospective program; no data download, no V4 candidates, no backtest, no old 2018+ holdout access",
+ "immutable_v3_evidence": {
+  "cumulative_trials": 1388,
+  "scientific_survivors": 0,
+  "wrc_trajectory": "~1.0 across V1/V2/V3",
+  "v3_taxonomy": {
+   "NO_SIGNAL": 476,
+   "COST_DOMINATED": 272,
+   "LOW_ACTIVITY": 239,
+   "STRESS_FRAGILE": 5
+  },
+  "strong_conclusions": [
+   "price-only public FX M1 is exhausted for the tested intraday classes",
+   "several gross-positive families are economically destroyed by execution cost",
+   "true microstructure hypotheses remain UNTESTED (old data lacks the info)"
+  ]
+ },
+ "old_holdout_firewall": {
+  "old_program_2018_plus_provider_requests": 0,
+  "old_program_2018_plus_market_reads": 0,
+  "note": "the sealed legacy 2018+ FX holdout is NOT used to compare markets; a new program gets its own prospective dev/val/holdout chronology"
+ },
+ "arena_comparison": {
+  "A_cme_fx_futures": {
+   "examples": "CME major FX futures (6E/6B/6J/6A) + micro FX (M6E/M6B/M6J)",
+   "data_class": "tick-by-tick trades + top-of-book (NBBO); NO full L2/MBP",
+   "market": "centralized CME FX futures (same FX market as V1-V3)",
+   "tick_size": "explicit (e.g. 6E 0.000005 ~ $0.50/tick; M6E ~ $0.05/tick)",
+   "fees": "explicit (CME + NFA + broker, ~$0.50-2.50/contract/side)",
+   "coverage": "decades (CME DataMine) / ~2010+ (resellers)",
+   "providers": "CME DataMine (official), Databento / FirstRate (resellers)",
+   "centralized": true,
+   "fx_lineage": true
+  },
+  "B_cme_equity_futures": {
+   "examples": "MES (Micro E-mini S&P 500), MNQ (Micro Nasdaq-100)",
+   "data_class": "tick-by-tick trades + top-of-book (NBBO); NO full L2/MBP",
+   "market": "centralized CME equity-index futures (DIFFERENT market, not FX)",
+   "tick_size": "explicit (MES 0.25 = $12.50; MNQ 0.25 = $5)",
+   "fees": "explicit (CME + NFA + broker)",
+   "coverage": "decades (CME DataMine) / ~2010+ (resellers)",
+   "providers": "CME DataMine, Databento / FirstRate",
+   "centralized": true,
+   "fx_lineage": false
+  },
+  "C_spot_fx_tick": {
+   "examples": "OTC spot FX (EURUSD, GBPUSD, USDJPY, ...) true tick",
+   "data_class": "timestamped bid/ask quote updates (broker feed); NO central order book; trades rarely genuinely available",
+   "market": "fragmented OTC spot FX (same FX market, but no central venue)",
+   "tick_size": "broker-dependent, not standardized",
+   "fees": "broker-dependent (spread markup), hard to model",
+   "coverage": "broker-dependent, variable, survivorship",
+   "providers": "Dukascopy (M1, not true tick), broker feeds (variable)",
+   "centralized": false,
+   "fx_lineage": true
+  },
+  "D_crypto_l2": {
+   "examples": "BTC/ETH spot + perps on Binance, Coinbase, Kraken, Bybit, BitMEX, Deribit, OKX",
+   "data_class": "FULL L2 order-book events (add/cancel/modify/execute) + trades (with aggressor side) + top-of-book + funding/OI + options + liquidations",
+   "market": "centralized crypto exchanges (fragmented ACROSS exchanges; DIFFERENT market, not FX)",
+   "tick_size": "explicit per exchange (often sub-tick)",
+   "fees": "explicit per exchange (taker/maker), funding on perps",
+   "coverage": ">7 years (from ~2019/2020), 24/7, >99.9% completeness (Tardis)",
+   "providers": "Tardis.dev (L2/L3, CSV+API), Kaiko (institutional, SOC-2), native exchange APIs (free/cheap)",
+   "centralized": true,
+   "fx_lineage": false
+  }
+ },
+ "score_weights": {
+  "scientific_value": 0.3,
+  "info_content": 0.25,
+  "execution_fidelity": 0.15,
+  "cost_signal": 0.1,
+  "data_quality": 0.1,
+  "practicality": 0.05,
+  "low_overfit_risk": 0.05
+ },
+ "scores_1_to_5": {
+  "A_cme_fx_futures": {
+   "info_content": 3,
+   "execution_fidelity": 5,
+   "cost_signal": 4,
+   "data_quality": 4,
+   "scientific_value": 5,
+   "practicality": 4,
+   "low_overfit_risk": 4
+  },
+  "B_cme_equity_futures": {
+   "info_content": 3,
+   "execution_fidelity": 5,
+   "cost_signal": 4,
+   "data_quality": 4,
+   "scientific_value": 3,
+   "practicality": 4,
+   "low_overfit_risk": 4
+  },
+  "C_spot_fx_tick": {
+   "info_content": 2,
+   "execution_fidelity": 2,
+   "cost_signal": 2,
+   "data_quality": 2,
+   "scientific_value": 2,
+   "practicality": 2,
+   "low_overfit_risk": 3
+  },
+  "D_crypto_l2": {
+   "info_content": 5,
+   "execution_fidelity": 4,
+   "cost_signal": 4,
+   "data_quality": 4,
+   "scientific_value": 4,
+   "practicality": 5,
+   "low_overfit_risk": 2
+  }
+ },
+ "weighted_scores": {
+  "A_cme_fx_futures": 4.2,
+  "B_cme_equity_futures": 3.6,
+  "C_spot_fx_tick": 2.05,
+  "D_crypto_l2": 4.2
+ },
+ "ranking": [
+  [
+   "A_cme_fx_futures",
+   4.2
+  ],
+  [
+   "D_crypto_l2",
+   4.2
+  ],
+  [
+   "B_cme_equity_futures",
+   3.6
+  ],
+  [
+   "C_spot_fx_tick",
+   2.05
+  ]
+ ],
+ "score_rationale": {
+  "scientific_value": "A=5 (directly answers the V3 question: does FX microstructure add info M1 missed; stays in FX lineage); D=4 (richest microstructure but different market, V3 FX evidence does not transfer); B=3 (different market); C=2 (FX lineage but low quality, can't fully test)",
+  "info_content": "D=5 (full L2 book events + signed trades + top-of-book); A/B=3 (trades + top-of-book, no full L2); C=2 (fragmented)",
+  "tie_break": "A and D tie on weighted score; A is primary because it follows from the V1/V2/V3 FX evidence (same market, new data class) and is a lower-friction centralized venue; D is the fallback (highest raw information but a different market)"
+ },
+ "information_classes_needed": {
+  "TRADE_FLOW": [
+   "trade timestamp",
+   "price",
+   "size",
+   "aggressor side (if available/inferable)"
+  ],
+  "TOP_OF_BOOK": [
+   "best bid",
+   "best ask",
+   "bid size",
+   "ask size"
+  ],
+  "DEPTH": [
+   "multiple price levels",
+   "size by level"
+  ],
+  "BOOK_EVENTS": [
+   "add",
+   "cancel",
+   "modify",
+   "execute"
+  ],
+  "DERIVED_EVENT_TIME": [
+   "order-flow imbalance",
+   "queue/depth imbalance",
+   "signed trade pressure",
+   "microprice",
+   "spread state",
+   "book slope",
+   "resiliency/replenishment",
+   "short-horizon impact/response"
+  ],
+  "capability_honesty": {
+   "A_cme_fx_futures": "supports TRADE_FLOW + TOP_OF_BOOK + derived (microprice, OFI from trades+quotes); does NOT support DEPTH or BOOK_EVENTS (no full L2)",
+   "B_cme_equity_futures": "same as A (trades + top-of-book, no full L2)",
+   "C_spot_fx_tick": "supports TOP_OF_BOOK (broker) + partial TRADE_FLOW; does NOT support DEPTH/BOOK_EVENTS (no central book)",
+   "D_crypto_l2": "supports ALL classes (full L2 book events + signed trades + top-of-book + depth)"
+  }
+ },
+ "pilot_questions": {
+  "P1_FLOW_INFORMATION": "Does signed trade/quote/depth flow predict subsequent short-horizon price movement beyond price history alone?",
+  "P2_COST_AWARE_CONDITIONAL_EDGE": "Does microstructure state identify periods where expected move >> executable spread + fee?",
+  "P3_EVENT_TIME_VS_CLOCK_TIME": "Is predictive information clearer in event-time than fixed M1 sampling?",
+  "P4_LIQUIDITY_STATE": "Does liquidity depletion/replenishment contain information not captured by M1 range/return/spread?",
+  "P5_ARENA_EFFECT": "Do families analogous to the V3 gross-positive/cost-dominated classes become economically plausible in a centralized lower-friction arena?",
+  "note": "questions, not strategies; no candidate grids"
+ },
+ "banned_classes": [
+  "another large M1 indicator sweep",
+  "stacking RSI/MACD/moving averages",
+  "threshold combinatorics",
+  "post-hoc session optimization",
+  "parameter rescue around V3 positives",
+  "fake tick features reconstructed from candles",
+  "price-only triangular / cointegration repetition",
+  "high-turnover mean-reversion without explicit executable-cost conditioning"
+ ],
+ "model_capacity_note": "do NOT choose deep learning as the objective; first prove the new information class adds incremental predictive information over a price-history baseline. Later models may include: linear/logistic baselines, state-space/latent-factor, Hawkes/event-process, change-point, sequence, self-supervised event representations, optimal stopping/execution timing. Representation learning is secondary.",
+ "minimal_falsification_pilot": {
+  "arena": "A_cme_fx_futures (primary)",
+  "instruments": "2-3 liquid FX futures (e.g. M6E EUR/USD, M6J JPY, M6B GBP/USD)",
+  "period": "bounded, e.g. 12-24 months of tick data",
+  "split": "frozen chronological dev/val BEFORE outcomes; separately sealed holdout (new program's own chronology, NOT the old 2018+ FX holdout)",
+  "comparison": "price-only M1 baseline vs new-information model (trades + top-of-book flow features)",
+  "execution": "executable bid/ask + explicit CME fees + tick size; event-time where appropriate",
+  "measure": "incremental predictive information (e.g. log-loss / rank-IC beyond baseline) AND economic value (net of executable cost)",
+  "hypothesis_count": "small (<= 5 pilot hypotheses, e.g. P1-P3)",
+  "answers": "DOES THE NEW DATA CLASS ADD INFORMATION? (not: can we find a profitable strategy by searching enough parameters?)",
+  "fail_fast": "if the new-information model adds no incremental predictive information over the price-only baseline on dev+val, STOP - the data class is not worth a full program"
+ },
+ "data_split_policy": {
+  "new_prospective_chronology": [
+   "development",
+   "internal_validation",
+   "external_validation",
+   "final_sealed_holdout"
+  ],
+  "old_2018_fx_holdout": "NOT part of the new program; remains sealed",
+  "no_backward_validation": "never discover on later data and validate backwards on the old 2018 holdout",
+  "roles_fixed_before": "every role fixed before downloading/inspecting outcomes where operationally feasible",
+  "pre_existing_exposure": "none assumed; document any unavoidable exposure at the capability-contract gate"
+ },
+ "resource_plan": {
+  "arena": "A_cme_fx_futures (primary)",
+  "gb_per_day": "~0.5-2 GB/instrument (trades + top-of-book, tick-level)",
+  "gb_per_month": "~15-60 GB/instrument",
+  "gb_per_year": "~150-700 GB/instrument",
+  "pilot_footprint": "2-3 instruments x 12-24 months ~ 5-50 GB (fits on disk, streamed, never full-history in RAM)",
+  "ram_requirement": "16 GB Mac M5 sufficient for streaming/predicate-pushed Parquet; no full-history RAM load",
+  "disk_requirement": "~100 GB for the pilot; ~1-2 TB for a full multi-year multi-instrument program",
+  "cpu_requirement": "CPU-only is sufficient for the pilot (no A100 needed); A100 optional later for sequence/embedding models",
+  "a100_useful": "unnecessary for the pilot; useful only if later sequence/embedding models are justified",
+  "storage_format": "partitioned Parquet (by instrument/date) with streaming, predicate pushdown, bounded caches; event-native schema (ts_us, price, size, side, bid/ask, bid/ask size)"
+ },
+ "decision": {
+  "primary": "NEW_DATA_CLASS_CME_FX_FUTURES_MICROSTRUCTURE_SELECTED",
+  "fallback": "NEW_DATA_CLASS_CRYPTO_L2_SELECTED",
+  "ranked": [
+   {
+    "rank": 1,
+    "arena": "A_cme_fx_futures",
+    "score": 4.2,
+    "role": "PRIMARY"
+   },
+   {
+    "rank": 2,
+    "arena": "D_crypto_l2",
+    "score": 4.2,
+    "role": "FALLBACK"
+   },
+   {
+    "rank": 3,
+    "arena": "B_cme_equity_futures",
+    "score": 3.6,
+    "role": "not selected"
+   },
+   {
+    "rank": 4,
+    "arena": "C_spot_fx_tick",
+    "score": 2.05,
+    "role": "not selected"
+   }
+  ],
+  "why_primary_dominates": "A is the only arena that (1) stays in the FX market so the V1/V2/V3 evidence directly transfers, (2) provides true microstructure (trades + top-of-book) to test the untested microstructure hypotheses, and (3) is a centralized lower-friction venue that directly addresses the V3 cost-dominated lesson. D has richer raw information (full L2) but is a different market, so the V3 FX evidence does not transfer; it is the fallback if CME FX futures data is unavailable/too costly.",
+  "not_selected": {
+   "B_cme_equity_futures": "same data class as A but a different market (equity indices); the V3 FX evidence does not transfer",
+   "C_spot_fx_tick": "fragmented OTC, no central order book, variable quality, hard to model execution; cannot fully test microstructure"
+  }
+ },
+ "next_gate": "V4_NEW_DATA_CAPABILITY_CONTRACT",
+ "next_gate_scope": "define and freeze data semantics / acquisition for the selected arena (contract specs, provider, schema, coverage, cost, the new dev/val/holdout chronology). DO NOT download the full dataset, materialize V4 candidates, or run a backtest in this session.",
+ "terminal_verdict": "NEW_DATA_CLASS_CME_FX_FUTURES_MICROSTRUCTURE_SELECTED"
+}
