@@ -1,0 +1,1640 @@
+{
+ "artifact_id": "V3_PROGRAM_REVIEW_V1",
+ "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V3",
+ "lineage": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+ "review_type": "DIAGNOSTIC_META_RESEARCH_ONLY",
+ "starting_sha": "3107ab899e564f61601df4897a5133d95bdee1db",
+ "scope": "post-program review of V1/V2/V3.1; no new candidate search, no parameter tuning, no near-miss rescue, no V4 design, no 2018+ access",
+ "immutable_v3_result": {
+  "terminal_verdict": "V3_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR",
+  "next_gate": "V3_PROGRAM_REVIEW",
+  "universe_A": {
+   "evaluated": 992,
+   "runtime_valid": 992,
+   "zero_trade": 169,
+   "positive_raw": 20,
+   "positive_1_5x": 13,
+   "positive_2_0x": 12,
+   "scientific_survivors": 0
+  },
+  "universe_B": {
+   "evaluated": 52,
+   "runtime_valid": 52,
+   "positive_raw": 0,
+   "scientific_survivors": 0
+  },
+  "statistics": {
+   "wrc_p": 1.0,
+   "spa_p": 0.72972973,
+   "pbo": 0.185714,
+   "rw_sig": 0,
+   "holm_sig": 0,
+   "bh_sig": 0,
+   "hier_sig": 0
+  }
+ },
+ "firewall": {
+  "2018_plus_provider_requests": 0,
+  "2018_plus_reads": 0,
+  "note": "review reads only committed pre-2018 artifacts + source; no canonical market file was opened in this session"
+ },
+ "failure_taxonomy": {
+  "method": "primary cause = first failure in the causal chain (activity -> gross edge -> cost -> cost-stress -> time -> instrument -> multiplicity); secondary causes listed separately",
+  "universe_A_primary": {
+   "A_NO_SIGNAL": {
+    "count": 476,
+    "pct": 48.0
+   },
+   "B_COST_DOMINATED": {
+    "count": 272,
+    "pct": 27.4
+   },
+   "D_LOW_ACTIVITY": {
+    "count": 239,
+    "pct": 24.1
+   },
+   "C_STRESS_FRAGILE": {
+    "count": 5,
+    "pct": 0.5
+   }
+  },
+  "universe_A_secondary": {
+   "no_adjusted_significance": 992,
+   "low_sharpe_dsr": 986,
+   "loo_unstable": 985,
+   "fold_unstable": 983,
+   "gross_negative": 515,
+   "cost_destroys_edge": 288,
+   "zero_trade": 169,
+   "insufficient_trades": 70,
+   "year_concentrated": 10,
+   "fragile_2_0x": 8,
+   "fragile_1_5x": 7
+  },
+  "by_horizon": {
+   "H0_micro_intraday": {
+    "D_LOW_ACTIVITY": 97,
+    "B_COST_DOMINATED": 169,
+    "A_NO_SIGNAL": 171
+   },
+   "H1_session_daily": {
+    "A_NO_SIGNAL": 305,
+    "B_COST_DOMINATED": 103,
+    "C_STRESS_FRAGILE": 5,
+    "D_LOW_ACTIVITY": 142
+   }
+  },
+  "by_domain": {
+   "A": {
+    "D_LOW_ACTIVITY": 91
+   },
+   "B": {
+    "A_NO_SIGNAL": 104,
+    "B_COST_DOMINATED": 58,
+    "C_STRESS_FRAGILE": 4
+   },
+   "C": {
+    "B_COST_DOMINATED": 75,
+    "A_NO_SIGNAL": 1,
+    "D_LOW_ACTIVITY": 60
+   },
+   "D": {
+    "A_NO_SIGNAL": 49,
+    "B_COST_DOMINATED": 20,
+    "D_LOW_ACTIVITY": 6
+   },
+   "E": {
+    "B_COST_DOMINATED": 58,
+    "A_NO_SIGNAL": 2
+   },
+   "F": {
+    "A_NO_SIGNAL": 63,
+    "B_COST_DOMINATED": 12
+   },
+   "G": {
+    "B_COST_DOMINATED": 37
+   },
+   "H": {
+    "A_NO_SIGNAL": 112
+   },
+   "I": {
+    "A_NO_SIGNAL": 29,
+    "D_LOW_ACTIVITY": 82,
+    "B_COST_DOMINATED": 8,
+    "C_STRESS_FRAGILE": 1
+   },
+   "K": {
+    "A_NO_SIGNAL": 56,
+    "B_COST_DOMINATED": 4
+   },
+   "L": {
+    "A_NO_SIGNAL": 60
+   }
+  },
+  "qualitative_categories": {
+   "G_NEIGHBORHOOD_INSTABILITY": "raw-positive candidates sit on isolated parameter points whose family neighborhood is negative (e.g. V3-0016/0046 Donchian are single-trade wins; V3-0738/0739/0740 are 1-trade Kalman wins)",
+   "I_REGIME_SPECIFIC": "10 net-positive candidates have >70% of gross edge in a single calendar year (year_concentrated); the 4 USDJPY trend-pullback positives are regime/turnover specific",
+   "J_MODEL_CAPACITY_MISMATCH": "families are linear/threshold/hand-crafted; the signal class is too rigid to capture the (absent) effect, see model_class_review",
+   "K_DATA_CAPABILITY_MISMATCH": "V3_E_TICK_ARRIVAL_INTENSITY and V3_E_ORDER_BOOK_IMBALANCE were rejected pre-outcome (need tick-arrival / order-book depth that the M1 bid/ask set does not contain) -> UNTESTED, not refuted",
+   "L_HORIZON_MISMATCH": "H2/H3 candidates are price-alpha-only (not fully executable: overnight financing unsupported); H0 micro is cost-dominated"
+  }
+ },
+ "family_diagnostics": {
+  "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION": {
+   "domain": "A",
+   "domain_name": "classical_technical_structure",
+   "horizons": [
+    "H0_micro_intraday"
+   ],
+   "candidate_count": 91,
+   "zero_trade": 59,
+   "raw_positive": 7,
+   "pos_1_5x": 5,
+   "pos_2_0x": 5,
+   "median_net": 0.0,
+   "mean_net": -9.981,
+   "best_net": 26.602,
+   "best_sharpe": 0.0,
+   "median_gross": 0.0,
+   "frac_gross_negative": 0.143,
+   "median_trade_count": 0,
+   "p90_trade_count": 15,
+   "median_active_days": 0,
+   "fold_pass_rate": 0.022,
+   "loo_pass_rate": 0.022,
+   "dominant_failure": "D_LOW_ACTIVITY"
+  },
+  "V3_B_MULTISCALE_TSMOM_VOLSCALED": {
+   "domain": "B",
+   "domain_name": "time_series_momentum_trend",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 75,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -26916.512,
+   "mean_net": -25186.83,
+   "best_net": -4913.518,
+   "best_sharpe": -1.019,
+   "median_gross": -3984.912,
+   "frac_gross_negative": 0.867,
+   "median_trade_count": 26066,
+   "p90_trade_count": 28790,
+   "median_active_days": 1565,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  },
+  "V3_B_TREND_PULLBACK_ENTRY": {
+   "domain": "B",
+   "domain_name": "time_series_momentum_trend",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 91,
+   "zero_trade": 0,
+   "raw_positive": 4,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -4524.137,
+   "mean_net": -6327.171,
+   "best_net": 1356.017,
+   "best_sharpe": 0.37,
+   "median_gross": 70.853,
+   "frac_gross_negative": 0.429,
+   "median_trade_count": 5372,
+   "p90_trade_count": 19740,
+   "median_active_days": 1462,
+   "fold_pass_rate": 0.011,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "B_COST_DOMINATED"
+  },
+  "V3_C_OU_HALFLIFE_REVERSION": {
+   "domain": "C",
+   "domain_name": "mean_reversion",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 60,
+   "zero_trade": 60,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": 0.0,
+   "mean_net": 0.0,
+   "best_net": 0.0,
+   "best_sharpe": 0.0,
+   "median_gross": 0.0,
+   "frac_gross_negative": 0.0,
+   "median_trade_count": 0.0,
+   "p90_trade_count": 0,
+   "median_active_days": 0.0,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "D_LOW_ACTIVITY"
+  },
+  "V3_C_ZSCORE_OVERSHOOT_REVERSION": {
+   "domain": "C",
+   "domain_name": "mean_reversion",
+   "horizons": [
+    "H0_micro_intraday"
+   ],
+   "candidate_count": 76,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -4160.377,
+   "mean_net": -8332.694,
+   "best_net": -201.782,
+   "best_sharpe": -0.142,
+   "median_gross": 2913.249,
+   "frac_gross_negative": 0.013,
+   "median_trade_count": 8884.5,
+   "p90_trade_count": 28191,
+   "median_active_days": 1521.5,
+   "fold_pass_rate": 0.013,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "B_COST_DOMINATED"
+  },
+  "V3_D_COMPRESSION_EXPANSION_BREAK": {
+   "domain": "D",
+   "domain_name": "volatility_range_structure",
+   "horizons": [
+    "H0_micro_intraday"
+   ],
+   "candidate_count": 75,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -1239.199,
+   "mean_net": -1719.516,
+   "best_net": -221.252,
+   "best_sharpe": -2.328,
+   "median_gross": -212.862,
+   "frac_gross_negative": 0.733,
+   "median_trade_count": 1013,
+   "p90_trade_count": 3281,
+   "median_active_days": 712,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  },
+  "V3_E_SPREAD_STATE_GATED_REVERSAL": {
+   "domain": "E",
+   "domain_name": "market_microstructure",
+   "horizons": [
+    "H0_micro_intraday"
+   ],
+   "candidate_count": 60,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -5356.741,
+   "mean_net": -9210.412,
+   "best_net": -1115.226,
+   "best_sharpe": -0.283,
+   "median_gross": 3307.237,
+   "frac_gross_negative": 0.033,
+   "median_trade_count": 9367.0,
+   "p90_trade_count": 28120,
+   "median_active_days": 1548.5,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "B_COST_DOMINATED"
+  },
+  "V3_F_SESSION_OPEN_CONDITIONED_MOMENTUM": {
+   "domain": "F",
+   "domain_name": "seasonality_calendar",
+   "horizons": [
+    "H0_micro_intraday"
+   ],
+   "candidate_count": 75,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -8875.084,
+   "mean_net": -8874.253,
+   "best_net": -572.838,
+   "best_sharpe": -0.494,
+   "median_gross": -855.661,
+   "frac_gross_negative": 0.84,
+   "median_trade_count": 8282,
+   "p90_trade_count": 17328,
+   "median_active_days": 1299,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  },
+  "V3_G_CROSS_SECTIONAL_MOMENTUM": {
+   "domain": "G",
+   "domain_name": "cross_pair_currency_structure",
+   "horizons": [
+    "H2_intraweek"
+   ],
+   "candidate_count": 32,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -7696.541,
+   "mean_net": -8762.518,
+   "best_net": -4.538,
+   "best_sharpe": -0.0,
+   "median_gross": -1109.874,
+   "frac_gross_negative": 0.781,
+   "median_trade_count": 1510.0,
+   "p90_trade_count": 1525,
+   "median_active_days": 1546.0,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  },
+  "V3_G_USD_FACTOR_RESIDUAL_REVERSION": {
+   "domain": "G",
+   "domain_name": "cross_pair_currency_structure",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 37,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -202574.059,
+   "mean_net": -202046.486,
+   "best_net": -68664.725,
+   "best_sharpe": -4.314,
+   "median_gross": 45606.331,
+   "frac_gross_negative": 0.0,
+   "median_trade_count": 147763,
+   "p90_trade_count": 269382,
+   "median_active_days": 1501,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "B_COST_DOMINATED"
+  },
+  "V3_H_COINTEGRATION_KALMAN_HEDGE": {
+   "domain": "H",
+   "domain_name": "statistical_arbitrage",
+   "horizons": [
+    "H2_intraweek"
+   ],
+   "candidate_count": 20,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -17509.414,
+   "mean_net": -17549.071,
+   "best_net": -16264.459,
+   "best_sharpe": -1.731,
+   "median_gross": -7101.212,
+   "frac_gross_negative": 1.0,
+   "median_trade_count": 4994.0,
+   "p90_trade_count": 5227,
+   "median_active_days": 1313.0,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  },
+  "V3_H_TRIANGULAR_RESIDUAL_REVERSION": {
+   "domain": "H",
+   "domain_name": "statistical_arbitrage",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 112,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -29671.118,
+   "mean_net": -43624.889,
+   "best_net": -5287.593,
+   "best_sharpe": -0.729,
+   "median_gross": -18927.51,
+   "frac_gross_negative": 1.0,
+   "median_trade_count": 9335.0,
+   "p90_trade_count": 27476,
+   "median_active_days": 1429.0,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  },
+  "V3_I_CHANGEPOINT_REGIME_SHIFT": {
+   "domain": "I",
+   "domain_name": "applied_math_signal_processing",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 60,
+   "zero_trade": 50,
+   "raw_positive": 1,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": 0.0,
+   "mean_net": -1405.414,
+   "best_net": 154.178,
+   "best_sharpe": 0.132,
+   "median_gross": 0.0,
+   "frac_gross_negative": 0.117,
+   "median_trade_count": 0.0,
+   "p90_trade_count": 1432,
+   "median_active_days": 0.0,
+   "fold_pass_rate": 0.017,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "D_LOW_ACTIVITY"
+  },
+  "V3_I_KALMAN_STATE_TREND": {
+   "domain": "I",
+   "domain_name": "applied_math_signal_processing",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 60,
+   "zero_trade": 0,
+   "raw_positive": 8,
+   "pos_1_5x": 8,
+   "pos_2_0x": 7,
+   "median_net": -115.503,
+   "mean_net": -2557.922,
+   "best_net": 156.234,
+   "best_sharpe": 7.492,
+   "median_gross": -20.137,
+   "frac_gross_negative": 0.7,
+   "median_trade_count": 92.5,
+   "p90_trade_count": 8215,
+   "median_active_days": 85.5,
+   "fold_pass_rate": 0.067,
+   "loo_pass_rate": 0.083,
+   "dominant_failure": "D_LOW_ACTIVITY"
+  },
+  "V3_K_COST_GATED_SPARSE_ENTRY": {
+   "domain": "K",
+   "domain_name": "cost_aware_prediction",
+   "horizons": [
+    "H0_micro_intraday"
+   ],
+   "candidate_count": 60,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -20528.63,
+   "mean_net": -21304.519,
+   "best_net": -5884.612,
+   "best_sharpe": -2.046,
+   "median_gross": -3101.467,
+   "frac_gross_negative": 0.933,
+   "median_trade_count": 17118.0,
+   "p90_trade_count": 28980,
+   "median_active_days": 1564.0,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  },
+  "V3_L_META_LABEL_TRADE_FILTER": {
+   "domain": "L",
+   "domain_name": "machine_learning",
+   "horizons": [
+    "H1_session_daily"
+   ],
+   "candidate_count": 60,
+   "zero_trade": 0,
+   "raw_positive": 0,
+   "pos_1_5x": 0,
+   "pos_2_0x": 0,
+   "median_net": -4909.366,
+   "mean_net": -4729.442,
+   "best_net": -3388.147,
+   "best_sharpe": -1.365,
+   "median_gross": -1718.19,
+   "frac_gross_negative": 1.0,
+   "median_trade_count": 3006.0,
+   "p90_trade_count": 4337,
+   "median_active_days": 1046.0,
+   "fold_pass_rate": 0.0,
+   "loo_pass_rate": 0.0,
+   "dominant_failure": "A_NO_SIGNAL"
+  }
+ },
+ "cost_decomposition": {
+  "method": "mid-to-mid zero-cost gross back-solved from the linear cost model: gross = 3*net_1x - 2*net_1_5x; total_cost_1x = 2*(net_1x - net_1_5x) = spread overlay + 0.20 bps/fill x fills. Cost model NOT changed.",
+  "per_family": {
+   "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION": {
+    "n_with_trades": 32,
+    "median_gross": 1.15,
+    "median_net_1x": -10.67,
+    "median_total_cost_1x": 7.94,
+    "median_pct_gross_consumed": 1.698,
+    "intrinsic_negative": 13,
+    "positive_gross_uneconomic": 12,
+    "net_positive": 7
+   },
+   "V3_B_MULTISCALE_TSMOM_VOLSCALED": {
+    "n_with_trades": 75,
+    "median_gross": -3984.91,
+    "median_net_1x": -26916.51,
+    "median_total_cost_1x": 19921.73,
+    "median_pct_gross_consumed": 11.448,
+    "intrinsic_negative": 65,
+    "positive_gross_uneconomic": 10,
+    "net_positive": 0
+   },
+   "V3_B_TREND_PULLBACK_ENTRY": {
+    "n_with_trades": 91,
+    "median_gross": 70.85,
+    "median_net_1x": -4524.14,
+    "median_total_cost_1x": 4878.95,
+    "median_pct_gross_consumed": 6.978,
+    "intrinsic_negative": 39,
+    "positive_gross_uneconomic": 48,
+    "net_positive": 4
+   },
+   "V3_C_OU_HALFLIFE_REVERSION": {
+    "n_with_trades": 0,
+    "note": "all zero-trade"
+   },
+   "V3_C_ZSCORE_OVERSHOOT_REVERSION": {
+    "n_with_trades": 76,
+    "median_gross": 2913.25,
+    "median_net_1x": -4160.38,
+    "median_total_cost_1x": 7674.81,
+    "median_pct_gross_consumed": 3.264,
+    "intrinsic_negative": 1,
+    "positive_gross_uneconomic": 75,
+    "net_positive": 0
+   },
+   "V3_D_COMPRESSION_EXPANSION_BREAK": {
+    "n_with_trades": 75,
+    "median_gross": -212.86,
+    "median_net_1x": -1239.2,
+    "median_total_cost_1x": 1102.74,
+    "median_pct_gross_consumed": 9.732,
+    "intrinsic_negative": 55,
+    "positive_gross_uneconomic": 20,
+    "net_positive": 0
+   },
+   "V3_E_SPREAD_STATE_GATED_REVERSAL": {
+    "n_with_trades": 60,
+    "median_gross": 3307.24,
+    "median_net_1x": -5356.74,
+    "median_total_cost_1x": 8705.22,
+    "median_pct_gross_consumed": 2.867,
+    "intrinsic_negative": 2,
+    "positive_gross_uneconomic": 58,
+    "net_positive": 0
+   },
+   "V3_F_SESSION_OPEN_CONDITIONED_MOMENTUM": {
+    "n_with_trades": 75,
+    "median_gross": -855.66,
+    "median_net_1x": -8875.08,
+    "median_total_cost_1x": 7421.65,
+    "median_pct_gross_consumed": 4.482,
+    "intrinsic_negative": 63,
+    "positive_gross_uneconomic": 12,
+    "net_positive": 0
+   },
+   "V3_G_CROSS_SECTIONAL_MOMENTUM": {
+    "n_with_trades": 32,
+    "median_gross": -1109.87,
+    "median_net_1x": -7696.54,
+    "median_total_cost_1x": 6839.14,
+    "median_pct_gross_consumed": 1.09,
+    "intrinsic_negative": 25,
+    "positive_gross_uneconomic": 7,
+    "net_positive": 0
+   },
+   "V3_G_USD_FACTOR_RESIDUAL_REVERSION": {
+    "n_with_trades": 37,
+    "median_gross": 45606.33,
+    "median_net_1x": -202574.06,
+    "median_total_cost_1x": 241935.35,
+    "median_pct_gross_consumed": 4.504,
+    "intrinsic_negative": 0,
+    "positive_gross_uneconomic": 37,
+    "net_positive": 0
+   },
+   "V3_H_COINTEGRATION_KALMAN_HEDGE": {
+    "n_with_trades": 20,
+    "median_gross": -7101.21,
+    "median_net_1x": -17509.41,
+    "median_total_cost_1x": 9882.72,
+    "median_pct_gross_consumed": null,
+    "intrinsic_negative": 20,
+    "positive_gross_uneconomic": 0,
+    "net_positive": 0
+   },
+   "V3_H_TRIANGULAR_RESIDUAL_REVERSION": {
+    "n_with_trades": 112,
+    "median_gross": -18927.51,
+    "median_net_1x": -29671.12,
+    "median_total_cost_1x": 11737.68,
+    "median_pct_gross_consumed": null,
+    "intrinsic_negative": 112,
+    "positive_gross_uneconomic": 0,
+    "net_positive": 0
+   },
+   "V3_I_CHANGEPOINT_REGIME_SHIFT": {
+    "n_with_trades": 10,
+    "median_gross": -430.77,
+    "median_net_1x": -1798.87,
+    "median_total_cost_1x": 1652.95,
+    "median_pct_gross_consumed": 3.511,
+    "intrinsic_negative": 7,
+    "positive_gross_uneconomic": 2,
+    "net_positive": 1
+   },
+   "V3_I_KALMAN_STATE_TREND": {
+    "n_with_trades": 60,
+    "median_gross": -20.14,
+    "median_net_1x": -115.5,
+    "median_total_cost_1x": 73.37,
+    "median_pct_gross_consumed": 1.476,
+    "intrinsic_negative": 42,
+    "positive_gross_uneconomic": 10,
+    "net_positive": 8
+   },
+   "V3_K_COST_GATED_SPARSE_ENTRY": {
+    "n_with_trades": 60,
+    "median_gross": -3101.47,
+    "median_net_1x": -20528.63,
+    "median_total_cost_1x": 17161.38,
+    "median_pct_gross_consumed": 40.663,
+    "intrinsic_negative": 56,
+    "positive_gross_uneconomic": 4,
+    "net_positive": 0
+   },
+   "V3_L_META_LABEL_TRADE_FILTER": {
+    "n_with_trades": 60,
+    "median_gross": -1718.19,
+    "median_net_1x": -4909.37,
+    "median_total_cost_1x": 3196.56,
+    "median_pct_gross_consumed": null,
+    "intrinsic_negative": 60,
+    "positive_gross_uneconomic": 0,
+    "net_positive": 0
+   }
+  },
+  "program_level": {
+   "intrinsic_negative_total": 560,
+   "positive_gross_uneconomic_total": 295,
+   "net_positive_total": 20,
+   "interpretation": "of the 823 A-candidates with trades, 515 have negative mid-to-mid gross (no edge before costs) and 288 have positive gross that costs destroy; only 20 are net-positive at 1x, and none survive the full frozen predicate"
+  },
+  "which_families_need_what": {
+   "V3_C_ZSCORE_OVERSHOOT_REVERSION": "longer horizon / lower turnover (cost eats 326% of gross)",
+   "V3_E_SPREAD_STATE_GATED_REVERSAL": "lower turnover or tighter-spread venue (cost eats 287% of gross)",
+   "V3_G_USD_FACTOR_RESIDUAL_REVERSION": "lower turnover / longer horizon (cost eats 450% of gross; highest-turnover panel)",
+   "V3_B_TREND_PULLBACK_ENTRY": "stronger signal or lower cost (4 of 20 raw-positive; all fail 2x)",
+   "V3_I_KALMAN_STATE_TREND": "more activity (8 raw-positive, 7 survive 2x, but 1-98 trades vs 120 min)"
+  }
+ },
+ "zero_trade_breakdown": {
+  "total": 169,
+  "by_family": {
+   "V3_C_OU_HALFLIFE_REVERSION": 60,
+   "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION": 59,
+   "V3_I_CHANGEPOINT_REGIME_SHIFT": 50
+  },
+  "by_horizon": {
+   "H0_micro_intraday": 59,
+   "H1_session_daily": 110
+  },
+  "mechanism_by_family": {
+   "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION": "breakout-beyond-channel AND range-compression regime (2-condition AND; compression gate rarely co-occurs with a fresh channel break)",
+   "V3_C_OU_HALFLIFE_REVERSION": "reversion z-score AND OU half-life in [30,1000] band (half-life needs lag-1 autocorr in (0,1) over 300 obs bars; band rarely satisfied)",
+   "V3_I_CHANGEPOINT_REGIME_SHIFT": "change-point dev>thr over H bars (regime-shift detector fires rarely on stationary M1 residuals)"
+  },
+  "classification": "frozen-hypothesis design (scientific evidence against configuration), not an implementation bug"
+ },
+ "raw_positive_forensics": {
+  "note": "failure-mode study only; NOT a rescue; no candidate-specific parameters used as V4 seeds",
+  "groups": {
+   "B_TREND_PULLBACK (4, all USDJPY H1)": "large gross (2.7k-5.9k bps) but high turnover (1.8k-4.9k trades); ALL fail 2.0x cost stress and instrument LOO -> COST_DOMINATED + F",
+   "I_KALMAN_STATE_TREND (8, H1)": "the near-miss family: 7 survive 2.0x, best Sharpe 7.49, but only 1-98 trades (min 120) and DSR 0.0 -> LOW_ACTIVITY (sparse signal), not a robust edge",
+   "A_DONCHIAN (7, H0)": "1-10 trades (min 250); net from 1-3 lucky trades; LOW_ACTIVITY, not a signal",
+   "I_CHANGEPOINT (1, H1 EURUSD)": "gross 1.1k but fails 2x, fold 0.38, LOO -> COST_DOMINATED + E"
+  },
+  "rows": [
+   {
+    "candidate_id": "V3-0223",
+    "family_id": "V3_B_TREND_PULLBACK_ENTRY",
+    "domain": "B",
+    "horizon": "H1_session_daily",
+    "scope": "USDJPY",
+    "gross": 5839.86,
+    "net_1x": 1356.02,
+    "net_1_5x": -885.9,
+    "net_2_0x": -3127.83,
+    "sharpe": 0.37,
+    "dsr": 1.0,
+    "trades": 3917,
+    "active_days": 1389,
+    "survives_1_5x": false,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.588235,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2013",
+    "year_concentration": 0.7,
+    "failed": [
+     "net_profitability",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "fails 2.0x cost stress; fold 0.588235<0.6; LOO fails; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0225",
+    "family_id": "V3_B_TREND_PULLBACK_ENTRY",
+    "domain": "B",
+    "horizon": "H1_session_daily",
+    "scope": "USDJPY",
+    "gross": 2658.82,
+    "net_1x": 618.35,
+    "net_1_5x": -401.89,
+    "net_2_0x": -1422.13,
+    "sharpe": 0.251,
+    "dsr": 1.0,
+    "trades": 1813,
+    "active_days": 1175,
+    "survives_1_5x": false,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.705882,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2013",
+    "year_concentration": 0.68,
+    "failed": [
+     "net_profitability",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "fails 2.0x cost stress; LOO fails; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0224",
+    "family_id": "V3_B_TREND_PULLBACK_ENTRY",
+    "domain": "B",
+    "horizon": "H1_session_daily",
+    "scope": "USDJPY",
+    "gross": 3788.72,
+    "net_1x": 531.26,
+    "net_1_5x": -1097.48,
+    "net_2_0x": -2726.21,
+    "sharpe": 0.165,
+    "dsr": 0.993,
+    "trades": 2874,
+    "active_days": 1336,
+    "survives_1_5x": false,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.529412,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2013",
+    "year_concentration": 0.76,
+    "failed": [
+     "net_profitability",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "fails 2.0x cost stress; fold 0.529412<0.6; LOO fails; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0222",
+    "family_id": "V3_B_TREND_PULLBACK_ENTRY",
+    "domain": "B",
+    "horizon": "H1_session_daily",
+    "scope": "USDJPY",
+    "gross": 5936.45,
+    "net_1x": 315.17,
+    "net_1_5x": -2495.47,
+    "net_2_0x": -5306.11,
+    "sharpe": 0.075,
+    "dsr": 0.191,
+    "trades": 4894,
+    "active_days": 1451,
+    "survives_1_5x": false,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.529412,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2013",
+    "year_concentration": 0.84,
+    "failed": [
+     "net_profitability",
+     "risk_adjusted",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "fails 2.0x cost stress; fold 0.529412<0.6; LOO fails; DSR 0.19<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0777",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "USDJPY",
+    "gross": 163.45,
+    "net_1x": 156.23,
+    "net_1_5x": 152.62,
+    "net_2_0x": 149.01,
+    "sharpe": 7.492,
+    "dsr": 0.0,
+    "trades": 5,
+    "active_days": 5,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.75,
+    "year_loo_positive": true,
+    "min_trades_req": 120,
+    "top_year": "2016",
+    "year_concentration": 0.32,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 5<min 120; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0786",
+    "family_id": "V3_I_CHANGEPOINT_REGIME_SHIFT",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "EURUSD",
+    "gross": 1148.65,
+    "net_1x": 154.18,
+    "net_1_5x": -343.06,
+    "net_2_0x": -840.29,
+    "sharpe": 0.132,
+    "dsr": 0.595,
+    "trades": 1359,
+    "active_days": 898,
+    "survives_1_5x": false,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.375,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2010",
+    "year_concentration": 0.36,
+    "failed": [
+     "net_profitability",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "fails 2.0x cost stress; fold 0.375<0.6; LOO fails; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0772",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "USDJPY",
+    "gross": 174.99,
+    "net_1x": 150.26,
+    "net_1_5x": 137.89,
+    "net_2_0x": 125.53,
+    "sharpe": 3.588,
+    "dsr": 1.0,
+    "trades": 31,
+    "active_days": 30,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.6,
+    "year_loo_positive": true,
+    "min_trades_req": 120,
+    "top_year": "2013",
+    "year_concentration": 0.29,
+    "failed": [
+     "sample_sufficiency",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 31<min 120; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0737",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "EURUSD",
+    "gross": 154.92,
+    "net_1x": 143.99,
+    "net_1_5x": 138.53,
+    "net_2_0x": 133.07,
+    "sharpe": 6.264,
+    "dsr": 0.0,
+    "trades": 10,
+    "active_days": 10,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.714286,
+    "year_loo_positive": true,
+    "min_trades_req": 120,
+    "top_year": "2013",
+    "year_concentration": 0.41,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 10<min 120; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0757",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "GBPUSD",
+    "gross": 92.71,
+    "net_1x": 68.63,
+    "net_1_5x": 56.6,
+    "net_2_0x": 44.56,
+    "sharpe": 1.801,
+    "dsr": 0.0,
+    "trades": 17,
+    "active_days": 16,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.555556,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2013",
+    "year_concentration": 0.61,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 17<min 120; fold 0.555556<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0732",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "EURUSD",
+    "gross": 105.8,
+    "net_1x": 52.34,
+    "net_1_5x": 25.6,
+    "net_2_0x": -1.13,
+    "sharpe": 0.603,
+    "dsr": 0.991,
+    "trades": 98,
+    "active_days": 93,
+    "survives_1_5x": true,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.6,
+    "year_loo_positive": true,
+    "min_trades_req": 120,
+    "top_year": "2016",
+    "year_concentration": 0.49,
+    "failed": [
+     "net_profitability",
+     "sample_sufficiency",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 98<min 120; fails 2.0x cost stress; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0067",
+    "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+    "domain": "A",
+    "horizon": "H0_micro_intraday",
+    "scope": "USDJPY",
+    "gross": 27.94,
+    "net_1x": 26.6,
+    "net_1_5x": 25.93,
+    "net_2_0x": 25.26,
+    "sharpe": 0.0,
+    "dsr": 0.0,
+    "trades": 1,
+    "active_days": 1,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": true,
+    "min_trades_req": 250,
+    "top_year": "2010",
+    "year_concentration": 0.94,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 1<min 250; fold 0.0<0.6; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0072",
+    "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+    "domain": "A",
+    "horizon": "H0_micro_intraday",
+    "scope": "USDJPY",
+    "gross": 18.82,
+    "net_1x": 17.48,
+    "net_1_5x": 16.81,
+    "net_2_0x": 16.14,
+    "sharpe": 0.0,
+    "dsr": 0.0,
+    "trades": 1,
+    "active_days": 1,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": false,
+    "min_trades_req": 250,
+    "top_year": "2010",
+    "year_concentration": 1.0,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 1<min 250; fold 0.0<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0992",
+    "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+    "domain": "A",
+    "horizon": "H0_micro_intraday",
+    "scope": "SELF3",
+    "gross": 9.27,
+    "net_1x": 7.75,
+    "net_1_5x": 6.98,
+    "net_2_0x": 6.22,
+    "sharpe": 7.255,
+    "dsr": 0.0,
+    "trades": 3,
+    "active_days": 3,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 1.0,
+    "year_loo_positive": false,
+    "min_trades_req": 250,
+    "top_year": "2010",
+    "year_concentration": 0.86,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 3<min 250; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0988",
+    "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+    "domain": "A",
+    "horizon": "H0_micro_intraday",
+    "scope": "SELF3",
+    "gross": 4.18,
+    "net_1x": 3.74,
+    "net_1_5x": 3.51,
+    "net_2_0x": 3.29,
+    "sharpe": 0.0,
+    "dsr": 0.0,
+    "trades": 1,
+    "active_days": 1,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": true,
+    "min_trades_req": 250,
+    "top_year": "2010",
+    "year_concentration": 0.5,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 1<min 250; fold 0.0<0.6; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0016",
+    "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+    "domain": "A",
+    "horizon": "H0_micro_intraday",
+    "scope": "EURUSD",
+    "gross": 11.35,
+    "net_1x": 3.53,
+    "net_1_5x": -0.37,
+    "net_2_0x": -4.28,
+    "sharpe": 1.325,
+    "dsr": 0.0,
+    "trades": 10,
+    "active_days": 10,
+    "survives_1_5x": false,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.5,
+    "year_loo_positive": false,
+    "min_trades_req": 250,
+    "top_year": "2017",
+    "year_concentration": 0.44,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 10<min 250; fails 2.0x cost stress; fold 0.5<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0053",
+    "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+    "domain": "A",
+    "horizon": "H0_micro_intraday",
+    "scope": "USDJPY",
+    "gross": 4.53,
+    "net_1x": 3.35,
+    "net_1_5x": 2.76,
+    "net_2_0x": 2.17,
+    "sharpe": 6.592,
+    "dsr": 0.0,
+    "trades": 2,
+    "active_days": 2,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": false,
+    "min_trades_req": 250,
+    "top_year": "2012",
+    "year_concentration": 1.0,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 2<min 250; fold 0.0<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0738",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "EURUSD",
+    "gross": 3.56,
+    "net_1x": 2.66,
+    "net_1_5x": 2.21,
+    "net_2_0x": 1.76,
+    "sharpe": 0.0,
+    "dsr": 0.0,
+    "trades": 1,
+    "active_days": 1,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2010",
+    "year_concentration": 1.0,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 1<min 120; fold 0.0<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0739",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "EURUSD",
+    "gross": 3.56,
+    "net_1x": 2.66,
+    "net_1_5x": 2.21,
+    "net_2_0x": 1.76,
+    "sharpe": 0.0,
+    "dsr": 0.0,
+    "trades": 1,
+    "active_days": 1,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2010",
+    "year_concentration": 1.0,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 1<min 120; fold 0.0<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0740",
+    "family_id": "V3_I_KALMAN_STATE_TREND",
+    "domain": "I",
+    "horizon": "H1_session_daily",
+    "scope": "EURUSD",
+    "gross": 3.56,
+    "net_1x": 2.66,
+    "net_1_5x": 2.21,
+    "net_2_0x": 1.76,
+    "sharpe": 0.0,
+    "dsr": 0.0,
+    "trades": 1,
+    "active_days": 1,
+    "survives_1_5x": true,
+    "survives_2_0x": true,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": false,
+    "min_trades_req": 120,
+    "top_year": "2010",
+    "year_concentration": 1.0,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 1<min 120; fold 0.0<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   },
+   {
+    "candidate_id": "V3-0046",
+    "family_id": "V3_A_DONCHIAN_BREAKOUT_POST_COMPRESSION",
+    "domain": "A",
+    "horizon": "H0_micro_intraday",
+    "scope": "GBPUSD",
+    "gross": 4.74,
+    "net_1x": 1.34,
+    "net_1_5x": -0.36,
+    "net_2_0x": -2.07,
+    "sharpe": 0.0,
+    "dsr": 0.0,
+    "trades": 1,
+    "active_days": 1,
+    "survives_1_5x": false,
+    "survives_2_0x": false,
+    "fold_pos_frac": 0.0,
+    "year_loo_positive": false,
+    "min_trades_req": 250,
+    "top_year": "2011",
+    "year_concentration": 1.0,
+    "failed": [
+     "risk_adjusted",
+     "sample_sufficiency",
+     "fold_robustness",
+     "instrument_robustness",
+     "neighborhood_stability",
+     "cost_stress",
+     "multiple_testing"
+    ],
+    "why_not_survivor": "trades 1<min 250; fails 2.0x cost stress; fold 0.0<0.6; LOO fails; DSR 0.00<0.5; no multiplicity-adjusted significance (RW/Holm/BH all 0)"
+   }
+  ]
+ },
+ "v1_v2_v3_comparison": {
+  "V1": {
+   "verdict": "CLOSED_NO_CERTIFIED_V1_ALPHA",
+   "evaluated": 8,
+   "registered": 1200,
+   "families": 12,
+   "survivors": 0,
+   "wrc_p": 0.995991984,
+   "spa_p": 1.0,
+   "cost_stress_survivors": "0/0",
+   "data": "3 USD majors, M1 bid/ask, 2015-2017 (of 9 planned 2010-2025)",
+   "weakness_fixed_next": "semantic/infrastructure repair gates -> V2 factory rebuild (typed schema, compiler, unified kernel, frozen protocol)",
+   "what_failed": "6 of 12 families never got executable semantics; data gap (3 pairs, 4 yrs) named root cause",
+   "unresolved": "whether the 6 unexecutable families have alpha"
+  },
+  "V2": {
+   "verdict": "V2_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR",
+   "evaluated": 336,
+   "registered": 336,
+   "families": 8,
+   "survivors": 0,
+   "positive_net": 17,
+   "survives_1_5x": 8,
+   "survives_2_0x": 4,
+   "wrc_p": 1.0,
+   "spa_p": 0.460921844,
+   "pbo": 0.128571,
+   "rw_holm_bh_significant": 0,
+   "data": "3 USD majors, M1 bid/ask, dev 2015-2017, holdout 2018-2019 sealed",
+   "weakness_fixed_next": "narrow 3-pair single-horizon space -> V3 multi-horizon (H0-H3) + 13-instrument cross-sectional + composition archetypes",
+   "what_failed": "17 positive-net but 0 multiplicity-significant; WRC p=1.0 (no alpha in the max-statistic sense)",
+   "unresolved": "cross-pair/multi-horizon structure (data-limited)"
+  },
+  "V3": {
+   "verdict": "V3_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR",
+   "evaluated": 992,
+   "registered": 1044,
+   "families": 18,
+   "survivors": 0,
+   "positive_raw": 20,
+   "positive_1_5x": 13,
+   "positive_2_0x": 12,
+   "wrc_p": 1.0,
+   "spa_p": 0.72972973,
+   "pbo": 0.185714,
+   "rw_holm_bh_hier_significant": 0,
+   "data": "13 instruments, M1 bid/ask, 2010-2014 (pre-2018), holdout sealed",
+   "weakness_fixed_next": "n/a (terminal)",
+   "what_failed": "48% no intrinsic edge, 27% cost-dominated, 24% too few trades; 0 multiplicity-significant",
+   "unresolved": "microstructure hypothesis (data-unavailable), lower-cost/longer-horizon execution of gross-positive families"
+  },
+  "program_level_conclusion": {
+   "cumulative_candidate_equivalent": 1388,
+   "generations": 3,
+   "wrc_trajectory": "0.996 -> 1.0 -> 1.0 (no max-statistic alpha across any generation)",
+   "primary_conclusion": "A. repeated absence of alpha under price-only public FX M1 data is the dominant, best-supported explanation (3 generations, 1388 trials, WRC p~1.0). C. execution-cost dominance is a strong secondary cause for the gross-positive families (costs consume 286-450% of gross). D. missing microstructure information is a strong cause for the UNTESTED (rejected pre-outcome) microstructure families. B/E/F/G are weaker: model class was mostly simple (B), H0 is cost-hostile but H1 was tested (E), only USD majors (F), validation was rigorous (G).",
+   "evidence_strength": {
+    "A_no_alpha_price_only": "STRONG (3 gens, WRC p~1.0, 1388 trials)",
+    "C_cost_dominance": "STRONG for gross-positive families (C/E/G)",
+    "D_missing_microstructure": "STRONG (microstructure families untested due to data)",
+    "B_model_class": "MODERATE (only simple classes tested)",
+    "E_wrong_horizon": "MODERATE (H0 cost-hostile; H1 tested; H2/H3 not executable)",
+    "F_wrong_market": "WEAK (only USD majors; other markets untested)",
+    "G_wrong_validation": "WEAK (validation rigorous; absence is real)"
+   }
+  }
+ },
+ "information_content_analysis": {
+  "present": [
+   "M1 BID/ASK OHLC (side-correct fills, real spread)",
+   "observation / executable-quote masks (imputation-aware)",
+   "cross-pair relationships (13 instruments, panel + 5 triangles)",
+   "multi-timeframe price history (M1 -> daily aggregation)",
+   "session / calendar state (NY minute, date, year)"
+  ],
+  "absent": [
+   "L2 / order-book depth and imbalance",
+   "quote-arrival dynamics / true tick microstructure",
+   "broker flow / order flow / transaction volume",
+   "options / implied volatility",
+   "rates / carry / financing history (overnight)",
+   "positioning (CFTC/COT) / dealer inventory",
+   "news / event / macro-surprise data",
+   "funding / liquidity stress measures"
+  ],
+  "realistically_identifiable_from_current_set": "slow, low-turnover, cross-sectional or multi-day effects that survive the M1 spread+0.10bps/fill cost; the tested intraday high-turnover effects are NOT identifiable (cost-dominated)",
+  "failed_families_requiring_absent_information": [
+   "V3_E_TICK_ARRIVAL_INTENSITY (needs tick-arrival rate) - rejected",
+   "V3_E_ORDER_BOOK_IMBALANCE (needs order-book depth) - rejected",
+   "V3_G/V3_H cross-pair & stat-arb (need lower cost or more instruments to be economic) - cost-dominated, not data-missing"
+  ]
+ },
+ "market_horizon_review": {
+  "note": "methodological only; no new data fetched, no outcomes run",
+  "arena_comparison": {
+   "intraday_spot_fx_M1": "current arena; highest relative cost (spread+commission vs small edge); microstructure rich but unmeasured",
+   "multi_day_fx": "lower relative cost (edge scales with horizon, cost is per-trade); carry/rates needed (absent); more plausible for slow cross-sectional effects",
+   "fx_futures": "lower spread than spot, centralized, but needs futures data (not acquired); financing/cost structure differs",
+   "equity_index_futures": "richer microstructure, lower relative cost, public data available; different market (not FX)",
+   "rates_futures": "strong public data, persistent effects (term structure), low relative cost; different market",
+   "crypto": "24/7, very rich microstructure, but higher volatility and different cost regime; public data available",
+   "cross_asset_relative_value": "persistent structural effects, lower relative cost; needs multi-asset data"
+  },
+  "where_costs_are_lower_relative_to_signal": "multi-day FX, FX/equity/rates futures, cross-asset RV (edge scales with horizon while cost is per-trade)",
+  "where_microstructure_is_richer": "equity index futures, crypto, FX futures (measured tick/depth)",
+  "where_persistent_effects_more_plausible": "multi-day FX, rates futures, cross-asset RV (structural, slow)",
+  "where_public_data_capability_is_better": "equity/rates futures, crypto (full tick + depth public)"
+ },
+ "model_class_review": {
+  "v3_families_were_primarily": [
+   "linear (rolling OLS slopes, z-scores)",
+   "threshold-based (sigma crossings)",
+   "hand-crafted technical (Donchian, compression, session windows)",
+   "simple regime-conditioned (vol quantile bands, OU half-life)",
+   "simple ML (expanding logistic meta-label, Kalman filter)"
+  ],
+  "not_really_tested": [
+   "state-space / latent-factor (beyond the single Kalman drift)",
+   "sequence models (RNN/Transformer over bar sequences)",
+   "nonlinear representation learning / self-supervised TS embeddings",
+   "cross-sectional ranking as a first-class signal (only top/bot-3)",
+   "Hawkes / event-intensity models",
+   "optimal stopping / dynamic programming / control-RL",
+   "causal event-response",
+   "full microstructure models (need absent data)"
+  ],
+  "future_classes_family_level": [
+   {
+    "class": "state-space / latent-factor",
+    "new_capacity": "separate signal from noise; capture slow latent drift the Kalman drift only approximated",
+    "data_required": "current M1 set suffices",
+    "overfitting_risk": "medium (many hyperparams)",
+    "compute": "low-medium",
+    "justified_by_v1_v3": "MODERATE - V3 I_KALMAN was the near-miss but too sparse; a richer state-space could add activity, not edge"
+   },
+   {
+    "class": "cross-sectional ranking / meta-labeling (proper)",
+    "new_capacity": "rank 13 pairs, trade the spread of the ranking; robust to level effects",
+    "data_required": "current 13-instrument panel suffices",
+    "overfitting_risk": "medium",
+    "compute": "low",
+    "justified_by_v1_v3": "MODERATE - V3 G_xsmom had gross edge but was cost-dominated; a lower-turnover ranking could be economic"
+   },
+   {
+    "class": "sequence / embedding models",
+    "new_capacity": "learn nonlinear bar-sequence patterns",
+    "data_required": "current M1 set suffices (more history helps)",
+    "overfitting_risk": "HIGH (large capacity, small edge)",
+    "compute": "high",
+    "justified_by_v1_v3": "WEAK - no evidence the effect exists; high overfit risk on a null signal"
+   },
+   {
+    "class": "Hawkes / event-intensity",
+    "new_capacity": "model quote-arrival clustering",
+    "data_required": "TICK data (ABSENT) - cannot test on M1",
+    "overfitting_risk": "medium",
+    "compute": "medium",
+    "justified_by_v1_v3": "BLOCKED - requires new data class"
+   },
+   {
+    "class": "optimal stopping / control-RL",
+    "new_capacity": "optimize entry/exit timing under cost",
+    "data_required": "current M1 set suffices",
+    "overfitting_risk": "HIGH (policy overfits)",
+    "compute": "high",
+    "justified_by_v1_v3": "WEAK-MODERATE - could reduce cost drag on gross-positive families but does not create edge"
+   }
+  ]
+ },
+ "do_not_repeat_registry": [
+  {
+   "item": "high-turnover M1 mean-reversion / spread-gated reversal (V3_C, V3_E)",
+   "evidence": "gross-positive but cost eats 287-326% of gross; 0 survivors across V2 F04/F05 and V3 C/E",
+   "action": "ban unless paired with a lower-cost venue or longer horizon"
+  },
+  {
+   "item": "triangular / cointegration stat-arb on M1 (V3_H)",
+   "evidence": "100% gross-negative (112+20 candidates); no edge",
+   "action": "ban on M1 price-only; revisit only with lower cost / more legs"
+  },
+  {
+   "item": "Donchian breakout post-compression as a standalone H0 signal (V3_A)",
+   "evidence": "65% zero-trade; the 7 positives are 1-10 trade wins",
+   "action": "do not re-sweep; the conjunction is over-restrictive"
+  },
+  {
+   "item": "OU-half-life banded reversion (V3_C_OU) and change-point regime shift (V3_I_CHANGEPOINT)",
+   "evidence": "60/60 and 50/60 zero-trade; regime gates never open",
+   "action": "do not re-sweep the same gates"
+  },
+  {
+   "item": "parameter sweeps around the 20 raw-positive candidates",
+   "evidence": "all 20 fail the frozen predicate; they are failure modes, not seeds",
+   "action": "explicitly forbidden (anti-overfit)"
+  },
+  {
+   "item": "price-only approximations to tick features (V3_E_TICK, V3_E_ORDER_BOOK)",
+   "evidence": "rejected pre-outcome; M1 cannot proxy quote-arrival / depth",
+   "action": "do not approximate; requires real tick/depth data"
+  },
+  {
+   "item": "ever-larger hand-crafted indicator combinatorics",
+   "evidence": "V3 M-archetypes stack 3 restrictive masks; 0 survivors; combinatorics did not create edge",
+   "action": "ban indicator-stacking as a strategy generator"
+  },
+  {
+   "item": "post-hoc session / time-of-day optimization",
+   "evidence": "V3_F session-conditioned momentum is 84% gross-negative; session as a signal fails (works only as a filter)",
+   "action": "use session only as a conditioning filter, never as the signal"
+  },
+  {
+   "item": "weak 1-minute TA under realistic costs",
+   "evidence": "H0 micro is cost-dominated (169/437 A-candidates cost-dominated or no-signal at H0)",
+   "action": "ban H0 micro as a primary arena without a cost advantage"
+  }
+ ],
+ "next_experiment_classes": [
+  {
+   "id": "X1",
+   "question": "Is the absence of alpha due to COST, or is there no edge at all?",
+   "hypothesis_class": "the 4 gross-positive cost-dominated families (C/E/G/B-pullback)",
+   "new_info_needed": "a lower-spread execution assumption OR a longer horizon (no new data class)",
+   "minimal_test": "re-evaluate the gross-positive families at a reduced-cost assumption and at H1/H2 horizons; check if net turns positive",
+   "expected_failure": "edge still absent after cost reduction -> confirms no intrinsic edge",
+   "justifies_full_v4_if": "a gross-positive family becomes cost-robust AND multiplicity-significant at a realistic lower cost / longer horizon"
+  },
+  {
+   "id": "X2",
+   "question": "Does the microstructure hypothesis (the most promising for intraday FX) have alpha, now that it can be tested?",
+   "hypothesis_class": "quote-arrival intensity / order-book imbalance (V3_E rejected families)",
+   "new_info_needed": "TICK/L2 order-book data (a NEW data class)",
+   "minimal_test": "one small family on tick data with the same frozen statistical protocol",
+   "expected_failure": "tick edge also cost-dominated or absent",
+   "justifies_full_v4_if": "a tick-based family clears the frozen predicate -> V4 on the new data class"
+  },
+  {
+   "id": "X3",
+   "question": "Is the right arena intraday spot FX at all?",
+   "hypothesis_class": "slow cross-sectional / multi-day FX or futures relative value",
+   "new_info_needed": "multi-day or futures price data (possibly new market/horizon)",
+   "minimal_test": "port ONE gross-positive cross-sectional signal (G_xsmom) to a daily horizon; check cost/edge ratio",
+   "expected_failure": "edge does not persist at daily frequency",
+   "justifies_full_v4_if": "a daily/futures cross-sectional signal is cost-robust and significant -> V4 in that arena"
+  },
+  {
+   "id": "X4",
+   "question": "Is our representation inadequate, or is the signal null?",
+   "hypothesis_class": "a richer state-space / latent-factor model on the SAME data",
+   "new_info_needed": "none (current M1 set suffices)",
+   "minimal_test": "one latent-factor model vs the V3 Kalman near-miss; compare edge and activity",
+   "expected_failure": "richer model adds activity but not significant edge (confirms null signal)",
+   "justifies_full_v4_if": "a richer model reveals a significant edge the simple classes missed -> V4 with new model class"
+  },
+  {
+   "id": "X5",
+   "question": "Can timing (optimal stopping) rescue the gross-positive families?",
+   "hypothesis_class": "optimal-stopping / control on entry/exit timing",
+   "new_info_needed": "none (current M1 set suffices)",
+   "minimal_test": "apply an optimal-exit rule to the B-pullback gross-positive signal; measure cost-drag reduction",
+   "expected_failure": "timing reduces cost but the residual edge is not significant",
+   "justifies_full_v4_if": "timing turns a cost-dominated signal into a significant survivor -> V4 with execution layer"
+  }
+ ],
+ "v4_go_no_go": {
+  "verdict": "V3_PROGRAM_REVIEW_REQUIRES_NEW_DATA_CLASS",
+  "rationale": "The price-only M1 public-FX information set is exhausted for the tested intraday hypothesis classes (3 generations, 1388 trials, WRC p~1.0, 0 survivors). The dominant failure is NO_SIGNAL (48%) with COST_DOMINANCE (27%) for the gross-positive families. Crucially, the MOST PROMISING intraday hypothesis class - market microstructure - was REJECTED pre-outcome because it requires tick/order-book data the M1 set does not contain, so it is UNTESTED, not refuted. A V4 on the SAME data is therefore NOT justified; a future program requires a NEW data class (tick/L2) or a different market/horizon with lower relative cost.",
+  "not_v4_justified_because": "no new hypothesis class is testable and likely-successful on the current price-only M1 set; the gross-positive families are cost-suppressed, not edge-lacking, but the cost structure is a property of the arena, not fixable by model choice",
+  "if_proceeding_information_classes": [
+   "tick / quote-arrival microstructure (NEW)",
+   "L2 order-book depth / imbalance (NEW)",
+   "multi-day or futures price data for lower relative cost (NEW market/horizon)"
+  ],
+  "hypothesis_classes_worth_testing": [
+   "microstructure (quote-arrival, order-book) - now testable with new data",
+   "lower-turnover cross-sectional / multi-day FX",
+   "richer state-space / latent-factor on existing data (X4)"
+  ],
+  "classes_to_ban": [
+   "high-turnover M1 mean-reversion / spread-gated reversal",
+   "M1 triangular / cointegration stat-arb",
+   "price-only approximations to tick features",
+   "indicator-stacking combinatorics",
+   "parameter sweeps around the 20 raw-positive failure modes"
+  ],
+  "prospective_safeguards": [
+   "freeze the statistical protocol + survivor predicate BEFORE any V4 outcome",
+   "keep the 2018+ holdout sealed and independent",
+   "pre-register the new data class and its capability contract",
+   "control cross-version multiplicity (program-level alpha split)",
+   "no V4 candidate may be seeded from a V3 raw-positive parameter"
+  ]
+ },
+ "holdout_recommendation": {
+  "recommendation": "KEEP_SEALED",
+  "rationale": "the sealed 2018+ region is the program's most valuable remaining independent evidence. V3 ended with no survivor, so consuming it now would spend independent evidence on a null result. It should be reserved for a future GENUINELY NEW prospective program (new data class or new arena) that first clears a pre-2018 gate."
+ }
+}
