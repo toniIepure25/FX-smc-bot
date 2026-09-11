@@ -62,11 +62,11 @@ from fx_smc_bot.research.a0r3d_certified_subset import (
 from fx_smc_bot.research.a0r3d_certified_subset import (
     _sample_moments,
     bh_fdr,
-    bootstrap_family_stats,
     dsr,
     holm_adjust,
     normal_p_value_from_mean,
     psr,
+    stationary_bootstrap_indices,
 )
 from fx_smc_bot.research.v2.statistics import pbo_cscv
 from fx_smc_bot.research.v3._hashing import canonical_hash
@@ -2120,12 +2120,76 @@ def build_return_matrix(rows: list[dict[str, Any]]) -> pd.DataFrame:
     return matrix[[r["candidate_id"] for r in rows]]
 
 
+def _bootstrap_family_stats_chunked(
+    return_matrix: pd.DataFrame, *, seed: int, iterations: int, block_length: int
+) -> dict[str, Any]:
+    """Memory-bounded equivalent of a0r3d ``bootstrap_family_stats``.
+
+    The frozen reference materialises ``centered[indices]`` of shape
+    (iterations, n_days, n_candidates); at the 992-candidate global scale that is
+    ~12 GiB. Here the per-iteration bootstrap means are accumulated in chunks so peak
+    memory is O(chunk * n_days * n_candidates). The resampling (stationary bootstrap,
+    same seed/block), the centring, and every p-value definition are identical, so the
+    returned statistics are bit-for-bit the same as the frozen function.
+    """
+
+    if return_matrix.empty:
+        return {
+            "white_reality_check_p": "NOT_APPLICABLE",
+            "hansen_spa_p": "NOT_APPLICABLE",
+            "romano_wolf_stepdown_p": [],
+        }
+    values = return_matrix.to_numpy(dtype=float)
+    n, m = values.shape
+    means = values.mean(axis=0)
+    stds = values.std(axis=0, ddof=1)
+    se = np.where(stds > 0, stds / math.sqrt(max(n, 1)), np.inf)
+    t_stats = np.where(np.isfinite(se), means / se, 0.0)
+    observed_max_mean = float(np.max(means))
+    observed_max_t = float(np.max(t_stats))
+    centered = values - means
+    indices = stationary_bootstrap_indices(n, block_length, iterations, seed)
+    # chunk so that chunk * n * m * 8 bytes stays bounded (~256 MiB)
+    chunk = max(1, int(256 * 1024 * 1024 // max(n * m * 8, 1)))
+    boot_means = np.empty((iterations, m), dtype=float)
+    for b0 in range(0, iterations, chunk):
+        b1 = min(b0 + chunk, iterations)
+        boot_means[b0:b1] = centered[indices[b0:b1]].mean(axis=1)
+    boot_t = np.divide(
+        boot_means,
+        np.where(stds > 0, stds / math.sqrt(max(n, 1)), np.inf),
+        out=np.zeros_like(boot_means),
+        where=np.isfinite(se),
+    )
+    wrc_p = float(np.mean(np.max(boot_means, axis=1) >= observed_max_mean))
+    positive = means > 0.0
+    if positive.any():
+        spa_p = float(np.mean(np.max(boot_t[:, positive], axis=1) >= observed_max_t))
+    else:
+        spa_p = 1.0
+    raw_step = [
+        float(np.mean(np.max(boot_t[:, means <= means[i] + 1e-12], axis=1) >= t_stats[i]))
+        if np.any(means <= means[i] + 1e-12)
+        else 1.0
+        for i in range(m)
+    ]
+    return {
+        "white_reality_check_p": round(wrc_p, 9),
+        "hansen_spa_p": round(spa_p, 9),
+        "romano_wolf_stepdown_p": [round(min(1.0, max(0.0, p)), 9) for p in raw_step],
+        "bootstrap_iterations": iterations,
+        "block_length_days": block_length,
+        "seed": seed,
+    }
+
+
 def run_statistics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     matrix = build_return_matrix(rows)
     values = matrix.to_numpy(dtype=float)
     n_cand = values.shape[1]
-    boot = bootstrap_family_stats(matrix, seed=FROZEN_SEED,
-                                  iterations=BOOTSTRAP_ITERATIONS, block_length=BLOCK_LENGTH_DAYS)
+    boot = _bootstrap_family_stats_chunked(matrix, seed=FROZEN_SEED,
+                                            iterations=BOOTSTRAP_ITERATIONS,
+                                            block_length=BLOCK_LENGTH_DAYS)
     rw_global = boot["romano_wolf_stepdown_p"]
     p_raw = [normal_p_value_from_mean(values[:, j]) for j in range(n_cand)]
     holm = holm_adjust(p_raw)
@@ -2141,8 +2205,9 @@ def run_statistics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     for fi, fam in enumerate(fams):
         cols = [c for c in matrix.columns if fam_of[c] == fam]
         sub = matrix[cols]
-        b = bootstrap_family_stats(sub, seed=FROZEN_SEED + fi + 1,
-                                   iterations=BOOTSTRAP_ITERATIONS, block_length=BLOCK_LENGTH_DAYS)
+        b = _bootstrap_family_stats_chunked(sub, seed=FROZEN_SEED + fi + 1,
+                                             iterations=BOOTSTRAP_ITERATIONS,
+                                             block_length=BLOCK_LENGTH_DAYS)
         rwf = b["romano_wolf_stepdown_p"]
         for c, pv in zip(cols, rwf, strict=True):
             rw_family[c] = float(pv)
