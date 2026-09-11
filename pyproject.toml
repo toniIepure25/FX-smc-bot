@@ -44,6 +44,14 @@ target-version = "py310"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "N"]
 
+[tool.ruff.lint.per-file-ignores]
+# The V3.1 discovery engine names signal functions and lookback/halflife variables after the
+# FROZEN family registry (V3_A_..., V3_B_..., V3_C_...) and the frozen parameter scales
+# (lookback_bars_intraday -> L, halflife_bars -> H); renaming would break the frozen
+# identifier correspondence used to audit each candidate against the registry.
+"src/fx_smc_bot/research/v3/discovery_engine.py" = ["N802", "N803", "N806"]
+"src/fx_smc_bot/research/v3/discovery_data.py" = ["N803", "N806"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
