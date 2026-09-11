@@ -151,6 +151,28 @@ def _missing_days(ny_date: np.ndarray) -> list[str]:
     )
 
 
+def _reduce_memory(d: InstrumentData) -> None:
+    """Shrink per-instrument footprint without changing evaluation semantics.
+
+    The 13-instrument panel needs ~14 GB at float64, which exceeds the 14.88 GB
+    physical RAM of the discovery host. Two safe reductions bring it to ~11.4 GB:
+    (1) the four fill prices (bo/ao/bc/ac) and the observed mid/return sub-series
+    are only consumed by the P&L/cost accounting (never by signal generation), so
+    float32 is sufficient (relative error ~1e-7, i.e. ~1e-3 bps on fills);
+    (2) o_mh/o_ml/o_spread are used solely to *build* the causal features and are
+    dead weight once ``feat`` is populated, so they are released.
+    bh/bl/ah/al and the feature block are left untouched (signal path).
+    """
+
+    for attr in ("bo", "ao", "bc", "ac", "o_mid", "o_ret"):
+        a = getattr(d, attr)
+        if a.dtype == np.float64:
+            setattr(d, attr, a.astype(np.float32))
+    d.o_mh = np.empty(0, dtype=np.float32)
+    d.o_ml = np.empty(0, dtype=np.float32)
+    d.o_spread = np.empty(0, dtype=np.float32)
+
+
 def _side_scan(canonical: Path, inst: str, side: str, years: tuple[int, ...],
                fw: DiscoveryFirewall) -> pd.DataFrame:
     fw.guard_years(years)
@@ -195,6 +217,7 @@ def load_instrument(canonical: Path, inst: str, years: tuple[int, ...],
                         data.missing_days = [str(x) for x in z["missing_days"]]
                     else:  # legacy cache written before missing_days was persisted
                         data.missing_days = _missing_days(data.ny_date)
+                    _reduce_memory(data)
                     return data
 
     bid = _side_scan(canonical, inst, "bid", years, fw)
@@ -248,6 +271,7 @@ def load_instrument(canonical: Path, inst: str, years: tuple[int, ...],
             {"freeze_hash": freeze_hash, "data_digest": data_digest,
              "feature_version": FEATURE_VERSION, "inst": inst,
              "years": [int(y) for y in years]}, indent=1))
+    _reduce_memory(data)
     return data
 
 
