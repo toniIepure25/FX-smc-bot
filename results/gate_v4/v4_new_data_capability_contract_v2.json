@@ -1,0 +1,500 @@
+{
+ "artifact_id": "V4_NEW_DATA_CAPABILITY_CONTRACT_V2",
+ "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V4",
+ "lineage": "FX_PRICE_MICROSTRUCTURE_ALPHA_LINEAGE_V1",
+ "gate": "V4_NEW_DATA_CAPABILITY_CONTRACT",
+ "starting_sha": "0e7d4fe33e9041d3176a6c8896628cb9cb4e72bb",
+ "scope": "PRE-OUTCOME FACTUAL CORRECTION of the frozen V4 capability contract. No market outcomes downloaded. No model run. No backtest run. Performance-blind correction.",
+ "lineage_chain": [
+  "V4_CAPABILITY_CONTRACT_V1",
+  "PRE_OUTCOME_FACTUAL_CORRECTION",
+  "V4_CAPABILITY_CONTRACT_V2"
+ ],
+ "supersedes_hash": "b9899bc7ab48613313176bf2d3e01b71f56e4681157a4919d8a1acc0bc2bd3f3",
+ "corrections_applied": [
+  "C1: Corrected 6E/6J/6B contract specs (tick size, tick value, contract size, quotation)",
+  "C2: Replaced spanning-contract eligibility with per-date eligibility + 5-trading-day roll",
+  "C3: Corrected MBP-10 schema to Databento documented fields (removed seq_msg/msg_type/channel/ts_out_delta)",
+  "C4: Corrected trade-side semantics to provider-native B/A/N (no inference)",
+  "C5: Corrected book-state semantics (authoritative embedded state, no manual mutation)",
+  "C6: Fixed chronology to completely pre-2018 (removed 2018+ periods)",
+  "C7: Recorded historical protocol regimes (MDP2 vs MDP3, precision changes)",
+  "C8: Fixed cost model to USD/contract/side (removed bps assumption)",
+  "C9: Corrected target semantics to direction-neutral mid/microprice change",
+  "C10: Rebuilt contract identity (new hash, lineage V1->V2)"
+ ],
+ "provider": {
+  "name": "Databento",
+  "website": "https://databento.com",
+  "api_base": "https://hist.databento.com",
+  "api_key_env": "DATABENTO_API_KEY",
+  "api_key_available": false,
+  "note": "No API credentials available. Exact metadata commands emitted."
+ },
+ "dataset": {
+  "name": "GLBX.MDP3",
+  "exchange": "CME Globex",
+  "protocol": "MDP 3.0 (with MDP2 legacy coverage from 2010-06)",
+  "coverage_start": "2010-06",
+  "primary_pilot_schema": "mbp-10",
+  "auxiliary_schemas": [
+   "definition",
+   "status"
+  ],
+  "future_capability": {
+   "schema": "mbo",
+   "status": "AVAILABLE_FUTURE_CAPABILITY_NOT_IN_PRIMARY_PILOT",
+   "note": "MBO available from 2017-05-21. NOT used in primary pilot."
+  }
+ },
+ "contracts": {
+  "universe": "STANDARD CME FX FUTURES (outright only)",
+  "excluded": [
+   "options",
+   "calendar spreads",
+   "inter-commodity spreads",
+   "synthetic adjusted continuous prices",
+   "micro contracts (M6E/M6B/MJY)"
+  ],
+  "instruments": {
+   "6E": {
+    "name": "Euro FX",
+    "pair": "EUR/USD",
+    "contract_size": 125000,
+    "contract_size_unit": "EUR",
+    "quotation": "USD per EUR",
+    "tick_size": 5e-05,
+    "tick_value_usd": 6.25,
+    "quotation_direction_note": "A price increase means EUR strengthens vs USD.",
+    "expiration_cycle": "quarterly (Mar/Jun/Sep/Dec)",
+    "expiration_rule": "last business day before the 3rd Wednesday of the contract month",
+    "trading_hours": "Sun 17:00 - Fri 16:00 CT (1h break 16:00-17:00 CT)",
+    "exchange": "CME Globex",
+    "product_type": "FX futures",
+    "databento_parent_symbol": "6E.FUT"
+   },
+   "6J": {
+    "name": "Japanese Yen FX",
+    "pair": "USD/JPY",
+    "contract_size": 12500000,
+    "contract_size_unit": "JPY",
+    "quotation": "USD per JPY",
+    "tick_size": 5e-07,
+    "tick_value_usd": 6.25,
+    "quotation_direction_note": "A PRICE INCREASE means JPY STRENGTHENS vs USD. This is the inverse of the common spot USDJPY convention.",
+    "expiration_cycle": "quarterly (Mar/Jun/Sep/Dec)",
+    "expiration_rule": "last business day before the 3rd Wednesday of the contract month",
+    "trading_hours": "Sun 17:00 - Fri 16:00 CT (1h break 16:00-17:00 CT)",
+    "exchange": "CME Globex",
+    "product_type": "FX futures",
+    "databento_parent_symbol": "6J.FUT"
+   },
+   "6B": {
+    "name": "British Pound FX",
+    "pair": "GBP/USD",
+    "contract_size": 62500,
+    "contract_size_unit": "GBP",
+    "quotation": "USD per GBP",
+    "tick_size": 0.0001,
+    "tick_value_usd": 6.25,
+    "quotation_direction_note": "A price increase means GBP strengthens vs USD.",
+    "expiration_cycle": "quarterly (Mar/Jun/Sep/Dec)",
+    "expiration_rule": "last business day before the 3rd Wednesday of the contract month",
+    "trading_hours": "Sun 17:00 - Fri 16:00 CT (1h break 16:00-17:00 CT)",
+    "exchange": "CME Globex",
+    "product_type": "FX futures",
+    "databento_parent_symbol": "6B.FUT"
+   }
+  },
+  "source_provenance": "CME Group product specifications (authoritative). Verify against Databento Definition schema records (min_tick_size, md_price_multiplier, start_date, end_date) when data is acquired."
+ },
+ "eligibility": {
+  "rule": "PER-DATE / PER-CONTRACT ELIGIBILITY",
+  "description": "A contract is eligible on date D iff: (1) it is an outright standard 6E/6J/6B future; (2) Definition metadata shows it active on D; (3) D precedes its frozen calendar roll date; (4) valid definition and book data exist on D. NO selection based on realized volume, OI, returns, or profitability.",
+  "roll_rule": {
+   "type": "CALENDAR_BASED",
+   "description": "Roll exactly 5 CME trading days before expiration. The next eligible quarterly contract becomes the new front. Uses calendar/expiration metadata only. Do NOT use realized volume, OI, returns, or profitability.",
+   "databento_roll_rule": "calendar",
+   "trading_days_before_expiration": 5
+  },
+  "no_back_adjustment": "Individual raw contracts remain the scientific source. No back-adjusted synthetic prices.",
+  "supersedes": "V1 rule incorrectly required one quarterly contract to span the entire pilot. Replaced with per-date eligibility."
+ },
+ "schema": {
+  "primary": "mbp-10",
+  "record_format": "DBN (Databento Binary Encoding), ZSTD-compressed (.dbn.zst)",
+  "immutable_source_truth": "Raw DBN/DBN.ZST files are the immutable source of truth.",
+  "core_fields": {
+   "ts_recv": "int64, nanoseconds since Unix epoch, Databento receive time (UTC)",
+   "ts_event": "int64, nanoseconds since Unix epoch, exchange event time (UTC)",
+   "rtype": "u8, record type (schema identifier)",
+   "publisher_id": "u16, publisher/exchange identifier",
+   "instrument_id": "u32, Databento internal instrument ID",
+   "action": "char enum: A=Add, M=Modify, D=Delete, T=Trade/Execute, C=Clear",
+   "side": "char enum: B=Bid, A=Ask, N=None/Neutral",
+   "depth": "u8, price level depth 1-10 (1 = best/top) for the triggering event",
+   "price": "int64, price in raw units, 1 unit = 1e-9 (i.e. price/1e9 = actual price)",
+   "size": "int64, size in raw units for the triggering event",
+   "flags": "u8, bitwise OR of record flags",
+   "ts_in_delta": "int32, nanosecond delta from previous event (input)",
+   "sequence": "uint32, per-instrument message sequence number"
+  },
+  "top10_level_arrays": {
+   "description": "Each MBP-10 record embeds the resulting top-10 market-by-price state.",
+   "bid_px_00_to_09": "int64[10], bid prices at levels 0-9 (0 = best bid)",
+   "ask_px_00_to_09": "int64[10], ask prices at levels 0-9 (0 = best ask)",
+   "bid_sz_00_to_09": "int64[10], bid sizes at levels 0-9",
+   "ask_sz_00_to_09": "int64[10], ask sizes at levels 0-9",
+   "bid_ct_00_to_09": "int64[10], bid order counts at levels 0-9 (if present)",
+   "ask_ct_00_to_09": "int64[10], ask order counts at levels 0-9 (if present)"
+  },
+  "removed_from_v1": {
+   "seq_msg": "REMOVED - not in Databento documented MBP-10 schema",
+   "msg_type": "REMOVED - not in Databento documented MBP-10 schema",
+   "channel": "REMOVED - not in Databento documented MBP-10 schema",
+   "ts_out_delta": "REMOVED - not in Databento documented MBP-10 schema"
+  },
+  "canonical_provenance": {
+   "preserved_fields": [
+    "ts_event",
+    "sequence",
+    "publisher_id",
+    "instrument_id"
+   ],
+   "raw_dbn_hash": "SHA-256 of the source DBN.ZST file",
+   "partition_keys": [
+    "instrument",
+    "contract",
+    "utc_date"
+   ]
+  }
+ },
+ "trade_side": {
+  "provider_native": {
+   "B": "BUY aggressor (trade lifted the ask)",
+   "A": "SELL aggressor (trade hit the bid)",
+   "N": "UNKNOWN (no aggressor side determined)"
+  },
+  "no_inference": "Do NOT infer UNKNOWN trades from trade_price vs previous mid in the primary pilot. UNKNOWN remains a valid value. No forced signing.",
+  "supersedes": "V1 defined a deterministic classifier (price vs mid_prev). REMOVED. Provider-native B/A/N is the frozen semantics."
+ },
+ "book_state": {
+  "principle": "MBP-10 is NOT an MBO delta stream. The provider-supplied top-10 level state on each MBP-10 record is AUTHORITATIVE. action/depth describe the triggering event; the embedded bid/ask level arrays describe the resulting market-by-price state.",
+  "no_manual_mutation": "Do NOT manually mutate the book using invented ADD/MODIFY/DELETE/EXECUTE arithmetic unless verified byte-for-byte against Databento's documented representation.",
+  "validity_criteria": [
+   "valid BBO where market is open (bid_px_00 > 0 AND ask_px_00 > 0)",
+   "bid < ask except documented non-trading states",
+   "nonnegative sizes/counts at all levels",
+   "monotone price levels (bid_px_00 >= bid_px_01 >= ... >= bid_px_09; ask_px_00 <= ask_px_01 <= ... <= ask_px_09)",
+   "valid sequence/provenance (monotone sequence per instrument)",
+   "explicit missing level representation (size=0 or price=0 for empty levels)"
+  ],
+  "no_full_10_requirement": "A book can be valid with fewer than 10 populated levels on either side. Do NOT require all 10 levels on both sides for validity.",
+  "data_states": [
+   "CERTIFIED",
+   "EXPECTED_SESSION_ABSENCE",
+   "PROVIDER_GAP",
+   "SEQUENCE_GAP",
+   "BOOK_INTEGRITY_FAILURE",
+   "DEFINITION_FAILURE",
+   "UNRESOLVED_DATA_GAP"
+  ],
+  "no_silent_repair": "Never silently repair. All anomalies explicitly marked.",
+  "supersedes": "V1 defined ADD/MODIFY/DELETE/EXECUTE/CLEAR mutation rules. REPLACED with authoritative embedded state semantics."
+ },
+ "information_classes": {
+  "admitted": [
+   "trades (price, size, ts_event, side B/A/N)",
+   "trade size",
+   "top-of-book (bid_px_00, ask_px_00, bid_sz_00, ask_sz_00)",
+   "top-10 depth (bid_px_00..09, ask_px_00..09, sizes, counts)",
+   "spread (ask_px_00 - bid_px_00)",
+   "microprice (size-weighted mid)",
+   "top-level imbalance",
+   "multi-level depth imbalance (levels 0-9)",
+   "MBP order-flow imbalance (OFI from level changes)",
+   "trade-flow imbalance (signed trade volume, B/A/N)",
+   "liquidity depletion/replenishment",
+   "event intensity",
+   "short-horizon impact/response",
+   "book slope / shape"
+  ],
+  "not_admitted": [
+   "individual order IDs",
+   "true queue position",
+   "maker queue priority",
+   "order-level lifecycle",
+   "full L3 cancellation/Hawkes features"
+  ],
+  "never_reconstruct": "Never reconstruct fake L3 from MBP-10."
+ },
+ "timestamps": {
+  "event_timezone": "UTC",
+  "session_timezone": "America/Chicago",
+  "authoritative_ordering": "ts_event + sequence (per instrument)",
+  "ts_event_semantics": "Exchange event time, int64 ns since Unix epoch (UTC).",
+  "ts_recv_semantics": "Databento receive time, int64 ns since Unix epoch (UTC).",
+  "mdp2_limitations": {
+   "pre_2017_05_21": "ts_recv = ts_event, F_BAD_TS_RECV expected. NOT genuine capture latency.",
+   "pre_2015_11_20": "Millisecond-level timestamp precision.",
+   "2015_11_20_to_2017_05_21": "Nanosecond precision (MDP2).",
+   "post_2017_05_21": "Nanosecond precision (MDP3)."
+  },
+  "no_latency_alpha": "Do NOT derive latency alpha from unsupported timestamps."
+ },
+ "protocol_regimes": {
+  "glbx_mdp3_coverage_start": "2010-06",
+  "eras": {
+   "mdp2_fix_flat": {
+    "start": "2010-06",
+    "end": "2017-05-20",
+    "source": "Legacy MDP2 / FIX flat-file",
+    "max_granularity": "MBP-10 (no MBO)",
+    "ts_recv_behavior": "ts_recv = ts_event, F_BAD_TS_RECV expected",
+    "timestamp_precision": "millisecond-level before 2015-11-20, nanosecond from 2015-11-20"
+   },
+   "mdp3_mbofd": {
+    "start": "2017-05-21",
+    "end": "present",
+    "source": "MDP3 / MBOFD",
+    "max_granularity": "MBO (order-by-order) available, but primary V4 pilot remains MBP-10",
+    "ts_recv_behavior": "Genuine receive time (may differ from ts_event)",
+    "timestamp_precision": "nanosecond"
+   }
+  },
+  "protocol_era_field": "Provenance must include a protocol_era field (mdp2_fix_flat or mdp3_mbofd) for each record/partition.",
+  "not_an_alpha_feature": "protocol_era is a provenance/metadata field. Do NOT use it as an alpha feature."
+ },
+ "execution": {
+  "type": "TAKER / MARKETABLE ONLY",
+  "reason": "Uniform historical MBP-10 does not establish individual queue position.",
+  "buy_rule": "BUY => executable at ask_px_00 (best ask)",
+  "sell_rule": "SELL => executable at bid_px_00 (best bid)",
+  "insufficient_size": {
+   "rule": "REJECT",
+   "description": "If displayed top-level size is insufficient, reject that event as non-executable. No depth walking in primary pilot."
+  },
+  "no_passive_fills": true,
+  "no_maker_queue_simulation": true,
+  "no_inferred_queue_priority": true,
+  "single_contract_preference": "Prefer 1 contract for initial falsification pilot."
+ },
+ "costs": {
+  "unit": "USD / contract / side",
+  "observed_market_data": {
+   "spread": "ask_px_00 - bid_px_00 (charged separately, NOT part of explicit cost)",
+   "depth_consumption": "size consumed at the executable level"
+  },
+  "explicit_transaction_costs": {
+   "cme_exchange_fee": "Per CME fee schedule (varies by contract, customer type, volume tier). Use authoritative fee documentation.",
+   "nfa_regulatory_fee": "NFA fee per contract per side.",
+   "broker_clearing": "Broker markup + clearing fee per contract per side."
+  },
+  "frozen_assumption": {
+   "value_usd_per_contract_per_side": 2.5,
+   "description": "Conservative constant: $2.50 per contract per side, covering CME exchange + NFA + broker/clearing. Frozen BEFORE outcomes. Documented as ASSUMPTION.",
+   "label": "ASSUMPTION",
+   "rationale": "CME FX futures exchange fees are typically $0.50-$2.50 per contract per side depending on customer type and volume tier. NFA fee is ~$0.03-$0.15. Broker markup varies. $2.50/side is a conservative upper bound for a retail/institutional hybrid."
+  },
+  "stress": {
+   "primary": "+1 adverse tick beyond executable price",
+   "secondary": "+2 adverse ticks (prospectively frozen stress)"
+  },
+  "no_bps": "Explicit futures fees are NOT expressed as percentage bps of notional. The V1 1.0-bps-per-side assumption is REMOVED.",
+  "no_double_counting_spread": "Spread is observed market data, charged separately. Explicit costs are USD/contract/side. No double counting.",
+  "no_post_hoc_optimization": "Do NOT optimize fees after outcomes."
+ },
+ "exposure_registry": {
+  "axes": {
+   "PRICE_PATH_EXPOSURE": "Whether price paths were previously observed in V1-V3.",
+   "MICROSTRUCTURE_EXPOSURE": "Whether MBP-10 microstructure was previously observed."
+  },
+  "pre_2018_cme_fx": {
+   "price_path": "PRICE_PATH_PREVIOUSLY_EXPOSED",
+   "microstructure": "MICROSTRUCTURE_UNEXPOSED"
+  },
+  "post_2018_cme_fx": {
+   "price_path": "PRICE_PATH_SEALED_LEGACY_HOLDOUT",
+   "microstructure": "MICROSTRUCTURE_SEALED_LEGACY_HOLDOUT"
+  },
+  "legacy_holdout": "Completely sealed. NOT accessible in V4."
+ },
+ "chronology": {
+  "principle": "Completely pre-2018 chronology. 2018-01-01 onward = SEALED. No V4 development/validation/holdout period touches 2018+. No backward validation.",
+  "periods": {
+   "development": {
+    "start": "2016-01-01",
+    "end": "2016-09-30",
+    "price_path_exposure": "PRICE_PATH_PREVIOUSLY_EXPOSED",
+    "microstructure_exposure": "MICROSTRUCTURE_UNEXPOSED",
+    "protocol_era": "MDP2 (pre-2017-05-21), ms precision pre-2015-11-20, ns precision 2015-11-20 to 2017-05-21"
+   },
+   "internal_validation": {
+    "start": "2016-10-01",
+    "end": "2017-03-31",
+    "price_path_exposure": "PRICE_PATH_PREVIOUSLY_EXPOSED",
+    "microstructure_exposure": "MICROSTRUCTURE_UNEXPOSED",
+    "protocol_era": "MDP2 (pre-2017-05-21), ns precision"
+   },
+   "external_validation": {
+    "start": "2017-04-01",
+    "end": "2017-08-31",
+    "price_path_exposure": "PRICE_PATH_PREVIOUSLY_EXPOSED",
+    "microstructure_exposure": "MICROSTRUCTURE_UNEXPOSED",
+    "protocol_era": "MDP2 until 2017-05-21, then MDP3/MBOFD available (pilot remains MBP-10)"
+   },
+   "final_sealed_holdout": {
+    "start": "2017-09-01",
+    "end": "2017-12-31",
+    "price_path_exposure": "PRICE_PATH_PREVIOUSLY_EXPOSED",
+    "microstructure_exposure": "MICROSTRUCTURE_UNEXPOSED",
+    "protocol_era": "MDP3/MBOFD available (pilot remains MBP-10)"
+   }
+  },
+  "all_pre_2018": true,
+  "no_2018_plus": "2018-01-01 onward is SEALED. No V4 period touches it.",
+  "supersedes": "V1 had external_validation 2017-07 to 2018-03 and holdout 2018-04 to 2018-12. BOTH REMOVED (touched 2018+). Replaced with completely pre-2018 chronology."
+ },
+ "targets": {
+  "principle": "Small target family frozen prospectively. No strategy parameters. No horizon optimization.",
+  "primary_target": {
+   "type": "DIRECTION-NEUTRAL",
+   "description": "Future midprice (or microprice) change from feature cutoff to t+H. Or tick-normalized future mid move. NOT strategy-direction-dependent.",
+   "formula": "target = (mid_{t+H} - mid_t) / mid_t  or  target = (mid_{t+H} - mid_t) / tick_size",
+   "mid_definition": "mid = (bid_px_00 + ask_px_00) / 2  or microprice = (bid_px_00*ask_sz_00 + ask_px_00*bid_sz_00) / (bid_sz_00 + ask_sz_00)"
+  },
+  "economic_evaluation": {
+   "separate_from_information_target": true,
+   "buy_round_trip": "BUY: enter at ask_px_00, exit at bid_px_00 (or vice versa) + explicit USD/contract fees",
+   "sell_round_trip": "SELL: enter at bid_px_00, exit at ask_px_00 (or vice versa) + explicit USD/contract fees"
+  },
+  "horizons_clock_time": [
+   "1s",
+   "5s",
+   "30s",
+   "1m",
+   "5m"
+  ],
+  "horizons_event_time": [
+   "10 events",
+   "50 events",
+   "100 events",
+   "500 events"
+  ],
+  "constraints": [
+   "target begins strictly after feature cutoff",
+   "respects exchange ordering (ts_event + sequence)",
+   "no leakage (feature window and target window do not overlap)",
+   "uses future executable states",
+   "excludes corrupt/unavailable book intervals"
+  ],
+  "no_horizon_optimization": true,
+  "supersedes": "V1 target was signed price change (direction-dependent). REPLACED with direction-neutral mid/microprice change."
+ },
+ "pilot": {
+  "objective": "DOES MBP-10 ADD INCREMENTAL INFORMATION BEYOND PRICE HISTORY?",
+  "primary_metric": "Predictive-information improvement over price-history baseline.",
+  "secondary_metric": "Is the incremental information economically large enough relative to executable spread + explicit USD/contract fees?",
+  "not_a_profitability_search": true,
+  "hypothesis_count": 5,
+  "hypotheses": [
+   "H1: Signed trade flow (B/A side) predicts short-horizon mid change beyond price history.",
+   "H2: Top-of-book imbalance (bid_sz_00/ask_sz_00) predicts short-horizon mid change beyond price history.",
+   "H3: Multi-level depth imbalance (levels 0-9) adds information beyond top-of-book alone.",
+   "H4: Event-time sampling captures more predictive information than fixed M1 clock-time sampling.",
+   "H5: Microstructure state identifies periods where expected mid move >> executable spread + explicit USD/contract fees."
+  ],
+  "no_candidate_grid": true,
+  "fail_fast": "If no hypothesis shows incremental information on dev+val, STOP."
+ },
+ "metadata_commands": {
+  "note": "No API credentials. Exact commands for when DATABENTO_API_KEY is provided.",
+  "commands": {
+   "dataset_range": "client.metadata.get_dataset_range(dataset='GLBX.MDP3')",
+   "record_count_6e": "client.metadata.get_record_count(dataset='GLBX.MDP3', symbols=['6E.FUT'], schema='mbp-10', start='2016-01-01T00:00', end='2017-12-31T23:59')",
+   "record_count_6j": "client.metadata.get_record_count(dataset='GLBX.MDP3', symbols=['6J.FUT'], schema='mbp-10', start='2016-01-01T00:00', end='2017-12-31T23:59')",
+   "record_count_6b": "client.metadata.get_record_count(dataset='GLBX.MDP3', symbols=['6B.FUT'], schema='mbp-10', start='2016-01-01T00:00', end='2017-12-31T23:59')",
+   "billable_size_6e": "client.metadata.get_billable_size(dataset='GLBX.MDP3', symbols=['6E.FUT'], schema='mbp-10', start='2016-01-01T00:00', end='2017-12-31T23:59')",
+   "billable_size_6j": "client.metadata.get_billable_size(dataset='GLBX.MDP3', symbols=['6J.FUT'], schema='mbp-10', start='2016-01-01T00:00', end='2017-12-31T23:59')",
+   "billable_size_6b": "client.metadata.get_billable_size(dataset='GLBX.MDP3', symbols=['6B.FUT'], schema='mbp-10', start='2016-01-01T00:00', end='2017-12-31T23:59')",
+   "cost_6e": "client.metadata.get_cost(dataset='GLBX.MDP3', symbols='6E.FUT', schema='mbp-10', start='2016-01-01', end='2017-12-31')",
+   "cost_6j": "client.metadata.get_cost(dataset='GLBX.MDP3', symbols='6J.FUT', schema='mbp-10', start='2016-01-01', end='2017-12-31')",
+   "cost_6b": "client.metadata.get_cost(dataset='GLBX.MDP3', symbols='6B.FUT', schema='mbp-10', start='2016-01-01', end='2017-12-31')"
+  },
+  "storage_estimates": {
+   "note": "Speculative pending provider metadata.",
+   "pilot_period": "2016-01-01 to 2017-12-31 (2 years)",
+   "gb_per_day_per_instrument": "0.5-2 GB (MBP-10, tick-level)",
+   "pilot_total_gb": "3 instruments x 2 years ~ 1-12 GB/day x 730 days ~ 0.7-8.8 TB",
+   "disk_requirement": "~10 TB for full pilot (raw + canonical)"
+  }
+ },
+ "storage_compute": {
+  "raw": {
+   "format": "DBN.ZST (immutable)",
+   "integrity": "SHA-256 hash per file"
+  },
+  "canonical": {
+   "format": "Parquet (columnar)",
+   "partition_keys": [
+    "instrument",
+    "contract",
+    "utc_date"
+   ],
+   "features": [
+    "streaming decode",
+    "bounded daily partitions",
+    "columnar arrays",
+    "predicate pushdown",
+    "bounded caches"
+   ]
+  },
+  "mac_m5_16gb": {
+   "sufficient": true
+  },
+  "a100": {
+   "required": false
+  }
+ },
+ "firewall": {
+  "counters": {
+   "historical_mbp10_outcome_requests": 0,
+   "historical_trades_outcome_requests": 0,
+   "v4_model_computations": 0,
+   "v4_backtests": 0,
+   "old_V1_V3_2018_plus_requests": 0,
+   "old_V1_V3_2018_plus_reads": 0,
+   "V4_2018_plus_requests": 0,
+   "V4_2018_plus_reads": 0
+  },
+  "sealed_periods": {
+   "legacy_2018_plus": "SEALED (V1-V3 holdout)",
+   "v4_all_periods_pre_2018": "No V4 period touches 2018+"
+  }
+ },
+ "next_gate": "V4_MINIMAL_MICROSTRUCTURE_PILOT_DESIGN",
+ "next_gate_scope": "Design the minimal microstructure pilot. DO NOT start in this session.",
+ "terminal_verdict": "V4_NEW_DATA_CAPABILITY_CONTRACT_V2_FROZEN",
+ "component_hashes": {
+  "provider": "34792b2c4f4f46f3c78b3a220e7026d5b6c42acd7470146b46a410d250df113a",
+  "dataset": "8baed1a41c172c0ecacd9b8a6b83acfcd68ccf4811e9c5e37275127515c69445",
+  "contracts": "00ba7a1a997d45cc696678d33ac9d0892c6953c9324f8acfc3c1035797f2fc71",
+  "eligibility": "b339b844903c6c2b3fe2947edf61054fe1e991688fa5b1b03606aa3e25f281fd",
+  "schema": "fe092883ccf4241176e8d027e0038e39761bb960dfe3e170eabd71461316105e",
+  "trade_side": "c6ee3b03e6411896187a574cbc038d8df22ac77cc348a9f544287071348a4242",
+  "book_state": "6cc28cf2de56000b6a79a05bde9412c0d4308530cc068458489b5d064e6574f1",
+  "information_classes": "e13b0fa0de6672a96c7aef3bdce75fcf02feea95a0319d4f6508756bf7cbe8c5",
+  "timestamps": "8e912d07f7a43f7fe34ebdf4a8c18bc5f296b6cd303eee416611e87bccc46dda",
+  "protocol_regimes": "d2cd97a2b0b2e18d4fc9af8d0e9971b8c25eb6db5a8fdf4dd6996f28f75e34ab",
+  "execution": "15434b9e08192212aed5836897e7cd1096ada55cf659400218146ae56b73d061",
+  "costs": "a76bda1ba8a00517e038949bbfd6f029de889b7ad055b008ce2c17bd727ab5f3",
+  "exposure_registry": "d0a672477f61b512c011940d85b8647eaaa7ada67ab2e2fef8aaa7174d407258",
+  "chronology": "7b3a7572cb3deb6a50547e7689ed631bc8ac072b0766bd7294b3a1a4adab6301",
+  "targets": "21d82459c39a1c69c99e94e9771cb80692a2caf5d2119fbd80a93193c69f7b2f",
+  "pilot": "69c976bce78f9bf4b0c37b6d64979af99106c052925a71aa24f62b5174c211c6",
+  "metadata_commands": "ba667d4eb9d5095ced7981a52001a395b30fce2b5ee14b70c609a869abc7b427",
+  "storage_compute": "6430f80ac5325573aa7417b620658eb7018cabed1d39463a9ebba276bb227899",
+  "firewall": "6d04123b29315af7b654ceb050677b68610fee42151b6b8a1e2ecfe929537caa"
+ },
+ "capability_contract_hash": "9de92fc724cb936854a496892db85ca04bd6769082b4944b19ce918931f36091"
+}
