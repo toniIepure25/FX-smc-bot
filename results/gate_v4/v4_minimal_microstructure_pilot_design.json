@@ -1,0 +1,448 @@
+{
+ "artifact_id": "V4_MINIMAL_MICROSTRUCTURE_PILOT_DESIGN_V1",
+ "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V4",
+ "gate": "V4_MINIMAL_MICROSTRUCTURE_PILOT_DESIGN",
+ "starting_sha": "c1b13ee24669785a16c8a9b077e774b864e3aea0",
+ "capability_contract_hash": "9de92fc724cb936854a496892db85ca04bd6769082b4944b19ce918931f36091",
+ "scope": "Design and prospectively freeze the smallest scientifically useful CME FX MBP-10 pilot. Design only. No data download, no model fit, no backtest, no 2018+ access.",
+ "philosophy": {
+  "type": "FALSIFICATION_EXPERIMENT",
+  "not": "alpha search",
+  "constraints": {
+   "hypothesis_count_max": 5,
+   "primary_model_class": "one (ridge linear)",
+   "price_only_baseline": "one (P0)",
+   "feature_groups": "four fixed (P0-P3)",
+   "targets": "frozen confirmatory subset",
+   "inference_procedure": "frozen (paired day-block bootstrap)",
+   "pass_fail_rule": "frozen (Section 16)"
+  },
+  "no_strategy_grid": true,
+  "v1_v3_lesson": "Large candidate searches on price-only FX M1 are not useful. V4 must not repeat that structure."
+ },
+ "staged_access": {
+  "stage_P1_accessible": {
+   "development": {
+    "start": "2016-01-01",
+    "end": "2016-09-30"
+   },
+   "internal_validation": {
+    "start": "2016-10-01",
+    "end": "2017-03-31"
+   }
+  },
+  "stage_P1_UNOPENED": {
+   "external_validation": {
+    "start": "2017-04-01",
+    "end": "2017-08-31",
+    "status": "UNOPENED during P1"
+   }
+  },
+  "SEALED": {
+   "final_holdout": {
+    "start": "2017-09-01",
+    "end": "2017-12-31",
+    "status": "SEALED"
+   },
+   "2018_plus": {
+    "start": "2018-01-01",
+    "status": "ABSOLUTELY SEALED"
+   }
+  },
+  "positive_P1_does_not_authorize": "Opening external validation in the same run."
+ },
+ "sampling": {
+  "method": "DETERMINISTIC SHA256 HASH SORT",
+  "seed_string": "V4_P1_SAMPLE_V1",
+  "hash_formula": "SHA256('V4_P1_SAMPLE_V1|{instrument}|{YYYY-MM-DD}')",
+  "selection_rule": "For every instrument x calendar month in dev/int-val: enumerate eligible CME trading dates using calendar/contract metadata only; compute hash; sort dates by hash; select first 4 eligible full-session dates.",
+  "days_per_instrument_month": 4,
+  "estimated_total": "4 days/month x 15 months x 3 instruments = 180 instrument-days",
+  "forbidden_selection_criteria": [
+   "returns",
+   "volatility",
+   "volume",
+   "spread",
+   "events",
+   "news",
+   "performance"
+  ],
+  "partial_sessions": "Follow frozen quality semantics from capability contract. Do NOT substitute using outcomes.",
+  "no_change_after_data_seen": true
+ },
+ "instruments": {
+  "list": [
+   "6E",
+   "6J",
+   "6B"
+  ],
+  "eligibility": "Frozen per-date contract eligibility + 5-trading-day roll (from capability contract V2).",
+  "no_reduction_later": "Do not reduce to only the best-looking instrument later.",
+  "orientation_guard": {
+   "6E": "USD per EUR. Price up = EUR strengthens.",
+   "6J": "USD per JPY. Price up = JPY STRENGTHENS (inverse of spot USDJPY).",
+   "6B": "USD per GBP. Price up = GBP strengthens.",
+   "note": "Numerical orientation comes from frozen quotation semantics, NOT from cosmetic pair labels."
+  }
+ },
+ "feature_groups": {
+  "P0_PRICE_ONLY_BASELINE": {
+   "description": "Derived from same CME feed WITHOUT book-size/trade-flow.",
+   "features": [
+    "lagged midprice returns (1, 5, 20 lags)",
+    "realized absolute return / volatility (1s, 5s, 30s windows)",
+    "short/medium price trend (5s, 30s, 5m)",
+    "contract/session calendar controls (hour-of-day, day-of-week, session-start proximity)"
+   ],
+   "excluded": [
+    "spread",
+    "depth",
+    "trade direction",
+    "volume/depth info"
+   ]
+  },
+  "P1_TRADE_FLOW": {
+   "description": "Provider-native B/A/N trade side only.",
+   "features": [
+    "signed trade count (B=+1, A=-1, N=0)",
+    "signed trade volume (size-weighted, N unsigned)",
+    "total trade count",
+    "total trade volume",
+    "buy/sell imbalance (signed_count / total_count, 0 if total=0)"
+   ],
+   "unknown_handling": "UNKNOWN (N) trades remain unsigned. No forced signing."
+  },
+  "P2_L1_BOOK_STATE": {
+   "description": "Top-of-book (level 0) state.",
+   "features": [
+    "spread in ticks (ask_px_00 - bid_px_00) / tick_size",
+    "bid_sz_00",
+    "ask_sz_00",
+    "top-level imbalance I1",
+    "microprice-minus-mid in ticks"
+   ]
+  },
+  "P3_L2_TOP10_STATE": {
+   "description": "Aggregated levels 1-10 (0-9 in Databento indexing).",
+   "features": [
+    "aggregated bid/ask depth levels 1-10",
+    "deterministic multi-level imbalance I10 (w_l = 1/l)",
+    "deterministic depth-weighted imbalance",
+    "market-by-price OFI (from successive authoritative states)",
+    "book slope / concentration"
+   ]
+  },
+  "no_feature_variants_after_outcomes": true
+ },
+ "formulas": {
+  "I1_top_level_imbalance": {
+   "formula": "I1 = (B0 - A0) / (B0 + A0)",
+   "zero_denominator": "I1 = 0 if (B0 + A0) == 0",
+   "variables": {
+    "B0": "bid_sz_00",
+    "A0": "ask_sz_00"
+   }
+  },
+  "microprice": {
+   "formula": "MP = (ask_px_00 * bid_sz_00 + bid_px_00 * ask_sz_00) / (bid_sz_00 + ask_sz_00)",
+   "zero_denominator": "MP = mid = (bid_px_00 + ask_px_00) / 2 if (B0+A0)==0",
+   "expression": "(MP - mid) / tick_size  [in ticks]"
+  },
+  "I10_multi_level_imbalance": {
+   "formula": "I10 = sum_l w_l * (bid_sz_l - ask_sz_l) / sum_l w_l * (bid_sz_l + ask_sz_l)",
+   "weighting": "w_l = 1/l for l = 1..10 (Databento levels 0..9, w_0 = 1/1)",
+   "zero_denominator": "I10 = 0 if denominator == 0",
+   "note": "ONE frozen weighting function. Do NOT test ten weighting schemes."
+  },
+  "OFI_market_by_price": {
+   "formula": "OFI_t = sum_l [w_l * (bid_sz_l(t) - bid_sz_l(t-1)) - w_l * (ask_sz_l(t) - ask_sz_l(t-1))]",
+   "weighting": "w_l = 1/l (same as I10)",
+   "note": "Computed from successive authoritative MBP-10 embedded states. NOT from manual book mutation."
+  },
+  "signed_trade_count": {
+   "formula": "STC = count(B) - count(A)  [N contributes 0]"
+  },
+  "signed_trade_volume": {
+   "formula": "STV = sum(size|B) - sum(size|A)  [N contributes 0]"
+  },
+  "buy_sell_imbalance": {
+   "formula": "BSI = STC / (count(B) + count(A) + count(N))",
+   "zero_denominator": "BSI = 0 if total count == 0"
+  }
+ },
+ "windows": {
+  "event_time": [
+   "50 events",
+   "500 events"
+  ],
+  "clock_time": [
+   "1 second",
+   "5 seconds"
+  ],
+  "price_baseline_lags": [
+   "1",
+   "5",
+   "20"
+  ],
+  "constraint": "Every feature must end STRICTLY before the prediction anchor. No use of the target event."
+ },
+ "anchors": {
+  "clock_time": {
+   "frequency": "one anchor every 30 seconds during certified active session",
+   "book_state": "last valid book state STRICTLY before the anchor"
+  },
+  "event_time": {
+   "frequency": "one anchor every 500 eligible MBP-10 events",
+   "book_state": "state at the 500th event (exclusive of next 500)"
+  },
+  "rationale": "Reduces pseudo-replication and compute. Dependence handled statistically at DAY level."
+ },
+ "targets": {
+  "confirmatory": {
+   "T1": {
+    "horizon": "5 seconds",
+    "unit": "ticks",
+    "type": "clock"
+   },
+   "T2": {
+    "horizon": "30 seconds",
+    "unit": "ticks",
+    "type": "clock"
+   },
+   "T3": {
+    "horizon": "100 events",
+    "unit": "ticks",
+    "type": "event"
+   }
+  },
+  "definition": "Target = (mid_{t+H} - mid_t) / tick_size, in ticks. mid = (bid_px_00 + ask_px_00) / 2. Direction-neutral. Starts strictly after feature cutoff. Unavailable/corrupt intervals yield no example.",
+  "secondary_diagnostic": "All previously frozen horizons (1s, 5s, 30s, 1m, 5m clock; 10, 50, 100, 500 event) may be archived diagnostically but CANNOT determine pilot success.",
+  "no_horizon_optimization": true
+ },
+ "hypotheses": {
+  "H1_TRADE_FLOW": {
+   "statement": "P0 + P1 improves short-horizon prediction over P0.",
+   "primary_target": "T1 (5 seconds)",
+   "comparison": "Ridge(P0+P1) vs Ridge(P0) on T1"
+  },
+  "H2_TOP_OF_BOOK": {
+   "statement": "P0 + P2 improves prediction over P0.",
+   "primary_target": "T1 (5 seconds)",
+   "comparison": "Ridge(P0+P2) vs Ridge(P0) on T1"
+  },
+  "H3_DEPTH": {
+   "statement": "P0 + P2 + P3 improves prediction over P0 + P2.",
+   "primary_target": "T2 (30 seconds)",
+   "comparison": "Ridge(P0+P2+P3) vs Ridge(P0+P2) on T2",
+   "note": "Directly asks whether true L2 adds information beyond BBO."
+  },
+  "H4_EVENT_TIME": {
+   "statement": "The frozen microstructure model in event-time contains incremental predictive information not captured by the equivalent clock-time representation.",
+   "primary_target": "T3 (100 events)",
+   "comparison": "Ridge(P0+P1+P2+P3, event-time) vs Ridge(P0+P1+P2+P3, clock-time) on T3"
+  },
+  "H5_COST_AWARE": {
+   "statement": "Predicted edge magnitude is monotonically related to subsequently realized executable net opportunity after observed bid/ask + frozen USD/contract/side fees.",
+   "primary_target": "T2 (30 seconds)",
+   "type": "ECONOMIC_CALIBRATION (secondary, not predictive)",
+   "note": "NOT a trading strategy optimization. Cannot rescue failed predictive hypotheses."
+  }
+ },
+ "model": {
+  "family": "RIDGE LINEAR REGRESSION",
+  "target": "future signed mid move in ticks",
+  "standardization": "DEVELOPMENT data only (mean/std)",
+  "alpha_grid": [
+   0.01,
+   0.1,
+   1.0,
+   10.0,
+   100.0
+  ],
+  "alpha_selection": "Blocked chronological CV inside DEVELOPMENT ONLY",
+  "frozen_before_outcomes": true,
+  "same_procedure_for_baseline_and_enriched": true,
+  "forbidden": [
+   "trees",
+   "boosting",
+   "neural nets",
+   "feature selection by outcome",
+   "hyperparameter search beyond frozen alpha set"
+  ],
+  "null_model": "Development unconditional mean (optional diagnostic)"
+ },
+ "cv": {
+  "type": "EXPANDING/BLOCKED CHRONOLOGICAL FOLDS",
+  "min_folds": 3,
+  "purge_embargo": "Embargo >= 5 minutes (largest frozen diagnostic horizon) at fold boundaries",
+  "no_random_event_cv": true,
+  "no_future_influence": "No event from a future block can influence scaling/model choice in a past block"
+ },
+ "internal_validation": {
+  "one_shot": true,
+  "period": "2016-10-01 to 2017-03-31, selected deterministic P1 days only",
+  "frozen_after_dev": "After model/hyperparameter selection on DEVELOPMENT, freeze the fitted procedure.",
+  "no_changes_after_exposure": [
+   "features",
+   "alpha grid",
+   "models",
+   "targets",
+   "sampling",
+   "filters",
+   "costs"
+  ]
+ },
+ "metrics": {
+  "per_hypothesis": [
+   "MSE",
+   "out-of-sample R^2",
+   "Spearman rank IC",
+   "sign accuracy (diagnostic)"
+  ],
+  "critical": "paired DAILY loss difference between enriched model and its frozen baseline",
+  "inference_unit": "instrument-session-day (NOT individual events)",
+  "rationale": "Prevents millions of correlated events from manufacturing tiny p-values."
+ },
+ "inference": {
+  "method": "Paired cluster/day bootstrap",
+  "replications": 2000,
+  "resampling_unit": "instrument-session-day blocks",
+  "test_type": "One-sided (pre-specified improvement direction)",
+  "null": "No improvement over baseline",
+  "multiplicity": "Holm correction for H1-H4 (four predictive hypotheses)",
+  "H5_handling": "Separately identified as secondary economic calibration. NOT allowed to rescue failed predictive hypotheses.",
+  "additional_reports": [
+   "fraction of instrument-days with positive loss improvement",
+   "effect by 6E / 6J / 6B separately",
+   "pooled effect"
+  ]
+ },
+ "pass_fail": {
+  "rule": "A predictive hypothesis passes ONLY if ALL hold:",
+  "criteria": [
+   "1. Holm-adjusted day-block p <= 0.05",
+   "2. Pooled validation loss improves over baseline",
+   "3. >50% of validation instrument-days improve",
+   "4. Effect direction is positive in at least 2 of 3 instruments"
+  ],
+  "no_numerical_threshold_tuned_to_outcomes": true,
+  "day_level_consistency_is_guard": true
+ },
+ "h5_calibration": {
+  "method": "Fixed decile bins of predicted |edge| / estimated round-trip cost",
+  "bin_boundaries": "Frozen from DEVELOPMENT only",
+  "application": "Apply unchanged to internal validation",
+  "per_bin_report": [
+   "predicted edge",
+   "realized future move",
+   "observed spread",
+   "explicit USD fees",
+   "one-contract hypothetical executable net opportunity"
+  ],
+  "forbidden": [
+   "overlapping portfolio",
+   "capital curve",
+   "position sizing",
+   "Sharpe optimization",
+   "threshold search"
+  ],
+  "question": "Does larger predicted edge/cost ratio correspond monotonically to larger realized net opportunity?"
+ },
+ "go_no_go": {
+  "proceed_if": "At least ONE of H1, H2, H3, H4 passes the full frozen predictive criterion after Holm correction.",
+  "proceed_verdict": "V4_MINIMAL_PILOT_INCREMENTAL_INFORMATION_FOUND",
+  "proceed_next_gate": "V4_EXTERNAL_MICROSTRUCTURE_VALIDATION_AUTHORIZATION",
+  "stop_if": "None of H1-H4 pass",
+  "stop_verdict": "V4_MINIMAL_PILOT_NO_INCREMENTAL_MICROSTRUCTURE_INFORMATION",
+  "stop_next_gate": "V4_PROGRAM_STOP_OR_CRYPTO_L2_REVIEW",
+  "do_not_open_on_stop": [
+   "external validation",
+   "final holdout"
+  ],
+  "do_not_open_on_proceed_same_session": "external validation"
+ },
+ "protocol_era": {
+  "provenance": "Preserve protocol_era (MDP2/MDP3) in all records",
+  "not_an_alpha_feature": true,
+  "stratified_reporting": "Future validation must report results stratified by protocol era (external period crosses MDP2->MDP3)",
+  "no_outcome_based_adjustment": true
+ },
+ "acquisition_manifest": {
+  "per_instrument_day_fields": [
+   "instrument",
+   "raw_contract",
+   "utc_start",
+   "utc_end",
+   "schema",
+   "stype_in",
+   "stype_out",
+   "protocol_era",
+   "role",
+   "sample_selection_hash",
+   "capability_contract_hash",
+   "pilot_design_hash"
+  ],
+  "symbol_resolution": "Only Definition/Status metadata may be used to resolve contract symbols before outcome retrieval.",
+  "no_download_in_this_session": true
+ },
+ "firewall": {
+  "stage_P1_permitted_dates": "development + internal_validation sample dates ONLY",
+  "reject": [
+   "external_validation dates",
+   "final_holdout dates",
+   "all 2018+ dates"
+  ],
+  "counters": {
+   "development_requests": 0,
+   "internal_validation_requests": 0,
+   "external_validation_requests": 0,
+   "external_validation_reads": 0,
+   "v4_final_holdout_requests": 0,
+   "v4_final_holdout_reads": 0,
+   "2018_plus_requests": 0,
+   "2018_plus_reads": 0
+  },
+  "code_level_enforcement": "Firewall must be implemented in acquisition code before any data request is made."
+ },
+ "metadata_preflight": {
+  "note": "No API key. Exact commands for P1 SAMPLE (not full multi-year).",
+  "commands_template": {
+   "record_count": "client.metadata.get_record_count(dataset='GLBX.MDP3', symbols=['{contract}'], schema='mbp-10', start='{date}T00:00', end='{date}T23:59')",
+   "billable_size": "client.metadata.get_billable_size(dataset='GLBX.MDP3', symbols=['{contract}'], schema='mbp-10', start='{date}T00:00', end='{date}T23:59')",
+   "cost": "client.metadata.get_cost(dataset='GLBX.MDP3', symbols='{contract}', schema='mbp-10', start='{date}', end='{date}')"
+  },
+  "aggregate": "Sum records, GB, estimated USD cost across all selected instrument-days.",
+  "no_market_outcomes": true,
+  "contract_resolution": "Minimal outcome-free workflow: use Definition schema metadata to resolve raw contract symbols for each selected date. No MBP-10 data returned."
+ },
+ "next_gate": {
+  "name": "V4_PILOT_METADATA_COST_PREFLIGHT",
+  "scope": "Obtain real metadata estimates; verify selected contract symbols; report exact data cost/size; download ZERO MBP-10 market outcomes. Only after user accepts real cost should a later gate acquire P1 data."
+ },
+ "terminal_verdict": "V4_MINIMAL_MICROSTRUCTURE_PILOT_DESIGN_FROZEN",
+ "component_hashes": {
+  "philosophy": "3a31da4b5705d7e5ce1b1b4310dff82a5b6ab73d3d8f04d34709a9dd87302906",
+  "staged_access": "dbb49d51555a06dbf6495c5b576200a32d0b9890a20cfc4c7216141cd6a88885",
+  "sampling": "a0c843ad11edb6c34084cfd201156bca4072c082e950d3d60ad4c8c9caca486a",
+  "instruments": "7b60456907c3ce61a9d90d505ece1b85cb0ece064edd18b02b0dcd860790252f",
+  "feature_groups": "2ed3d04b214da06b32c823a4bafa6179bb1a4965e636c09e1e040ab59c881a9d",
+  "formulas": "700e2c43e474e9c987cc8541cdc579e3414199180236998ae52f641a393b8b42",
+  "windows": "250a06987f5a84cdaecce24a120e5097551dcff85308ebcd8dc3ec0e6982c49d",
+  "anchors": "fe6cf527c10208e26f906d6a325ab50f44ba3932a32fb7fd7a55b4711bcadd2f",
+  "targets": "99c03a837cbd5b7e64b6049ffe67cb7d59e6275f46d265808d4685635593a5fb",
+  "hypotheses": "fbe56bf8c4e4b1d9af3676adbb902cd5c2483fc1487129004081f5405b12d224",
+  "model": "d1c9d8c8e305e898870baa4f2d8ac14b1193e66c08109caacf6fa6b156066326",
+  "cv": "96fb2a7f09bcc536f8644dae025d462d620057babd6d86d690a90f0b46e8355f",
+  "internal_validation": "e3ca1a115b997ff481e965c7e3706b9a01c90a9a4f02add2ed899b6563b9c654",
+  "metrics": "8a0ebb4a96e20d0f4aa9e38328e20d49ec73e5e74a4cb303efaca4a86320fbc8",
+  "inference": "389db36ff7167588f9219db1677f5fe5bdf84b14aaa7734071c5423e45b186db",
+  "pass_fail": "2491ef919b24ad21859cd0b7aff47276a42d43fea9ce93e23897eb675b70d70d",
+  "h5_calibration": "c3d04bf70fddede5da46164ac8b1cfec2db02b3911020d8061147cbf28f78bfb",
+  "go_no_go": "4e45cde20a1737d6e1ffa0073ba5f91cbb050780c2bab2a792469e5f4926a71a",
+  "protocol_era": "50745515c2df4151303a44d1d30a6556ee3052e58d82a859722928d1534debac",
+  "acquisition_manifest": "96b21addbd17c2c0772e482fd4152da75eedab1e2bed7f29ca4ca1ed1abe6ed1",
+  "firewall": "0b6cf755bb12c0f4e59b079da62d9fba0a149df90456c61948d7a2b1940e06e0",
+  "metadata_preflight": "0117c3de596fa5d8f363d7bb3b7753223005a21d1b15c074588f9756139cf0aa"
+ },
+ "pilot_design_hash": "28b1b4cf9f6db38828029c37c3daf09f9dd9f3feb769d8f949303e662a48b9b5"
+}
