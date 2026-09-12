@@ -1,0 +1,9 @@
+{
+ "artifact_id": "V5_DISCOVERY_DECISION_V1",
+ "protocol_hash": "2e0347363f1fe74f5eae5b91a29c314cdf045309f852d1f4972c88eb71a81f69",
+ "n_candidates": 160,
+ "n_survivors": 0,
+ "survivor_ids": [],
+ "verdict": "V5_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR",
+ "next_gate": "V5_PROGRAM_REVIEW_OR_MARKET_PIVOT"
+}

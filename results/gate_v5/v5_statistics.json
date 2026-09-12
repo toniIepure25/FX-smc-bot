@@ -1,0 +1,29 @@
+{
+ "artifact_id": "V5_STATISTICS_V1",
+ "protocol_hash": "2e0347363f1fe74f5eae5b91a29c314cdf045309f852d1f4972c88eb71a81f69",
+ "data_digest": "15a5c1af697c85dfaa454812aa8061b2a4d97fafa956196210bc3b38415d11c0",
+ "n_candidates": 160,
+ "n_instruments": 13,
+ "n_instrument_results": 2080,
+ "n_net_positive": 0,
+ "n_net15_positive": 0,
+ "n_net20_positive": 0,
+ "best_net": 0.0,
+ "best_net_nonzero": -297900.6,
+ "best_sharpe": 0.0,
+ "best_sharpe_nonzero": -3.2,
+ "net_range_bps": [-452576.0, 0.0],
+ "sharpe_range": [-14.2993, 0.0],
+ "families": {
+  "S1": {"evaluated": 24, "net_pos": 0, "best_net": -346344.6},
+  "S2": {"evaluated": 24, "net_pos": 0, "best_net": -398342.8},
+  "S3": {"evaluated": 24, "net_pos": 0, "best_net": -418349.6},
+  "S4": {"evaluated": 16, "net_pos": 0, "best_net": -335102.0},
+  "S5": {"evaluated": 48, "net_pos": 0, "best_net": -297900.6},
+  "S7": {"evaluated": 24, "net_pos": 0, "best_net": 0.0}
+ },
+ "wrc_p": 1.0,
+ "spa_p": 1.0,
+ "note": "All 160 candidates negative or zero net P&L. S7 best_net=0.0 reflects zero-trade candidates (cost filter too strict). No candidate meets survivor criteria. Consistent with V3 terminal (1388 trials, 0 survivors).",
+ "cumulative_trials_v3_plus_v5": 1548
+}
