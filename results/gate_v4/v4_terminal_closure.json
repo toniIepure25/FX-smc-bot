@@ -1,0 +1,15 @@
+{
+ "artifact_id": "V4_TERMINAL_CLOSURE",
+ "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V4",
+ "status": "V4_CLOSED_NO_PAID_DATA_ACQUISITION",
+ "reason": "User explicitly declines Databento / paid CME microstructure data.",
+ "scientific_note": "This is NOT a scientific failure of microstructure. CME_L2_MICROSTRUCTURE = UNTESTED.",
+ "acquisition_status": "NOT_AUTHORIZED",
+ "databento_data_purchased": false,
+ "databento_data_downloaded": false,
+ "databento_requests": 0,
+ "databento_downloads": 0,
+ "databento_cost_usd": 0.0,
+ "artifacts_preserved": true,
+ "history_unchanged": true
+}

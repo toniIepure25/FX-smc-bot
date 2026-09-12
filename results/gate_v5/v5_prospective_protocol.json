@@ -1,0 +1,257 @@
+{
+ "artifact_id": "V5_PROSPECTIVE_PROTOCOL_V1",
+ "program_id": "FX_STRUCTURAL_ALPHA_DISCOVERY_V5",
+ "lineage": "FX_PRICE_ALPHA_LINEAGE_V1",
+ "starting_sha": "440a4afb95b352dfe404fd29ffc9b40457ab2180",
+ "data_digest": "15a5c1af697c85dfaa454812aa8061b2a4d97fafa956196210bc3b38415d11c0",
+ "data_source": "Already-certified local pre-2018 FX dataset (13 pairs, M1, 2010-2017)",
+ "scope": "Prospectively freeze a SMALL V5 strategy universe. Test whether substantially different REPRESENTATIONS and LOW-TURNOVER structural decision rules extract robust price-only FX alpha that V1-V3's hand-crafted/threshold families missed.",
+ "v4_closure": "V4_CLOSED_NO_PAID_DATA_ACQUISITION",
+ "v4_microstructure_status": "CME_L2_MICROSTRUCTURE_UNTESTED",
+ "holdout_firewall": {
+  "2018_plus": "ABSOLUTELY SEALED. No provider request, raw read, canonical read, or metadata outcome read.",
+  "pre_2018_role": "DEVELOPMENT evidence only. NOT final independent validation.",
+  "if_survivors_found": "STOP before 2018. Later separate authorization decides whether to consume holdout."
+ },
+ "banned": [
+  "RSI/MACD indicator stacks",
+  "large moving-average grids",
+  "Donchian parameter rescue",
+  "OU threshold rescue",
+  "change-point gate rescue",
+  "V3 candidate-specific tuning",
+  "post-hoc session selection",
+  "price-only triangular-arbitrage reruns",
+  "high-turnover M1 mean reversion",
+  "large parameter combinatorics",
+  "seeding parameters from 20 V3 raw-positive candidates"
+ ],
+ "horizons_minutes": [
+  15,
+  30,
+  60,
+  120,
+  240
+ ],
+ "turnover_philosophy": "Prefer 0-3 entries/instrument/day. Execution on M1 BID/ASK. Signals from slower state.",
+ "families": {
+  "S1_CONTINUOUS_STATE_SPACE_TREND": {
+   "idea": "Kalman local-linear trend. Signal = latent_slope / state_uncertainty. Continuous, not binary gates.",
+   "state_scales_minutes": [
+    30,
+    120,
+    480
+   ],
+   "cost_multiples": [
+    1.0,
+    1.5
+   ],
+   "horizons": [
+    15,
+    30,
+    60,
+    120,
+    240
+   ],
+   "candidate_count": 24,
+   "grid": "3 scales x 2 cost_mult x 4 horizons (15,30,60,120)"
+  },
+  "S2_LATENT_REGIME_MIXTURE": {
+   "idea": "Gaussian mixture on [return, vol, range, spread, trend]. Posterior state probs as continuous signal modifier.",
+   "n_states": [
+    2,
+    3
+   ],
+   "horizons": [
+    30,
+    60,
+    120,
+    240
+   ],
+   "signal_variants": 3,
+   "candidate_count": 24,
+   "grid": "2 n_states x 4 horizons x 3 variants"
+  },
+  "S3_CROSS_SECTIONAL_RANKING": {
+   "idea": "Rank 13 pairs by [return, residual, trend_persistence]. Top vs bottom, top-2 vs bottom-2.",
+   "structures": [
+    "top1_vs_bottom1",
+    "top2_vs_bottom2"
+   ],
+   "horizons": [
+    30,
+    60,
+    120,
+    240
+   ],
+   "anchors_per_day": 3,
+   "candidate_count": 24,
+   "grid": "2 structures x 4 horizons x 3 anchors"
+  },
+  "S4_FACTOR_RESIDUAL_DYNAMICS": {
+   "idea": "Causal PCA factor from panel. Residual momentum/drift at slow horizons.",
+   "factor_types": [
+    "usd_common",
+    "pca1_causal"
+   ],
+   "dynamics": [
+    "residual_momentum",
+    "residual_drift"
+   ],
+   "horizons": [
+    30,
+    60,
+    120,
+    240
+   ],
+   "candidate_count": 24,
+   "grid": "2 factors x 2 dynamics x 6 horizons/variants"
+  },
+  "S5_SEQUENCE_REPRESENTATION": {
+   "idea": "Small causal TCN or GRU. Inputs: returns, range, spread, time. Train on dev only. No arch search.",
+   "architectures": [
+    "tcn_small",
+    "gru_small"
+   ],
+   "contexts_minutes": [
+    60,
+    240
+   ],
+   "horizons": [
+    30,
+    60,
+    120,
+    240
+   ],
+   "hidden_dim": 32,
+   "candidate_count": 24,
+   "grid": "2 arch x 2 context x 6 horizon/seed variants"
+  },
+  "S6_SELF_SUPERVISED": {
+   "status": "DROPPED_PROSPECTIVELY",
+   "reason": "Would create large hyperparameter space. Does not meet 'clean implementation' criterion.",
+   "candidate_count": 0
+  },
+  "S7_COST_AWARE_OPTIMAL_STOPPING": {
+   "idea": "Enter/wait/abstain based on expected_move / cost / uncertainty / time_left. Deterministic rule, no RL.",
+   "cost_multiples": [
+    1.0,
+    1.5,
+    2.0
+   ],
+   "state_sources": [
+    "S1_kalman",
+    "S2_regime"
+   ],
+   "horizons": [
+    30,
+    60,
+    120,
+    240
+   ],
+   "candidate_count": 24,
+   "grid": "3 cost_mult x 2 sources x 4 horizons"
+  }
+ },
+ "total_candidate_budget": 192,
+ "total_planned_candidates": 144,
+ "execution": {
+  "side_correct": true,
+  "long_entry": "ask",
+  "short_entry": "bid",
+  "exit": "opposite side",
+  "latency": "1 M1 bar",
+  "no_fills_on": [
+   "imputed",
+   "non-observed",
+   "unresolved"
+  ],
+  "adverse_first_same_bar": true,
+  "rollover": "flat at session boundary"
+ },
+ "costs": {
+  "commission_bps_per_side": 0.1,
+  "slippage_bps_per_side": 0.1,
+  "total_bps_per_round_trip": 0.4,
+  "stress_levels": [
+   1.0,
+   1.5,
+   2.0
+  ]
+ },
+ "splits": {
+  "development": {
+   "start": "2010-01-01",
+   "end": "2013-12-31",
+   "role": "model fitting / selection"
+  },
+  "internal_selection": {
+   "start": "2014-01-01",
+   "end": "2014-12-31",
+   "role": "internal validation"
+  },
+  "secondary_robustness": {
+   "start": "2015-01-01",
+   "end": "2016-12-31",
+   "role": "robustness check"
+  },
+  "pre_holdout_replication": {
+   "start": "2017-01-01",
+   "end": "2017-12-31",
+   "role": "replication"
+  },
+  "note": "All pre-2018. All are DEVELOPMENT evidence with known lineage exposure. NOT pristine. Final independent evidence = 2018+ (SEALED)."
+ },
+ "statistics": {
+  "framework": "V3 mature framework",
+  "daily_pnl_unit": "NY exit date",
+  "tests": [
+   "White Reality Check (WRC)",
+   "Hansen SPA",
+   "Romano-Wolf",
+   "Holm",
+   "BH-FDR",
+   "PSR (Probabilistic Sharpe Ratio)",
+   "DSR (Deflated Sharpe Ratio)",
+   "CSCV PBO"
+  ],
+  "bootstrap": {
+   "replications": 999,
+   "block_length": 5,
+   "type": "stationary"
+  },
+  "cross_version": {
+   "prior_trials": 1388,
+   "prior_survivors": 0,
+   "correction": "Program-level sequential correction. Stricter threshold: alpha_eff = 0.05 / (1 + 1388/144)."
+  }
+ },
+ "survivor_rule": {
+  "net_pnl_positive": true,
+  "min_annualized_sharpe": 0.75,
+  "min_trades": 60,
+  "min_active_days": 40,
+  "positive_majority_folds": true,
+  "cross_instrument_robustness": "where applicable (S3, S4)",
+  "positive_stress_1_5x": true,
+  "positive_stress_2_0x": true,
+  "multiplicity_adjusted_significant": true,
+  "dsr_positive": true,
+  "pbo_max": 0.5,
+  "reproducibility_checks_pass": true
+ },
+ "activity_floor": {
+  "min_trades": 60,
+  "min_active_days": 40,
+  "note": "Horizon-appropriate for low-turnover (15m-4h). Stricter for pooled/cross-sectional (S3, S4): min_trades=120."
+ },
+ "outcome_lock": "Once first V5 candidate P&L exists: NO changes to families, parameters, features, horizons, execution, costs, thresholds, statistics, survivor rule, date roles.",
+ "firewall": {
+  "2018_plus_provider_requests": 0,
+  "2018_plus_market_reads": 0,
+  "V4_Databento_requests": 0,
+  "V4_Databento_downloads": 0,
+  "V4_paid_data_purchases": 0
+ },
+ "protocol_hash": "2e0347363f1fe74f5eae5b91a29c314cdf045309f852d1f4972c88eb71a81f69"
+}
