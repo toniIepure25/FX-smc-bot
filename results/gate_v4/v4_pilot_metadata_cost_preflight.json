@@ -1,0 +1,113 @@
+{
+ "artifact_id": "V4_PILOT_METADATA_COST_PREFLIGHT_V1",
+ "program_id": "FX_INTRADAY_ALPHA_DISCOVERY_V4",
+ "gate": "V4_PILOT_METADATA_COST_PREFLIGHT",
+ "starting_sha": "95777577d3f56a397c8fe3fab74a7c3747ce2dee",
+ "capability_contract_hash": "9de92fc724cb936854a496892db85ca04bd6769082b4944b19ce918931f36091",
+ "pilot_design_hash": "28b1b4cf9f6db38828029c37c3daf09f9dd9f3feb769d8f949303e662a48b9b5",
+ "manifest_hash": "a405f35aeab4c273a255af1b19a337ba09d15c8fd3d3978cd757efbf82cbc2aa",
+ "provider": "Databento",
+ "dataset": "GLBX.MDP3",
+ "schema": "mbp-10",
+ "api_key_status": "MISSING",
+ "status": "V4_PILOT_METADATA_PREFLIGHT_BLOCKED_BY_API_CREDENTIAL",
+ "note": "No DATABENTO_API_KEY found in environment. All local/sample work is complete. Exact metadata commands are emitted. No estimates are fabricated. Set the key and re-run the preflight script.",
+ "manifest_summary": {
+  "total_instrument_days": 180,
+  "by_role": {
+   "development": 108,
+   "internal_validation": 72
+  },
+  "by_instrument": {
+   "6E": 60,
+   "6J": 60,
+   "6B": 60
+  },
+  "development_days": 108,
+  "internal_validation_days": 72
+ },
+ "symbol_resolution": {
+  "status": "RESOLVED_VIA_CALENDAR_METADATA",
+  "method": "Quarterly contract calendar + 5-trading-day roll rule",
+  "contracts_used": [
+   "6H6",
+   "6H7",
+   "6M6",
+   "6M7",
+   "6U6",
+   "6Z6"
+  ],
+  "note": "Resolved from CME quarterly expiration calendar. Verify against Databento Definition schema when API key available."
+ },
+ "mbp10_coverage": {
+  "status": "PENDING_METADATA_VERIFICATION",
+  "note": "GLBX.MDP3 MBP-10 coverage from 2010-06 per provider docs. All selected dates (2016-2017) are within coverage. Verify with metadata.get_dataset_range when API key available."
+ },
+ "record_count": {
+  "status": "PENDING_METADATA",
+  "note": "Requires API key. Commands emitted in preflight script."
+ },
+ "billable_size": {
+  "status": "PENDING_METADATA",
+  "note": "Requires API key. No compression ratios invented."
+ },
+ "cost": {
+  "status": "PENDING_METADATA",
+  "note": "Requires API key. No cost estimates fabricated."
+ },
+ "budget_scenarios": {
+  "FULL_P1": {
+   "instrument_days": 180,
+   "note": "All selected instrument-days (frozen scientific sample)"
+  },
+  "SCENARIO_50": {
+   "instrument_days": 90,
+   "note": "BUDGET SCENARIO ONLY. First 50% by hash order. NOT the scientific sample. Requires explicit pre-outcome amendment."
+  },
+  "SCENARIO_25": {
+   "instrument_days": 45,
+   "note": "BUDGET SCENARIO ONLY. First 25% by hash order. NOT the scientific sample. Requires explicit pre-outcome amendment."
+  }
+ },
+ "storage_plan": {
+  "note": "Pending metadata. Planning estimates only.",
+  "raw_dbn_zst": "PENDING (provider billable size)",
+  "canonical_parquet": "PENDING (typically 0.5-1.5x raw, PLANNING_ESTIMATE)",
+  "temp_decode_headroom": "~2x daily partition size",
+  "recommended_free_disk": "PENDING (safety factor 2x on total)",
+  "mac_m5_16gb_viable": "Yes for day-partitioned streaming (one partition at a time)"
+ },
+ "download_time_estimates": {
+  "note": "Pending billable size. Formula: time = bytes / bandwidth.",
+  "at_50mbps": "PENDING",
+  "at_100mbps": "PENDING",
+  "at_500mbps": "PENDING",
+  "at_1gbps": "PENDING"
+ },
+ "license_retention": {
+  "stored_locally": "Permitted (Databento ToS)",
+  "cached": "Permitted",
+  "transformed_derived": "Permitted",
+  "private_research": "Permitted",
+  "committed_publicly": "NOT PERMITTED (vendor market data)",
+  "note": "Based on Databento terms of service. If ambiguous, flag and do not guess. Do NOT commit vendor market data to Git."
+ },
+ "firewall": {
+  "development_requests": 0,
+  "internal_validation_requests": 0,
+  "external_validation_requests": 0,
+  "external_validation_reads": 0,
+  "v4_final_holdout_requests": 0,
+  "v4_final_holdout_reads": 0,
+  "2018_plus_requests": 0,
+  "2018_plus_reads": 0,
+  "historical_mbp10_payload_requests": 0,
+  "historical_trade_payload_requests": 0,
+  "market_outcomes_opened": 0
+ },
+ "preflight_script": "scripts/v4/pilot_metadata_preflight.py",
+ "preflight_usage": "Set DATABENTO_API_KEY, then run:\n  python scripts/v4/pilot_metadata_preflight.py --manifest results/gate_v4/v4_p1_sample_manifest.json --metadata-only --output results/gate_v4/preflight_results.json",
+ "next_gate_if_ready": "V4_PILOT_ACQUISITION_AUTHORIZATION",
+ "terminal_verdict": "V4_PILOT_METADATA_PREFLIGHT_BLOCKED_BY_API_CREDENTIAL",
+ "preflight_hash": "0e2e6c5cb1c473ccd635d1e3446d1849e79db1666d1f891b389976aa4b30b1bc"
+}
