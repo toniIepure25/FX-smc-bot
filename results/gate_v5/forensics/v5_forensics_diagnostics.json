@@ -1,0 +1,92 @@
+{
+ "golden_tests": {
+  "A_monotonic_up_long": {
+   "pass": true,
+   "pnl_bps": 48.4442
+  },
+  "B_monotonic_down_short": {
+   "pass": true,
+   "pnl_bps": 43.9649
+  },
+  "C_wrong_direction": {
+   "pass": true,
+   "pnl_bps": -47.9465
+  },
+  "D_bid_ask": {
+   "pass": true,
+   "note": "Long: entry=ask[ei], exit=bid[xi]. Short: entry=bid[ei], exit=ask[xi]. Verified in A/B."
+  },
+  "E_latency": {
+   "pass": true,
+   "note": "ei = idx+1, xi = idx+1+h. Signal at t executes at t+1. Verified in code line 177-178."
+  },
+  "F_cost_identity": {
+   "pass": true,
+   "note": "net = gross - spread - comm. Verified algebraically."
+  },
+  "G_date_mask": {
+   "pass": true,
+   "note": "With correct date filter, 2010-2013 bars excluded. ORIGINAL BUG: mask_a lacks date filter."
+  },
+  "H_obs_mask": {
+   "pass": false,
+   "note": "ORIGINAL BUG: mask_a = exec_a & ~np.isnan(mid_a). Missing obs flag. Imputed bars CAN create fills."
+  }
+ },
+ "date_decomposition": {
+  "instrument": "EURUSD",
+  "buggy_mask_pct": 97.7,
+  "correct_mask_pct": 48.8,
+  "original_gross": -6273.4,
+  "corrected_gross": -2212.8,
+  "flipped_gross": -2610.9,
+  "polarity_flip_changes_sign": false,
+  "spread_double_counting": {
+   "gross_includes_spread": true,
+   "spread_subtracted_again": true,
+   "net_with_double_count": -14037.9,
+   "net_without_double_count": -9277.0,
+   "mid_pnl_approx": -1512.4,
+   "explanation": "gross=(bid_exit-ask_entry)/ask_entry already includes spread crossing. Subtracting spread_c again double-counts."
+  },
+  "decomposition": {
+   "2009-2013": {
+    "n_trades": 3759,
+    "gross": -4060.6,
+    "spread": 2974.5,
+    "comm": 1503.6,
+    "net": -8538.6
+   },
+   "2014": {
+    "n_trades": 939,
+    "gross": -134.5,
+    "spread": 282.3,
+    "comm": 375.6,
+    "net": -792.4
+   },
+   "2015-2016": {
+    "n_trades": 1875,
+    "gross": -1309.6,
+    "spread": 1003.7,
+    "comm": 750.0,
+    "net": -3063.3
+   },
+   "2017": {
+    "n_trades": 936,
+    "gross": -768.8,
+    "spread": 500.4,
+    "comm": 374.4,
+    "net": -1643.6
+   }
+  }
+ },
+ "s2_leakage": {
+  "instrument": "EURUSD",
+  "vol_med_buggy": 0.00011812202574219554,
+  "vol_med_causal_proxy": 0.0001659889327129349,
+  "contaminated_bars_pre2014": 299900,
+  "threshold_diff_pct": 28.84
+ },
+ "runtime": 24.1,
+ "label": "POST_OUTCOME_ENGINEERING_DIAGNOSTICS_NOT_ALPHA"
+}

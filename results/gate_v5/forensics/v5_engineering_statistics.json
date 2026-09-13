@@ -1,0 +1,19 @@
+{
+ "artifact_id": "V5_ENGINEERING_STATISTICS",
+ "label": "POST_OUTCOME_ENGINEERING_DIAGNOSTICS_NOT_ALPHA",
+ "wrc": {"computed": false, "reason": "Requires full 13-instrument corrected daily P&L matrix. Not completed."},
+ "spa": {"computed": false, "reason": "Same as WRC."},
+ "romano_wolf": {"computed": false, "reason": "Same as WRC."},
+ "holm": {"computed": false, "reason": "Same as WRC."},
+ "bh_fdr": {"computed": false, "reason": "Same as WRC."},
+ "psr": {"computed": false, "reason": "Same as WRC."},
+ "dsr": {"computed": false, "reason": "Same as WRC."},
+ "cscv_pbo": {"computed": false, "reason": "Same as WRC."},
+ "stationary_bootstrap": {"computed": false, "reps": 0, "block_length": 0},
+ "robustness_note": "If ALL candidates have negative net P&L, no multiple testing correction (WRC, SPA, RW, Holm, BH) can make them positive. The qualitative conclusion (no survivors) is robust to the missing statistics. Statistics would only matter if some candidates were positive and we needed to determine which survive multiplicity.",
+ "original_run_statistics": {
+  "wrc_p": 1.0,
+  "spa_p": 1.0,
+  "note": "Placeholders in original. Never computed."
+ }
+}

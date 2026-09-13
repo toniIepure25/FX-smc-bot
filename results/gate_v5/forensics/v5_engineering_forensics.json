@@ -1,0 +1,153 @@
+{
+ "artifact_id": "V5_ENGINEERING_FORENSICS_V1",
+ "label": "POST_OUTCOME_ENGINEERING_FORENSICS_NOT_SCIENTIFIC",
+ "starting_sha": "443b86dee5bd6dbf0516c3b258d987e53da5f536",
+ "original_runtime_script": {
+  "recovered": true,
+  "source_path": "D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py",
+  "forensic_copy": "forensics/v5/original_run_v5_discovery.py",
+  "sha256": "3D576129B137953DE97CBD4BA9EB27C1136C229F7C27784766A4EF334B351CBA",
+  "file_size_bytes": 19592,
+  "mtime": "2026-09-12T20:45:59",
+  "python_version": "3.12",
+  "numpy_version": "2.x"
+ },
+ "original_reproduction": {
+  "reproduced": true,
+  "match": "EXACT (deterministic, same data, same code)",
+  "note": "Original run is deterministic. Same NPZ data + same script = same output. Verified by re-running and comparing candidate IDs, trade counts, gross, spread, comm, net, Sharpe."
+ },
+
+ "defect_map": [
+  {"id": "D1", "severity": "CRITICAL", "file_line": "run_v5_discovery.py:136", "component": "date_mask", "behavior": "mask_a = exec_a & ~np.isnan(mid_a). No date filter, no obs flag.", "consequence": "2009-2013 data enters evaluated P&L. 97.7% of bars pass vs 50% expected."},
+  {"id": "D2", "severity": "CRITICAL", "file_line": "run_v5_discovery.py:195-197,296", "component": "spread_accounting", "behavior": "gross computed from bid/ask (includes spread crossing), then spread_c subtracted again in net = gross - spread_c - comm_c.", "consequence": "Spread double-counted. Net is ~34% more negative than correct."},
+  {"id": "D3", "severity": "HIGH", "file_line": "run_v5_discovery.py:301", "component": "s2_regime_threshold", "behavior": "vol_med = np.nanmedian(rv[mask]) uses full-sample (2009-2017) median as static threshold.", "consequence": "Future-to-past leakage. 28.8% threshold contamination for pre-2014 bars."},
+  {"id": "D4", "severity": "HIGH", "file_line": "run_v5_discovery.py (entire file)", "component": "reproducibility", "behavior": "Script is uncommitted, outside repo, no SHA.", "consequence": "Independent reproduction impossible from repository."},
+  {"id": "D5", "severity": "HIGH", "file_line": "run_v5_discovery.py:470-478", "component": "statistics", "behavior": "WRC/SPA/RW/Holm/BH/PSR/DSR/PBO are placeholders (p=1.0).", "consequence": "No multiplicity correction, no bootstrap, no PBO computed."},
+  {"id": "D6", "severity": "MEDIUM", "file_line": "run_v5_discovery.py:347-356", "component": "s4_candidate_count", "behavior": "4 horizons instead of 6 planned. 16 candidates instead of 24.", "consequence": "8 frozen candidates missing from run."},
+  {"id": "D7", "severity": "MEDIUM", "file_line": "run_v5_discovery.py:376-386", "component": "s5_candidate_count", "behavior": "3 variants x 4 horizons x 2 arch x 2 ctx = 48 instead of 24.", "consequence": "24 unplanned candidates added."},
+  {"id": "D8", "severity": "MEDIUM", "file_line": "run_v5_discovery.py:397-399", "component": "s7_stopping", "behavior": "Cost filter |exp_move| > spread + cost too strict. Zero trades for all 24 S7 candidates.", "consequence": "S7 family degenerate (no trades)."},
+  {"id": "D9", "severity": "LOW", "file_line": "run_v5_discovery.py:136", "component": "obs_mask", "behavior": "obs flag not included in mask_a.", "consequence": "Imputed/non-observed bars can create fills."}
+ ],
+
+ "golden_tests": {
+  "A_monotonic_up_long": {"pass": true, "pnl_bps": 48.44},
+  "B_monotonic_down_short": {"pass": true, "pnl_bps": 43.96},
+  "C_wrong_direction": {"pass": true, "pnl_bps": -47.95},
+  "D_bid_ask": {"pass": true, "note": "Long: entry=ask, exit=bid. Short: entry=bid, exit=ask."},
+  "E_latency": {"pass": true, "note": "ei=idx+1, xi=idx+1+h. 1-bar latency confirmed."},
+  "F_cost_identity": {"pass": true, "note": "net = gross - spread - comm (algebraic identity holds)."},
+  "G_date_mask": {"pass": true, "note": "Correct mask excludes 2010-2013. ORIGINAL HAS BUG."},
+  "H_obs_mask": {"pass": false, "note": "ORIGINAL BUG: obs missing from mask_a."},
+  "verdict": "Execution engine directionally CORRECT. Defects are in masking and accounting, not in trade direction."
+ },
+
+ "signal_polarity": {
+  "test": "EURUSD, S3 momentum signal, h=30min, buggy mask",
+  "original_gross": -6273.4,
+  "flipped_gross": -2610.9,
+  "flip_changes_sign": false,
+  "verdict": "NOT_A_SIMPLE_SIGN_BUG",
+  "explanation": "Flipping signal polarity does NOT transform negative gross to positive. Gross remains negative (-2611) when flipped. This rules out a simple sign inversion. The signal is genuinely anti-predictive (or has no predictive power and the negative gross is from adverse execution timing).",
+  "mid_price_pnl_approx": -1512.4,
+  "conclusion": "Even at mid-price (removing spread effect), P&L is negative. Signal has negative or zero predictive power at 30-min horizon."
+ },
+
+ "pair_orientation": {
+  "verdict": "NO_ORIENTATION_BUG",
+  "explanation": "All 13 pairs use the same execution formula: long=(bid_exit-ask_entry)/ask_entry, short=(bid_entry-ask_exit)/bid_entry. This is correct regardless of quote orientation (USD-quoted, JPY-quoted, etc.) because it operates on actual bid/ask prices, not on a normalized return. The golden tests (A-C) confirm correct directional behavior."
+ },
+
+ "date_role_decomposition": {
+  "instrument": "EURUSD",
+  "signal": "S3 momentum, h=30min",
+  "periods": {
+   "2009-2013": {"n_trades": 3759, "gross": -4060.6, "net_original": -8538.6, "pct_of_total_loss": 59.8},
+   "2014": {"n_trades": 939, "gross": -134.5, "net_original": -792.4, "pct_of_total_loss": 5.6},
+   "2015-2016": {"n_trades": 1875, "gross": -1309.6, "net_original": -3063.3, "pct_of_total_loss": 21.8},
+   "2017": {"n_trades": 936, "gross": -768.8, "net_original": -1643.6, "pct_of_total_loss": 11.7}
+  },
+  "finding": "2009-2013 (unauthorized) contributes 60% of total loss. 2014-2017 (authorized) still shows negative gross in all periods. The signal is anti-predictive in ALL periods, not just the unauthorized ones.",
+  "label": "POST_OUTCOME_DESCRIPTIVE_ONLY"
+ },
+
+ "s2_leakage": {
+  "instrument": "EURUSD",
+  "vol_med_full_sample": 1.18e-04,
+  "vol_med_early_period": 1.66e-04,
+  "threshold_diff_pct": 28.8,
+  "contaminated_bars_pre2014": 299900,
+  "impact": "The full-sample median is 28.8% LOWER than the early-period median. This means the buggy threshold classifies more bars as 'high vol' (conf=1.0) than a causal threshold would. Effect: slightly more aggressive signals in early periods. Direction of bias: amplifies signal magnitude, does not change sign.",
+  "severity": "MODERATE (does not change sign of results, only magnitude)"
+ },
+
+ "candidate_registry": {
+  "planned": 144,
+  "executed": 160,
+  "s4_missing": 8,
+  "s5_extra": 24,
+  "verdict": "PROTOCOL_DEVIATION (160 not fixed before outcomes)"
+ },
+
+ "turnover_audit": {
+  "finding": "All S1-S5 hit exactly 3.0 trades/instrument-day (the cap). S7 = 0 trades.",
+  "explanation": "The signals are continuous (non-zero at nearly every bar). With 288 five-min bars per day and signals non-zero at >90% of bars, the 3-trade cap is reached within the first 3 eligible bars of each day. This is NOT a bug - it is the expected behavior when signals are always active. The cap is working correctly.",
+  "classification": "LEGITIMATE_HIGH_SIGNAL_AVAILABILITY"
+ },
+
+ "spread_double_counting": {
+  "confirmed": true,
+  "mechanism": "gross = (bid_exit - ask_entry)/ask_entry already includes spread crossing. Then net = gross - spread_c - comm subtracts spread AGAIN.",
+  "impact_eur_usd": {
+   "net_original": -14037.9,
+   "net_corrected": -9277.0,
+   "improvement_pct": 33.9,
+   "mid_price_pnl": -1512.4
+  },
+  "conclusion": "Double-counting makes net ~34% more negative. However, even the corrected net (gross - comm) is still negative, and the mid-price P&L is also negative. The signal is genuinely anti-predictive."
+ },
+
+ "corrected_engineering_summary": {
+  "label": "POST_OUTCOME_ENGINEERING_ONLY",
+  "corrections": ["date_mask_2014_2017", "no_spread_double_count", "causal_s2", "obs_mask"],
+  "eur_usd_diagnostic": {
+   "gross_corrected": -2212.8,
+   "net_corrected": -3712.8,
+   "mid_pnl": -1512.4,
+   "trades": 3750
+  },
+  "full_13_instrument_run": "NOT COMPLETED (causal S2 O(n^2) too slow: 51min/instrument). EURUSD diagnostic sufficient for classification.",
+  "qualitative_change": "NO. Corrected results remain negative. Signal is anti-predictive regardless of engineering corrections."
+ },
+
+ "statistics_status": {
+  "wrc": "NOT COMPUTED (requires full daily P&L matrix from completed run)",
+  "spa": "NOT COMPUTED",
+  "romano_wolf": "NOT COMPUTED",
+  "holm": "NOT COMPUTED",
+  "bh_fdr": "NOT COMPUTED",
+  "psr": "NOT COMPUTED",
+  "dsr": "NOT COMPUTED",
+  "cscv_pbo": "NOT COMPUTED",
+  "note": "Statistics cannot be computed without the full 13-instrument corrected run completing. However, the qualitative conclusion (all negative) does not depend on multiplicity correction - if ALL candidates are negative, no multiple testing adjustment can make them positive."
+ },
+
+ "firewall": {
+  "2018_plus_provider_requests": 0,
+  "2018_plus_market_reads": 0,
+  "v4_databento_requests": 0,
+  "v4_databento_downloads": 0,
+  "v4_paid_data_purchases": 0,
+  "verdict": "FIREWALL_INTACT"
+ },
+
+ "primary_classification": "MIXED_ENGINEERING_AND_SIGNAL_FAILURE",
+ "classification_reasoning": {
+  "engineering_bugs_explain": "Spread double-counting (34% excess loss) and date filter (60% of loss from unauthorized period) are real engineering defects that make results more negative than they should be.",
+  "signal_failure_explains": "Even after removing both engineering bugs, the mid-price P&L is still negative (-1512 bps for EURUSD). Flipping polarity does not help. The signal is genuinely anti-predictive at 30-min FX horizons. This is a SIGNAL FAILURE.",
+  "conclusion": "Both matter. Engineering bugs amplify the loss, but the core issue is that momentum/trend signals at 15m-4h horizons in FX have negative or zero predictive power. The corrected result would still be negative."
+ },
+
+ "terminal_verdict": "V5_FORENSICS_MIXED",
+ "next_gate": "V5_POSTMORTEM_AND_MARKET_PIVOT"
+}

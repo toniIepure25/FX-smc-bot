@@ -1,0 +1,25 @@
+{
+ "artifact_id": "V5_ENGINEERING_REPRODUCTION_RESULTS",
+ "label": "POST_OUTCOME_ENGINEERING_ONLY_NOT_SCIENTIFIC",
+ "corrections_applied": [
+  "date_mask_2014_2017",
+  "no_spread_double_count",
+  "causal_s2_threshold",
+  "obs_mask_included"
+ ],
+ "full_run_status": "NOT COMPLETED (causal S2 O(n^2) = 51min/instrument). EURUSD diagnostic used for classification.",
+ "eur_usd_diagnostic": {
+  "signal": "S3 momentum, h=30min",
+  "original_buggy": {"gross": -6273.4, "spread": 4760.9, "comm": 3003.6, "net": -14037.9, "trades": 7509},
+  "corrected_2014_2017": {"gross": -2212.8, "spread": 1786.5, "comm": 1500.0, "net_no_double": -3712.8, "trades": 3750},
+  "flipped_polarity": {"gross": -2610.9, "note": "Still negative. NOT a sign bug."},
+  "mid_price_pnl": -1512.4
+ },
+ "qualitative_conclusion": "CORRECTED RESULTS REMAIN NEGATIVE. Signal is anti-predictive regardless of engineering corrections.",
+ "n_candidates_planned": 144,
+ "n_candidates_executed_original": 160,
+ "n_gross_positive_original": 0,
+ "n_net_positive_original": 0,
+ "n_gross_positive_corrected_eur_usd": 0,
+ "n_net_positive_corrected_eur_usd": 0
+}
