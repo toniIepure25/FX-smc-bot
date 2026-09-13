@@ -1,0 +1,17 @@
+{
+ "artifact_id": "V5_IMPLEMENTATION_FIDELITY_POSTMORTEM",
+ "verdict": "V5_ORIGINAL_STRUCTURAL_MODEL_CLAIMS_NOT_TESTED",
+ "date": "2026-09-13",
+ "finding": "The original V5 run (commit 4570d93) did NOT faithfully implement the structural models named in the prospective protocol. The following substitutions were made:",
+ "fidelity_failures": [
+  {"family": "S1", "protocol_claim": "Kalman local-linear trend, signal = latent_slope / state_uncertainty", "actual_implementation": "Rolling OLS linear regression on log-mid over fixed window. Not a recursive state-space filter.", "fidelity": "NOT_TESTED"},
+  {"family": "S2", "protocol_claim": "Gaussian mixture on [return, vol, range, spread, trend]. Posterior state probs as continuous signal modifier.", "actual_implementation": "Volatility threshold (median) gating momentum sign. No GMM, no posterior probabilities.", "fidelity": "NOT_TESTED"},
+  {"family": "S3", "protocol_claim": "Rank 13 pairs by [return, residual, trend_persistence]. Top vs bottom, top-2 vs bottom-2.", "actual_implementation": "Per-pair 6-bar momentum. No cross-sectional ranking across 13 pairs. No panel synchronization.", "fidelity": "NOT_TESTED"},
+  {"family": "S4", "protocol_claim": "Causal PCA factor from panel. Residual momentum/drift at slow horizons.", "actual_implementation": "Single-series self-residual (ret[i] - mean(ret[i-24:i])). No PCA, no panel factor, no cross-pair structure.", "fidelity": "NOT_TESTED"},
+  {"family": "S5", "protocol_claim": "Small causal TCN or GRU. Inputs: returns, range, spread, time. Train on dev only.", "actual_implementation": "Fixed exponential-decay weighted sum of returns + range - spread. No neural network, no training, no learned parameters.", "fidelity": "NOT_TESTED"},
+  {"family": "S7", "protocol_claim": "Enter/wait/abstain based on expected_move / cost / uncertainty / time_left. State sources: S1_kalman, S2_regime.", "actual_implementation": "6-bar momentum sum vs spread+cost threshold. Does not consume S1/S2 model outputs. No uncertainty, no time-left.", "fidelity": "NOT_TESTED"}
+ ],
+ "consequence": "The V5 negative result (0 survivors) is valid as a result of the code that was executed, but it does NOT constitute evidence that the named structural models (Kalman, GMM, cross-sectional, PCA, GRU/TCN, cost-aware stopping) lack predictive power. The actual models were never tested.",
+ "preservation": "All original V5 artifacts remain unchanged at their committed SHAs. This postmortem does not alter any prior result.",
+ "next_step": "V5R_TRUE_STRUCTURAL_MODELS: implement the actual named models and test them prospectively."
+}

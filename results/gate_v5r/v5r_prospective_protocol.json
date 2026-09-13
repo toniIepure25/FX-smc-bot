@@ -1,0 +1,124 @@
+{
+ "artifact_id": "V5R_PROSPECTIVE_PROTOCOL_V1",
+ "program": "FX_STRUCTURAL_ALPHA_DISCOVERY_V5R_TRUE_STRUCTURAL_MODELS",
+ "data_digest": "15a5c1af697c85dfaa454812aa8061b2a4d97fafa956196210bc3b38415d11c0",
+ "universe": ["AUDJPY","AUDUSD","EURCHF","EURGBP","EURJPY","EURUSD","GBPCHF","GBPJPY","GBPUSD","NZDUSD","USDCAD","USDCHF","USDJPY"],
+ "date_roles": {
+  "training": "2010-01-01 to 2013-12-31",
+  "internal_evaluation": "2014-01-01 to 2014-12-31",
+  "robustness": "2015-01-01 to 2016-12-31",
+  "replication": "2017-01-01 to 2017-12-31",
+  "sealed": "2018-01-01+"
+ },
+ "execution": {
+  "latency": "1 completed M1 bar",
+  "long_entry": "ASK",
+  "long_exit": "BID",
+  "short_entry": "BID",
+  "short_exit": "ASK",
+  "pnl_formula": "bid_ask_gross - explicit_commission_slippage",
+  "spread_handling": "Already contained in bid/ask P&L. DO NOT subtract separately.",
+  "round_trip_cost_bps": 0.40,
+  "stress_multipliers": [1.0, 1.5, 2.0],
+  "max_entries_per_instrument_per_ny_day": 3,
+  "masks_required": ["correct_date_role", "executable", "observed", "not_imputed", "not_unresolved"]
+ },
+ "families": {
+  "R1_TRUE_KALMAN": {
+   "description": "True local-linear state-space Kalman filter. State=[level, slope]. Recursive predict/update with transition matrix, process covariance, observation covariance, innovation, Kalman gain, posterior covariance. Observation: log midprice.",
+   "scales_minutes": [30, 120, 480],
+   "cost_multipliers": [1.0, 1.5],
+   "horizons_minutes": [15, 30, 60, 120],
+   "candidate_count": 24,
+   "grid": "3 scales x 2 cost_mult x 4 horizons"
+  },
+  "R2_TRUE_GMM_REGIME": {
+   "description": "Real sklearn GaussianMixture. n_components=2,3. Features: [return, realized_vol, range, spread, trend_strength]. Fit on PAST only (causal expanding window). Posterior regime probabilities + training-only conditional future-return estimates as signal.",
+   "n_components": [2, 3],
+   "horizons_minutes": [30, 60, 120, 240],
+   "candidate_count": 8,
+   "grid": "2 n_components x 4 horizons"
+  },
+  "R3_TRUE_CROSS_SECTIONAL": {
+   "description": "Synchronized 13-pair panel. At each causal anchor: compute recent return, residual return, trend persistence for all 13 pairs. Cross-sectional z-score/ranking. Strategies: top1_vs_bottom1, top2_vs_bottom2. Each panel strategy = ONE candidate P&L column (not 13).",
+   "structures": ["top1_vs_bottom1", "top2_vs_bottom2"],
+   "horizons_minutes": [30, 60, 120, 240],
+   "candidate_count": 8,
+   "grid": "2 structures x 4 horizons"
+  },
+  "R4_TRUE_PCA_FACTOR": {
+   "description": "Real causal factor extraction from synchronized 13-pair panel returns. A: USD/common factor (beta to USD move). B: PCA first principal component (sklearn PCA, fit on past only). Generate genuine pair residuals. Dynamics: residual_momentum, residual_drift.",
+   "factor_types": ["usd_common", "pca1_causal"],
+   "dynamics": ["residual_momentum", "residual_drift"],
+   "horizons_minutes": [30, 60, 120, 240],
+   "candidate_count": 16,
+   "grid": "2 factors x 2 dynamics x 4 horizons"
+  },
+  "R5_TRUE_GRU_TCN": {
+   "description": "Actual trainable neural models implemented in numpy with manual backprop. GRU: 1 layer, hidden=32. Causal TCN: 2 layers, channels=32, kernel=3. Inputs: [returns, range, spread, time_features]. Contexts: 60m, 240m. Targets: 30,60,120,240m. Fixed: hidden=32, max 2 layers, 1 seed=42, lr=0.001, Adam optimizer, early stopping (patience=10 on val loss). Train on 2010-2013 only. NO architecture search.",
+   "architectures": ["gru", "tcn"],
+   "contexts_minutes": [60, 240],
+   "horizons_minutes": [30, 60, 120, 240],
+   "hidden_dim": 32,
+   "max_layers": 2,
+   "seed": 42,
+   "learning_rate": 0.001,
+   "optimizer": "adam",
+   "early_stopping_patience": 10,
+   "candidate_count": 16,
+   "grid": "2 arch x 2 context x 4 horizons"
+  },
+  "R7_TRUE_COST_AWARE": {
+   "description": "Cost-aware decision layer consuming ACTUAL predictive distributions from R1 Kalman (posterior slope + uncertainty) and R2 GMM (regime-weighted expected return + uncertainty). Decision: ENTER/WAIT/ABSTAIN based on expected_move, uncertainty, current executable cost, remaining session time. No RL.",
+   "state_sources": ["R1_kalman_posterior", "R2_gmm_regime_weighted"],
+   "cost_multipliers": [1.0, 1.5],
+   "horizons_minutes": [30, 60, 120, 240],
+   "candidate_count": 16,
+   "grid": "2 sources x 2 cost_mult x 4 horizons"
+  }
+ },
+ "total_candidates": 88,
+ "causality_requirement": "For every fitted object: fit_end < prediction_start. Hard-enforced with tests.",
+ "statistics": {
+  "tests": ["WRC", "Hansen_SPA", "Romano_Wolf", "Holm", "BH_FDR", "PSR", "DSR", "CSCV_PBO"],
+  "bootstrap": {"type": "stationary", "reps": 999, "block_length": 5},
+  "daily_pnl": "NY exit-date, one column per candidate (88 columns)",
+  "no_placeholders": true
+ },
+ "pre_holdout_candidate_rule": {
+  "net_positive": true,
+  "sharpe_min": 0.75,
+  "min_trades": 60,
+  "min_active_days": 40,
+  "robustness_2015_2016_positive": true,
+  "replication_2017_positive": true,
+  "stress_1_5x_positive": true,
+  "stress_2_0x_positive": true,
+  "multiplicity_supportive": true,
+  "dsr_positive": true,
+  "pbo_max": 0.5
+ },
+ "firewall": {
+  "2018_plus_access": "ABSOLUTELY_SEALED",
+  "databento_requests": 0,
+  "databento_downloads": 0,
+  "paid_data_purchases": 0
+ },
+ "implementation": {
+  "source_dir": "src/fx_smc_bot/research/v5r/",
+  "runner": "scripts/v5r/run_v5r_discovery.py",
+  "all_code_in_git": true,
+  "no_temporary_runners": true
+ },
+ "banned": [
+  "Rolling OLS as Kalman proxy",
+  "Vol threshold as GMM proxy",
+  "Per-pair momentum as cross-sectional",
+  "Single-series residual as PCA factor",
+  "Fixed weighted formula as neural network",
+  "Momentum threshold as cost-aware stopping without model inputs",
+  "Any 2018+ data access",
+  "Spread double-counting",
+  "Full-sample statistics for causal models"
+ ]
+}
