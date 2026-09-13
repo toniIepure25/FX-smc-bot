@@ -47,7 +47,6 @@ def main():
     panel = load_panel()
     ref = panel[INSTRUMENTS[0]]
     n = ref["n"]
-    dates = ref["date"]
     print(f"  {n} 5-min bars, {len(INSTRUMENTS)} instruments")
     
     all_cands = []  # (cid, family, horizon, n_trades, gross, spread, comm, net, net15, net20, sharpe, daily_pnl)
@@ -60,6 +59,7 @@ def main():
         a = panel[pair]
         mid, bo, ao = a["mid"], a["bo"], a["ao"]
         mask = a["eval_mask"]
+        dates_p = a["date"]
         log_mid = np.log(np.where(mid > 0, mid, np.nan))
         
         for scale in [6, 24, 96]:  # 30m, 2h, 8h in 5-min bars
@@ -68,7 +68,7 @@ def main():
             for cm in [1.0, 1.5]:
                 for h in [3, 6, 12, 24]:  # 15,30,60,120 min
                     cid = f"R1_s{scale}_c{cm}_h{h*5}"
-                    g, sp, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates, cm)
+                    g, sp, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates_p, cm)
                     net = g - co
                     net15 = g - co * 1.5
                     net20 = g - co * 2.0
@@ -83,11 +83,13 @@ def main():
         a = panel[pair]
         mid, bo, ao = a["mid"], a["bo"], a["ao"]
         mask = a["eval_mask"]
+        dates_p = a["date"]
+        n_p = a["n"]
         ret, rv, rng, sp = a["ret"], a["rv"], a["range"], a["sp"]
         
         # Build features: [return, vol, range, spread, trend]
-        trend = np.zeros(n)
-        for i in range(6, n):
+        trend = np.zeros(n_p)
+        for i in range(6, n_p):
             w = ret[i-6:i]
             w = w[~np.isnan(w)]
             if len(w) > 3:
@@ -95,11 +97,11 @@ def main():
         features = np.column_stack([ret, rv, rng, sp, trend])
         
         for nc in [2, 3]:
-            sig, probs = fit_gmm_causal(features, dates, EVAL_START, nc)
+            sig, probs = fit_gmm_causal(features, dates_p, EVAL_START, nc)
             sig[~mask] = 0
             for h in [6, 12, 24, 48]:  # 30,60,120,240 min
                 cid = f"R2_n{nc}_h{h*5}"
-                g, sp_c, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates, 1.0)
+                g, sp_c, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates_p, 1.0)
                 net = g - co
                 all_cands.append((cid, "R2", h*5, nt, g, sp_c, co, net, g-co*1.5, g-co*2.0, sharpe(dp), dp))
         print(f"  {pair} done ({time.time()-t0:.0f}s)")
@@ -108,44 +110,31 @@ def main():
     # R3: TRUE CROSS-SECTIONAL (8 candidates)
     # ============================================================
     print("\n=== R3: True Cross-Sectional ===")
+    ref_dates = panel[INSTRUMENTS[0]]["date"]
+    ref_mask = panel[INSTRUMENTS[0]]["eval_mask"]
     for structure in ["top1_vs_bottom1", "top2_vs_bottom2"]:
         for h in [6, 12, 24, 48]:
             cid = f"R3_{structure[:4]}_h{h*5}"
-            # Panel P&L: one column
-            dp_total = None
-            total_trades = 0
-            for pair in INSTRUMENTS:
-                a = panel[pair]
-                dp = panel_pnl(panel, dates, a["eval_mask"], h, structure)
-                if dp_total is None:
-                    dp_total = dp
-                else:
-                    dp_total = dp_total + dp
-            # Count trades from daily P&L
-            n_active = int((dp_total != 0).sum()) if dp_total is not None else 0
-            gross = float(dp_total.sum()) if dp_total is not None else 0
-            all_cands.append((cid, "R3", h*5, n_active, gross, 0, 0, gross, gross, gross, sharpe(dp_total) if dp_total is not None else 0, dp_total if dp_total is not None else np.array([])))
+            # Panel P&L: one column (uses reference dates for alignment)
+            dp = panel_pnl(panel, ref_dates, ref_mask, h, structure)
+            n_active = int((dp != 0).sum())
+            gross = float(dp.sum())
+            all_cands.append((cid, "R3", h*5, n_active, gross, 0, 0, gross, gross, gross, sharpe(dp), dp))
     print(f"  Done ({time.time()-t0:.0f}s)")
     
     # ============================================================
     # R4: TRUE PCA FACTOR (16 candidates)
     # ============================================================
     print("\n=== R4: True PCA Factor ===")
+    ref_train = panel[INSTRUMENTS[0]]["train_mask"]
     for ft in ["usd_common", "pca1_causal"]:
         for dyn in ["residual_momentum", "residual_drift"]:
             for h in [6, 12, 24, 48]:
                 cid = f"R4_{ft[:4]}_{dyn[:4]}_h{h*5}"
-                dp_total = None
-                for pair in INSTRUMENTS:
-                    a = panel[pair]
-                    dp = causal_pca_signal(panel, dates, a["train_mask"], a["eval_mask"], h, ft, dyn)
-                    if dp_total is None:
-                        dp_total = dp
-                    else:
-                        dp_total = dp_total + dp
-                n_active = int((dp_total != 0).sum()) if dp_total is not None else 0
-                gross = float(dp_total.sum()) if dp_total is not None else 0
-                all_cands.append((cid, "R4", h*5, n_active, gross, 0, 0, gross, gross, gross, sharpe(dp_total) if dp_total is not None else 0, dp_total if dp_total is not None else np.array([])))
+                dp = causal_pca_signal(panel, ref_dates, ref_train, ref_mask, h, ft, dyn)
+                n_active = int((dp != 0).sum())
+                gross = float(dp.sum())
+                all_cands.append((cid, "R4", h*5, n_active, gross, 0, 0, gross, gross, gross, sharpe(dp), dp))
     print(f"  Done ({time.time()-t0:.0f}s)")
     
     # ============================================================
@@ -157,11 +146,13 @@ def main():
         mid, bo, ao = a["mid"], a["ao"], a["bo"]
         mask = a["eval_mask"]
         train_mask = a["train_mask"]
+        dates_p = a["date"]
+        n_p = a["n"]
         ret, rv, rng, sp = a["ret"], a["rv"], a["range"], a["sp"]
         
         # Build features: [ret, range, spread, time]
-        time_feat = np.zeros(n)
-        for i in range(n):
+        time_feat = np.zeros(n_p)
+        for i in range(n_p):
             time_feat[i] = (i % 288) / 288.0  # time of day
         
         for arch in ["gru", "tcn"]:
@@ -176,7 +167,7 @@ def main():
                 
                 X_train, y_train = [], []
                 for i in train_idx:
-                    if i + 6 >= n:
+                    if i + 6 >= n_p:
                         continue
                     X = np.column_stack([ret[i-ctx:i], rng[i-ctx:i], sp[i-ctx:i], time_feat[i-ctx:i]])
                     X = np.nan_to_num(X)
@@ -202,9 +193,9 @@ def main():
                 # Generate signals for eval period
                 eval_idx = np.where(mask & ~np.isnan(ret))[0]
                 eval_idx = eval_idx[eval_idx >= ctx]
-                sig = np.zeros(n)
+                sig = np.zeros(n_p)
                 for i in eval_idx[::5]:  # Subsample for speed
-                    if i + 6 >= n:
+                    if i + 6 >= n_p:
                         continue
                     X = np.column_stack([ret[i-ctx:i], rng[i-ctx:i], sp[i-ctx:i], time_feat[i-ctx:i]])
                     X = np.nan_to_num(X)
@@ -213,7 +204,7 @@ def main():
                 
                 for h in [6, 12, 24, 48]:
                     cid = f"R5_{arch}_c{ctx}_h{h*5}"
-                    g, sp_c, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates, 1.0)
+                    g, sp_c, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates_p, 1.0)
                     net = g - co
                     all_cands.append((cid, "R5", h*5, nt, g, sp_c, co, net, g-co*1.5, g-co*2.0, sharpe(dp), dp))
         print(f"  {pair} done ({time.time()-t0:.0f}s)")
@@ -226,6 +217,8 @@ def main():
         a = panel[pair]
         mid, bo, ao = a["mid"], a["bo"], a["ao"]
         mask = a["eval_mask"]
+        dates_p = a["date"]
+        n_p = a["n"]
         ret, rv, rng, sp = a["ret"], a["rv"], a["range"], a["sp"]
         log_mid = np.log(np.where(mid > 0, mid, np.nan))
         
@@ -233,25 +226,25 @@ def main():
         k_sig, k_slope, k_unc = kalman_signal(log_mid, 24)
         
         # Get R2 GMM outputs
-        trend = np.zeros(n)
-        for i in range(6, n):
+        trend = np.zeros(n_p)
+        for i in range(6, n_p):
             w = ret[i-6:i]
             w = w[~np.isnan(w)]
             if len(w) > 3:
                 trend[i] = w.sum()
         features = np.column_stack([ret, rv, rng, sp, trend])
-        gmm_sig, gmm_probs = fit_gmm_causal(features, dates, EVAL_START, 2)
+        gmm_sig, gmm_probs = fit_gmm_causal(features, dates_p, EVAL_START, 2)
         
         for source in ["kalman", "gmm"]:
             for cm in [1.0, 1.5]:
                 if source == "kalman":
-                    sig = cost_aware_signal(k_slope, k_unc, np.zeros(n), np.zeros((n,2)), a["spread"], cm, mask)
+                    sig = cost_aware_signal(k_slope, k_unc, np.zeros(n_p), np.zeros((n_p,2)), a["spread"], cm, mask)
                 else:
-                    sig = cost_aware_signal(np.zeros(n), np.full(n, 1e-6), gmm_sig, gmm_probs, a["spread"], cm, mask)
+                    sig = cost_aware_signal(np.zeros(n_p), np.full(n_p, 1e-6), gmm_sig, gmm_probs, a["spread"], cm, mask)
                 sig[~mask] = 0
                 for h in [6, 12, 24, 48]:
                     cid = f"R7_{source[:4]}_c{cm}_h{h*5}"
-                    g, sp_c, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates, cm)
+                    g, sp_c, co, nt, dp = execute(bo, ao, mid, mask, sig, h, dates_p, cm)
                     net = g - co
                     all_cands.append((cid, "R7", h*5, nt, g, sp_c, co, net, g-co*1.5, g-co*2.0, sharpe(dp), dp))
         print(f"  {pair} done ({time.time()-t0:.0f}s)")
@@ -293,7 +286,7 @@ def main():
     # ============================================================
     print("\n=== STATISTICS ===")
     # Build daily P&L matrix (88 x n_days)
-    all_dates = sorted(set(dates[a["eval_mask"]]))
+    all_dates = sorted(set(ref_dates[ref_mask]))
     n_days = len(all_dates)
     dp_matrix = np.zeros((len(candidates), n_days))
     for i, c in enumerate(candidates):
