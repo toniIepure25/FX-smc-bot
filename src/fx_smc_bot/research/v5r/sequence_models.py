@@ -45,7 +45,7 @@ class GRU:
             z = sigmoid(x @ self.W_z + h @ self.U_z + self.b_z)
             h_tilde = tanh_f(x @ self.W_h + r * (h @ self.U_h) + self.b_h)
             h_new = z * h + (1 - z) * h_tilde
-            out = float(h_new @ self.W_out + self.b_out)
+            out = float((h_new @ self.W_out).flatten()[0] + self.b_out)
             outputs[t] = out
             caches["r"].append(r)
             caches["z"].append(z)

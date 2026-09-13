@@ -25,8 +25,8 @@ def kalman_local_linear(log_mid: np.ndarray, q: float = 1e-8, r: float = 1e-6) -
         x = F @ x
         P = F @ P @ F.T + Q
         # Update
-        y = log_mid[i] - float(H @ x)
-        S = float(H @ P @ H.T) + r
+        y = log_mid[i] - float((H @ x).flatten()[0])
+        S = float((H @ P @ H.T).flatten()[0]) + r
         if S < 1e-30:
             continue
         K = (P @ H.T) / S
