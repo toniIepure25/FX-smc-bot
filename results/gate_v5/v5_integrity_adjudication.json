@@ -1,0 +1,202 @@
+{
+ "artifact_id": "V5_INTEGRITY_ADJUDICATION_V1",
+ "adjudication_type": "POST_OUTCOME_INTEGRITY_ADJUDICATION",
+ "starting_sha": "4570d939d8424d50c2ffa3fdddc4a3276eb7c118",
+ "prospective_seal_sha": "d3016853f4bcfe488617aa9fb719bd876654c850",
+ "prospective_seal_time": "2026-09-12T20:16:26+03:00",
+ "first_outcome_commit": "4570d939d8424d50c2ffa3fdddc4a3276eb7c118",
+ "first_outcome_time": "2026-09-12T21:47:26+03:00",
+ "reported_verdict": "V5_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR",
+ "adjudication_verdict": "V5_RESULT_INVALID_REQUIRES_ENGINEERING_FORENSICS",
+ "next_gate": "V5_ENGINEERING_FORENSICS",
+
+ "section_1_candidate_universe": {
+  "planned_total": 144,
+  "executed_total": 160,
+  "discrepancy": 16,
+  "family_diff": {
+   "S1": {"planned": 24, "executed": 24, "status": "MATCH"},
+   "S2": {"planned": 24, "executed": 24, "status": "MATCH"},
+   "S3": {"planned": 24, "executed": 24, "status": "MATCH"},
+   "S4": {"planned": 24, "executed": 16, "status": "MISSING_FROM_RUN", "explanation": "Protocol specifies 2 factors x 2 dynamics x 6 horizons/variants = 24. Script implements 2 factors x 2 dynamics x 4 horizons = 16. The 6th horizon/variant dimension was not implemented."},
+   "S5": {"planned": 24, "executed": 48, "status": "UNPLANNED_IN_RUN", "explanation": "Protocol specifies 2 arch x 2 context x 6 horizon/seed variants = 24. Script implements 2 arch x 2 context x 4 horizons x 3 variants = 48. The 3 signal variants (full, half-amplitude, sign-only) were added beyond the planned 6 variants."},
+   "S6": {"planned": 0, "executed": 0, "status": "MATCH"},
+   "S7": {"planned": 24, "executed": 24, "status": "MATCH"}
+  },
+  "registry_diff_summary": "S4 missing 8 candidates (4 horizons instead of 6). S5 has 24 extra candidates (3 variants x 4 horizons x 2 arch x 2 ctx = 48 instead of 6 variants x 2 arch x 2 ctx = 24). Net: -8 + 24 = +16. 144 + 16 = 160.",
+  "was_160_universe_fixed_before_outcomes": false,
+  "explanation": "The 160-candidate execution registry was defined in the uncommitted run script (D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py), written AFTER the prospective seal. The seal only fixed the 144-candidate protocol. The actual 160-candidate universe was NOT immutably fixed before any outcome existed."
+ },
+
+ "section_2_timing": {
+  "prospective_seal_sha": "d3016853f4bcfe488617aa9fb719bd876654c850",
+  "prospective_seal_commit_time": "2026-09-12T20:16:26+03:00",
+  "prospective_seal_content": "V5 prospective protocol (144 candidates) + V4 terminal closure",
+  "runtime_candidate_registry": "D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py (UNCOMMITTED, outside repo)",
+  "runtime_registry_commit_sha": null,
+  "runtime_registry_time": "2026-09-12 (between 20:16 and 20:56, exact time unrecorded)",
+  "first_outcome_computation": "2026-09-12T20:56:09 (script start) to 2026-09-12T21:47:26 (commit)",
+  "was_160_universe_immutable_before_outcomes": false,
+  "finding": "POST_OUTCOME_PROTOCOL_DEVIATION: The executed 160-candidate universe was defined in uncommitted code after the seal. The seal fixed 144 candidates; the runtime expanded to 160 without a new seal."
+ },
+
+ "section_3_reproducibility": {
+  "signal_generation_code": "D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py (UNCOMMITTED)",
+  "candidate_registry_code": "D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py (UNCOMMITTED)",
+  "execution_code": "D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py (UNCOMMITTED)",
+  "pnl_code": "D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py (UNCOMMITTED)",
+  "statistics_code": "D:\\ComputaCenter\\v3_processing\\run_v5_discovery.py (UNCOMMITTED, placeholder only)",
+  "code_in_git_repo": false,
+  "code_sha": null,
+  "finding": "POST_OUTCOME_REPRODUCIBILITY_DEFECT: All code that generated signals, candidates, execution, P&L, and statistics resides in an uncommitted file outside the repository. No SHA exists for the execution code. The run cannot be independently reproduced from the repository."
+ },
+
+ "section_4_date_roles": {
+  "protocol_spec": {
+   "development": "2010-2013",
+   "internal_selection": "2014",
+   "robustness": "2015-2016",
+   "replication": "2017",
+   "sealed": "2018+"
+  },
+  "actual_implementation": {
+   "eval_start": "2014-01-01",
+   "eval_end": "2017-12-31",
+   "mask_formula_in_script": "mask_a = exec_a & ~np.isnan(mid_a)",
+   "date_filter_applied": false,
+   "obs_filter_applied": false
+  },
+  "evidence": {
+   "data_span": "2009-12-31 to 2017-12-29",
+   "total_m1_bars": 3065995,
+   "bars_2014_2017": 1530862,
+   "bars_2014_2017_pct": 49.9,
+   "bars_2010_2013": 1534833,
+   "bars_2010_2013_pct": 50.1,
+   "n_valid_after_agg_mask": 598983,
+   "n_valid_pct_of_total": 97.7,
+   "expected_if_date_filtered": 50.0,
+   "n_days_per_candidate_summed": 32537,
+   "n_days_per_instrument": 2503,
+   "max_possible_days_4yr": 1460,
+   "max_possible_days_8yr": 2920
+  },
+  "did_2010_2013_enter_evaluated_pnl": true,
+  "explanation": "The M1-level mask (ny_date >= EVAL_START & ny_date <= EVAL_END & exec_ & obs) was computed but DISCARDED. The aggregated mask (mask_a = exec_a & ~np.isnan(mid_a)) contains NO date filter and NO obs flag. 97.7% of aggregated bars pass the mask (vs 50% expected if date-filtered). n_days=2503/instrument is impossible for 4 years (max 1460) but consistent with 8 years (2009-2017). CONCLUSION: 2010-2013 data IS in the evaluated P&L.",
+  "severity": "CRITICAL"
+ },
+
+ "section_5_model_leakage": {
+  "S2_regime": {
+   "leakage_detected": true,
+   "detail": "vol_med = np.nanmedian(rv[mask]) computes the median realized vol over the FULL unfiltered evaluation period (2009-2017) and uses it as a static threshold for all bars. This is a full-sample statistic applied retroactively. Bars in 2010 are gated by a threshold that includes 2016-2017 data.",
+   "type": "FUTURE_TO_PAST_LEAKAGE",
+   "severity": "HIGH"
+  },
+  "S4_factor": {
+   "leakage_detected": false,
+   "detail": "Uses rolling 24-bar window (ret[i-24:i]) for factor estimation. Causal. No future data used.",
+   "type": "NONE",
+   "severity": "NONE"
+  },
+  "S5_sequence": {
+   "leakage_detected": false,
+   "detail": "Uses rolling context window (ret[i-ctx:i], rng[i-ctx:i], spf[i-ctx:i]) with exponential decay weights. Causal. No future data used.",
+   "type": "NONE",
+   "severity": "NONE"
+  },
+  "S1_kalman": {
+   "leakage_detected": false,
+   "detail": "Recursive filter processes bars sequentially. Causal by construction.",
+   "type": "NONE",
+   "severity": "NONE"
+  },
+  "S3_xsectional": {
+   "leakage_detected": false,
+   "detail": "Uses rolling 6-bar momentum (ret[i-6:i]). Causal.",
+   "type": "NONE",
+   "severity": "NONE"
+  },
+  "S7_stopping": {
+   "leakage_detected": false,
+   "detail": "Uses rolling 6-bar expected move. Causal.",
+   "type": "NONE",
+   "severity": "NONE"
+  }
+ },
+
+ "section_6_panel_accounting": {
+  "n_instrument_results": 2080,
+  "explanation": "160 candidates x 13 instruments = 2080 instrument-level results. Each candidate is evaluated independently per instrument, then results are SUMMED across instruments to produce one aggregate row per candidate.",
+  "wrc_spa_input": "WRC/SPA were NEVER COMPUTED. The statistics file contains placeholder values (wrc_p=1.0, spa_p=1.0). No daily P&L matrix was constructed for cross-candidate comparison.",
+  "pseudo_independence": "The 13 instrument-level results for a given candidate are NOT statistically independent (shared macro factors, correlated spreads). However, since WRC/SPA were never computed, this did not affect any reported statistic.",
+  "verdict": "PANEL_ACCOUNTING_ADEQUATE (no statistics were computed that could be affected)"
+ },
+
+ "section_7_economic_reconciliation": {
+  "formula": "net = gross - spread - explicit_cost",
+  "verification": "VERIFIED for representative candidates from all 5 active families (S1-S5). S7 has 0 trades.",
+  "representative_results": [
+   {"family": "S1", "cid": "S1_s6_c1.0_h15", "gross": -188390.1, "spread": 186683.4, "comm": 39044.4, "net": -414117.9, "calc": -414117.9, "match": true, "net_per_trade_bps": -4.2425},
+   {"family": "S2", "cid": "S2_n2_h30_v0", "gross": -254800.2, "spread": 186683.4, "comm": 39044.4, "net": -441480.6, "calc": -441480.6, "match": true, "net_per_trade_bps": -4.5229},
+   {"family": "S3", "cid": "S3_t1_h30_a0", "gross": -237951.8, "spread": 186683.4, "comm": 39044.4, "net": -424635.4, "calc": -424635.4, "match": true, "net_per_trade_bps": -4.3503},
+   {"family": "S4", "cid": "S4_usd_mom_h30", "gross": -170684.0, "spread": 186683.4, "comm": 39044.4, "net": -357367.8, "calc": -357367.8, "match": true, "net_per_trade_bps": -3.6611},
+   {"family": "S5", "cid": "S5_tcn_c12_h30_v0", "gross": -209532.2, "spread": 186683.4, "comm": 39044.4, "net": -386216.6, "calc": -386216.6, "match": true, "net_per_trade_bps": -3.9567}
+  ],
+  "clarification": "The large negative values (-300k to -450k bps) are CUMULATIVE SUMS of per-trade P&L across ~97,000 trades, NOT portfolio returns. Per-trade net is -3.7 to -4.5 bps, dominated by spread cost (~1.9 bps/trade) + commission (0.4 bps/trade) exceeding gross edge.",
+  "verdict": "ECONOMIC_RECONCILIATION_PASSES"
+ },
+
+ "section_8_turnover_audit": {
+  "protocol_limit": "max 3 entries/instrument/day",
+  "by_family": {
+   "S1": {"n_candidates_with_trades": 24, "trades_per_day_median": 3.0, "p90": 3.0, "max": 3.0, "classification": "AT_CAP"},
+   "S2": {"n_candidates_with_trades": 24, "trades_per_day_median": 3.0, "p90": 3.0, "max": 3.0, "classification": "AT_CAP"},
+   "S3": {"n_candidates_with_trades": 24, "trades_per_day_median": 3.0, "p90": 3.0, "max": 3.0, "classification": "AT_CAP"},
+   "S4": {"n_candidates_with_trades": 16, "trades_per_day_median": 3.0, "p90": 3.0, "max": 3.0, "classification": "AT_CAP"},
+   "S5": {"n_candidates_with_trades": 48, "trades_per_day_median": 3.0, "p90": 3.0, "max": 3.0, "classification": "AT_CAP"},
+   "S7": {"n_candidates_with_trades": 0, "trades_per_day_median": 0.0, "p90": 0.0, "max": 0.0, "classification": "ZERO_TRADES (cost filter too strict, all signals blocked)"}
+  },
+  "material_deviations": "S7 produced ZERO trades for all 24 candidates. The cost-aware stopping rule (|expected_move| > spread + cost) was too restrictive, blocking all entries. This is a design failure, not a protocol violation.",
+  "verdict": "TURNOVER_WITHIN_PROTOCOL (all active families at 3.0 cap; S7 degenerate)"
+ },
+
+ "section_9_statistics_audit": {
+  "wrc": {"computed": false, "value": 1.0, "note": "PLACEHOLDER. Never computed."},
+  "spa": {"computed": false, "value": 1.0, "note": "PLACEHOLDER. Never computed."},
+  "romano_wolf": {"computed": false, "note": "Never computed."},
+  "holm": {"computed": false, "note": "Never computed."},
+  "bh_fdr": {"computed": false, "note": "Never computed."},
+  "psr": {"computed": false, "note": "Never computed."},
+  "dsr": {"computed": false, "note": "Never computed."},
+  "cscv_pbo": {"computed": false, "note": "Never computed."},
+  "stationary_bootstrap": {"computed": false, "reps": 0, "block_length": 0, "note": "Never computed."},
+  "daily_pnl_matrix": {"constructed": false, "note": "No daily P&L matrix was built. daily_pnl_vec() was called per-candidate but results were only used for Sharpe ratio, not stored for cross-candidate statistics."},
+  "verdict": "ALL_FROZEN_STATISTICS_UNCOMPUTED. The statistics file contains only placeholders. No multiplicity correction, no bootstrap, no PBO was ever performed."
+ },
+
+ "section_10_adjudication": {
+  "verdict": "C",
+  "label": "V5_RESULT_INVALID_REQUIRES_ENGINEERING_FORENSICS",
+  "reasons": [
+   "CRITICAL: Date filter missing from aggregated mask. 2010-2013 data IS in evaluated P&L. The protocol mandates 2014-2017 only for evaluation.",
+   "CRITICAL: Run code is uncommitted and outside the repository. No SHA exists for the execution code. Reproducibility is impossible.",
+   "HIGH: 160-candidate universe was not fixed before outcomes. Protocol deviation (144 planned, 160 executed).",
+   "HIGH: S2 regime model uses full-sample vol median (future-to-past leakage).",
+   "HIGH: All frozen statistics (WRC/SPA/RW/Holm/BH/PSR/DSR/PBO) were never computed.",
+   "MEDIUM: S7 produced zero trades (degenerate implementation).",
+   "MEDIUM: S4 missing 8 candidates, S5 has 24 extra vs protocol."
+  ],
+  "negative_result_reliable": false,
+  "explanation": "The negative verdict (0 survivors) is NOT reliable because: (1) the evaluation period includes 2010-2013 data not authorized by the protocol, (2) the code is unreproducible, (3) the candidate universe deviated from the sealed protocol. The true 2014-2017-only result is unknown and could differ."
+ },
+
+ "section_11_firewall": {
+  "2018_plus_provider_requests": 0,
+  "2018_plus_market_reads": 0,
+  "v4_databento_requests": 0,
+  "v4_databento_downloads": 0,
+  "v4_paid_data_purchases": 0,
+  "verdict": "FIREWALL_INTACT"
+ }
+}
