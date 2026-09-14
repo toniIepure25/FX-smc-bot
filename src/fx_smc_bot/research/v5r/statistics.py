@@ -7,22 +7,23 @@ from scipy import stats as scistats
 def wrc_test(daily_pnl: np.ndarray) -> float:
     """White Reality Check. Returns p-value."""
     n_cand, n_days = daily_pnl.shape
-    # Max performance
+    if n_days < 10:
+        return 1.0
     perf = daily_pnl.mean(axis=1)
     max_perf = perf.max()
-    # Bootstrap: stationary bootstrap
     rng = np.random.default_rng(42)
     n_reps = 999
     block = 5
     boot_max = np.zeros(n_reps)
     for b in range(n_reps):
+        # Simple: resample blocks with replacement
         boot = np.zeros((n_cand, n_days))
-        t = rng.integers(0, n_days)
-        for i in range(n_days):
-            length = 1 + rng.geometric(1.0 / block) if rng.random() < 1.0 else 1
-            length = min(length, n_days - t)
+        i = 0
+        while i < n_days:
+            length = max(1, min(int(rng.geometric(1.0 / block)), n_days - i))
+            t = int(rng.integers(0, n_days - length + 1))
             boot[:, i:i+length] = daily_pnl[:, t:t+length]
-            t = (t + length) % n_days
+            i += length
         boot_perf = boot.mean(axis=1)
         boot_max[b] = boot_perf.max()
     p = (np.sum(boot_max >= max_perf) + 1) / (n_reps + 1)

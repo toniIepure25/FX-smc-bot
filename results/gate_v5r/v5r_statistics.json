@@ -1,0 +1,17 @@
+{
+ "artifact_id": "V5R_STATISTICS_V1",
+ "protocol_hash": "fd8c18e1be138ebcac0d6d067a14feac266cc3c2f75627330efcc1800c98de6b",
+ "wrc_p": 1.0,
+ "spa_p": 1.0,
+ "romano_wolf_max": 1.0,
+ "holm_max": 1.0,
+ "bh_max": 1.0,
+ "psr": 0.0,
+ "dsr": 0.0,
+ "cscv_pbo": 1.0,
+ "bootstrap": {
+  "type": "stationary",
+  "reps": 999,
+  "block_length": 5
+ }
+}

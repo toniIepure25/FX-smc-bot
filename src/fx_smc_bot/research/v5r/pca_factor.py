@@ -6,10 +6,12 @@ from .data import INSTRUMENTS
 
 
 def build_panel_returns(panel: dict, n: int) -> np.ndarray:
-    """Build synchronized 13-pair return matrix (n x 13)."""
+    """Build synchronized 13-pair return matrix (n x 13). Uses min length."""
+    n_min = min(len(panel[p]["ret"]) for p in INSTRUMENTS)
+    n = min(n, n_min)
     rets = np.full((n, len(INSTRUMENTS)), np.nan)
     for j, pair in enumerate(INSTRUMENTS):
-        rets[:, j] = panel[pair]["ret"]
+        rets[:, j] = panel[pair]["ret"][:n]
     return rets
 
 
@@ -23,7 +25,7 @@ def causal_pca_signal(panel: dict, dates: np.ndarray, train_mask: np.ndarray,
     
     Returns daily P&L array.
     """
-    n = len(dates)
+    n = min(len(dates), min(len(panel[p]["ret"]) for p in INSTRUMENTS))
     rets = build_panel_returns(panel, n)
     
     # Find USD index
@@ -50,9 +52,10 @@ def causal_pca_signal(panel: dict, dates: np.ndarray, train_mask: np.ndarray,
     daily = {}
     eval_idx = np.where(eval_mask)[0]
     day_cnt = {}
+    n_min = min(len(panel[p]["mid"]) for p in INSTRUMENTS)
     
     for i in eval_idx:
-        if i < 24 or i + 1 + h >= n:
+        if i < 24 or i + 1 + h >= n_min:
             continue
         d = dates[i]
         if day_cnt.get(d, 0) >= 3:
@@ -101,23 +104,27 @@ def causal_pca_signal(panel: dict, dates: np.ndarray, train_mask: np.ndarray,
         
         # Dynamic
         if dynamic == "residual_momentum":
-            # Sum of recent residuals
+            sig_vals = np.zeros(len(INSTRUMENTS))
             if factor_type == "pca1_causal":
-                sig_vals = np.zeros(len(INSTRUMENTS))
-                for j in range(len(INSTRUMENTS)):
-                    w = r_window[:, j] - pca_mean
-                    s = (w @ pca_components)
-                    res = w - np.outer(s, pca_components)
-                    sig_vals[j] = res[:, j].sum() if not np.isnan(res[:, j]).any() else 0
+                # For each row in window, compute residual for each pair
+                for t in range(len(r_window)):
+                    centered = r_window[t] - pca_mean
+                    if np.isnan(centered).any():
+                        continue
+                    score = float(centered @ pca_components)
+                    recon = score * pca_components
+                    res = centered - recon
+                    sig_vals += res
             else:
-                sig_vals = np.zeros(len(INSTRUMENTS))
+                usd_w = r_window[:, usd_idx]
+                valid_usd = ~np.isnan(usd_w)
                 for j in range(len(INSTRUMENTS)):
                     rj = r_window[:, j]
-                    v = ~np.isnan(rj) & ~np.isnan(r_window[:, usd_idx])
+                    v = valid_usd & ~np.isnan(rj)
                     if v.sum() < 10:
                         continue
-                    beta = np.dot(rj[v], r_window[v, usd_idx]) / (np.dot(r_window[v, usd_idx], r_window[v, usd_idx]) + 1e-12)
-                    res = rj[v] - beta * r_window[v, usd_idx]
+                    beta = np.dot(rj[v], usd_w[v]) / (np.dot(usd_w[v], usd_w[v]) + 1e-12)
+                    res = rj[v] - beta * usd_w[v]
                     sig_vals[j] = res.sum()
         else:  # residual_drift
             sig_vals = resid_i
@@ -139,6 +146,9 @@ def causal_pca_signal(panel: dict, dates: np.ndarray, train_mask: np.ndarray,
         for pair, direction in [(long_pair, 1), (short_pair, -1)]:
             data = panel[pair]
             ei, xi = i + 1, i + 1 + h
+            if ei >= len(data["exec"]) or xi >= len(data["exec"]):
+                valid = False
+                break
             if not (data["exec"][ei] and data["obs"][ei] and data["exec"][xi] and data["obs"][xi]):
                 valid = False
                 break

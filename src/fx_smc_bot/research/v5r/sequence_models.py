@@ -206,7 +206,7 @@ class CausalTCN:
         dW2 = np.zeros_like(self.W2)
         db2 = np.zeros(C)
         for c in range(C):
-            db2[c] = float((dh2 * (1 - h2**2)[:, c]).sum())
+            db2[c] = float((dh2[:, c] * (1 - h2**2)[:, c]).sum())
         dW1 = np.zeros_like(self.W1)
         db1 = np.zeros(C)
         return {"W1": dW1, "b1": db1, "W2": dW2, "b2": db2,

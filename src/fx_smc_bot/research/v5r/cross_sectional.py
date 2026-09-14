@@ -75,9 +75,10 @@ def panel_pnl(panel: dict, dates: np.ndarray, eval_mask: np.ndarray,
     
     eval_idx = np.where(eval_mask)[0]
     day_cnt = {}
+    n_min = min(len(panel[p]["mid"]) for p in INSTRUMENTS)
     
     for i in eval_idx:
-        if i < 6 or i + 1 + h >= n:
+        if i < 6 or i + 1 + h >= n_min:
             continue
         d = dates[i]
         if day_cnt.get(d, 0) >= 3:
@@ -85,6 +86,8 @@ def panel_pnl(panel: dict, dates: np.ndarray, eval_mask: np.ndarray,
         
         vals = {}
         for pair in INSTRUMENTS:
+            if i >= len(mom[pair]):
+                continue
             v = mom[pair][i]
             if not np.isnan(v):
                 vals[pair] = v
@@ -105,6 +108,9 @@ def panel_pnl(panel: dict, dates: np.ndarray, eval_mask: np.ndarray,
         for pair in longs + shorts:
             data = panel[pair]
             ei, xi = i + 1, i + 1 + h
+            if ei >= len(data["exec"]) or xi >= len(data["exec"]):
+                valid = False
+                break
             if not (data["exec"][ei] and data["obs"][ei] and data["exec"][xi] and data["obs"][xi]):
                 valid = False
                 break

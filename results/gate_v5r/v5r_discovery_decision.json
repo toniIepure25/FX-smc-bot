@@ -1,0 +1,9 @@
+{
+ "artifact_id": "V5R_DISCOVERY_DECISION_V1",
+ "protocol_hash": "fd8c18e1be138ebcac0d6d067a14feac266cc3c2f75627330efcc1800c98de6b",
+ "n_candidates": 80,
+ "n_pre_holdout": 0,
+ "pre_holdout_ids": [],
+ "verdict": "V5R_TRUE_STRUCTURAL_MODELS_NO_PRE_HOLDOUT_EDGE",
+ "next_gate": "MARKET_PIVOT"
+}
