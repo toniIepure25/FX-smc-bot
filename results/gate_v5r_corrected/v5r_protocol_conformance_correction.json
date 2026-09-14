@@ -1,0 +1,70 @@
+{
+ "artifact_id": "V5R_PROTOCOL_CONFORMANCE_CORRECTION",
+ "label": "POST_OUTCOME_PROTOCOL_CONFORMANCE_CORRECTION",
+ "original_protocol_hash": "fd8c18e1be138ebcac0d6d067a14feac266cc3c2f75627330efcc1800c98de6b",
+ "data_digest": "15a5c1af697c85dfaa454812aa8061b2a4d97fafa956196210bc3b38415d11c0",
+ "corrections": [
+  {
+   "id": "C1",
+   "family": "R1",
+   "defect": "Cost multiplier changes execution cost only, not entry eligibility",
+   "fix": "Add entry filter: |expected_move_H_bps| > cost_multiple * (spread_bps + 0.40). Direction = sign(expected_move_H). expected_move_H = slope * H_bars converted to bps.",
+   "candidates_unchanged": 24
+  },
+  {
+   "id": "C2",
+   "family": "R2",
+   "defect": "GMM cond_means uses contemporaneous return (train_data[:,0]) instead of future-H return",
+   "fix": "For each horizon H in [6,12,24,48] (5-min bars), construct causal label: (mid[t+H]-mid[t])/mid[t]*1e4. Fit GMM on features from past only. Estimate E[future_ret_H | regime=k] from training. Prediction = sum_k P(k|x_t) * E[ret_H|k].",
+   "candidates_unchanged": 8
+  },
+  {
+   "id": "C3",
+   "family": "R3",
+   "defect": "Ranks only 6-bar momentum. Protocol requires 3 features: recent return, residual return, trend persistence",
+   "fix": "At each anchor: (1) recent_return = sum(ret[i-6:i]), (2) residual_return = recent_return - cross_sectional_mean(recent_return), (3) trend_persistence = sign consistency of ret[i-6:i] (fraction of same-sign bars). Standardize each cross-sectionally (z-score), combine with equal weight (1/3 each), rank all 13 pairs.",
+   "candidates_unchanged": 8
+  },
+  {
+   "id": "C4",
+   "family": "R4",
+   "defect": "cid uses dyn[:4] causing 'residual_momentum' and 'residual_drift' to both become 'resi'. Only 8 unique IDs instead of 16.",
+   "fix": "Use full dynamic name: R4_usd_momentum_h30, R4_usd_drift_h30, R4_pca_momentum_h30, R4_pca_drift_h30, etc. Assert 16 unique IDs before P&L.",
+   "candidates_unchanged": 16
+  },
+  {
+   "id": "C5",
+   "family": "R5",
+   "defect": "mid, bo, ao = a['mid'], a['ao'], a['bo'] - BID and ASK are SWAPPED",
+   "fix": "Correct to: mid=a['mid'], bo=a['bo'], ao=a['ao']. Add hard test proving long entry=ASK, exit=BID.",
+   "candidates_unchanged": 16
+  },
+  {
+   "id": "C6",
+   "family": "R5",
+   "defect": "Training always uses ret[i+6] target, same model reused for all horizons",
+   "fix": "For each (arch, ctx, horizon), train distinct model on t->t+H target. H in [6,12,24,48] 5-min bars. Still 2 arch x 2 ctx x 4 horizons = 16.",
+   "candidates_unchanged": 16
+  },
+  {
+   "id": "C7",
+   "family": "R7",
+   "defect": "Return-like expected_move compared directly against spread_bps. Dimensional mismatch causes zero trades.",
+   "fix": "Convert all to BPS. R1: expected_move_H_bps = slope * H_bars * 1e4 (log return to bps). R2: regime-weighted E[ret_H] already in bps. Compare |exp_move_bps| > spread_bps + 0.40 * cost_mult. Horizon-specific for both sources.",
+   "candidates_unchanged": 16
+  },
+  {
+   "id": "C8",
+   "family": "R3/R4",
+   "defect": "Panel P&L returns bid/ask gross without explicit transaction cost",
+   "fix": "Apply 0.40 bps round-trip per completed position (2 legs for long-short pair = 0.80 bps total). Report gross, explicit_cost, net separately.",
+   "candidates_unchanged": 24
+  }
+ ],
+ "total_candidates": 88,
+ "no_semantic_change_beyond_protocol_restoration": true,
+ "no_new_strategies": true,
+ "no_new_parameters": true,
+ "no_threshold_optimization": true,
+ "no_2018_access": true
+}
