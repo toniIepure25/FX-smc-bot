@@ -1,0 +1,10 @@
+{
+ "artifact_id": "V5R_CORRECTED_DISCOVERY_DECISION_V1",
+ "protocol_hash": "fd8c18e1be138ebcac0d6d067a14feac266cc3c2f75627330efcc1800c98de6b",
+ "correction_hash": "07db8a491a6b4c242e326186f14d6e0eeaeddf6b8c35a88ec1db2368231cb35d",
+ "n_candidates": 88,
+ "n_pre_holdout": 0,
+ "pre_holdout_ids": [],
+ "verdict": "V5R_CORRECTED_NO_PRE_HOLDOUT_EDGE",
+ "next_gate": "MARKET_PIVOT_CRYPTO_PERPETUALS"
+}

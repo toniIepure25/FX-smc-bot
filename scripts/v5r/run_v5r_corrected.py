@@ -177,15 +177,25 @@ def main():
                 if np.isnan(features[i, 0]): continue
                 if i - last_fit >= refit_interval and i >= 500:
                     train = features[:i]
-                    train = train[~np.isnan(train).any(axis=1)]
-                    if len(train) > 5000: train = train[::len(train)//5000]
+                    valid_rows = ~np.isnan(train).any(axis=1)
+                    train = train[valid_rows]
+                    # Also filter future returns to same rows
+                    fr_all = {}
+                    for h in [6, 12, 24, 48]:
+                        fr_all[h] = fut_ret[h][:i][valid_rows]
+                    # Subsample
+                    if len(train) > 5000:
+                        step = len(train) // 5000
+                        train = train[::step]
+                        for h in [6, 12, 24, 48]:
+                            fr_all[h] = fr_all[h][::step]
                     if len(train) >= 500:
                         gmm = GaussianMixture(n_components=nc, random_state=42, n_init=1)
                         gmm.fit(train)
                         labels = gmm.predict(train)
                         cond_means = {}
                         for h in [6, 12, 24, 48]:
-                            fr = fut_ret[h][:i]
+                            fr = fr_all[h]
                             valid_f = ~np.isnan(fr)
                             cm = np.zeros(nc)
                             for c in range(nc):

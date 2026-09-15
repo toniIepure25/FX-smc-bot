@@ -1,0 +1,18 @@
+{
+ "artifact_id": "V5R_CORRECTED_STATISTICS_V1",
+ "protocol_hash": "fd8c18e1be138ebcac0d6d067a14feac266cc3c2f75627330efcc1800c98de6b",
+ "correction_hash": "07db8a491a6b4c242e326186f14d6e0eeaeddf6b8c35a88ec1db2368231cb35d",
+ "wrc_p": 0.485149,
+ "spa_p": 0.485149,
+ "romano_wolf_max": 1.0,
+ "holm_max": 1.0,
+ "bh_max": 1.0,
+ "psr": 1.0,
+ "dsr": 0.0,
+ "cscv_pbo": 1.0,
+ "bootstrap": {
+  "type": "stationary",
+  "reps": 100,
+  "block_length": 5
+ }
+}
