@@ -1,5 +1,12 @@
 # Project Context for LLM Conversations
 
+> **HISTORICAL — last updated 2026-04-12. Superseded by [STATUS.md](STATUS.md).**
+>
+> This document describes the earlier `bos_only_usdjpy` paper-trading phase. It
+> predates the 2026 V1–V5R alpha-discovery programme, which closed with no
+> survivor. Do not treat the champion or paper-trading status below as current;
+> see [STATUS.md](STATUS.md) for the authoritative state.
+
 > **Purpose**: This document provides a complete context summary of the FX-smc-bot
 > project so that any new LLM conversation can immediately understand the project
 > history, current state, and what should happen next. Paste this document at the

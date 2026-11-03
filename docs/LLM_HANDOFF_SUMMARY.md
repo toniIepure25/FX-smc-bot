@@ -1,5 +1,11 @@
 # LLM Handoff Summary
 
+> **HISTORICAL — 2026-04-12. Superseded by [STATUS.md](STATUS.md).**
+>
+> This summary describes the earlier `bos_only_usdjpy` paper-trading phase and is
+> retained for lineage. The 2026 V1–V5R alpha-discovery programme later closed
+> with no survivor. Do not use the champion/paper status below as current.
+
 > Quick-reference version of the project context. For full details,
 > see `docs/PROJECT_CONTEXT_FOR_LLMS.md`.
 

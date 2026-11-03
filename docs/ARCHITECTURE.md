@@ -4,6 +4,11 @@
 
 Professional quantitative FX strategy lab that formalizes SMC/ICT concepts into systematic signals, supports institutional-grade risk controls, enables rigorous strategy decomposition, and provides deployment-ready paper trading with full audit trails.
 
+> **Current status:** the 2026 FX M1 alpha-discovery programme is closed with no
+> survivor. This document describes the reusable framework, not a live strategy.
+> See [STATUS.md](STATUS.md) for the authoritative status and
+> [ROADMAP.md](ROADMAP.md) for what should happen next.
+
 ## System Architecture
 
 ```
@@ -85,15 +90,15 @@ Professional quantitative FX strategy lab that formalizes SMC/ICT concepts into 
 - **execution/** — Fill simulation (conservative/optimistic/random), slippage models (fixed, volatility, data-driven)
 - **backtesting/** — Event-driven engine with regime tagging, trade ledger, metrics, attribution with interaction dimensions
 - **ml/** — Regime classifiers (volatility, trend/range, spread, composite), microstructure proxies (bar efficiency, wick asymmetry, spread stress, volatility compression, directional persistence)
-- **research/** — Ablation runner (family/scoring/filter), campaign orchestration (config sweep, baseline-vs-SMC, walk-forward), research quality scores, experiment registry, evaluation with regime/interaction dimensions
-- **live/** — BrokerAdapter protocol, PaperBroker, EventJournal (JSONL audit log), LiveState persistence, PaperTradingRunner, AlertSink protocol
+- **research/** — Ablation runner (family/scoring/filter), campaign orchestration (config sweep, baseline-vs-SMC, walk-forward), research quality scores, experiment registry, evaluation with regime/interaction dimensions; frozen gate modules for C2–C6/F0/Q0–Q1/P0–P1; versioned programmes under `v2/`, `v3/`, `v5r/` and `rate_sources/`
+- **live/** — BrokerAdapter protocol, PaperBroker, EventJournal (JSONL audit log), LiveState persistence, PaperTradingRunner, ForwardPaperRunner, health checks, alerts and the OANDA/file-watch adapters used by the forward service
 - **utils/** — ATR, pip math, session time helpers, logging
 
 ## Data Pipeline
 
 ```
-data/raw/          ← Downloaded CSVs (Dukascopy, MT4, generic)
-data/interim/      ← Normalized CSVs
+data/raw/          ← Downloaded CSVs / tick exports (Dukascopy, MT4, generic)
+data/canonical/    ← Certified canonical M1/tick store (research gates)
 data/processed/    ← Final Parquet files (canonical schema)
   EURUSD/
     1m.parquet     ← Base resolution
@@ -102,6 +107,12 @@ data/processed/    ← Final Parquet files (canonical schema)
     4h.parquet
   manifest.json    ← Dataset metadata
 ```
+
+The research programmes add a bid/ask-aware path: tick or M1 bid/ask files are
+certified, normalized, resampled to the research timeframes and recorded with a
+manifest/hash. The 2018+ holdout is partitioned and sealed before any exploratory
+run. See [DATA_GUIDE.md](DATA_GUIDE.md), [data/README.md](../data/README.md) and
+[research/README.md](research/README.md).
 
 ## Operational Risk State Machine
 
@@ -151,8 +162,28 @@ The `BrokerAdapter` protocol enables swapping `PaperBroker` for a real broker im
 7. **Append-only audit journal**: JSONL event log for full signal-to-fill traceability
 8. **Research quality scores**: Quantitative go/no-go diagnostics (stability, robustness, simplicity, OOS consistency, diversification)
 
-## Non-goals (current phase)
+## Forward paper service
 
-- Full UI/dashboard
-- Deep learning from raw candles
-- Reinforcement learning
+The `live/` package also supports a long-running forward paper service used by
+the legacy `bos_only_usdjpy` programme:
+
+```
+OANDA / file-watch feed → ForwardPaperRunner → PaperBroker → EventJournal
+                               ↓                    ↓
+                         Risk/Portfolio        state.json + health.json
+```
+
+It is packaged in the repository `Dockerfile` / `docker-compose.yml`. The service
+is **legacy and unvalidated**; see [PAPER_TRADING_GUIDE.md](PAPER_TRADING_GUIDE.md)
+and [../deploy/docs/forward_paper_stack_overview.md](../deploy/docs/forward_paper_stack_overview.md).
+
+## Scope and status
+
+- The framework is intended for research, not for unsupervised live trading.
+- The 2026 alpha programme is closed; do not interpret its artifacts as an edge.
+- The current roadmap prioritises test/lint/CI health, packaging and
+  reproducibility over new strategy work.
+- Full UI/dashboard, reinforcement learning and deep learning directly from raw
+  candles were not goals of the closed programme and are not approved next steps.
+- Any new programme needs a new data class or market and a new pre-registered
+  protocol; see [ROADMAP.md](ROADMAP.md).

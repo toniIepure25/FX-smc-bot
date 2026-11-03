@@ -1,132 +1,194 @@
 # FX-smc-bot
 
-Professional quantitative FX strategy lab for systematic SMC/ICT signal formalization, portfolio-aware risk allocation, realistic execution modeling, strategy decomposition, paper trading, and robust research validation.
+**Research-grade FX / Smart Money Concepts (SMC) framework and research archive.**
 
-## Quick Start
+> **Status: `CURRENT_DATA_ALPHA_SEARCH_EXHAUSTED`**
+>
+> The 2026 FX M1 structural alpha-discovery program is closed. Across the tested
+> data (13 pairs, M1, 2010–2017) there is **no validated, actionable edge** and no
+> candidate that survives the program's pre-holdout gates. The holdout (2018+) was
+> never inspected. See [docs/STATUS.md](docs/STATUS.md) for the authoritative
+> status and [the terminal postmortem](docs/research/fx_alpha_discovery_v5r_corrected/V5R_TERMINAL_POSTMORTEM.md)
+> for the evidence.
+>
+> This repository is a research and engineering artifact. It is **not** a trading
+> signal service, **not** investment advice, and **not** validated for live money.
 
-```bash
-# Install
-pip install -e ".[dev]"
+---
 
-# Generate synthetic data (M1 base + resampled to all TFs)
-python scripts/download_data.py --mode generate --output-dir data/processed
+## What this is
 
-# Run backtest
-python scripts/run_backtest.py --data-dir data/processed --output-dir results/ --label my_run
+A modular Python framework for formalising discretionary SMC/ICT ideas into
+testable rules, with the infrastructure needed to reject weak ideas honestly:
 
-# Run ablation study (which families add value?)
-python scripts/run_campaign.py ablation --data-dir data/processed --type family
+- market-structure primitives (swings, BOS/CHoCH, FVG, order blocks, liquidity);
+- config-driven candidate generation and systematic ablation;
+- portfolio-aware risk sizing and constraints;
+- bid/ask-aware execution simulation with cost stress;
+- event-driven backtesting, regime tagging and attribution;
+- walk-forward, multiplicity-aware statistics and frozen research protocols;
+- paper/forward trading plumbing with an append-only audit journal.
 
-# Compare baselines vs SMC
-python scripts/run_campaign.py baseline_vs_smc --data-dir data/processed
+The research result is negative. The framework, the test suite, the data
+plumbing and the research protocol are the reusable output.
 
-# Walk-forward validation
-python scripts/run_campaign.py walk_forward --data-dir data/processed --splits 5
+## Status at a glance
 
-# Paper trading replay
-python scripts/run_paper.py --data-dir data/processed --output-dir paper_runs
+| Area | State |
+|---|---|
+| Alpha research on current FX data | **Closed — no survivor** (`CURRENT_DATA_ALPHA_SEARCH_EXHAUSTED`) |
+| Holdout 2018+ | **Sealed and unread** |
+| Core framework code | Reusable; 11 packages under `src/fx_smc_bot/` |
+| Test suite | 1,900+ tests; pytest collection is green |
+| Static typing / lint | `F821` clean; broader Ruff cleanup is a roadmap item |
+| Forward paper service | Legacy Docker service; requires credentials; **not validated** |
+| Recommended action | Do not deploy. Read [docs/STATUS.md](docs/STATUS.md) before starting new work. |
 
-# Run tests (144 tests)
-python -m pytest tests/ -v
+## Quick start
+
+**Prerequisites:** Python 3.10–3.12, `pip` (or `uv`), and a shell. Commands below
+are shown for PowerShell; on Unix activate with `source .venv/bin/activate`.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e ".[dev]"
 ```
 
-## Architecture
+Run the synthetic-data smoke test:
 
-| Package | Purpose |
-|---------|---------|
-| `data/` | Multi-format ingestion, Parquet pipeline, normalization, diagnostics, manifest |
-| `structure/` | SMC primitives: swings, BOS/CHoCH, FVG, OB, liquidity |
-| `alpha/` | Config-driven candidate generation, scoring, setup families, baselines |
-| `risk/` | Sizing, constraints (currency exposure, daily stop, lockout), drawdown, portfolio diagnostics |
-| `portfolio/` | Selection, multi-strategy allocation (equal risk, score-weighted, capped conviction) |
-| `execution/` | Fill simulation with configurable policies, slippage models |
-| `backtesting/` | Event-driven engine with regime tagging, metrics, multi-dimensional attribution |
-| `ml/` | Regime classifiers (volatility, trend/range, spread, composite), microstructure proxies |
-| `research/` | Ablation, campaigns, walk-forward, quality scores, experiment registry, reporting |
-| `live/` | Paper broker, event journal, state persistence, alerts, paper trading runner |
-| `utils/` | ATR, pip math, session times, logging |
+```powershell
+# 1. Generate one month of synthetic M1 data and resample it.
+python scripts/download_data.py --mode generate --output-dir var/smoke/data --start 2024-01-01 --end 2024-02-01
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for full details.
+# 2. Run a small end-to-end backtest.
+python scripts/run_backtest.py --data-dir var/smoke/data --output-dir var/smoke/results --label smoke
 
-## Strategy Decomposition
-
-Config-driven alpha selection enables systematic ablation:
-
-```bash
-# Which setup families add value?
-python scripts/run_campaign.py ablation --data-dir data/processed --type family
-
-# Scoring weight sensitivity
-python scripts/run_campaign.py ablation --data-dir data/processed --type scoring
-
-# Filter threshold sweeps
-python scripts/run_campaign.py ablation --data-dir data/processed --type filter
+# 3. Run the test suite (~7 minutes on a laptop).
+python -m pytest -q
 ```
 
-## Risk Model
+The synthetic path validates wiring, not profitability. It must never be used as
+evidence of an edge.
 
-Institutional-grade risk controls:
+For the pinned environment, `requirements.lock` is a `uv pip compile` lock file:
 
-- **Currency exposure limits** per base/quote currency
-- **Directional concentration** caps
-- **Daily loss lockout** with operational state machine (ACTIVE → THROTTLED → LOCKED → STOPPED)
-- **Consecutive-loss dampening**
-- **Multiple allocation strategies**: equal risk, score-weighted, capped conviction
-
-See [docs/RISK_MODEL.md](docs/RISK_MODEL.md).
-
-## Regime Analytics
-
-Every trade is tagged with its market regime at close time:
-
-- Volatility regime (low/normal/high)
-- Trend/range classification
-- Spread regime (tight/normal/wide)
-- Microstructure proxies: bar efficiency, wick asymmetry, spread stress, vol compression, directional persistence
-- Interaction effects: pair × regime, family × regime
-
-## Paper Trading
-
-```bash
-python scripts/run_paper.py --data-dir data/processed --output-dir paper_runs
+```powershell
+uv pip install --require-hashes -r requirements.lock
 ```
 
-Produces:
-- `journal.jsonl` — Full audit trail (signals, orders, fills, state transitions)
-- `state.json` — Resumable session state
+## Repository map
 
-See [docs/PAPER_TRADING_GUIDE.md](docs/PAPER_TRADING_GUIDE.md).
+| Path | Purpose |
+|---|---|
+| `src/fx_smc_bot/` | Library: data, structure, alpha, risk, portfolio, execution, backtesting, ml, research, live, utils |
+| `scripts/` | CLI entry points and frozen research-gate runners — see [scripts/README.md](scripts/README.md) |
+| `configs/` | YAML configuration for framework, risk profiles and research programs |
+| `tests/` | Unit, integration and protocol-conformance tests |
+| `docs/` | Guides, status and the research archive — start at [docs/README.md](docs/README.md) |
+| `results/` | Committed research evidence and decision artifacts — see [results/README.md](results/README.md) |
+| `data/` | Local datasets (mostly ignored) and small tracked samples — see [data/README.md](data/README.md) |
+| `deploy/` | VPS, Docker and operations runbooks |
+| `tools/` | Independent Dukascopy `.bi5` parsers and Node acquisition helpers |
+| `paper_validation_program/` | Legacy paper-trading programme design (not executed) |
+| `forensics/` | Preserved copies of code used in forensic audits |
+| `var/` | Local scratch, caches and quarantine (gitignored) — see [var/README.md](var/README.md) |
 
-## Research Quality Scores
+## Research status
 
-Quantitative confidence metrics for deployment decisions:
+The programme tested broad signal classes (momentum, mean reversion, volatility,
+session/calendar, ML) and then "true structural" models (Kalman, GMM,
+cross-sectional ranking, PCA residuals, GRU/TCN, cost-aware stopping) on M1 FX
+data. Every candidate was evaluated against pre-registered gates, multiplicity
+corrections and execution costs.
 
-| Score | Measures |
-|-------|----------|
-| Stability | Consistency across time periods |
-| Robustness | Survival under cost stress |
-| Simplicity | Whether complexity is justified |
-| OOS Consistency | In-sample vs out-of-sample ratio |
-| Diversification | Balance across pairs/directions/families |
-| Deployment Readiness | Composite go/no-go |
+| Version | Scope | Candidates | Verdict |
+|---|---|---:|---|
+| V1–V3 | Broad signal search | 1,388 | `V3_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR` |
+| V4 | CME FX futures L2 (Databento) | 0 | Never executed — no paid-data acquisition |
+| V5 | First "structural models" attempt | 160 | `V5_DISCOVERY_COMPLETE_NO_SCIENTIFIC_SURVIVOR` — invalid due to fidelity failures |
+| V5R | True structural models | 88 | `V5R_TRUE_STRUCTURAL_MODELS_NO_PRE_HOLDOUT_EDGE` — invalid due to protocol deviations |
+| V5R corrected | Protocol-conformance rerun | 88 | `V5R_CORRECTED_NO_PRE_HOLDOUT_EDGE` — scientific null |
+
+There are **zero scientific survivors**. The one isolated positive (R7: 5 trades,
++675 bps gross, Sharpe 0.002) is a small-sample artifact, not alpha.
+
+Program rules that remain in force:
+
+- no V6 on the same FX data;
+- no parameter sweeps, signal inversions or post-hoc threshold tuning;
+- no candidate rescues and no 2018+ inspection;
+- any new programme needs a new data class or market **and** a new pre-registered
+  protocol.
+
+## Reusable infrastructure
+
+| Component | Why it is useful beyond this programme |
+|---|---|
+| `data/` | Tick/M1 ingestion, Dukascopy `.bi5`, bid/ask resampling, manifests, holdout firewalls |
+| `execution/` | Bid/ask-aware fills, spread/slippage stress, cost realism |
+| `research/` | Frozen configs, walk-forward, multiplicity corrections (WRC/SPA/Romano-Wolf/Holm/BH), PBO/CSCV |
+| `research/v3/` | Acquisition certification, data gates, survivorship and boundary checks |
+| `research/v5r/` | Kalman, GMM, cross-sectional, PCA and sequence-model reference implementations |
+| `live/` | Paper broker, JSONL journal, resumable state, health checks and alerts |
+| `tests/` | Protocol-conformance and golden-execution tests that encode expensive lessons |
+
+## Forward paper service (legacy)
+
+The Docker stack in `docker-compose.yml` runs a forward paper-trading service for
+the legacy `bos_only_usdjpy` programme:
+
+```powershell
+Copy-Item .env.example .env
+# Fill in broker/Telegram credentials, then review deploy/docs/ before starting.
+docker compose up --build forward-paper
+```
+
+This service was built for an earlier programme and is **not** evidence of a
+current edge. Do not point it at a live account.
 
 ## Documentation
 
 | Document | Content |
-|----------|---------|
-| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture and design decisions |
-| [DATA_GUIDE.md](docs/DATA_GUIDE.md) | Data pipeline and formats |
-| [RISK_MODEL.md](docs/RISK_MODEL.md) | Constraint hierarchy and exposure budgeting |
-| [RESEARCH_METHODOLOGY.md](docs/RESEARCH_METHODOLOGY.md) | Ablation, walk-forward, robustness methodology |
-| [PAPER_TRADING_GUIDE.md](docs/PAPER_TRADING_GUIDE.md) | Paper broker setup and operational controls |
-| [VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md) | OOS discipline and go/no-go criteria |
-| [EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md) | Step-by-step experiment recipes |
+|---|---|
+| [docs/STATUS.md](docs/STATUS.md) | **Canonical current status**, lineage and prohibited actions |
+| [docs/README.md](docs/README.md) | Full documentation index |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Framework architecture and module map |
+| [docs/DATA_GUIDE.md](docs/DATA_GUIDE.md) | Data sources, schema and ingestion |
+| [docs/RISK_MODEL.md](docs/RISK_MODEL.md) | Sizing, constraints and exposure budgeting |
+| [docs/RESEARCH_METHODOLOGY.md](docs/RESEARCH_METHODOLOGY.md) | Ablation, walk-forward and robustness methodology |
+| [docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md) | OOS discipline and go/no-go criteria |
+| [docs/PAPER_TRADING_GUIDE.md](docs/PAPER_TRADING_GUIDE.md) | Paper broker and operational controls |
+| [docs/EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md) | Step-by-step experiment recipes |
+| [docs/research/README.md](docs/research/README.md) | Research archive index and program verdicts |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | Prioritised engineering and research options |
 
-## Configuration
+## Testing and quality
 
-All parameters are controlled via YAML configs in `configs/`. Key config sections:
+```powershell
+# Full suite
+python -m pytest -q
 
-- `alpha` — Enabled families, scoring weights, min score, slippage/sizer model
-- `risk` — Position limits, currency exposure, daily stop, allocation strategy
-- `execution` — Fill policy, spread, slippage factors
-- `ml` — Regime tagging, quality model toggles
+# Fast core subset
+python -m pytest tests/test_domain.py tests/test_structure tests/test_backtesting tests/test_risk tests/test_alpha -q
+
+# Undefined-name check (part of the quality gate)
+python -m ruff check src tests --select F821
+```
+
+The suite includes frozen protocol tests, data-boundary tests and golden
+execution cases. Some tests are intentionally strict about paths and must run
+from the repository root.
+
+## Roadmap
+
+The programme is closed scientifically, but the repository can still be improved
+as an engineering asset. See [docs/ROADMAP.md](docs/ROADMAP.md) for the detailed
+P1–P3 plan: lint/type hygiene, CI, packaging, reproducibility, a possible new
+data class, and the decision to either archive the project or start a new,
+pre-registered research programme.
+
+## License
+
+No license file is present. Add an explicit license before distributing the code
+or accepting external contributions. Until then, treat it as proprietary.
