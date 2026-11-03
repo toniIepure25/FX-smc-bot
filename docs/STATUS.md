@@ -106,6 +106,9 @@ pre-registered protocol, and must not reuse the closed programme's holdout.
   cost-aware stopping reference implementations.
 - **Operations:** paper broker, JSONL journal, resumable state, health checks,
   alerts and Docker packaging.
+- **Dashboard:** a local Streamlit cockpit for price, position lifecycle, equity
+  and trade review. It is read-only and not a live terminal; see
+  [DASHBOARD.md](DASHBOARD.md).
 - **Tests:** protocol-conformance and golden-execution cases that encode costly
   engineering lessons (spread double-counting, date-mask loss, bid/ask ordering,
   candidate-ID collisions, dimensionality errors).

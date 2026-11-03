@@ -183,7 +183,9 @@ and [../deploy/docs/forward_paper_stack_overview.md](../deploy/docs/forward_pape
 - The 2026 alpha programme is closed; do not interpret its artifacts as an edge.
 - The current roadmap prioritises test/lint/CI health, packaging and
   reproducibility over new strategy work.
-- Full UI/dashboard, reinforcement learning and deep learning directly from raw
+- A lightweight local research dashboard exists under `dashboard/` (see
+  [DASHBOARD.md](DASHBOARD.md)); it is read-only and not a production UI. A full
+  operational UI, reinforcement learning and deep learning directly from raw
   candles were not goals of the closed programme and are not approved next steps.
 - Any new programme needs a new data class or market and a new pre-registered
   protocol; see [ROADMAP.md](ROADMAP.md).

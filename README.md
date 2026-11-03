@@ -42,6 +42,7 @@ plumbing and the research protocol are the reusable output.
 | Test suite | 1,900+ tests; pytest collection is green |
 | Static typing / lint | `F821` clean; broader Ruff cleanup is a roadmap item |
 | Forward paper service | Legacy Docker service; requires credentials; **not validated** |
+| Research dashboard | Local Streamlit cockpit for price, positions and performance |
 | Recommended action | Do not deploy. Read [docs/STATUS.md](docs/STATUS.md) before starting new work. |
 
 ## Quick start
@@ -77,11 +78,26 @@ For the pinned environment, `requirements.lock` is a `uv pip compile` lock file:
 uv pip install --require-hashes -r requirements.lock
 ```
 
+## Research dashboard
+
+A local Streamlit cockpit shows price candles, holding-period ribbons, entry/exit
+markers, equity, drawdown, attribution and the trade ledger:
+
+```powershell
+python -m pip install -e ".[dashboard]"
+streamlit run dashboard/app.py
+```
+
+The first load uses deterministic synthetic data; switch to a local dataset in
+the sidebar. It is read-only and never connects to a broker. See
+[docs/DASHBOARD.md](docs/DASHBOARD.md).
+
 ## Repository map
 
 | Path | Purpose |
 |---|---|
-| `src/fx_smc_bot/` | Library: data, structure, alpha, risk, portfolio, execution, backtesting, ml, research, live, utils |
+| `src/fx_smc_bot/` | Library: data, structure, alpha, risk, portfolio, execution, backtesting, ml, dashboard, research, live, utils |
+| `dashboard/` | Local Streamlit research cockpit — see [docs/DASHBOARD.md](docs/DASHBOARD.md) |
 | `scripts/` | CLI entry points and frozen research-gate runners — see [scripts/README.md](scripts/README.md) |
 | `configs/` | YAML configuration for framework, risk profiles and research programs |
 | `tests/` | Unit, integration and protocol-conformance tests |
@@ -159,6 +175,7 @@ current edge. Do not point it at a live account.
 | [docs/RESEARCH_METHODOLOGY.md](docs/RESEARCH_METHODOLOGY.md) | Ablation, walk-forward and robustness methodology |
 | [docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md) | OOS discipline and go/no-go criteria |
 | [docs/PAPER_TRADING_GUIDE.md](docs/PAPER_TRADING_GUIDE.md) | Paper broker and operational controls |
+| [docs/DASHBOARD.md](docs/DASHBOARD.md) | Research dashboard: price, positions, filters |
 | [docs/EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md) | Step-by-step experiment recipes |
 | [docs/research/README.md](docs/research/README.md) | Research archive index and program verdicts |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Prioritised engineering and research options |

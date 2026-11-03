@@ -26,6 +26,7 @@ and remain useful, but they are not evidence of an edge.
 | [PROMOTION_WORKFLOW.md](PROMOTION_WORKFLOW.md) | Research → candidate → paper → approved state machine |
 | [HOLDOUT_POLICY.md](HOLDOUT_POLICY.md) | Holdout sealing and access rules |
 | [PAPER_TRADING_GUIDE.md](PAPER_TRADING_GUIDE.md) | Paper broker, journal and operational controls |
+| [DASHBOARD.md](DASHBOARD.md) | Local Streamlit research dashboard: charts, positions, filters |
 | [PAPER_CAMPAIGN_GUIDE.md](PAPER_CAMPAIGN_GUIDE.md) | Paper campaign setup and reviews |
 | [EXPERIMENT_PLAYBOOK.md](EXPERIMENT_PLAYBOOK.md) | Step-by-step experiment recipes |
 

@@ -22,7 +22,9 @@ These are done and should not be re-litigated:
 - README rewrite and area indexes (`scripts/`, `results/`, `data/`, `var/`,
   `forensics/`, `paper_validation_program/`);
 - `.gitignore` / `.dockerignore` hygiene;
-- `scripts/maintenance/clean_workspace.py` with dry-run default.
+- `scripts/maintenance/clean_workspace.py` with dry-run default;
+- local Streamlit research cockpit (`dashboard/`), with tested data preparation
+  and a price/position/equity UI.
 
 ## P1 — Make the codebase trustworthy
 
