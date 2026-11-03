@@ -55,3 +55,8 @@ select = ["E", "F", "I", "B", "UP", "N"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+addopts = "--import-mode=importlib"
+cache_dir = "var/cache/pytest"
+norecursedirs = [".git", "var", "data", "results", "tools", "logs", "node_modules"]
+tmp_path_retention_count = 2
+tmp_path_retention_policy = "failed"

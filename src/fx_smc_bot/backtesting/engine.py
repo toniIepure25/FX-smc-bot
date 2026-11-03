@@ -15,7 +15,7 @@ from __future__ import annotations
 import hashlib
 import logging
 from datetime import datetime
-from typing import Sequence
+from typing import TYPE_CHECKING, Sequence
 
 import numpy as np
 
@@ -64,6 +64,9 @@ from fx_smc_bot.backtesting.ledger import TradeLedger
 from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics
 from fx_smc_bot.utils.math import atr as compute_atr
 from fx_smc_bot.utils.time import classify_session
+
+if TYPE_CHECKING:
+    from fx_smc_bot.alpha.diagnostics import DetectorDiagnostics
 
 logger = logging.getLogger(__name__)
 
@@ -129,7 +132,7 @@ class BacktestEngine:
         self,
         data: dict[TradingPair, BarSeries],
         htf_data: dict[TradingPair, BarSeries] | None = None,
-        diagnostics: "DetectorDiagnostics | None" = None,
+        diagnostics: DetectorDiagnostics | None = None,
     ) -> BacktestResult:
         """Run the backtest over the provided data.
 

@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+from unittest.mock import MagicMock, patch
+
 import numpy as np
 import pytest
-from unittest.mock import MagicMock, patch
 
 from fx_smc_bot.config import AppConfig, TradingPair, Timeframe
 from fx_smc_bot.data.models import BarSeries
@@ -18,6 +20,9 @@ from fx_smc_bot.research.validation import (
     ValidationCampaign,
     ValidationStage,
 )
+
+if TYPE_CHECKING:
+    from fx_smc_bot.backtesting.metrics import PerformanceSummary
 
 
 def _make_series(n: int = 500) -> dict[TradingPair, BarSeries]:

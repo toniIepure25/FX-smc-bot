@@ -3,10 +3,22 @@
 from __future__ import annotations
 
 import math
+import os
+import tempfile
 from datetime import datetime, timedelta
+from pathlib import Path
 
 import numpy as np
 import pytest
+
+# Keep pytest's temp tree out of the per-user root. On Windows that root can be
+# left behind with an ACL that denies even listing, which breaks every tmp_path
+# fixture with PermissionError. This directory is still outside the repository,
+# so boundary tests keep seeing a genuinely external temp location.
+os.environ.setdefault(
+    "PYTEST_DEBUG_TEMPROOT",
+    str(Path(tempfile.gettempdir()) / "fx-smc-pytest"),
+)
 
 from fx_smc_bot.config import AppConfig, Timeframe, TradingPair
 from fx_smc_bot.domain import MarketBar

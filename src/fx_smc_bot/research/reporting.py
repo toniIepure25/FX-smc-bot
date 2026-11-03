@@ -286,8 +286,8 @@ def save_run_artifacts(
         with open(run_dir / "config.json", "w") as f:
             json.dump(config_dict, f, indent=2, default=str)
 
-    # Metrics
-    metrics_dict = {k: v for k, v in vars(metrics).items() if not k.startswith("_")}
+    # Metrics (PerformanceSummary is a slots dataclass, so vars() does not work)
+    metrics_dict = asdict(metrics)
     with open(run_dir / "metrics.json", "w") as f:
         json.dump(metrics_dict, f, indent=2, default=str)
 

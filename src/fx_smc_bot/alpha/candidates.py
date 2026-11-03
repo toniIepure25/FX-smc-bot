@@ -8,6 +8,7 @@ enabling systematic ablation studies.
 from __future__ import annotations
 
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from fx_smc_bot.config import AlphaConfig, RiskConfig, SessionConfig
 from fx_smc_bot.domain import MultiTimeframeContext, TradeCandidate
@@ -18,6 +19,9 @@ from fx_smc_bot.alpha.setup_families import (
     SweepReversalDetector,
 )
 from fx_smc_bot.alpha.filters import apply_filters
+
+if TYPE_CHECKING:
+    from fx_smc_bot.alpha.diagnostics import DetectorDiagnostics
 
 
 _DETECTOR_REGISTRY: dict[str, type] = {
@@ -77,10 +81,9 @@ def generate_candidates(
     risk_cfg: RiskConfig | None = None,
     session_cfg: SessionConfig | None = None,
     alpha_cfg: AlphaConfig | None = None,
-    diagnostics: "DetectorDiagnostics | None" = None,
+    diagnostics: DetectorDiagnostics | None = None,
 ) -> list[TradeCandidate]:
     """Run all setup detectors and return filtered, scored candidates."""
-    from fx_smc_bot.alpha.diagnostics import DetectorDiagnostics as _DD
     risk_cfg = risk_cfg or RiskConfig()
     alpha_cfg = alpha_cfg or AlphaConfig()
 
