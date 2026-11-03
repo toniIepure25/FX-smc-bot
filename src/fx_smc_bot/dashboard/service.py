@@ -256,3 +256,69 @@ def summary_rows(snapshot: DashboardSnapshot) -> list[dict[str, object]]:
             }
         )
     return rows
+
+
+def monthly_pnl_frame(trades: pd.DataFrame) -> pd.DataFrame:
+    """Aggregate realised P&L by month for the performance overview."""
+    columns = ["month", "pnl", "trades", "win_rate"]
+    if trades.empty:
+        return pd.DataFrame(columns=columns)
+
+    frame = trades.copy()
+    closed = frame["closed_at"]
+    if getattr(closed.dt, "tz", None) is not None:
+        closed = closed.dt.tz_convert("UTC").dt.tz_localize(None)
+    frame["month"] = closed.dt.to_period("M").astype(str)
+    monthly = (
+        frame.groupby("month", as_index=False)
+        .agg(
+            pnl=("pnl", "sum"),
+            trades=("id", "count"),
+            wins=("pnl", lambda values: int((values > 0).sum())),
+        )
+        .sort_values("month")
+    )
+    monthly["win_rate"] = monthly["wins"] / monthly["trades"]
+    return monthly[columns]
+
+
+def pair_summary_frame(trades: pd.DataFrame) -> pd.DataFrame:
+    """One row per pair with trade count, win rate and realised P&L."""
+    columns = ["pair", "trades", "win_rate", "pnl", "avg_pnl", "pips"]
+    if trades.empty:
+        return pd.DataFrame(columns=columns)
+
+    summary = (
+        trades.groupby("pair", as_index=False)
+        .agg(
+            trades=("id", "count"),
+            wins=("pnl", lambda values: int((values > 0).sum())),
+            pnl=("pnl", "sum"),
+            avg_pnl=("pnl", "mean"),
+            pips=("pnl_pips", "sum"),
+        )
+        .sort_values("pnl", ascending=False)
+    )
+    summary["win_rate"] = summary["wins"] / summary["trades"]
+    return summary[columns]
+
+
+def session_summary_frame(trades: pd.DataFrame) -> pd.DataFrame:
+    """One row per session with trade count, win rate and realised P&L."""
+    columns = ["session", "trades", "win_rate", "pnl"]
+    if trades.empty:
+        return pd.DataFrame(columns=columns)
+
+    frame = trades.copy()
+    frame["session"] = frame["session"].fillna("unknown").replace("", "unknown")
+    summary = (
+        frame.groupby("session", as_index=False)
+        .agg(
+            trades=("id", "count"),
+            wins=("pnl", lambda values: int((values > 0).sum())),
+            pnl=("pnl", "sum"),
+        )
+        .sort_values("pnl", ascending=False)
+    )
+    summary["win_rate"] = summary["wins"] / summary["trades"]
+    return summary[columns]
