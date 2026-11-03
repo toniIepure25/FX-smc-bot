@@ -19,7 +19,8 @@ lib/
 lib64/
 parts/
 sdist/
-var/
+var/*
+!var/README.md
 wheels/
 share/python-wheels/
 *.egg-info/
@@ -61,7 +62,9 @@ hypothesis/
 Thumbs.db
 
 # --- Project: generated research / validation outputs (large) ---
-results/
+# Keep committed evidence tracked, but do not add new generated artifacts.
+results/*
+!results/README.md
 
 # --- Project: live / paper session state & journals ---
 forward_runs/
@@ -92,3 +95,13 @@ logs/
 /tools/dukascopy-node/output/
 /tools/dukascopy-node/_tmp_*
 .v3_scratch/
+
+# --- Root-level test/agent scratch (kept out of the project tree) ---
+/.tmp/
+/.tmp-*/
+/.pytest_tmp_*/
+/pytest-*/
+/pytest_*/
+/.codex-test-tmp-*/
+/.audit_tmp/
+/results/.pytest-basetemp/
