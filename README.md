@@ -81,7 +81,8 @@ uv pip install --require-hashes -r requirements.lock
 ## Research dashboard
 
 A local Streamlit cockpit shows price candles, holding-period ribbons, entry/exit
-markers, equity, drawdown, attribution and the trade ledger:
+markers, equity and drawdown, monthly/attribution diagnostics and a filterable
+trade ledger. It also exports the filtered ledger (CSV) and a run summary (JSON):
 
 ```powershell
 python -m pip install -e ".[dashboard]"
@@ -98,6 +99,7 @@ the sidebar. It is read-only and never connects to a broker. See
 |---|---|
 | `src/fx_smc_bot/` | Library: data, structure, alpha, risk, portfolio, execution, backtesting, ml, dashboard, research, live, utils |
 | `dashboard/` | Local Streamlit research cockpit — see [docs/DASHBOARD.md](docs/DASHBOARD.md) |
+| `.streamlit/` | Project-local dark theme for the dashboard; no secrets |
 | `scripts/` | CLI entry points and frozen research-gate runners — see [scripts/README.md](scripts/README.md) |
 | `configs/` | YAML configuration for framework, risk profiles and research programs |
 | `tests/` | Unit, integration and protocol-conformance tests |

@@ -29,15 +29,26 @@ usable without downloading data. Use the sidebar to switch to a local dataset.
 
 | Area | Content |
 |---|---|
-| Header | Research-only badge and the source/config provenance |
+| Header | Research-only badge and source/period/config provenance |
 | KPI row | Net P&L, win rate, profit factor, max drawdown, Sharpe, expectancy |
-| Overview | Equity curve, underwater/drawdown curve, P&L by setup family, session mix |
-| Price & positions | Candlestick + volume, holding-period ribbons, entry triangles, exit ×, position paths |
-| Trade ledger | Direction/family/outcome filters, sortable table, per-trade inspector |
-| Data quality | Bars, first/last timestamp, volume/spread availability, resolved config |
+| Secondary row | Average winner/loser, planned RR, expectancy in pips |
+| Overview | Equity and underwater curves, monthly realised P&L, trade P&L distribution, advanced metrics |
+| Price & positions | Candlestick + volume, holding ribbons, entries/exits, position paths, single-trade zoom |
+| Attribution | P&L by setup family, pair summary, session summary |
+| Trade ledger | Direction/family/outcome filters, sortable table, per-trade inspector, CSV export |
+| Data & config | Bars and timestamp range, volume/spread availability, JSON and CSV export, resolved config |
 
 Chart interactions: drag to pan, scroll to zoom, use the Plotly toolbar for
-reset/export. Hovering an entry or exit shows family, P&L, pips and RR.
+reset/export. Hovering an entry or exit shows family, P&L, pips and RR. The
+**Trade focus** selector zooms to the bars around one trade and draws entry/exit
+reference levels.
+
+Every run also exposes two read-only downloads: the filtered ledger as CSV and a
+run summary as JSON (source, config hash, period, metrics). Exports are generated
+in memory; nothing is written back to the repository.
+
+The page uses the project theme in `.streamlit/config.toml` (dark, compact) when
+Streamlit is started from the repository root.
 
 ## Data sources
 
@@ -54,29 +65,33 @@ directory you are authorised to inspect.
 
 The sidebar accepts a YAML config path, default `configs/base.yaml`. The config
 controls pairs, timeframes, risk and execution assumptions. The resolved config
-is visible in the **Data quality** tab.
+is visible in the **Data & config** tab.
 
 ## Architecture
 
 ```
-dashboard/app.py                  Streamlit page, Plotly figures, filters
-src/fx_smc_bot/dashboard/service.py
-  synthetic_market_data()         deterministic demo bars
-  load_market_data()              Parquet/CSV provider wrapper
-  run_snapshot()                  one BacktestEngine run
-  price_frame() / trades_frame()  display contracts
-  equity_frame() / summary_rows()
+dashboard/app.py                    Streamlit layout, controls, filters, exports
+src/fx_smc_bot/dashboard/
+  service.py                        data loading, one engine run, display frames
+  charts.py                         Plotly figure builders (no Streamlit import)
+  formatting.py                     compact money/percentage helpers
+.streamlit/config.toml              local dark theme; no secrets
 ```
 
 The UI depends on the optional `dashboard` extra (`streamlit`, `plotly`). The
 service module has no Streamlit/Plotly import and is covered by normal pytest
-tests.
+tests; the chart builders are smoke-tested when Plotly is installed.
 
 ## Tests
 
 ```powershell
 python -m pytest tests/test_dashboard -q
 ```
+
+`tests/test_dashboard/test_service.py` checks the frame contracts and
+reconciles monthly, pair and session P&L against the ledger.
+`tests/test_dashboard/test_charts.py` smoke-tests the Plotly builders and skips
+cleanly when the optional extra is absent.
 
 To exercise the actual Streamlit page without a browser:
 

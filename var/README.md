@@ -16,11 +16,14 @@ evidence, except the quarantine directories described below.
 | `quarantine/root-bi5-20261103/` | 7,721 stray `.bi5` files (87 MB) moved out of the repository root; see `MANIFEST.txt` |
 | `quarantine/audit-2026-07/` | Four JSON audit logs recovered from the old `.audit_tmp/` cache |
 | `quarantine/cleanup-failures-20261103.txt` | Root-level temp directories that could not be removed because Windows ACLs deny access |
+| `quarantine/cleanup-failures-20261104.txt` | Repeat cleanup attempt; same ACL-blocked directories |
 
 The failed directories are pytest scratch directories created by earlier runs
 under a different security context. They are harmless but cannot be deleted or
 renamed by the current user. Remove them from an elevated shell if the ACLs can be
-repaired, or leave them; they are ignored by git.
+repaired, or leave them; they are ignored by git. New pytest runs use a temp root
+outside the repository (`tests/conftest.py`), so the root should not accumulate
+more of them.
 
 ## Rules
 
