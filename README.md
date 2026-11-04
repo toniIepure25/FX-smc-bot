@@ -43,7 +43,7 @@ plumbing and the research protocol are the reusable output.
 | Lint | Ruff clean across all non-research source; frozen `research` excluded |
 | CI | GitHub Actions: lint, `doctor --strict`, full pytest and coverage artifacts on Python 3.10 / 3.12 |
 | Developer CLI | `fx-smc info`, `doctor`, `backtest`, `dashboard` |
-| Forward paper service | Legacy Docker service; requires credentials; **not validated** |
+| Forward paper service | Legacy Docker service; optional Telegram alerts; **not validated** |
 | Research dashboard | Local Streamlit cockpit for price, positions and performance |
 | Recommended action | Do not deploy. Read [docs/STATUS.md](docs/STATUS.md) before starting new work. |
 
