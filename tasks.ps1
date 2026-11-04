@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("install", "lint", "test", "test-fast", "doctor", "smoke", "dashboard")]
+    [ValidateSet("install", "lint", "test", "test-fast", "coverage", "doctor", "smoke", "dashboard")]
     [string]$Task = "test"
 )
 
@@ -40,6 +40,11 @@ switch ($Task) {
             & $python -m pytest -q --no-header tests/test_domain.py tests/test_cli.py `
                 tests/test_structure tests/test_backtesting tests/test_risk `
                 tests/test_alpha tests/test_dashboard
+        }
+    }
+    "coverage" {
+        Invoke-Step "Running the test suite with coverage" {
+            & $python -m pytest -q --no-header --cov=fx_smc_bot --cov-report=term-missing
         }
     }
     "doctor" {

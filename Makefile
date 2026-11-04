@@ -1,6 +1,6 @@
 PY ?= python
 
-.PHONY: install lint test test-fast doctor smoke dashboard
+.PHONY: install lint test test-fast coverage doctor smoke dashboard
 
 install:
 	$(PY) -m pip install -e ".[dev,dashboard]"
@@ -16,6 +16,9 @@ test-fast:
 	$(PY) -m pytest -q --no-header tests/test_domain.py tests/test_cli.py \
 		tests/test_structure tests/test_backtesting tests/test_risk \
 		tests/test_alpha tests/test_dashboard
+
+coverage:
+	$(PY) -m pytest -q --no-header --cov=fx_smc_bot --cov-report=term-missing
 
 doctor:
 	$(PY) -m fx_smc_bot doctor --config configs/base.yaml --strict

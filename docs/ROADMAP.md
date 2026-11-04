@@ -58,28 +58,33 @@ mypy still open.)*
 - Jobs/steps: full `pytest -q`, non-research `ruff check`, `fx-smc doctor
   --strict`, dependency caching and concurrency cancellation.
 - Do not add a badge until the workflow is green on the default branch.
-- Future: documentation link check and coverage reporting.
+- Future: documentation link check. *(Coverage reporting added: CI uploads
+  `coverage.xml` for each matrix entry.)*
 
 **Acceptance:** a pull request runs the suite and lint automatically; a red
 workflow blocks merge. *(Workflow added; needs a first green run on the remote.)*
 
 ### P1.3 Coverage where it matters
-- Add `pytest-cov` and measure `src/fx_smc_bot/{risk,execution,data,backtesting}`.
-- Set targets per module based on the measured baseline, not a global 80% target.
+- **Done:** `pytest-cov` is a dev dependency, `coverage` is configured in
+  `pyproject.toml`, CI writes a terminal report plus `coverage.xml`, and
+  `make coverage` / `.\tasks.ps1 coverage` run it locally.
+- Still open: set per-module targets for `risk`, `execution`, `data` and
+  `backtesting` from a recorded baseline, and fail CI below those targets.
 - Add regression tests for any bug found during cleanup.
 
 **Acceptance:** coverage is reported in CI; the critical modules do not regress.
+*(Reporting done; thresholds still open.)*
 
 ## P2 — Reproducibility, packaging and operations
 
 ### P2.1 Reproducibility guide
-- Add `docs/REPRODUCIBILITY.md` with exact commands for:
-  - regenerating the synthetic smoke dataset;
-  - running a single backtest;
-  - running the V3/V5R programmes from frozen configs;
-  - verifying artifact hashes and expected file layout.
-- Record runtime, Python version and data digest for each recipe.
-- Verify at least one recipe end-to-end on a clean environment.
+- **Done:** `docs/REPRODUCIBILITY.md` covers clean-environment setup, the
+  deterministic synthetic run, the file-backed loader path, tests/CI parity,
+  artifact hashing and the immutable-evidence rules.
+- Still open: add the exact frozen V3/V5R programme commands and record a
+  data digest for each recipe.
+- Verify at least one recipe end-to-end on a clean environment (the synthetic
+  command is exercised locally, not yet on a fresh machine).
 
 ### P2.2 Packaging
 - **Done:** one `fx-smc` console entry point covering `info`, `doctor`,
@@ -96,12 +101,13 @@ workflow blocks merge. *(Workflow added; needs a first green run on the remote.)
   document the regeneration command either way.
 
 ### P2.3 Docker and forward service
-- Reconcile `.env.example`, `docker-compose.yml` and the actual
-  `run_live_forward_service.py --mode` choices. The current docs and code do not
-  agree on `oanda` / `file_watch` / `live` / `replay`.
-- Run the Docker smoke test in CI or in a documented manual check.
-- Pin the base image by digest, run as a non-root user, and keep the health check.
-- Mark the service clearly as legacy and unvalidated in the image labels.
+- **Done:** `.env.example`, `docker-compose.yml` and
+  `run_live_forward_service.py` now agree on `live` / `replay`; OANDA
+  credentials are marked as optional legacy inputs, and the image runs as an
+  unprivileged user with dropped capabilities, a normal (non-editable) install
+  and legacy/unvalidated image labels.
+- Still open: pin the base image by digest and add a Docker smoke test to CI or
+  a documented manual check.
 
 ### P2.4 Repository size
 - `results/` contains ~41 MB of committed evidence; `data/` is ~7.7 GB locally.

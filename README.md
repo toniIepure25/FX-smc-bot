@@ -41,7 +41,7 @@ plumbing and the research protocol are the reusable output.
 | Core framework code | Reusable; 12 packages under `src/fx_smc_bot/` |
 | Test suite | 1,900+ tests; pytest collection is green |
 | Lint | Ruff clean across all non-research source; frozen `research` excluded |
-| CI | GitHub Actions: lint, `doctor --strict` and full pytest on Python 3.10 / 3.12 |
+| CI | GitHub Actions: lint, `doctor --strict`, full pytest and coverage artifacts on Python 3.10 / 3.12 |
 | Developer CLI | `fx-smc info`, `doctor`, `backtest`, `dashboard` |
 | Forward paper service | Legacy Docker service; requires credentials; **not validated** |
 | Research dashboard | Local Streamlit cockpit for price, positions and performance |
@@ -189,12 +189,14 @@ the legacy `bos_only_usdjpy` programme:
 
 ```powershell
 Copy-Item .env.example .env
-# Fill in broker/Telegram credentials, then review deploy/docs/ before starting.
+# Fill in optional Telegram credentials, then review deploy/docs/ before starting.
 docker compose up --build forward-paper
 ```
 
-This service was built for an earlier programme and is **not** evidence of a
-current edge. Do not point it at a live account.
+The image now runs as an unprivileged user with dropped capabilities and a
+Yahoo-backed `live` paper feed (or `replay` for local data). It is **not** a
+broker connection and is **not** evidence of a current edge. Do not point it at
+a live account.
 
 ## Documentation
 
@@ -203,6 +205,7 @@ current edge. Do not point it at a live account.
 | [docs/STATUS.md](docs/STATUS.md) | **Canonical current status**, lineage and prohibited actions |
 | [docs/README.md](docs/README.md) | Full documentation index |
 | [docs/CLI.md](docs/CLI.md) | Developer CLI and local quality tasks |
+| [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) | Clean-environment runs, artifact hashes and evidence rules |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Framework architecture and module map |
 | [docs/DATA_GUIDE.md](docs/DATA_GUIDE.md) | Data sources, schema and ingestion |
 | [docs/RISK_MODEL.md](docs/RISK_MODEL.md) | Sizing, constraints and exposure budgeting |
@@ -219,6 +222,9 @@ current edge. Do not point it at a live account.
 ```powershell
 # Full suite
 python -m pytest -q
+
+# Full suite with a terminal coverage report
+python -m pytest -q --cov=fx_smc_bot --cov-report=term-missing
 
 # Fast core subset
 python -m pytest tests/test_domain.py tests/test_cli.py tests/test_structure tests/test_backtesting tests/test_risk tests/test_alpha tests/test_dashboard -q

@@ -9,6 +9,7 @@ Start with the status, then choose the track that matches your task.
 | [../README.md](../README.md) | You are opening the repository for the first time |
 | [STATUS.md](STATUS.md) | You need the authoritative current status, verdict or holdout rules |
 | [CLI.md](CLI.md) | You want the `fx-smc` commands for validation, smoke runs and the dashboard |
+| [REPRODUCIBILITY.md](REPRODUCIBILITY.md) | You need clean-environment commands, artifact hashes and the evidence rules |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | You need the module map and design decisions |
 | [ROADMAP.md](ROADMAP.md) | You want to improve the repository or decide what happens next |
 
@@ -35,8 +36,8 @@ and remain useful, but they are not evidence of an edge.
 
 | Document | Content |
 |---|---|
-| [../deploy/docs/COMPLETE_DEPLOYMENT_GUIDE.md](../deploy/docs/COMPLETE_DEPLOYMENT_GUIDE.md) | End-to-end VPS/Docker deployment |
-| [../deploy/docs/forward_paper_stack_overview.md](../deploy/docs/forward_paper_stack_overview.md) | Forward paper stack components |
+| [../deploy/docs/COMPLETE_DEPLOYMENT_GUIDE.md](../deploy/docs/COMPLETE_DEPLOYMENT_GUIDE.md) | Historical VPS/Docker deployment (OANDA-oriented) |
+| [../deploy/docs/forward_paper_stack_overview.md](../deploy/docs/forward_paper_stack_overview.md) | Legacy forward paper stack components |
 | [../deploy/docs/operator_playbook.md](../deploy/docs/operator_playbook.md) | Day-to-day operation |
 | [../deploy/docs/crash_and_recovery_playbook.md](../deploy/docs/crash_and_recovery_playbook.md) | Crash and resume procedures |
 | [../deploy/docs/final_vps_trial_readiness_verdict.md](../deploy/docs/final_vps_trial_readiness_verdict.md) | Legacy readiness verdict |
