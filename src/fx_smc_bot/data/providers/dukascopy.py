@@ -16,9 +16,7 @@ development when real data access is unavailable.
 
 from __future__ import annotations
 
-import io
 import logging
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -77,7 +75,9 @@ def generate_realistic_data(
         current += pd.Timedelta(minutes=minutes)
 
     if not timestamps:
-        return pd.DataFrame(columns=["timestamp", "open", "high", "low", "close", "volume", "spread"])
+        return pd.DataFrame(
+            columns=["timestamp", "open", "high", "low", "close", "volume", "spread"]
+        )
 
     n = len(timestamps)
     base_vol = props["vol"] * np.sqrt(minutes / (24 * 60))
@@ -122,7 +122,8 @@ def generate_realistic_data(
     spreads[(hours >= 21) | (hours < 2)] *= 1.8
 
     volumes = np.abs(rng.normal(500, 200, n)).astype(int)
-    volumes[(hours >= 12) & (hours < 16)] = (volumes[(hours >= 12) & (hours < 16)] * 1.8).astype(int)
+    active_hours = (hours >= 12) & (hours < 16)
+    volumes[active_hours] = (volumes[active_hours] * 1.8).astype(int)
 
     df = pd.DataFrame({
         "timestamp": timestamps,

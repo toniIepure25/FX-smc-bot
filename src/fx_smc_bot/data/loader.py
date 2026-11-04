@@ -90,7 +90,12 @@ def load_htf_data(
                     series = provider.load(pair, htf_timeframe)
                     if len(series) > 0:
                         htf[pair] = series
-                        logger.info("Loaded HTF %s %s: %d bars", pair.value, htf_timeframe.value, len(series))
+                        logger.info(
+                            "Loaded HTF %s %s: %d bars",
+                            pair.value,
+                            htf_timeframe.value,
+                            len(series),
+                        )
                         continue
                 except (FileNotFoundError, ValueError):
                     pass
@@ -102,11 +107,22 @@ def load_htf_data(
         src_min = TIMEFRAME_MINUTES[series.timeframe]
         tgt_min = TIMEFRAME_MINUTES[htf_timeframe]
         if tgt_min <= src_min:
-            logger.debug("Cannot resample %s from %s to %s (not higher)", pair.value, series.timeframe.value, htf_timeframe.value)
+            logger.debug(
+                "Cannot resample %s from %s to %s (not higher)",
+                pair.value,
+                series.timeframe.value,
+                htf_timeframe.value,
+            )
             continue
         try:
             htf[pair] = resample(series, htf_timeframe)
-            logger.info("Resampled HTF %s %s -> %s: %d bars", pair.value, series.timeframe.value, htf_timeframe.value, len(htf[pair]))
+            logger.info(
+                "Resampled HTF %s %s -> %s: %d bars",
+                pair.value,
+                series.timeframe.value,
+                htf_timeframe.value,
+                len(htf[pair]),
+            )
         except Exception as e:
             logger.warning("Could not resample HTF for %s: %s", pair.value, e)
 

@@ -13,7 +13,6 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 # ---------------------------------------------------------------------------
 # Core enums (used across the whole package)
 # ---------------------------------------------------------------------------
@@ -121,8 +120,11 @@ class StructureConfig(BaseModel):
     displacement_body_efficiency: float = Field(default=0.6, ge=0.0, le=1.0,
                                                 description="Min body/range ratio for displacement")
     ob_require_displacement: bool = True
-    equal_level_tolerance_pips: float = Field(default=3.0, ge=0.0,
-                                              description="Pip tolerance for equal high/low clustering")
+    equal_level_tolerance_pips: float = Field(
+        default=3.0,
+        ge=0.0,
+        description="Pip tolerance for equal high/low clustering",
+    )
     equal_level_min_touches: int = Field(default=2, ge=2)
 
 
@@ -149,13 +151,25 @@ class RiskConfig(BaseModel):
     max_per_pair_positions: int = Field(default=1, ge=1, le=5)
     max_usd_directional_exposure: float = Field(default=1.0, ge=0.0, le=5.0)
     min_reward_risk_ratio: float = Field(default=1.5, ge=0.0)
-    score_risk_modulation: float = Field(default=0.5, ge=0.0, le=1.0,
-                                         description="How much signal score modulates risk (0=none, 1=full)")
+    score_risk_modulation: float = Field(
+        default=0.5,
+        ge=0.0,
+        le=1.0,
+        description="How much signal score modulates risk (0=none, 1=full)",
+    )
     volatility_risk_scaling: bool = True
-    max_currency_exposure: float = Field(default=2.0, ge=0.0, le=10.0,
-                                          description="Max net exposure per currency factor (lot-units)")
-    max_directional_concentration: float = Field(default=0.8, ge=0.0, le=1.0,
-                                                   description="Max fraction of positions in one direction")
+    max_currency_exposure: float = Field(
+        default=2.0,
+        ge=0.0,
+        le=10.0,
+        description="Max net exposure per currency factor (lot-units)",
+    )
+    max_directional_concentration: float = Field(
+        default=0.8,
+        ge=0.0,
+        le=1.0,
+        description="Max fraction of positions in one direction",
+    )
     max_trades_per_day: int = Field(default=10, ge=1, le=100)
     max_trades_per_session: int = Field(default=5, ge=1, le=50)
     daily_loss_lockout: float = Field(default=0.025, ge=0.0, le=0.10,
@@ -173,7 +187,10 @@ class RiskConfig(BaseModel):
     )
     allocation_strategy: str = Field(
         default="equal_risk",
-        description="Budget allocation: equal_risk, score_weighted, volatility_adjusted, capped_conviction",
+        description=(
+            "Budget allocation: equal_risk, score_weighted, "
+            "volatility_adjusted, capped_conviction"
+        ),
     )
 
 
@@ -259,11 +276,17 @@ class DeploymentGateConfig(BaseModel):
     max_drawdown_pct: float = Field(default=0.20, description="Maximum drawdown percentage")
     min_trade_count: int = Field(default=30, description="Minimum number of trades")
     min_win_rate: float = Field(default=0.35, description="Minimum win rate")
-    max_cost_degradation_pct: float = Field(default=0.50, description="Max PnL loss under cost stress")
+    max_cost_degradation_pct: float = Field(
+        default=0.50,
+        description="Max PnL loss under cost stress",
+    )
     min_stability: float = Field(default=0.3, description="Minimum stability score (0-1)")
     min_robustness: float = Field(default=0.3, description="Minimum robustness score (0-1)")
     min_oos_consistency: float = Field(default=0.5, description="Minimum OOS consistency (0-1)")
-    min_diversification: float = Field(default=0.2, description="Minimum pair diversification (0-1)")
+    min_diversification: float = Field(
+        default=0.2,
+        description="Minimum pair diversification (0-1)",
+    )
 
 
 class AppConfig(BaseSettings):

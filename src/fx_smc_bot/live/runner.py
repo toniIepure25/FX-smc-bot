@@ -11,18 +11,7 @@ import logging
 import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import Any
 
-from fx_smc_bot.config import AppConfig, OperationalState, TradingPair
-from fx_smc_bot.data.models import BarSeries
-from fx_smc_bot.domain import (
-    Direction,
-    MultiTimeframeContext,
-    Order,
-    OrderType,
-    StructureRegime,
-)
-from fx_smc_bot.structure.context import build_structure_snapshot
 from fx_smc_bot.alpha.candidates import generate_candidates
 from fx_smc_bot.alpha.review import (
     CandidateApprovalPipeline,
@@ -30,23 +19,32 @@ from fx_smc_bot.alpha.review import (
     ReviewCollector,
     ReviewVerdict,
 )
-from fx_smc_bot.portfolio.selector import select_candidates
-from fx_smc_bot.portfolio.allocator import allocate_risk_budget
-from fx_smc_bot.execution.orders import intent_to_order
-from fx_smc_bot.risk.constraints import (
-    MaxDailyTradesConstraint,
-    DailyStopConstraint,
-    build_full_constraints,
-    ConstraintChecker,
+from fx_smc_bot.config import AppConfig, OperationalState, TradingPair
+from fx_smc_bot.data.models import BarSeries
+from fx_smc_bot.domain import (
+    Direction,
+    MultiTimeframeContext,
+    OrderType,
+    StructureRegime,
 )
-from fx_smc_bot.risk.drawdown import DrawdownTracker
-from fx_smc_bot.risk.sizing import SizingPolicy, StopBasedSizer
-from fx_smc_bot.utils.math import atr as compute_atr
+from fx_smc_bot.execution.orders import intent_to_order
+from fx_smc_bot.live.alerts import AlertEvent, AlertSink, LogAlertSink
 from fx_smc_bot.live.broker import PaperBroker
 from fx_smc_bot.live.health import HealthMonitor
 from fx_smc_bot.live.journal import EventJournal
 from fx_smc_bot.live.state import LiveState
-from fx_smc_bot.live.alerts import AlertEvent, AlertSink, LogAlertSink
+from fx_smc_bot.portfolio.allocator import allocate_risk_budget
+from fx_smc_bot.portfolio.selector import select_candidates
+from fx_smc_bot.risk.constraints import (
+    ConstraintChecker,
+    DailyStopConstraint,
+    MaxDailyTradesConstraint,
+    build_full_constraints,
+)
+from fx_smc_bot.risk.drawdown import DrawdownTracker
+from fx_smc_bot.risk.sizing import SizingPolicy, StopBasedSizer
+from fx_smc_bot.structure.context import build_structure_snapshot
+from fx_smc_bot.utils.math import atr as compute_atr
 
 logger = logging.getLogger(__name__)
 
@@ -150,7 +148,10 @@ class PaperTradingRunner:
                 )
                 self._alert_sink.emit(AlertEvent(
                     level="warning" if new_op != OperationalState.ACTIVE else "info",
-                    message=f"Operational state: {self._prev_op_state.value} -> {new_op.value} ({trigger})",
+                    message=(
+                        f"Operational state: {self._prev_op_state.value} -> "
+                        f"{new_op.value} ({trigger})"
+                    ),
                     timestamp=bar_time, category="risk_state",
                 ))
                 self._health.on_state_change(new_op, bar_time)
@@ -261,12 +262,20 @@ class PaperTradingRunner:
                         self._dd_tracker.operational_state,
                     )
                     self._review_collector.add(pre_reviews)
-                    approved = [r.candidate for r in pre_reviews if r.verdict == ReviewVerdict.ACCEPTED]
+                    approved = [
+                        review.candidate
+                        for review in pre_reviews
+                        if review.verdict == ReviewVerdict.ACCEPTED
+                    ]
 
                     # Log rejections
                     for rev in pre_reviews:
                         if rev.verdict == ReviewVerdict.REJECTED:
-                            self._journal.log("candidate_rejected", rev.to_dict(), bar_time=bar_time)
+                            self._journal.log(
+                                "candidate_rejected",
+                                rev.to_dict(),
+                                bar_time=bar_time,
+                            )
 
                     self._daily_stop_constraint.update(
                         risk_snap.daily_drawdown, bar_time,
@@ -305,8 +314,16 @@ class PaperTradingRunner:
             if self._bars_processed % 500 == 0:
                 self._save_checkpoint(bar_time)
 
-        first_time = sorted_ts[0].astype("datetime64[us]").astype(datetime) if sorted_ts else datetime.utcnow()
-        final_time = sorted_ts[-1].astype("datetime64[us]").astype(datetime) if sorted_ts else datetime.utcnow()
+        first_time = (
+            sorted_ts[0].astype("datetime64[us]").astype(datetime)
+            if sorted_ts
+            else datetime.utcnow()
+        )
+        final_time = (
+            sorted_ts[-1].astype("datetime64[us]").astype(datetime)
+            if sorted_ts
+            else datetime.utcnow()
+        )
         final_state = self._save_checkpoint(final_time)
 
         closed = self._broker.all_closed_positions

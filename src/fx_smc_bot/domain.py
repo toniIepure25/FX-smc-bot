@@ -10,11 +10,10 @@ from __future__ import annotations
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from enum import Enum, auto
+from enum import Enum
 from typing import Any
 
 from fx_smc_bot.config import Timeframe, TradingPair
-
 
 # ---------------------------------------------------------------------------
 # Enums

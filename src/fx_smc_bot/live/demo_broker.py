@@ -11,17 +11,12 @@ from __future__ import annotations
 import logging
 from datetime import datetime
 from enum import Enum
-from typing import Any
 
 from fx_smc_bot.config import TradingPair
 from fx_smc_bot.domain import (
-    Direction,
     Fill,
-    FillReason,
     Order,
-    OrderState,
     Position,
-    PositionState,
 )
 from fx_smc_bot.live.broker import AccountState
 

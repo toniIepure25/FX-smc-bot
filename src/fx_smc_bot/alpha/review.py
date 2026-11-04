@@ -13,7 +13,7 @@ from datetime import datetime
 from enum import Enum
 
 from fx_smc_bot.config import AlphaConfig, OperationalState, RiskConfig
-from fx_smc_bot.domain import Direction, Position, PositionIntent, TradeCandidate
+from fx_smc_bot.domain import Position, TradeCandidate
 
 
 class ReviewVerdict(str, Enum):
@@ -56,7 +56,10 @@ class CandidateReview:
             "score": round(self.candidate.signal_score, 3),
             "verdict": self.verdict.value,
             "confidence": self.confidence.value,
-            "checks": [{"name": c.check_name, "passed": c.passed, "reason": c.reason} for c in self.checks],
+            "checks": [
+                {"name": check.check_name, "passed": check.passed, "reason": check.reason}
+                for check in self.checks
+            ],
             "constraint_reasons": self.constraint_reasons,
         }
 
@@ -112,16 +115,26 @@ class CandidateApprovalPipeline:
 
     def _check_structural_validity(self, c: TradeCandidate) -> ReviewCheck:
         if c.risk_distance <= 0:
-            return ReviewCheck("structural_validity", False, "risk_distance <= 0 (SL at or beyond entry)")
+            return ReviewCheck(
+                "structural_validity",
+                False,
+                "risk_distance <= 0 (SL at or beyond entry)",
+            )
         if c.reward_risk_ratio < self._risk_cfg.min_reward_risk_ratio:
-            return ReviewCheck("structural_validity", False,
-                               f"RR {c.reward_risk_ratio:.2f} < min {self._risk_cfg.min_reward_risk_ratio}")
+            return ReviewCheck(
+                "structural_validity",
+                False,
+                f"RR {c.reward_risk_ratio:.2f} < min {self._risk_cfg.min_reward_risk_ratio}",
+            )
         return ReviewCheck("structural_validity", True, "valid entry/SL/TP structure")
 
     def _check_score_threshold(self, c: TradeCandidate) -> ReviewCheck:
         if c.signal_score < self._alpha_cfg.min_signal_score:
-            return ReviewCheck("score_threshold", False,
-                               f"score {c.signal_score:.3f} < min {self._alpha_cfg.min_signal_score}")
+            return ReviewCheck(
+                "score_threshold",
+                False,
+                f"score {c.signal_score:.3f} < min {self._alpha_cfg.min_signal_score}",
+            )
         return ReviewCheck("score_threshold", True, f"score {c.signal_score:.3f} passes threshold")
 
     def _check_risk_state(self, state: OperationalState) -> ReviewCheck:
@@ -135,8 +148,11 @@ class CandidateApprovalPipeline:
         if regime is None:
             return ReviewCheck("regime_compatibility", True, "no regime data available")
         if regime == "high_vol" and c.signal_score < 0.3:
-            return ReviewCheck("regime_compatibility", False,
-                               f"low-score setup ({c.signal_score:.2f}) in high-vol regime")
+            return ReviewCheck(
+                "regime_compatibility",
+                False,
+                f"low-score setup ({c.signal_score:.2f}) in high-vol regime",
+            )
         return ReviewCheck("regime_compatibility", True, f"compatible with {regime} regime")
 
     def _check_duplicate_suppression(
@@ -147,16 +163,22 @@ class CandidateApprovalPipeline:
     ) -> ReviewCheck:
         key = f"{c.pair.value}_{c.direction.value}"
         if key in seen_pairs:
-            return ReviewCheck("duplicate_suppression", False,
-                               f"duplicate {c.pair.value} {c.direction.value} already queued this bar")
+            return ReviewCheck(
+                "duplicate_suppression",
+                False,
+                f"duplicate {c.pair.value} {c.direction.value} already queued this bar",
+            )
 
         same_dir_open = sum(
             1 for p in open_positions
             if p.is_open and p.pair == c.pair and p.direction == c.direction
         )
         if same_dir_open >= self._risk_cfg.max_per_pair_positions:
-            return ReviewCheck("duplicate_suppression", False,
-                               f"already {same_dir_open} open {c.direction.value} on {c.pair.value}")
+            return ReviewCheck(
+                "duplicate_suppression",
+                False,
+                f"already {same_dir_open} open {c.direction.value} on {c.pair.value}",
+            )
 
         return ReviewCheck("duplicate_suppression", True, "no conflicting open positions")
 

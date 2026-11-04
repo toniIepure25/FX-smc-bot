@@ -5,13 +5,12 @@ from __future__ import annotations
 from datetime import datetime
 
 from fx_smc_bot.domain import (
-    Direction,
     EquityPoint,
     Order,
     OrderState,
+    PortfolioSnapshot,
     Position,
     PositionState,
-    PortfolioSnapshot,
 )
 
 

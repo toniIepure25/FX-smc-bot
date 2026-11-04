@@ -6,7 +6,7 @@ Emits alerts via AlertSink when health issues are detected.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from enum import Enum
 from typing import Any
@@ -150,7 +150,13 @@ class HealthMonitor:
             total_bars_processed=self._bars_processed,
         )
 
-    def _emit_alert(self, level: str, message: str, bar_time: datetime, category: str = "health") -> None:
+    def _emit_alert(
+        self,
+        level: str,
+        message: str,
+        bar_time: datetime,
+        category: str = "health",
+    ) -> None:
         if self._alert_sink is not None:
             self._alert_sink.emit(AlertEvent(
                 level=level, message=message,

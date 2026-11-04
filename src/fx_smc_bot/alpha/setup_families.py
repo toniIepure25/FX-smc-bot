@@ -17,7 +17,14 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Protocol
 
-from fx_smc_bot.config import PAIR_PIP_INFO, Timeframe, TradingPair
+from fx_smc_bot.alpha.scoring import (
+    composite_score,
+    score_fvg_quality,
+    score_htf_alignment,
+    score_liquidity_sweep,
+    score_session_timing,
+)
+from fx_smc_bot.config import PAIR_PIP_INFO, SessionConfig, TradingPair
 from fx_smc_bot.domain import (
     Direction,
     FVGZone,
@@ -25,21 +32,11 @@ from fx_smc_bot.domain import (
     MultiTimeframeContext,
     OrderBlock,
     SignalFamily,
-    StructureBreak,
     StructureRegime,
     StructureSnapshot,
     TradeCandidate,
 )
-from fx_smc_bot.alpha.scoring import (
-    composite_score,
-    score_fvg_quality,
-    score_htf_alignment,
-    score_liquidity_sweep,
-    score_ob_quality,
-    score_session_timing,
-)
 from fx_smc_bot.utils.time import classify_session
-from fx_smc_bot.config import SessionConfig
 
 
 class SetupDetector(Protocol):
@@ -69,7 +66,7 @@ class SweepReversalDetector:
         ltf = ctx.ltf_snapshot
         candidates: list[TradeCandidate] = []
 
-        swept_levels = [l for l in ltf.liquidity_levels if l.swept]
+        swept_levels = [level for level in ltf.liquidity_levels if level.swept]
         if not swept_levels:
             return []
 
@@ -243,7 +240,11 @@ def _find_entry_zone(
     if fvgs:
         return max(fvgs, key=lambda f: f.size_atr)
 
-    obs = [ob for ob in snap.active_order_blocks if ob.direction == direction and not ob.invalidated]
+    obs = [
+        order_block
+        for order_block in snap.active_order_blocks
+        if order_block.direction == direction and not order_block.invalidated
+    ]
     if obs:
         return obs[-1]
 

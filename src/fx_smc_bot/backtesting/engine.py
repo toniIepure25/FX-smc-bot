@@ -15,35 +15,28 @@ from __future__ import annotations
 import hashlib
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Sequence
+from typing import TYPE_CHECKING
 
 import numpy as np
 
+from fx_smc_bot.alpha.candidates import generate_candidates
+from fx_smc_bot.alpha.review import CandidateApprovalPipeline, CandidateReview, ReviewCollector
+from fx_smc_bot.backtesting.ledger import TradeLedger
+from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics
 from fx_smc_bot.config import (
-    AppConfig,
-    OperationalState,
-    PAIR_PIP_INFO,
     TIMEFRAME_MINUTES,
-    Timeframe,
+    AppConfig,
     TradingPair,
 )
 from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.domain import (
     BacktestResult,
     Direction,
-    Order,
+    MultiTimeframeContext,
     OrderType,
     Position,
-    PositionState,
+    StructureRegime,
 )
-from fx_smc_bot.structure.context import build_structure_snapshot
-from fx_smc_bot.structure.market_structure import current_regime
-from fx_smc_bot.domain import MultiTimeframeContext, StructureRegime, StructureSnapshot
-from fx_smc_bot.alpha.candidates import generate_candidates
-from fx_smc_bot.alpha.review import CandidateApprovalPipeline, CandidateReview, ReviewCollector
-from fx_smc_bot.portfolio.selector import select_candidates
-from fx_smc_bot.portfolio.allocator import allocate_risk_budget
-from fx_smc_bot.portfolio.state import PortfolioState
 from fx_smc_bot.execution.fills import FillEngine
 from fx_smc_bot.execution.orders import intent_to_order
 from fx_smc_bot.execution.slippage import (
@@ -52,16 +45,18 @@ from fx_smc_bot.execution.slippage import (
     SpreadFromDataSlippage,
     VolatilitySlippage,
 )
+from fx_smc_bot.portfolio.allocator import allocate_risk_budget
+from fx_smc_bot.portfolio.selector import select_candidates
+from fx_smc_bot.portfolio.state import PortfolioState
 from fx_smc_bot.risk.constraints import (
-    MaxDailyTradesConstraint,
-    DailyStopConstraint,
-    build_full_constraints,
     ConstraintChecker,
+    DailyStopConstraint,
+    MaxDailyTradesConstraint,
+    build_full_constraints,
 )
 from fx_smc_bot.risk.drawdown import DrawdownTracker
 from fx_smc_bot.risk.sizing import SizingPolicy, StopBasedSizer
-from fx_smc_bot.backtesting.ledger import TradeLedger
-from fx_smc_bot.backtesting.metrics import PerformanceSummary, compute_metrics
+from fx_smc_bot.structure.context import build_structure_snapshot
 from fx_smc_bot.utils.math import atr as compute_atr
 from fx_smc_bot.utils.time import classify_session
 
@@ -230,7 +225,10 @@ class BacktestEngine:
                         pos.exit_fill = exit_fill
                         pos.closed_at = bar_time
                         pnl = self._compute_pnl(pos, exit_fill.fill_price)
-                        if self._cfg.backtest.commission_per_lot > 0 and self._cfg.backtest.lot_size > 0:
+                        if (
+                            self._cfg.backtest.commission_per_lot > 0
+                            and self._cfg.backtest.lot_size > 0
+                        ):
                             lots = pos.units / self._cfg.backtest.lot_size
                             pnl -= lots * self._cfg.backtest.commission_per_lot
                         self._portfolio.close_position(pos.id, pnl)
@@ -284,7 +282,10 @@ class BacktestEngine:
                         pos.exit_fill = same_bar_exit
                         pos.closed_at = bar_time
                         exit_pnl = self._compute_pnl(pos, same_bar_exit.fill_price)
-                        if self._cfg.backtest.commission_per_lot > 0 and self._cfg.backtest.lot_size > 0:
+                        if (
+                            self._cfg.backtest.commission_per_lot > 0
+                            and self._cfg.backtest.lot_size > 0
+                        ):
                             exit_lots = pos.units / self._cfg.backtest.lot_size
                             exit_pnl -= exit_lots * self._cfg.backtest.commission_per_lot
                         self._portfolio.close_position(pos.id, exit_pnl)
@@ -416,7 +417,11 @@ class BacktestEngine:
             start_date=start_dt,
             end_date=end_dt,
             initial_capital=self._cfg.backtest.initial_capital,
-            final_equity=self._portfolio.equity(current_prices) if current_prices else self._cfg.backtest.initial_capital,
+            final_equity=(
+                self._portfolio.equity(current_prices)
+                if current_prices
+                else self._cfg.backtest.initial_capital
+            ),
             trades=self._ledger.trades,
             equity_curve=self._ledger.equity_curve,
             metadata=metadata,

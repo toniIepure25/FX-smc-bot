@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import logging
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import Any
 
 import httpx
@@ -24,7 +24,6 @@ from fx_smc_bot.domain import (
     Fill,
     FillReason,
     Order,
-    OrderState,
     OrderType,
     Position,
     PositionState,
@@ -133,7 +132,10 @@ class OandaBrokerAdapter:
 
             if "orderFillTransaction" in result:
                 fill_tx = result["orderFillTransaction"]
-                trade_ids = [t["tradeID"] for t in fill_tx.get("tradeOpened", {}).get("tradeIDs", [])]
+                trade_ids = [
+                    trade["tradeID"]
+                    for trade in fill_tx.get("tradeOpened", {}).get("tradeIDs", [])
+                ]
                 if not trade_ids:
                     trade_id = fill_tx.get("id", uuid.uuid4().hex[:12])
                 else:
@@ -220,8 +222,16 @@ class OandaBrokerAdapter:
                 direction=direction,
                 state=PositionState.OPEN,
                 entry_price=float(t.get("price", 0)),
-                stop_loss=float(t.get("stopLossOrder", {}).get("price", 0)) if t.get("stopLossOrder") else 0.0,
-                take_profit=float(t.get("takeProfitOrder", {}).get("price", 0)) if t.get("takeProfitOrder") else 0.0,
+                stop_loss=(
+                    float(t.get("stopLossOrder", {}).get("price", 0))
+                    if t.get("stopLossOrder")
+                    else 0.0
+                ),
+                take_profit=(
+                    float(t.get("takeProfitOrder", {}).get("price", 0))
+                    if t.get("takeProfitOrder")
+                    else 0.0
+                ),
                 units=abs(units),
                 opened_at=_parse_oanda_time(t.get("openTime")),
                 pnl=float(t.get("unrealizedPL", 0)),
@@ -283,7 +293,11 @@ class OandaBrokerAdapter:
             resp.raise_for_status()
 
             for tx in resp.json().get("transactions", []):
-                trade_id = tx.get("tradesClosed", [{}])[0].get("tradeID", "") if tx.get("tradesClosed") else ""
+                trade_id = (
+                    tx.get("tradesClosed", [{}])[0].get("tradeID", "")
+                    if tx.get("tradesClosed")
+                    else ""
+                )
                 if not trade_id or trade_id not in self._known_trade_ids:
                     continue
 

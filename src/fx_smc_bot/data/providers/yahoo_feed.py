@@ -9,8 +9,7 @@ from __future__ import annotations
 
 import logging
 import time
-from datetime import datetime, timezone
-from typing import Any
+from datetime import datetime
 
 import httpx
 

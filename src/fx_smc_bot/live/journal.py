@@ -45,7 +45,12 @@ class EventJournal:
     def event_count(self) -> int:
         return self._count
 
-    def log(self, event_type: str, data: dict[str, Any] | None = None, bar_time: datetime | None = None) -> None:
+    def log(
+        self,
+        event_type: str,
+        data: dict[str, Any] | None = None,
+        bar_time: datetime | None = None,
+    ) -> None:
         ts = bar_time.isoformat() if bar_time else datetime.utcnow().isoformat()
         event = JournalEvent(
             event_type=event_type,
@@ -59,8 +64,11 @@ class EventJournal:
 
     def log_signal(self, pair: str, direction: str, family: str, score: float,
                    bar_time: datetime | None = None, **extra: Any) -> None:
-        self.log("signal", {"pair": pair, "direction": direction, "family": family, "score": score, **extra},
-                 bar_time=bar_time)
+        self.log(
+            "signal",
+            {"pair": pair, "direction": direction, "family": family, "score": score, **extra},
+            bar_time=bar_time,
+        )
 
     def log_order(self, order_id: str, pair: str, direction: str, order_type: str, units: float,
                   bar_time: datetime | None = None, **extra: Any) -> None:
@@ -74,9 +82,14 @@ class EventJournal:
 
     def log_state_transition(self, old_state: str, new_state: str, reason: str = "",
                              bar_time: datetime | None = None) -> None:
-        self.log("state_transition", {"old": old_state, "new": new_state, "reason": reason}, bar_time=bar_time)
+        self.log(
+            "state_transition",
+            {"old": old_state, "new": new_state, "reason": reason},
+            bar_time=bar_time,
+        )
 
-    def log_alert(self, level: str, message: str, bar_time: datetime | None = None, **extra: Any) -> None:
+    def log_alert(self, level: str, message: str, bar_time: datetime | None = None,
+                  **extra: Any) -> None:
         self.log("alert", {"level": level, "message": message, **extra}, bar_time=bar_time)
 
     def read_events(self, event_type: str | None = None) -> list[JournalEvent]:

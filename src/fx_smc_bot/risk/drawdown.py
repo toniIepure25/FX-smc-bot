@@ -7,7 +7,7 @@ peak-to-trough circuit breaker, and an operational state machine
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 
 from fx_smc_bot.config import OperationalState, RiskConfig
@@ -168,7 +168,10 @@ class DrawdownTracker:
             self._peak_equity = equity
             self._transition(
                 OperationalState.ACTIVE,
-                f"cb_cooldown_expired: resumed after {cfg.circuit_breaker_cooldown_days}d, hwm_reset={equity:.0f}",
+                (
+                    f"cb_cooldown_expired: resumed after "
+                    f"{cfg.circuit_breaker_cooldown_days}d, hwm_reset={equity:.0f}"
+                ),
                 timestamp, equity,
             )
             self._cb_cooldown_until = None
@@ -182,7 +185,10 @@ class DrawdownTracker:
             self._cb_fire_count += 1
             if cfg.circuit_breaker_cooldown_days > 0:
                 from datetime import timedelta
-                self._cb_cooldown_until = timestamp + timedelta(days=cfg.circuit_breaker_cooldown_days)
+
+                self._cb_cooldown_until = timestamp + timedelta(
+                    days=cfg.circuit_breaker_cooldown_days
+                )
             self._transition(
                 OperationalState.STOPPED,
                 f"circuit_breaker: peak_dd {peak_dd:.2%} >= {cfg.circuit_breaker_threshold:.2%}",
@@ -196,7 +202,10 @@ class DrawdownTracker:
                 f"daily_lockout: {daily_dd:.2%} >= {cfg.daily_loss_lockout:.2%}",
                 timestamp, equity,
             )
-        elif daily_dd >= cfg.max_daily_drawdown * 0.75 or weekly_dd >= cfg.max_weekly_drawdown * 0.75:
+        elif (
+            daily_dd >= cfg.max_daily_drawdown * 0.75
+            or weekly_dd >= cfg.max_weekly_drawdown * 0.75
+        ):
             self._transition(
                 OperationalState.THROTTLED,
                 f"throttle: daily={daily_dd:.2%} weekly={weekly_dd:.2%}",

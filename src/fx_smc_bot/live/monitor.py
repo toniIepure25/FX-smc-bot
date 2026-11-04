@@ -8,10 +8,8 @@ for JSON serialization into review artifacts.
 
 from __future__ import annotations
 
-import math
-from collections import defaultdict
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from dataclasses import dataclass
+from datetime import datetime
 from typing import Any
 
 
@@ -232,7 +230,11 @@ class LiveMonitor:
             "total_trades": total_trades,
             "win_rate": round(wins / total_trades, 3) if total_trades else 0.0,
             "total_pnl": round(total_pnl, 2),
-            "avg_rr": round(sum(self._trade_rrs) / len(self._trade_rrs), 2) if self._trade_rrs else 0.0,
+            "avg_rr": (
+                round(sum(self._trade_rrs) / len(self._trade_rrs), 2)
+                if self._trade_rrs
+                else 0.0
+            ),
             "peak_equity": round(self._peak_equity, 2),
             "trailing_dd_pct": round(self._trailing_dd_pct, 4),
             "absolute_dd_pct": round(self._absolute_dd_pct, 4),

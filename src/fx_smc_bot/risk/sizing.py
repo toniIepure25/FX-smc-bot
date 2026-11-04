@@ -27,9 +27,8 @@ from __future__ import annotations
 import math
 from typing import Protocol, runtime_checkable
 
-from fx_smc_bot.config import PAIR_PIP_INFO, BacktestConfig, RiskConfig
+from fx_smc_bot.config import PAIR_PIP_INFO, RiskConfig
 from fx_smc_bot.domain import TradeCandidate
-
 
 # ---------------------------------------------------------------------------
 # Sizing policies: transform current equity into reference equity

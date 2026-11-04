@@ -10,15 +10,15 @@ from __future__ import annotations
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from fx_smc_bot.config import AlphaConfig, RiskConfig, SessionConfig
-from fx_smc_bot.domain import MultiTimeframeContext, TradeCandidate
+from fx_smc_bot.alpha.filters import apply_filters
 from fx_smc_bot.alpha.setup_families import (
     BOSContinuationDetector,
     FVGRetraceDetector,
     SetupDetector,
     SweepReversalDetector,
 )
-from fx_smc_bot.alpha.filters import apply_filters
+from fx_smc_bot.config import AlphaConfig, RiskConfig, SessionConfig
+from fx_smc_bot.domain import MultiTimeframeContext, TradeCandidate
 
 if TYPE_CHECKING:
     from fx_smc_bot.alpha.diagnostics import DetectorDiagnostics
@@ -38,9 +38,9 @@ def _ensure_baselines_registered() -> None:
     if _baseline_registered:
         return
     try:
+        from fx_smc_bot.alpha.baselines.mean_reversion import MeanReversionDetector
         from fx_smc_bot.alpha.baselines.momentum import MomentumDetector
         from fx_smc_bot.alpha.baselines.session_breakout import SessionBreakoutDetector
-        from fx_smc_bot.alpha.baselines.mean_reversion import MeanReversionDetector
         _DETECTOR_REGISTRY["momentum"] = MomentumDetector
         _DETECTOR_REGISTRY["session_breakout"] = SessionBreakoutDetector
         _DETECTOR_REGISTRY["mean_reversion"] = MeanReversionDetector
@@ -98,13 +98,16 @@ def generate_candidates(
         results = det.scan(ctx, current_price, current_time, session_cfg)
         raw_candidates.extend(results)
         if diagnostics is not None:
-            for c in results:
+            for _ in results:
                 diagnostics.record_raw_signal(family_name, ctx.pair.value)
 
     filtered = apply_filters(raw_candidates, risk_cfg, alpha_cfg)
     if diagnostics is not None:
-        for c in filtered:
-            diagnostics.record_filter_pass(c.family.value if hasattr(c.family, 'value') else str(c.family))
+        for candidate in filtered:
+            family = candidate.family.value if hasattr(candidate.family, "value") else str(
+                candidate.family
+            )
+            diagnostics.record_filter_pass(family)
         rejected = set(id(c) for c in raw_candidates) - set(id(c) for c in filtered)
         for c in raw_candidates:
             if id(c) in rejected:
@@ -122,7 +125,7 @@ def generate_candidates(
 
 def _detector_family_name(det: SetupDetector) -> str:
     cls_name = type(det).__name__
-    _NAME_MAP = {
+    name_map = {
         "SweepReversalDetector": "sweep_reversal",
         "BOSContinuationDetector": "bos_continuation",
         "FVGRetraceDetector": "fvg_retrace",
@@ -130,4 +133,4 @@ def _detector_family_name(det: SetupDetector) -> str:
         "SessionBreakoutDetector": "session_breakout",
         "MeanReversionDetector": "mean_reversion",
     }
-    return _NAME_MAP.get(cls_name, cls_name.lower())
+    return name_map.get(cls_name, cls_name.lower())

@@ -15,7 +15,8 @@ from numpy.typing import NDArray
 
 from fx_smc_bot.config import StructureConfig
 from fx_smc_bot.domain import Direction, DisplacementCandle
-from fx_smc_bot.utils.math import atr as compute_atr, body_efficiency, body_size
+from fx_smc_bot.utils.math import atr as compute_atr
+from fx_smc_bot.utils.math import body_efficiency, body_size
 
 
 def detect_displacement(

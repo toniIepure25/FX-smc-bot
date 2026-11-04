@@ -12,7 +12,7 @@ that produces BarSeries snapshots without copying the entire history.
 from __future__ import annotations
 
 import threading
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 
 import numpy as np
@@ -53,14 +53,19 @@ class BarSeries:
             raise ValueError("Cannot create BarSeries from empty list")
         pair = bars[0].pair
         tf = bars[0].timeframe
-        n = len(bars)
         ts = np.array([np.datetime64(b.timestamp) for b in bars], dtype="datetime64[ns]")
         o = np.array([b.open for b in bars], dtype=np.float64)
         h = np.array([b.high for b in bars], dtype=np.float64)
         lo = np.array([b.low for b in bars], dtype=np.float64)
         c = np.array([b.close for b in bars], dtype=np.float64)
-        vol = np.array([b.volume if b.volume is not None else 0.0 for b in bars], dtype=np.float64)
-        sp = np.array([b.spread if b.spread is not None else np.nan for b in bars], dtype=np.float64)
+        vol = np.array(
+            [b.volume if b.volume is not None else 0.0 for b in bars],
+            dtype=np.float64,
+        )
+        sp = np.array(
+            [b.spread if b.spread is not None else np.nan for b in bars],
+            dtype=np.float64,
+        )
         has_vol = any(b.volume is not None for b in bars)
         has_sp = any(b.spread is not None for b in bars)
         return cls(

@@ -9,8 +9,6 @@ from __future__ import annotations
 import numpy as np
 from numpy.typing import NDArray
 
-from fx_smc_bot.config import TradingPair
-
 
 def rolling_correlation(
     returns_a: NDArray[np.float64],

@@ -7,14 +7,13 @@ over simple session-range breakout trading.
 
 from __future__ import annotations
 
-from datetime import datetime, time
+from datetime import datetime
 
-from fx_smc_bot.config import PAIR_PIP_INFO, SessionConfig, Timeframe
+from fx_smc_bot.config import PAIR_PIP_INFO, SessionConfig
 from fx_smc_bot.domain import (
     Direction,
     MultiTimeframeContext,
     SessionName,
-    SessionWindow,
     SignalFamily,
     StructureSnapshot,
     TradeCandidate,
@@ -65,7 +64,6 @@ class SessionBreakoutDetector:
 
         pip_size = PAIR_PIP_INFO[snap.pair][0]
         buffer = self._buffer_pips * pip_size
-        asian_range = asian.high - asian.low
         candidates: list[TradeCandidate] = []
 
         if current_price > asian.high + buffer:

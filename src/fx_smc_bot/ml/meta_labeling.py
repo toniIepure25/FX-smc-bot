@@ -38,7 +38,7 @@ def label_trades(
     Trades with PnL > threshold get TAKE, others get SKIP.
     """
     samples: list[LabeledSample] = []
-    for features, pnl in zip(feature_vectors, pnls):
+    for features, pnl in zip(feature_vectors, pnls, strict=True):
         is_correct = pnl > threshold
         label = MetaLabel.TAKE if is_correct else MetaLabel.SKIP
         samples.append(LabeledSample(

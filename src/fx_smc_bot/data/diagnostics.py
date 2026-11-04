@@ -11,10 +11,8 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 import numpy as np
-import pandas as pd
-from numpy.typing import NDArray
 
-from fx_smc_bot.config import PAIR_PIP_INFO, TIMEFRAME_MINUTES, Timeframe, TradingPair
+from fx_smc_bot.config import TIMEFRAME_MINUTES
 from fx_smc_bot.data.models import BarSeries
 
 

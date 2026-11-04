@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 import numpy as np
 
-from fx_smc_bot.config import TradingPair
-from fx_smc_bot.domain import ClosedTrade, SessionName, SignalFamily
+from fx_smc_bot.domain import ClosedTrade
 
 
 @dataclass(frozen=True, slots=True)

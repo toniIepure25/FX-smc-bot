@@ -17,11 +17,10 @@ from datetime import datetime
 import numpy as np
 from numpy.typing import NDArray
 
-from fx_smc_bot.config import PAIR_PIP_INFO, StructureConfig, TradingPair
+from fx_smc_bot.config import StructureConfig, TradingPair
 from fx_smc_bot.domain import (
     LiquidityLevel,
     LiquidityLevelType,
-    SessionName,
     SessionWindow,
     SwingPoint,
     SwingType,
@@ -169,9 +168,8 @@ def detect_daily_levels(
                 d["low_idx"] = i
 
     levels: list[LiquidityLevel] = []
-    ts_current = timestamps[current_bar_index].astype("datetime64[us]").astype(datetime)
 
-    for key, d in sorted(days.items()):
+    for _key, d in sorted(days.items()):
         if d["last_bar"] >= current_bar_index:
             continue
         formation_time = d["end"]
@@ -231,7 +229,7 @@ def detect_weekly_levels(
                 w["low_idx"] = i
 
     levels: list[LiquidityLevel] = []
-    for key, w in sorted(weeks.items()):
+    for _key, w in sorted(weeks.items()):
         if w["last_bar"] >= current_bar_index:
             continue
 

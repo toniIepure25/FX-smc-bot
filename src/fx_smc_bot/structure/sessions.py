@@ -6,7 +6,8 @@ producing SessionWindow objects that serve as liquidity reference levels.
 
 from __future__ import annotations
 
-from datetime import datetime, date as date_type
+from datetime import date as date_type
+from datetime import datetime
 
 import numpy as np
 from numpy.typing import NDArray
@@ -58,7 +59,7 @@ def track_session_windows(
                 w["low_idx"] = i
 
     windows: list[SessionWindow] = []
-    for (day, session), w in sorted(windows_map.items()):
+    for (_day, _session), w in sorted(windows_map.items()):
         windows.append(SessionWindow(
             session_name=w["session"],
             date=w["date"],

@@ -16,7 +16,7 @@ import logging
 import signal
 import time
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -28,8 +28,8 @@ from fx_smc_bot.alpha.review import (
     ReviewCollector,
     ReviewVerdict,
 )
-from fx_smc_bot.config import AppConfig, OperationalState, TradingPair, TIMEFRAME_MINUTES
-from fx_smc_bot.data.models import BarBuffer, BarSeries
+from fx_smc_bot.config import TIMEFRAME_MINUTES, AppConfig, OperationalState
+from fx_smc_bot.data.models import BarBuffer
 from fx_smc_bot.data.providers.live_feed import LiveFeedProvider
 from fx_smc_bot.domain import Direction, MultiTimeframeContext, OrderType, StructureRegime
 from fx_smc_bot.execution.orders import intent_to_order
@@ -76,7 +76,9 @@ class ForwardPaperRunner:
         self._cfg = config
         self._feed = feed
         self._htf_feed = htf_feed
-        self._run_id = run_id or f"fwd_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
+        self._run_id = run_id or (
+            f"fwd_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
+        )
         self._output_dir = Path(output_dir) / self._run_id
         self._output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -240,8 +242,8 @@ class ForwardPaperRunner:
         """Main event loop: poll feed -> process bar -> generate signals -> execute."""
         last_ts = self._buffer.last_timestamp
         last_heartbeat = time.monotonic()
-        _HEARTBEAT_INTERVAL = 1800  # log heartbeat every 30 minutes
-        _POLL_SLEEP = 30  # seconds between polls when no data
+        heartbeat_interval = 1800  # log heartbeat every 30 minutes
+        poll_sleep = 30  # seconds between polls when no data
 
         while self._running:
             if self._paused:
@@ -255,18 +257,19 @@ class ForwardPaperRunner:
                     break
 
                 now = time.monotonic()
-                if now - last_heartbeat >= _HEARTBEAT_INTERVAL:
+                if now - last_heartbeat >= heartbeat_interval:
                     account = self._broker.get_account()
                     open_count = len(self._broker.get_positions())
                     logger.info(
-                        "Heartbeat: bars=%d, equity=$%.2f, open=%d, feed=connected, waiting for market",
+                        "Heartbeat: bars=%d, equity=$%.2f, open=%d, "
+                        "feed=connected, waiting for market",
                         self._bars_processed, account.equity, open_count,
                     )
                     last_heartbeat = now
 
                 self._check_scheduled_daily_report()
 
-                time.sleep(_POLL_SLEEP)
+                time.sleep(poll_sleep)
                 continue
 
             for bar in new_bars:
@@ -406,9 +409,18 @@ class ForwardPaperRunner:
         )
 
         # ATR computation
-        atr_vals = compute_atr(series.high, series.low, series.close, self._cfg.structure.atr_period)
+        atr_vals = compute_atr(
+            series.high,
+            series.low,
+            series.close,
+            self._cfg.structure.atr_period,
+        )
         current_atr = float(atr_vals[-1]) if len(atr_vals) > 0 else None
-        median_atr = float(sorted(atr_vals)[len(atr_vals) // 2]) if len(atr_vals) > 0 else current_atr
+        median_atr = (
+            float(sorted(atr_vals)[len(atr_vals) // 2])
+            if len(atr_vals) > 0
+            else current_atr
+        )
 
         # Generate candidates
         candidates = generate_candidates(
@@ -540,7 +552,10 @@ class ForwardPaperRunner:
             self._monitor.on_throttle(bar_time)
         elif new_state == OperationalState.STOPPED:
             self._monitor.on_cb_fire(bar_time)
-        elif self._prev_op_state == OperationalState.STOPPED and new_state == OperationalState.ACTIVE:
+        elif (
+            self._prev_op_state == OperationalState.STOPPED
+            and new_state == OperationalState.ACTIVE
+        ):
             self._monitor.on_cb_recovery(bar_time)
 
         self._prev_op_state = new_state

@@ -14,8 +14,7 @@ from __future__ import annotations
 
 import logging
 import time
-import uuid
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 from typing import Any
@@ -155,7 +154,10 @@ class BrokerGateway:
             return None
 
         # Duplicate prevention
-        order_key = f"{order.pair.value}_{order.direction.value}_{order.units}_{order.requested_price}"
+        order_key = (
+            f"{order.pair.value}_{order.direction.value}_"
+            f"{order.units}_{order.requested_price}"
+        )
         if order_key in self._submitted_order_ids:
             logger.warning("Duplicate order detected: %s", order_key)
             return None
@@ -197,7 +199,11 @@ class BrokerGateway:
             if not recon.passed:
                 self._alert_sink.emit(AlertEvent(
                     level="WARNING",
-                    message=f"Reconciliation failed: equity_drift={recon.equity_drift_pct:.2%} pos_mismatch={recon.position_mismatch}",
+                    message=(
+                        f"Reconciliation failed: equity_drift="
+                        f"{recon.equity_drift_pct:.2%} "
+                        f"pos_mismatch={recon.position_mismatch}"
+                    ),
                     timestamp=timestamp,
                     category="reconciliation",
                 ))
@@ -214,7 +220,9 @@ class BrokerGateway:
         account = self._adapter.get_account()
 
         local_equity = account.equity
-        broker_equity = account.equity  # same adapter for paper; real impl would query broker separately
+        # Same adapter for paper; a real implementation would query the broker
+        # separately and compare the two snapshots.
+        broker_equity = account.equity
         local_count = len(local_positions)
         broker_count = account.open_position_count
 
@@ -243,7 +251,10 @@ class BrokerGateway:
 
         total_units = sum(p.units for p in positions)
         if total_units + order.units > self._cfg.max_exposure_units:
-            return f"max_exposure_exceeded: {total_units + order.units:.0f} > {self._cfg.max_exposure_units:.0f}"
+            return (
+                f"max_exposure_exceeded: {total_units + order.units:.0f} > "
+                f"{self._cfg.max_exposure_units:.0f}"
+            )
 
         if order.units > self._cfg.max_order_units:
             return f"order_too_large: {order.units:.0f} > {self._cfg.max_order_units:.0f}"

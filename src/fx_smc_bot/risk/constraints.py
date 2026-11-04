@@ -10,7 +10,7 @@ from datetime import datetime
 from typing import Protocol, runtime_checkable
 
 from fx_smc_bot.config import PAIR_CURRENCIES, RiskConfig
-from fx_smc_bot.domain import Direction, Position, PositionIntent, TradeCandidate
+from fx_smc_bot.domain import Direction, Position, PositionIntent
 from fx_smc_bot.risk.exposure import compute_currency_exposures
 
 
@@ -50,7 +50,10 @@ class MaxConcurrentPositionsConstraint:
     ) -> tuple[bool, str | None]:
         open_count = sum(1 for p in open_positions if p.is_open)
         if open_count >= risk_cfg.max_concurrent_positions:
-            return False, f"Already {open_count} open positions (max {risk_cfg.max_concurrent_positions})"
+            return False, (
+                f"Already {open_count} open positions "
+                f"(max {risk_cfg.max_concurrent_positions})"
+            )
         return True, None
 
 
@@ -83,7 +86,10 @@ class MaxPortfolioRiskConstraint:
                 pos_risk = abs(p.entry_price - p.stop_loss) * p.units / equity
                 total_risk += pos_risk
         if total_risk > risk_cfg.max_portfolio_risk:
-            return False, f"Portfolio risk {total_risk:.4f} exceeds max {risk_cfg.max_portfolio_risk}"
+            return False, (
+                f"Portfolio risk {total_risk:.4f} exceeds max "
+                f"{risk_cfg.max_portfolio_risk}"
+            )
         return True, None
 
 
@@ -134,7 +140,10 @@ class DirectionalConcentrationConstraint:
         total = len(open_pos) + 1
         ratio = (same_dir + 1) / total
         if ratio > risk_cfg.max_directional_concentration:
-            return False, f"Directional concentration {ratio:.0%} exceeds {risk_cfg.max_directional_concentration:.0%}"
+            return False, (
+                f"Directional concentration {ratio:.0%} exceeds "
+                f"{risk_cfg.max_directional_concentration:.0%}"
+            )
         return True, None
 
 

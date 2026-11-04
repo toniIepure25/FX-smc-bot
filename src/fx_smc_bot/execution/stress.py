@@ -7,7 +7,6 @@ under each scenario and compares degradation across them.
 
 from __future__ import annotations
 
-from copy import deepcopy
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -86,7 +85,11 @@ class StressReport:
         for r in self.results:
             if r.scenario_name == base.scenario_name:
                 continue
-            pnl_change = (r.total_pnl - base.total_pnl) / abs(base.total_pnl) if base.total_pnl else 0.0
+            pnl_change = (
+                (r.total_pnl - base.total_pnl) / abs(base.total_pnl)
+                if base.total_pnl
+                else 0.0
+            )
             sharpe_change = r.sharpe_ratio - base.sharpe_ratio
             out[r.scenario_name] = {
                 "pnl_change_pct": round(pnl_change * 100, 2),

@@ -13,7 +13,6 @@ import logging
 from enum import Enum
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 logger = logging.getLogger(__name__)
@@ -51,7 +50,7 @@ _COLUMN_MAPS: dict[CsvFormat, dict[str, str]] = {
 
 def detect_format(path: Path) -> CsvFormat:
     """Heuristically detect the CSV format from header row."""
-    with open(path, "r") as f:
+    with open(path) as f:
         header = f.readline().strip().lower()
 
     if "<date>" in header or "<open>" in header:

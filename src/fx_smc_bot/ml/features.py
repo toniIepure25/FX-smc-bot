@@ -6,13 +6,12 @@ ML models (regime classification, trade quality scoring, meta-labeling).
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import NDArray
 
 from fx_smc_bot.domain import (
-    Direction,
     StructureRegime,
     StructureSnapshot,
     SwingType,

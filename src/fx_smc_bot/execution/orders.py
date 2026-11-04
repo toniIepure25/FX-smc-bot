@@ -5,7 +5,6 @@ from __future__ import annotations
 from datetime import datetime
 
 from fx_smc_bot.domain import (
-    Direction,
     Order,
     OrderType,
     PositionIntent,

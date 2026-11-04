@@ -18,11 +18,8 @@ from fx_smc_bot.domain import (
     Direction,
     FVGZone,
     LiquidityLevel,
-    MultiTimeframeContext,
     OrderBlock,
     SessionName,
-    StructureBreak,
-    StructureRegime,
 )
 
 

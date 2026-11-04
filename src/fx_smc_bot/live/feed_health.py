@@ -8,7 +8,7 @@ safety controller to decide whether trading should continue.
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Any
 
@@ -134,7 +134,11 @@ class FeedHealthMonitor:
     def update_quality_scores(self) -> None:
         """Recompute completeness and freshness scores."""
         r = self._report
-        total_attempted = r.total_bars_received + r.duplicate_bars_rejected + r.out_of_order_bars_rejected
+        total_attempted = (
+            r.total_bars_received
+            + r.duplicate_bars_rejected
+            + r.out_of_order_bars_rejected
+        )
         if total_attempted > 0:
             r.completeness_pct = (r.total_bars_received / total_attempted) * 100.0
         else:

@@ -7,7 +7,6 @@ win rate, avg reward/risk, turnover, and rolling variants.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import timedelta
 
 import numpy as np
 

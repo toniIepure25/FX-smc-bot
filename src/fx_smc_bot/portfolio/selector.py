@@ -7,7 +7,7 @@ Captures structured rejection reasons in CandidateReview objects.
 
 from __future__ import annotations
 
-from fx_smc_bot.alpha.review import CandidateReview, ReviewCheck, ReviewVerdict, ConfidenceBand
+from fx_smc_bot.alpha.review import CandidateReview, ConfidenceBand, ReviewCheck, ReviewVerdict
 from fx_smc_bot.config import RiskConfig
 from fx_smc_bot.domain import Position, PositionIntent, TradeCandidate
 from fx_smc_bot.risk.constraints import build_full_constraints, check_all_constraints
@@ -91,7 +91,11 @@ def select_candidates(
                 candidate=candidate,
                 verdict=ReviewVerdict.ACCEPTED,
                 checks=[ReviewCheck("constraints", True, "all constraints passed")],
-                confidence=ConfidenceBand.HIGH if candidate.signal_score >= 0.5 else ConfidenceBand.MEDIUM,
+                confidence=(
+                    ConfidenceBand.HIGH
+                    if candidate.signal_score >= 0.5
+                    else ConfidenceBand.MEDIUM
+                ),
                 timestamp=candidate.timestamp,
             ))
 

@@ -22,7 +22,9 @@ logger = logging.getLogger(__name__)
 
 def config_fingerprint(cfg: AppConfig) -> str:
     """Deterministic hash of the risk + execution config for drift detection."""
-    payload = cfg.risk.model_dump_json(exclude_none=True) + cfg.execution.model_dump_json(exclude_none=True)
+    payload = cfg.risk.model_dump_json(exclude_none=True) + cfg.execution.model_dump_json(
+        exclude_none=True
+    )
     return hashlib.sha256(payload.encode()).hexdigest()[:16]
 
 

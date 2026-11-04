@@ -7,9 +7,7 @@ for the alpha layer.
 
 from __future__ import annotations
 
-import numpy as np
-
-from fx_smc_bot.config import StructureConfig, SessionConfig, TradingPair, Timeframe
+from fx_smc_bot.config import SessionConfig, StructureConfig
 from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.domain import (
     Direction,
@@ -17,11 +15,8 @@ from fx_smc_bot.domain import (
     StructureRegime,
     StructureSnapshot,
 )
-from fx_smc_bot.structure.swings import detect_swings
-from fx_smc_bot.structure.market_structure import detect_structure_breaks, current_regime
 from fx_smc_bot.structure.displacement import detect_displacement
 from fx_smc_bot.structure.fvg import detect_fvg, update_fvg_fill
-from fx_smc_bot.structure.order_blocks import detect_order_blocks
 from fx_smc_bot.structure.liquidity import (
     detect_daily_levels,
     detect_equal_levels,
@@ -29,7 +24,10 @@ from fx_smc_bot.structure.liquidity import (
     detect_sweeps,
     detect_weekly_levels,
 )
+from fx_smc_bot.structure.market_structure import current_regime, detect_structure_breaks
+from fx_smc_bot.structure.order_blocks import detect_order_blocks
 from fx_smc_bot.structure.sessions import track_session_windows
+from fx_smc_bot.structure.swings import detect_swings
 
 
 def build_structure_snapshot(

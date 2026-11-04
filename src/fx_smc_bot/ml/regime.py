@@ -12,7 +12,7 @@ from typing import Protocol, runtime_checkable
 import numpy as np
 from numpy.typing import NDArray
 
-from fx_smc_bot.utils.math import atr as compute_atr, rolling_std
+from fx_smc_bot.utils.math import atr as compute_atr
 
 
 class MarketRegime(str, Enum):
@@ -169,7 +169,7 @@ class CompositeRegimeClassifier:
         bar_index: int,
     ) -> MarketRegime:
         parts = []
-        for name, clf in self._classifiers:
+        for _, clf in self._classifiers:
             regime = clf.classify(high, low, close, bar_index)
             parts.append(regime.value)
         combined = "+".join(parts)

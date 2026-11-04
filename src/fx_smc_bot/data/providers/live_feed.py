@@ -14,12 +14,10 @@ from __future__ import annotations
 import logging
 import time
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime
 from enum import Enum
 from pathlib import Path
 from typing import Protocol, runtime_checkable
-
-import numpy as np
 
 from fx_smc_bot.config import Timeframe, TradingPair
 from fx_smc_bot.data.models import BarSeries

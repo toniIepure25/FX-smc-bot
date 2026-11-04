@@ -9,9 +9,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-import numpy as np
-
-from fx_smc_bot.config import PAIR_PIP_INFO, SessionConfig, Timeframe
+from fx_smc_bot.config import PAIR_PIP_INFO, SessionConfig
 from fx_smc_bot.domain import (
     Direction,
     MultiTimeframeContext,
@@ -57,8 +55,12 @@ class MomentumDetector:
         if len(swings) < self._lookback:
             return []
 
-        recent_highs = [s.price for s in swings if s.swing_type.value == "swing_high"][-self._lookback:]
-        recent_lows = [s.price for s in swings if s.swing_type.value == "swing_low"][-self._lookback:]
+        recent_highs = [
+            swing.price for swing in swings if swing.swing_type.value == "swing_high"
+        ][-self._lookback:]
+        recent_lows = [
+            swing.price for swing in swings if swing.swing_type.value == "swing_low"
+        ][-self._lookback:]
 
         if not recent_highs or not recent_lows:
             return []

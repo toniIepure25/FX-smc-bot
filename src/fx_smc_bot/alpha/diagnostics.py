@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime
 
 
 @dataclass(slots=True)
@@ -107,7 +106,11 @@ def format_detector_diagnostics(diag: DetectorDiagnostics) -> str:
         "no_htf_bias", "no_swept_levels", "no_entry_zone", "no_bos_breaks",
         "regime_filtered", "score_too_low", "rr_too_low", "risk_distance_zero",
     ]
-    header = "| Family | " + " | ".join(f.replace("_", " ").title() for f in rejection_fields) + " |"
+    header = (
+        "| Family | "
+        + " | ".join(field.replace("_", " ").title() for field in rejection_fields)
+        + " |"
+    )
     sep = "|--------|" + "|".join("---" for _ in rejection_fields) + "|"
     lines.append(header)
     lines.append(sep)

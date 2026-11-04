@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from fx_smc_bot.config import PAIR_PIP_INFO
 from fx_smc_bot.domain import (
     ClosedTrade,
     Direction,

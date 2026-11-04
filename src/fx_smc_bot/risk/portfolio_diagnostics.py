@@ -4,9 +4,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime
 
-from fx_smc_bot.config import PAIR_CURRENCIES, RiskConfig
 from fx_smc_bot.domain import ClosedTrade, Direction, Position
 from fx_smc_bot.risk.exposure import compute_currency_exposures
 

@@ -6,13 +6,11 @@ operational safety constraints that are independent of the risk model.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime, time, timedelta
 from pathlib import Path
-from typing import Any
 
 from fx_smc_bot.config import AppConfig
 from fx_smc_bot.data.market_calendar import is_high_impact_window, is_market_open
@@ -117,7 +115,9 @@ class SafetyController:
         equity_ok = account_equity >= min_equity or account_equity == 0.0
         result.checks["account_equity"] = equity_ok
         if not equity_ok:
-            result.messages.append(f"Account equity {account_equity:.2f} below minimum {min_equity:.2f}")
+            result.messages.append(
+                f"Account equity {account_equity:.2f} below minimum {min_equity:.2f}"
+            )
             result.passed = False
 
         # Market open
@@ -166,7 +166,10 @@ class SafetyController:
         if open_positions >= self._max_positions_hard:
             return False, f"hard_position_limit: {open_positions} >= {self._max_positions_hard}"
         if total_exposure_units >= self._max_exposure_hard:
-            return False, f"hard_exposure_limit: {total_exposure_units:.0f} >= {self._max_exposure_hard:.0f}"
+            return False, (
+                f"hard_exposure_limit: {total_exposure_units:.0f} >= "
+                f"{self._max_exposure_hard:.0f}"
+            )
         return True, "within_limits"
 
     # ------------------------------------------------------------------

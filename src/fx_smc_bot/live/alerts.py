@@ -243,7 +243,9 @@ class TelegramAlertSink:
 
     def _format_daily_summary(self, d: dict, ro_time: str) -> str:
         pnl = d.get("pnl", 0)
+        total_pnl = d.get("total_pnl", 0)
         icon = "\U0001f4c8" if pnl >= 0 else "\U0001f4c9"
+        total_sign = "+" if total_pnl >= 0 else ""
         return (
             f"{icon} <b>DAILY REPORT — {d.get('date', 'Today')}</b>\n"
             f"{'=' * 28}\n"
@@ -256,7 +258,7 @@ class TelegramAlertSink:
             f"Win rate: {d.get('win_rate', 0):.0%}\n"
             f"Max drawdown: {d.get('drawdown', 0):.2%}\n"
             f"Total trades: {d.get('total_trades', 0)}\n"
-            f"Total PnL: <b>{'+'if d.get('total_pnl',0)>=0 else ''}${d.get('total_pnl', 0):,.2f}</b>\n"
+            f"Total PnL: <b>{total_sign}${total_pnl:,.2f}</b>\n"
             f"\n"
             f"Status: <code>{d.get('status', 'active')}</code>\n"
             f"Feed: <code>{d.get('feed_status', 'connected')}</code>\n"

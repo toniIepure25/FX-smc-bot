@@ -8,7 +8,7 @@ existing FillEngine for simulated execution.
 from __future__ import annotations
 
 import uuid
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 from typing import Protocol, runtime_checkable
 
@@ -16,10 +16,8 @@ from fx_smc_bot.config import ExecutionConfig, TradingPair
 from fx_smc_bot.domain import (
     Direction,
     Fill,
-    FillReason,
     Order,
     OrderState,
-    OrderType,
     Position,
     PositionState,
 )

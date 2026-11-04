@@ -66,7 +66,7 @@ def _score_weighted(
     total_risk = sum(i.risk_fraction for i in intents)
 
     result = []
-    for intent, score in zip(intents, scores):
+    for intent, score in zip(intents, scores, strict=True):
         weight = score / total_score
         new_risk = total_risk * weight
         scale = new_risk / intent.risk_fraction if intent.risk_fraction > 0 else 0.0

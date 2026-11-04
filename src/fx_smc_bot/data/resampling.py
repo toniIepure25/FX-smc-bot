@@ -9,7 +9,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from fx_smc_bot.config import TIMEFRAME_MINUTES, Timeframe, TradingPair
+from fx_smc_bot.config import TIMEFRAME_MINUTES, Timeframe
 from fx_smc_bot.data.models import BarSeries
 
 _TF_TO_PANDAS_FREQ: dict[Timeframe, str] = {
