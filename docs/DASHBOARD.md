@@ -100,8 +100,10 @@ python -m pytest tests/test_dashboard -q
 reconciles monthly, pair and session P&L against the ledger.
 `tests/test_dashboard/test_charts.py` smoke-tests the Plotly builders and skips
 cleanly when the optional extra is absent.
+`tests/test_dashboard/test_app.py` drives the real Streamlit page with
+`AppTest` and asserts five tabs, five Plotly charts and no exceptions.
 
-To exercise the actual Streamlit page without a browser:
+To exercise the page manually without a browser:
 
 ```python
 from streamlit.testing.v1 import AppTest
