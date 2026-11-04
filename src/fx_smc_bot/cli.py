@@ -8,6 +8,7 @@ project, validate a checkout, run a smoke backtest and launch the local cockpit.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
 import platform
@@ -18,8 +19,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 from fx_smc_bot import __version__
-from fx_smc_bot.config import AppConfig
+from fx_smc_bot.config import AppConfig, TradingPair
+from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.research.experiments import load_config
 
 STATUS = "CURRENT_DATA_ALPHA_SEARCH_EXHAUSTED"
@@ -148,6 +152,9 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
                 )
                 if audit.missing_pairs:
                     detail += f" | missing {', '.join(audit.missing_pairs)}"
+                fallbacks = [pair.pair for pair in audit.pairs if not pair.timeframe_ok]
+                if fallbacks:
+                    detail += f" | fallback {', '.join(fallbacks)}"
             checks.append(Check("data", audit.status, detail))
     else:
         checks.append(Check("data", "skip", "no --data-dir supplied; synthetic path is available"))
@@ -194,16 +201,44 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
     return exit_code
 
 
+def _sha256_json(payload: object) -> str:
+    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _data_fingerprint(data: dict[TradingPair, BarSeries]) -> str:
+    """Hash the exact timestamps and OHLCV arrays used by a run."""
+    digest = hashlib.sha256()
+    for pair in sorted(data):
+        series = data[pair]
+        digest.update(f"pair={pair.value};tf={series.timeframe.value};bars={len(series)}>".encode())
+        for name in ("timestamps", "open", "high", "low", "close", "volume", "spread"):
+            array = getattr(series, name)
+            if array is None:
+                digest.update(f"|{name}:none".encode())
+                continue
+            contiguous = np.ascontiguousarray(array)
+            digest.update(f"|{name}:{contiguous.dtype}>".encode())
+            digest.update(contiguous.tobytes())
+    return digest.hexdigest()
+
+
 def _cmd_data(args: argparse.Namespace) -> int:
     from fx_smc_bot.data.audit import audit_market_data, format_data_audit
 
     config = _resolve_config(args.config)
     audit = audit_market_data(config, args.data_dir)
+    payload = audit.as_dict()
 
     if args.json:
-        print(json.dumps(audit.as_dict(), indent=2))
+        print(json.dumps(payload, indent=2))
     else:
         print(format_data_audit(audit))
+
+    if args.output:
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
     if audit.status == "fail":
         return 1
@@ -214,16 +249,33 @@ def _cmd_data(args: argparse.Namespace) -> int:
 
 def _cmd_backtest(args: argparse.Namespace) -> int:
     from fx_smc_bot.backtesting.runner import load_market_data, run_backtest, synthetic_market_data
+    from fx_smc_bot.data.audit import audit_series, format_data_audit
     from fx_smc_bot.research.reporting import save_run_artifacts, summary_report
     from fx_smc_bot.utils.logging import setup_logging
+
+    if args.require_quality and not args.data_dir:
+        print("error: --require-quality requires --data-dir", file=sys.stderr)
+        return 1
 
     setup_logging(args.log_level)
 
     config_path = Path(args.config or DEFAULT_CONFIG)
     config = _resolve_config(args.config)
+    audit = None
     if args.data_dir:
         data = load_market_data(args.data_dir, config)
         source = f"local data | {args.data_dir}"
+        audit = audit_series(data, config, Path(args.data_dir).resolve())
+        if audit.status != "ok":
+            print(
+                f"Data audit: {audit.status.upper()} "
+                f"(run 'fx-smc data --data-dir {args.data_dir}' for details)",
+                file=sys.stderr,
+            )
+        if args.require_quality and audit.status != "ok":
+            print(format_data_audit(audit), file=sys.stderr)
+            print("error: data audit must be ok for this run", file=sys.stderr)
+            return 1
     else:
         data = synthetic_market_data(args.bars, seed=args.seed)
         source = f"synthetic demo | {args.bars} bars/pair"
@@ -241,21 +293,45 @@ def _cmd_backtest(args: argparse.Namespace) -> int:
             label=args.label,
         )
         manifest = {
-            "schema_version": 1,
+            "schema_version": 2,
             "label": args.label,
             "source": "local" if args.data_dir else "synthetic",
-            "pairs": sorted(pair.value for pair in data),
-            "bars": None if args.data_dir else args.bars,
-            "seed": None if args.data_dir else args.seed,
-            "data_dir": str(Path(args.data_dir).resolve()) if args.data_dir else None,
-            "config_path": str(config_path.resolve()),
+            "package_version": __version__,
             "python": platform.python_version(),
             "created_at": datetime.now(timezone.utc).isoformat(),
+            "config": {
+                "path": str(config_path.resolve()),
+                "sha256": _sha256_json(config.model_dump(mode="json")),
+            },
+            "data": {
+                "source": "local" if args.data_dir else "synthetic",
+                "directory": (
+                    str(Path(args.data_dir).resolve()) if args.data_dir else None
+                ),
+                "pairs": sorted(pair.value for pair in data),
+                "timeframes": {
+                    pair.value: series.timeframe.value
+                    for pair, series in sorted(data.items(), key=lambda item: item[0].value)
+                },
+                "bars": {
+                    pair.value: len(series)
+                    for pair, series in sorted(data.items(), key=lambda item: item[0].value)
+                },
+                "seed": None if args.data_dir else args.seed,
+                "requested_bars": None if args.data_dir else args.bars,
+                "fingerprint": _data_fingerprint(data),
+            },
+            "audit": audit.as_dict() if audit else None,
         }
         (artifact_dir / "manifest.json").write_text(
             json.dumps(manifest, indent=2),
             encoding="utf-8",
         )
+        if audit is not None:
+            (artifact_dir / "audit.json").write_text(
+                json.dumps(audit.as_dict(), indent=2) + "\n",
+                encoding="utf-8",
+            )
         print(f"Artifacts: {artifact_dir}")
     return 0
 
@@ -324,6 +400,7 @@ def build_parser() -> argparse.ArgumentParser:
     data.add_argument("--data-dir", required=True, help="Market-data directory to inspect")
     data.add_argument("--config", help="YAML config (default: configs/base.yaml)")
     data.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    data.add_argument("--output", help="Write the JSON audit to this path")
     data.add_argument("--strict", action="store_true", help="Treat quality warnings as failures")
     data.set_defaults(func=_cmd_data)
 
@@ -336,6 +413,11 @@ def build_parser() -> argparse.ArgumentParser:
     backtest.add_argument("--seed", type=int, default=42, help="Synthetic seed (default: 42)")
     backtest.add_argument("--output-dir", help="Write run artifacts here")
     backtest.add_argument("--label", default="backtest", help="Artifact label (default: backtest)")
+    backtest.add_argument(
+        "--require-quality",
+        action="store_true",
+        help="Fail before the backtest when the data audit is not ok",
+    )
     backtest.add_argument("--log-level", default="WARNING", help="Logging level (default: WARNING)")
     backtest.set_defaults(func=_cmd_backtest)
 
