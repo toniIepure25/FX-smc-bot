@@ -34,6 +34,7 @@ except ImportError:  # pragma: no cover - only hit without the dashboard extra
 from fx_smc_bot.dashboard.formatting import compact_money, compact_pct, finite
 from fx_smc_bot.dashboard.service import (
     DashboardSnapshot,
+    data_quality_frame,
     load_dashboard_config,
     load_market_data,
     pair_summary_frame,
@@ -135,6 +136,28 @@ def _build_snapshot(
     return run_snapshot(config, data, source_label=label)
 
 
+def _config_stamp(path: str) -> int:
+    """Use the config mtime as a cache key so edits invalidate the snapshot."""
+    try:
+        return Path(path).stat().st_mtime_ns
+    except OSError:
+        return 0
+
+
+@st.cache_resource(show_spinner=False)
+def _cached_snapshot(
+    source: str,
+    n_bars: int,
+    data_dir: str,
+    config_path: str,
+    config_stamp: int,
+    reload_generation: int,
+) -> DashboardSnapshot:
+    """Cache the expensive backtest while keeping results read-only."""
+    del config_stamp, reload_generation  # both are cache-key inputs only
+    return _build_snapshot(source, n_bars, data_dir, config_path)
+
+
 def _format_date(value: object) -> str:
     if value is None:
         return "—"
@@ -188,6 +211,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+if "reload_generation" not in st.session_state:
+    st.session_state.reload_generation = 0
+
 with st.sidebar:
     st.markdown("### Run configuration")
     source = st.radio(
@@ -203,28 +229,42 @@ with st.sidebar:
         data_dir = st.text_input("Data directory", "var/smoke/data")
     config_path = st.text_input("Config file", "configs/base.yaml")
     run_clicked = st.button("Run backtest", type="primary", **BUTTON_STRETCH)
+    reload_clicked = st.button("Reload data / config", **BUTTON_STRETCH)
+    if reload_clicked:
+        st.session_state.reload_generation += 1
 
     st.divider()
     st.caption(
-        "One in-process backtest. No broker connection, no order routing, no persistence."
+        "One in-process backtest, cached per configuration. No broker connection, "
+        "no order routing, no persistence."
     )
     st.caption("Research data only. Do not point this at the sealed 2018+ holdout.")
 
 if "snapshot" not in st.session_state:
     try:
         with st.spinner("Running the initial synthetic backtest…"):
-            st.session_state.snapshot = _build_snapshot(
-                "Synthetic demo", 1200, "", "configs/base.yaml"
+            st.session_state.snapshot = _cached_snapshot(
+                "Synthetic demo",
+                1200,
+                "",
+                "configs/base.yaml",
+                _config_stamp("configs/base.yaml"),
+                st.session_state.reload_generation,
             )
     except Exception as exc:  # pragma: no cover - depends on local environment
         st.error(f"Could not start the demo: {exc}")
         st.stop()
 
-if run_clicked:
+if run_clicked or reload_clicked:
     try:
         with st.spinner("Running backtest…"):
-            st.session_state.snapshot = _build_snapshot(
-                source, n_bars, data_dir, config_path
+            st.session_state.snapshot = _cached_snapshot(
+                source,
+                n_bars,
+                data_dir,
+                config_path,
+                _config_stamp(config_path),
+                st.session_state.reload_generation,
             )
     except Exception as exc:
         st.error(f"Backtest failed: {exc}")
@@ -492,6 +532,37 @@ with tab_ledger:
             )
 
 with tab_data:
+    st.subheader("Data quality")
+    quality = data_quality_frame(snapshot.data)
+    st.dataframe(
+        quality,
+        hide_index=True,
+        **DATAFRAME_STRETCH,
+        column_config={
+            "pair": "Pair",
+            "timeframe": "TF",
+            "bars": st.column_config.NumberColumn("Bars", format="%d"),
+            "quality_score": st.column_config.NumberColumn("Quality", format="%.3f"),
+            "missing_bar_pct": st.column_config.NumberColumn("Missing %", format="%.2f%%"),
+            "duplicates": st.column_config.NumberColumn("Duplicates", format="%d"),
+            "zero_range_bars": st.column_config.NumberColumn("Zero range", format="%d"),
+            "stale_sequences": st.column_config.NumberColumn("Stale runs", format="%d"),
+            "issues": "Issues",
+        },
+    )
+    problem_rows = quality[
+        (quality["quality_score"] < 0.80)
+        | (quality["missing_bar_pct"] > 1.0)
+        | (quality["duplicates"] > 0)
+        | (quality["stale_sequences"] > 0)
+    ]
+    if not problem_rows.empty:
+        st.warning(
+            "Data-quality warnings for: "
+            + ", ".join(problem_rows["pair"].astype(str))
+            + ". Review the issues before treating the run as evidence."
+        )
+
     st.subheader("Loaded series")
     st.dataframe(
         summary_rows(snapshot),

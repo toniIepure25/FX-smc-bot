@@ -20,12 +20,14 @@ from fx_smc_bot.backtesting.runner import (
     synthetic_market_data,
 )
 from fx_smc_bot.config import AppConfig, TradingPair
+from fx_smc_bot.data.diagnostics import run_diagnostics
 from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.domain import BacktestResult
 from fx_smc_bot.research.experiments import load_config
 
 __all__ = [
     "DashboardSnapshot",
+    "data_quality_frame",
     "equity_frame",
     "load_dashboard_config",
     "load_market_data",
@@ -181,6 +183,38 @@ def summary_rows(snapshot: DashboardSnapshot) -> list[dict[str, object]]:
             }
         )
     return rows
+
+
+def data_quality_frame(data: dict[TradingPair, BarSeries]) -> pd.DataFrame:
+    """One row per pair with the diagnostics used by the data-quality tab."""
+    columns = [
+        "pair",
+        "timeframe",
+        "bars",
+        "quality_score",
+        "missing_bar_pct",
+        "duplicates",
+        "zero_range_bars",
+        "stale_sequences",
+        "issues",
+    ]
+    rows: list[dict[str, object]] = []
+    for pair, series in sorted(data.items(), key=lambda item: item[0].value):
+        report = run_diagnostics(series)
+        rows.append(
+            {
+                "pair": pair.value,
+                "timeframe": series.timeframe.value,
+                "bars": report.total_bars,
+                "quality_score": report.quality_score,
+                "missing_bar_pct": report.missing_bar_pct * 100.0,
+                "duplicates": report.duplicate_count,
+                "zero_range_bars": report.zero_range_bars,
+                "stale_sequences": report.stale_price_sequences,
+                "issues": "; ".join(report.issues),
+            }
+        )
+    return pd.DataFrame(rows, columns=columns)
 
 
 def monthly_pnl_frame(trades: pd.DataFrame) -> pd.DataFrame:

@@ -25,3 +25,4 @@ def test_dashboard_default_load_has_no_exceptions() -> None:
     assert not at.exception, [str(exc) for exc in at.exception]
     assert len(at.tabs) == 5
     assert len(at.get("plotly_chart")) >= 5
+    assert any("Data quality" in subheader.value for subheader in at.subheader)

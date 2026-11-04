@@ -8,6 +8,7 @@ import pytest
 from fx_smc_bot.config import AppConfig
 from fx_smc_bot.dashboard.service import (
     DashboardSnapshot,
+    data_quality_frame,
     equity_frame,
     monthly_pnl_frame,
     pair_summary_frame,
@@ -74,3 +75,24 @@ def test_attribution_frames_reconcile_with_trade_pnl(snapshot: DashboardSnapshot
     assert sessions["trades"].sum() == len(trades)
     assert monthly["win_rate"].between(0, 1).all()
     assert pairs["win_rate"].between(0, 1).all()
+
+
+def test_data_quality_frame_contract(snapshot: DashboardSnapshot) -> None:
+    quality = data_quality_frame(snapshot.data)
+
+    assert list(quality.columns) == [
+        "pair",
+        "timeframe",
+        "bars",
+        "quality_score",
+        "missing_bar_pct",
+        "duplicates",
+        "zero_range_bars",
+        "stale_sequences",
+        "issues",
+    ]
+    assert len(quality) == len(snapshot.data)
+    assert quality["quality_score"].between(0, 1).all()
+    assert (quality["missing_bar_pct"] >= 0).all()
+    assert (quality["duplicates"] >= 0).all()
+    assert quality["issues"].map(lambda value: isinstance(value, str)).all()
