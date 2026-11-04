@@ -24,6 +24,7 @@ python -m fx_smc_bot info
 |---|---|
 | `fx-smc info` | Print version, research status, holdout state and available commands. |
 | `fx-smc doctor` | Validate Python, repository layout, config, optional data directory and dashboard extras. |
+| `fx-smc data` | Audit coverage, bars and quality diagnostics for a market-data directory. |
 | `fx-smc backtest` | Run one in-process backtest on synthetic data or a local dataset. |
 | `fx-smc dashboard` | Launch the local Streamlit cockpit. |
 
@@ -51,11 +52,42 @@ Checks are reported as `ok`, `warn`, `skip` or `fail`:
 - Python must be 3.10 or newer;
 - the working directory must look like the repository root (warning otherwise);
 - the YAML config must load;
-- an optional data directory must exist and contain parquet/CSV files;
+- an optional data directory is loaded through the normal provider path, then
+  checked for configured-pair coverage and data-quality warnings;
 - `streamlit` and `plotly` are reported as warnings when missing.
 
 Exit code is `0` unless a check fails. `--strict` turns warnings into a non-zero
 exit, which is what CI uses. `--json` emits machine-readable output.
+
+### `data`
+
+```powershell
+fx-smc data --data-dir var/smoke/data
+fx-smc data --data-dir var/smoke/data --config configs/base.yaml --json
+fx-smc data --data-dir var/smoke/data --strict
+```
+
+The audit loads the configured execution timeframes and runs the same
+`data.diagnostics` checks used elsewhere in the framework. It reports, per pair:
+
+- timeframe and bar count;
+- quality score;
+- missing-bar percentage;
+- duplicate timestamps, zero-range bars and stale-price sequences;
+- diagnostic issue strings.
+
+Exit codes:
+
+| Situation | Exit |
+|---|---|
+| All configured pairs loaded and no quality warnings | `0` |
+| A configured pair is missing or a series has quality warnings | `0` |
+| Same warning, with `--strict` | `1` |
+| Directory missing, no usable data, or invalid config | `1` |
+
+The audit is read-only and never touches the sealed holdout. It is a preflight
+for local runs, not a research verdict. See
+[REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the full preflight sequence.
 
 ### `backtest`
 
@@ -103,6 +135,7 @@ Use the CLI directly, or the small task wrappers:
 .\tasks.ps1 doctor
 .\tasks.ps1 lint
 .\tasks.ps1 test-fast
+.\tasks.ps1 coverage
 .\tasks.ps1 smoke
 ```
 
@@ -112,12 +145,14 @@ On Unix-like shells with `make`:
 make doctor
 make lint
 make test-fast
+make coverage
 make smoke
 ```
 
-The lint target covers all source packages except the frozen `research` tree.
-`research` is intentionally excluded because it contains immutable protocol
-implementations; do not mass-rewrite it for style.
+The lint target covers all source packages except the frozen `research` tree,
+plus the dashboard page and the touched CLI/data/dashboard tests. `research` is
+intentionally excluded because it contains immutable protocol implementations;
+do not mass-rewrite it for style.
 
 ## Scope and safety
 

@@ -43,7 +43,7 @@ usable without downloading data. Use the sidebar to switch to a local dataset.
 | Price & positions | Candlestick + volume, holding ribbons, entries/exits, position paths, single-trade zoom |
 | Attribution | P&L by setup family, pair summary, session summary |
 | Trade ledger | Direction/family/outcome filters, sortable table, per-trade inspector, CSV export |
-| Data & config | Bars and timestamp range, volume/spread availability, JSON and CSV export, resolved config |
+| Data & config | Per-pair quality diagnostics, bars and timestamp range, volume/spread availability, JSON and CSV export, resolved config |
 
 Chart interactions: drag to pan, scroll to zoom, use the Plotly toolbar for
 reset/export. Hovering an entry or exit shows family, P&L, pips and RR. The
@@ -56,6 +56,33 @@ in memory; nothing is written back to the repository.
 
 The page uses the project theme in `.streamlit/config.toml` (dark, compact) when
 Streamlit is started from the repository root.
+
+## Caching and refresh
+
+The expensive part of the page is one in-process backtest. It is cached with
+`st.cache_resource` under this key:
+
+- synthetic/local source;
+- bar count;
+- data directory;
+- config path;
+- config file modification time;
+- a session reload generation.
+
+That means switching tabs or filtering the ledger does not rerun the engine.
+Editing the YAML file invalidates the cache automatically. If the data files
+change while the config path stays the same, use **Reload data / config** in the
+sidebar; it increments the generation and forces a fresh run. The cache is
+in-memory and disappears when Streamlit restarts. It is not a run database.
+
+## Data quality
+
+The **Data & config** tab shows a diagnostics table for every loaded pair:
+quality score, missing-bar percentage, duplicate timestamps, zero-range bars,
+stale-price sequences and issue strings. A warning is shown when any pair falls
+below the project threshold. These are data-hygiene checks, not evidence that a
+strategy is valid. For a CLI preflight that uses the same diagnostics, see
+[CLI.md](CLI.md#data).
 
 ## Data sources
 
@@ -97,11 +124,13 @@ python -m pytest tests/test_dashboard -q
 ```
 
 `tests/test_dashboard/test_service.py` checks the frame contracts and
-reconciles monthly, pair and session P&L against the ledger.
+reconciles monthly, pair and session P&L against the ledger, including the
+data-quality frame.
 `tests/test_dashboard/test_charts.py` smoke-tests the Plotly builders and skips
 cleanly when the optional extra is absent.
 `tests/test_dashboard/test_app.py` drives the real Streamlit page with
-`AppTest` and asserts five tabs, five Plotly charts and no exceptions.
+`AppTest` and asserts five tabs, five Plotly charts, the data-quality section and
+no exceptions.
 
 To exercise the page manually without a browser:
 
@@ -117,6 +146,6 @@ assert not at.exception
 
 - One in-process backtest at a time; no job queue or run database.
 - The demo data is random and exists for wiring/visual checks only.
-- The dashboard re-runs the engine on demand; it does not read old run artifacts.
+- The dashboard caches the current run; it does not read old run artifacts.
 - No authentication: run it locally, not on a public interface.
 - Streamlit is an optional dependency and is not installed by the base package.

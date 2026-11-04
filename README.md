@@ -41,8 +41,8 @@ plumbing and the research protocol are the reusable output.
 | Core framework code | Reusable; 12 packages under `src/fx_smc_bot/` |
 | Test suite | 1,900+ tests; pytest collection is green |
 | Lint | Ruff clean across all non-research source; frozen `research` excluded |
-| CI | GitHub Actions: lint, `doctor --strict`, full pytest and coverage artifacts on Python 3.10 / 3.12 |
-| Developer CLI | `fx-smc info`, `doctor`, `backtest`, `dashboard` |
+| CI | GitHub Actions: lint, `doctor --strict`, full pytest + coverage artifacts on Python 3.10 / 3.12; wheel and Docker smoke on 3.12 |
+| Developer CLI | `fx-smc info`, `doctor`, `data`, `backtest`, `dashboard` |
 | Forward paper service | Legacy Docker service; optional Telegram alerts; **not validated** |
 | Research dashboard | Local Streamlit cockpit for price, positions and performance |
 | Recommended action | Do not deploy. Read [docs/STATUS.md](docs/STATUS.md) before starting new work. |
@@ -104,8 +104,10 @@ python -m fx_smc_bot dashboard
 ```
 
 The first load uses deterministic synthetic data; switch to a local dataset in
-the sidebar. It is read-only, performs no order submission, and never connects to
-a broker. See [docs/DASHBOARD.md](docs/DASHBOARD.md).
+the sidebar. Runs are cached per configuration and the sidebar has an explicit
+**Reload data / config** action. The data tab shows diagnostics for every loaded
+pair. The cockpit is read-only, performs no order submission, and never connects
+to a broker. See [docs/DASHBOARD.md](docs/DASHBOARD.md).
 
 ## Developer CLI
 
@@ -116,10 +118,18 @@ frozen research-gate scripts:
 |---|---|
 | `fx-smc info` | Version, canonical verdict, holdout state and command list |
 | `fx-smc doctor` | Validate Python, repository layout, config, data and dashboard extras |
+| `fx-smc data` | Audit coverage, bars and quality diagnostics for a data directory |
 | `fx-smc backtest` | One in-process backtest on synthetic data or a local dataset |
 | `fx-smc dashboard` | Launch the local cockpit |
 
 `doctor --strict --json` is suitable for CI, and `info --json` for release checks.
+Before a local run, audit the data explicitly:
+
+```powershell
+python -m fx_smc_bot data --data-dir var/smoke/data --json
+python -m fx_smc_bot data --data-dir var/smoke/data --strict
+```
+
 See [docs/CLI.md](docs/CLI.md) for flags, exit codes and scope.
 
 ## Repository map
@@ -231,7 +241,7 @@ python -m pytest tests/test_domain.py tests/test_cli.py tests/test_structure tes
 
 # Lint all non-research source, plus the dashboard/CLI tests
 python -m ruff check src/fx_smc_bot --exclude src/fx_smc_bot/research
-python -m ruff check tests/test_cli.py tests/test_dashboard tests/test_backtesting/test_runner.py
+python -m ruff check dashboard/app.py tests/test_cli.py tests/test_data/test_audit.py tests/test_dashboard tests/test_backtesting/test_runner.py
 
 # Validate the checkout the same way CI does
 python -m fx_smc_bot doctor --config configs/base.yaml --strict

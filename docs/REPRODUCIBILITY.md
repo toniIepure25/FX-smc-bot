@@ -78,14 +78,19 @@ python scripts/download_data.py --mode generate `
   --output-dir var/repro/data `
   --start 2024-01-01 --end 2024-02-01
 
+python -m fx_smc_bot data --data-dir var/repro/data --strict
+
 python -m fx_smc_bot backtest `
   --data-dir var/repro/data `
   --config configs/base.yaml `
   --output-dir var/repro/file-backed --label repro-file
 ```
 
-If the loader reports missing pairs or malformed bars, stop and inspect the
-data. Do not "fix" it by editing the research evidence.
+The `data --strict` step checks configured-pair coverage, bar counts, duplicate
+timestamps, missing bars, stale sequences and the quality score before the
+backtest runs. Use `--json` to archive the audit beside the run artifact. If the
+loader reports missing pairs or malformed bars, stop and inspect the data. Do not
+"fix" it by editing the research evidence.
 
 ## 4. Tests and CI parity
 
@@ -97,7 +102,9 @@ python -m pytest -q --cov=fx_smc_bot --cov-report=term-missing
 
 The full suite includes frozen protocol tests. CI runs the same commands on
 Python 3.10 and 3.12 and uploads `coverage.xml`; a local pass on one interpreter
-is not proof that the other matrix entry passes.
+is not proof that the other matrix entry passes. CI also builds the sdist/wheel,
+checks the metadata with `twine`, installs the wheel, and builds the Docker image
+to verify the unprivileged user and a synthetic backtest inside the container.
 
 ## 5. Research re-runs
 
@@ -116,6 +123,7 @@ Use the program-specific protocol under `docs/research/` and the registry under
 
 - [ ] Clean environment and `pip freeze` saved.
 - [ ] `doctor --strict` passes.
+- [ ] Local datasets pass `fx-smc data --strict`.
 - [ ] Input config copied into the run directory as resolved `config.json`.
 - [ ] Seed, bar count, data directory and command recorded.
 - [ ] Output artifacts hashed.

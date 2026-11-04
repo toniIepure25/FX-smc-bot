@@ -60,9 +60,14 @@ mypy still open.)*
 - Do not add a badge until the workflow is green on the default branch.
 - Future: documentation link check. *(Coverage reporting added: CI uploads
   `coverage.xml` for each matrix entry.)*
+- **Done:** `fx-smc data` audits configured-pair coverage and data quality; the
+  same audit feeds `doctor --data-dir` and can gate a local run with `--strict`.
+- **Done:** CI has wheel/`twine`/installed-entry-point validation and a Docker
+  build plus unprivileged synthetic smoke test.
 
-**Acceptance:** a pull request runs the suite and lint automatically; a red
-workflow blocks merge. *(Workflow added; needs a first green run on the remote.)*
+**Acceptance:** a pull request runs the suite, lint, package validation and
+Docker smoke automatically; a red workflow blocks merge. *(Workflow extended;
+needs a first green run on the remote.)*
 
 ### P1.3 Coverage where it matters
 - **Done:** `pytest-cov` is a dev dependency, `coverage` is configured in
@@ -87,10 +92,12 @@ workflow blocks merge. *(Workflow added; needs a first green run on the remote.)
   command is exercised locally, not yet on a fresh machine).
 
 ### P2.2 Packaging
-- **Done:** one `fx-smc` console entry point covering `info`, `doctor`,
+- **Done:** one `fx-smc` console entry point covering `info`, `doctor`, `data`,
   `backtest` and `dashboard`, plus `python -m fx_smc_bot` as a PATH-free fallback.
   Local `Makefile` and PowerShell `tasks.ps1` wrappers cover install, lint, test,
-  doctor and smoke.
+  doctor, coverage and smoke.
+- **Done:** CI builds the sdist and wheel, runs `twine check`, force-installs the
+  wheel without dependencies and validates `fx-smc info` plus `doctor --strict`.
 - Still open: separate `fx-smc-data`, `fx-smc-backtest`, `fx-smc-campaign` and
   `fx-smc-paper` commands.
 - Make the remaining scripts thin wrappers over library functions so Docker and
@@ -106,8 +113,10 @@ workflow blocks merge. *(Workflow added; needs a first green run on the remote.)
   credentials are marked as optional legacy inputs, and the image runs as an
   unprivileged user with dropped capabilities, a normal (non-editable) install
   and legacy/unvalidated image labels.
-- Still open: pin the base image by digest and add a Docker smoke test to CI or
-  a documented manual check.
+- **Done:** CI builds the image, asserts uid `10001`, runs `info` and executes a
+  synthetic backtest inside the container.
+- Still open: pin the base image by digest. No digest has been resolved and
+  verified from this environment, so do not invent one.
 
 ### P2.4 Repository size
 - `results/` contains ~41 MB of committed evidence; `data/` is ~7.7 GB locally.
@@ -154,11 +163,12 @@ that has never been inspected, and (5) an explicit budget for data and compute.
 ## Suggested sequence
 
 1. P1.1 remaining mypy baseline and frozen-path policy (1 day). *(Ruff half done.)*
-2. P1.2 first green CI run + P1.3 coverage (1–2 days). *(Workflow written.)*
+2. P1.2 first green CI run + P1.3 coverage thresholds (1–2 days). *(Workflow
+   extended with package and Docker jobs.)*
 3. P2.1 reproducibility guide (1 day).
 4. P2.2 additional console entry points and script thinning (1–2 days).
-   *(`fx-smc`, Makefile and tasks.ps1 done.)*
-5. P2.3 Docker/ops reconciliation (1 day).
+   *(`fx-smc`, Makefile, tasks.ps1 and CI wheel validation done.)*
+5. P2.3 Docker/ops reconciliation (1 day). *(Docker smoke done; digest open.)*
 6. P3 decision memo (half day, plus data-cost preflight if Option A).
 
 Do not start P3 before P1 is green: a new programme on an untrusted test suite

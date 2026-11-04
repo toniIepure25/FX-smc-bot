@@ -85,11 +85,23 @@ python scripts/download_data.py --mode generate --start 2020-01-02 --end 2023-12
 
 ## Inspecting Data Quality
 
+The dataset script has a detailed inspector:
+
 ```bash
 python scripts/download_data.py --mode inspect --output-dir data/processed
 ```
 
-This runs comprehensive diagnostics on every dataset and reports:
+For the exact layout used by the backtest runner and dashboard, use the CLI
+audit. It loads the configured execution timeframes through the normal provider
+path and checks configured-pair coverage:
+
+```bash
+python -m fx_smc_bot data --data-dir data/processed
+python -m fx_smc_bot data --data-dir data/processed --json
+python -m fx_smc_bot data --data-dir data/processed --strict
+```
+
+The audit reports:
 - Total bars and date range
 - Missing bars and gap analysis
 - Duplicate timestamps
@@ -98,6 +110,14 @@ This runs comprehensive diagnostics on every dataset and reports:
 - Stale price sequences
 - Spread statistics
 - Overall quality score (0.0-1.0)
+
+A pair is marked `warn` when its quality score is below `0.80`, more than 1% of
+expected bars are missing, duplicate timestamps exist, or a stale-price sequence
+is found. A configured pair that cannot be loaded is also a warning. The audit
+fails only when no usable series can be loaded. `--strict` turns warnings into a
+non-zero exit, which is appropriate for a pre-run gate. The audit is a
+plumbing/data-hygiene check, not evidence of an edge, and it never reads the
+sealed holdout.
 
 ## Dataset Manifest
 

@@ -82,7 +82,7 @@ Professional quantitative FX strategy lab that formalizes SMC/ICT concepts into 
 
 - **config.py** — `AppConfig` with `AlphaConfig`, `RiskConfig`, `ExecutionConfig`, `MlConfig`, `OperationalState` enum
 - **domain.py** — ~35 domain types including `ClosedTrade` with `regime` field for regime-tagged analytics
-- **data/** — BarSeries model, CSV/Parquet providers, Dukascopy, normalizer, manifest, diagnostics
+- **data/** — BarSeries model, CSV/Parquet providers, Dukascopy, normalizer, manifest, diagnostics and the coverage/quality audit used by `fx-smc data`
 - **structure/** — SMC primitives: swings, BOS/CHoCH, liquidity pools, displacement, FVG, order blocks, sessions
 - **alpha/** — Config-driven candidate generation with detector registry, scoring with configurable weights, baselines
 - **risk/** — Sizing, constraints (currency exposure, directional concentration, daily stop lockout, daily trade limit), drawdown with operational state machine, portfolio diagnostics
@@ -93,7 +93,7 @@ Professional quantitative FX strategy lab that formalizes SMC/ICT concepts into 
 - **research/** — Ablation runner (family/scoring/filter), campaign orchestration (config sweep, baseline-vs-SMC, walk-forward), research quality scores, experiment registry, evaluation with regime/interaction dimensions; frozen gate modules for C2–C6/F0/Q0–Q1/P0–P1; versioned programmes under `v2/`, `v3/`, `v5r/` and `rate_sources/`
 - **live/** — BrokerAdapter protocol, PaperBroker, EventJournal (JSONL audit log), LiveState persistence, PaperTradingRunner, ForwardPaperRunner, health checks, alerts and the OANDA/file-watch adapters available to the legacy live stack
 - **dashboard/** — Streamlit-independent snapshot/frame service and Plotly chart builders for the local cockpit
-- **cli.py** — `fx-smc` console entry point (`info`, `doctor`, `backtest`, `dashboard`)
+- **cli.py** — `fx-smc` console entry point (`info`, `doctor`, `data`, `backtest`, `dashboard`)
 - **utils/** — ATR, pip math, session time helpers, logging
 
 ## Data Pipeline
