@@ -5,10 +5,33 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pandas as pd
 import pytest
 
 from fx_smc_bot import __version__
+from fx_smc_bot.backtesting.runner import synthetic_market_data
 from fx_smc_bot.cli import main
+from fx_smc_bot.config import Timeframe, TradingPair
+
+
+def _write_csv_dataset(
+    root: Path,
+    *,
+    pairs: list[TradingPair] | None = None,
+    bars: int = 120,
+) -> None:
+    for pair, series in synthetic_market_data(bars, pairs=pairs).items():
+        pair_dir = root / pair.value
+        pair_dir.mkdir(parents=True, exist_ok=True)
+        pd.DataFrame(
+            {
+                "timestamp": pd.to_datetime(series.timestamps),
+                "open": series.open,
+                "high": series.high,
+                "low": series.low,
+                "close": series.close,
+            }
+        ).to_csv(pair_dir / f"{Timeframe.M15.value}.csv", index=False)
 
 
 def test_info_json_contains_status(capsys: pytest.CaptureFixture[str]) -> None:
@@ -38,6 +61,36 @@ def test_doctor_json_is_machine_readable(capsys: pytest.CaptureFixture[str]) -> 
     assert payload["status"] == "ok"
     assert checks["python"] == "ok"
     assert checks["config"] == "ok"
+
+
+def test_data_json_reports_loaded_pairs(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    _write_csv_dataset(tmp_path)
+    assert main(["data", "--data-dir", str(tmp_path), "--json"]) == 0
+    payload = json.loads(capsys.readouterr().out)
+
+    assert payload["status"] == "ok"
+    assert payload["loaded_pairs"] == ["EURUSD", "GBPUSD", "USDJPY"]
+    assert all(pair["quality_score"] > 0.8 for pair in payload["pairs"])
+
+
+def test_data_strict_fails_when_a_pair_is_missing(tmp_path: Path) -> None:
+    _write_csv_dataset(tmp_path, pairs=[TradingPair.EURUSD])
+    assert main(["data", "--data-dir", str(tmp_path), "--strict"]) == 1
+
+
+def test_doctor_with_data_dir_uses_the_audit(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    _write_csv_dataset(tmp_path, pairs=[TradingPair.EURUSD])
+    assert main(["doctor", "--data-dir", str(tmp_path), "--json"]) == 0
+    payload = json.loads(capsys.readouterr().out)
+
+    checks = {check["name"]: check["status"] for check in payload["checks"]}
+    assert checks["data"] == "warn"
 
 
 def test_backtest_synthetic_smoke(capsys: pytest.CaptureFixture[str]) -> None:

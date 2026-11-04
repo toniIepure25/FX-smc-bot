@@ -65,12 +65,6 @@ def _find_dashboard(app: str | None) -> Path | None:
     return None
 
 
-def _data_file_count(path: Path) -> tuple[int, int]:
-    parquet = sum(1 for _ in path.rglob("*.parquet"))
-    csv = sum(1 for _ in path.rglob("*.csv"))
-    return parquet, csv
-
-
 def _cmd_info(args: argparse.Namespace) -> int:
     payload: dict[str, Any] = {
         "name": "fx-smc-bot",
@@ -78,7 +72,7 @@ def _cmd_info(args: argparse.Namespace) -> int:
         "python": platform.python_version(),
         "status": STATUS,
         "holdout": HOLDOUT,
-        "commands": ["info", "doctor", "backtest", "dashboard"],
+        "commands": ["info", "doctor", "data", "backtest", "dashboard"],
     }
     if args.json:
         print(json.dumps(payload, indent=2))
@@ -134,19 +128,27 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
         config = None
 
     if args.data_dir:
-        data_path = Path(args.data_dir)
-        if not data_path.is_dir():
-            checks.append(Check("data", "fail", f"{data_path} is not a directory"))
-        else:
-            parquet, csv = _data_file_count(data_path)
-            status = "ok" if parquet or csv else "warn"
+        if config is None:
             checks.append(
-                Check(
-                    "data",
-                    status,
-                    f"{data_path} | {parquet} parquet, {csv} csv",
-                )
+                Check("data", "fail", "cannot audit data without a valid config")
             )
+        else:
+            from fx_smc_bot.data.audit import audit_market_data
+
+            audit = audit_market_data(config, args.data_dir)
+            if audit.error:
+                detail = f"{audit.data_dir} | {audit.error}"
+            else:
+                total_bars = sum(pair.bars for pair in audit.pairs)
+                min_quality = min((pair.quality_score for pair in audit.pairs), default=0.0)
+                detail = (
+                    f"{audit.data_dir} | {len(audit.loaded_pairs)}/"
+                    f"{len(audit.configured_pairs)} pairs | {total_bars:,} bars | "
+                    f"quality {min_quality:.2f}"
+                )
+                if audit.missing_pairs:
+                    detail += f" | missing {', '.join(audit.missing_pairs)}"
+            checks.append(Check("data", audit.status, detail))
     else:
         checks.append(Check("data", "skip", "no --data-dir supplied; synthetic path is available"))
 
@@ -190,6 +192,24 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
     else:
         print("Doctor: checkout is usable.")
     return exit_code
+
+
+def _cmd_data(args: argparse.Namespace) -> int:
+    from fx_smc_bot.data.audit import audit_market_data, format_data_audit
+
+    config = _resolve_config(args.config)
+    audit = audit_market_data(config, args.data_dir)
+
+    if args.json:
+        print(json.dumps(audit.as_dict(), indent=2))
+    else:
+        print(format_data_audit(audit))
+
+    if audit.status == "fail":
+        return 1
+    if args.strict and audit.status == "warn":
+        return 1
+    return 0
 
 
 def _cmd_backtest(args: argparse.Namespace) -> int:
@@ -299,6 +319,13 @@ def build_parser() -> argparse.ArgumentParser:
     doctor.add_argument("--strict", action="store_true", help="Treat warnings as failures")
     doctor.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
     doctor.set_defaults(func=_cmd_doctor)
+
+    data = sub.add_parser("data", help="Audit market data quality and coverage")
+    data.add_argument("--data-dir", required=True, help="Market-data directory to inspect")
+    data.add_argument("--config", help="YAML config (default: configs/base.yaml)")
+    data.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    data.add_argument("--strict", action="store_true", help="Treat quality warnings as failures")
+    data.set_defaults(func=_cmd_data)
 
     backtest = sub.add_parser("backtest", help="Run one in-process backtest")
     backtest.add_argument("--config", help="YAML config (default: configs/base.yaml if present)")
