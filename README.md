@@ -38,35 +38,49 @@ plumbing and the research protocol are the reusable output.
 |---|---|
 | Alpha research on current FX data | **Closed — no survivor** (`CURRENT_DATA_ALPHA_SEARCH_EXHAUSTED`) |
 | Holdout 2018+ | **Sealed and unread** |
-| Core framework code | Reusable; 11 packages under `src/fx_smc_bot/` |
+| Core framework code | Reusable; 12 packages under `src/fx_smc_bot/` |
 | Test suite | 1,900+ tests; pytest collection is green |
-| Static typing / lint | `F821` clean; broader Ruff cleanup is a roadmap item |
+| Lint | Ruff clean across all non-research source; frozen `research` excluded |
+| CI | GitHub Actions: lint, `doctor --strict` and full pytest on Python 3.10 / 3.12 |
+| Developer CLI | `fx-smc info`, `doctor`, `backtest`, `dashboard` |
 | Forward paper service | Legacy Docker service; requires credentials; **not validated** |
 | Research dashboard | Local Streamlit cockpit for price, positions and performance |
 | Recommended action | Do not deploy. Read [docs/STATUS.md](docs/STATUS.md) before starting new work. |
 
 ## Quick start
 
-**Prerequisites:** Python 3.10–3.12, `pip` (or `uv`), and a shell. Commands below
-are shown for PowerShell; on Unix activate with `source .venv/bin/activate`.
+**Prerequisites:** Python 3.10+ (3.12/3.13 recommended), `pip` (or `uv`), and a
+shell. Commands below are shown for PowerShell; on Unix activate with
+`source .venv/bin/activate`.
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[dev]"
+python -m pip install -e ".[dev,dashboard]"
+
+# Validate the checkout, then run a self-contained smoke backtest.
+python -m fx_smc_bot info
+python -m fx_smc_bot doctor --config configs/base.yaml
+python -m fx_smc_bot backtest --synthetic --bars 500
 ```
 
-Run the synthetic-data smoke test:
+`fx-smc` is installed as the console script; if it is not on `PATH`, the
+`python -m fx_smc_bot` form above is equivalent.
+
+Run the full test suite (~6 minutes on a laptop):
+
+```powershell
+python -m pytest -q
+```
+
+To exercise the original file-based smoke path:
 
 ```powershell
 # 1. Generate one month of synthetic M1 data and resample it.
 python scripts/download_data.py --mode generate --output-dir var/smoke/data --start 2024-01-01 --end 2024-02-01
 
-# 2. Run a small end-to-end backtest.
+# 2. Run a small end-to-end backtest and write artifacts.
 python scripts/run_backtest.py --data-dir var/smoke/data --output-dir var/smoke/results --label smoke
-
-# 3. Run the test suite (~7 minutes on a laptop).
-python -m pytest -q
 ```
 
 The synthetic path validates wiring, not profitability. It must never be used as
@@ -86,12 +100,27 @@ trade ledger. It also exports the filtered ledger (CSV) and a run summary (JSON)
 
 ```powershell
 python -m pip install -e ".[dashboard]"
-streamlit run dashboard/app.py
+python -m fx_smc_bot dashboard
 ```
 
 The first load uses deterministic synthetic data; switch to a local dataset in
-the sidebar. It is read-only and never connects to a broker. See
-[docs/DASHBOARD.md](docs/DASHBOARD.md).
+the sidebar. It is read-only, performs no order submission, and never connects to
+a broker. See [docs/DASHBOARD.md](docs/DASHBOARD.md).
+
+## Developer CLI
+
+The `fx-smc` command wraps the repeatable developer workflow without touching the
+frozen research-gate scripts:
+
+| Command | Purpose |
+|---|---|
+| `fx-smc info` | Version, canonical verdict, holdout state and command list |
+| `fx-smc doctor` | Validate Python, repository layout, config, data and dashboard extras |
+| `fx-smc backtest` | One in-process backtest on synthetic data or a local dataset |
+| `fx-smc dashboard` | Launch the local cockpit |
+
+`doctor --strict --json` is suitable for CI, and `info --json` for release checks.
+See [docs/CLI.md](docs/CLI.md) for flags, exit codes and scope.
 
 ## Repository map
 
@@ -104,6 +133,8 @@ the sidebar. It is read-only and never connects to a broker. See
 | `configs/` | YAML configuration for framework, risk profiles and research programs |
 | `tests/` | Unit, integration and protocol-conformance tests |
 | `docs/` | Guides, status and the research archive — start at [docs/README.md](docs/README.md) |
+| `.github/workflows/` | CI: lint, checkout validation and the full test suite |
+| `Makefile`, `tasks.ps1` | Local task wrappers for install, lint, test, doctor and smoke |
 | `results/` | Committed research evidence and decision artifacts — see [results/README.md](results/README.md) |
 | `data/` | Local datasets (mostly ignored) and small tracked samples — see [data/README.md](data/README.md) |
 | `deploy/` | VPS, Docker and operations runbooks |
@@ -171,6 +202,7 @@ current edge. Do not point it at a live account.
 |---|---|
 | [docs/STATUS.md](docs/STATUS.md) | **Canonical current status**, lineage and prohibited actions |
 | [docs/README.md](docs/README.md) | Full documentation index |
+| [docs/CLI.md](docs/CLI.md) | Developer CLI and local quality tasks |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Framework architecture and module map |
 | [docs/DATA_GUIDE.md](docs/DATA_GUIDE.md) | Data sources, schema and ingestion |
 | [docs/RISK_MODEL.md](docs/RISK_MODEL.md) | Sizing, constraints and exposure budgeting |
@@ -189,15 +221,20 @@ current edge. Do not point it at a live account.
 python -m pytest -q
 
 # Fast core subset
-python -m pytest tests/test_domain.py tests/test_structure tests/test_backtesting tests/test_risk tests/test_alpha -q
+python -m pytest tests/test_domain.py tests/test_cli.py tests/test_structure tests/test_backtesting tests/test_risk tests/test_alpha tests/test_dashboard -q
 
-# Undefined-name check (part of the quality gate)
-python -m ruff check src tests --select F821
+# Lint all non-research source, plus the dashboard/CLI tests
+python -m ruff check src/fx_smc_bot --exclude src/fx_smc_bot/research
+python -m ruff check tests/test_cli.py tests/test_dashboard tests/test_backtesting/test_runner.py
+
+# Validate the checkout the same way CI does
+python -m fx_smc_bot doctor --config configs/base.yaml --strict
 ```
 
 The suite includes frozen protocol tests, data-boundary tests and golden
 execution cases. Some tests are intentionally strict about paths and must run
-from the repository root.
+from the repository root. The `research` package is excluded from the style gate
+because it contains immutable protocol implementations; do not mass-rewrite it.
 
 ## Roadmap
 

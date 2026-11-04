@@ -12,15 +12,22 @@ lifecycle, equity, drawdown, attribution and the trade ledger.
 
 ## Launch
 
-Install the optional UI dependencies and start Streamlit from the repository
+Install the optional UI dependencies and launch the cockpit from the repository
 root:
 
 ```powershell
 python -m pip install -e ".[dashboard]"
-streamlit run dashboard/app.py
+python -m fx_smc_bot dashboard
 ```
 
-Open the URL printed by Streamlit (usually `http://localhost:8501`).
+The CLI starts Streamlit on `http://127.0.0.1:8501` by default. The direct
+equivalent, if you prefer it, is:
+
+```powershell
+python -m streamlit run dashboard/app.py
+```
+
+Open the URL printed by Streamlit.
 
 The first page load runs a deterministic synthetic backtest so the dashboard is
 usable without downloading data. Use the sidebar to switch to a local dataset.
@@ -72,9 +79,10 @@ is visible in the **Data & config** tab.
 ```
 dashboard/app.py                    Streamlit layout, controls, filters, exports
 src/fx_smc_bot/dashboard/
-  service.py                        data loading, one engine run, display frames
+  service.py                        snapshot orchestration, display frames
   charts.py                         Plotly figure builders (no Streamlit import)
   formatting.py                     compact money/percentage helpers
+src/fx_smc_bot/backtesting/runner.py  shared synthetic/load/run path used by CLI + dashboard
 .streamlit/config.toml              local dark theme; no secrets
 ```
 

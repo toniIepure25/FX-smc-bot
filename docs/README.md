@@ -8,6 +8,7 @@ Start with the status, then choose the track that matches your task.
 |---|---|
 | [../README.md](../README.md) | You are opening the repository for the first time |
 | [STATUS.md](STATUS.md) | You need the authoritative current status, verdict or holdout rules |
+| [CLI.md](CLI.md) | You want the `fx-smc` commands for validation, smoke runs and the dashboard |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | You need the module map and design decisions |
 | [ROADMAP.md](ROADMAP.md) | You want to improve the repository or decide what happens next |
 

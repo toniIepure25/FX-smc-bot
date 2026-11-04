@@ -24,7 +24,13 @@ These are done and should not be re-litigated:
 - `.gitignore` / `.dockerignore` hygiene;
 - `scripts/maintenance/clean_workspace.py` with dry-run default;
 - local Streamlit research cockpit (`dashboard/`), with tested data preparation
-  and a price/position/equity UI.
+  and a price/position/equity UI;
+- shared `backtesting.runner` used by the dashboard and CLI (one synthetic/load/run
+  path instead of duplicated implementations);
+- `fx-smc` developer CLI (`info`, `doctor`, `backtest`, `dashboard`);
+- non-research source is Ruff-clean; `research` remains intentionally excluded;
+- GitHub Actions CI (lint, `doctor --strict`, full pytest) and local
+  `Makefile` / `tasks.ps1` wrappers.
 
 ## P1 — Make the codebase trustworthy
 
@@ -32,29 +38,30 @@ These are done and should not be re-litigated:
 both without surprises.
 
 ### P1.1 Lint and type baseline
-- Current Ruff baseline: about 367 findings in `src/`, about 590 in `src` + `tests`.
-- Fix the core packages first: `alpha`, `backtesting`, `data`, `execution`,
-  `live`, `ml`, `portfolio`, `risk`, `structure`, `utils`.
-- Use auto-fix (`ruff check --fix`) only on non-frozen packages, then review the
-  diff. Do not mass-rewrite `research/v3`, `research/v5r` or `scripts/run_gate_*`;
-  those encode frozen protocols.
+- **Current state:** `ruff check src/fx_smc_bot --exclude src/fx_smc_bot/research`
+  passes. The frozen `research` tree and most `tests/`/`scripts/` remain outside
+  the style gate.
+- Keep auto-fix (`ruff check --fix`) restricted to non-frozen packages, then
+  review the diff. Do not mass-rewrite `research/v3`, `research/v5r` or
+  `scripts/run_gate_*`; those encode frozen protocols.
 - Add per-file ignores only with a comment explaining the frozen identifier or
   historical artifact.
 - Add a `mypy` configuration with a documented baseline. Do not claim strict
   typing until the baseline is zero.
 
-**Acceptance:** `ruff check src/fx_smc_bot` passes (excluding documented frozen
-paths), and `mypy src/fx_smc_bot` has a non-increasing, recorded error count.
+**Acceptance:** the non-research source remains Ruff-clean in CI, and `mypy
+src/fx_smc_bot` has a non-increasing, recorded error count. *(Lint half done;
+mypy still open.)*
 
 ### P1.2 CI
-- GitHub Actions matrix: Python 3.10, 3.11, 3.12 on Ubuntu.
-- Jobs: `pytest -q`, `ruff check` (core scope), `ruff check --select F821`,
-  documentation link check.
-- Cache `pip`/`uv`; keep total runtime under ~15 minutes.
+- GitHub Actions matrix: Python 3.10 and 3.12 on Ubuntu.
+- Jobs/steps: full `pytest -q`, non-research `ruff check`, `fx-smc doctor
+  --strict`, dependency caching and concurrency cancellation.
 - Do not add a badge until the workflow is green on the default branch.
+- Future: documentation link check and coverage reporting.
 
 **Acceptance:** a pull request runs the suite and lint automatically; a red
-workflow blocks merge.
+workflow blocks merge. *(Workflow added; needs a first green run on the remote.)*
 
 ### P1.3 Coverage where it matters
 - Add `pytest-cov` and measure `src/fx_smc_bot/{risk,execution,data,backtesting}`.
@@ -75,15 +82,16 @@ workflow blocks merge.
 - Verify at least one recipe end-to-end on a clean environment.
 
 ### P2.2 Packaging
-- Add console entry points in `pyproject.toml`:
-  - `fx-smc-data`
-  - `fx-smc-backtest`
-  - `fx-smc-campaign`
-  - `fx-smc-paper`
-- Make the scripts thin wrappers over library functions so Docker and CI do not
-  depend on repository-relative `scripts/` paths.
-- Add a `Makefile` and a PowerShell `tasks.ps1` with `setup`, `test`, `lint`,
-  `clean`, `smoke`.
+- **Done:** one `fx-smc` console entry point covering `info`, `doctor`,
+  `backtest` and `dashboard`, plus `python -m fx_smc_bot` as a PATH-free fallback.
+  Local `Makefile` and PowerShell `tasks.ps1` wrappers cover install, lint, test,
+  doctor and smoke.
+- Still open: separate `fx-smc-data`, `fx-smc-backtest`, `fx-smc-campaign` and
+  `fx-smc-paper` commands.
+- Make the remaining scripts thin wrappers over library functions so Docker and
+  CI do not depend on repository-relative `scripts/` paths. The smoke backtest
+  already shares `backtesting.runner`; the frozen research-gate runners should
+  stay as auditable protocol entry points.
 - Decide whether to keep `requirements.lock` (current) or move to `uv.lock`;
   document the regeneration command either way.
 
@@ -139,10 +147,11 @@ that has never been inspected, and (5) an explicit budget for data and compute.
 
 ## Suggested sequence
 
-1. P1.1 lint/type baseline (1–2 days).
-2. P1.2 CI + P1.3 coverage (1–2 days).
+1. P1.1 remaining mypy baseline and frozen-path policy (1 day). *(Ruff half done.)*
+2. P1.2 first green CI run + P1.3 coverage (1–2 days). *(Workflow written.)*
 3. P2.1 reproducibility guide (1 day).
-4. P2.2 packaging + task runner (1–2 days).
+4. P2.2 additional console entry points and script thinning (1–2 days).
+   *(`fx-smc`, Makefile and tasks.ps1 done.)*
 5. P2.3 Docker/ops reconciliation (1 day).
 6. P3 decision memo (half day, plus data-cost preflight if Option A).
 
