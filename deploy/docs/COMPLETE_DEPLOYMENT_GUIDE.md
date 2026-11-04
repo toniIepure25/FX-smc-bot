@@ -1,7 +1,13 @@
 # Complete Deployment Guide: Kamatera VPS to Live Broker Demo
 
+> **Historical runbook.** This guide documents the earlier OANDA-oriented
+> deployment attempt. The current `docker-compose.yml` forward service uses a
+> Yahoo-backed `live` paper feed (or `replay`) and does **not** connect to a
+> broker. The OANDA instructions below are retained for lineage; do not treat
+> them as the current operating procedure or as evidence of a validated edge.
+
 **Strategy**: `bos_only_usdjpy` (frozen)
-**Broker**: OANDA (free practice account, then live)
+**Broker**: OANDA (historical; not wired into the current compose service)
 **VPS**: Kamatera Performance Cloud
 **Timeline**: Paper (3-5 days) → Broker Demo (1 week) → Prop Trading
 
@@ -128,16 +134,18 @@ cp .env.example .env
 nano .env
 ```
 
-Fill in these values (paste the ones you saved from Phase 0):
+Fill in these values (paste the Telegram values you saved from Phase 0):
 
 ```
-FEED_MODE=oanda
-OANDA_API_KEY=paste_your_oanda_token_here
-OANDA_ACCOUNT_ID=paste_your_account_id_here
-OANDA_PRACTICE=true
+FEED_MODE=live
+OUTPUT_DIR=/app/forward_runs
+AUTO_RESUME=true
 TELEGRAM_BOT_TOKEN=paste_your_telegram_bot_token_here
 TELEGRAM_CHAT_ID=paste_your_chat_id_here
 ```
+
+The OANDA variables in `.env.example` are optional legacy inputs; the current
+compose service does not read them.
 
 Save with `Ctrl+O`, `Enter`, `Ctrl+X`.
 

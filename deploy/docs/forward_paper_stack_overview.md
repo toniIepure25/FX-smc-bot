@@ -1,49 +1,44 @@
 # Forward Paper Stack Overview
 
+> **Legacy, unvalidated stack.** It documents the earlier `bos_only_usdjpy`
+> deployment attempt and is not evidence of a current edge. The current compose
+> service uses a Yahoo-backed `live` paper feed (or `replay`); it does not place
+> broker orders.
+
 ## Purpose
 
-Run the frozen `bos_only_usdjpy` strategy in paper-trading mode on a VPS for 4 weeks, proving operational stability and live-data performance before advancing to broker-demo integration.
+Run the frozen `bos_only_usdjpy` strategy in paper mode on a VPS for operational
+observation. The programme is closed; use this stack only to study its behaviour
+or to reproduce the legacy service.
 
 ## Stack Components
 
 | Component | Implementation | Status |
 |-----------|---------------|--------|
-| Strategy engine | `ForwardPaperRunner` (repaired) | Ready |
-| LTF feed | `FileWatchFeedProvider` (H1 CSVs) | Ready |
-| HTF feed | `ReplayFeedProvider` pre-loaded from historical H4 | Ready |
-| Paper broker | `PaperBroker` (simulated fills) | Ready |
-| Risk management | `DrawdownTracker` + constraints + `DrawdownAwareSizing` | Ready |
-| State persistence | `LiveState` JSON checkpoints | Ready |
-| Feed monitoring | `FeedHealthMonitor` | Ready |
-| Drift detection | `DriftDetector` with baseline profile | Ready |
-| Alert routing | `AlertRouter` → Log + File + Telegram | Ready |
-| Service entry point | `scripts/run_live_forward_service.py` | New |
-| Containerization | `Dockerfile` + `docker-compose.yml` | New |
-| Automated reports | `scripts/generate_report.py` + cron | New |
-| Telegram integration | `TelegramAlertSink` | New |
-| VPS setup | `deploy/setup-vps.sh` | New |
+| Strategy engine | `ForwardPaperRunner` | Legacy, unvalidated |
+| LTF feed (live) | `YahooFeedProvider` (H1) | Legacy, unvalidated |
+| HTF feed (live) | `YahooFeedProvider` (H4) | Legacy, unvalidated |
+| LTF/HTF feed (replay) | `ReplayFeedProvider` from local data | Legacy, unvalidated |
+| Paper broker | `PaperBroker` (simulated fills) | Legacy, unvalidated |
+| Risk management | `DrawdownTracker` + constraints + `DrawdownAwareSizing` | Legacy, unvalidated |
+| State persistence | `LiveState` JSON checkpoints | Legacy, unvalidated |
+| Feed monitoring | `FeedHealthMonitor` | Legacy, unvalidated |
+| Drift detection | `DriftDetector` with baseline profile | Legacy, unvalidated |
+| Alert routing | `AlertRouter` → Log + File + Telegram | Legacy, unvalidated |
+| Service entry point | `scripts/run_live_forward_service.py` | Legacy, unvalidated |
+| Containerization | `Dockerfile` + `docker-compose.yml` | Non-root image |
+| Automated reports | `scripts/generate_report.py` + cron | Legacy, unvalidated |
+| Telegram integration | `TelegramAlertSink` | Optional |
+| VPS setup | `deploy/setup-vps.sh` | Historical |
 
 ## Data Flow
 
 ```
-CSV bar files → FileWatchFeedProvider → ForwardPaperRunner
-                                              │
-                    ┌─────────────────────────┼────────────────────┐
-                    ▼                         ▼                    ▼
-              FeedHealthMonitor        _process_bar            AlertRouter
-                    │              ┌──────────────────┐           │
-                    ▼              │ build_structure   │     ┌────┴────┐
-              feed_health.json     │ generate_cands    │     │Telegram │
-                                   │ approve/select    │     │File     │
-                                   │ execute via       │     │Log      │
-                                   │ PaperBroker       │     └─────────┘
-                                   └──────────────────┘
-                                          │
-                                     ┌────┴────┐
-                                     │Checkpoint│
-                                     │Journal   │
-                                     │Reviews   │
-                                     └─────────┘
+Live: Yahoo H1/H4  ─┐
+                    ├─→ ForwardPaperRunner → PaperBroker → journal/checkpoint
+Replay: local bars ─┘         │
+                              ├─ FeedHealthMonitor → feed_health.json
+                              └─ AlertRouter → Telegram/File/Log
 ```
 
 ## Configuration Fingerprint

@@ -1,16 +1,20 @@
-version: "3.8"
-
 services:
   forward-paper:
-    build: .
+    build:
+      context: .
     container_name: fx-forward-paper
     restart: unless-stopped
     env_file: .env
+    environment:
+      FEED_MODE: ${FEED_MODE:-live}
+      AUTO_RESUME: "true"
     volumes:
       - forward-runs:/app/forward_runs
-    environment:
-      - FEED_MODE=${FEED_MODE:-live}
-      - AUTO_RESUME=true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 30s
     logging:
       driver: json-file
       options:
@@ -23,24 +27,26 @@ services:
           cpus: "1.0"
 
   daily-report:
-    build: .
+    build:
+      context: .
     container_name: fx-daily-report
     restart: "no"
     env_file: .env
     volumes:
       - forward-runs:/app/forward_runs:ro
-    entrypoint: ["python", "scripts/generate_report.py", "--type", "daily"]
+    entrypoint: ["tini", "--", "python", "scripts/generate_report.py", "--type", "daily"]
     profiles:
       - reporting
 
   weekly-report:
-    build: .
+    build:
+      context: .
     container_name: fx-weekly-report
     restart: "no"
     env_file: .env
     volumes:
       - forward-runs:/app/forward_runs:ro
-    entrypoint: ["python", "scripts/generate_report.py", "--type", "weekly"]
+    entrypoint: ["tini", "--", "python", "scripts/generate_report.py", "--type", "weekly"]
     profiles:
       - reporting
 

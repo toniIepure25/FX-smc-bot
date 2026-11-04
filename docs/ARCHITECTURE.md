@@ -91,7 +91,7 @@ Professional quantitative FX strategy lab that formalizes SMC/ICT concepts into 
 - **backtesting/** — Event-driven engine with regime tagging, trade ledger, metrics, attribution with interaction dimensions; `runner.py` is the shared synthetic/load/run path used by the CLI, dashboard and smoke script
 - **ml/** — Regime classifiers (volatility, trend/range, spread, composite), microstructure proxies (bar efficiency, wick asymmetry, spread stress, volatility compression, directional persistence)
 - **research/** — Ablation runner (family/scoring/filter), campaign orchestration (config sweep, baseline-vs-SMC, walk-forward), research quality scores, experiment registry, evaluation with regime/interaction dimensions; frozen gate modules for C2–C6/F0/Q0–Q1/P0–P1; versioned programmes under `v2/`, `v3/`, `v5r/` and `rate_sources/`
-- **live/** — BrokerAdapter protocol, PaperBroker, EventJournal (JSONL audit log), LiveState persistence, PaperTradingRunner, ForwardPaperRunner, health checks, alerts and the OANDA/file-watch adapters used by the forward service
+- **live/** — BrokerAdapter protocol, PaperBroker, EventJournal (JSONL audit log), LiveState persistence, PaperTradingRunner, ForwardPaperRunner, health checks, alerts and the OANDA/file-watch adapters available to the legacy live stack
 - **dashboard/** — Streamlit-independent snapshot/frame service and Plotly chart builders for the local cockpit
 - **cli.py** — `fx-smc` console entry point (`info`, `doctor`, `backtest`, `dashboard`)
 - **utils/** — ATR, pip math, session time helpers, logging
@@ -170,7 +170,7 @@ The `live/` package also supports a long-running forward paper service used by
 the legacy `bos_only_usdjpy` programme:
 
 ```
-OANDA / file-watch feed → ForwardPaperRunner → PaperBroker → EventJournal
+Yahoo H1/H4 or replay bars → ForwardPaperRunner → PaperBroker → EventJournal
                                ↓                    ↓
                          Risk/Portfolio        state.json + health.json
 ```
