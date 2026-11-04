@@ -98,6 +98,7 @@ path and checks configured-pair coverage:
 ```bash
 python -m fx_smc_bot data --data-dir data/processed
 python -m fx_smc_bot data --data-dir data/processed --json
+python -m fx_smc_bot data --data-dir data/processed --output data/processed-audit.json
 python -m fx_smc_bot data --data-dir data/processed --strict
 ```
 
@@ -112,12 +113,14 @@ The audit reports:
 - Overall quality score (0.0-1.0)
 
 A pair is marked `warn` when its quality score is below `0.80`, more than 1% of
-expected bars are missing, duplicate timestamps exist, or a stale-price sequence
-is found. A configured pair that cannot be loaded is also a warning. The audit
-fails only when no usable series can be loaded. `--strict` turns warnings into a
-non-zero exit, which is appropriate for a pre-run gate. The audit is a
-plumbing/data-hygiene check, not evidence of an edge, and it never reads the
-sealed holdout.
+expected bars are missing, duplicate timestamps exist, a stale-price sequence is
+found, or it was loaded from a fallback execution timeframe instead of the
+primary one. A configured pair that cannot be loaded is also a warning. The
+audit fails only when no usable series can be loaded. `--strict` turns warnings
+into a non-zero exit, which is appropriate for a pre-run gate. The loader still
+supports mixed Parquet/CSV roots: for each pair/timeframe it tries the preferred
+format first and then the other provider. The audit is a plumbing/data-hygiene
+check, not evidence of an edge, and it never reads the sealed holdout.
 
 ## Dataset Manifest
 

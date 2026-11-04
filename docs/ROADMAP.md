@@ -60,8 +60,11 @@ mypy still open.)*
 - Do not add a badge until the workflow is green on the default branch.
 - Future: documentation link check. *(Coverage reporting added: CI uploads
   `coverage.xml` for each matrix entry.)*
-- **Done:** `fx-smc data` audits configured-pair coverage and data quality; the
-  same audit feeds `doctor --data-dir` and can gate a local run with `--strict`.
+- **Done:** `fx-smc data` audits configured-pair coverage, execution-timeframe
+  fallback and data quality; the same audit feeds `doctor --data-dir` and can gate
+  a local run with `--strict` or `backtest --require-quality`.
+- **Done:** manifest schema 2 records the config SHA-256, exact data fingerprint
+  and the local audit; local runs also write `audit.json`.
 - **Done:** CI has wheel/`twine`/installed-entry-point validation and a Docker
   build plus unprivileged synthetic smoke test.
 
@@ -85,7 +88,8 @@ needs a first green run on the remote.)*
 ### P2.1 Reproducibility guide
 - **Done:** `docs/REPRODUCIBILITY.md` covers clean-environment setup, the
   deterministic synthetic run, the file-backed loader path, tests/CI parity,
-  artifact hashing and the immutable-evidence rules.
+  artifact hashing and the immutable-evidence rules. Manifest schema 2 adds the
+  config hash and a fingerprint of the exact timestamp/OHLCV arrays.
 - Still open: add the exact frozen V3/V5R programme commands and record a
   data digest for each recipe.
 - Verify at least one recipe end-to-end on a clean environment (the synthetic
@@ -95,7 +99,7 @@ needs a first green run on the remote.)*
 - **Done:** one `fx-smc` console entry point covering `info`, `doctor`, `data`,
   `backtest` and `dashboard`, plus `python -m fx_smc_bot` as a PATH-free fallback.
   Local `Makefile` and PowerShell `tasks.ps1` wrappers cover install, lint, test,
-  doctor, coverage and smoke.
+  doctor, coverage, smoke and package build/check.
 - **Done:** CI builds the sdist and wheel, runs `twine check`, force-installs the
   wheel without dependencies and validates `fx-smc info` plus `doctor --strict`.
 - Still open: separate `fx-smc-data`, `fx-smc-backtest`, `fx-smc-campaign` and

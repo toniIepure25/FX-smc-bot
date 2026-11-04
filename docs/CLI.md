@@ -53,7 +53,8 @@ Checks are reported as `ok`, `warn`, `skip` or `fail`:
 - the working directory must look like the repository root (warning otherwise);
 - the YAML config must load;
 - an optional data directory is loaded through the normal provider path, then
-  checked for configured-pair coverage and data-quality warnings;
+  checked for configured-pair coverage, execution-timeframe fallback and
+  data-quality warnings;
 - `streamlit` and `plotly` are reported as warnings when missing.
 
 Exit code is `0` unless a check fails. `--strict` turns warnings into a non-zero
@@ -64,29 +65,36 @@ exit, which is what CI uses. `--json` emits machine-readable output.
 ```powershell
 fx-smc data --data-dir var/smoke/data
 fx-smc data --data-dir var/smoke/data --config configs/base.yaml --json
+fx-smc data --data-dir var/smoke/data --output var/smoke/data-audit.json
 fx-smc data --data-dir var/smoke/data --strict
 ```
 
 The audit loads the configured execution timeframes and runs the same
 `data.diagnostics` checks used elsewhere in the framework. It reports, per pair:
 
-- timeframe and bar count;
-- quality score;
+- selected and expected timeframe;
+- bar count and quality score;
 - missing-bar percentage;
 - duplicate timestamps, zero-range bars and stale-price sequences;
 - diagnostic issue strings.
+
+A pair whose primary execution timeframe is unavailable and silently falls back
+to the next configured timeframe is marked `warn`, with the expected/selected
+timeframes in the issue text. This matters because the backtest still runs, but
+on a different bar horizon than the config requests.
 
 Exit codes:
 
 | Situation | Exit |
 |---|---|
-| All configured pairs loaded and no quality warnings | `0` |
-| A configured pair is missing or a series has quality warnings | `0` |
+| All configured pairs loaded at the primary timeframe with no quality warnings | `0` |
+| A configured pair is missing, a timeframe fallback occurred, or a series has quality warnings | `0` |
 | Same warning, with `--strict` | `1` |
 | Directory missing, no usable data, or invalid config | `1` |
 
-The audit is read-only and never touches the sealed holdout. It is a preflight
-for local runs, not a research verdict. See
+`--output PATH` writes the same JSON payload while still printing the table. The
+audit is read-only and never touches the sealed holdout. It is a preflight for
+local runs, not a research verdict. See
 [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the full preflight sequence.
 
 ### `backtest`
@@ -101,7 +109,13 @@ Local data run with artifacts:
 
 ```powershell
 fx-smc backtest --data-dir var/smoke/data --output-dir var/smoke/results --label smoke
+fx-smc backtest --data-dir var/smoke/data --require-quality --output-dir var/smoke/results
 ```
+
+`--require-quality` runs the data audit before the backtest and aborts with exit
+`1` if any pair is missing, fell back to another execution timeframe, or failed a
+quality check. Without the flag the audit warning is printed, but the run
+continues.
 
 | Option | Meaning |
 |---|---|
@@ -110,11 +124,18 @@ fx-smc backtest --data-dir var/smoke/data --output-dir var/smoke/results --label
 | `--synthetic` | Force deterministic synthetic data (mutually exclusive with `--data-dir`). |
 | `--bars N` | Synthetic bars per pair (default 500). |
 | `--seed N` | Synthetic RNG seed (default 42). |
-| `--output-dir PATH` | Write config, manifest, metrics, trades, equity curve, attribution and report artifacts. |
+| `--output-dir PATH` | Write config, manifest, audit, metrics, trades, equity curve, attribution and report artifacts. |
 | `--label TEXT` | Prefix for the timestamped artifact directory. |
+| `--require-quality` | Fail before the backtest unless the data audit is `ok`. |
 
 The command calls the same `fx_smc_bot.backtesting.runner` used by the dashboard.
 It is a wiring/smoke tool, not a research verdict and not evidence of an edge.
+
+For a local run, `manifest.json` schema 2 records the package/Python versions,
+config path plus SHA-256, per-pair timeframes and bars, a fingerprint of the
+exact timestamp/OHLCV arrays, the synthetic seed when applicable, and the full
+audit object. The same audit is also written as `audit.json`. This makes two
+runs comparable without relying on the directory name alone.
 
 ### `dashboard`
 
@@ -136,6 +157,7 @@ Use the CLI directly, or the small task wrappers:
 .\tasks.ps1 lint
 .\tasks.ps1 test-fast
 .\tasks.ps1 coverage
+.\tasks.ps1 package
 .\tasks.ps1 smoke
 ```
 
@@ -146,6 +168,7 @@ make doctor
 make lint
 make test-fast
 make coverage
+make package
 make smoke
 ```
 

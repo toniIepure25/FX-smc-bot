@@ -78,10 +78,12 @@ in-memory and disappears when Streamlit restarts. It is not a run database.
 ## Data quality
 
 The **Data & config** tab shows a diagnostics table for every loaded pair:
-quality score, missing-bar percentage, duplicate timestamps, zero-range bars,
-stale-price sequences and issue strings. A warning is shown when any pair falls
-below the project threshold. These are data-hygiene checks, not evidence that a
-strategy is valid. For a CLI preflight that uses the same diagnostics, see
+selected and expected timeframe, timeframe match, quality score, missing-bar
+percentage, duplicate timestamps, zero-range bars, stale-price sequences and
+issue strings. A warning is shown when any pair falls below the project
+threshold or was loaded at a fallback timeframe. The same table can be
+downloaded as JSON for a run record. These are data-hygiene checks, not evidence
+that a strategy is valid. For a CLI preflight that uses the same diagnostics, see
 [CLI.md](CLI.md#data).
 
 ## Data sources

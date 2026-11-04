@@ -58,15 +58,17 @@ Get-FileHash (Join-Path $run "metrics.json"), (Join-Path $run "config.json") -Al
 ```
 
 Expected artifacts include the resolved `config.json`, a reproducibility
-`manifest.json` (source, pairs, bars, seed, Python version), `metrics.json`,
-`trades.csv`, `equity_curve.csv`, `attribution.json` and the text report.
-`config.json` is the authoritative record of the config actually used; do not
-substitute the input YAML. `manifest.json` records the synthetic seed and bar
-count so a run can be repeated exactly.
+`manifest.json` (schema 2), `metrics.json`, `trades.csv`, `equity_curve.csv`,
+`attribution.json` and the text report. `config.json` is the authoritative record
+of the config actually used; do not substitute the input YAML. `manifest.json`
+records the synthetic seed and requested bar count, the package/Python versions,
+the config SHA-256 and a fingerprint of the exact timestamp/OHLCV arrays so a run
+can be repeated and compared exactly.
 
 A second run with the same interpreter, dependencies and seed should produce the
-same synthetic trades and metrics. Treat a mismatch as a regression until proven
-otherwise, and attach both `pip-freeze.txt` files when comparing.
+same synthetic trades and metrics and the same data fingerprint. Treat a mismatch
+as a regression until proven otherwise, and attach both `pip-freeze.txt` files
+when comparing.
 
 ## 3. File-based local backtest
 
@@ -78,19 +80,23 @@ python scripts/download_data.py --mode generate `
   --output-dir var/repro/data `
   --start 2024-01-01 --end 2024-02-01
 
-python -m fx_smc_bot data --data-dir var/repro/data --strict
+python -m fx_smc_bot data --data-dir var/repro/data --strict `
+  --output var/repro/data-audit.json
 
 python -m fx_smc_bot backtest `
   --data-dir var/repro/data `
   --config configs/base.yaml `
+  --require-quality `
   --output-dir var/repro/file-backed --label repro-file
 ```
 
-The `data --strict` step checks configured-pair coverage, bar counts, duplicate
-timestamps, missing bars, stale sequences and the quality score before the
-backtest runs. Use `--json` to archive the audit beside the run artifact. If the
-loader reports missing pairs or malformed bars, stop and inspect the data. Do not
-"fix" it by editing the research evidence.
+The `data --strict` step checks configured-pair coverage, the expected execution
+timeframe, bar counts, duplicate timestamps, missing bars, stale sequences and
+the quality score before the backtest runs. `--require-quality` applies the same
+gate inside the backtest process. If the loader reports missing pairs, a
+timeframe fallback or malformed bars, stop and inspect the data. Do not "fix" it
+by editing the research evidence. Local runs also write `audit.json`, and the
+audit object is embedded in `manifest.json`.
 
 ## 4. Tests and CI parity
 

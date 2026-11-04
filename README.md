@@ -118,19 +118,22 @@ frozen research-gate scripts:
 |---|---|
 | `fx-smc info` | Version, canonical verdict, holdout state and command list |
 | `fx-smc doctor` | Validate Python, repository layout, config, data and dashboard extras |
-| `fx-smc data` | Audit coverage, bars and quality diagnostics for a data directory |
+| `fx-smc data` | Audit pair coverage, execution-timeframe fallback, bars and quality diagnostics |
 | `fx-smc backtest` | One in-process backtest on synthetic data or a local dataset |
 | `fx-smc dashboard` | Launch the local cockpit |
 
 `doctor --strict --json` is suitable for CI, and `info --json` for release checks.
-Before a local run, audit the data explicitly:
+Before a local run, audit the data explicitly or make the backtest enforce it:
 
 ```powershell
 python -m fx_smc_bot data --data-dir var/smoke/data --json
-python -m fx_smc_bot data --data-dir var/smoke/data --strict
+python -m fx_smc_bot data --data-dir var/smoke/data --strict --output var/smoke/data-audit.json
+python -m fx_smc_bot backtest --data-dir var/smoke/data --require-quality --output-dir var/smoke/results
 ```
 
-See [docs/CLI.md](docs/CLI.md) for flags, exit codes and scope.
+A run manifest also records the config hash and a fingerprint of the exact data
+arrays, alongside any local audit, so two runs can be compared without relying on
+directory names. See [docs/CLI.md](docs/CLI.md) for flags, exit codes and scope.
 
 ## Repository map
 
