@@ -35,6 +35,9 @@ dashboard = [
   "plotly>=5.22,<8.0",
 ]
 
+[project.scripts]
+fx-smc = "fx_smc_bot.cli:main"
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 
