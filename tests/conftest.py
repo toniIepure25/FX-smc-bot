@@ -15,10 +15,12 @@ import pytest
 # left behind with an ACL that denies even listing, which breaks every tmp_path
 # fixture with PermissionError. This directory is still outside the repository,
 # so boundary tests keep seeing a genuinely external temp location.
-os.environ.setdefault(
-    "PYTEST_DEBUG_TEMPROOT",
-    str(Path(tempfile.gettempdir()) / "fx-smc-pytest"),
-)
+_temp_root = Path(tempfile.gettempdir()) / "fx-smc-pytest"
+if "PYTEST_DEBUG_TEMPROOT" not in os.environ:
+    # pytest creates ``<temproot>/pytest-of-<user>`` but does not create the
+    # configured debug root itself. A fresh CI container has no such parent.
+    _temp_root.mkdir(parents=True, exist_ok=True)
+    os.environ["PYTEST_DEBUG_TEMPROOT"] = str(_temp_root)
 
 from fx_smc_bot.config import AppConfig, Timeframe, TradingPair
 from fx_smc_bot.domain import MarketBar
