@@ -30,6 +30,8 @@ dev = [
   "pytest-cov>=5.0,<7.0",
   "ruff>=0.5,<1.0",
   "mypy>=1.10,<2.0",
+  "build>=1.2,<2.0",
+  "twine>=5.0,<7.0",
 ]
 dashboard = [
   "streamlit>=1.36,<2.0",

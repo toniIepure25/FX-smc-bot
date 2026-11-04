@@ -26,7 +26,8 @@ switch ($Task) {
             & $python -m ruff check src/fx_smc_bot --exclude src/fx_smc_bot/research
         }
         Invoke-Step "Linting dashboard and CLI tests" {
-            & $python -m ruff check tests/test_cli.py tests/test_dashboard `
+            & $python -m ruff check dashboard/app.py tests/test_cli.py `
+                tests/test_data/test_audit.py tests/test_dashboard `
                 tests/test_backtesting/test_runner.py
         }
     }
