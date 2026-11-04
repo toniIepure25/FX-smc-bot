@@ -19,8 +19,13 @@ def _write_csv_dataset(
     *,
     pairs: list[TradingPair] | None = None,
     bars: int = 120,
+    timeframe: Timeframe = Timeframe.M15,
 ) -> None:
-    for pair, series in synthetic_market_data(bars, pairs=pairs).items():
+    for pair, series in synthetic_market_data(
+        bars,
+        pairs=pairs,
+        timeframe=timeframe,
+    ).items():
         pair_dir = root / pair.value
         pair_dir.mkdir(parents=True, exist_ok=True)
         pd.DataFrame(
@@ -31,7 +36,7 @@ def _write_csv_dataset(
                 "low": series.low,
                 "close": series.close,
             }
-        ).to_csv(pair_dir / f"{Timeframe.M15.value}.csv", index=False)
+        ).to_csv(pair_dir / f"{timeframe.value}.csv", index=False)
 
 
 def test_info_json_contains_status(capsys: pytest.CaptureFixture[str]) -> None:
@@ -104,6 +109,21 @@ def test_doctor_with_data_dir_uses_the_audit(
 
     checks = {check["name"]: check["status"] for check in payload["checks"]}
     assert checks["data"] == "warn"
+
+
+def test_doctor_reports_a_timeframe_fallback(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    _write_csv_dataset(tmp_path, pairs=[TradingPair.GBPUSD, TradingPair.USDJPY])
+    _write_csv_dataset(tmp_path, pairs=[TradingPair.EURUSD], timeframe=Timeframe.M5)
+
+    assert main(["doctor", "--data-dir", str(tmp_path), "--json"]) == 0
+    payload = json.loads(capsys.readouterr().out)
+    data_check = next(check for check in payload["checks"] if check["name"] == "data")
+
+    assert data_check["status"] == "warn"
+    assert "fallback EURUSD" in data_check["detail"]
 
 
 def test_backtest_synthetic_smoke(capsys: pytest.CaptureFixture[str]) -> None:
