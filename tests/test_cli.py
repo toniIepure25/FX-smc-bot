@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -45,6 +46,40 @@ def test_backtest_synthetic_smoke(capsys: pytest.CaptureFixture[str]) -> None:
 
     assert "synthetic demo" in output
     assert "Total Trades:" in output
+
+
+def test_backtest_writes_reproducibility_manifest(
+    tmp_path: Path,
+) -> None:
+    assert (
+        main(
+            [
+                "backtest",
+                "--synthetic",
+                "--bars",
+                "120",
+                "--seed",
+                "7",
+                "--output-dir",
+                str(tmp_path),
+                "--label",
+                "manifest-test",
+                "--log-level",
+                "ERROR",
+            ]
+        )
+        == 0
+    )
+    run_dirs = [path for path in tmp_path.iterdir() if path.is_dir()]
+    assert len(run_dirs) == 1
+
+    manifest = json.loads((run_dirs[0] / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["schema_version"] == 1
+    assert manifest["source"] == "synthetic"
+    assert manifest["bars"] == 120
+    assert manifest["seed"] == 7
+    assert manifest["label"] == "manifest-test"
+    assert manifest["pairs"] == ["EURUSD", "GBPUSD", "USDJPY"]
 
 
 def test_dashboard_rejects_a_missing_app(capsys: pytest.CaptureFixture[str]) -> None:

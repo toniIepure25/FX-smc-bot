@@ -14,6 +14,7 @@ import platform
 import subprocess
 import sys
 from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -198,6 +199,7 @@ def _cmd_backtest(args: argparse.Namespace) -> int:
 
     setup_logging(args.log_level)
 
+    config_path = Path(args.config or DEFAULT_CONFIG)
     config = _resolve_config(args.config)
     if args.data_dir:
         data = load_market_data(args.data_dir, config)
@@ -217,6 +219,22 @@ def _cmd_backtest(args: argparse.Namespace) -> int:
             args.output_dir,
             config_dict=config.model_dump(),
             label=args.label,
+        )
+        manifest = {
+            "schema_version": 1,
+            "label": args.label,
+            "source": "local" if args.data_dir else "synthetic",
+            "pairs": sorted(pair.value for pair in data),
+            "bars": None if args.data_dir else args.bars,
+            "seed": None if args.data_dir else args.seed,
+            "data_dir": str(Path(args.data_dir).resolve()) if args.data_dir else None,
+            "config_path": str(config_path.resolve()),
+            "python": platform.python_version(),
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        (artifact_dir / "manifest.json").write_text(
+            json.dumps(manifest, indent=2),
+            encoding="utf-8",
         )
         print(f"Artifacts: {artifact_dir}")
     return 0

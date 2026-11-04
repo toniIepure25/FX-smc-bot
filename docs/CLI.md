@@ -78,7 +78,7 @@ fx-smc backtest --data-dir var/smoke/data --output-dir var/smoke/results --label
 | `--synthetic` | Force deterministic synthetic data (mutually exclusive with `--data-dir`). |
 | `--bars N` | Synthetic bars per pair (default 500). |
 | `--seed N` | Synthetic RNG seed (default 42). |
-| `--output-dir PATH` | Write config, metrics, trades, equity curve, attribution and report artifacts. |
+| `--output-dir PATH` | Write config, manifest, metrics, trades, equity curve, attribution and report artifacts. |
 | `--label TEXT` | Prefix for the timestamped artifact directory. |
 
 The command calls the same `fx_smc_bot.backtesting.runner` used by the dashboard.
