@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("install", "lint", "test", "test-fast", "coverage", "doctor", "smoke", "dashboard")]
+    [ValidateSet("install", "lint", "test", "test-fast", "coverage", "doctor", "smoke", "package", "dashboard")]
     [string]$Task = "test"
 )
 
@@ -56,6 +56,15 @@ switch ($Task) {
     "smoke" {
         Invoke-Step "Running the synthetic backtest" {
             & $python -m fx_smc_bot backtest --synthetic --bars 500 --log-level WARNING
+        }
+    }
+    "package" {
+        Invoke-Step "Building and checking distributions" {
+            & $python -m build
+        }
+        & $python -m twine check dist/*
+        if ($LASTEXITCODE -ne 0) {
+            throw "twine check failed with exit code $LASTEXITCODE"
         }
     }
     "dashboard" {

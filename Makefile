@@ -1,6 +1,6 @@
 PY ?= python
 
-.PHONY: install lint test test-fast coverage doctor smoke dashboard
+.PHONY: install lint test test-fast coverage doctor smoke package dashboard
 
 install:
 	$(PY) -m pip install -e ".[dev,dashboard]"
@@ -27,6 +27,10 @@ doctor:
 
 smoke:
 	$(PY) -m fx_smc_bot backtest --synthetic --bars 500 --log-level WARNING
+
+package:
+	$(PY) -m build
+	$(PY) -m twine check dist/*
 
 dashboard:
 	$(PY) -m fx_smc_bot dashboard
