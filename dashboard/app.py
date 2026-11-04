@@ -533,7 +533,15 @@ with tab_ledger:
 
 with tab_data:
     st.subheader("Data quality")
-    quality = data_quality_frame(snapshot.data)
+    expected_timeframe = (
+        snapshot.config.data.execution_timeframes[0]
+        if snapshot.config.data.execution_timeframes
+        else None
+    )
+    quality = data_quality_frame(
+        snapshot.data,
+        expected_timeframe=expected_timeframe,
+    )
     st.dataframe(
         quality,
         hide_index=True,
@@ -541,6 +549,8 @@ with tab_data:
         column_config={
             "pair": "Pair",
             "timeframe": "TF",
+            "expected_timeframe": "Expected",
+            "timeframe_ok": st.column_config.CheckboxColumn("TF ok"),
             "bars": st.column_config.NumberColumn("Bars", format="%d"),
             "quality_score": st.column_config.NumberColumn("Quality", format="%.3f"),
             "missing_bar_pct": st.column_config.NumberColumn("Missing %", format="%.2f%%"),
@@ -555,6 +565,7 @@ with tab_data:
         | (quality["missing_bar_pct"] > 1.0)
         | (quality["duplicates"] > 0)
         | (quality["stale_sequences"] > 0)
+        | (~quality["timeframe_ok"])
     ]
     if not problem_rows.empty:
         st.warning(
@@ -562,6 +573,22 @@ with tab_data:
             + ", ".join(problem_rows["pair"].astype(str))
             + ". Review the issues before treating the run as evidence."
         )
+    st.download_button(
+        "Download data-quality audit (JSON)",
+        data=json.dumps(
+            {
+                "expected_timeframe": (
+                    expected_timeframe.value if expected_timeframe is not None else ""
+                ),
+                "status": "warn" if not problem_rows.empty else "ok",
+                "pairs": quality.to_dict(orient="records"),
+            },
+            indent=2,
+            default=str,
+        ),
+        file_name="data-quality.json",
+        mime="application/json",
+    )
 
     st.subheader("Loaded series")
     st.dataframe(

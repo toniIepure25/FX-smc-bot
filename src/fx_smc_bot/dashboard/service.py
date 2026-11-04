@@ -19,7 +19,7 @@ from fx_smc_bot.backtesting.runner import (
     run_backtest,
     synthetic_market_data,
 )
-from fx_smc_bot.config import AppConfig, TradingPair
+from fx_smc_bot.config import AppConfig, Timeframe, TradingPair
 from fx_smc_bot.data.diagnostics import run_diagnostics
 from fx_smc_bot.data.models import BarSeries
 from fx_smc_bot.domain import BacktestResult
@@ -185,11 +185,17 @@ def summary_rows(snapshot: DashboardSnapshot) -> list[dict[str, object]]:
     return rows
 
 
-def data_quality_frame(data: dict[TradingPair, BarSeries]) -> pd.DataFrame:
+def data_quality_frame(
+    data: dict[TradingPair, BarSeries],
+    *,
+    expected_timeframe: Timeframe | None = None,
+) -> pd.DataFrame:
     """One row per pair with the diagnostics used by the data-quality tab."""
     columns = [
         "pair",
         "timeframe",
+        "expected_timeframe",
+        "timeframe_ok",
         "bars",
         "quality_score",
         "missing_bar_pct",
@@ -198,13 +204,17 @@ def data_quality_frame(data: dict[TradingPair, BarSeries]) -> pd.DataFrame:
         "stale_sequences",
         "issues",
     ]
+    expected = expected_timeframe.value if expected_timeframe is not None else ""
     rows: list[dict[str, object]] = []
     for pair, series in sorted(data.items(), key=lambda item: item[0].value):
         report = run_diagnostics(series)
+        timeframe_ok = not expected or series.timeframe.value == expected
         rows.append(
             {
                 "pair": pair.value,
                 "timeframe": series.timeframe.value,
+                "expected_timeframe": expected,
+                "timeframe_ok": timeframe_ok,
                 "bars": report.total_bars,
                 "quality_score": report.quality_score,
                 "missing_bar_pct": report.missing_bar_pct * 100.0,

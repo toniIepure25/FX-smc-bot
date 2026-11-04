@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from fx_smc_bot.config import AppConfig
+from fx_smc_bot.config import AppConfig, Timeframe
 from fx_smc_bot.dashboard.service import (
     DashboardSnapshot,
     data_quality_frame,
@@ -78,11 +78,16 @@ def test_attribution_frames_reconcile_with_trade_pnl(snapshot: DashboardSnapshot
 
 
 def test_data_quality_frame_contract(snapshot: DashboardSnapshot) -> None:
-    quality = data_quality_frame(snapshot.data)
+    quality = data_quality_frame(
+        snapshot.data,
+        expected_timeframe=Timeframe.M15,
+    )
 
     assert list(quality.columns) == [
         "pair",
         "timeframe",
+        "expected_timeframe",
+        "timeframe_ok",
         "bars",
         "quality_score",
         "missing_bar_pct",
@@ -92,6 +97,7 @@ def test_data_quality_frame_contract(snapshot: DashboardSnapshot) -> None:
         "issues",
     ]
     assert len(quality) == len(snapshot.data)
+    assert quality["timeframe_ok"].all()
     assert quality["quality_score"].between(0, 1).all()
     assert (quality["missing_bar_pct"] >= 0).all()
     assert (quality["duplicates"] >= 0).all()
