@@ -12,6 +12,7 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -97,23 +98,28 @@ def load_market_data(data_dir: str | Path, config: AppConfig) -> dict[TradingPai
     if not path.exists():
         raise FileNotFoundError(f"Data directory does not exist: {path}")
 
+    providers: list[Any] = []
     if any(path.rglob("*.parquet")):
         from fx_smc_bot.data.providers.parquet_provider import ParquetProvider
 
-        provider = ParquetProvider(path)
-    else:
-        from fx_smc_bot.data.providers.csv_provider import CsvProvider
+        providers.append(ParquetProvider(path))
+    from fx_smc_bot.data.providers.csv_provider import CsvProvider
 
-        provider = CsvProvider(path)
+    providers.append(CsvProvider(path))
 
     data: dict[TradingPair, BarSeries] = {}
     for pair in config.data.primary_pairs:
         for timeframe in config.data.execution_timeframes:
-            try:
-                data[pair] = provider.load(pair, timeframe)
+            loaded = False
+            for provider in providers:
+                try:
+                    data[pair] = provider.load(pair, timeframe)
+                    loaded = True
+                    break
+                except (FileNotFoundError, ValueError):
+                    continue
+            if loaded:
                 break
-            except (FileNotFoundError, ValueError):
-                continue
 
     if not data:
         raise ValueError(f"No usable execution-timeframe data found under {path}")

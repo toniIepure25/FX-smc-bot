@@ -38,6 +38,32 @@ def test_load_market_data_rejects_missing_directory(tmp_path: Path) -> None:
         load_market_data(tmp_path / "missing", AppConfig())
 
 
+def test_load_market_data_falls_back_across_providers(tmp_path: Path) -> None:
+    import pandas as pd
+
+    for pair, series in synthetic_market_data(120).items():
+        pair_dir = tmp_path / pair.value
+        pair_dir.mkdir(parents=True)
+        frame = pd.DataFrame(
+            {
+                "timestamp": pd.to_datetime(series.timestamps),
+                "open": series.open,
+                "high": series.high,
+                "low": series.low,
+                "close": series.close,
+            }
+        )
+        if pair is TradingPair.EURUSD:
+            frame.to_parquet(pair_dir / f"{Timeframe.M15.value}.parquet", index=False)
+        else:
+            frame.to_csv(pair_dir / f"{Timeframe.M15.value}.csv", index=False)
+
+    data = load_market_data(tmp_path, AppConfig())
+
+    assert set(data) == {TradingPair.EURUSD, TradingPair.GBPUSD, TradingPair.USDJPY}
+    assert all(series.timeframe is Timeframe.M15 for series in data.values())
+
+
 def test_run_backtest_returns_result_and_metrics() -> None:
     data = synthetic_market_data(500)
     run = run_backtest(AppConfig(), data)
